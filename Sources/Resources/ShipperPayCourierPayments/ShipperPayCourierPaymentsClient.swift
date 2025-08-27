@@ -46,7 +46,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
     /// List shipper pay courier payments by shipper org ID with status filtering
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByShipperOrgId(request: ListPaymentsByShipperReq, requestOptions: RequestOptions? = nil) async throws -> GetShipperPayCourierPaymentsForShipperRes {
+    public func listByShipperOrgId(request: Requests.ListPaymentsByShipperReq, requestOptions: RequestOptions? = nil) async throws -> GetShipperPayCourierPaymentsForShipperRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/shipper_pay_courier_payments/list/by_shipper_org_id",
@@ -59,7 +59,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
     /// List shipper pay courier payments by courier org ID with status filtering
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByCourierOrgId(request: ListPaymentsByCourierReq, requestOptions: RequestOptions? = nil) async throws -> GetShipperPayCourierPaymentsForShipperRes {
+    public func listByCourierOrgId(request: Requests.ListPaymentsByCourierReq, requestOptions: RequestOptions? = nil) async throws -> GetShipperPayCourierPaymentsForShipperRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/shipper_pay_courier_payments/list/by_courier_org_id",

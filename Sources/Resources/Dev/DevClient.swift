@@ -58,7 +58,7 @@ public final class DevClient: Sendable {
     /// Development template endpoint that demonstrates transaction handling and request mirroring.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createTemplate(request: TemplateReq, requestOptions: RequestOptions? = nil) async throws -> TemplateRes {
+    public func createTemplate(request: Requests.TemplateReq, requestOptions: RequestOptions? = nil) async throws -> TemplateRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/dev/template",

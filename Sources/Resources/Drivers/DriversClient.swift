@@ -34,7 +34,7 @@ public final class DriversClient: Sendable {
     /// Creates a new driver profile for an organization member with optional vehicle type assignments.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: DriverCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func create(request: Requests.DriverCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/drivers/create",
@@ -83,7 +83,7 @@ public final class DriversClient: Sendable {
     /// Sets the activation status of a driver (active/inactive) within the organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setActivation(request: SetDriverActivationReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setActivation(request: Requests.SetDriverActivationReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/drivers/set_activation",
@@ -96,7 +96,7 @@ public final class DriversClient: Sendable {
     /// Updates the driver's last known location and timestamp for tracking purposes.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeen(request: DriverLastSeenReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func lastSeen(request: Requests.DriverLastSeenReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/drivers/last_seen",
@@ -109,7 +109,7 @@ public final class DriversClient: Sendable {
     /// Updates driver contact details and vehicle type assignments within the organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateDriver(request: UpdateDriverDetailsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateDriver(request: Requests.UpdateDriverDetailsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/drivers/update",

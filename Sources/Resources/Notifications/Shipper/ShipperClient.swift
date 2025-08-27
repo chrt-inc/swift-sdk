@@ -22,7 +22,7 @@ public final class ShipperClient: Sendable {
     /// Creates or updates notification preferences for the authenticated shipper organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func upsertPreferences(request: ShipperNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func upsertPreferences(request: Requests.ShipperNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/notifications/shipper_preferences/upsert",

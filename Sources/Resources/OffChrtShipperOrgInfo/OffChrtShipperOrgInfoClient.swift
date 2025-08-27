@@ -10,7 +10,7 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Creates connection information for working with off-platform shipper organizations.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: OffChrtShipperOrgInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func create(request: Requests.OffChrtShipperOrgInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/off_chrt_shipper_org_info/create",
@@ -47,7 +47,7 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Updates existing off-platform shipper connection information owned by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateById(id: String, request: OffChrtShipperOrgInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateById(id: String, request: Requests.OffChrtShipperOrgInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/off_chrt_shipper_org_info/\(id)",

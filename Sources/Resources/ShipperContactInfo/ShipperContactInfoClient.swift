@@ -96,7 +96,7 @@ public final class ShipperContactInfoClient: Sendable {
     /// Updates existing shipper contact information owned by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(shipperContactInfoId: String, request: ShipperContactInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func update(shipperContactInfoId: String, request: Requests.ShipperContactInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/shipper_contact_info/update/\(shipperContactInfoId)",

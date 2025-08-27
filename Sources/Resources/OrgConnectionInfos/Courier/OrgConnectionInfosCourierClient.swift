@@ -22,7 +22,7 @@ public final class OrgConnectionInfosCourierClient: Sendable {
     /// Creates courier organization connection information. Fails if already exists.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: CourierOrgConnectionInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func create(request: Requests.CourierOrgConnectionInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/org_connection_infos/courier/create",
@@ -35,7 +35,7 @@ public final class OrgConnectionInfosCourierClient: Sendable {
     /// Updates existing courier organization connection information.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: CourierOrgConnectionInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func update(request: Requests.CourierOrgConnectionInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/org_connection_infos/courier/update",

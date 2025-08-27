@@ -22,7 +22,7 @@ public final class OrgProfilesClient: Sendable {
     /// Create a new courier organization profile. This endpoint will fail if a profile already exists for the organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: CourierOrgProfileClientCreate3, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func create(request: Requests.CourierOrgProfileClientCreate3, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/org_profiles/create",
@@ -35,7 +35,7 @@ public final class OrgProfilesClient: Sendable {
     /// Update an existing courier organization profile. Can update one or more fields. Profile must exist before updating.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: CourierOrgProfileClientUpdate3, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func update(request: Requests.CourierOrgProfileClientUpdate3, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/org_profiles/update",

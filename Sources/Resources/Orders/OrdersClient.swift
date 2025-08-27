@@ -36,7 +36,7 @@ public final class OrdersClient: Sendable {
     /// Creates a comprehensive order with task groups, tasks, milestones, and cargo.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: CreateOrderReq, requestOptions: RequestOptions? = nil) async throws -> CreateOrderRes {
+    public func create(request: Requests.CreateOrderReq, requestOptions: RequestOptions? = nil) async throws -> CreateOrderRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/orders/create",

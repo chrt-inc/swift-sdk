@@ -22,7 +22,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Creates a new rate sheet for a courier to charge shippers.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: ShipperPayCourierRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func create(request: Requests.ShipperPayCourierRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/shipper_pay_courier_rate_sheets/create",
@@ -59,7 +59,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Updates an existing rate sheet owned by the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateById(id: String, request: ShipperPayCourierRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
+    public func updateById(id: String, request: Requests.ShipperPayCourierRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/shipper_pay_courier_rate_sheets/\(id)",

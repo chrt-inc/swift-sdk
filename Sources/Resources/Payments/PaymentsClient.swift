@@ -10,7 +10,7 @@ public final class PaymentsClient: Sendable {
     /// Create a checkout session for a subscription
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createCheckoutSession(request: CreateCheckoutSessionReq2, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes2 {
+    public func createCheckoutSession(request: Requests.CreateCheckoutSessionReq2, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes2 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/payments/create-checkout-session",
@@ -59,7 +59,7 @@ public final class PaymentsClient: Sendable {
     /// Generates an invoice for a direct charge payment.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func generateInvoice(request: GenerateInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> GenerateInvoiceRes {
+    public func generateInvoice(request: Requests.GenerateInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> GenerateInvoiceRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/payments/generate-invoice",

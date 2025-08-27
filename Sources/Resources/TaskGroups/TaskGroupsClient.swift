@@ -38,7 +38,7 @@ public final class TaskGroupsClient: Sendable {
     /// Updates task group driver assignments by adding or removing drivers.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: UpdateTaskGroupReq, requestOptions: RequestOptions? = nil) async throws -> UpdateTaskGroupRes {
+    public func update(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions? = nil) async throws -> UpdateTaskGroupRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/task_groups/update",

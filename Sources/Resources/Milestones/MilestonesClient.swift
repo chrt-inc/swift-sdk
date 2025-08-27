@@ -14,7 +14,7 @@ public final class MilestonesClient: Sendable {
     /// Updates milestone completion status and comments, recalculating task and order statuses.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: MilestoneUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func update(request: Requests.MilestoneUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/milestones/update",
@@ -27,7 +27,7 @@ public final class MilestonesClient: Sendable {
     /// Adds a new milestone to an existing task and updates task completion status.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addToTask(request: MilestoneAddToTaskReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addToTask(request: Requests.MilestoneAddToTaskReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/milestones/add_to_task",

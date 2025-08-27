@@ -22,7 +22,7 @@ public final class OrgConnectionInfosShipperClient: Sendable {
     /// Creates shipper organization connection information. Fails if already exists.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: ShipperOrgConnectionInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func create(request: Requests.ShipperOrgConnectionInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/org_connection_infos/shipper/create",
@@ -35,7 +35,7 @@ public final class OrgConnectionInfosShipperClient: Sendable {
     /// Updates existing shipper organization connection information.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: ShipperOrgConnectionInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func update(request: Requests.ShipperOrgConnectionInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/oort/org_connection_infos/shipper/update",
