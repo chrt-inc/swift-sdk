@@ -1,7 +1,7 @@
 import Foundation
 
 public enum PriceNameEnum: String, Codable, Hashable, CaseIterable, Sendable {
-    case courierOpsSolo100Month = "courier_ops_solo_100_month"
-    case courierOpsSmallTeam500Month = "courier_ops_small_team_500_month"
-    case courierOpsUnlimited2500Month = "courier_ops_unlimited_2500_month"
+    case courierOps100UsdPerMonth = "courier_ops_100_usd_per_month"
+    case courierOps500UsdPerMonth = "courier_ops_500_usd_per_month"
+    case courierOps2500UsdPerMonth = "courier_ops_2500_usd_per_month"
 }

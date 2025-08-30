@@ -10,13 +10,13 @@ public final class PaymentsClient: Sendable {
     /// Create a checkout session for a subscription
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createCheckoutSession(request: Requests.CreateCheckoutSessionReq2, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes2 {
+    public func createCheckoutSession(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/payments/create-checkout-session",
             body: request,
             requestOptions: requestOptions,
-            responseType: CreateCheckoutSessionRes2.self
+            responseType: CreateCheckoutSessionRes.self
         )
     }
 

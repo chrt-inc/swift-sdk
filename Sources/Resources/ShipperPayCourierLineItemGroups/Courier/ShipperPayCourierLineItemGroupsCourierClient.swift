@@ -1,21 +1,21 @@
 import Foundation
 
-public final class UsersClient: Sendable {
+public final class ShipperPayCourierLineItemGroupsCourierClient: Sendable {
     private let httpClient: HTTPClient
 
     public init(config: ClientConfig) {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves public user data for the authenticated user.
+    /// Lists all shipper pay courier line item groups for the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getPublicData(requestOptions: RequestOptions? = nil) async throws -> UserPublicData1 {
+    public func list(requestOptions: RequestOptions? = nil) async throws -> [ShipperPayCourierLineItemGroup1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/users/user_public_data",
+            path: "/oort/shipper_pay_courier_line_item_groups/courier/list",
             requestOptions: requestOptions,
-            responseType: UserPublicData1.self
+            responseType: [ShipperPayCourierLineItemGroup1].self
         )
     }
 }

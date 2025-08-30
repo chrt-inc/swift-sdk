@@ -19,7 +19,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Deletes a shipper-to-courier payment record. Only allowed if the payment status is PENDING.
+    /// Deletes a shipper-to-courier payment record. Only allowed if the `StripeConnectInvoiceStatusEnum` === "not_started".
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func delete(shipperPayCourierPaymentId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

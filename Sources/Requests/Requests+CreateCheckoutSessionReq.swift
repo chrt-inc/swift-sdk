@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct CreateCheckoutSessionReq2: Codable, Hashable, Sendable {
+    public struct CreateCheckoutSessionReq: Codable, Hashable, Sendable {
         public let priceName: PriceNameEnum
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

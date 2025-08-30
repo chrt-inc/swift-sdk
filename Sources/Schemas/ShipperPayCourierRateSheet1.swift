@@ -17,7 +17,7 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
     public let longDistanceSurchargeMilesBeforeSurcharge: Double
     /// applies only to the additional miles
     public let longDistanceSurchargeRateUsdPerMile: Double
-    public let fuelSurchageRateUsdPerMile: Double
+    public let fuelSurchargeRateUsdPerMile: Double
     public let waitTimeBeforeChargeMinutes: Double
     public let waitTimeRateUsdPerMinute: Double
     public let extraStopRateUsd: Double
@@ -45,7 +45,7 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
         additionalMileageRateUsdPerMile: Double,
         longDistanceSurchargeMilesBeforeSurcharge: Double,
         longDistanceSurchargeRateUsdPerMile: Double,
-        fuelSurchageRateUsdPerMile: Double,
+        fuelSurchargeRateUsdPerMile: Double,
         waitTimeBeforeChargeMinutes: Double,
         waitTimeRateUsdPerMinute: Double,
         extraStopRateUsd: Double,
@@ -70,7 +70,7 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
         self.additionalMileageRateUsdPerMile = additionalMileageRateUsdPerMile
         self.longDistanceSurchargeMilesBeforeSurcharge = longDistanceSurchargeMilesBeforeSurcharge
         self.longDistanceSurchargeRateUsdPerMile = longDistanceSurchargeRateUsdPerMile
-        self.fuelSurchageRateUsdPerMile = fuelSurchageRateUsdPerMile
+        self.fuelSurchargeRateUsdPerMile = fuelSurchargeRateUsdPerMile
         self.waitTimeBeforeChargeMinutes = waitTimeBeforeChargeMinutes
         self.waitTimeRateUsdPerMinute = waitTimeRateUsdPerMinute
         self.extraStopRateUsd = extraStopRateUsd
@@ -98,7 +98,7 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
         self.additionalMileageRateUsdPerMile = try container.decode(Double.self, forKey: .additionalMileageRateUsdPerMile)
         self.longDistanceSurchargeMilesBeforeSurcharge = try container.decode(Double.self, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
         self.longDistanceSurchargeRateUsdPerMile = try container.decode(Double.self, forKey: .longDistanceSurchargeRateUsdPerMile)
-        self.fuelSurchageRateUsdPerMile = try container.decode(Double.self, forKey: .fuelSurchageRateUsdPerMile)
+        self.fuelSurchargeRateUsdPerMile = try container.decode(Double.self, forKey: .fuelSurchargeRateUsdPerMile)
         self.waitTimeBeforeChargeMinutes = try container.decode(Double.self, forKey: .waitTimeBeforeChargeMinutes)
         self.waitTimeRateUsdPerMinute = try container.decode(Double.self, forKey: .waitTimeRateUsdPerMinute)
         self.extraStopRateUsd = try container.decode(Double.self, forKey: .extraStopRateUsd)
@@ -127,7 +127,7 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
         try container.encode(self.additionalMileageRateUsdPerMile, forKey: .additionalMileageRateUsdPerMile)
         try container.encode(self.longDistanceSurchargeMilesBeforeSurcharge, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
         try container.encode(self.longDistanceSurchargeRateUsdPerMile, forKey: .longDistanceSurchargeRateUsdPerMile)
-        try container.encode(self.fuelSurchageRateUsdPerMile, forKey: .fuelSurchageRateUsdPerMile)
+        try container.encode(self.fuelSurchargeRateUsdPerMile, forKey: .fuelSurchargeRateUsdPerMile)
         try container.encode(self.waitTimeBeforeChargeMinutes, forKey: .waitTimeBeforeChargeMinutes)
         try container.encode(self.waitTimeRateUsdPerMinute, forKey: .waitTimeRateUsdPerMinute)
         try container.encode(self.extraStopRateUsd, forKey: .extraStopRateUsd)
@@ -154,7 +154,7 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
         case additionalMileageRateUsdPerMile = "additional_mileage_rate_usd_per_mile"
         case longDistanceSurchargeMilesBeforeSurcharge = "long_distance_surcharge_miles_before_surcharge"
         case longDistanceSurchargeRateUsdPerMile = "long_distance_surcharge_rate_usd_per_mile"
-        case fuelSurchageRateUsdPerMile = "fuel_surchage_rate_usd_per_mile"
+        case fuelSurchargeRateUsdPerMile = "fuel_surcharge_rate_usd_per_mile"
         case waitTimeBeforeChargeMinutes = "wait_time_before_charge_minutes"
         case waitTimeRateUsdPerMinute = "wait_time_rate_usd_per_minute"
         case extraStopRateUsd = "extra_stop_rate_usd"

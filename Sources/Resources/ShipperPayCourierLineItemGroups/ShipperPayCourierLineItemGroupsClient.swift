@@ -1,17 +1,21 @@
 import Foundation
 
 public final class ShipperPayCourierLineItemGroupsClient: Sendable {
+    public let shipper: ShipperPayCourierLineItemGroupsShipperClient
+    public let courier: ShipperPayCourierLineItemGroupsCourierClient
     public let addLineItems: ShipperPayCourierLineItemGroupsAddLineItemsClient
     public let removeLineItems: ShipperPayCourierLineItemGroupsRemoveLineItemsClient
     private let httpClient: HTTPClient
 
     public init(config: ClientConfig) {
+        self.shipper = ShipperPayCourierLineItemGroupsShipperClient(config: config)
+        self.courier = ShipperPayCourierLineItemGroupsCourierClient(config: config)
         self.addLineItems = ShipperPayCourierLineItemGroupsAddLineItemsClient(config: config)
         self.removeLineItems = ShipperPayCourierLineItemGroupsRemoveLineItemsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a shipper pay courier line item group by its ID.
+    /// Retrieves a shipper pay courier line item group by its ID for the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getById(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {
@@ -35,7 +39,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Retrieves a shipper pay courier line item group by its associated task group ID.
+    /// Retrieves a shipper pay courier line item group by its associated task group ID for the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byTaskGroupId(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {

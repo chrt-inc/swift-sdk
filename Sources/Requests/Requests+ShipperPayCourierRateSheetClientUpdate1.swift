@@ -15,7 +15,7 @@ extension Requests {
         public let additionalMileageRateUsdPerMile: JSONValue?
         public let longDistanceSurchargeMilesBeforeSurcharge: JSONValue?
         public let longDistanceSurchargeRateUsdPerMile: JSONValue?
-        public let fuelSurchageRateUsdPerMile: JSONValue?
+        public let fuelSurchargeRateUsdPerMile: JSONValue?
         public let waitTimeBeforeChargeMinutes: JSONValue?
         public let waitTimeRateUsdPerMinute: JSONValue?
         public let extraStopRateUsd: JSONValue?
@@ -39,7 +39,7 @@ extension Requests {
             additionalMileageRateUsdPerMile: JSONValue? = nil,
             longDistanceSurchargeMilesBeforeSurcharge: JSONValue? = nil,
             longDistanceSurchargeRateUsdPerMile: JSONValue? = nil,
-            fuelSurchageRateUsdPerMile: JSONValue? = nil,
+            fuelSurchargeRateUsdPerMile: JSONValue? = nil,
             waitTimeBeforeChargeMinutes: JSONValue? = nil,
             waitTimeRateUsdPerMinute: JSONValue? = nil,
             extraStopRateUsd: JSONValue? = nil,
@@ -61,7 +61,7 @@ extension Requests {
             self.additionalMileageRateUsdPerMile = additionalMileageRateUsdPerMile
             self.longDistanceSurchargeMilesBeforeSurcharge = longDistanceSurchargeMilesBeforeSurcharge
             self.longDistanceSurchargeRateUsdPerMile = longDistanceSurchargeRateUsdPerMile
-            self.fuelSurchageRateUsdPerMile = fuelSurchageRateUsdPerMile
+            self.fuelSurchargeRateUsdPerMile = fuelSurchargeRateUsdPerMile
             self.waitTimeBeforeChargeMinutes = waitTimeBeforeChargeMinutes
             self.waitTimeRateUsdPerMinute = waitTimeRateUsdPerMinute
             self.extraStopRateUsd = extraStopRateUsd
@@ -86,7 +86,7 @@ extension Requests {
             self.additionalMileageRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .additionalMileageRateUsdPerMile)
             self.longDistanceSurchargeMilesBeforeSurcharge = try container.decodeIfPresent(JSONValue.self, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
             self.longDistanceSurchargeRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .longDistanceSurchargeRateUsdPerMile)
-            self.fuelSurchageRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .fuelSurchageRateUsdPerMile)
+            self.fuelSurchargeRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .fuelSurchargeRateUsdPerMile)
             self.waitTimeBeforeChargeMinutes = try container.decodeIfPresent(JSONValue.self, forKey: .waitTimeBeforeChargeMinutes)
             self.waitTimeRateUsdPerMinute = try container.decodeIfPresent(JSONValue.self, forKey: .waitTimeRateUsdPerMinute)
             self.extraStopRateUsd = try container.decodeIfPresent(JSONValue.self, forKey: .extraStopRateUsd)
@@ -112,7 +112,7 @@ extension Requests {
             try container.encodeIfPresent(self.additionalMileageRateUsdPerMile, forKey: .additionalMileageRateUsdPerMile)
             try container.encodeIfPresent(self.longDistanceSurchargeMilesBeforeSurcharge, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
             try container.encodeIfPresent(self.longDistanceSurchargeRateUsdPerMile, forKey: .longDistanceSurchargeRateUsdPerMile)
-            try container.encodeIfPresent(self.fuelSurchageRateUsdPerMile, forKey: .fuelSurchageRateUsdPerMile)
+            try container.encodeIfPresent(self.fuelSurchargeRateUsdPerMile, forKey: .fuelSurchargeRateUsdPerMile)
             try container.encodeIfPresent(self.waitTimeBeforeChargeMinutes, forKey: .waitTimeBeforeChargeMinutes)
             try container.encodeIfPresent(self.waitTimeRateUsdPerMinute, forKey: .waitTimeRateUsdPerMinute)
             try container.encodeIfPresent(self.extraStopRateUsd, forKey: .extraStopRateUsd)
@@ -136,7 +136,7 @@ extension Requests {
             case additionalMileageRateUsdPerMile = "additional_mileage_rate_usd_per_mile"
             case longDistanceSurchargeMilesBeforeSurcharge = "long_distance_surcharge_miles_before_surcharge"
             case longDistanceSurchargeRateUsdPerMile = "long_distance_surcharge_rate_usd_per_mile"
-            case fuelSurchageRateUsdPerMile = "fuel_surchage_rate_usd_per_mile"
+            case fuelSurchargeRateUsdPerMile = "fuel_surcharge_rate_usd_per_mile"
             case waitTimeBeforeChargeMinutes = "wait_time_before_charge_minutes"
             case waitTimeRateUsdPerMinute = "wait_time_rate_usd_per_minute"
             case extraStopRateUsd = "extra_stop_rate_usd"

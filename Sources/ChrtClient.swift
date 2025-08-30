@@ -22,6 +22,7 @@ public final class ChrtClient: Sendable {
     public let payments: PaymentsClient
     public let root: RootClient
     public let users: UsersClient
+    public let utils: UtilsClient
     public let notifications: NotificationsClient
     public let orgConnectionInfos: OrgConnectionInfosClient
     private let httpClient: HTTPClient
@@ -126,6 +127,7 @@ public final class ChrtClient: Sendable {
         self.payments = PaymentsClient(config: config)
         self.root = RootClient(config: config)
         self.users = UsersClient(config: config)
+        self.utils = UtilsClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.orgConnectionInfos = OrgConnectionInfosClient(config: config)
         self.httpClient = HTTPClient(config: config)
