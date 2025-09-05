@@ -6,7 +6,7 @@ final class HTTPClient: Sendable {
     private let jsonDecoder = Serde.jsonDecoder
 
     init(config: ClientConfig) {
-        self.clientConfig = config
+        clientConfig = config
     }
 
     /// Performs a request with no response.
@@ -69,7 +69,7 @@ final class HTTPClient: Sendable {
                 throw ClientError.invalidResponse
             }
         }
-        
+
         if responseType == String.self {
             if let string = String(data: data, encoding: .utf8) as? T {
                 return string
@@ -135,10 +135,9 @@ final class HTTPClient: Sendable {
         requestQueryParams: [String: QueryParameter?],
         requestOptions: RequestOptions? = nil
     ) -> URL {
-        let endpointURL: String = "\(clientConfig.baseURL)\(path)"
-        guard var components: URLComponents = URLComponents(string: endpointURL) else {
-            precondition(
-                false,
+        let endpointURL = "\(clientConfig.baseURL)\(path)"
+        guard var components = URLComponents(string: endpointURL) else {
+            preconditionFailure(
                 "Invalid URL '\(endpointURL)' - this indicates an unexpected error in the SDK."
             )
         }
@@ -154,8 +153,7 @@ final class HTTPClient: Sendable {
                 })
         }
         guard let url = components.url else {
-            precondition(
-                false,
+            preconditionFailure(
                 "Failed to construct URL from components - this indicates an unexpected error in the SDK."
             )
         }
@@ -199,20 +197,19 @@ final class HTTPClient: Sendable {
 
     private func buildRequestBody(
         requestBody: HTTP.RequestBody,
-        requestOptions: RequestOptions? = nil
+        requestOptions _: RequestOptions? = nil
     ) -> Data {
         switch requestBody {
-        case .jsonEncodable(let encodableBody):
+        case let .jsonEncodable(encodableBody):
             do {
                 // TODO(kafkas): Merge requestOptions.additionalBodyParameters into this
                 return try jsonEncoder.encode(encodableBody)
             } catch {
-                precondition(
-                    false,
+                preconditionFailure(
                     "Failed to encode request body: \(error) - this indicates an unexpected error in the SDK."
                 )
             }
-        case .data(let dataBody):
+        case let .data(dataBody):
             return dataBody
         }
     }
@@ -229,7 +226,7 @@ final class HTTPClient: Sendable {
             }
 
             // Handle successful responses
-            if 200...299 ~= httpResponse.statusCode {
+            if 200 ... 299 ~= httpResponse.statusCode {
                 let contentType = httpResponse.value(forHTTPHeaderField: "Content-Type")
                 return (data, contentType)
             }
@@ -267,7 +264,7 @@ final class HTTPClient: Sendable {
             throw ClientError.notFound(errorResponse)
         case 422:
             throw ClientError.validationError(errorResponse)
-        case 500...599:
+        case 500 ... 599:
             throw ClientError.serverError(errorResponse)
         default:
             throw ClientError.httpError(statusCode: statusCode, response: errorResponse)
@@ -282,7 +279,7 @@ final class HTTPClient: Sendable {
 
         // Try to parse as simple JSON with message field
         if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-            let message = json["message"] as? String
+           let message = json["message"] as? String
         {
             return APIErrorResponse(code: statusCode, message: message)
         }
