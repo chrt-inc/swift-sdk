@@ -6,7 +6,7 @@ final class HTTPClient: Sendable {
     private let jsonDecoder = Serde.jsonDecoder
 
     init(config: ClientConfig) {
-        clientConfig = config
+        self.clientConfig = config
     }
 
     /// Performs a request with no response.
@@ -135,8 +135,8 @@ final class HTTPClient: Sendable {
         requestQueryParams: [String: QueryParameter?],
         requestOptions: RequestOptions? = nil
     ) -> URL {
-        let endpointURL = "\(clientConfig.baseURL)\(path)"
-        guard var components = URLComponents(string: endpointURL) else {
+        let endpointURL: String = "\(clientConfig.baseURL)\(path)"
+        guard var components: URLComponents = URLComponents(string: endpointURL) else {
             preconditionFailure(
                 "Invalid URL '\(endpointURL)' - this indicates an unexpected error in the SDK."
             )
@@ -197,10 +197,10 @@ final class HTTPClient: Sendable {
 
     private func buildRequestBody(
         requestBody: HTTP.RequestBody,
-        requestOptions _: RequestOptions? = nil
+        requestOptions: RequestOptions? = nil
     ) -> Data {
         switch requestBody {
-        case let .jsonEncodable(encodableBody):
+        case .jsonEncodable(let encodableBody):
             do {
                 // TODO(kafkas): Merge requestOptions.additionalBodyParameters into this
                 return try jsonEncoder.encode(encodableBody)
@@ -209,7 +209,7 @@ final class HTTPClient: Sendable {
                     "Failed to encode request body: \(error) - this indicates an unexpected error in the SDK."
                 )
             }
-        case let .data(dataBody):
+        case .data(let dataBody):
             return dataBody
         }
     }
@@ -226,7 +226,7 @@ final class HTTPClient: Sendable {
             }
 
             // Handle successful responses
-            if 200 ... 299 ~= httpResponse.statusCode {
+            if 200...299 ~= httpResponse.statusCode {
                 let contentType = httpResponse.value(forHTTPHeaderField: "Content-Type")
                 return (data, contentType)
             }
@@ -264,7 +264,7 @@ final class HTTPClient: Sendable {
             throw ClientError.notFound(errorResponse)
         case 422:
             throw ClientError.validationError(errorResponse)
-        case 500 ... 599:
+        case 500...599:
             throw ClientError.serverError(errorResponse)
         default:
             throw ClientError.httpError(statusCode: statusCode, response: errorResponse)
@@ -279,7 +279,7 @@ final class HTTPClient: Sendable {
 
         // Try to parse as simple JSON with message field
         if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-           let message = json["message"] as? String
+            let message = json["message"] as? String
         {
             return APIErrorResponse(code: statusCode, message: message)
         }
