@@ -106,6 +106,18 @@ public final class DriversClient: Sendable {
         )
     }
 
+    /// Clears the driver's last known location and timestamp.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func lastSeenClear(requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/drivers/last_seen/clear",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Updates driver contact details and vehicle type assignments within the organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
