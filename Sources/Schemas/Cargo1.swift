@@ -11,6 +11,8 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let id: String
     public let orderId: String
     public let orderShortId: String
+    public let deviceForCargoIds: JSONValue?
+    public let status: CargoStatusEnum1?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -25,6 +27,8 @@ public struct Cargo1: Codable, Hashable, Sendable {
         id: String,
         orderId: String,
         orderShortId: String,
+        deviceForCargoIds: JSONValue? = nil,
+        status: CargoStatusEnum1? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -37,6 +41,8 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
+        self.deviceForCargoIds = deviceForCargoIds
+        self.status = status
         self.additionalProperties = additionalProperties
     }
 
@@ -52,6 +58,8 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
+        self.deviceForCargoIds = try container.decodeIfPresent(JSONValue.self, forKey: .deviceForCargoIds)
+        self.status = try container.decodeIfPresent(CargoStatusEnum1.self, forKey: .status)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -68,6 +76,8 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
+        try container.encodeIfPresent(self.deviceForCargoIds, forKey: .deviceForCargoIds)
+        try container.encodeIfPresent(self.status, forKey: .status)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -82,5 +92,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
+        case deviceForCargoIds = "device_for_cargo_ids"
+        case status
     }
 }

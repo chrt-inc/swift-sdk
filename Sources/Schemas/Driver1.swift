@@ -15,9 +15,9 @@ public struct Driver1: Codable, Hashable, Sendable {
     public let lastSeenAtTimestamp: JSONValue?
     public let id: String
     /// Must be a string starting with `org_`
-    public let orgId: JSONValue?
+    public let orgId: String
     /// Must be a string starting with `user_`
-    public let userId: JSONValue?
+    public let userId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -35,8 +35,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         lastSeenAtLocation: JSONValue? = nil,
         lastSeenAtTimestamp: JSONValue? = nil,
         id: String,
-        orgId: JSONValue? = nil,
-        userId: JSONValue? = nil,
+        orgId: String,
+        userId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -72,8 +72,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         self.lastSeenAtLocation = try container.decodeIfPresent(JSONValue.self, forKey: .lastSeenAtLocation)
         self.lastSeenAtTimestamp = try container.decodeIfPresent(JSONValue.self, forKey: .lastSeenAtTimestamp)
         self.id = try container.decode(String.self, forKey: .id)
-        self.orgId = try container.decodeIfPresent(JSONValue.self, forKey: .orgId)
-        self.userId = try container.decodeIfPresent(JSONValue.self, forKey: .userId)
+        self.orgId = try container.decode(String.self, forKey: .orgId)
+        self.userId = try container.decode(String.self, forKey: .userId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -93,8 +93,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
         try container.encode(self.id, forKey: .id)
-        try container.encodeIfPresent(self.orgId, forKey: .orgId)
-        try container.encodeIfPresent(self.userId, forKey: .userId)
+        try container.encode(self.orgId, forKey: .orgId)
+        try container.encode(self.userId, forKey: .userId)
     }
 
     /// Keys for encoding/decoding struct properties.

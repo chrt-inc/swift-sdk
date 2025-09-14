@@ -25,6 +25,7 @@ public final class ChrtClient: Sendable {
     public let utils: UtilsClient
     public let notifications: NotificationsClient
     public let orgConnectionInfos: OrgConnectionInfosClient
+    public let tracking: TrackingClient
     private let httpClient: HTTPClient
 
     /// Initialize the client with the specified configuration and a static bearer token.
@@ -130,6 +131,7 @@ public final class ChrtClient: Sendable {
         self.utils = UtilsClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.orgConnectionInfos = OrgConnectionInfosClient(config: config)
+        self.tracking = TrackingClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

@@ -11,6 +11,7 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
     public let sid: JSONValue?
     /// Must be a string starting with `user_`
     public let sub: JSONValue?
+    public let sts: JSONValue?
     public let v: JSONValue?
     public let o: JSONValue?
     public let orgPublicMetadata: JSONValue?
@@ -32,6 +33,7 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         nbf: JSONValue? = nil,
         sid: JSONValue? = nil,
         sub: JSONValue? = nil,
+        sts: JSONValue? = nil,
         v: JSONValue? = nil,
         o: JSONValue? = nil,
         orgPublicMetadata: JSONValue? = nil,
@@ -49,6 +51,7 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         self.nbf = nbf
         self.sid = sid
         self.sub = sub
+        self.sts = sts
         self.v = v
         self.o = o
         self.orgPublicMetadata = orgPublicMetadata
@@ -69,6 +72,7 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         self.nbf = try container.decodeIfPresent(JSONValue.self, forKey: .nbf)
         self.sid = try container.decodeIfPresent(JSONValue.self, forKey: .sid)
         self.sub = try container.decodeIfPresent(JSONValue.self, forKey: .sub)
+        self.sts = try container.decodeIfPresent(JSONValue.self, forKey: .sts)
         self.v = try container.decodeIfPresent(JSONValue.self, forKey: .v)
         self.o = try container.decodeIfPresent(JSONValue.self, forKey: .o)
         self.orgPublicMetadata = try container.decodeIfPresent(JSONValue.self, forKey: .orgPublicMetadata)
@@ -90,6 +94,7 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.nbf, forKey: .nbf)
         try container.encodeIfPresent(self.sid, forKey: .sid)
         try container.encodeIfPresent(self.sub, forKey: .sub)
+        try container.encodeIfPresent(self.sts, forKey: .sts)
         try container.encodeIfPresent(self.v, forKey: .v)
         try container.encodeIfPresent(self.o, forKey: .o)
         try container.encodeIfPresent(self.orgPublicMetadata, forKey: .orgPublicMetadata)
@@ -109,6 +114,7 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         case nbf
         case sid
         case sub
+        case sts
         case v
         case o
         case orgPublicMetadata = "org_public_metadata"
