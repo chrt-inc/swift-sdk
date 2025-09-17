@@ -4,18 +4,18 @@ import Foundation
 public struct LocationFeature: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
     public let type: Feature
-    public let geometry: JSONValue?
-    public let properties: JSONValue?
-    public let id: JSONValue?
+    public let geometry: Nullable<LocationFeatureOutputGeometry>?
+    public let properties: Nullable<LocationProperties>?
+    public let id: Nullable<Id>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         bbox: [JSONValue]? = nil,
         type: Feature,
-        geometry: JSONValue? = nil,
-        properties: JSONValue? = nil,
-        id: JSONValue? = nil,
+        geometry: Nullable<LocationFeatureOutputGeometry>? = nil,
+        properties: Nullable<LocationProperties>? = nil,
+        id: Nullable<Id>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.bbox = bbox
@@ -30,9 +30,9 @@ public struct LocationFeature: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
         self.type = try container.decode(Feature.self, forKey: .type)
-        self.geometry = try container.decodeIfPresent(JSONValue.self, forKey: .geometry)
-        self.properties = try container.decodeIfPresent(JSONValue.self, forKey: .properties)
-        self.id = try container.decodeIfPresent(JSONValue.self, forKey: .id)
+        self.geometry = try container.decodeNullableIfPresent(LocationFeatureOutputGeometry.self, forKey: .geometry)
+        self.properties = try container.decodeNullableIfPresent(LocationProperties.self, forKey: .properties)
+        self.id = try container.decodeNullableIfPresent(Id.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -41,9 +41,9 @@ public struct LocationFeature: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.bbox, forKey: .bbox)
         try container.encode(self.type, forKey: .type)
-        try container.encodeIfPresent(self.geometry, forKey: .geometry)
-        try container.encodeIfPresent(self.properties, forKey: .properties)
-        try container.encodeIfPresent(self.id, forKey: .id)
+        try container.encodeNullableIfPresent(self.geometry, forKey: .geometry)
+        try container.encodeNullableIfPresent(self.properties, forKey: .properties)
+        try container.encodeNullableIfPresent(self.id, forKey: .id)
     }
 
     public enum Feature: String, Codable, Hashable, CaseIterable, Sendable {

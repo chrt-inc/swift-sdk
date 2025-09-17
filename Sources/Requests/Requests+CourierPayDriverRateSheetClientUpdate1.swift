@@ -2,48 +2,48 @@ import Foundation
 
 extension Requests {
     public struct CourierPayDriverRateSheetClientUpdate1: Codable, Hashable, Sendable {
-        public let name: JSONValue?
-        public let cargoTypes: JSONValue?
-        public let vehicleTypes: JSONValue?
-        public let routeTypes: JSONValue?
-        public let driverIds: JSONValue?
-        public let comments: JSONValue?
-        public let baseMileageDistanceMiles: JSONValue?
-        public let baseMileageRateUsdPerInstance: JSONValue?
-        public let additionalMileageRateUsdPerMile: JSONValue?
-        public let longDistanceSurchargeMilesBeforeSurcharge: JSONValue?
-        public let longDistanceSurchargeRateUsdPerMile: JSONValue?
-        public let fuelSurchargeRateUsdPerMile: JSONValue?
-        public let waitTimeBeforeChargeMinutes: JSONValue?
-        public let waitTimeRateUsdPerMinute: JSONValue?
-        public let extraStopRateUsd: JSONValue?
-        public let dangerousGoodsRateUsdPerInstance: JSONValue?
-        public let afterHours: JSONValue?
-        public let weekend: JSONValue?
-        public let holiday: JSONValue?
+        public let name: Nullable<String>?
+        public let cargoTypes: Nullable<[CargoTypeEnum1]>?
+        public let vehicleTypes: Nullable<[VehicleTypeEnum]>?
+        public let routeTypes: Nullable<[RouteTypeEnum1]>?
+        public let driverIds: Nullable<[String]>?
+        public let comments: Nullable<String>?
+        public let baseMileageDistanceMiles: Nullable<Double>?
+        public let baseMileageRateUsdPerInstance: Nullable<Double>?
+        public let additionalMileageRateUsdPerMile: Nullable<Double>?
+        public let longDistanceSurchargeMilesBeforeSurcharge: Nullable<Double>?
+        public let longDistanceSurchargeRateUsdPerMile: Nullable<Double>?
+        public let fuelSurchargeRateUsdPerMile: Nullable<Double>?
+        public let waitTimeBeforeChargeMinutes: Nullable<Double>?
+        public let waitTimeRateUsdPerMinute: Nullable<Double>?
+        public let extraStopRateUsd: Nullable<Double>?
+        public let dangerousGoodsRateUsdPerInstance: Nullable<Double>?
+        public let afterHours: Nullable<Double>?
+        public let weekend: Nullable<Double>?
+        public let holiday: Nullable<Double>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            name: JSONValue? = nil,
-            cargoTypes: JSONValue? = nil,
-            vehicleTypes: JSONValue? = nil,
-            routeTypes: JSONValue? = nil,
-            driverIds: JSONValue? = nil,
-            comments: JSONValue? = nil,
-            baseMileageDistanceMiles: JSONValue? = nil,
-            baseMileageRateUsdPerInstance: JSONValue? = nil,
-            additionalMileageRateUsdPerMile: JSONValue? = nil,
-            longDistanceSurchargeMilesBeforeSurcharge: JSONValue? = nil,
-            longDistanceSurchargeRateUsdPerMile: JSONValue? = nil,
-            fuelSurchargeRateUsdPerMile: JSONValue? = nil,
-            waitTimeBeforeChargeMinutes: JSONValue? = nil,
-            waitTimeRateUsdPerMinute: JSONValue? = nil,
-            extraStopRateUsd: JSONValue? = nil,
-            dangerousGoodsRateUsdPerInstance: JSONValue? = nil,
-            afterHours: JSONValue? = nil,
-            weekend: JSONValue? = nil,
-            holiday: JSONValue? = nil,
+            name: Nullable<String>? = nil,
+            cargoTypes: Nullable<[CargoTypeEnum1]>? = nil,
+            vehicleTypes: Nullable<[VehicleTypeEnum]>? = nil,
+            routeTypes: Nullable<[RouteTypeEnum1]>? = nil,
+            driverIds: Nullable<[String]>? = nil,
+            comments: Nullable<String>? = nil,
+            baseMileageDistanceMiles: Nullable<Double>? = nil,
+            baseMileageRateUsdPerInstance: Nullable<Double>? = nil,
+            additionalMileageRateUsdPerMile: Nullable<Double>? = nil,
+            longDistanceSurchargeMilesBeforeSurcharge: Nullable<Double>? = nil,
+            longDistanceSurchargeRateUsdPerMile: Nullable<Double>? = nil,
+            fuelSurchargeRateUsdPerMile: Nullable<Double>? = nil,
+            waitTimeBeforeChargeMinutes: Nullable<Double>? = nil,
+            waitTimeRateUsdPerMinute: Nullable<Double>? = nil,
+            extraStopRateUsd: Nullable<Double>? = nil,
+            dangerousGoodsRateUsdPerInstance: Nullable<Double>? = nil,
+            afterHours: Nullable<Double>? = nil,
+            weekend: Nullable<Double>? = nil,
+            holiday: Nullable<Double>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.name = name
@@ -70,50 +70,50 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.name = try container.decodeIfPresent(JSONValue.self, forKey: .name)
-            self.cargoTypes = try container.decodeIfPresent(JSONValue.self, forKey: .cargoTypes)
-            self.vehicleTypes = try container.decodeIfPresent(JSONValue.self, forKey: .vehicleTypes)
-            self.routeTypes = try container.decodeIfPresent(JSONValue.self, forKey: .routeTypes)
-            self.driverIds = try container.decodeIfPresent(JSONValue.self, forKey: .driverIds)
-            self.comments = try container.decodeIfPresent(JSONValue.self, forKey: .comments)
-            self.baseMileageDistanceMiles = try container.decodeIfPresent(JSONValue.self, forKey: .baseMileageDistanceMiles)
-            self.baseMileageRateUsdPerInstance = try container.decodeIfPresent(JSONValue.self, forKey: .baseMileageRateUsdPerInstance)
-            self.additionalMileageRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .additionalMileageRateUsdPerMile)
-            self.longDistanceSurchargeMilesBeforeSurcharge = try container.decodeIfPresent(JSONValue.self, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
-            self.longDistanceSurchargeRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .longDistanceSurchargeRateUsdPerMile)
-            self.fuelSurchargeRateUsdPerMile = try container.decodeIfPresent(JSONValue.self, forKey: .fuelSurchargeRateUsdPerMile)
-            self.waitTimeBeforeChargeMinutes = try container.decodeIfPresent(JSONValue.self, forKey: .waitTimeBeforeChargeMinutes)
-            self.waitTimeRateUsdPerMinute = try container.decodeIfPresent(JSONValue.self, forKey: .waitTimeRateUsdPerMinute)
-            self.extraStopRateUsd = try container.decodeIfPresent(JSONValue.self, forKey: .extraStopRateUsd)
-            self.dangerousGoodsRateUsdPerInstance = try container.decodeIfPresent(JSONValue.self, forKey: .dangerousGoodsRateUsdPerInstance)
-            self.afterHours = try container.decodeIfPresent(JSONValue.self, forKey: .afterHours)
-            self.weekend = try container.decodeIfPresent(JSONValue.self, forKey: .weekend)
-            self.holiday = try container.decodeIfPresent(JSONValue.self, forKey: .holiday)
+            self.name = try container.decodeNullableIfPresent(String.self, forKey: .name)
+            self.cargoTypes = try container.decodeNullableIfPresent([CargoTypeEnum1].self, forKey: .cargoTypes)
+            self.vehicleTypes = try container.decodeNullableIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
+            self.routeTypes = try container.decodeNullableIfPresent([RouteTypeEnum1].self, forKey: .routeTypes)
+            self.driverIds = try container.decodeNullableIfPresent([String].self, forKey: .driverIds)
+            self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+            self.baseMileageDistanceMiles = try container.decodeNullableIfPresent(Double.self, forKey: .baseMileageDistanceMiles)
+            self.baseMileageRateUsdPerInstance = try container.decodeNullableIfPresent(Double.self, forKey: .baseMileageRateUsdPerInstance)
+            self.additionalMileageRateUsdPerMile = try container.decodeNullableIfPresent(Double.self, forKey: .additionalMileageRateUsdPerMile)
+            self.longDistanceSurchargeMilesBeforeSurcharge = try container.decodeNullableIfPresent(Double.self, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
+            self.longDistanceSurchargeRateUsdPerMile = try container.decodeNullableIfPresent(Double.self, forKey: .longDistanceSurchargeRateUsdPerMile)
+            self.fuelSurchargeRateUsdPerMile = try container.decodeNullableIfPresent(Double.self, forKey: .fuelSurchargeRateUsdPerMile)
+            self.waitTimeBeforeChargeMinutes = try container.decodeNullableIfPresent(Double.self, forKey: .waitTimeBeforeChargeMinutes)
+            self.waitTimeRateUsdPerMinute = try container.decodeNullableIfPresent(Double.self, forKey: .waitTimeRateUsdPerMinute)
+            self.extraStopRateUsd = try container.decodeNullableIfPresent(Double.self, forKey: .extraStopRateUsd)
+            self.dangerousGoodsRateUsdPerInstance = try container.decodeNullableIfPresent(Double.self, forKey: .dangerousGoodsRateUsdPerInstance)
+            self.afterHours = try container.decodeNullableIfPresent(Double.self, forKey: .afterHours)
+            self.weekend = try container.decodeNullableIfPresent(Double.self, forKey: .weekend)
+            self.holiday = try container.decodeNullableIfPresent(Double.self, forKey: .holiday)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.name, forKey: .name)
-            try container.encodeIfPresent(self.cargoTypes, forKey: .cargoTypes)
-            try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
-            try container.encodeIfPresent(self.routeTypes, forKey: .routeTypes)
-            try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
-            try container.encodeIfPresent(self.comments, forKey: .comments)
-            try container.encodeIfPresent(self.baseMileageDistanceMiles, forKey: .baseMileageDistanceMiles)
-            try container.encodeIfPresent(self.baseMileageRateUsdPerInstance, forKey: .baseMileageRateUsdPerInstance)
-            try container.encodeIfPresent(self.additionalMileageRateUsdPerMile, forKey: .additionalMileageRateUsdPerMile)
-            try container.encodeIfPresent(self.longDistanceSurchargeMilesBeforeSurcharge, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
-            try container.encodeIfPresent(self.longDistanceSurchargeRateUsdPerMile, forKey: .longDistanceSurchargeRateUsdPerMile)
-            try container.encodeIfPresent(self.fuelSurchargeRateUsdPerMile, forKey: .fuelSurchargeRateUsdPerMile)
-            try container.encodeIfPresent(self.waitTimeBeforeChargeMinutes, forKey: .waitTimeBeforeChargeMinutes)
-            try container.encodeIfPresent(self.waitTimeRateUsdPerMinute, forKey: .waitTimeRateUsdPerMinute)
-            try container.encodeIfPresent(self.extraStopRateUsd, forKey: .extraStopRateUsd)
-            try container.encodeIfPresent(self.dangerousGoodsRateUsdPerInstance, forKey: .dangerousGoodsRateUsdPerInstance)
-            try container.encodeIfPresent(self.afterHours, forKey: .afterHours)
-            try container.encodeIfPresent(self.weekend, forKey: .weekend)
-            try container.encodeIfPresent(self.holiday, forKey: .holiday)
+            try container.encodeNullableIfPresent(self.name, forKey: .name)
+            try container.encodeNullableIfPresent(self.cargoTypes, forKey: .cargoTypes)
+            try container.encodeNullableIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encodeNullableIfPresent(self.routeTypes, forKey: .routeTypes)
+            try container.encodeNullableIfPresent(self.driverIds, forKey: .driverIds)
+            try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+            try container.encodeNullableIfPresent(self.baseMileageDistanceMiles, forKey: .baseMileageDistanceMiles)
+            try container.encodeNullableIfPresent(self.baseMileageRateUsdPerInstance, forKey: .baseMileageRateUsdPerInstance)
+            try container.encodeNullableIfPresent(self.additionalMileageRateUsdPerMile, forKey: .additionalMileageRateUsdPerMile)
+            try container.encodeNullableIfPresent(self.longDistanceSurchargeMilesBeforeSurcharge, forKey: .longDistanceSurchargeMilesBeforeSurcharge)
+            try container.encodeNullableIfPresent(self.longDistanceSurchargeRateUsdPerMile, forKey: .longDistanceSurchargeRateUsdPerMile)
+            try container.encodeNullableIfPresent(self.fuelSurchargeRateUsdPerMile, forKey: .fuelSurchargeRateUsdPerMile)
+            try container.encodeNullableIfPresent(self.waitTimeBeforeChargeMinutes, forKey: .waitTimeBeforeChargeMinutes)
+            try container.encodeNullableIfPresent(self.waitTimeRateUsdPerMinute, forKey: .waitTimeRateUsdPerMinute)
+            try container.encodeNullableIfPresent(self.extraStopRateUsd, forKey: .extraStopRateUsd)
+            try container.encodeNullableIfPresent(self.dangerousGoodsRateUsdPerInstance, forKey: .dangerousGoodsRateUsdPerInstance)
+            try container.encodeNullableIfPresent(self.afterHours, forKey: .afterHours)
+            try container.encodeNullableIfPresent(self.weekend, forKey: .weekend)
+            try container.encodeNullableIfPresent(self.holiday, forKey: .holiday)
         }
 
         /// Keys for encoding/decoding struct properties.

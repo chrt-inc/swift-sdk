@@ -7,12 +7,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let orderShortId: String
     public let taskIds: [String]
     /// Must be a string starting with `org_`
-    public let courierOrgId: JSONValue?
+    public let courierOrgId: Nullable<String>?
     public let orderCancelled: Bool?
     public let status: TaskGroupStatusEnum1?
-    public let driverId: JSONValue?
-    public let startedAt: JSONValue?
-    public let completedAt: JSONValue?
+    public let driverId: Nullable<String>?
+    public let startedAt: Nullable<Date>?
+    public let completedAt: Nullable<Date>?
     public let completed: Bool?
     public let paused: Bool?
     /// Additional properties that are not explicitly defined in the schema
@@ -24,12 +24,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         orderId: String,
         orderShortId: String,
         taskIds: [String],
-        courierOrgId: JSONValue? = nil,
+        courierOrgId: Nullable<String>? = nil,
         orderCancelled: Bool? = nil,
         status: TaskGroupStatusEnum1? = nil,
-        driverId: JSONValue? = nil,
-        startedAt: JSONValue? = nil,
-        completedAt: JSONValue? = nil,
+        driverId: Nullable<String>? = nil,
+        startedAt: Nullable<Date>? = nil,
+        completedAt: Nullable<Date>? = nil,
         completed: Bool? = nil,
         paused: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -57,12 +57,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.taskIds = try container.decode([String].self, forKey: .taskIds)
-        self.courierOrgId = try container.decodeIfPresent(JSONValue.self, forKey: .courierOrgId)
+        self.courierOrgId = try container.decodeNullableIfPresent(String.self, forKey: .courierOrgId)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.status = try container.decodeIfPresent(TaskGroupStatusEnum1.self, forKey: .status)
-        self.driverId = try container.decodeIfPresent(JSONValue.self, forKey: .driverId)
-        self.startedAt = try container.decodeIfPresent(JSONValue.self, forKey: .startedAt)
-        self.completedAt = try container.decodeIfPresent(JSONValue.self, forKey: .completedAt)
+        self.driverId = try container.decodeNullableIfPresent(String.self, forKey: .driverId)
+        self.startedAt = try container.decodeNullableIfPresent(Date.self, forKey: .startedAt)
+        self.completedAt = try container.decodeNullableIfPresent(Date.self, forKey: .completedAt)
         self.completed = try container.decodeIfPresent(Bool.self, forKey: .completed)
         self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -76,12 +76,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.taskIds, forKey: .taskIds)
-        try container.encodeIfPresent(self.courierOrgId, forKey: .courierOrgId)
+        try container.encodeNullableIfPresent(self.courierOrgId, forKey: .courierOrgId)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encodeIfPresent(self.driverId, forKey: .driverId)
-        try container.encodeIfPresent(self.startedAt, forKey: .startedAt)
-        try container.encodeIfPresent(self.completedAt, forKey: .completedAt)
+        try container.encodeNullableIfPresent(self.driverId, forKey: .driverId)
+        try container.encodeNullableIfPresent(self.startedAt, forKey: .startedAt)
+        try container.encodeNullableIfPresent(self.completedAt, forKey: .completedAt)
         try container.encodeIfPresent(self.completed, forKey: .completed)
         try container.encodeIfPresent(self.paused, forKey: .paused)
     }

@@ -3,7 +3,7 @@ import Foundation
 extension Requests {
     public struct TaskGroupsExpandedReq: Codable, Hashable, Sendable {
         public let taskGroupStatuses: [TaskGroupStatusEnum1]
-        public let driverId: JSONValue?
+        public let driverId: Nullable<String>?
         public let expandTasks: Bool?
         public let expandCargos: Bool?
         public let expandMilestones: Bool?
@@ -13,7 +13,7 @@ extension Requests {
 
         public init(
             taskGroupStatuses: [TaskGroupStatusEnum1],
-            driverId: JSONValue? = nil,
+            driverId: Nullable<String>? = nil,
             expandTasks: Bool? = nil,
             expandCargos: Bool? = nil,
             expandMilestones: Bool? = nil,
@@ -32,7 +32,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.taskGroupStatuses = try container.decode([TaskGroupStatusEnum1].self, forKey: .taskGroupStatuses)
-            self.driverId = try container.decodeIfPresent(JSONValue.self, forKey: .driverId)
+            self.driverId = try container.decodeNullableIfPresent(String.self, forKey: .driverId)
             self.expandTasks = try container.decodeIfPresent(Bool.self, forKey: .expandTasks)
             self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
             self.expandMilestones = try container.decodeIfPresent(Bool.self, forKey: .expandMilestones)
@@ -44,7 +44,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.taskGroupStatuses, forKey: .taskGroupStatuses)
-            try container.encodeIfPresent(self.driverId, forKey: .driverId)
+            try container.encodeNullableIfPresent(self.driverId, forKey: .driverId)
             try container.encodeIfPresent(self.expandTasks, forKey: .expandTasks)
             try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
             try container.encodeIfPresent(self.expandMilestones, forKey: .expandMilestones)

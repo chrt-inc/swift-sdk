@@ -3,14 +3,14 @@ import Foundation
 extension Requests {
     public struct CourierPayDriverRateSheetClientCreate1: Codable, Hashable, Sendable {
         public let schemaVersion: Int
-        public let name: JSONValue?
-        public let cargoTypes: JSONValue?
-        public let vehicleTypes: JSONValue?
-        public let routeTypes: JSONValue?
-        public let driverIds: JSONValue?
+        public let name: Nullable<String>?
+        public let cargoTypes: Nullable<[CargoTypeEnum1]>?
+        public let vehicleTypes: Nullable<[VehicleTypeEnum]>?
+        public let routeTypes: Nullable<[RouteTypeEnum1]>?
+        public let driverIds: Nullable<[String]>?
         /// Must be a string starting with `org_`
         public let courierOrgId: String
-        public let comments: JSONValue?
+        public let comments: Nullable<String>?
         public let baseMileageDistanceMiles: Double
         public let baseMileageRateUsdPerInstance: Double
         /// applies only to the additional miles
@@ -31,13 +31,13 @@ extension Requests {
 
         public init(
             schemaVersion: Int,
-            name: JSONValue? = nil,
-            cargoTypes: JSONValue? = nil,
-            vehicleTypes: JSONValue? = nil,
-            routeTypes: JSONValue? = nil,
-            driverIds: JSONValue? = nil,
+            name: Nullable<String>? = nil,
+            cargoTypes: Nullable<[CargoTypeEnum1]>? = nil,
+            vehicleTypes: Nullable<[VehicleTypeEnum]>? = nil,
+            routeTypes: Nullable<[RouteTypeEnum1]>? = nil,
+            driverIds: Nullable<[String]>? = nil,
             courierOrgId: String,
-            comments: JSONValue? = nil,
+            comments: Nullable<String>? = nil,
             baseMileageDistanceMiles: Double,
             baseMileageRateUsdPerInstance: Double,
             additionalMileageRateUsdPerMile: Double,
@@ -80,13 +80,13 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-            self.name = try container.decodeIfPresent(JSONValue.self, forKey: .name)
-            self.cargoTypes = try container.decodeIfPresent(JSONValue.self, forKey: .cargoTypes)
-            self.vehicleTypes = try container.decodeIfPresent(JSONValue.self, forKey: .vehicleTypes)
-            self.routeTypes = try container.decodeIfPresent(JSONValue.self, forKey: .routeTypes)
-            self.driverIds = try container.decodeIfPresent(JSONValue.self, forKey: .driverIds)
+            self.name = try container.decodeNullableIfPresent(String.self, forKey: .name)
+            self.cargoTypes = try container.decodeNullableIfPresent([CargoTypeEnum1].self, forKey: .cargoTypes)
+            self.vehicleTypes = try container.decodeNullableIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
+            self.routeTypes = try container.decodeNullableIfPresent([RouteTypeEnum1].self, forKey: .routeTypes)
+            self.driverIds = try container.decodeNullableIfPresent([String].self, forKey: .driverIds)
             self.courierOrgId = try container.decode(String.self, forKey: .courierOrgId)
-            self.comments = try container.decodeIfPresent(JSONValue.self, forKey: .comments)
+            self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
             self.baseMileageDistanceMiles = try container.decode(Double.self, forKey: .baseMileageDistanceMiles)
             self.baseMileageRateUsdPerInstance = try container.decode(Double.self, forKey: .baseMileageRateUsdPerInstance)
             self.additionalMileageRateUsdPerMile = try container.decode(Double.self, forKey: .additionalMileageRateUsdPerMile)
@@ -107,13 +107,13 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
-            try container.encodeIfPresent(self.name, forKey: .name)
-            try container.encodeIfPresent(self.cargoTypes, forKey: .cargoTypes)
-            try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
-            try container.encodeIfPresent(self.routeTypes, forKey: .routeTypes)
-            try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
+            try container.encodeNullableIfPresent(self.name, forKey: .name)
+            try container.encodeNullableIfPresent(self.cargoTypes, forKey: .cargoTypes)
+            try container.encodeNullableIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encodeNullableIfPresent(self.routeTypes, forKey: .routeTypes)
+            try container.encodeNullableIfPresent(self.driverIds, forKey: .driverIds)
             try container.encode(self.courierOrgId, forKey: .courierOrgId)
-            try container.encodeIfPresent(self.comments, forKey: .comments)
+            try container.encodeNullableIfPresent(self.comments, forKey: .comments)
             try container.encode(self.baseMileageDistanceMiles, forKey: .baseMileageDistanceMiles)
             try container.encode(self.baseMileageRateUsdPerInstance, forKey: .baseMileageRateUsdPerInstance)
             try container.encode(self.additionalMileageRateUsdPerMile, forKey: .additionalMileageRateUsdPerMile)

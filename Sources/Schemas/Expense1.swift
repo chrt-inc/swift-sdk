@@ -4,10 +4,10 @@ public struct Expense1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let id: String
     public let amountUsd: Double
-    public let docsS3ShortKey: JSONValue?
+    public let docsS3ShortKey: Nullable<[String]>?
     public let vendor: String
     public let lineItemType: LineItemEnum1
-    public let comments: JSONValue?
+    public let comments: Nullable<String>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -15,10 +15,10 @@ public struct Expense1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         id: String,
         amountUsd: Double,
-        docsS3ShortKey: JSONValue? = nil,
+        docsS3ShortKey: Nullable<[String]>? = nil,
         vendor: String,
         lineItemType: LineItemEnum1,
-        comments: JSONValue? = nil,
+        comments: Nullable<String>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -36,10 +36,10 @@ public struct Expense1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.id = try container.decode(String.self, forKey: .id)
         self.amountUsd = try container.decode(Double.self, forKey: .amountUsd)
-        self.docsS3ShortKey = try container.decodeIfPresent(JSONValue.self, forKey: .docsS3ShortKey)
+        self.docsS3ShortKey = try container.decodeNullableIfPresent([String].self, forKey: .docsS3ShortKey)
         self.vendor = try container.decode(String.self, forKey: .vendor)
         self.lineItemType = try container.decode(LineItemEnum1.self, forKey: .lineItemType)
-        self.comments = try container.decodeIfPresent(JSONValue.self, forKey: .comments)
+        self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -49,10 +49,10 @@ public struct Expense1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.amountUsd, forKey: .amountUsd)
-        try container.encodeIfPresent(self.docsS3ShortKey, forKey: .docsS3ShortKey)
+        try container.encodeNullableIfPresent(self.docsS3ShortKey, forKey: .docsS3ShortKey)
         try container.encode(self.vendor, forKey: .vendor)
         try container.encode(self.lineItemType, forKey: .lineItemType)
-        try container.encodeIfPresent(self.comments, forKey: .comments)
+        try container.encodeNullableIfPresent(self.comments, forKey: .comments)
     }
 
     /// Keys for encoding/decoding struct properties.

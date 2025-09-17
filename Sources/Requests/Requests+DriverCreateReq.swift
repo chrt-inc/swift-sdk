@@ -3,13 +3,13 @@ import Foundation
 extension Requests {
     public struct DriverCreateReq: Codable, Hashable, Sendable {
         public let orgMember: OrgMemberDetails
-        public let vehicleTypes: JSONValue?
+        public let vehicleTypes: Nullable<[VehicleTypeEnum]>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             orgMember: OrgMemberDetails,
-            vehicleTypes: JSONValue? = nil,
+            vehicleTypes: Nullable<[VehicleTypeEnum]>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.orgMember = orgMember
@@ -20,7 +20,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.orgMember = try container.decode(OrgMemberDetails.self, forKey: .orgMember)
-            self.vehicleTypes = try container.decodeIfPresent(JSONValue.self, forKey: .vehicleTypes)
+            self.vehicleTypes = try container.decodeNullableIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -28,7 +28,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.orgMember, forKey: .orgMember)
-            try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encodeNullableIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
         }
 
         /// Keys for encoding/decoding struct properties.

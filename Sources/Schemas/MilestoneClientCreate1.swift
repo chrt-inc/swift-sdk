@@ -3,14 +3,14 @@ import Foundation
 public struct MilestoneClientCreate1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let type: MilestoneTypeEnum1
-    public let requestorComments: JSONValue?
+    public let requestorComments: Nullable<String>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         schemaVersion: Int,
         type: MilestoneTypeEnum1,
-        requestorComments: JSONValue? = nil,
+        requestorComments: Nullable<String>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -23,7 +23,7 @@ public struct MilestoneClientCreate1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.type = try container.decode(MilestoneTypeEnum1.self, forKey: .type)
-        self.requestorComments = try container.decodeIfPresent(JSONValue.self, forKey: .requestorComments)
+        self.requestorComments = try container.decodeNullableIfPresent(String.self, forKey: .requestorComments)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -32,7 +32,7 @@ public struct MilestoneClientCreate1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.type, forKey: .type)
-        try container.encodeIfPresent(self.requestorComments, forKey: .requestorComments)
+        try container.encodeNullableIfPresent(self.requestorComments, forKey: .requestorComments)
     }
 
     /// Keys for encoding/decoding struct properties.

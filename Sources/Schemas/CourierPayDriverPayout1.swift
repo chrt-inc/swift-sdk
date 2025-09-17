@@ -10,9 +10,9 @@ public struct CourierPayDriverPayout1: Codable, Hashable, Sendable {
     public let taskGroupIds: [String]
     public let payoutAmount: Double
     public let payoutStatus: PayoutStatusEnum?
-    public let payoutCompletedAt: JSONValue?
+    public let payoutCompletedAt: Nullable<Date>?
     /// Must be a string starting with `user_`
-    public let payoutCompletedByUserId: JSONValue?
+    public let payoutCompletedByUserId: Nullable<String>?
     public let payoutCreatedAt: Date
     /// Must be a string starting with `user_`
     public let payoutCreatedByUserId: String
@@ -28,8 +28,8 @@ public struct CourierPayDriverPayout1: Codable, Hashable, Sendable {
         taskGroupIds: [String],
         payoutAmount: Double,
         payoutStatus: PayoutStatusEnum? = nil,
-        payoutCompletedAt: JSONValue? = nil,
-        payoutCompletedByUserId: JSONValue? = nil,
+        payoutCompletedAt: Nullable<Date>? = nil,
+        payoutCompletedByUserId: Nullable<String>? = nil,
         payoutCreatedAt: Date,
         payoutCreatedByUserId: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -59,8 +59,8 @@ public struct CourierPayDriverPayout1: Codable, Hashable, Sendable {
         self.taskGroupIds = try container.decode([String].self, forKey: .taskGroupIds)
         self.payoutAmount = try container.decode(Double.self, forKey: .payoutAmount)
         self.payoutStatus = try container.decodeIfPresent(PayoutStatusEnum.self, forKey: .payoutStatus)
-        self.payoutCompletedAt = try container.decodeIfPresent(JSONValue.self, forKey: .payoutCompletedAt)
-        self.payoutCompletedByUserId = try container.decodeIfPresent(JSONValue.self, forKey: .payoutCompletedByUserId)
+        self.payoutCompletedAt = try container.decodeNullableIfPresent(Date.self, forKey: .payoutCompletedAt)
+        self.payoutCompletedByUserId = try container.decodeNullableIfPresent(String.self, forKey: .payoutCompletedByUserId)
         self.payoutCreatedAt = try container.decode(Date.self, forKey: .payoutCreatedAt)
         self.payoutCreatedByUserId = try container.decode(String.self, forKey: .payoutCreatedByUserId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -77,8 +77,8 @@ public struct CourierPayDriverPayout1: Codable, Hashable, Sendable {
         try container.encode(self.taskGroupIds, forKey: .taskGroupIds)
         try container.encode(self.payoutAmount, forKey: .payoutAmount)
         try container.encodeIfPresent(self.payoutStatus, forKey: .payoutStatus)
-        try container.encodeIfPresent(self.payoutCompletedAt, forKey: .payoutCompletedAt)
-        try container.encodeIfPresent(self.payoutCompletedByUserId, forKey: .payoutCompletedByUserId)
+        try container.encodeNullableIfPresent(self.payoutCompletedAt, forKey: .payoutCompletedAt)
+        try container.encodeNullableIfPresent(self.payoutCompletedByUserId, forKey: .payoutCompletedByUserId)
         try container.encode(self.payoutCreatedAt, forKey: .payoutCreatedAt)
         try container.encode(self.payoutCreatedByUserId, forKey: .payoutCreatedByUserId)
     }

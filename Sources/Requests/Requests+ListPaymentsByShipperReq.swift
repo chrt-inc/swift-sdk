@@ -4,13 +4,13 @@ extension Requests {
     public struct ListPaymentsByShipperReq: Codable, Hashable, Sendable {
         public let statuses: [StripeConnectInvoiceStatusEnum]
         /// Must be a string starting with `org_`
-        public let courierOrgId: JSONValue?
+        public let courierOrgId: Nullable<String>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             statuses: [StripeConnectInvoiceStatusEnum],
-            courierOrgId: JSONValue? = nil,
+            courierOrgId: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.statuses = statuses
@@ -21,7 +21,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.statuses = try container.decode([StripeConnectInvoiceStatusEnum].self, forKey: .statuses)
-            self.courierOrgId = try container.decodeIfPresent(JSONValue.self, forKey: .courierOrgId)
+            self.courierOrgId = try container.decodeNullableIfPresent(String.self, forKey: .courierOrgId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -29,7 +29,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.statuses, forKey: .statuses)
-            try container.encodeIfPresent(self.courierOrgId, forKey: .courierOrgId)
+            try container.encodeNullableIfPresent(self.courierOrgId, forKey: .courierOrgId)
         }
 
         /// Keys for encoding/decoding struct properties.

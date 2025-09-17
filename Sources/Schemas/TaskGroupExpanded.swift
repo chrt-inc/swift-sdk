@@ -3,13 +3,13 @@ import Foundation
 /// Single task group with optional expanded tasks
 public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let taskGroup: TaskGroup1
-    public let tasksExpanded: JSONValue?
+    public let tasksExpanded: Nullable<[TaskExpanded]>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         taskGroup: TaskGroup1,
-        tasksExpanded: JSONValue? = nil,
+        tasksExpanded: Nullable<[TaskExpanded]>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.taskGroup = taskGroup
@@ -20,7 +20,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.taskGroup = try container.decode(TaskGroup1.self, forKey: .taskGroup)
-        self.tasksExpanded = try container.decodeIfPresent(JSONValue.self, forKey: .tasksExpanded)
+        self.tasksExpanded = try container.decodeNullableIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -28,7 +28,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.taskGroup, forKey: .taskGroup)
-        try container.encodeIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
+        try container.encodeNullableIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
     }
 
     /// Keys for encoding/decoding struct properties.

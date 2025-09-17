@@ -12,14 +12,14 @@ public struct Order1: Codable, Hashable, Sendable {
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     public let draftStartedAt: Date
-    public let taskGroupIds: JSONValue?
+    public let taskGroupIds: Nullable<[String]>?
     /// Must be a string starting with `org_`
-    public let shipperOrgId: JSONValue?
+    public let shipperOrgId: Nullable<String>?
     /// Must be a string starting with `user_`
-    public let shipperUserId: JSONValue?
-    public let offChrtShipperOrgInfoId: JSONValue?
-    public let orderLevelExpensesIds: JSONValue?
-    public let orderLevelReceivablesLineItems: JSONValue?
+    public let shipperUserId: Nullable<String>?
+    public let offChrtShipperOrgInfoId: Nullable<String>?
+    public let orderLevelExpensesIds: Nullable<[String]>?
+    public let orderLevelReceivablesLineItems: Nullable<[LineItem1]>?
     public let status: OrderStatusEnum1?
     public let orderCancelled: Bool?
     /// Additional properties that are not explicitly defined in the schema
@@ -35,12 +35,12 @@ public struct Order1: Codable, Hashable, Sendable {
         createdByOrgId: String,
         createdByUserId: String,
         draftStartedAt: Date,
-        taskGroupIds: JSONValue? = nil,
-        shipperOrgId: JSONValue? = nil,
-        shipperUserId: JSONValue? = nil,
-        offChrtShipperOrgInfoId: JSONValue? = nil,
-        orderLevelExpensesIds: JSONValue? = nil,
-        orderLevelReceivablesLineItems: JSONValue? = nil,
+        taskGroupIds: Nullable<[String]>? = nil,
+        shipperOrgId: Nullable<String>? = nil,
+        shipperUserId: Nullable<String>? = nil,
+        offChrtShipperOrgInfoId: Nullable<String>? = nil,
+        orderLevelExpensesIds: Nullable<[String]>? = nil,
+        orderLevelReceivablesLineItems: Nullable<[LineItem1]>? = nil,
         status: OrderStatusEnum1? = nil,
         orderCancelled: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -76,12 +76,12 @@ public struct Order1: Codable, Hashable, Sendable {
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.draftStartedAt = try container.decode(Date.self, forKey: .draftStartedAt)
-        self.taskGroupIds = try container.decodeIfPresent(JSONValue.self, forKey: .taskGroupIds)
-        self.shipperOrgId = try container.decodeIfPresent(JSONValue.self, forKey: .shipperOrgId)
-        self.shipperUserId = try container.decodeIfPresent(JSONValue.self, forKey: .shipperUserId)
-        self.offChrtShipperOrgInfoId = try container.decodeIfPresent(JSONValue.self, forKey: .offChrtShipperOrgInfoId)
-        self.orderLevelExpensesIds = try container.decodeIfPresent(JSONValue.self, forKey: .orderLevelExpensesIds)
-        self.orderLevelReceivablesLineItems = try container.decodeIfPresent(JSONValue.self, forKey: .orderLevelReceivablesLineItems)
+        self.taskGroupIds = try container.decodeNullableIfPresent([String].self, forKey: .taskGroupIds)
+        self.shipperOrgId = try container.decodeNullableIfPresent(String.self, forKey: .shipperOrgId)
+        self.shipperUserId = try container.decodeNullableIfPresent(String.self, forKey: .shipperUserId)
+        self.offChrtShipperOrgInfoId = try container.decodeNullableIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
+        self.orderLevelExpensesIds = try container.decodeNullableIfPresent([String].self, forKey: .orderLevelExpensesIds)
+        self.orderLevelReceivablesLineItems = try container.decodeNullableIfPresent([LineItem1].self, forKey: .orderLevelReceivablesLineItems)
         self.status = try container.decodeIfPresent(OrderStatusEnum1.self, forKey: .status)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -99,12 +99,12 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.draftStartedAt, forKey: .draftStartedAt)
-        try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
-        try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-        try container.encodeIfPresent(self.shipperUserId, forKey: .shipperUserId)
-        try container.encodeIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
-        try container.encodeIfPresent(self.orderLevelExpensesIds, forKey: .orderLevelExpensesIds)
-        try container.encodeIfPresent(self.orderLevelReceivablesLineItems, forKey: .orderLevelReceivablesLineItems)
+        try container.encodeNullableIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
+        try container.encodeNullableIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+        try container.encodeNullableIfPresent(self.shipperUserId, forKey: .shipperUserId)
+        try container.encodeNullableIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
+        try container.encodeNullableIfPresent(self.orderLevelExpensesIds, forKey: .orderLevelExpensesIds)
+        try container.encodeNullableIfPresent(self.orderLevelReceivablesLineItems, forKey: .orderLevelReceivablesLineItems)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
     }

@@ -3,22 +3,22 @@ import Foundation
 public struct CargoClientCreate1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let cargoType: CargoTypeEnum1
-    public let quantity: JSONValue?
-    public let weightPounds: JSONValue?
-    public let lengthInches: JSONValue?
-    public let widthInches: JSONValue?
-    public let heightInches: JSONValue?
+    public let quantity: Nullable<Int>?
+    public let weightPounds: Nullable<Double>?
+    public let lengthInches: Nullable<Double>?
+    public let widthInches: Nullable<Double>?
+    public let heightInches: Nullable<Double>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         schemaVersion: Int,
         cargoType: CargoTypeEnum1,
-        quantity: JSONValue? = nil,
-        weightPounds: JSONValue? = nil,
-        lengthInches: JSONValue? = nil,
-        widthInches: JSONValue? = nil,
-        heightInches: JSONValue? = nil,
+        quantity: Nullable<Int>? = nil,
+        weightPounds: Nullable<Double>? = nil,
+        lengthInches: Nullable<Double>? = nil,
+        widthInches: Nullable<Double>? = nil,
+        heightInches: Nullable<Double>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -35,11 +35,11 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.cargoType = try container.decode(CargoTypeEnum1.self, forKey: .cargoType)
-        self.quantity = try container.decodeIfPresent(JSONValue.self, forKey: .quantity)
-        self.weightPounds = try container.decodeIfPresent(JSONValue.self, forKey: .weightPounds)
-        self.lengthInches = try container.decodeIfPresent(JSONValue.self, forKey: .lengthInches)
-        self.widthInches = try container.decodeIfPresent(JSONValue.self, forKey: .widthInches)
-        self.heightInches = try container.decodeIfPresent(JSONValue.self, forKey: .heightInches)
+        self.quantity = try container.decodeNullableIfPresent(Int.self, forKey: .quantity)
+        self.weightPounds = try container.decodeNullableIfPresent(Double.self, forKey: .weightPounds)
+        self.lengthInches = try container.decodeNullableIfPresent(Double.self, forKey: .lengthInches)
+        self.widthInches = try container.decodeNullableIfPresent(Double.self, forKey: .widthInches)
+        self.heightInches = try container.decodeNullableIfPresent(Double.self, forKey: .heightInches)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -48,11 +48,11 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.cargoType, forKey: .cargoType)
-        try container.encodeIfPresent(self.quantity, forKey: .quantity)
-        try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
-        try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
-        try container.encodeIfPresent(self.widthInches, forKey: .widthInches)
-        try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
+        try container.encodeNullableIfPresent(self.quantity, forKey: .quantity)
+        try container.encodeNullableIfPresent(self.weightPounds, forKey: .weightPounds)
+        try container.encodeNullableIfPresent(self.lengthInches, forKey: .lengthInches)
+        try container.encodeNullableIfPresent(self.widthInches, forKey: .widthInches)
+        try container.encodeNullableIfPresent(self.heightInches, forKey: .heightInches)
     }
 
     /// Keys for encoding/decoding struct properties.
