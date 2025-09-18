@@ -11,7 +11,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let id: String
     public let orderId: String
     public let orderShortId: String
-    public let deviceForCargoIds: Nullable<[String]>?
+    public let deviceIds: Nullable<[String]>?
     public let status: CargoStatusEnum1?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -27,7 +27,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         id: String,
         orderId: String,
         orderShortId: String,
-        deviceForCargoIds: Nullable<[String]>? = nil,
+        deviceIds: Nullable<[String]>? = nil,
         status: CargoStatusEnum1? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -41,7 +41,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
-        self.deviceForCargoIds = deviceForCargoIds
+        self.deviceIds = deviceIds
         self.status = status
         self.additionalProperties = additionalProperties
     }
@@ -58,7 +58,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
-        self.deviceForCargoIds = try container.decodeNullableIfPresent([String].self, forKey: .deviceForCargoIds)
+        self.deviceIds = try container.decodeNullableIfPresent([String].self, forKey: .deviceIds)
         self.status = try container.decodeIfPresent(CargoStatusEnum1.self, forKey: .status)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -76,7 +76,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
-        try container.encodeNullableIfPresent(self.deviceForCargoIds, forKey: .deviceForCargoIds)
+        try container.encodeNullableIfPresent(self.deviceIds, forKey: .deviceIds)
         try container.encodeIfPresent(self.status, forKey: .status)
     }
 
@@ -92,7 +92,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
-        case deviceForCargoIds = "device_for_cargo_ids"
+        case deviceIds = "device_ids"
         case status
     }
 }
