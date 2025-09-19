@@ -7,7 +7,7 @@ public final class CargoByDriverClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the most recent data point in tracking.cargo_by_driver that matches the provided identifiers.
+    /// Returns the most recent data point in tracking.cargo_by_driver that matches the provided identifiers. Data is written by the unified /driver/update endpoint.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeen(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingCargoByDriverDataPoint1>? {
@@ -20,19 +20,6 @@ public final class CargoByDriverClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: Nullable<TrackingCargoByDriverDataPoint1>?.self
-        )
-    }
-
-    /// Given a driver_id and task_group_id, find cargos on the task group and write tracking points for those with status IN_TRANSIT.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: Requests.CargoByDriverUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Int {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/cargo_by_driver/update",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Int.self
         )
     }
 }

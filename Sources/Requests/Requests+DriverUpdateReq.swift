@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct TaskGroupByDriverUpdateReq: Codable, Hashable, Sendable {
+    public struct DriverUpdateReq: Codable, Hashable, Sendable {
         public let taskGroupId: String
         public let timestamp: Date
         public let location: LocationFeature

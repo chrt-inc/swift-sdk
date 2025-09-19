@@ -22,6 +22,38 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
+    /// Return a specified number of data points for a session, intelligently sampled across the time range.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func dataPoints(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/session_by_device/data_points",
+            queryParams: [
+                "session_id": .string(sessionId), 
+                "limit": limit?.wrappedValue.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [TrackingSessionByDeviceDataPoint1].self
+        )
+    }
+
+    /// Return data points for a session with intelligent stop/movement detection. Detects stops (location barely changes for >5 minutes) and shows up to 5 markers. For movement, samples data points lightly.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func dataPointsFancy(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/session_by_device/data_points_fancy",
+            queryParams: [
+                "session_id": .string(sessionId), 
+                "limit": limit?.wrappedValue.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [TrackingSessionByDeviceDataPoint1].self
+        )
+    }
+
     /// Create a session for a device and link the device to it.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -53,7 +85,7 @@ public final class SessionByDeviceClient: Sendable {
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func startSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
+            method: .post,
             path: "/tracking/session_by_device/start_session",
             queryParams: [
                 "session_id": .string(sessionId)
@@ -68,7 +100,7 @@ public final class SessionByDeviceClient: Sendable {
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func pauseSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
+            method: .post,
             path: "/tracking/session_by_device/pause_session",
             queryParams: [
                 "session_id": .string(sessionId)
@@ -83,7 +115,7 @@ public final class SessionByDeviceClient: Sendable {
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func resumeSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
+            method: .post,
             path: "/tracking/session_by_device/resume_session",
             queryParams: [
                 "session_id": .string(sessionId)
@@ -98,7 +130,7 @@ public final class SessionByDeviceClient: Sendable {
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func endSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
+            method: .post,
             path: "/tracking/session_by_device/end_session",
             queryParams: [
                 "session_id": .string(sessionId)
