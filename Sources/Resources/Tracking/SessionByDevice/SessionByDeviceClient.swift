@@ -7,6 +7,18 @@ public final class SessionByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// List all sessions for the current organization.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func list(requestOptions: RequestOptions? = nil) async throws -> [Session1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/session_by_device/list",
+            requestOptions: requestOptions,
+            responseType: [Session1].self
+        )
+    }
+
     /// Return the most recent datapoint for a session.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
