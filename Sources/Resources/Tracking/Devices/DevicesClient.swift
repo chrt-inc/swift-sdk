@@ -22,15 +22,16 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Get a device by device_mac_address.
+    /// Get a device by device_mac_address or device_id.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func get(deviceMacAddress: String, requestOptions: RequestOptions? = nil) async throws -> Device1 {
+    public func get(deviceMacAddress: Nullable<String>? = nil, deviceId: Nullable<String>? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices",
             queryParams: [
-                "device_mac_address": .string(deviceMacAddress)
+                "device_mac_address": deviceMacAddress?.wrappedValue.map { .string($0) }, 
+                "device_id": deviceId?.wrappedValue.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: Device1.self

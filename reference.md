@@ -9532,7 +9532,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">get</a>(deviceMacAddress: String, requestOptions: RequestOptions?) -> Device1</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">get</a>(deviceMacAddress: Nullable<String>?, deviceId: Nullable<String>?, requestOptions: RequestOptions?) -> Device1</code></summary>
 <dl>
 <dd>
 
@@ -9544,7 +9544,7 @@ try await main()
 <dl>
 <dd>
 
-Get a device by device_mac_address.
+Get a device by device_mac_address or device_id.
 </dd>
 </dl>
 </dd>
@@ -9565,7 +9565,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.get(request: .init(deviceMacAddress: "device_mac_address"))
+    try await client.tracking.devices.get(request: .init())
 }
 
 try await main()
@@ -9583,7 +9583,15 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `String` 
+**deviceMacAddress:** `Nullable<String>?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**deviceId:** `Nullable<String>?` 
     
 </dd>
 </dl>
