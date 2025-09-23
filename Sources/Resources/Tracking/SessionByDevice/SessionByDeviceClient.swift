@@ -50,22 +50,6 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Return data points for a session with intelligent stop/movement detection. Detects stops (location barely changes for >5 minutes) and shows up to 5 markers. For movement, samples data points lightly.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsFancy(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/session_by_device/data_points_fancy",
-            queryParams: [
-                "session_id": .string(sessionId), 
-                "limit": limit?.wrappedValue.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: [TrackingSessionByDeviceDataPoint1].self
-        )
-    }
-
     /// Create a session for a device and link the device to it.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

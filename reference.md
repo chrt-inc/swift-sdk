@@ -7663,6 +7663,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.milestones.images.<a href="/Sources/Resources/Milestones/Images/ImagesClient.swift">getByMetadataId</a>(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams a milestone image file from S3 storage.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.milestones.images.getByMetadataId(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**milestoneS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Milestones Blurhash
 <details><summary><code>client.milestones.blurhash.<a href="/Sources/Resources/Milestones/Blurhash/BlurhashClient.swift">getByMetadataId</a>(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
@@ -9905,78 +9976,6 @@ try await main()
 </dl>
 </details>
 
-## Tracking TaskGroupByDriver
-<details><summary><code>client.tracking.taskGroupByDriver.<a href="/Sources/Resources/Tracking/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeen</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingTaskGroupByDriverDataPoint1>?</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the most recent data point in tracking.task_group_by_driver for the given task_group_id. Data is written by the unified /driver/update endpoint.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.tracking.taskGroupByDriver.lastSeen(request: .init(taskGroupId: "task_group_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Tracking SessionByDevice
 <details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">list</a>(requestOptions: RequestOptions?) -> [Session1]</code></summary>
 <dl>
@@ -10146,85 +10145,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     try await client.tracking.sessionByDevice.dataPoints(request: .init(sessionId: "session_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Nullable<Int>?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsFancy</a>(sessionId: String, limit: Nullable<Int>?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Return data points for a session with intelligent stop/movement detection. Detects stops (location barely changes for >5 minutes) and shows up to 5 markers. For movement, samples data points lightly.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.tracking.sessionByDevice.dataPointsFancy(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -10677,6 +10597,78 @@ try await main()
 <dd>
 
 **sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tracking TaskGroupByDriver
+<details><summary><code>client.tracking.taskGroupByDriver.<a href="/Sources/Resources/Tracking/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeen</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingTaskGroupByDriverDataPoint1>?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the most recent data point in tracking.task_group_by_driver for the given task_group_id. Data is written by the unified /driver/update endpoint.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.tracking.taskGroupByDriver.lastSeen(request: .init(taskGroupId: "task_group_id"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
     
 </dd>
 </dl>
