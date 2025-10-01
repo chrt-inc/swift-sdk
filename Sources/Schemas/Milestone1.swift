@@ -3,21 +3,21 @@ import Foundation
 public struct Milestone1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let type: MilestoneTypeEnum1
-    public let requestorComments: Nullable<String>?
+    public let requestorComments: Nullable<String>
     public let id: String
     public let orderId: String
     public let orderShortId: String
     public let taskId: String
-    public let completedAtTimestamp: Nullable<Date>?
-    public let completedAtGeojsonFeature: Nullable<LocationFeature>?
+    public let completedAtTimestamp: Nullable<Date>
+    public let completedAtGeojsonFeature: Nullable<LocationFeature>
     /// Must be a string starting with `user_`
-    public let completedByUserId: Nullable<String>?
+    public let completedByUserId: Nullable<String>
     public let completed: Bool
     public let milestoneS3ObjectMetadataIds: [String]?
     public let decodedScans: [String]?
     public let requestedByShipper: Bool
-    public let completorComments: Nullable<String>?
-    public let chrtComments: Nullable<String>?
+    public let completorComments: Nullable<String>
+    public let chrtComments: Nullable<String>
     public let notificationEmailIds: Nullable<[String]>?
     public let notificationSmsIds: Nullable<[String]>?
     public let notificationPushIds: Nullable<[String]>?
@@ -28,20 +28,20 @@ public struct Milestone1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         type: MilestoneTypeEnum1,
-        requestorComments: Nullable<String>? = nil,
+        requestorComments: Nullable<String>,
         id: String,
         orderId: String,
         orderShortId: String,
         taskId: String,
-        completedAtTimestamp: Nullable<Date>? = nil,
-        completedAtGeojsonFeature: Nullable<LocationFeature>? = nil,
-        completedByUserId: Nullable<String>? = nil,
+        completedAtTimestamp: Nullable<Date>,
+        completedAtGeojsonFeature: Nullable<LocationFeature>,
+        completedByUserId: Nullable<String>,
         completed: Bool,
         milestoneS3ObjectMetadataIds: [String]? = nil,
         decodedScans: [String]? = nil,
         requestedByShipper: Bool,
-        completorComments: Nullable<String>? = nil,
-        chrtComments: Nullable<String>? = nil,
+        completorComments: Nullable<String>,
+        chrtComments: Nullable<String>,
         notificationEmailIds: Nullable<[String]>? = nil,
         notificationSmsIds: Nullable<[String]>? = nil,
         notificationPushIds: Nullable<[String]>? = nil,
@@ -75,20 +75,20 @@ public struct Milestone1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.type = try container.decode(MilestoneTypeEnum1.self, forKey: .type)
-        self.requestorComments = try container.decodeNullableIfPresent(String.self, forKey: .requestorComments)
+        self.requestorComments = try container.decode(Nullable<String>.self, forKey: .requestorComments)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
-        self.completedAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .completedAtTimestamp)
-        self.completedAtGeojsonFeature = try container.decodeNullableIfPresent(LocationFeature.self, forKey: .completedAtGeojsonFeature)
-        self.completedByUserId = try container.decodeNullableIfPresent(String.self, forKey: .completedByUserId)
+        self.completedAtTimestamp = try container.decode(Nullable<Date>.self, forKey: .completedAtTimestamp)
+        self.completedAtGeojsonFeature = try container.decode(Nullable<LocationFeature>.self, forKey: .completedAtGeojsonFeature)
+        self.completedByUserId = try container.decode(Nullable<String>.self, forKey: .completedByUserId)
         self.completed = try container.decode(Bool.self, forKey: .completed)
         self.milestoneS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .milestoneS3ObjectMetadataIds)
         self.decodedScans = try container.decodeIfPresent([String].self, forKey: .decodedScans)
         self.requestedByShipper = try container.decode(Bool.self, forKey: .requestedByShipper)
-        self.completorComments = try container.decodeNullableIfPresent(String.self, forKey: .completorComments)
-        self.chrtComments = try container.decodeNullableIfPresent(String.self, forKey: .chrtComments)
+        self.completorComments = try container.decode(Nullable<String>.self, forKey: .completorComments)
+        self.chrtComments = try container.decode(Nullable<String>.self, forKey: .chrtComments)
         self.notificationEmailIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationEmailIds)
         self.notificationSmsIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationSmsIds)
         self.notificationPushIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationPushIds)
@@ -101,20 +101,20 @@ public struct Milestone1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.type, forKey: .type)
-        try container.encodeNullableIfPresent(self.requestorComments, forKey: .requestorComments)
+        try container.encode(self.requestorComments, forKey: .requestorComments)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.taskId, forKey: .taskId)
-        try container.encodeNullableIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
-        try container.encodeNullableIfPresent(self.completedAtGeojsonFeature, forKey: .completedAtGeojsonFeature)
-        try container.encodeNullableIfPresent(self.completedByUserId, forKey: .completedByUserId)
+        try container.encode(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encode(self.completedAtGeojsonFeature, forKey: .completedAtGeojsonFeature)
+        try container.encode(self.completedByUserId, forKey: .completedByUserId)
         try container.encode(self.completed, forKey: .completed)
         try container.encodeIfPresent(self.milestoneS3ObjectMetadataIds, forKey: .milestoneS3ObjectMetadataIds)
         try container.encodeIfPresent(self.decodedScans, forKey: .decodedScans)
         try container.encode(self.requestedByShipper, forKey: .requestedByShipper)
-        try container.encodeNullableIfPresent(self.completorComments, forKey: .completorComments)
-        try container.encodeNullableIfPresent(self.chrtComments, forKey: .chrtComments)
+        try container.encode(self.completorComments, forKey: .completorComments)
+        try container.encode(self.chrtComments, forKey: .chrtComments)
         try container.encodeNullableIfPresent(self.notificationEmailIds, forKey: .notificationEmailIds)
         try container.encodeNullableIfPresent(self.notificationSmsIds, forKey: .notificationSmsIds)
         try container.encodeNullableIfPresent(self.notificationPushIds, forKey: .notificationPushIds)

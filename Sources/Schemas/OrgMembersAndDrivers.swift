@@ -2,13 +2,13 @@ import Foundation
 
 public struct OrgMembersAndDrivers: Codable, Hashable, Sendable {
     public let orgMember: OrgMemberDetails
-    public let driver: Nullable<Driver1>?
+    public let driver: Nullable<Driver1>
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         orgMember: OrgMemberDetails,
-        driver: Nullable<Driver1>? = nil,
+        driver: Nullable<Driver1>,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.orgMember = orgMember
@@ -19,7 +19,7 @@ public struct OrgMembersAndDrivers: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.orgMember = try container.decode(OrgMemberDetails.self, forKey: .orgMember)
-        self.driver = try container.decodeNullableIfPresent(Driver1.self, forKey: .driver)
+        self.driver = try container.decode(Nullable<Driver1>.self, forKey: .driver)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -27,7 +27,7 @@ public struct OrgMembersAndDrivers: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.orgMember, forKey: .orgMember)
-        try container.encodeNullableIfPresent(self.driver, forKey: .driver)
+        try container.encode(self.driver, forKey: .driver)
     }
 
     /// Keys for encoding/decoding struct properties.

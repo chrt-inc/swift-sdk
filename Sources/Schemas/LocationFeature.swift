@@ -4,7 +4,7 @@ import Foundation
 public struct LocationFeature: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
     public let type: Feature
-    public let geometry: Nullable<LocationFeatureOutputGeometry>?
+    public let geometry: Nullable<LocationFeatureOutputGeometry>
     public let properties: Nullable<LocationProperties>?
     public let id: Nullable<Id>?
     /// Additional properties that are not explicitly defined in the schema
@@ -13,7 +13,7 @@ public struct LocationFeature: Codable, Hashable, Sendable {
     public init(
         bbox: [JSONValue]? = nil,
         type: Feature,
-        geometry: Nullable<LocationFeatureOutputGeometry>? = nil,
+        geometry: Nullable<LocationFeatureOutputGeometry>,
         properties: Nullable<LocationProperties>? = nil,
         id: Nullable<Id>? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -30,7 +30,7 @@ public struct LocationFeature: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
         self.type = try container.decode(Feature.self, forKey: .type)
-        self.geometry = try container.decodeNullableIfPresent(LocationFeatureOutputGeometry.self, forKey: .geometry)
+        self.geometry = try container.decode(Nullable<LocationFeatureOutputGeometry>.self, forKey: .geometry)
         self.properties = try container.decodeNullableIfPresent(LocationProperties.self, forKey: .properties)
         self.id = try container.decodeNullableIfPresent(Id.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -41,7 +41,7 @@ public struct LocationFeature: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.bbox, forKey: .bbox)
         try container.encode(self.type, forKey: .type)
-        try container.encodeNullableIfPresent(self.geometry, forKey: .geometry)
+        try container.encode(self.geometry, forKey: .geometry)
         try container.encodeNullableIfPresent(self.properties, forKey: .properties)
         try container.encodeNullableIfPresent(self.id, forKey: .id)
     }

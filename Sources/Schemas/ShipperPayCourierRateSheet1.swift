@@ -2,14 +2,14 @@ import Foundation
 
 public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
-    public let name: Nullable<String>?
-    public let cargoTypes: Nullable<[CargoTypeEnum1]>?
-    public let vehicleTypes: Nullable<[VehicleTypeEnum]>?
-    public let routeTypes: Nullable<[RouteTypeEnum1]>?
+    public let name: Nullable<String>
+    public let cargoTypes: Nullable<[CargoTypeEnum1]>
+    public let vehicleTypes: Nullable<[VehicleTypeEnum]>
+    public let routeTypes: Nullable<[RouteTypeEnum1]>
     /// Must be a string starting with `org_`
     public let shipperOrgId: Nullable<String>?
     public let offChrtShipperOrgInfoId: Nullable<String>?
-    public let comments: Nullable<String>?
+    public let comments: Nullable<String>
     public let baseMileageDistanceMiles: Double
     public let baseMileageRateUsdPerInstance: Double
     /// applies only to the additional miles
@@ -33,13 +33,13 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
 
     public init(
         schemaVersion: Int,
-        name: Nullable<String>? = nil,
-        cargoTypes: Nullable<[CargoTypeEnum1]>? = nil,
-        vehicleTypes: Nullable<[VehicleTypeEnum]>? = nil,
-        routeTypes: Nullable<[RouteTypeEnum1]>? = nil,
+        name: Nullable<String>,
+        cargoTypes: Nullable<[CargoTypeEnum1]>,
+        vehicleTypes: Nullable<[VehicleTypeEnum]>,
+        routeTypes: Nullable<[RouteTypeEnum1]>,
         shipperOrgId: Nullable<String>? = nil,
         offChrtShipperOrgInfoId: Nullable<String>? = nil,
-        comments: Nullable<String>? = nil,
+        comments: Nullable<String>,
         baseMileageDistanceMiles: Double,
         baseMileageRateUsdPerInstance: Double,
         additionalMileageRateUsdPerMile: Double,
@@ -86,13 +86,13 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.name = try container.decodeNullableIfPresent(String.self, forKey: .name)
-        self.cargoTypes = try container.decodeNullableIfPresent([CargoTypeEnum1].self, forKey: .cargoTypes)
-        self.vehicleTypes = try container.decodeNullableIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
-        self.routeTypes = try container.decodeNullableIfPresent([RouteTypeEnum1].self, forKey: .routeTypes)
+        self.name = try container.decode(Nullable<String>.self, forKey: .name)
+        self.cargoTypes = try container.decode(Nullable<[CargoTypeEnum1]>.self, forKey: .cargoTypes)
+        self.vehicleTypes = try container.decode(Nullable<[VehicleTypeEnum]>.self, forKey: .vehicleTypes)
+        self.routeTypes = try container.decode(Nullable<[RouteTypeEnum1]>.self, forKey: .routeTypes)
         self.shipperOrgId = try container.decodeNullableIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgInfoId = try container.decodeNullableIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
-        self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+        self.comments = try container.decode(Nullable<String>.self, forKey: .comments)
         self.baseMileageDistanceMiles = try container.decode(Double.self, forKey: .baseMileageDistanceMiles)
         self.baseMileageRateUsdPerInstance = try container.decode(Double.self, forKey: .baseMileageRateUsdPerInstance)
         self.additionalMileageRateUsdPerMile = try container.decode(Double.self, forKey: .additionalMileageRateUsdPerMile)
@@ -115,13 +115,13 @@ public struct ShipperPayCourierRateSheet1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encodeNullableIfPresent(self.name, forKey: .name)
-        try container.encodeNullableIfPresent(self.cargoTypes, forKey: .cargoTypes)
-        try container.encodeNullableIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
-        try container.encodeNullableIfPresent(self.routeTypes, forKey: .routeTypes)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.cargoTypes, forKey: .cargoTypes)
+        try container.encode(self.vehicleTypes, forKey: .vehicleTypes)
+        try container.encode(self.routeTypes, forKey: .routeTypes)
         try container.encodeNullableIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeNullableIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
-        try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+        try container.encode(self.comments, forKey: .comments)
         try container.encode(self.baseMileageDistanceMiles, forKey: .baseMileageDistanceMiles)
         try container.encode(self.baseMileageRateUsdPerInstance, forKey: .baseMileageRateUsdPerInstance)
         try container.encode(self.additionalMileageRateUsdPerMile, forKey: .additionalMileageRateUsdPerMile)

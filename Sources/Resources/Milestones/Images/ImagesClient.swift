@@ -10,12 +10,12 @@ public final class ImagesClient: Sendable {
     /// Uploads an image file to a milestone with automatic blurhash generation.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func uploadByMilestoneId(milestoneId: String, comments: Nullable<String>? = nil, request: any Codable, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func uploadByMilestoneId(milestoneId: String, comments: Nullable<String>, request: any Codable, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/milestones/images/upload/\(milestoneId)",
             queryParams: [
-                "comments": comments?.wrappedValue.map { .string($0) }
+                "comments": comments.wrappedValue.map { .string($0) }
             ],
             body: request,
             requestOptions: requestOptions,

@@ -1,10 +1,11 @@
 import Foundation
 
 extension Requests {
-    public struct SessionByDeviceUpdateCommentsRequest1: Codable, Hashable, Sendable {
+    public struct SessionByDeviceUpdateRequest1: Codable, Hashable, Sendable {
         public let sessionId: String
         public let comments: Nullable<String>?
         public let deleteComments: Bool?
+        public let `public`: Nullable<Bool>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -12,11 +13,13 @@ extension Requests {
             sessionId: String,
             comments: Nullable<String>? = nil,
             deleteComments: Bool? = nil,
+            public: Nullable<Bool>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.sessionId = sessionId
             self.comments = comments
             self.deleteComments = deleteComments
+            self.public = `public`
             self.additionalProperties = additionalProperties
         }
 
@@ -25,6 +28,7 @@ extension Requests {
             self.sessionId = try container.decode(String.self, forKey: .sessionId)
             self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
             self.deleteComments = try container.decodeIfPresent(Bool.self, forKey: .deleteComments)
+            self.public = try container.decodeNullableIfPresent(Bool.self, forKey: .public)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -34,6 +38,7 @@ extension Requests {
             try container.encode(self.sessionId, forKey: .sessionId)
             try container.encodeNullableIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.deleteComments, forKey: .deleteComments)
+            try container.encodeNullableIfPresent(self.public, forKey: .public)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -41,6 +46,7 @@ extension Requests {
             case sessionId = "session_id"
             case comments
             case deleteComments = "delete_comments"
+            case `public`
         }
     }
 }
