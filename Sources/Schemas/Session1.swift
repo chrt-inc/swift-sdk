@@ -9,6 +9,8 @@ public struct Session1: Codable, Hashable, Sendable {
     public let comments: Nullable<String>?
     public let recording: Bool?
     public let terminated: Bool?
+    public let sessionCreatedAtTimestamp: Date
+    public let recordingInitiatedAtTimestamp: Nullable<Date>?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -21,6 +23,8 @@ public struct Session1: Codable, Hashable, Sendable {
         comments: Nullable<String>? = nil,
         recording: Bool? = nil,
         terminated: Bool? = nil,
+        sessionCreatedAtTimestamp: Date,
+        recordingInitiatedAtTimestamp: Nullable<Date>? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -31,6 +35,8 @@ public struct Session1: Codable, Hashable, Sendable {
         self.comments = comments
         self.recording = recording
         self.terminated = terminated
+        self.sessionCreatedAtTimestamp = sessionCreatedAtTimestamp
+        self.recordingInitiatedAtTimestamp = recordingInitiatedAtTimestamp
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -44,6 +50,8 @@ public struct Session1: Codable, Hashable, Sendable {
         self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
         self.recording = try container.decodeIfPresent(Bool.self, forKey: .recording)
         self.terminated = try container.decodeIfPresent(Bool.self, forKey: .terminated)
+        self.sessionCreatedAtTimestamp = try container.decode(Date.self, forKey: .sessionCreatedAtTimestamp)
+        self.recordingInitiatedAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .recordingInitiatedAtTimestamp)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -58,6 +66,8 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.comments, forKey: .comments)
         try container.encodeIfPresent(self.recording, forKey: .recording)
         try container.encodeIfPresent(self.terminated, forKey: .terminated)
+        try container.encode(self.sessionCreatedAtTimestamp, forKey: .sessionCreatedAtTimestamp)
+        try container.encodeNullableIfPresent(self.recordingInitiatedAtTimestamp, forKey: .recordingInitiatedAtTimestamp)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -70,6 +80,8 @@ public struct Session1: Codable, Hashable, Sendable {
         case comments
         case recording
         case terminated
+        case sessionCreatedAtTimestamp = "session_created_at_timestamp"
+        case recordingInitiatedAtTimestamp = "recording_initiated_at_timestamp"
         case id = "_id"
     }
 }

@@ -9532,7 +9532,7 @@ try await main()
 </details>
 
 ## Tracking Devices
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">registerToOrg</a>(deviceMacAddress: String, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">registerToOrg</a>(request: Requests.DevicesRegisterToOrgReq1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -9583,7 +9583,157 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `String` 
+**request:** `Requests.DevicesRegisterToOrgReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">update</a>(request: Requests.DevicesUpdateRequest1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the type and/or comments for a device.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.tracking.devices.update(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.DevicesUpdateRequest1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">delete</a>(deviceId: Nullable<String>?, deviceMacAddress: Nullable<String>?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a device by device_id or device_mac_address. Cannot delete if linked to a session or cargo.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.tracking.devices.delete(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**deviceId:** `Nullable<String>?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**deviceMacAddress:** `Nullable<String>?` 
     
 </dd>
 </dl>
@@ -10332,7 +10482,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">startSession</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">start</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10365,7 +10515,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.startSession(request: .init(sessionId: "session_id"))
+    try await client.tracking.sessionByDevice.start(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -10403,7 +10553,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">pauseSession</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">pauseRecording</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10436,7 +10586,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.pauseSession(request: .init(sessionId: "session_id"))
+    try await client.tracking.sessionByDevice.pauseRecording(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -10474,7 +10624,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">resumeSession</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">resumeRecording</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10507,7 +10657,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.resumeSession(request: .init(sessionId: "session_id"))
+    try await client.tracking.sessionByDevice.resumeRecording(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -10545,7 +10695,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">endSession</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">terminate</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10578,7 +10728,78 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.endSession(request: .init(sessionId: "session_id"))
+    try await client.tracking.sessionByDevice.terminate(request: .init(sessionId: "session_id"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">delete</a>(sessionId: String, requestOptions: RequestOptions?) -> SessionByDeviceDeleteResponse1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a terminated session and all associated timeseries data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.tracking.sessionByDevice.delete(request: .init(sessionId: "session_id"))
 }
 
 try await main()

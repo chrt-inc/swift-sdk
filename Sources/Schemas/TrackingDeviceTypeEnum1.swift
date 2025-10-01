@@ -1,7 +1,7 @@
 import Foundation
 
 public enum TrackingDeviceTypeEnum1: String, Codable, Hashable, CaseIterable, Sendable {
-    case d15N = "D15N"
-    case mtb06 = "MTB06"
-    case t3D = "T3-D"
+    case d15NTag = "D15N-tag"
+    case mtb06Label = "MTB06-label"
+    case t3DTag = "T3-D-tag"
 }

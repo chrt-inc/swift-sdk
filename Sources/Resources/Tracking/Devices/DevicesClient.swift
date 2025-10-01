@@ -10,15 +10,42 @@ public final class DevicesClient: Sendable {
     /// Register a device to the caller's org.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func registerToOrg(deviceMacAddress: String, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func registerToOrg(request: Requests.DevicesRegisterToOrgReq1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/tracking/devices/register_to_org",
-            queryParams: [
-                "device_mac_address": .string(deviceMacAddress)
-            ],
+            body: request,
             requestOptions: requestOptions,
             responseType: String.self
+        )
+    }
+
+    /// Update the type and/or comments for a device.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func update(request: Requests.DevicesUpdateRequest1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/update",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Delete a device by device_id or device_mac_address. Cannot delete if linked to a session or cargo.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func delete(deviceId: Nullable<String>? = nil, deviceMacAddress: Nullable<String>? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/tracking/devices/delete",
+            queryParams: [
+                "device_id": deviceId?.wrappedValue.map { .string($0) }, 
+                "device_mac_address": deviceMacAddress?.wrappedValue.map { .string($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 

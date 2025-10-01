@@ -79,10 +79,10 @@ public final class SessionByDeviceClient: Sendable {
     /// Start a session (set recording=true).
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func startSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func start(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/session_by_device/start_session",
+            path: "/tracking/session_by_device/start",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
@@ -94,10 +94,10 @@ public final class SessionByDeviceClient: Sendable {
     /// Pause a session (set recording=false).
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pauseSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func pauseRecording(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/session_by_device/pause_session",
+            path: "/tracking/session_by_device/pause_recording",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
@@ -109,10 +109,10 @@ public final class SessionByDeviceClient: Sendable {
     /// Resume a session (set recording=true).
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func resumeSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func resumeRecording(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/session_by_device/resume_session",
+            path: "/tracking/session_by_device/resume_recording",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
@@ -124,15 +124,30 @@ public final class SessionByDeviceClient: Sendable {
     /// End a session (set recording=false).
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func endSession(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func terminate(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/session_by_device/end_session",
+            path: "/tracking/session_by_device/terminate",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Delete a terminated session and all associated timeseries data.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func delete(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDeleteResponse1 {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/tracking/session_by_device/delete",
+            queryParams: [
+                "session_id": .string(sessionId)
+            ],
+            requestOptions: requestOptions,
+            responseType: SessionByDeviceDeleteResponse1.self
         )
     }
 }
