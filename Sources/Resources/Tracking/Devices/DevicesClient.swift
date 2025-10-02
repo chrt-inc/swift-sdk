@@ -36,13 +36,13 @@ public final class DevicesClient: Sendable {
     /// Delete a device by device_id or device_mac_address. Cannot delete if linked to a session or cargo.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func delete(deviceId: Nullable<String>, deviceMacAddress: Nullable<String>, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func delete(deviceId: Nullable<String>? = nil, deviceMacAddress: Nullable<String>? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
             path: "/tracking/devices/delete",
             queryParams: [
-                "device_id": deviceId.wrappedValue.map { .string($0) }, 
-                "device_mac_address": deviceMacAddress.wrappedValue.map { .string($0) }
+                "device_id": deviceId?.wrappedValue.map { .string($0) }, 
+                "device_mac_address": deviceMacAddress?.wrappedValue.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -52,13 +52,13 @@ public final class DevicesClient: Sendable {
     /// Get a device by device_mac_address or device_id.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func get(deviceMacAddress: Nullable<String>, deviceId: Nullable<String>, requestOptions: RequestOptions? = nil) async throws -> Device1 {
+    public func get(deviceMacAddress: Nullable<String>? = nil, deviceId: Nullable<String>? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices",
             queryParams: [
-                "device_mac_address": deviceMacAddress.wrappedValue.map { .string($0) }, 
-                "device_id": deviceId.wrappedValue.map { .string($0) }
+                "device_mac_address": deviceMacAddress?.wrappedValue.map { .string($0) }, 
+                "device_id": deviceId?.wrappedValue.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: Device1.self

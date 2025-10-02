@@ -12,13 +12,13 @@ extension Requests {
         public let orderDispatchType: OrderDispatchTypeEnum
         public let transportType: TransportTypeEnum
         /// Optionally used when a courier places a DTC order or chrt places a DTC/FF order
-        public let shipperOrgId: Nullable<String>
+        public let shipperOrgId: Nullable<String>?
         /// Must be a string starting with `user_`
-        public let shipperUserId: Nullable<String>
+        public let shipperUserId: Nullable<String>?
         /// Used for off-platform shipper orders. Mutually exclusive with shipper_org_id.
-        public let offChrtShipperOrgInfoId: Nullable<String>
+        public let offChrtShipperOrgInfoId: Nullable<String>?
         /// For DTC orders placed by shippers or chrt, this field is required.
-        public let courierOrgId: Nullable<String>
+        public let courierOrgId: Nullable<String>?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -29,10 +29,10 @@ extension Requests {
             orderCreatedByType: OrderCreatedByTypeEnum,
             orderDispatchType: OrderDispatchTypeEnum,
             transportType: TransportTypeEnum,
-            shipperOrgId: Nullable<String>,
-            shipperUserId: Nullable<String>,
-            offChrtShipperOrgInfoId: Nullable<String>,
-            courierOrgId: Nullable<String>,
+            shipperOrgId: Nullable<String>? = nil,
+            shipperUserId: Nullable<String>? = nil,
+            offChrtShipperOrgInfoId: Nullable<String>? = nil,
+            courierOrgId: Nullable<String>? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.orderClientCreate = orderClientCreate
@@ -56,10 +56,10 @@ extension Requests {
             self.orderCreatedByType = try container.decode(OrderCreatedByTypeEnum.self, forKey: .orderCreatedByType)
             self.orderDispatchType = try container.decode(OrderDispatchTypeEnum.self, forKey: .orderDispatchType)
             self.transportType = try container.decode(TransportTypeEnum.self, forKey: .transportType)
-            self.shipperOrgId = try container.decode(Nullable<String>.self, forKey: .shipperOrgId)
-            self.shipperUserId = try container.decode(Nullable<String>.self, forKey: .shipperUserId)
-            self.offChrtShipperOrgInfoId = try container.decode(Nullable<String>.self, forKey: .offChrtShipperOrgInfoId)
-            self.courierOrgId = try container.decode(Nullable<String>.self, forKey: .courierOrgId)
+            self.shipperOrgId = try container.decodeNullableIfPresent(String.self, forKey: .shipperOrgId)
+            self.shipperUserId = try container.decodeNullableIfPresent(String.self, forKey: .shipperUserId)
+            self.offChrtShipperOrgInfoId = try container.decodeNullableIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
+            self.courierOrgId = try container.decodeNullableIfPresent(String.self, forKey: .courierOrgId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -72,10 +72,10 @@ extension Requests {
             try container.encode(self.orderCreatedByType, forKey: .orderCreatedByType)
             try container.encode(self.orderDispatchType, forKey: .orderDispatchType)
             try container.encode(self.transportType, forKey: .transportType)
-            try container.encode(self.shipperOrgId, forKey: .shipperOrgId)
-            try container.encode(self.shipperUserId, forKey: .shipperUserId)
-            try container.encode(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
-            try container.encode(self.courierOrgId, forKey: .courierOrgId)
+            try container.encodeNullableIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+            try container.encodeNullableIfPresent(self.shipperUserId, forKey: .shipperUserId)
+            try container.encodeNullableIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
+            try container.encodeNullableIfPresent(self.courierOrgId, forKey: .courierOrgId)
         }
 
         /// Keys for encoding/decoding struct properties.

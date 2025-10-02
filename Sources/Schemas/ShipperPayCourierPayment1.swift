@@ -4,9 +4,9 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let shipperPayCourierLineItemGroupIds: [String]
     public let taskGroupIds: [String]
-    public let offChrtShipperOrgInfoId: Nullable<String>
+    public let offChrtShipperOrgInfoId: Nullable<String>?
     /// Must be a string starting with `org_`
-    public let shipperOrgId: Nullable<String>
+    public let shipperOrgId: Nullable<String>?
     /// Must be a string starting with `org_`
     public let courierOrgId: String
     public let stripeConnectShipperPayCourierCustomerId: Nullable<String>?
@@ -26,8 +26,8 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         shipperPayCourierLineItemGroupIds: [String],
         taskGroupIds: [String],
-        offChrtShipperOrgInfoId: Nullable<String>,
-        shipperOrgId: Nullable<String>,
+        offChrtShipperOrgInfoId: Nullable<String>? = nil,
+        shipperOrgId: Nullable<String>? = nil,
         courierOrgId: String,
         stripeConnectShipperPayCourierCustomerId: Nullable<String>? = nil,
         stripeInvoiceId: Nullable<String>? = nil,
@@ -63,8 +63,8 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperPayCourierLineItemGroupIds = try container.decode([String].self, forKey: .shipperPayCourierLineItemGroupIds)
         self.taskGroupIds = try container.decode([String].self, forKey: .taskGroupIds)
-        self.offChrtShipperOrgInfoId = try container.decode(Nullable<String>.self, forKey: .offChrtShipperOrgInfoId)
-        self.shipperOrgId = try container.decode(Nullable<String>.self, forKey: .shipperOrgId)
+        self.offChrtShipperOrgInfoId = try container.decodeNullableIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
+        self.shipperOrgId = try container.decodeNullableIfPresent(String.self, forKey: .shipperOrgId)
         self.courierOrgId = try container.decode(String.self, forKey: .courierOrgId)
         self.stripeConnectShipperPayCourierCustomerId = try container.decodeNullableIfPresent(String.self, forKey: .stripeConnectShipperPayCourierCustomerId)
         self.stripeInvoiceId = try container.decodeNullableIfPresent(String.self, forKey: .stripeInvoiceId)
@@ -84,8 +84,8 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.shipperPayCourierLineItemGroupIds, forKey: .shipperPayCourierLineItemGroupIds)
         try container.encode(self.taskGroupIds, forKey: .taskGroupIds)
-        try container.encode(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
-        try container.encode(self.shipperOrgId, forKey: .shipperOrgId)
+        try container.encodeNullableIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
+        try container.encodeNullableIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encode(self.courierOrgId, forKey: .courierOrgId)
         try container.encodeNullableIfPresent(self.stripeConnectShipperPayCourierCustomerId, forKey: .stripeConnectShipperPayCourierCustomerId)
         try container.encodeNullableIfPresent(self.stripeInvoiceId, forKey: .stripeInvoiceId)

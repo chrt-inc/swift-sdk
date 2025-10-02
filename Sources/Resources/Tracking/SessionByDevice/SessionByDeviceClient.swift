@@ -37,7 +37,7 @@ public final class SessionByDeviceClient: Sendable {
     /// Return the most recent datapoint for a session.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeen(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingSessionByDeviceDataPoint1> {
+    public func lastSeen(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingSessionByDeviceDataPoint1>? {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/last_seen",
@@ -45,20 +45,20 @@ public final class SessionByDeviceClient: Sendable {
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
-            responseType: Nullable<TrackingSessionByDeviceDataPoint1>.self
+            responseType: Nullable<TrackingSessionByDeviceDataPoint1>?.self
         )
     }
 
     /// Return a specified number of data points for a session, intelligently sampled across the time range.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPoints(sessionId: String, limit: Nullable<Int>, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
+    public func dataPoints(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/data_points",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "limit": limit.wrappedValue.map { .int($0) }
+                "limit": limit?.wrappedValue.map { .int($0) }
             ],
             requestOptions: requestOptions,
             responseType: [TrackingSessionByDeviceDataPoint1].self
@@ -169,7 +169,7 @@ public final class SessionByDeviceClient: Sendable {
     /// Return the most recent datapoint for a session. Session must be have public=True.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenPublic(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingSessionByDeviceDataPoint1> {
+    public func lastSeenPublic(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingSessionByDeviceDataPoint1>? {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/last_seen_public",
@@ -177,20 +177,20 @@ public final class SessionByDeviceClient: Sendable {
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
-            responseType: Nullable<TrackingSessionByDeviceDataPoint1>.self
+            responseType: Nullable<TrackingSessionByDeviceDataPoint1>?.self
         )
     }
 
     /// Return a specified number of data points for a public session, intelligently sampled across the time range. Session must have public=True.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsPublic(sessionId: String, limit: Nullable<Int>, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
+    public func dataPointsPublic(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/data_points/public",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "limit": limit.wrappedValue.map { .int($0) }
+                "limit": limit?.wrappedValue.map { .int($0) }
             ],
             requestOptions: requestOptions,
             responseType: [TrackingSessionByDeviceDataPoint1].self

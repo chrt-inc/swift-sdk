@@ -10,7 +10,7 @@ public final class CargoByDeviceClient: Sendable {
     /// For a given cargo_id and task_group_id, returns the single most recent data point from tracking.cargo_by_device.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeen(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingCargoByDeviceDataPoint1> {
+    public func lastSeen(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingCargoByDeviceDataPoint1>? {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/cargo_by_device/last_seen",
@@ -19,7 +19,7 @@ public final class CargoByDeviceClient: Sendable {
                 "task_group_id": .string(taskGroupId)
             ],
             requestOptions: requestOptions,
-            responseType: Nullable<TrackingCargoByDeviceDataPoint1>.self
+            responseType: Nullable<TrackingCargoByDeviceDataPoint1>?.self
         )
     }
 }

@@ -7502,7 +7502,7 @@ try await main()
 </details>
 
 ## Milestones Images
-<details><summary><code>client.milestones.images.<a href="/Sources/Resources/Milestones/Images/ImagesClient.swift">uploadByMilestoneId</a>(milestoneId: String, comments: Nullable<String>, request: any Codable, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.milestones.images.<a href="/Sources/Resources/Milestones/Images/ImagesClient.swift">uploadByMilestoneId</a>(milestoneId: String, comments: Nullable<String>?, request: any Codable, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -7537,10 +7537,7 @@ private func main() async throws {
 
     try await client.milestones.images.uploadByMilestoneId(
         milestoneId: "milestone_id",
-        request: .init(
-            milestoneId: "milestone_id",
-            comments: "comments"
-        )
+        request: .init(milestoneId: "milestone_id")
     )
 }
 
@@ -7567,7 +7564,7 @@ try await main()
 <dl>
 <dd>
 
-**comments:** `Nullable<String>` 
+**comments:** `Nullable<String>?` 
     
 </dd>
 </dl>
@@ -9369,7 +9366,7 @@ try await main()
 </details>
 
 ## Tracking CargoByDevice
-<details><summary><code>client.tracking.cargoByDevice.<a href="/Sources/Resources/Tracking/CargoByDevice/CargoByDeviceClient.swift">lastSeen</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingCargoByDeviceDataPoint1></code></summary>
+<details><summary><code>client.tracking.cargoByDevice.<a href="/Sources/Resources/Tracking/CargoByDevice/CargoByDeviceClient.swift">lastSeen</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingCargoByDeviceDataPoint1>?</code></summary>
 <dl>
 <dd>
 
@@ -9452,7 +9449,7 @@ try await main()
 </details>
 
 ## Tracking CargoByDriver
-<details><summary><code>client.tracking.cargoByDriver.<a href="/Sources/Resources/Tracking/CargoByDriver/CargoByDriverClient.swift">lastSeen</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingCargoByDriverDataPoint1></code></summary>
+<details><summary><code>client.tracking.cargoByDriver.<a href="/Sources/Resources/Tracking/CargoByDriver/CargoByDriverClient.swift">lastSeen</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingCargoByDriverDataPoint1>?</code></summary>
 <dl>
 <dd>
 
@@ -9677,7 +9674,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">delete</a>(deviceId: Nullable<String>, deviceMacAddress: Nullable<String>, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">delete</a>(deviceId: Nullable<String>?, deviceMacAddress: Nullable<String>?, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -9710,10 +9707,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.delete(request: .init(
-        deviceId: "device_id",
-        deviceMacAddress: "device_mac_address"
-    ))
+    try await client.tracking.devices.delete(request: .init())
 }
 
 try await main()
@@ -9731,7 +9725,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceId:** `Nullable<String>` 
+**deviceId:** `Nullable<String>?` 
     
 </dd>
 </dl>
@@ -9739,7 +9733,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `Nullable<String>` 
+**deviceMacAddress:** `Nullable<String>?` 
     
 </dd>
 </dl>
@@ -9759,7 +9753,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">get</a>(deviceMacAddress: Nullable<String>, deviceId: Nullable<String>, requestOptions: RequestOptions?) -> Device1</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">get</a>(deviceMacAddress: Nullable<String>?, deviceId: Nullable<String>?, requestOptions: RequestOptions?) -> Device1</code></summary>
 <dl>
 <dd>
 
@@ -9792,10 +9786,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.get(request: .init(
-        deviceMacAddress: "device_mac_address",
-        deviceId: "device_id"
-    ))
+    try await client.tracking.devices.get(request: .init())
 }
 
 try await main()
@@ -9813,7 +9804,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `Nullable<String>` 
+**deviceMacAddress:** `Nullable<String>?` 
     
 </dd>
 </dl>
@@ -9821,7 +9812,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceId:** `Nullable<String>` 
+**deviceId:** `Nullable<String>?` 
     
 </dd>
 </dl>
@@ -10270,7 +10261,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeen</a>(sessionId: String, requestOptions: RequestOptions?) -> Nullable<TrackingSessionByDeviceDataPoint1></code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeen</a>(sessionId: String, requestOptions: RequestOptions?) -> Nullable<TrackingSessionByDeviceDataPoint1>?</code></summary>
 <dl>
 <dd>
 
@@ -10341,7 +10332,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPoints</a>(sessionId: String, limit: Nullable<Int>, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPoints</a>(sessionId: String, limit: Nullable<Int>?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -10374,10 +10365,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.dataPoints(request: .init(
-        sessionId: "session_id",
-        limit: 1
-    ))
+    try await client.tracking.sessionByDevice.dataPoints(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -10403,7 +10391,7 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Nullable<Int>` 
+**limit:** `Nullable<Int>?` 
     
 </dd>
 </dl>
@@ -10920,7 +10908,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeenPublic</a>(sessionId: String, requestOptions: RequestOptions?) -> Nullable<TrackingSessionByDeviceDataPoint1></code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeenPublic</a>(sessionId: String, requestOptions: RequestOptions?) -> Nullable<TrackingSessionByDeviceDataPoint1>?</code></summary>
 <dl>
 <dd>
 
@@ -10991,7 +10979,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsPublic</a>(sessionId: String, limit: Nullable<Int>, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsPublic</a>(sessionId: String, limit: Nullable<Int>?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -11024,10 +11012,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.dataPointsPublic(request: .init(
-        sessionId: "session_id",
-        limit: 1
-    ))
+    try await client.tracking.sessionByDevice.dataPointsPublic(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -11053,7 +11038,7 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Nullable<Int>` 
+**limit:** `Nullable<Int>?` 
     
 </dd>
 </dl>
@@ -11074,7 +11059,7 @@ try await main()
 </details>
 
 ## Tracking TaskGroupByDriver
-<details><summary><code>client.tracking.taskGroupByDriver.<a href="/Sources/Resources/Tracking/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeen</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingTaskGroupByDriverDataPoint1></code></summary>
+<details><summary><code>client.tracking.taskGroupByDriver.<a href="/Sources/Resources/Tracking/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeen</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingTaskGroupByDriverDataPoint1>?</code></summary>
 <dl>
 <dd>
 
