@@ -904,7 +904,22 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     try await client.drivers.lastSeen(request: .init(location: LocationFeature(
-        type: .feature
+        type: .feature,
+        geometry: Geometry.geometryCollection(
+            .init(
+                geometries: [
+                    GeometryCollectionOutputGeometriesItem.lineString(
+                        .init(
+                            coordinates: [
+                                LineStringCoordinatesItem.jsonArray(
+                                    []
+                                )
+                            ]
+                        )
+                    )
+                ]
+            )
+        )
     )))
 }
 
@@ -10086,7 +10101,22 @@ private func main() async throws {
         taskGroupId: "task_group_id",
         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         location: LocationFeature(
-            type: .feature
+            type: .feature,
+            geometry: Geometry.geometryCollection(
+                .init(
+                    geometries: [
+                        GeometryCollectionOutputGeometriesItem.lineString(
+                            .init(
+                                coordinates: [
+                                    LineStringCoordinatesItem.jsonArray(
+                                        []
+                                    )
+                                ]
+                            )
+                        )
+                    ]
+                )
+            )
         )
     ))
 }
@@ -10818,6 +10848,82 @@ try await main()
 <dd>
 
 **sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">outlier</a>(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions?) -> SessionByDeviceMarkOutliersResponse1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Mark data points as outliers or non-outliers. Uses atomic delete + insert strategy for time-series collection updates.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.tracking.sessionByDevice.outlier(request: .init(
+        trackingSessionByDeviceDataPointIds: [
+            "tracking_session_by_device_data_point_ids"
+        ],
+        outlier: True
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionByDeviceMarkOutliersRequest1` 
     
 </dd>
 </dl>

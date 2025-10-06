@@ -151,6 +151,19 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
+    /// Mark data points as outliers or non-outliers. Uses atomic delete + insert strategy for time-series collection updates.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func outlier(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceMarkOutliersResponse1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/session_by_device/outlier",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: SessionByDeviceMarkOutliersResponse1.self
+        )
+    }
+
     /// Delete a terminated session and all associated timeseries data.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

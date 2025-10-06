@@ -1,6 +1,6 @@
 import Foundation
 
-public enum LocationFeatureOutputGeometry: Codable, Hashable, Sendable {
+public enum Geometry: Codable, Hashable, Sendable {
     case geometryCollection(GeometryCollection)
     case lineString(LineString)
     case multiLineString(MultiLineString)
