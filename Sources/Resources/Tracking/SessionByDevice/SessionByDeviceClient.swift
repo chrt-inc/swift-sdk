@@ -200,7 +200,7 @@ public final class SessionByDeviceClient: Sendable {
     public func dataPointsPublic(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/session_by_device/data_points/public",
+            path: "/tracking/session_by_device/data_points_public",
             queryParams: [
                 "session_id": .string(sessionId), 
                 "limit": limit?.wrappedValue.map { .int($0) }
