@@ -5219,7 +5219,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches task groups by driver with optional expanded data including tasks, cargos, milestones, and shipper contact info.
+Fetches task groups by driver with optional expanded data
 </dd>
 </dl>
 </dd>

@@ -11,6 +11,9 @@ extension Requests {
         public let expandOrderOrgCompanyName: Bool?
         public let expandOrderOrgHandle: Bool?
         public let expandTaskGroupMileage: Bool?
+        public let expandCourierPayDriverLineItemGroups: Bool?
+        public let expandCourierPayDriverRateSheet: Bool?
+        public let expandCourierPayDriverPayout: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -24,6 +27,9 @@ extension Requests {
             expandOrderOrgCompanyName: Bool? = nil,
             expandOrderOrgHandle: Bool? = nil,
             expandTaskGroupMileage: Bool? = nil,
+            expandCourierPayDriverLineItemGroups: Bool? = nil,
+            expandCourierPayDriverRateSheet: Bool? = nil,
+            expandCourierPayDriverPayout: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.taskGroupStatuses = taskGroupStatuses
@@ -35,6 +41,9 @@ extension Requests {
             self.expandOrderOrgCompanyName = expandOrderOrgCompanyName
             self.expandOrderOrgHandle = expandOrderOrgHandle
             self.expandTaskGroupMileage = expandTaskGroupMileage
+            self.expandCourierPayDriverLineItemGroups = expandCourierPayDriverLineItemGroups
+            self.expandCourierPayDriverRateSheet = expandCourierPayDriverRateSheet
+            self.expandCourierPayDriverPayout = expandCourierPayDriverPayout
             self.additionalProperties = additionalProperties
         }
 
@@ -49,6 +58,9 @@ extension Requests {
             self.expandOrderOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandOrderOrgCompanyName)
             self.expandOrderOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandOrderOrgHandle)
             self.expandTaskGroupMileage = try container.decodeIfPresent(Bool.self, forKey: .expandTaskGroupMileage)
+            self.expandCourierPayDriverLineItemGroups = try container.decodeIfPresent(Bool.self, forKey: .expandCourierPayDriverLineItemGroups)
+            self.expandCourierPayDriverRateSheet = try container.decodeIfPresent(Bool.self, forKey: .expandCourierPayDriverRateSheet)
+            self.expandCourierPayDriverPayout = try container.decodeIfPresent(Bool.self, forKey: .expandCourierPayDriverPayout)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -64,6 +76,9 @@ extension Requests {
             try container.encodeIfPresent(self.expandOrderOrgCompanyName, forKey: .expandOrderOrgCompanyName)
             try container.encodeIfPresent(self.expandOrderOrgHandle, forKey: .expandOrderOrgHandle)
             try container.encodeIfPresent(self.expandTaskGroupMileage, forKey: .expandTaskGroupMileage)
+            try container.encodeIfPresent(self.expandCourierPayDriverLineItemGroups, forKey: .expandCourierPayDriverLineItemGroups)
+            try container.encodeIfPresent(self.expandCourierPayDriverRateSheet, forKey: .expandCourierPayDriverRateSheet)
+            try container.encodeIfPresent(self.expandCourierPayDriverPayout, forKey: .expandCourierPayDriverPayout)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -77,6 +92,9 @@ extension Requests {
             case expandOrderOrgCompanyName = "expand_order_org_company_name"
             case expandOrderOrgHandle = "expand_order_org_handle"
             case expandTaskGroupMileage = "expand_task_group_mileage"
+            case expandCourierPayDriverLineItemGroups = "expand_courier_pay_driver_line_item_groups"
+            case expandCourierPayDriverRateSheet = "expand_courier_pay_driver_rate_sheet"
+            case expandCourierPayDriverPayout = "expand_courier_pay_driver_payout"
         }
     }
 }

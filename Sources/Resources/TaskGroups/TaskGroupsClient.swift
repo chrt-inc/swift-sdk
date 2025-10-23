@@ -72,7 +72,7 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Fetches task groups by driver with optional expanded data including tasks, cargos, milestones, and shipper contact info.
+    /// Fetches task groups by driver with optional expanded data
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByDriverExpanded(request: Requests.TaskGroupsExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupsExpandedRes {
