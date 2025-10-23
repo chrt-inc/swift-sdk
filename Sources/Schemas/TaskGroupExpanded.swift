@@ -6,6 +6,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let tasksExpanded: Nullable<[TaskExpanded]>?
     public let orderOrgCompanyName: Nullable<String>?
     public let orderOrgHandle: Nullable<String>?
+    public let taskGroupMileage: Nullable<Double>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -14,12 +15,14 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         tasksExpanded: Nullable<[TaskExpanded]>? = nil,
         orderOrgCompanyName: Nullable<String>? = nil,
         orderOrgHandle: Nullable<String>? = nil,
+        taskGroupMileage: Nullable<Double>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.taskGroup = taskGroup
         self.tasksExpanded = tasksExpanded
         self.orderOrgCompanyName = orderOrgCompanyName
         self.orderOrgHandle = orderOrgHandle
+        self.taskGroupMileage = taskGroupMileage
         self.additionalProperties = additionalProperties
     }
 
@@ -29,6 +32,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         self.tasksExpanded = try container.decodeNullableIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
         self.orderOrgCompanyName = try container.decodeNullableIfPresent(String.self, forKey: .orderOrgCompanyName)
         self.orderOrgHandle = try container.decodeNullableIfPresent(String.self, forKey: .orderOrgHandle)
+        self.taskGroupMileage = try container.decodeNullableIfPresent(Double.self, forKey: .taskGroupMileage)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -39,6 +43,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         try container.encodeNullableIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
         try container.encodeNullableIfPresent(self.orderOrgCompanyName, forKey: .orderOrgCompanyName)
         try container.encodeNullableIfPresent(self.orderOrgHandle, forKey: .orderOrgHandle)
+        try container.encodeNullableIfPresent(self.taskGroupMileage, forKey: .taskGroupMileage)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -47,5 +52,6 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         case tasksExpanded = "tasks_expanded"
         case orderOrgCompanyName = "order_org_company_name"
         case orderOrgHandle = "order_org_handle"
+        case taskGroupMileage = "task_group_mileage"
     }
 }
