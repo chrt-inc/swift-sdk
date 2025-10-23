@@ -7,63 +7,63 @@ public final class OrgProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieve the courier organization profile for the authenticated organization using the org_id from the JWT token.
+    /// Retrieves the courier organization profile for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func get(requestOptions: RequestOptions? = nil) async throws -> CourierOrgProfile3 {
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> CourierOrgProfile3 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/org_profiles",
+            path: "/oort/org_profiles/v1",
             requestOptions: requestOptions,
             responseType: CourierOrgProfile3.self
         )
     }
 
-    /// Create a new courier organization profile. This endpoint will fail if a profile already exists for the organization.
+    /// Creates a new courier organization profile. Fails if a profile already exists for the organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: Requests.CourierOrgProfileClientCreate3, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(request: Requests.CourierOrgProfileClientCreate3, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/org_profiles/create",
+            path: "/oort/org_profiles/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
         )
     }
 
-    /// Update an existing courier organization profile. Can update one or more fields. Profile must exist before updating.
+    /// Updates an existing courier organization profile. Can update one or more fields.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: Requests.CourierOrgProfileClientUpdate3, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(request: Requests.CourierOrgProfileClientUpdate3, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/org_profiles/update",
+            path: "/oort/org_profiles/update/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Retrieve a courier organization profile using the organization's handle. This endpoint is used for public profile viewing.
+    /// Retrieves a courier organization profile using the organization's handle for public profile viewing.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByHandle(handle: String, requestOptions: RequestOptions? = nil) async throws -> CourierOrgProfile3 {
+    public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> CourierOrgProfile3 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/org_profiles/\(handle)",
+            path: "/oort/org_profiles/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: CourierOrgProfile3.self
         )
     }
 
-    /// Returns the image URL from Clerk or a placeholder if not found.
+    /// Returns the organization avatar image URL from Clerk or a placeholder if not found.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getAvatar(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/org_profiles/avatar/\(handle)",
+            path: "/oort/org_profiles/avatar/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: String.self
         )

@@ -10,10 +10,10 @@ public final class BlurhashClient: Sendable {
     /// Retrieves the blurhash string for a milestone image for fast placeholder loading.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByMetadataId(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getByMetadataIdV1(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/milestones/blurhash/\(milestoneS3ObjectMetadataId)",
+            path: "/oort/milestones/blurhash/v1/\(milestoneS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: String.self
         )

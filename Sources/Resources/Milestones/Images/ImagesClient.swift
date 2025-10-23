@@ -10,10 +10,10 @@ public final class ImagesClient: Sendable {
     /// Uploads an image file to a milestone with automatic blurhash generation.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func uploadByMilestoneId(milestoneId: String, comments: Nullable<String>? = nil, request: any Codable, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func uploadByMilestoneIdV1(milestoneId: String, comments: Nullable<String>? = nil, request: any Codable, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/milestones/images/upload/\(milestoneId)",
+            path: "/oort/milestones/images/upload/v1/\(milestoneId)",
             queryParams: [
                 "comments": comments?.wrappedValue.map { .string($0) }
             ],
@@ -26,10 +26,10 @@ public final class ImagesClient: Sendable {
     /// Deletes a milestone image from both S3 storage and database metadata.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteByMetadataId(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteByMetadataIdV1(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/oort/milestones/images/delete/\(milestoneS3ObjectMetadataId)",
+            path: "/oort/milestones/images/delete/v1/\(milestoneS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -38,10 +38,10 @@ public final class ImagesClient: Sendable {
     /// Streams a milestone image file from S3 storage.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByMetadataId(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
+    public func getByMetadataIdV1(milestoneS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/milestones/images/\(milestoneS3ObjectMetadataId)",
+            path: "/oort/milestones/images/v1/\(milestoneS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: Data.self
         )

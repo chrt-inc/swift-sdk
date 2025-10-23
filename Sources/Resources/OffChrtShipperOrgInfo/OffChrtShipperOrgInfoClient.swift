@@ -10,10 +10,10 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Creates connection information for working with off-platform shipper organizations.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: Requests.OffChrtShipperOrgInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(request: Requests.OffChrtShipperOrgInfoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/off_chrt_shipper_org_info/create",
+            path: "/oort/off_chrt_shipper_org_info/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
@@ -23,10 +23,10 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Lists all off-platform shipper connections created by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func list(requestOptions: RequestOptions? = nil) async throws -> [OffChrtShipperOrgInfo1] {
+    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [OffChrtShipperOrgInfo1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/off_chrt_shipper_org_info/list",
+            path: "/oort/off_chrt_shipper_org_info/list/v1",
             requestOptions: requestOptions,
             responseType: [OffChrtShipperOrgInfo1].self
         )
@@ -35,10 +35,10 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Retrieves specific off-platform shipper connection information by ID.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getById(id: String, requestOptions: RequestOptions? = nil) async throws -> OffChrtShipperOrgInfo1 {
+    public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> OffChrtShipperOrgInfo1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/off_chrt_shipper_org_info/\(id)",
+            path: "/oort/off_chrt_shipper_org_info/v1/\(id)",
             requestOptions: requestOptions,
             responseType: OffChrtShipperOrgInfo1.self
         )
@@ -47,10 +47,10 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Deletes off-platform shipper connection information owned by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteById(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/oort/off_chrt_shipper_org_info/\(id)",
+            path: "/oort/off_chrt_shipper_org_info/v1/\(id)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -59,10 +59,10 @@ public final class OffChrtShipperOrgInfoClient: Sendable {
     /// Updates existing off-platform shipper connection information owned by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateById(id: String, request: Requests.OffChrtShipperOrgInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateByIdV1(id: String, request: Requests.OffChrtShipperOrgInfoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/off_chrt_shipper_org_info/\(id)",
+            path: "/oort/off_chrt_shipper_org_info/v1/\(id)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

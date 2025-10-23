@@ -7,13 +7,13 @@ public final class DriverClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Unified endpoint for driver location updates. Automatically determines whether to update task group tracking (if IN_PROGRESS) and/or cargo tracking (if IN_TRANSIT) based on current states.
+    /// Records driver location updates for a task group. Automatically writes to task group tracking if IN_PROGRESS and cargo tracking if IN_TRANSIT. Updates driver's last seen timestamp and location.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func update(request: Requests.DriverUpdateReq, requestOptions: RequestOptions? = nil) async throws -> DriverUpdateResp {
+    public func updateV1(request: Requests.DriverUpdateReq, requestOptions: RequestOptions? = nil) async throws -> DriverUpdateResp {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/driver/update",
+            path: "/tracking/driver/update/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: DriverUpdateResp.self

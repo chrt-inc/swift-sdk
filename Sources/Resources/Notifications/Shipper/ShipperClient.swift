@@ -10,10 +10,10 @@ public final class ShipperClient: Sendable {
     /// Retrieves notification preferences for the authenticated shipper organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getPreferences(requestOptions: RequestOptions? = nil) async throws -> ShipperNotificationPreferences1 {
+    public func getPreferencesV1(requestOptions: RequestOptions? = nil) async throws -> ShipperNotificationPreferences1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/notifications/shipper_preferences",
+            path: "/notifications/shipper_preferences/v1",
             requestOptions: requestOptions,
             responseType: ShipperNotificationPreferences1.self
         )
@@ -22,10 +22,10 @@ public final class ShipperClient: Sendable {
     /// Creates or updates notification preferences for the authenticated shipper organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func upsertPreferences(request: Requests.ShipperNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func upsertPreferencesV1(request: Requests.ShipperNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/notifications/shipper_preferences/upsert",
+            path: "/notifications/shipper_preferences/upsert/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self

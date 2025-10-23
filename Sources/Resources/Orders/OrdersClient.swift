@@ -12,10 +12,10 @@ public final class OrdersClient: Sendable {
     /// Retrieves an order by its full ID or short ID.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByOrderIdOrShortId(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> GetOrderRes {
+    public func getByOrderIdOrShortIdV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> GetOrderRes {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/orders/\(orderIdOrShortId)",
+            path: "/oort/orders/v1/\(orderIdOrShortId)",
             requestOptions: requestOptions,
             responseType: GetOrderRes.self
         )
@@ -24,10 +24,10 @@ public final class OrdersClient: Sendable {
     /// Cancels an order and all associated task groups and line item groups.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func cancelByOrderIdOrShortId(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func cancelByOrderIdOrShortIdV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/orders/cancel/\(orderIdOrShortId)",
+            path: "/oort/orders/cancel/v1/\(orderIdOrShortId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -49,10 +49,10 @@ public final class OrdersClient: Sendable {
     /// Lists all orders for the authenticated shipper organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByShipperOrgId(requestOptions: RequestOptions? = nil) async throws -> [Order1] {
+    public func listByShipperOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [Order1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/orders/list/by_shipper_org_id",
+            path: "/oort/orders/list/by_shipper_org_id/v1",
             requestOptions: requestOptions,
             responseType: [Order1].self
         )
@@ -61,10 +61,10 @@ public final class OrdersClient: Sendable {
     /// Lists all orders assigned to the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByCourierOrgId(requestOptions: RequestOptions? = nil) async throws -> [Order1] {
+    public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [Order1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/orders/list/by_courier_org_id",
+            path: "/oort/orders/list/by_courier_org_id/v1",
             requestOptions: requestOptions,
             responseType: [Order1].self
         )

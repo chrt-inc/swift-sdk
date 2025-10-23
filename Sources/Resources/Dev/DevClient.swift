@@ -1,27 +1,25 @@
 import Foundation
 
 public final class DevClient: Sendable {
-    public let getUserId: GetUserIdClient
     private let httpClient: HTTPClient
 
     public init(config: ClientConfig) {
-        self.getUserId = GetUserIdClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Experimental route for running AI agentic workflows
+    /// Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getAgent(requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getAgentV1(requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/agent",
+            path: "/dev/agent/v1",
             requestOptions: requestOptions,
             responseType: String.self
         )
     }
 
-    /// (DEPRECATED - use v2) Get the user id from the jwt: This is in the description
+    /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getUserIdV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -33,13 +31,25 @@ public final class DevClient: Sendable {
         )
     }
 
+    /// Extracts and returns the user ID from the authenticated request's JWT token.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getUserIdV2(requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/dev/user_id/v2",
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Returns the complete decoded JWT token information for development purposes.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getDecodedJwt(requestOptions: RequestOptions? = nil) async throws -> DecodedJwtWithOrgAndUserId {
+    public func getDecodedJwtV1(requestOptions: RequestOptions? = nil) async throws -> DecodedJwtWithOrgAndUserId {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/decoded_jwt",
+            path: "/dev/decoded_jwt/v1",
             requestOptions: requestOptions,
             responseType: DecodedJwtWithOrgAndUserId.self
         )
@@ -48,22 +58,22 @@ public final class DevClient: Sendable {
     /// Retrieves the primary email address for the authenticated user from the authentication service.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getEmail(requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getEmailV1(requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/email",
+            path: "/dev/email/v1",
             requestOptions: requestOptions,
             responseType: String.self
         )
     }
 
-    /// Experimental route for running durable execution
+    /// Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getDurable(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
+    public func getDurableV1(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/durable",
+            path: "/dev/durable/v1",
             requestOptions: requestOptions,
             responseType: [String: JSONValue].self
         )
@@ -72,10 +82,10 @@ public final class DevClient: Sendable {
     /// Development template endpoint that returns the authenticated user's ID for testing.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getTemplate(requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getTemplateV1(requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/template",
+            path: "/dev/template/v1",
             requestOptions: requestOptions,
             responseType: String.self
         )
@@ -84,10 +94,10 @@ public final class DevClient: Sendable {
     /// Development template endpoint that demonstrates transaction handling and request mirroring.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createTemplate(request: Requests.TemplateReq, requestOptions: RequestOptions? = nil) async throws -> TemplateRes {
+    public func createTemplateV1(request: Requests.TemplateReq, requestOptions: RequestOptions? = nil) async throws -> TemplateRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/dev/template",
+            path: "/dev/template/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: TemplateRes.self
@@ -97,10 +107,10 @@ public final class DevClient: Sendable {
     /// Returns the current GitHub PR number and commit hash for the deployment.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getGitInfo(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
+    public func getGitInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/git_info",
+            path: "/dev/git_info/v1",
             requestOptions: requestOptions,
             responseType: [String: String].self
         )

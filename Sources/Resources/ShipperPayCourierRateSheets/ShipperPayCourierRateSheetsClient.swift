@@ -10,10 +10,10 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Lists all rate sheets created by the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByCourierOrgId(requestOptions: RequestOptions? = nil) async throws -> [ShipperPayCourierRateSheet1] {
+    public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperPayCourierRateSheet1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/shipper_pay_courier_rate_sheets/list",
+            path: "/oort/shipper_pay_courier_rate_sheets/list/v1",
             requestOptions: requestOptions,
             responseType: [ShipperPayCourierRateSheet1].self
         )
@@ -22,10 +22,10 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Creates a new rate sheet for a courier to charge shippers.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: Requests.ShipperPayCourierRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(request: Requests.ShipperPayCourierRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/shipper_pay_courier_rate_sheets/create",
+            path: "/oort/shipper_pay_courier_rate_sheets/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
@@ -35,10 +35,10 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Retrieves a single rate sheet by its ID (courier access only).
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func get(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
+    public func getV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/shipper_pay_courier_rate_sheets/\(id)",
+            path: "/oort/shipper_pay_courier_rate_sheets/v1/\(id)",
             requestOptions: requestOptions,
             responseType: ShipperPayCourierRateSheet1.self
         )
@@ -47,10 +47,10 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Deletes a rate sheet owned by the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteById(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/oort/shipper_pay_courier_rate_sheets/\(id)",
+            path: "/oort/shipper_pay_courier_rate_sheets/v1/\(id)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -59,10 +59,10 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
     /// Updates an existing rate sheet owned by the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateById(id: String, request: Requests.ShipperPayCourierRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
+    public func updateByIdV1(id: String, request: Requests.ShipperPayCourierRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/shipper_pay_courier_rate_sheets/\(id)",
+            path: "/oort/shipper_pay_courier_rate_sheets/v1/\(id)",
             body: request,
             requestOptions: requestOptions,
             responseType: ShipperPayCourierRateSheet1.self

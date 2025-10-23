@@ -12,10 +12,10 @@ public final class ConnectionsClient: Sendable {
     /// Lists all shipper organizations connected to the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listShippers(requestOptions: RequestOptions? = nil) async throws -> [ShipperOrgConnectionInfo1] {
+    public func listShippersV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperOrgConnectionInfo1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/connections/shippers/list",
+            path: "/oort/connections/shippers/list/v1",
             requestOptions: requestOptions,
             responseType: [ShipperOrgConnectionInfo1].self
         )
@@ -24,10 +24,10 @@ public final class ConnectionsClient: Sendable {
     /// Lists all courier organizations connected to the authenticated shipper organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCouriers(requestOptions: RequestOptions? = nil) async throws -> [CourierOrgConnectionInfo1] {
+    public func listCouriersV1(requestOptions: RequestOptions? = nil) async throws -> [CourierOrgConnectionInfo1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/connections/couriers/list",
+            path: "/oort/connections/couriers/list/v1",
             requestOptions: requestOptions,
             responseType: [CourierOrgConnectionInfo1].self
         )

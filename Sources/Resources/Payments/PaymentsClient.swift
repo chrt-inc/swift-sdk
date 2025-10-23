@@ -7,13 +7,13 @@ public final class PaymentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Create a checkout session for a subscription
+    /// Creates a Stripe checkout session for a subscription with pricing based on the selected plan.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createCheckoutSession(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes {
+    public func createCheckoutSessionV1(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/payments/create-checkout-session",
+            path: "/payments/create-checkout-session/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: CreateCheckoutSessionRes.self
@@ -23,46 +23,46 @@ public final class PaymentsClient: Sendable {
     /// Synchronizes subscription data from Stripe to the authentication service for the current user.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func syncStripeToClerk(requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func syncStripeToClerkV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/payments/sync_stripe_to_clerk",
+            path: "/payments/sync_stripe_to_clerk/v1",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Create a Stripe Connect account for the organization to receive payments
+    /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectAccount(requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func createConnectAccountV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/payments/create-connect-account",
+            path: "/payments/create-connect-account/v1",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Create an onboarding link for a Stripe Connect account
+    /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectAccountLink(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountLinkRes {
+    public func createConnectAccountLinkV1(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountLinkRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/payments/create-connect-account-link",
+            path: "/payments/create-connect-account-link/v1",
             requestOptions: requestOptions,
             responseType: CreateConnectAccountLinkRes.self
         )
     }
 
-    /// Generates an invoice for a direct charge payment.
+    /// Generates and sends a Stripe invoice for a shipper payment to a courier organization's Connect account. Applies a 10% application fee.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func generateInvoice(request: Requests.GenerateInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> GenerateInvoiceRes {
+    public func generateInvoiceV1(request: Requests.GenerateInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> GenerateInvoiceRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/payments/generate-invoice",
+            path: "/payments/generate-invoice/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: GenerateInvoiceRes.self

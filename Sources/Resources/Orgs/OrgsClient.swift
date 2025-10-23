@@ -10,10 +10,10 @@ public final class OrgsClient: Sendable {
     /// Retrieves basic organization information from the authentication service.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getInfo(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func getInfoV1(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/info",
+            path: "/orgs/info/v1",
             requestOptions: requestOptions,
             responseType: JSONValue.self
         )
@@ -22,10 +22,10 @@ public final class OrgsClient: Sendable {
     /// Lists all members of the authenticated organization with their roles and details.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listMembers(requestOptions: RequestOptions? = nil) async throws -> [OrgMemberDetails] {
+    public func listMembersV1(requestOptions: RequestOptions? = nil) async throws -> [OrgMemberDetails] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/members/list",
+            path: "/orgs/members/list/v1",
             requestOptions: requestOptions,
             responseType: [OrgMemberDetails].self
         )
@@ -34,10 +34,10 @@ public final class OrgsClient: Sendable {
     /// Retrieves public organization data for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getPublicData(requestOptions: RequestOptions? = nil) async throws -> OrgPublicData2 {
+    public func getPublicDataV1(requestOptions: RequestOptions? = nil) async throws -> OrgPublicData2 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/public_data",
+            path: "/orgs/public_data/v1",
             requestOptions: requestOptions,
             responseType: OrgPublicData2.self
         )
@@ -46,10 +46,10 @@ public final class OrgsClient: Sendable {
     /// Retrieves public organization data for a specific organization by ID.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getPublicDataByOrgId(orgId: String, requestOptions: RequestOptions? = nil) async throws -> OrgPublicData2 {
+    public func getPublicDataByOrgIdV1(orgId: String, requestOptions: RequestOptions? = nil) async throws -> OrgPublicData2 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/public_data/\(orgId)",
+            path: "/orgs/public_data/v1/\(orgId)",
             requestOptions: requestOptions,
             responseType: OrgPublicData2.self
         )
@@ -58,10 +58,10 @@ public final class OrgsClient: Sendable {
     /// Retrieves the organization handle for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getHandle(requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getHandleV1(requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/handle",
+            path: "/orgs/handle/v1",
             requestOptions: requestOptions,
             responseType: String.self
         )
@@ -70,10 +70,10 @@ public final class OrgsClient: Sendable {
     /// Checks if an organization handle is available for use.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getHandleAvailability(handle: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func getHandleAvailabilityV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/handle/availability/\(handle)",
+            path: "/orgs/handle/availability/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -82,10 +82,10 @@ public final class OrgsClient: Sendable {
     /// Creates public organization data with handle and company name for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createPublicData(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func createPublicDataV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/orgs/public_data/create",
+            path: "/orgs/public_data/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -95,10 +95,10 @@ public final class OrgsClient: Sendable {
     /// Updates the organization handle or company name for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updatePublicData(request: Requests.UpdateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updatePublicDataV1(request: Requests.UpdateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/orgs/public_data/update",
+            path: "/orgs/public_data/update/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

@@ -10,10 +10,10 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
     /// Lists all driver rate sheets for the authenticated courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByCourierOrgId(requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
+    public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/courier_pay_driver_rate_sheets/list",
+            path: "/oort/courier_pay_driver_rate_sheets/list/v1",
             requestOptions: requestOptions,
             responseType: [CourierPayDriverRateSheet1].self
         )
@@ -22,10 +22,10 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
     /// Retrieves all rate sheets assigned to a specific driver.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByDriverId(driverId: String, requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
+    public func listByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/courier_pay_driver_rate_sheets/by_driver_id/\(driverId)",
+            path: "/oort/courier_pay_driver_rate_sheets/by_driver_id/v1/\(driverId)",
             requestOptions: requestOptions,
             responseType: [CourierPayDriverRateSheet1].self
         )
@@ -34,10 +34,10 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
     /// Creates a new driver rate sheet for calculating courier payments.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func create(request: Requests.CourierPayDriverRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(request: Requests.CourierPayDriverRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/courier_pay_driver_rate_sheets/create",
+            path: "/oort/courier_pay_driver_rate_sheets/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
@@ -47,10 +47,10 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
     /// Retrieves a single rate sheet by its ID.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func get(id: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {
+    public func getV1(id: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/courier_pay_driver_rate_sheets/\(id)",
+            path: "/oort/courier_pay_driver_rate_sheets/v1/\(id)",
             requestOptions: requestOptions,
             responseType: CourierPayDriverRateSheet1.self
         )
@@ -59,10 +59,10 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
     /// Deletes a driver rate sheet owned by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteById(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/oort/courier_pay_driver_rate_sheets/\(id)",
+            path: "/oort/courier_pay_driver_rate_sheets/v1/\(id)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -71,10 +71,10 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
     /// Updates an existing driver rate sheet owned by the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateById(id: String, request: Requests.CourierPayDriverRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {
+    public func updateByIdV1(id: String, request: Requests.CourierPayDriverRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/courier_pay_driver_rate_sheets/\(id)",
+            path: "/oort/courier_pay_driver_rate_sheets/v1/\(id)",
             body: request,
             requestOptions: requestOptions,
             responseType: CourierPayDriverRateSheet1.self

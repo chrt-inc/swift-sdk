@@ -12,10 +12,10 @@ public final class UtilsClient: Sendable {
     /// - Parameter lat: Latitude in decimal degrees (range: -90 to 90)
     /// - Parameter lng: Longitude in decimal degrees (range: -180 to 180)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getTimezone(lat: Double, lng: Double, requestOptions: RequestOptions? = nil) async throws -> TimezoneResponse {
+    public func getTimezoneV1(lat: Double, lng: Double, requestOptions: RequestOptions? = nil) async throws -> TimezoneResponse {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/utils/timezone",
+            path: "/utils/timezone/v1",
             queryParams: [
                 "lat": .double(lat), 
                 "lng": .double(lng)

@@ -10,10 +10,10 @@ public final class RootClient: Sendable {
     /// Test endpoint for authenticated requests that requires valid authentication tokens.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pingAuthd(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
+    public func pingAuthdV1(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/authd",
+            path: "/authd/v1",
             requestOptions: requestOptions,
             responseType: [String: String].self
         )
@@ -22,28 +22,28 @@ public final class RootClient: Sendable {
     /// Test endpoint for optionally authenticated requests that works with or without authentication.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pingOptionallyAuthd(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func pingOptionallyAuthdV1(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/optionally_authd",
+            path: "/optionally_authd/v1",
             requestOptions: requestOptions,
             responseType: JSONValue.self
         )
     }
 
-    /// Returns a greeting message
+    /// Returns a greeting message to verify the API is accessible.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pingUnauthd(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func pingUnauthdV1(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/",
+            path: "/v1",
             requestOptions: requestOptions,
             responseType: JSONValue.self
         )
     }
 
-    /// Used for monitoring system health
+    /// Returns a health status message used for monitoring system availability and uptime.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func health(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
@@ -58,10 +58,10 @@ public final class RootClient: Sendable {
     /// Test endpoint that intentionally fails for error handling validation and monitoring purposes.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func failure(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func failureV1(requestOptions: RequestOptions? = nil) async throws -> JSONValue {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/failure",
+            path: "/failure/v1",
             requestOptions: requestOptions,
             responseType: JSONValue.self
         )
