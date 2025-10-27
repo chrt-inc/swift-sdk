@@ -35,12 +35,12 @@ public final class PaymentsClient: Sendable {
     /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectAccountV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func createConnectAccountV1(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/payments/create-connect-account/v1",
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: CreateConnectAccountRes.self
         )
     }
 

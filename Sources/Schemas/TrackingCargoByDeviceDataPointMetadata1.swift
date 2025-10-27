@@ -6,6 +6,7 @@ public struct TrackingCargoByDeviceDataPointMetadata1: Codable, Hashable, Sendab
     public let taskGroupId: String
     public let outlier: Nullable<Bool>?
     public let outlierLabeller: Nullable<OutlierLabellerEnum>?
+    public let pytest: Nullable<Bool>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -15,6 +16,7 @@ public struct TrackingCargoByDeviceDataPointMetadata1: Codable, Hashable, Sendab
         taskGroupId: String,
         outlier: Nullable<Bool>? = nil,
         outlierLabeller: Nullable<OutlierLabellerEnum>? = nil,
+        pytest: Nullable<Bool>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.deviceId = deviceId
@@ -22,6 +24,7 @@ public struct TrackingCargoByDeviceDataPointMetadata1: Codable, Hashable, Sendab
         self.taskGroupId = taskGroupId
         self.outlier = outlier
         self.outlierLabeller = outlierLabeller
+        self.pytest = pytest
         self.additionalProperties = additionalProperties
     }
 
@@ -32,6 +35,7 @@ public struct TrackingCargoByDeviceDataPointMetadata1: Codable, Hashable, Sendab
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.outlier = try container.decodeNullableIfPresent(Bool.self, forKey: .outlier)
         self.outlierLabeller = try container.decodeNullableIfPresent(OutlierLabellerEnum.self, forKey: .outlierLabeller)
+        self.pytest = try container.decodeNullableIfPresent(Bool.self, forKey: .pytest)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -43,6 +47,7 @@ public struct TrackingCargoByDeviceDataPointMetadata1: Codable, Hashable, Sendab
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encodeNullableIfPresent(self.outlier, forKey: .outlier)
         try container.encodeNullableIfPresent(self.outlierLabeller, forKey: .outlierLabeller)
+        try container.encodeNullableIfPresent(self.pytest, forKey: .pytest)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -52,5 +57,6 @@ public struct TrackingCargoByDeviceDataPointMetadata1: Codable, Hashable, Sendab
         case taskGroupId = "task_group_id"
         case outlier
         case outlierLabeller = "outlier_labeller"
+        case pytest
     }
 }

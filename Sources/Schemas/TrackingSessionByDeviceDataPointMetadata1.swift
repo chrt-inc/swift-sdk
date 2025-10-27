@@ -4,6 +4,7 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
     public let sessionId: String
     public let outlier: Nullable<Bool>?
     public let outlierLabeller: Nullable<OutlierLabellerEnum>?
+    public let pytest: Nullable<Bool>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -11,11 +12,13 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
         sessionId: String,
         outlier: Nullable<Bool>? = nil,
         outlierLabeller: Nullable<OutlierLabellerEnum>? = nil,
+        pytest: Nullable<Bool>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.sessionId = sessionId
         self.outlier = outlier
         self.outlierLabeller = outlierLabeller
+        self.pytest = pytest
         self.additionalProperties = additionalProperties
     }
 
@@ -24,6 +27,7 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
         self.sessionId = try container.decode(String.self, forKey: .sessionId)
         self.outlier = try container.decodeNullableIfPresent(Bool.self, forKey: .outlier)
         self.outlierLabeller = try container.decodeNullableIfPresent(OutlierLabellerEnum.self, forKey: .outlierLabeller)
+        self.pytest = try container.decodeNullableIfPresent(Bool.self, forKey: .pytest)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -33,6 +37,7 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
         try container.encode(self.sessionId, forKey: .sessionId)
         try container.encodeNullableIfPresent(self.outlier, forKey: .outlier)
         try container.encodeNullableIfPresent(self.outlierLabeller, forKey: .outlierLabeller)
+        try container.encodeNullableIfPresent(self.pytest, forKey: .pytest)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -40,5 +45,6 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
         case sessionId = "session_id"
         case outlier
         case outlierLabeller = "outlier_labeller"
+        case pytest
     }
 }

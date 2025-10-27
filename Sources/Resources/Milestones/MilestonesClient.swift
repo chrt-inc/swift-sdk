@@ -27,13 +27,13 @@ public final class MilestonesClient: Sendable {
     /// Adds a new milestone to an existing task and updates task completion status.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addToTaskV1(request: Requests.MilestoneAddToTaskReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addToTaskV1(request: Requests.MilestoneAddToTaskReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/milestones/add_to_task/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: String.self
         )
     }
 }

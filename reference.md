@@ -1353,7 +1353,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.milestones.<a href="/Sources/Resources/Milestones/MilestonesClient.swift">addToTaskV1</a>(request: Requests.MilestoneAddToTaskReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.milestones.<a href="/Sources/Resources/Milestones/MilestonesClient.swift">addToTaskV1</a>(request: Requests.MilestoneAddToTaskReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -2285,7 +2285,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">create</a>(request: Requests.CreateOrderReq, requestOptions: RequestOptions?) -> CreateOrderRes</code></summary>
+<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">createV1</a>(request: Requests.CreateOrderReq, requestOptions: RequestOptions?) -> CreateOrderRes</code></summary>
 <dl>
 <dd>
 
@@ -2318,7 +2318,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.create(request: .init(
+    try await client.orders.createV1(request: .init(
         orderClientCreate: OrderClientCreate1(
             schemaVersion: 1
         ),
@@ -6512,7 +6512,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">createPublicDataV1</a>(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">createPublicDataV1</a>(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -6792,7 +6792,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.payments.<a href="/Sources/Resources/Payments/PaymentsClient.swift">createConnectAccountV1</a>(requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.payments.<a href="/Sources/Resources/Payments/PaymentsClient.swift">createConnectAccountV1</a>(requestOptions: RequestOptions?) -> CreateConnectAccountRes</code></summary>
 <dl>
 <dd>
 
@@ -6990,7 +6990,7 @@ try await main()
 </details>
 
 ## Root
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingAuthdV1</a>(requestOptions: RequestOptions?) -> [String: String]</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingAuthd</a>(requestOptions: RequestOptions?) -> [String: String]</code></summary>
 <dl>
 <dd>
 
@@ -7023,7 +7023,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.pingAuthdV1()
+    try await client.root.pingAuthd()
 }
 
 try await main()
@@ -7053,7 +7053,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingOptionallyAuthdV1</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingOptionallyAuthd</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
 <dl>
 <dd>
 
@@ -7086,7 +7086,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.pingOptionallyAuthdV1()
+    try await client.root.pingOptionallyAuthd()
 }
 
 try await main()
@@ -7116,7 +7116,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingUnauthdV1</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingUnauthd</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
 <dl>
 <dd>
 
@@ -7149,7 +7149,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.pingUnauthdV1()
+    try await client.root.pingUnauthd()
 }
 
 try await main()
@@ -7242,7 +7242,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">failureV1</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">failure</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
 <dl>
 <dd>
 
@@ -7275,7 +7275,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.failureV1()
+    try await client.root.failure()
 }
 
 try await main()

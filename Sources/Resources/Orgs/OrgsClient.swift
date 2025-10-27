@@ -82,13 +82,13 @@ public final class OrgsClient: Sendable {
     /// Creates public organization data with handle and company name for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createPublicDataV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func createPublicDataV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/orgs/public_data/create/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: String.self
         )
     }
 
