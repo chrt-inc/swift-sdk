@@ -46,6 +46,19 @@ public final class OrdersClient: Sendable {
         )
     }
 
+    /// Fetches an order with optional expanded data for task groups, tasks, milestones, and cargos.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postExpandedV1(request: Requests.OrdersExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/orders/expanded/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrdersExpandedRes.self
+        )
+    }
+
     /// Lists all orders for the authenticated shipper organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

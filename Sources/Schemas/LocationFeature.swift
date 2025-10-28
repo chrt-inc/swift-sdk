@@ -6,7 +6,7 @@ import Foundation
 /// but remains optional to match the base Feature class specification.
 /// To ensure geometry is always present, validate it at runtime or make it required.
 public struct LocationFeature: Codable, Hashable, Sendable {
-    public let bbox: [JSONValue]?
+    public let bbox: Nullable<[JSONValue]>?
     public let type: Feature
     public let geometry: Geometry
     public let properties: Nullable<LocationProperties>?
@@ -15,7 +15,7 @@ public struct LocationFeature: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        bbox: [JSONValue]? = nil,
+        bbox: Nullable<[JSONValue]>? = nil,
         type: Feature,
         geometry: Geometry,
         properties: Nullable<LocationProperties>? = nil,
@@ -32,7 +32,7 @@ public struct LocationFeature: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
+        self.bbox = try container.decodeNullableIfPresent([JSONValue].self, forKey: .bbox)
         self.type = try container.decode(Feature.self, forKey: .type)
         self.geometry = try container.decode(Geometry.self, forKey: .geometry)
         self.properties = try container.decodeNullableIfPresent(LocationProperties.self, forKey: .properties)
@@ -43,7 +43,7 @@ public struct LocationFeature: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.bbox, forKey: .bbox)
+        try container.encodeNullableIfPresent(self.bbox, forKey: .bbox)
         try container.encode(self.type, forKey: .type)
         try container.encode(self.geometry, forKey: .geometry)
         try container.encodeNullableIfPresent(self.properties, forKey: .properties)

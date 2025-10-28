@@ -2378,6 +2378,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">postExpandedV1</a>(request: Requests.OrdersExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches an order with optional expanded data for task groups, tasks, milestones, and cargos.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.orders.postExpandedV1(request: .init(orderIdOrShortId: "order_id_or_short_id"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrdersExpandedReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">listByShipperOrgIdV1</a>(requestOptions: RequestOptions?) -> [Order1]</code></summary>
 <dl>
 <dd>
@@ -7741,7 +7812,10 @@ private func main() async throws {
 
     try await client.milestones.images.uploadByMilestoneIdV1(
         milestoneId: "milestone_id",
-        request: .init(milestoneId: "milestone_id")
+        request: .init(
+            milestoneId: "milestone_id",
+            comments: "comments"
+        )
     )
 }
 
@@ -8293,7 +8367,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an order with all related task groups, tasks, milestones, and cargo information.
+(DEPRECATED) Retrieves an order with all related task groups, tasks, milestones, and cargo information.
 </dd>
 </dl>
 </dd>
@@ -9911,7 +9985,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.deleteV1(request: .init())
+    try await client.tracking.devices.deleteV1(request: .init(
+        deviceId: "device_id",
+        deviceMacAddress: "device_mac_address"
+    ))
 }
 
 try await main()
@@ -9990,7 +10067,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.getV1(request: .init())
+    try await client.tracking.devices.getV1(request: .init(
+        deviceMacAddress: "device_mac_address",
+        deviceId: "device_id"
+    ))
 }
 
 try await main()
@@ -10584,7 +10664,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.dataPointsV1(request: .init(sessionId: "session_id"))
+    try await client.tracking.sessionByDevice.dataPointsV1(request: .init(
+        sessionId: "session_id",
+        limit: 1
+    ))
 }
 
 try await main()
@@ -11307,7 +11390,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.dataPointsPublicV1(request: .init(sessionId: "session_id"))
+    try await client.tracking.sessionByDevice.dataPointsPublicV1(request: .init(
+        sessionId: "session_id",
+        limit: 1
+    ))
 }
 
 try await main()

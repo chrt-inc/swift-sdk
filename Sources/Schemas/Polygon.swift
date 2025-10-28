@@ -2,13 +2,13 @@ import Foundation
 
 /// Polygon Model
 public struct Polygon: Codable, Hashable, Sendable {
-    public let bbox: [JSONValue]?
+    public let bbox: Nullable<[JSONValue]>?
     public let coordinates: [[PolygonCoordinatesItemItem]]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        bbox: [JSONValue]? = nil,
+        bbox: Nullable<[JSONValue]>? = nil,
         coordinates: [[PolygonCoordinatesItemItem]],
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -19,7 +19,7 @@ public struct Polygon: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
+        self.bbox = try container.decodeNullableIfPresent([JSONValue].self, forKey: .bbox)
         self.coordinates = try container.decode([[PolygonCoordinatesItemItem]].self, forKey: .coordinates)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -27,7 +27,7 @@ public struct Polygon: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.bbox, forKey: .bbox)
+        try container.encodeNullableIfPresent(self.bbox, forKey: .bbox)
         try container.encode(self.coordinates, forKey: .coordinates)
     }
 

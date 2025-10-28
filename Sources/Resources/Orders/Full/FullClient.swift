@@ -7,7 +7,7 @@ public final class FullClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves an order with all related task groups, tasks, milestones, and cargo information.
+    /// (DEPRECATED) Retrieves an order with all related task groups, tasks, milestones, and cargo information.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByOrderIdOrShortIdV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> GetOrderFullRes {

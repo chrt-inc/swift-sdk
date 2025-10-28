@@ -1,39 +1,39 @@
 import Foundation
 
-/// MultiPolygon Model
-public struct MultiPolygon: Codable, Hashable, Sendable {
-    public let bbox: Nullable<[JSONValue]>?
-    public let coordinates: [[[MultiPolygonCoordinatesItemItemItem]]]
+/// Single order with optional expanded data
+public struct OrderExpanded: Codable, Hashable, Sendable {
+    public let order: Order1
+    public let taskGroupsExpanded: Nullable<[TaskGroupExpanded]>?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        bbox: Nullable<[JSONValue]>? = nil,
-        coordinates: [[[MultiPolygonCoordinatesItemItemItem]]],
+        order: Order1,
+        taskGroupsExpanded: Nullable<[TaskGroupExpanded]>? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.bbox = bbox
-        self.coordinates = coordinates
+        self.order = order
+        self.taskGroupsExpanded = taskGroupsExpanded
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bbox = try container.decodeNullableIfPresent([JSONValue].self, forKey: .bbox)
-        self.coordinates = try container.decode([[[MultiPolygonCoordinatesItemItemItem]]].self, forKey: .coordinates)
+        self.order = try container.decode(Order1.self, forKey: .order)
+        self.taskGroupsExpanded = try container.decodeNullableIfPresent([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeNullableIfPresent(self.bbox, forKey: .bbox)
-        try container.encode(self.coordinates, forKey: .coordinates)
+        try container.encode(self.order, forKey: .order)
+        try container.encodeNullableIfPresent(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case bbox
-        case coordinates
+        case order
+        case taskGroupsExpanded = "task_groups_expanded"
     }
 }
