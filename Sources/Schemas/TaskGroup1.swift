@@ -11,6 +11,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let orderCancelled: Bool?
     public let status: TaskGroupStatusEnum1?
     public let driverId: Nullable<String>?
+    public let createdAt: Nullable<Date>?
     public let startedAt: Nullable<Date>?
     public let completedAt: Nullable<Date>?
     public let completed: Bool?
@@ -28,6 +29,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         orderCancelled: Bool? = nil,
         status: TaskGroupStatusEnum1? = nil,
         driverId: Nullable<String>? = nil,
+        createdAt: Nullable<Date>? = nil,
         startedAt: Nullable<Date>? = nil,
         completedAt: Nullable<Date>? = nil,
         completed: Bool? = nil,
@@ -43,6 +45,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderCancelled = orderCancelled
         self.status = status
         self.driverId = driverId
+        self.createdAt = createdAt
         self.startedAt = startedAt
         self.completedAt = completedAt
         self.completed = completed
@@ -61,6 +64,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.status = try container.decodeIfPresent(TaskGroupStatusEnum1.self, forKey: .status)
         self.driverId = try container.decodeNullableIfPresent(String.self, forKey: .driverId)
+        self.createdAt = try container.decodeNullableIfPresent(Date.self, forKey: .createdAt)
         self.startedAt = try container.decodeNullableIfPresent(Date.self, forKey: .startedAt)
         self.completedAt = try container.decodeNullableIfPresent(Date.self, forKey: .completedAt)
         self.completed = try container.decodeIfPresent(Bool.self, forKey: .completed)
@@ -80,6 +84,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeNullableIfPresent(self.driverId, forKey: .driverId)
+        try container.encodeNullableIfPresent(self.createdAt, forKey: .createdAt)
         try container.encodeNullableIfPresent(self.startedAt, forKey: .startedAt)
         try container.encodeNullableIfPresent(self.completedAt, forKey: .completedAt)
         try container.encodeIfPresent(self.completed, forKey: .completed)
@@ -97,6 +102,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case orderCancelled = "order_cancelled"
         case status
         case driverId = "driver_id"
+        case createdAt = "created_at"
         case startedAt = "started_at"
         case completedAt = "completed_at"
         case completed

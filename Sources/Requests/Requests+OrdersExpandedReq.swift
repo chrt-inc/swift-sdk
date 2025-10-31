@@ -8,6 +8,8 @@ extension Requests {
         public let expandMilestones: Bool?
         public let expandCargos: Bool?
         public let expandShipperContactInfos: Bool?
+        public let expandCourierOrgCompanyName: Bool?
+        public let expandCourierOrgCompanyHandle: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -18,6 +20,8 @@ extension Requests {
             expandMilestones: Bool? = nil,
             expandCargos: Bool? = nil,
             expandShipperContactInfos: Bool? = nil,
+            expandCourierOrgCompanyName: Bool? = nil,
+            expandCourierOrgCompanyHandle: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.orderIdOrShortId = orderIdOrShortId
@@ -26,6 +30,8 @@ extension Requests {
             self.expandMilestones = expandMilestones
             self.expandCargos = expandCargos
             self.expandShipperContactInfos = expandShipperContactInfos
+            self.expandCourierOrgCompanyName = expandCourierOrgCompanyName
+            self.expandCourierOrgCompanyHandle = expandCourierOrgCompanyHandle
             self.additionalProperties = additionalProperties
         }
 
@@ -37,6 +43,8 @@ extension Requests {
             self.expandMilestones = try container.decodeIfPresent(Bool.self, forKey: .expandMilestones)
             self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
             self.expandShipperContactInfos = try container.decodeIfPresent(Bool.self, forKey: .expandShipperContactInfos)
+            self.expandCourierOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCourierOrgCompanyName)
+            self.expandCourierOrgCompanyHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCourierOrgCompanyHandle)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -49,6 +57,8 @@ extension Requests {
             try container.encodeIfPresent(self.expandMilestones, forKey: .expandMilestones)
             try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
             try container.encodeIfPresent(self.expandShipperContactInfos, forKey: .expandShipperContactInfos)
+            try container.encodeIfPresent(self.expandCourierOrgCompanyName, forKey: .expandCourierOrgCompanyName)
+            try container.encodeIfPresent(self.expandCourierOrgCompanyHandle, forKey: .expandCourierOrgCompanyHandle)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -59,6 +69,8 @@ extension Requests {
             case expandMilestones = "expand_milestones"
             case expandCargos = "expand_cargos"
             case expandShipperContactInfos = "expand_shipper_contact_infos"
+            case expandCourierOrgCompanyName = "expand_courier_org_company_name"
+            case expandCourierOrgCompanyHandle = "expand_courier_org_company_handle"
         }
     }
 }

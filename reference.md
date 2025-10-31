@@ -5128,77 +5128,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">updateV1</a>(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions?) -> UpdateTaskGroupRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates task group driver assignments by adding or removing drivers.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.updateV1(request: .init(taskGroupId: "task_group_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.UpdateTaskGroupReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">listByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> [TaskGroup1]</code></summary>
 <dl>
 <dd>
@@ -5251,6 +5180,219 @@ try await main()
 <dd>
 
 **driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedCourierAdministratorV1</a>(request: Requests.TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierAdministratorRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches task groups for the courier organization with optional filters and expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.taskGroups.postExpandedCourierAdministratorV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskGroupExpandedForCourierAdministratorReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedCourierDriverV1</a>(request: Requests.TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierDriverRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches task groups assigned to the authenticated courier driver with optional expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.taskGroups.postExpandedCourierDriverV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskGroupExpandedForCourierDriverReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">updateV1</a>(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions?) -> UpdateTaskGroupRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates task group driver assignments by adding or removing drivers.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    try await client.taskGroups.updateV1(request: .init(taskGroupId: "task_group_id"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.UpdateTaskGroupReq` 
     
 </dd>
 </dl>
@@ -5341,7 +5483,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postByDriverExpandedV1</a>(request: Requests.TaskGroupsExpandedReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedRes</code></summary>
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">togglePauseV1</a>(id: String, request: Requests.SetTaskGroupPauseReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -5353,7 +5495,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches task groups by driver with optional expanded data for tasks, milestones, cargo, and payment information.
+Toggles the pause status of an in-progress task group.
 </dd>
 </dl>
 </dd>
@@ -5374,9 +5516,14 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.taskGroups.postByDriverExpandedV1(request: .init(taskGroupStatuses: [
-        .notStarted
-    ]))
+    try await client.taskGroups.togglePauseV1(
+        id: "id",
+        request: .init(
+            id: "id",
+            taskGroupId: "task_group_id",
+            paused: True
+        )
+    )
 }
 
 try await main()
@@ -5394,7 +5541,15 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.TaskGroupsExpandedReq` 
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetTaskGroupPauseReq` 
     
 </dd>
 </dl>
@@ -9537,93 +9692,6 @@ try await main()
 <dd>
 
 **id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## TaskGroups TogglePause
-<details><summary><code>client.taskGroups.togglePause.<a href="/Sources/Resources/TaskGroups/TogglePause/TogglePauseClient.swift">byIdV1</a>(id: String, request: Requests.SetTaskGroupPauseReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Toggles the pause status of an in-progress task group.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.togglePause.byIdV1(
-        id: "id",
-        request: .init(
-            id: "id",
-            taskGroupId: "task_group_id",
-            paused: True
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.SetTaskGroupPauseReq` 
     
 </dd>
 </dl>

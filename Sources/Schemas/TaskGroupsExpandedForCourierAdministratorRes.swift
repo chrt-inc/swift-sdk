@@ -1,13 +1,12 @@
 import Foundation
 
-/// Response containing list of task groups with expanded data
-public struct TaskGroupsExpandedRes: Codable, Hashable, Sendable {
-    public let taskGroupsExpanded: [TaskGroupExpanded]
+public struct TaskGroupsExpandedForCourierAdministratorRes: Codable, Hashable, Sendable {
+    public let taskGroupsExpanded: [TaskGroupExpandedForCourierAdministrator]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        taskGroupsExpanded: [TaskGroupExpanded],
+        taskGroupsExpanded: [TaskGroupExpandedForCourierAdministrator],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.taskGroupsExpanded = taskGroupsExpanded
@@ -16,7 +15,7 @@ public struct TaskGroupsExpandedRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.taskGroupsExpanded = try container.decode([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
+        self.taskGroupsExpanded = try container.decode([TaskGroupExpandedForCourierAdministrator].self, forKey: .taskGroupsExpanded)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

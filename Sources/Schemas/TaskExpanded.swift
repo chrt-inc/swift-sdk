@@ -1,6 +1,6 @@
 import Foundation
 
-/// Single task with optional expanded data
+/// Single task with optional expanded data.
 public struct TaskExpanded: Codable, Hashable, Sendable {
     public let task: Task1
     public let cargos: Nullable<[Cargo1]>?
