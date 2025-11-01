@@ -2,25 +2,25 @@ import Foundation
 
 public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
-    public let location: Nullable<LocationFeature>?
-    public let action: Nullable<Action>?
-    public let shipperContactInfoIds: Nullable<[String]>?
-    public let arriveBy: Nullable<Date>?
-    public let arriveAt: Nullable<Date>?
-    public let comments: Nullable<String>?
-    public let flightNumber: Nullable<String>?
+    public let location: LocationFeature?
+    public let action: Action?
+    public let shipperContactInfoIds: [String]?
+    public let arriveBy: Date?
+    public let arriveAt: Date?
+    public let comments: String?
+    public let flightNumber: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         schemaVersion: Int,
-        location: Nullable<LocationFeature>? = nil,
-        action: Nullable<Action>? = nil,
-        shipperContactInfoIds: Nullable<[String]>? = nil,
-        arriveBy: Nullable<Date>? = nil,
-        arriveAt: Nullable<Date>? = nil,
-        comments: Nullable<String>? = nil,
-        flightNumber: Nullable<String>? = nil,
+        location: LocationFeature? = nil,
+        action: Action? = nil,
+        shipperContactInfoIds: [String]? = nil,
+        arriveBy: Date? = nil,
+        arriveAt: Date? = nil,
+        comments: String? = nil,
+        flightNumber: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -37,13 +37,13 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.location = try container.decodeNullableIfPresent(LocationFeature.self, forKey: .location)
-        self.action = try container.decodeNullableIfPresent(Action.self, forKey: .action)
-        self.shipperContactInfoIds = try container.decodeNullableIfPresent([String].self, forKey: .shipperContactInfoIds)
-        self.arriveBy = try container.decodeNullableIfPresent(Date.self, forKey: .arriveBy)
-        self.arriveAt = try container.decodeNullableIfPresent(Date.self, forKey: .arriveAt)
-        self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
-        self.flightNumber = try container.decodeNullableIfPresent(String.self, forKey: .flightNumber)
+        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
+        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.shipperContactInfoIds = try container.decodeIfPresent([String].self, forKey: .shipperContactInfoIds)
+        self.arriveBy = try container.decodeIfPresent(Date.self, forKey: .arriveBy)
+        self.arriveAt = try container.decodeIfPresent(Date.self, forKey: .arriveAt)
+        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
+        self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -51,13 +51,13 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encodeNullableIfPresent(self.location, forKey: .location)
-        try container.encodeNullableIfPresent(self.action, forKey: .action)
-        try container.encodeNullableIfPresent(self.shipperContactInfoIds, forKey: .shipperContactInfoIds)
-        try container.encodeNullableIfPresent(self.arriveBy, forKey: .arriveBy)
-        try container.encodeNullableIfPresent(self.arriveAt, forKey: .arriveAt)
-        try container.encodeNullableIfPresent(self.comments, forKey: .comments)
-        try container.encodeNullableIfPresent(self.flightNumber, forKey: .flightNumber)
+        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.shipperContactInfoIds, forKey: .shipperContactInfoIds)
+        try container.encodeIfPresent(self.arriveBy, forKey: .arriveBy)
+        try container.encodeIfPresent(self.arriveAt, forKey: .arriveAt)
+        try container.encodeIfPresent(self.comments, forKey: .comments)
+        try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
     }
 
     /// Keys for encoding/decoding struct properties.

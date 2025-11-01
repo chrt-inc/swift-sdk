@@ -6,11 +6,11 @@ public struct Session1: Codable, Hashable, Sendable {
     public let deviceMacAddress: String
     /// Must be a string starting with `org_`
     public let orgId: String
-    public let comments: Nullable<String>?
+    public let comments: String?
     public let recording: Bool?
     public let terminated: Bool?
     public let sessionCreatedAtTimestamp: Date
-    public let recordingInitiatedAtTimestamp: Nullable<Date>?
+    public let recordingInitiatedAtTimestamp: Date?
     public let `public`: Bool?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
@@ -21,11 +21,11 @@ public struct Session1: Codable, Hashable, Sendable {
         deviceId: String,
         deviceMacAddress: String,
         orgId: String,
-        comments: Nullable<String>? = nil,
+        comments: String? = nil,
         recording: Bool? = nil,
         terminated: Bool? = nil,
         sessionCreatedAtTimestamp: Date,
-        recordingInitiatedAtTimestamp: Nullable<Date>? = nil,
+        recordingInitiatedAtTimestamp: Date? = nil,
         public: Bool? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -50,11 +50,11 @@ public struct Session1: Codable, Hashable, Sendable {
         self.deviceId = try container.decode(String.self, forKey: .deviceId)
         self.deviceMacAddress = try container.decode(String.self, forKey: .deviceMacAddress)
         self.orgId = try container.decode(String.self, forKey: .orgId)
-        self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.recording = try container.decodeIfPresent(Bool.self, forKey: .recording)
         self.terminated = try container.decodeIfPresent(Bool.self, forKey: .terminated)
         self.sessionCreatedAtTimestamp = try container.decode(Date.self, forKey: .sessionCreatedAtTimestamp)
-        self.recordingInitiatedAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .recordingInitiatedAtTimestamp)
+        self.recordingInitiatedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .recordingInitiatedAtTimestamp)
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -67,11 +67,11 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encode(self.deviceId, forKey: .deviceId)
         try container.encode(self.deviceMacAddress, forKey: .deviceMacAddress)
         try container.encode(self.orgId, forKey: .orgId)
-        try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+        try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encodeIfPresent(self.recording, forKey: .recording)
         try container.encodeIfPresent(self.terminated, forKey: .terminated)
         try container.encode(self.sessionCreatedAtTimestamp, forKey: .sessionCreatedAtTimestamp)
-        try container.encodeNullableIfPresent(self.recordingInitiatedAtTimestamp, forKey: .recordingInitiatedAtTimestamp)
+        try container.encodeIfPresent(self.recordingInitiatedAtTimestamp, forKey: .recordingInitiatedAtTimestamp)
         try container.encodeIfPresent(self.public, forKey: .public)
         try container.encode(self.id, forKey: .id)
     }

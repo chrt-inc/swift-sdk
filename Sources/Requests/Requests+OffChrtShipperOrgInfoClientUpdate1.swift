@@ -2,30 +2,30 @@ import Foundation
 
 extension Requests {
     public struct OffChrtShipperOrgInfoClientUpdate1: Codable, Hashable, Sendable {
-        public let industry: Nullable<String>?
-        public let streetAddress: Nullable<LocationFeature>?
-        public let contactFirstName: Nullable<String>?
-        public let contactLastName: Nullable<String>?
-        public let phoneNumberPrimary: Nullable<String>?
-        public let phoneNumberSecondary: Nullable<String>?
-        public let emailAddressPrimary: Nullable<String>?
-        public let emailAddressSecondary: Nullable<String>?
-        public let jobTitle: Nullable<String>?
-        public let notes: Nullable<String>?
+        public let industry: String?
+        public let streetAddress: LocationFeature?
+        public let contactFirstName: String?
+        public let contactLastName: String?
+        public let phoneNumberPrimary: String?
+        public let phoneNumberSecondary: String?
+        public let emailAddressPrimary: String?
+        public let emailAddressSecondary: String?
+        public let jobTitle: String?
+        public let notes: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            industry: Nullable<String>? = nil,
-            streetAddress: Nullable<LocationFeature>? = nil,
-            contactFirstName: Nullable<String>? = nil,
-            contactLastName: Nullable<String>? = nil,
-            phoneNumberPrimary: Nullable<String>? = nil,
-            phoneNumberSecondary: Nullable<String>? = nil,
-            emailAddressPrimary: Nullable<String>? = nil,
-            emailAddressSecondary: Nullable<String>? = nil,
-            jobTitle: Nullable<String>? = nil,
-            notes: Nullable<String>? = nil,
+            industry: String? = nil,
+            streetAddress: LocationFeature? = nil,
+            contactFirstName: String? = nil,
+            contactLastName: String? = nil,
+            phoneNumberPrimary: String? = nil,
+            phoneNumberSecondary: String? = nil,
+            emailAddressPrimary: String? = nil,
+            emailAddressSecondary: String? = nil,
+            jobTitle: String? = nil,
+            notes: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.industry = industry
@@ -43,32 +43,32 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.industry = try container.decodeNullableIfPresent(String.self, forKey: .industry)
-            self.streetAddress = try container.decodeNullableIfPresent(LocationFeature.self, forKey: .streetAddress)
-            self.contactFirstName = try container.decodeNullableIfPresent(String.self, forKey: .contactFirstName)
-            self.contactLastName = try container.decodeNullableIfPresent(String.self, forKey: .contactLastName)
-            self.phoneNumberPrimary = try container.decodeNullableIfPresent(String.self, forKey: .phoneNumberPrimary)
-            self.phoneNumberSecondary = try container.decodeNullableIfPresent(String.self, forKey: .phoneNumberSecondary)
-            self.emailAddressPrimary = try container.decodeNullableIfPresent(String.self, forKey: .emailAddressPrimary)
-            self.emailAddressSecondary = try container.decodeNullableIfPresent(String.self, forKey: .emailAddressSecondary)
-            self.jobTitle = try container.decodeNullableIfPresent(String.self, forKey: .jobTitle)
-            self.notes = try container.decodeNullableIfPresent(String.self, forKey: .notes)
+            self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
+            self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
+            self.contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
+            self.contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
+            self.phoneNumberPrimary = try container.decodeIfPresent(String.self, forKey: .phoneNumberPrimary)
+            self.phoneNumberSecondary = try container.decodeIfPresent(String.self, forKey: .phoneNumberSecondary)
+            self.emailAddressPrimary = try container.decodeIfPresent(String.self, forKey: .emailAddressPrimary)
+            self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
+            self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
+            self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeNullableIfPresent(self.industry, forKey: .industry)
-            try container.encodeNullableIfPresent(self.streetAddress, forKey: .streetAddress)
-            try container.encodeNullableIfPresent(self.contactFirstName, forKey: .contactFirstName)
-            try container.encodeNullableIfPresent(self.contactLastName, forKey: .contactLastName)
-            try container.encodeNullableIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
-            try container.encodeNullableIfPresent(self.phoneNumberSecondary, forKey: .phoneNumberSecondary)
-            try container.encodeNullableIfPresent(self.emailAddressPrimary, forKey: .emailAddressPrimary)
-            try container.encodeNullableIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
-            try container.encodeNullableIfPresent(self.jobTitle, forKey: .jobTitle)
-            try container.encodeNullableIfPresent(self.notes, forKey: .notes)
+            try container.encodeIfPresent(self.industry, forKey: .industry)
+            try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
+            try container.encodeIfPresent(self.contactFirstName, forKey: .contactFirstName)
+            try container.encodeIfPresent(self.contactLastName, forKey: .contactLastName)
+            try container.encodeIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
+            try container.encodeIfPresent(self.phoneNumberSecondary, forKey: .phoneNumberSecondary)
+            try container.encodeIfPresent(self.emailAddressPrimary, forKey: .emailAddressPrimary)
+            try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
+            try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
+            try container.encodeIfPresent(self.notes, forKey: .notes)
         }
 
         /// Keys for encoding/decoding struct properties.

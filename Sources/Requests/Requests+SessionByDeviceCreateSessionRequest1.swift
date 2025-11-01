@@ -3,13 +3,13 @@ import Foundation
 extension Requests {
     public struct SessionByDeviceCreateSessionRequest1: Codable, Hashable, Sendable {
         public let deviceMacAddress: String
-        public let comments: Nullable<String>?
+        public let comments: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             deviceMacAddress: String,
-            comments: Nullable<String>? = nil,
+            comments: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.deviceMacAddress = deviceMacAddress
@@ -20,7 +20,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.deviceMacAddress = try container.decode(String.self, forKey: .deviceMacAddress)
-            self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+            self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -28,7 +28,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.deviceMacAddress, forKey: .deviceMacAddress)
-            try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+            try container.encodeIfPresent(self.comments, forKey: .comments)
         }
 
         /// Keys for encoding/decoding struct properties.

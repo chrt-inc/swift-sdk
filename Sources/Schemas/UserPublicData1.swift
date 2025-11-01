@@ -2,20 +2,20 @@ import Foundation
 
 public struct UserPublicData1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
-    public let primaryEmailAddress: Nullable<String>?
+    public let primaryEmailAddress: String?
     public let userId: String
-    public let customerId: Nullable<String>?
-    public let notes: Nullable<[String: JSONValue]>?
+    public let customerId: String?
+    public let notes: [String: JSONValue]?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         schemaVersion: Int,
-        primaryEmailAddress: Nullable<String>? = nil,
+        primaryEmailAddress: String? = nil,
         userId: String,
-        customerId: Nullable<String>? = nil,
-        notes: Nullable<[String: JSONValue]>? = nil,
+        customerId: String? = nil,
+        notes: [String: JSONValue]? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -31,10 +31,10 @@ public struct UserPublicData1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.primaryEmailAddress = try container.decodeNullableIfPresent(String.self, forKey: .primaryEmailAddress)
+        self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.userId = try container.decode(String.self, forKey: .userId)
-        self.customerId = try container.decodeNullableIfPresent(String.self, forKey: .customerId)
-        self.notes = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .notes)
+        self.customerId = try container.decodeIfPresent(String.self, forKey: .customerId)
+        self.notes = try container.decodeIfPresent([String: JSONValue].self, forKey: .notes)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -43,10 +43,10 @@ public struct UserPublicData1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encodeNullableIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
+        try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encode(self.userId, forKey: .userId)
-        try container.encodeNullableIfPresent(self.customerId, forKey: .customerId)
-        try container.encodeNullableIfPresent(self.notes, forKey: .notes)
+        try container.encodeIfPresent(self.customerId, forKey: .customerId)
+        try container.encodeIfPresent(self.notes, forKey: .notes)
         try container.encode(self.id, forKey: .id)
     }
 

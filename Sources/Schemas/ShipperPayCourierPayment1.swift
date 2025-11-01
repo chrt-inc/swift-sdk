@@ -4,20 +4,20 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let shipperPayCourierLineItemGroupIds: [String]
     public let taskGroupIds: [String]
-    public let offChrtShipperOrgInfoId: Nullable<String>?
+    public let offChrtShipperOrgInfoId: String?
     /// Must be a string starting with `org_`
-    public let shipperOrgId: Nullable<String>?
+    public let shipperOrgId: String?
     /// Must be a string starting with `org_`
     public let courierOrgId: String
-    public let stripeConnectShipperPayCourierCustomerId: Nullable<String>?
-    public let stripeInvoiceId: Nullable<String>?
-    public let stripeInvoiceUrl: Nullable<String>?
-    public let stripeInvoiceCreatedTimestamp: Nullable<Date>?
+    public let stripeConnectShipperPayCourierCustomerId: String?
+    public let stripeInvoiceId: String?
+    public let stripeInvoiceUrl: String?
+    public let stripeInvoiceCreatedTimestamp: Date?
     /// Must be a string starting with `user_`
-    public let stripeInvoiceCreatedByUserId: Nullable<String>?
+    public let stripeInvoiceCreatedByUserId: String?
     public let paymentAmount: Double
     public let stripeInvoiceStatus: StripeConnectInvoiceStatusEnum?
-    public let stripeInvoiceCompletedTimestamp: Nullable<Date>?
+    public let stripeInvoiceCompletedTimestamp: Date?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -26,17 +26,17 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         shipperPayCourierLineItemGroupIds: [String],
         taskGroupIds: [String],
-        offChrtShipperOrgInfoId: Nullable<String>? = nil,
-        shipperOrgId: Nullable<String>? = nil,
+        offChrtShipperOrgInfoId: String? = nil,
+        shipperOrgId: String? = nil,
         courierOrgId: String,
-        stripeConnectShipperPayCourierCustomerId: Nullable<String>? = nil,
-        stripeInvoiceId: Nullable<String>? = nil,
-        stripeInvoiceUrl: Nullable<String>? = nil,
-        stripeInvoiceCreatedTimestamp: Nullable<Date>? = nil,
-        stripeInvoiceCreatedByUserId: Nullable<String>? = nil,
+        stripeConnectShipperPayCourierCustomerId: String? = nil,
+        stripeInvoiceId: String? = nil,
+        stripeInvoiceUrl: String? = nil,
+        stripeInvoiceCreatedTimestamp: Date? = nil,
+        stripeInvoiceCreatedByUserId: String? = nil,
         paymentAmount: Double,
         stripeInvoiceStatus: StripeConnectInvoiceStatusEnum? = nil,
-        stripeInvoiceCompletedTimestamp: Nullable<Date>? = nil,
+        stripeInvoiceCompletedTimestamp: Date? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -63,17 +63,17 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperPayCourierLineItemGroupIds = try container.decode([String].self, forKey: .shipperPayCourierLineItemGroupIds)
         self.taskGroupIds = try container.decode([String].self, forKey: .taskGroupIds)
-        self.offChrtShipperOrgInfoId = try container.decodeNullableIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
-        self.shipperOrgId = try container.decodeNullableIfPresent(String.self, forKey: .shipperOrgId)
+        self.offChrtShipperOrgInfoId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
+        self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.courierOrgId = try container.decode(String.self, forKey: .courierOrgId)
-        self.stripeConnectShipperPayCourierCustomerId = try container.decodeNullableIfPresent(String.self, forKey: .stripeConnectShipperPayCourierCustomerId)
-        self.stripeInvoiceId = try container.decodeNullableIfPresent(String.self, forKey: .stripeInvoiceId)
-        self.stripeInvoiceUrl = try container.decodeNullableIfPresent(String.self, forKey: .stripeInvoiceUrl)
-        self.stripeInvoiceCreatedTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .stripeInvoiceCreatedTimestamp)
-        self.stripeInvoiceCreatedByUserId = try container.decodeNullableIfPresent(String.self, forKey: .stripeInvoiceCreatedByUserId)
+        self.stripeConnectShipperPayCourierCustomerId = try container.decodeIfPresent(String.self, forKey: .stripeConnectShipperPayCourierCustomerId)
+        self.stripeInvoiceId = try container.decodeIfPresent(String.self, forKey: .stripeInvoiceId)
+        self.stripeInvoiceUrl = try container.decodeIfPresent(String.self, forKey: .stripeInvoiceUrl)
+        self.stripeInvoiceCreatedTimestamp = try container.decodeIfPresent(Date.self, forKey: .stripeInvoiceCreatedTimestamp)
+        self.stripeInvoiceCreatedByUserId = try container.decodeIfPresent(String.self, forKey: .stripeInvoiceCreatedByUserId)
         self.paymentAmount = try container.decode(Double.self, forKey: .paymentAmount)
         self.stripeInvoiceStatus = try container.decodeIfPresent(StripeConnectInvoiceStatusEnum.self, forKey: .stripeInvoiceStatus)
-        self.stripeInvoiceCompletedTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .stripeInvoiceCompletedTimestamp)
+        self.stripeInvoiceCompletedTimestamp = try container.decodeIfPresent(Date.self, forKey: .stripeInvoiceCompletedTimestamp)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -84,17 +84,17 @@ public struct ShipperPayCourierPayment1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.shipperPayCourierLineItemGroupIds, forKey: .shipperPayCourierLineItemGroupIds)
         try container.encode(self.taskGroupIds, forKey: .taskGroupIds)
-        try container.encodeNullableIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
-        try container.encodeNullableIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+        try container.encodeIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
+        try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encode(self.courierOrgId, forKey: .courierOrgId)
-        try container.encodeNullableIfPresent(self.stripeConnectShipperPayCourierCustomerId, forKey: .stripeConnectShipperPayCourierCustomerId)
-        try container.encodeNullableIfPresent(self.stripeInvoiceId, forKey: .stripeInvoiceId)
-        try container.encodeNullableIfPresent(self.stripeInvoiceUrl, forKey: .stripeInvoiceUrl)
-        try container.encodeNullableIfPresent(self.stripeInvoiceCreatedTimestamp, forKey: .stripeInvoiceCreatedTimestamp)
-        try container.encodeNullableIfPresent(self.stripeInvoiceCreatedByUserId, forKey: .stripeInvoiceCreatedByUserId)
+        try container.encodeIfPresent(self.stripeConnectShipperPayCourierCustomerId, forKey: .stripeConnectShipperPayCourierCustomerId)
+        try container.encodeIfPresent(self.stripeInvoiceId, forKey: .stripeInvoiceId)
+        try container.encodeIfPresent(self.stripeInvoiceUrl, forKey: .stripeInvoiceUrl)
+        try container.encodeIfPresent(self.stripeInvoiceCreatedTimestamp, forKey: .stripeInvoiceCreatedTimestamp)
+        try container.encodeIfPresent(self.stripeInvoiceCreatedByUserId, forKey: .stripeInvoiceCreatedByUserId)
         try container.encode(self.paymentAmount, forKey: .paymentAmount)
         try container.encodeIfPresent(self.stripeInvoiceStatus, forKey: .stripeInvoiceStatus)
-        try container.encodeNullableIfPresent(self.stripeInvoiceCompletedTimestamp, forKey: .stripeInvoiceCompletedTimestamp)
+        try container.encodeIfPresent(self.stripeInvoiceCompletedTimestamp, forKey: .stripeInvoiceCompletedTimestamp)
         try container.encode(self.id, forKey: .id)
     }
 

@@ -3,7 +3,7 @@ import Foundation
 public final class SessionByDeviceClient: Sendable {
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -37,7 +37,7 @@ public final class SessionByDeviceClient: Sendable {
     /// Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingSessionByDeviceDataPoint1>? {
+    public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingSessionByDeviceDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/last_seen/v1",
@@ -45,20 +45,20 @@ public final class SessionByDeviceClient: Sendable {
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
-            responseType: Nullable<TrackingSessionByDeviceDataPoint1>?.self
+            responseType: TrackingSessionByDeviceDataPoint1?.self
         )
     }
 
     /// Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsV1(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
+    public func dataPointsV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/data_points/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "limit": limit?.wrappedValue.map { .int($0) }
+                "limit": limit.map { .int($0) }
             ],
             requestOptions: requestOptions,
             responseType: [TrackingSessionByDeviceDataPoint1].self
@@ -182,7 +182,7 @@ public final class SessionByDeviceClient: Sendable {
     /// Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenPublicV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Nullable<TrackingSessionByDeviceDataPoint1>? {
+    public func lastSeenPublicV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingSessionByDeviceDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/last_seen_public/v1",
@@ -190,20 +190,20 @@ public final class SessionByDeviceClient: Sendable {
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
-            responseType: Nullable<TrackingSessionByDeviceDataPoint1>?.self
+            responseType: TrackingSessionByDeviceDataPoint1?.self
         )
     }
 
     /// Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsPublicV1(sessionId: String, limit: Nullable<Int>? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
+    public func dataPointsPublicV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/session_by_device/data_points_public/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "limit": limit?.wrappedValue.map { .int($0) }
+                "limit": limit.map { .int($0) }
             ],
             requestOptions: requestOptions,
             responseType: [TrackingSessionByDeviceDataPoint1].self

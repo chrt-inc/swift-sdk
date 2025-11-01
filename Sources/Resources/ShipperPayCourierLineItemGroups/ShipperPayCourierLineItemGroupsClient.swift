@@ -7,7 +7,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
     public let removeLineItems: ShipperPayCourierLineItemGroupsRemoveLineItemsClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.shipper = ShipperPayCourierLineItemGroupsShipperClient(config: config)
         self.courier = ShipperPayCourierLineItemGroupsCourierClient(config: config)
         self.addLineItems = ShipperPayCourierLineItemGroupsAddLineItemsClient(config: config)

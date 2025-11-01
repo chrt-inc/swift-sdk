@@ -3,7 +3,7 @@ import Foundation
 public final class DevicesClient: Sendable {
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -36,13 +36,13 @@ public final class DevicesClient: Sendable {
     /// Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(deviceId: Nullable<String>? = nil, deviceMacAddress: Nullable<String>? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteV1(deviceId: String? = nil, deviceMacAddress: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
             path: "/tracking/devices/delete/v1",
             queryParams: [
-                "device_id": deviceId?.wrappedValue.map { .string($0) }, 
-                "device_mac_address": deviceMacAddress?.wrappedValue.map { .string($0) }
+                "device_id": deviceId.map { .string($0) }, 
+                "device_mac_address": deviceMacAddress.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -52,13 +52,13 @@ public final class DevicesClient: Sendable {
     /// Retrieves a single device by its MAC address or ID. Access restricted to the device's organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(deviceMacAddress: Nullable<String>? = nil, deviceId: Nullable<String>? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
+    public func getV1(deviceMacAddress: String? = nil, deviceId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/v1",
             queryParams: [
-                "device_mac_address": deviceMacAddress?.wrappedValue.map { .string($0) }, 
-                "device_id": deviceId?.wrappedValue.map { .string($0) }
+                "device_mac_address": deviceMacAddress.map { .string($0) }, 
+                "device_id": deviceId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: Device1.self

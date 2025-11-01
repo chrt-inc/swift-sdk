@@ -1,21 +1,21 @@
 import Foundation
 
 public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
-    public let azp: Nullable<String>?
-    public let exp: Nullable<Int>?
-    public let fva: Nullable<[Int]>?
-    public let iat: Nullable<Int>?
-    public let iss: Nullable<String>?
-    public let jti: Nullable<String>?
-    public let nbf: Nullable<Int>?
-    public let sid: Nullable<String>?
+    public let azp: String?
+    public let exp: Int?
+    public let fva: [Int]?
+    public let iat: Int?
+    public let iss: String?
+    public let jti: String?
+    public let nbf: Int?
+    public let sid: String?
     /// Must be a string starting with `user_`
-    public let sub: Nullable<String>?
-    public let sts: Nullable<String>?
-    public let v: Nullable<Int>?
-    public let o: Nullable<ClerkOrgData>?
-    public let orgPublicMetadata: Nullable<[String: JSONValue]>?
-    public let primaryEmailAddress: Nullable<String>?
+    public let sub: String?
+    public let sts: String?
+    public let v: Int?
+    public let o: ClerkOrgData?
+    public let orgPublicMetadata: [String: JSONValue]?
+    public let primaryEmailAddress: String?
     /// Must be a string starting with `user_`
     public let userId: String
     /// Must be a string starting with `org_`
@@ -24,20 +24,20 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        azp: Nullable<String>? = nil,
-        exp: Nullable<Int>? = nil,
-        fva: Nullable<[Int]>? = nil,
-        iat: Nullable<Int>? = nil,
-        iss: Nullable<String>? = nil,
-        jti: Nullable<String>? = nil,
-        nbf: Nullable<Int>? = nil,
-        sid: Nullable<String>? = nil,
-        sub: Nullable<String>? = nil,
-        sts: Nullable<String>? = nil,
-        v: Nullable<Int>? = nil,
-        o: Nullable<ClerkOrgData>? = nil,
-        orgPublicMetadata: Nullable<[String: JSONValue]>? = nil,
-        primaryEmailAddress: Nullable<String>? = nil,
+        azp: String? = nil,
+        exp: Int? = nil,
+        fva: [Int]? = nil,
+        iat: Int? = nil,
+        iss: String? = nil,
+        jti: String? = nil,
+        nbf: Int? = nil,
+        sid: String? = nil,
+        sub: String? = nil,
+        sts: String? = nil,
+        v: Int? = nil,
+        o: ClerkOrgData? = nil,
+        orgPublicMetadata: [String: JSONValue]? = nil,
+        primaryEmailAddress: String? = nil,
         userId: String,
         orgId: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -63,20 +63,20 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.azp = try container.decodeNullableIfPresent(String.self, forKey: .azp)
-        self.exp = try container.decodeNullableIfPresent(Int.self, forKey: .exp)
-        self.fva = try container.decodeNullableIfPresent([Int].self, forKey: .fva)
-        self.iat = try container.decodeNullableIfPresent(Int.self, forKey: .iat)
-        self.iss = try container.decodeNullableIfPresent(String.self, forKey: .iss)
-        self.jti = try container.decodeNullableIfPresent(String.self, forKey: .jti)
-        self.nbf = try container.decodeNullableIfPresent(Int.self, forKey: .nbf)
-        self.sid = try container.decodeNullableIfPresent(String.self, forKey: .sid)
-        self.sub = try container.decodeNullableIfPresent(String.self, forKey: .sub)
-        self.sts = try container.decodeNullableIfPresent(String.self, forKey: .sts)
-        self.v = try container.decodeNullableIfPresent(Int.self, forKey: .v)
-        self.o = try container.decodeNullableIfPresent(ClerkOrgData.self, forKey: .o)
-        self.orgPublicMetadata = try container.decodeNullableIfPresent([String: JSONValue].self, forKey: .orgPublicMetadata)
-        self.primaryEmailAddress = try container.decodeNullableIfPresent(String.self, forKey: .primaryEmailAddress)
+        self.azp = try container.decodeIfPresent(String.self, forKey: .azp)
+        self.exp = try container.decodeIfPresent(Int.self, forKey: .exp)
+        self.fva = try container.decodeIfPresent([Int].self, forKey: .fva)
+        self.iat = try container.decodeIfPresent(Int.self, forKey: .iat)
+        self.iss = try container.decodeIfPresent(String.self, forKey: .iss)
+        self.jti = try container.decodeIfPresent(String.self, forKey: .jti)
+        self.nbf = try container.decodeIfPresent(Int.self, forKey: .nbf)
+        self.sid = try container.decodeIfPresent(String.self, forKey: .sid)
+        self.sub = try container.decodeIfPresent(String.self, forKey: .sub)
+        self.sts = try container.decodeIfPresent(String.self, forKey: .sts)
+        self.v = try container.decodeIfPresent(Int.self, forKey: .v)
+        self.o = try container.decodeIfPresent(ClerkOrgData.self, forKey: .o)
+        self.orgPublicMetadata = try container.decodeIfPresent([String: JSONValue].self, forKey: .orgPublicMetadata)
+        self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.userId = try container.decode(String.self, forKey: .userId)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -85,20 +85,20 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeNullableIfPresent(self.azp, forKey: .azp)
-        try container.encodeNullableIfPresent(self.exp, forKey: .exp)
-        try container.encodeNullableIfPresent(self.fva, forKey: .fva)
-        try container.encodeNullableIfPresent(self.iat, forKey: .iat)
-        try container.encodeNullableIfPresent(self.iss, forKey: .iss)
-        try container.encodeNullableIfPresent(self.jti, forKey: .jti)
-        try container.encodeNullableIfPresent(self.nbf, forKey: .nbf)
-        try container.encodeNullableIfPresent(self.sid, forKey: .sid)
-        try container.encodeNullableIfPresent(self.sub, forKey: .sub)
-        try container.encodeNullableIfPresent(self.sts, forKey: .sts)
-        try container.encodeNullableIfPresent(self.v, forKey: .v)
-        try container.encodeNullableIfPresent(self.o, forKey: .o)
-        try container.encodeNullableIfPresent(self.orgPublicMetadata, forKey: .orgPublicMetadata)
-        try container.encodeNullableIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
+        try container.encodeIfPresent(self.azp, forKey: .azp)
+        try container.encodeIfPresent(self.exp, forKey: .exp)
+        try container.encodeIfPresent(self.fva, forKey: .fva)
+        try container.encodeIfPresent(self.iat, forKey: .iat)
+        try container.encodeIfPresent(self.iss, forKey: .iss)
+        try container.encodeIfPresent(self.jti, forKey: .jti)
+        try container.encodeIfPresent(self.nbf, forKey: .nbf)
+        try container.encodeIfPresent(self.sid, forKey: .sid)
+        try container.encodeIfPresent(self.sub, forKey: .sub)
+        try container.encodeIfPresent(self.sts, forKey: .sts)
+        try container.encodeIfPresent(self.v, forKey: .v)
+        try container.encodeIfPresent(self.o, forKey: .o)
+        try container.encodeIfPresent(self.orgPublicMetadata, forKey: .orgPublicMetadata)
+        try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encode(self.userId, forKey: .userId)
         try container.encode(self.orgId, forKey: .orgId)
     }

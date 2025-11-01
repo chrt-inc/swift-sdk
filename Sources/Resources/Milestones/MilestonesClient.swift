@@ -5,7 +5,7 @@ public final class MilestonesClient: Sendable {
     public let blurhash: BlurhashClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.images = ImagesClient(config: config)
         self.blurhash = BlurhashClient(config: config)
         self.httpClient = HTTPClient(config: config)

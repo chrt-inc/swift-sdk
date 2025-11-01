@@ -4,7 +4,7 @@ public final class OrdersClient: Sendable {
     public let full: FullClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.full = FullClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }

@@ -3,15 +3,15 @@ import Foundation
 extension Requests {
     public struct MilestoneUpdateReq: Codable, Hashable, Sendable {
         public let milestoneId: String
-        public let completed: Nullable<Bool>?
-        public let completorComments: Nullable<String>?
+        public let completed: Bool?
+        public let completorComments: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             milestoneId: String,
-            completed: Nullable<Bool>? = nil,
-            completorComments: Nullable<String>? = nil,
+            completed: Bool? = nil,
+            completorComments: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.milestoneId = milestoneId
@@ -23,8 +23,8 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.milestoneId = try container.decode(String.self, forKey: .milestoneId)
-            self.completed = try container.decodeNullableIfPresent(Bool.self, forKey: .completed)
-            self.completorComments = try container.decodeNullableIfPresent(String.self, forKey: .completorComments)
+            self.completed = try container.decodeIfPresent(Bool.self, forKey: .completed)
+            self.completorComments = try container.decodeIfPresent(String.self, forKey: .completorComments)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -32,8 +32,8 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.milestoneId, forKey: .milestoneId)
-            try container.encodeNullableIfPresent(self.completed, forKey: .completed)
-            try container.encodeNullableIfPresent(self.completorComments, forKey: .completorComments)
+            try container.encodeIfPresent(self.completed, forKey: .completed)
+            try container.encodeIfPresent(self.completorComments, forKey: .completorComments)
         }
 
         /// Keys for encoding/decoding struct properties.

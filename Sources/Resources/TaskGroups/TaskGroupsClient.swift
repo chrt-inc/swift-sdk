@@ -1,74 +1,14 @@
 import Foundation
 
 public final class TaskGroupsClient: Sendable {
-    public let full: TaskGroupsFullClient
+    public let expanded: ExpandedClient
+    public let expandedList: ExpandedListClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
-        self.full = TaskGroupsFullClient(config: config)
+    init(config: ClientConfig) {
+        self.expanded = ExpandedClient(config: config)
+        self.expandedList = ExpandedListClient(config: config)
         self.httpClient = HTTPClient(config: config)
-    }
-
-    /// Lists all task groups assigned to the authenticated courier organization with their associated tasks.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> MultipleTaskGroupsWithTasks {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/by_courier_org_id/list/v1",
-            requestOptions: requestOptions,
-            responseType: MultipleTaskGroupsWithTasks.self
-        )
-    }
-
-    /// Retrieves a specific task group by ID with its associated tasks.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupWithTasks {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/v1/\(id)",
-            requestOptions: requestOptions,
-            responseType: TaskGroupWithTasks.self
-        )
-    }
-
-    /// Lists all task groups assigned to a specific driver.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> [TaskGroup1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/list/v1/\(driverId)",
-            requestOptions: requestOptions,
-            responseType: [TaskGroup1].self
-        )
-    }
-
-    /// Fetches task groups for the courier organization with optional filters and expanded related data.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postExpandedCourierAdministratorV1(request: Requests.TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupsExpandedForCourierAdministratorRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/task_groups/expanded/courier_administrator/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: TaskGroupsExpandedForCourierAdministratorRes.self
-        )
-    }
-
-    /// Fetches task groups assigned to the authenticated courier driver with optional expanded related data.
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postExpandedCourierDriverV1(request: Requests.TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupsExpandedForCourierDriverRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/task_groups/expanded/courier_driver/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: TaskGroupsExpandedForCourierDriverRes.self
-        )
     }
 
     /// Updates task group driver assignments by adding or removing drivers.

@@ -4,9 +4,9 @@ public struct OrgPublicData2: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
     public let orgId: String
-    public let companyName: Nullable<String>?
-    public let handle: Nullable<String>?
-    public let stripeConnectAccountId: Nullable<String>?
+    public let companyName: String?
+    public let handle: String?
+    public let stripeConnectAccountId: String?
     public let stripeConnectAccountEvents: [StripeConnectAccountEvent]?
     public let autoApproveShipperToCourierConnectionRequests: Bool?
     public let id: String
@@ -16,9 +16,9 @@ public struct OrgPublicData2: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         orgId: String,
-        companyName: Nullable<String>? = nil,
-        handle: Nullable<String>? = nil,
-        stripeConnectAccountId: Nullable<String>? = nil,
+        companyName: String? = nil,
+        handle: String? = nil,
+        stripeConnectAccountId: String? = nil,
         stripeConnectAccountEvents: [StripeConnectAccountEvent]? = nil,
         autoApproveShipperToCourierConnectionRequests: Bool? = nil,
         id: String,
@@ -39,9 +39,9 @@ public struct OrgPublicData2: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.orgId = try container.decode(String.self, forKey: .orgId)
-        self.companyName = try container.decodeNullableIfPresent(String.self, forKey: .companyName)
-        self.handle = try container.decodeNullableIfPresent(String.self, forKey: .handle)
-        self.stripeConnectAccountId = try container.decodeNullableIfPresent(String.self, forKey: .stripeConnectAccountId)
+        self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
+        self.handle = try container.decodeIfPresent(String.self, forKey: .handle)
+        self.stripeConnectAccountId = try container.decodeIfPresent(String.self, forKey: .stripeConnectAccountId)
         self.stripeConnectAccountEvents = try container.decodeIfPresent([StripeConnectAccountEvent].self, forKey: .stripeConnectAccountEvents)
         self.autoApproveShipperToCourierConnectionRequests = try container.decodeIfPresent(Bool.self, forKey: .autoApproveShipperToCourierConnectionRequests)
         self.id = try container.decode(String.self, forKey: .id)
@@ -53,9 +53,9 @@ public struct OrgPublicData2: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.orgId, forKey: .orgId)
-        try container.encodeNullableIfPresent(self.companyName, forKey: .companyName)
-        try container.encodeNullableIfPresent(self.handle, forKey: .handle)
-        try container.encodeNullableIfPresent(self.stripeConnectAccountId, forKey: .stripeConnectAccountId)
+        try container.encodeIfPresent(self.companyName, forKey: .companyName)
+        try container.encodeIfPresent(self.handle, forKey: .handle)
+        try container.encodeIfPresent(self.stripeConnectAccountId, forKey: .stripeConnectAccountId)
         try container.encodeIfPresent(self.stripeConnectAccountEvents, forKey: .stripeConnectAccountEvents)
         try container.encodeIfPresent(self.autoApproveShipperToCourierConnectionRequests, forKey: .autoApproveShipperToCourierConnectionRequests)
         try container.encode(self.id, forKey: .id)

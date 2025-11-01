@@ -9,7 +9,7 @@ public final class TrackingClient: Sendable {
     public let taskGroupByDriver: TaskGroupByDriverClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.cargoByDevice = CargoByDeviceClient(config: config)
         self.cargoByDriver = CargoByDriverClient(config: config)
         self.devices = DevicesClient(config: config)

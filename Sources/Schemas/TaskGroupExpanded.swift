@@ -3,17 +3,17 @@ import Foundation
 /// Single task group with optional expanded tasks
 public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let taskGroup: TaskGroup1
-    public let tasksExpanded: Nullable<[TaskExpanded]>?
-    public let courierOrgCompanyName: Nullable<String>?
-    public let courierOrgCompanyHandle: Nullable<String>?
+    public let tasksExpanded: [TaskExpanded]?
+    public let courierOrgCompanyName: String?
+    public let courierOrgCompanyHandle: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         taskGroup: TaskGroup1,
-        tasksExpanded: Nullable<[TaskExpanded]>? = nil,
-        courierOrgCompanyName: Nullable<String>? = nil,
-        courierOrgCompanyHandle: Nullable<String>? = nil,
+        tasksExpanded: [TaskExpanded]? = nil,
+        courierOrgCompanyName: String? = nil,
+        courierOrgCompanyHandle: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.taskGroup = taskGroup
@@ -26,9 +26,9 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.taskGroup = try container.decode(TaskGroup1.self, forKey: .taskGroup)
-        self.tasksExpanded = try container.decodeNullableIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
-        self.courierOrgCompanyName = try container.decodeNullableIfPresent(String.self, forKey: .courierOrgCompanyName)
-        self.courierOrgCompanyHandle = try container.decodeNullableIfPresent(String.self, forKey: .courierOrgCompanyHandle)
+        self.tasksExpanded = try container.decodeIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
+        self.courierOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .courierOrgCompanyName)
+        self.courierOrgCompanyHandle = try container.decodeIfPresent(String.self, forKey: .courierOrgCompanyHandle)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -36,9 +36,9 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.taskGroup, forKey: .taskGroup)
-        try container.encodeNullableIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
-        try container.encodeNullableIfPresent(self.courierOrgCompanyName, forKey: .courierOrgCompanyName)
-        try container.encodeNullableIfPresent(self.courierOrgCompanyHandle, forKey: .courierOrgCompanyHandle)
+        try container.encodeIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
+        try container.encodeIfPresent(self.courierOrgCompanyName, forKey: .courierOrgCompanyName)
+        try container.encodeIfPresent(self.courierOrgCompanyHandle, forKey: .courierOrgCompanyHandle)
     }
 
     /// Keys for encoding/decoding struct properties.

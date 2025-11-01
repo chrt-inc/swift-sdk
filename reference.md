@@ -33,7 +33,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getAgentV1()
+    _ = try await client.dev.getAgentV1()
 }
 
 try await main()
@@ -96,7 +96,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getUserIdV1()
+    _ = try await client.dev.getUserIdV1()
 }
 
 try await main()
@@ -159,7 +159,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getUserIdV2()
+    _ = try await client.dev.getUserIdV2()
 }
 
 try await main()
@@ -222,7 +222,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getDecodedJwtV1()
+    _ = try await client.dev.getDecodedJwtV1()
 }
 
 try await main()
@@ -285,7 +285,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getEmailV1()
+    _ = try await client.dev.getEmailV1()
 }
 
 try await main()
@@ -348,7 +348,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getDurableV1()
+    _ = try await client.dev.getDurableV1()
 }
 
 try await main()
@@ -411,7 +411,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getTemplateV1()
+    _ = try await client.dev.getTemplateV1()
 }
 
 try await main()
@@ -474,7 +474,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.createTemplateV1(request: .init(
+    _ = try await client.dev.createTemplateV1(request: .init(
         message: "message",
         number: 1,
         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -549,7 +549,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.dev.getGitInfoV1()
+    _ = try await client.dev.getGitInfoV1()
 }
 
 try await main()
@@ -613,7 +613,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.listOrgMembersAndDriversV1()
+    _ = try await client.drivers.listOrgMembersAndDriversV1()
 }
 
 try await main()
@@ -676,7 +676,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.listV1()
+    _ = try await client.drivers.listV1()
 }
 
 try await main()
@@ -739,7 +739,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.createV1(request: .init(orgMember: OrgMemberDetails(
+    _ = try await client.drivers.createV1(request: .init(orgMember: OrgMemberDetails(
         role: "role",
         userId: "user_id"
     )))
@@ -813,7 +813,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.getV1()
+    _ = try await client.drivers.getV1()
 }
 
 try await main()
@@ -876,7 +876,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.getByDriverIdV1(driverId: "driver_id")
+    _ = try await client.drivers.getByDriverIdV1(driverId: "driver_id")
 }
 
 try await main()
@@ -947,7 +947,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.deleteV1(driverId: "driver_id")
+    _ = try await client.drivers.deleteV1(driverId: "driver_id")
 }
 
 try await main()
@@ -1018,9 +1018,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.setActivationV1(request: .init(
+    _ = try await client.drivers.setActivationV1(request: .init(
         driverObjectId: "driver_object_id",
-        active: True
+        active: true
     ))
 }
 
@@ -1092,7 +1092,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.lastSeenV1(request: .init(location: LocationFeature(
+    _ = try await client.drivers.lastSeenV1(request: .init(location: LocationFeature(
         type: .feature,
         geometry: Geometry.geometryCollection(
             .init(
@@ -1100,7 +1100,7 @@ private func main() async throws {
                     GeometryCollectionOutputGeometriesItem.lineString(
                         .init(
                             coordinates: [
-                                LineStringCoordinatesItem.jsonArray(
+                                LineStringCoordinatesItem.position2D(
                                     []
                                 )
                             ]
@@ -1180,7 +1180,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.lastSeenClearV1()
+    _ = try await client.drivers.lastSeenClearV1()
 }
 
 try await main()
@@ -1243,7 +1243,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.drivers.updateDriverV1(request: .init(driverObjectId: "driver_object_id"))
+    _ = try await client.drivers.updateDriverV1(request: .init(driverObjectId: "driver_object_id"))
 }
 
 try await main()
@@ -1315,7 +1315,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestones.updateV1(request: .init(milestoneId: "milestone_id"))
+    _ = try await client.milestones.updateV1(request: .init(milestoneId: "milestone_id"))
 }
 
 try await main()
@@ -1386,7 +1386,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestones.addToTaskV1(request: .init(
+    _ = try await client.milestones.addToTaskV1(request: .init(
         taskId: "task_id",
         type: .image
     ))
@@ -1461,7 +1461,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.offChrtShipperOrgInfo.createV1(request: .init(
+    _ = try await client.offChrtShipperOrgInfo.createV1(request: .init(
         schemaVersion: 1,
         emailAddressPrimary: "email_address_primary"
     ))
@@ -1535,7 +1535,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.offChrtShipperOrgInfo.listV1()
+    _ = try await client.offChrtShipperOrgInfo.listV1()
 }
 
 try await main()
@@ -1598,7 +1598,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.offChrtShipperOrgInfo.getByIdV1(id: "id")
+    _ = try await client.offChrtShipperOrgInfo.getByIdV1(id: "id")
 }
 
 try await main()
@@ -1669,7 +1669,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.offChrtShipperOrgInfo.deleteByIdV1(id: "id")
+    _ = try await client.offChrtShipperOrgInfo.deleteByIdV1(id: "id")
 }
 
 try await main()
@@ -1740,9 +1740,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.offChrtShipperOrgInfo.updateByIdV1(
+    _ = try await client.offChrtShipperOrgInfo.updateByIdV1(
         id: "id",
-        request: .init(id: "id")
+        request: .init()
     )
 }
 
@@ -1823,7 +1823,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgProfiles.getV1()
+    _ = try await client.orgProfiles.getV1()
 }
 
 try await main()
@@ -1886,7 +1886,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgProfiles.createV1(request: .init(
+    _ = try await client.orgProfiles.createV1(request: .init(
         schemaVersion: 1,
         description: "description",
         emailAddressPrimary: "email_address_primary",
@@ -1962,7 +1962,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgProfiles.updateV1(request: .init())
+    _ = try await client.orgProfiles.updateV1(request: .init())
 }
 
 try await main()
@@ -2033,7 +2033,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgProfiles.getByHandleV1(handle: "handle")
+    _ = try await client.orgProfiles.getByHandleV1(handle: "handle")
 }
 
 try await main()
@@ -2104,7 +2104,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgProfiles.getAvatarV1(handle: "handle")
+    _ = try await client.orgProfiles.getAvatarV1(handle: "handle")
 }
 
 try await main()
@@ -2176,7 +2176,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.orders.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
 }
 
 try await main()
@@ -2247,7 +2247,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.cancelByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.orders.cancelByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
 }
 
 try await main()
@@ -2318,7 +2318,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.createV1(request: .init(
+    _ = try await client.orders.createV1(request: .init(
         orderClientCreate: OrderClientCreate1(
             schemaVersion: 1
         ),
@@ -2411,7 +2411,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.postExpandedV1(request: .init(orderIdOrShortId: "order_id_or_short_id"))
+    _ = try await client.orders.postExpandedV1(request: .init(orderIdOrShortId: "order_id_or_short_id"))
 }
 
 try await main()
@@ -2482,7 +2482,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.listByShipperOrgIdV1()
+    _ = try await client.orders.listByShipperOrgIdV1()
 }
 
 try await main()
@@ -2545,7 +2545,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.listByCourierOrgIdV1()
+    _ = try await client.orders.listByCourierOrgIdV1()
 }
 
 try await main()
@@ -2609,7 +2609,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverRateSheets.listByCourierOrgIdV1()
+    _ = try await client.courierPayDriverRateSheets.listByCourierOrgIdV1()
 }
 
 try await main()
@@ -2672,7 +2672,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverRateSheets.listByDriverIdV1(driverId: "driver_id")
+    _ = try await client.courierPayDriverRateSheets.listByDriverIdV1(driverId: "driver_id")
 }
 
 try await main()
@@ -2743,7 +2743,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverRateSheets.createV1(request: .init(
+    _ = try await client.courierPayDriverRateSheets.createV1(request: .init(
         schemaVersion: 1,
         courierOrgId: "courier_org_id",
         baseMileageDistanceMiles: 1.1,
@@ -2830,7 +2830,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverRateSheets.getV1(id: "id")
+    _ = try await client.courierPayDriverRateSheets.getV1(id: "id")
 }
 
 try await main()
@@ -2901,7 +2901,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverRateSheets.deleteByIdV1(id: "id")
+    _ = try await client.courierPayDriverRateSheets.deleteByIdV1(id: "id")
 }
 
 try await main()
@@ -2972,9 +2972,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverRateSheets.updateByIdV1(
+    _ = try await client.courierPayDriverRateSheets.updateByIdV1(
         id: "id",
-        request: .init(id: "id")
+        request: .init()
     )
 }
 
@@ -3055,7 +3055,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierRateSheets.listByCourierOrgIdV1()
+    _ = try await client.shipperPayCourierRateSheets.listByCourierOrgIdV1()
 }
 
 try await main()
@@ -3118,7 +3118,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierRateSheets.createV1(request: .init(
+    _ = try await client.shipperPayCourierRateSheets.createV1(request: .init(
         schemaVersion: 1,
         baseMileageDistanceMiles: 1.1,
         baseMileageRateUsdPerInstance: 1.1,
@@ -3204,7 +3204,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierRateSheets.getV1(id: "id")
+    _ = try await client.shipperPayCourierRateSheets.getV1(id: "id")
 }
 
 try await main()
@@ -3275,7 +3275,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierRateSheets.deleteByIdV1(id: "id")
+    _ = try await client.shipperPayCourierRateSheets.deleteByIdV1(id: "id")
 }
 
 try await main()
@@ -3346,9 +3346,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierRateSheets.updateByIdV1(
+    _ = try await client.shipperPayCourierRateSheets.updateByIdV1(
         id: "id",
-        request: .init(id: "id")
+        request: .init()
     )
 }
 
@@ -3429,7 +3429,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverLineItemGroups.getByIdV1(id: "id")
+    _ = try await client.courierPayDriverLineItemGroups.getByIdV1(id: "id")
 }
 
 try await main()
@@ -3500,7 +3500,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
+    _ = try await client.courierPayDriverLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
 }
 
 try await main()
@@ -3571,7 +3571,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverLineItemGroups.previewV1(
+    _ = try await client.courierPayDriverLineItemGroups.previewV1(
         driverId: "driver_id",
         request: CourierPayDriverLineItemGroupCreateReq(
             courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
@@ -3656,7 +3656,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverLineItemGroups.createV1(request: CourierPayDriverLineItemGroupCreateReq(
+    _ = try await client.courierPayDriverLineItemGroups.createV1(request: CourierPayDriverLineItemGroupCreateReq(
         courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
         taskGroupId: "task_group_id"
     ))
@@ -3731,7 +3731,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.getByIdV1(id: "id")
+    _ = try await client.shipperPayCourierLineItemGroups.getByIdV1(id: "id")
 }
 
 try await main()
@@ -3802,7 +3802,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.deleteByIdV1(id: "id")
+    _ = try await client.shipperPayCourierLineItemGroups.deleteByIdV1(id: "id")
 }
 
 try await main()
@@ -3873,7 +3873,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
+    _ = try await client.shipperPayCourierLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
 }
 
 try await main()
@@ -3944,7 +3944,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.previewV1(request: ShipperPayCourierLineItemGroupCreateReq(
+    _ = try await client.shipperPayCourierLineItemGroups.previewV1(request: ShipperPayCourierLineItemGroupCreateReq(
         shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
         taskGroupId: "task_group_id"
     ))
@@ -4018,7 +4018,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.createV1(request: ShipperPayCourierLineItemGroupCreateReq(
+    _ = try await client.shipperPayCourierLineItemGroups.createV1(request: ShipperPayCourierLineItemGroupCreateReq(
         shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
         taskGroupId: "task_group_id"
     ))
@@ -4093,7 +4093,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.getByIdV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
+    _ = try await client.shipperPayCourierPayments.getByIdV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
 }
 
 try await main()
@@ -4164,7 +4164,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.deleteV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
+    _ = try await client.shipperPayCourierPayments.deleteV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
 }
 
 try await main()
@@ -4235,7 +4235,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.shipperPayCourierPayments.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
 }
 
 try await main()
@@ -4306,7 +4306,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.listByShipperOrgIdV1(request: .init(statuses: [
+    _ = try await client.shipperPayCourierPayments.listByShipperOrgIdV1(request: .init(statuses: [
         .invoiceNotYetCreated
     ]))
 }
@@ -4379,7 +4379,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.listByCourierOrgIdV1(request: .init(statuses: [
+    _ = try await client.shipperPayCourierPayments.listByCourierOrgIdV1(request: .init(statuses: [
         .invoiceNotYetCreated
     ]))
 }
@@ -4452,7 +4452,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.createV1(request: CreateShipperPayCourierPaymentReq(
+    _ = try await client.shipperPayCourierPayments.createV1(request: CreateShipperPayCourierPaymentReq(
         orderIdOrShortId: "order_id_or_short_id"
     ))
 }
@@ -4525,7 +4525,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierPayments.previewV1(request: CreateShipperPayCourierPaymentReq(
+    _ = try await client.shipperPayCourierPayments.previewV1(request: CreateShipperPayCourierPaymentReq(
         orderIdOrShortId: "order_id_or_short_id"
     ))
 }
@@ -4599,7 +4599,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverPayouts.getByIdV1(id: "id")
+    _ = try await client.courierPayDriverPayouts.getByIdV1(id: "id")
 }
 
 try await main()
@@ -4670,7 +4670,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverPayouts.listByDriverIdV1(driverId: "driver_id")
+    _ = try await client.courierPayDriverPayouts.listByDriverIdV1(driverId: "driver_id")
 }
 
 try await main()
@@ -4741,7 +4741,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverPayouts.createV1(request: .init(
+    _ = try await client.courierPayDriverPayouts.createV1(request: .init(
         schemaVersion: 1,
         courierPayDriverLineItemGroupIds: [
             "courier_pay_driver_line_item_group_ids"
@@ -4817,9 +4817,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverPayouts.updateStatusV1(
+    _ = try await client.courierPayDriverPayouts.updateStatusV1(
         id: "id",
-        request: .init(id: "id")
+        request: .init()
     )
 }
 
@@ -4900,7 +4900,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.connections.listShippersV1()
+    _ = try await client.connections.listShippersV1()
 }
 
 try await main()
@@ -4963,7 +4963,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.connections.listCouriersV1()
+    _ = try await client.connections.listCouriersV1()
 }
 
 try await main()
@@ -4994,353 +4994,6 @@ try await main()
 </details>
 
 ## TaskGroups
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">listByCourierOrgIdV1</a>(requestOptions: RequestOptions?) -> MultipleTaskGroupsWithTasks</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all task groups assigned to the authenticated courier organization with their associated tasks.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.listByCourierOrgIdV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> TaskGroupWithTasks</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific task group by ID with its associated tasks.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">listByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> [TaskGroup1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all task groups assigned to a specific driver.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.listByDriverIdV1(driverId: "driver_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedCourierAdministratorV1</a>(request: Requests.TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierAdministratorRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches task groups for the courier organization with optional filters and expanded related data.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.postExpandedCourierAdministratorV1(request: .init())
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskGroupExpandedForCourierAdministratorReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedCourierDriverV1</a>(request: Requests.TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierDriverRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches task groups assigned to the authenticated courier driver with optional expanded related data.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.postExpandedCourierDriverV1(request: .init())
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskGroupExpandedForCourierDriverReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">updateV1</a>(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions?) -> UpdateTaskGroupRes</code></summary>
 <dl>
 <dd>
@@ -5374,7 +5027,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.taskGroups.updateV1(request: .init(taskGroupId: "task_group_id"))
+    _ = try await client.taskGroups.updateV1(request: .init(taskGroupId: "task_group_id"))
 }
 
 try await main()
@@ -5445,7 +5098,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.taskGroups.startV1(id: "id")
+    _ = try await client.taskGroups.startV1(id: "id")
 }
 
 try await main()
@@ -5516,12 +5169,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.taskGroups.togglePauseV1(
+    _ = try await client.taskGroups.togglePauseV1(
         id: "id",
         request: .init(
-            id: "id",
             taskGroupId: "task_group_id",
-            paused: True
+            paused: true
         )
     )
 }
@@ -5603,7 +5255,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.getByJwtUserIdV1()
+    _ = try await client.shipperContactInfo.getByJwtUserIdV1()
 }
 
 try await main()
@@ -5666,7 +5318,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.listByJwtOrgIdV1()
+    _ = try await client.shipperContactInfo.listByJwtOrgIdV1()
 }
 
 try await main()
@@ -5729,7 +5381,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.listCourierContactsByShipperOrgIdV1(shipperOrgId: "shipper_org_id")
+    _ = try await client.shipperContactInfo.listCourierContactsByShipperOrgIdV1(shipperOrgId: "shipper_org_id")
 }
 
 try await main()
@@ -5800,7 +5452,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.listByOffChrtShipperOrgInfoIdV1(offChrtShipperOrgInfoId: "off_chrt_shipper_org_info_id")
+    _ = try await client.shipperContactInfo.listByOffChrtShipperOrgInfoIdV1(offChrtShipperOrgInfoId: "off_chrt_shipper_org_info_id")
 }
 
 try await main()
@@ -5871,7 +5523,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.getByIdV1(id: "id")
+    _ = try await client.shipperContactInfo.getByIdV1(id: "id")
 }
 
 try await main()
@@ -5942,7 +5594,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.createOnPlatformV1(request: ShipperContactInfoClientCreate1(
+    _ = try await client.shipperContactInfo.createOnPlatformV1(request: ShipperContactInfoClientCreate1(
         schemaVersion: 1
     ))
 }
@@ -6015,7 +5667,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.createOffPlatformV1(request: ShipperContactInfoClientCreate1(
+    _ = try await client.shipperContactInfo.createOffPlatformV1(request: ShipperContactInfoClientCreate1(
         schemaVersion: 1
     ))
 }
@@ -6088,9 +5740,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.updateV1(
+    _ = try await client.shipperContactInfo.updateV1(
         shipperContactInfoId: "shipper_contact_info_id",
-        request: .init(shipperContactInfoId: "shipper_contact_info_id")
+        request: .init()
     )
 }
 
@@ -6170,7 +5822,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperContactInfo.deleteByIdV1(id: "id")
+    _ = try await client.shipperContactInfo.deleteByIdV1(id: "id")
 }
 
 try await main()
@@ -6242,7 +5894,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestoneNotifications.getPreferencesV1()
+    _ = try await client.milestoneNotifications.getPreferencesV1()
 }
 
 try await main()
@@ -6305,7 +5957,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestoneNotifications.upsertPreferencesV1(request: .init(schemaVersion: 1))
+    _ = try await client.milestoneNotifications.upsertPreferencesV1(request: .init(schemaVersion: 1))
 }
 
 try await main()
@@ -6377,7 +6029,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.getInfoV1()
+    _ = try await client.orgs.getInfoV1()
 }
 
 try await main()
@@ -6440,7 +6092,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.listMembersV1()
+    _ = try await client.orgs.listMembersV1()
 }
 
 try await main()
@@ -6503,7 +6155,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.getPublicDataV1()
+    _ = try await client.orgs.getPublicDataV1()
 }
 
 try await main()
@@ -6566,7 +6218,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.getPublicDataByOrgIdV1(orgId: "org_id")
+    _ = try await client.orgs.getPublicDataByOrgIdV1(orgId: "org_id")
 }
 
 try await main()
@@ -6637,7 +6289,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.getHandleV1()
+    _ = try await client.orgs.getHandleV1()
 }
 
 try await main()
@@ -6700,7 +6352,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.getHandleAvailabilityV1(handle: "handle")
+    _ = try await client.orgs.getHandleAvailabilityV1(handle: "handle")
 }
 
 try await main()
@@ -6771,7 +6423,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.createPublicDataV1(request: .init(
+    _ = try await client.orgs.createPublicDataV1(request: .init(
         handle: "handle",
         companyName: "company_name"
     ))
@@ -6845,7 +6497,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgs.updatePublicDataV1(request: .init())
+    _ = try await client.orgs.updatePublicDataV1(request: .init())
 }
 
 try await main()
@@ -6917,7 +6569,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.payments.createCheckoutSessionV1(request: .init(priceName: .courierOps100UsdPerMonth))
+    _ = try await client.payments.createCheckoutSessionV1(request: .init(priceName: .courierOps100UsdPerMonth))
 }
 
 try await main()
@@ -6988,7 +6640,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.payments.syncStripeToClerkV1()
+    _ = try await client.payments.syncStripeToClerkV1()
 }
 
 try await main()
@@ -7051,7 +6703,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.payments.createConnectAccountV1()
+    _ = try await client.payments.createConnectAccountV1()
 }
 
 try await main()
@@ -7114,7 +6766,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.payments.createConnectAccountLinkV1()
+    _ = try await client.payments.createConnectAccountLinkV1()
 }
 
 try await main()
@@ -7177,7 +6829,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.payments.generateInvoiceV1(request: .init(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id"))
+    _ = try await client.payments.generateInvoiceV1(request: .init(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id"))
 }
 
 try await main()
@@ -7249,7 +6901,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.pingAuthd()
+    _ = try await client.root.pingAuthd()
 }
 
 try await main()
@@ -7312,7 +6964,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.pingOptionallyAuthd()
+    _ = try await client.root.pingOptionallyAuthd()
 }
 
 try await main()
@@ -7375,7 +7027,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.pingUnauthd()
+    _ = try await client.root.pingUnauthd()
 }
 
 try await main()
@@ -7438,7 +7090,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.health()
+    _ = try await client.root.health()
 }
 
 try await main()
@@ -7501,7 +7153,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.root.failure()
+    _ = try await client.root.failure()
 }
 
 try await main()
@@ -7565,7 +7217,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.users.getPublicDataV1()
+    _ = try await client.users.getPublicDataV1()
 }
 
 try await main()
@@ -7629,10 +7281,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.utils.getTimezoneV1(request: .init(
+    _ = try await client.utils.getTimezoneV1(
         lat: 37.7749,
         lng: -122.4194
-    ))
+    )
 }
 
 try await main()
@@ -7712,7 +7364,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.connections.connectionToCourier.createV1(request: .init(handle: "handle"))
+    _ = try await client.connections.connectionToCourier.createV1(request: .init(handle: "handle"))
 }
 
 try await main()
@@ -7784,19 +7436,16 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverLineItemGroups.addLineItems.byIdV1(
+    _ = try await client.courierPayDriverLineItemGroups.addLineItems.byIdV1(
         id: "id",
-        request: .init(
-            id: "id",
-            lineItems: [
-                LineItemClientCreate1(
-                    schemaVersion: 1,
-                    item: .baseRate,
-                    quantity: 1.1,
-                    rate: 1.1
-                )
-            ]
-        )
+        request: .init(lineItems: [
+            LineItemClientCreate1(
+                schemaVersion: 1,
+                item: .baseRate,
+                quantity: 1.1,
+                rate: 1.1
+            )
+        ])
     )
 }
 
@@ -7877,14 +7526,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.courierPayDriverLineItemGroups.removeLineItems.byIdV1(
+    _ = try await client.courierPayDriverLineItemGroups.removeLineItems.byIdV1(
         id: "id",
-        request: .init(
-            id: "id",
-            lineItemUuidStrs: [
-                "line_item_uuid_strs"
-            ]
-        )
+        request: .init(lineItemUuidStrs: [
+            "line_item_uuid_strs"
+        ])
     )
 }
 
@@ -7932,7 +7578,7 @@ try await main()
 </details>
 
 ## Milestones Images
-<details><summary><code>client.milestones.images.<a href="/Sources/Resources/Milestones/Images/ImagesClient.swift">uploadByMilestoneIdV1</a>(milestoneId: String, comments: Nullable<String>?, request: any Codable, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.milestones.images.<a href="/Sources/Resources/Milestones/Images/ImagesClient.swift">uploadByMilestoneIdV1</a>(milestoneId: String, comments: String?, request: Requests.BodyPostMilestonesUploadImageV1OortMilestonesImagesUploadV1MilestoneIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -7965,12 +7611,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestones.images.uploadByMilestoneIdV1(
+    _ = try await client.milestones.images.uploadByMilestoneIdV1(
         milestoneId: "milestone_id",
-        request: .init(
-            milestoneId: "milestone_id",
-            comments: "comments"
-        )
+        comments: "comments",
+        request: .init(image: .init(data: Data("".utf8)))
     )
 }
 
@@ -7997,7 +7641,7 @@ try await main()
 <dl>
 <dd>
 
-**comments:** `Nullable<String>?` 
+**comments:** `String?` 
     
 </dd>
 </dl>
@@ -8005,7 +7649,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `any Codable` 
+**request:** `Requests.BodyPostMilestonesUploadImageV1OortMilestonesImagesUploadV1MilestoneIdPost` 
     
 </dd>
 </dl>
@@ -8058,7 +7702,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestones.images.deleteByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
+    _ = try await client.milestones.images.deleteByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
 }
 
 try await main()
@@ -8129,7 +7773,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestones.images.getByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
+    _ = try await client.milestones.images.getByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
 }
 
 try await main()
@@ -8201,7 +7845,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.milestones.blurhash.getByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
+    _ = try await client.milestones.blurhash.getByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
 }
 
 try await main()
@@ -8273,7 +7917,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.notifications.shipper.getPreferencesV1()
+    _ = try await client.notifications.shipper.getPreferencesV1()
 }
 
 try await main()
@@ -8336,7 +7980,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.notifications.shipper.upsertPreferencesV1(request: .init(schemaVersion: 1))
+    _ = try await client.notifications.shipper.upsertPreferencesV1(request: .init(schemaVersion: 1))
 }
 
 try await main()
@@ -8408,7 +8052,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.notifications.courier.getPreferencesV1()
+    _ = try await client.notifications.courier.getPreferencesV1()
 }
 
 try await main()
@@ -8471,7 +8115,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.notifications.courier.upsertPreferencesV1(request: .init(schemaVersion: 1))
+    _ = try await client.notifications.courier.upsertPreferencesV1(request: .init(schemaVersion: 1))
 }
 
 try await main()
@@ -8543,7 +8187,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.full.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.orders.full.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
 }
 
 try await main()
@@ -8614,7 +8258,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.full.listByShipperOrgIdV1()
+    _ = try await client.orders.full.listByShipperOrgIdV1()
 }
 
 try await main()
@@ -8677,7 +8321,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orders.full.listByCourierOrgIdV1()
+    _ = try await client.orders.full.listByCourierOrgIdV1()
 }
 
 try await main()
@@ -8741,7 +8385,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgConnectionInfos.shipper.getV1()
+    _ = try await client.orgConnectionInfos.shipper.getV1()
 }
 
 try await main()
@@ -8804,7 +8448,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgConnectionInfos.shipper.createV1(request: .init(
+    _ = try await client.orgConnectionInfos.shipper.createV1(request: .init(
         schemaVersion: 1,
         emailAddressPrimary: "email_address_primary"
     ))
@@ -8878,7 +8522,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgConnectionInfos.shipper.updateV1(request: .init())
+    _ = try await client.orgConnectionInfos.shipper.updateV1(request: .init())
 }
 
 try await main()
@@ -8950,7 +8594,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgConnectionInfos.courier.getV1()
+    _ = try await client.orgConnectionInfos.courier.getV1()
 }
 
 try await main()
@@ -9013,7 +8657,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgConnectionInfos.courier.createV1(request: .init(
+    _ = try await client.orgConnectionInfos.courier.createV1(request: .init(
         schemaVersion: 1,
         emailAddressPrimary: "email_address_primary"
     ))
@@ -9087,7 +8731,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.orgConnectionInfos.courier.updateV1(request: .init())
+    _ = try await client.orgConnectionInfos.courier.updateV1(request: .init())
 }
 
 try await main()
@@ -9159,7 +8803,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.shipper.listV1()
+    _ = try await client.shipperPayCourierLineItemGroups.shipper.listV1()
 }
 
 try await main()
@@ -9222,7 +8866,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.shipper.getByIdV1(id: "id")
+    _ = try await client.shipperPayCourierLineItemGroups.shipper.getByIdV1(id: "id")
 }
 
 try await main()
@@ -9293,7 +8937,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.shipper.byTaskGroupIdV1(taskGroupId: "task_group_id")
+    _ = try await client.shipperPayCourierLineItemGroups.shipper.byTaskGroupIdV1(taskGroupId: "task_group_id")
 }
 
 try await main()
@@ -9365,7 +9009,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.courier.listV1()
+    _ = try await client.shipperPayCourierLineItemGroups.courier.listV1()
 }
 
 try await main()
@@ -9429,19 +9073,16 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.addLineItems.byIdV1(
+    _ = try await client.shipperPayCourierLineItemGroups.addLineItems.byIdV1(
         id: "id",
-        request: .init(
-            id: "id",
-            lineItems: [
-                LineItemClientCreate1(
-                    schemaVersion: 1,
-                    item: .baseRate,
-                    quantity: 1.1,
-                    rate: 1.1
-                )
-            ]
-        )
+        request: .init(lineItems: [
+            LineItemClientCreate1(
+                schemaVersion: 1,
+                item: .baseRate,
+                quantity: 1.1,
+                rate: 1.1
+            )
+        ])
     )
 }
 
@@ -9522,14 +9163,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.shipperPayCourierLineItemGroups.removeLineItems.byIdV1(
+    _ = try await client.shipperPayCourierLineItemGroups.removeLineItems.byIdV1(
         id: "id",
-        request: .init(
-            id: "id",
-            lineItemUuidStrs: [
-                "line_item_uuid_strs"
-            ]
-        )
+        request: .init(lineItemUuidStrs: [
+            "line_item_uuid_strs"
+        ])
     )
 }
 
@@ -9576,8 +9214,8 @@ try await main()
 </dl>
 </details>
 
-## TaskGroups Full
-<details><summary><code>client.taskGroups.full.<a href="/Sources/Resources/TaskGroups/Full/TaskGroupsFullClient.swift">listByCourierOrgIdV1</a>(requestOptions: RequestOptions?) -> MultipleTaskGroupsDetailsResponse</code></summary>
+## TaskGroups Expanded
+<details><summary><code>client.taskGroups.expanded.<a href="/Sources/Resources/TaskGroups/Expanded/ExpandedClient.swift">forCourierAdministratorByIdV1</a>(id: String, request: TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions?) -> TaskGroupExpandedForCourierAdministrator</code></summary>
 <dl>
 <dd>
 
@@ -9589,7 +9227,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all task groups for the authenticated courier organization with complete tasks, milestones, and cargo details.
+Fetches an expanded task group for the courier org with expanded related data.
 </dd>
 </dl>
 </dd>
@@ -9610,70 +9248,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.taskGroups.full.listByCourierOrgIdV1()
-}
+    _ = try await client.taskGroups.expanded.forCourierAdministratorByIdV1(
+        id: "id",
+        request: TaskGroupExpandedForCourierAdministratorReq(
 
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.full.<a href="/Sources/Resources/TaskGroups/Full/TaskGroupsFullClient.swift">getByTaskGroupIdV1</a>(id: String, requestOptions: RequestOptions?) -> TaskGroupWithDetails</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific task group with complete tasks, milestones, and cargo information.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    try await client.taskGroups.full.getByTaskGroupIdV1(id: "id")
+        )
+    )
 }
 
 try await main()
@@ -9699,6 +9279,581 @@ try await main()
 <dl>
 <dd>
 
+**request:** `TaskGroupExpandedForCourierAdministratorReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.expanded.<a href="/Sources/Resources/TaskGroups/Expanded/ExpandedClient.swift">forCourierDriverByIdV1</a>(id: String, request: TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions?) -> TaskGroupExpandedForCourierDriver</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches an expanded task group assigned to a courier driver with optional expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.expanded.forCourierDriverByIdV1(
+        id: "id",
+        request: TaskGroupExpandedForCourierDriverReq(
+
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TaskGroupExpandedForCourierDriverReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.expanded.<a href="/Sources/Resources/TaskGroups/Expanded/ExpandedClient.swift">forShipperByIdV1</a>(id: String, request: Requests.TaskGroupExpandedForShipperReq, requestOptions: RequestOptions?) -> TaskGroupExpandedForShipper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches an expanded task group for the shipper org with expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.expanded.forShipperByIdV1(
+        id: "id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskGroupExpandedForShipperReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## TaskGroups ExpandedList
+<details><summary><code>client.taskGroups.expandedList.<a href="/Sources/Resources/TaskGroups/ExpandedList/ExpandedListClient.swift">forCourierAdministratorV1</a>(page: Int?, pageSize: Int?, sortBy: TaskGroupExpandedSortFieldEnum?, sortOrder: SortOrderEnum?, filterCreatedAtGte: Date?, filterCreatedAtLte: Date?, filterStartedAtGte: Date?, filterStartedAtLte: Date?, filterCompletedAtGte: Date?, filterCompletedAtLte: Date?, filterOrderCancelled: Bool?, filterStatuses: TaskGroupStatusEnum1?, filterCompleted: Bool?, filterPaused: Bool?, request: TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierAdministratorRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches expanded task groups for the courier org with optional filters and expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.expandedList.forCourierAdministratorV1(
+        page: 1,
+        pageSize: 1,
+        sortBy: .createdAt,
+        sortOrder: .asc,
+        filterCreatedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStartedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStartedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderCancelled: true,
+        filterCompleted: true,
+        filterPaused: true,
+        request: .init(body: TaskGroupExpandedForCourierAdministratorReq(
+
+        ))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `TaskGroupExpandedSortFieldEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStartedAtGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStartedAtLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderCancelled:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatuses:** `TaskGroupStatusEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompleted:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaused:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TaskGroupExpandedForCourierAdministratorReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.expandedList.<a href="/Sources/Resources/TaskGroups/ExpandedList/ExpandedListClient.swift">forCourierDriverV1</a>(page: Int?, pageSize: Int?, sortBy: TaskGroupExpandedSortFieldEnum?, sortOrder: SortOrderEnum?, filterCreatedAtGte: Date?, filterCreatedAtLte: Date?, filterStartedAtGte: Date?, filterStartedAtLte: Date?, filterCompletedAtGte: Date?, filterCompletedAtLte: Date?, filterOrderCancelled: Bool?, filterStatuses: TaskGroupStatusEnum1?, filterCompleted: Bool?, filterPaused: Bool?, request: TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierDriverRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches expanded task groups assigned to a courier driver with optional expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.expandedList.forCourierDriverV1(
+        page: 1,
+        pageSize: 1,
+        sortBy: .createdAt,
+        sortOrder: .asc,
+        filterCreatedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStartedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStartedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderCancelled: true,
+        filterCompleted: true,
+        filterPaused: true,
+        request: .init(body: TaskGroupExpandedForCourierDriverReq(
+
+        ))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `TaskGroupExpandedSortFieldEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStartedAtGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStartedAtLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderCancelled:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatuses:** `TaskGroupStatusEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompleted:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaused:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TaskGroupExpandedForCourierDriverReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
     
 </dd>
@@ -9712,7 +9867,7 @@ try await main()
 </details>
 
 ## Tracking CargoByDevice
-<details><summary><code>client.tracking.cargoByDevice.<a href="/Sources/Resources/Tracking/CargoByDevice/CargoByDeviceClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingCargoByDeviceDataPoint1>?</code></summary>
+<details><summary><code>client.tracking.cargoByDevice.<a href="/Sources/Resources/Tracking/CargoByDevice/CargoByDeviceClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> TrackingCargoByDeviceDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -9745,10 +9900,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.cargoByDevice.lastSeenV1(request: .init(
+    _ = try await client.tracking.cargoByDevice.lastSeenV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id"
-    ))
+    )
 }
 
 try await main()
@@ -9795,7 +9950,7 @@ try await main()
 </details>
 
 ## Tracking CargoByDriver
-<details><summary><code>client.tracking.cargoByDriver.<a href="/Sources/Resources/Tracking/CargoByDriver/CargoByDriverClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingCargoByDriverDataPoint1>?</code></summary>
+<details><summary><code>client.tracking.cargoByDriver.<a href="/Sources/Resources/Tracking/CargoByDriver/CargoByDriverClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> TrackingCargoByDriverDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -9828,10 +9983,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.cargoByDriver.lastSeenV1(request: .init(
+    _ = try await client.tracking.cargoByDriver.lastSeenV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id"
-    ))
+    )
 }
 
 try await main()
@@ -9911,7 +10066,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.registerToOrgV1(request: .init(deviceMacAddress: "device_mac_address"))
+    _ = try await client.tracking.devices.registerToOrgV1(request: .init(deviceMacAddress: "device_mac_address"))
 }
 
 try await main()
@@ -9982,7 +10137,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.updateV1(request: .init())
+    _ = try await client.tracking.devices.updateV1(request: .init())
 }
 
 try await main()
@@ -10020,7 +10175,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">deleteV1</a>(deviceId: Nullable<String>?, deviceMacAddress: Nullable<String>?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">deleteV1</a>(deviceId: String?, deviceMacAddress: String?, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10053,10 +10208,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.deleteV1(request: .init(
+    _ = try await client.tracking.devices.deleteV1(
         deviceId: "device_id",
         deviceMacAddress: "device_mac_address"
-    ))
+    )
 }
 
 try await main()
@@ -10074,7 +10229,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceId:** `Nullable<String>?` 
+**deviceId:** `String?` 
     
 </dd>
 </dl>
@@ -10082,7 +10237,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `Nullable<String>?` 
+**deviceMacAddress:** `String?` 
     
 </dd>
 </dl>
@@ -10102,7 +10257,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">getV1</a>(deviceMacAddress: Nullable<String>?, deviceId: Nullable<String>?, requestOptions: RequestOptions?) -> Device1</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">getV1</a>(deviceMacAddress: String?, deviceId: String?, requestOptions: RequestOptions?) -> Device1</code></summary>
 <dl>
 <dd>
 
@@ -10135,10 +10290,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.getV1(request: .init(
+    _ = try await client.tracking.devices.getV1(
         deviceMacAddress: "device_mac_address",
         deviceId: "device_id"
-    ))
+    )
 }
 
 try await main()
@@ -10156,7 +10311,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `Nullable<String>?` 
+**deviceMacAddress:** `String?` 
     
 </dd>
 </dl>
@@ -10164,7 +10319,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceId:** `Nullable<String>?` 
+**deviceId:** `String?` 
     
 </dd>
 </dl>
@@ -10217,7 +10372,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.listV1()
+    _ = try await client.tracking.devices.listV1()
 }
 
 try await main()
@@ -10280,10 +10435,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.linkToCargoV1(request: .init(
+    _ = try await client.tracking.devices.linkToCargoV1(
         deviceMacAddress: "device_mac_address",
         cargoId: "cargo_id"
-    ))
+    )
 }
 
 try await main()
@@ -10362,7 +10517,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.devices.unlinkFromCargoV1(request: .init(deviceMacAddress: "device_mac_address"))
+    _ = try await client.tracking.devices.unlinkFromCargoV1(deviceMacAddress: "device_mac_address")
 }
 
 try await main()
@@ -10434,7 +10589,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.driver.updateV1(request: .init(
+    _ = try await client.tracking.driver.updateV1(request: .init(
         taskGroupId: "task_group_id",
         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         location: LocationFeature(
@@ -10445,7 +10600,7 @@ private func main() async throws {
                         GeometryCollectionOutputGeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    LineStringCoordinatesItem.jsonArray(
+                                    LineStringCoordinatesItem.position2D(
                                         []
                                     )
                                 ]
@@ -10527,7 +10682,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.listV1()
+    _ = try await client.tracking.sessionByDevice.listV1()
 }
 
 try await main()
@@ -10590,7 +10745,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.getV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.getV1(sessionId: "session_id")
 }
 
 try await main()
@@ -10628,7 +10783,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeenV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Nullable<TrackingSessionByDeviceDataPoint1>?</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeenV1</a>(sessionId: String, requestOptions: RequestOptions?) -> TrackingSessionByDeviceDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -10661,7 +10816,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.lastSeenV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.lastSeenV1(sessionId: "session_id")
 }
 
 try await main()
@@ -10699,7 +10854,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsV1</a>(sessionId: String, limit: Nullable<Int>?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -10732,10 +10887,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.dataPointsV1(request: .init(
+    _ = try await client.tracking.sessionByDevice.dataPointsV1(
         sessionId: "session_id",
         limit: 1
-    ))
+    )
 }
 
 try await main()
@@ -10761,7 +10916,7 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Nullable<Int>?` 
+**limit:** `Int?` 
     
 </dd>
 </dl>
@@ -10814,7 +10969,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.createSessionV1(request: .init(deviceMacAddress: "device_mac_address"))
+    _ = try await client.tracking.sessionByDevice.createSessionV1(request: .init(deviceMacAddress: "device_mac_address"))
 }
 
 try await main()
@@ -10885,7 +11040,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.updateV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.updateV1(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -10956,7 +11111,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.startV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.startV1(sessionId: "session_id")
 }
 
 try await main()
@@ -11027,7 +11182,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.pauseRecordingV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.pauseRecordingV1(sessionId: "session_id")
 }
 
 try await main()
@@ -11098,7 +11253,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.resumeRecordingV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.resumeRecordingV1(sessionId: "session_id")
 }
 
 try await main()
@@ -11169,7 +11324,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.terminateV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.terminateV1(sessionId: "session_id")
 }
 
 try await main()
@@ -11240,11 +11395,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.outlierV1(request: .init(
+    _ = try await client.tracking.sessionByDevice.outlierV1(request: .init(
         trackingSessionByDeviceDataPointIds: [
             "tracking_session_by_device_data_point_ids"
         ],
-        outlier: True
+        outlier: true
     ))
 }
 
@@ -11316,7 +11471,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.deleteV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.deleteV1(sessionId: "session_id")
 }
 
 try await main()
@@ -11354,7 +11509,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeenPublicV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Nullable<TrackingSessionByDeviceDataPoint1>?</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">lastSeenPublicV1</a>(sessionId: String, requestOptions: RequestOptions?) -> TrackingSessionByDeviceDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -11387,7 +11542,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.lastSeenPublicV1(request: .init(sessionId: "session_id"))
+    _ = try await client.tracking.sessionByDevice.lastSeenPublicV1(sessionId: "session_id")
 }
 
 try await main()
@@ -11425,7 +11580,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsPublicV1</a>(sessionId: String, limit: Nullable<Int>?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.sessionByDevice.<a href="/Sources/Resources/Tracking/SessionByDevice/SessionByDeviceClient.swift">dataPointsPublicV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [TrackingSessionByDeviceDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -11458,10 +11613,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.sessionByDevice.dataPointsPublicV1(request: .init(
+    _ = try await client.tracking.sessionByDevice.dataPointsPublicV1(
         sessionId: "session_id",
         limit: 1
-    ))
+    )
 }
 
 try await main()
@@ -11487,7 +11642,7 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Nullable<Int>?` 
+**limit:** `Int?` 
     
 </dd>
 </dl>
@@ -11508,7 +11663,7 @@ try await main()
 </details>
 
 ## Tracking TaskGroupByDriver
-<details><summary><code>client.tracking.taskGroupByDriver.<a href="/Sources/Resources/Tracking/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Nullable<TrackingTaskGroupByDriverDataPoint1>?</code></summary>
+<details><summary><code>client.tracking.taskGroupByDriver.<a href="/Sources/Resources/Tracking/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TrackingTaskGroupByDriverDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -11541,7 +11696,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    try await client.tracking.taskGroupByDriver.lastSeenV1(request: .init(taskGroupId: "task_group_id"))
+    _ = try await client.tracking.taskGroupByDriver.lastSeenV1(taskGroupId: "task_group_id")
 }
 
 try await main()
@@ -11578,3 +11733,4 @@ try await main()
 </dd>
 </dl>
 </details>
+

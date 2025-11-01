@@ -3,17 +3,17 @@ import Foundation
 extension Requests {
     public struct SessionByDeviceUpdateRequest1: Codable, Hashable, Sendable {
         public let sessionId: String
-        public let comments: Nullable<String>?
+        public let comments: String?
         public let deleteComments: Bool?
-        public let `public`: Nullable<Bool>?
+        public let `public`: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             sessionId: String,
-            comments: Nullable<String>? = nil,
+            comments: String? = nil,
             deleteComments: Bool? = nil,
-            public: Nullable<Bool>? = nil,
+            public: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.sessionId = sessionId
@@ -26,9 +26,9 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.sessionId = try container.decode(String.self, forKey: .sessionId)
-            self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+            self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.deleteComments = try container.decodeIfPresent(Bool.self, forKey: .deleteComments)
-            self.public = try container.decodeNullableIfPresent(Bool.self, forKey: .public)
+            self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -36,9 +36,9 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.sessionId, forKey: .sessionId)
-            try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+            try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.deleteComments, forKey: .deleteComments)
-            try container.encodeNullableIfPresent(self.public, forKey: .public)
+            try container.encodeIfPresent(self.public, forKey: .public)
         }
 
         /// Keys for encoding/decoding struct properties.

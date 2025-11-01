@@ -5,16 +5,16 @@ public struct Device1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let deviceMacAddress: String
-    public let deviceToken: Nullable<String>?
-    public let type: Nullable<TrackingDeviceTypeEnum1>?
-    public let registeredAtTimestamp: Nullable<Date>?
-    public let firstSeenAtTimestamp: Nullable<Date>?
-    public let lastSeenAtLocation: Nullable<LocationFeature>?
-    public let lastSeenAtTimestamp: Nullable<Date>?
-    public let lastSeenBatteryLevel: Nullable<String>?
-    public let sessionId: Nullable<String>?
-    public let cargoId: Nullable<String>?
-    public let comments: Nullable<String>?
+    public let deviceToken: String?
+    public let type: TrackingDeviceTypeEnum1?
+    public let registeredAtTimestamp: Date?
+    public let firstSeenAtTimestamp: Date?
+    public let lastSeenAtLocation: LocationFeature?
+    public let lastSeenAtTimestamp: Date?
+    public let lastSeenBatteryLevel: String?
+    public let sessionId: String?
+    public let cargoId: String?
+    public let comments: String?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -23,16 +23,16 @@ public struct Device1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         orgId: String,
         deviceMacAddress: String,
-        deviceToken: Nullable<String>? = nil,
-        type: Nullable<TrackingDeviceTypeEnum1>? = nil,
-        registeredAtTimestamp: Nullable<Date>? = nil,
-        firstSeenAtTimestamp: Nullable<Date>? = nil,
-        lastSeenAtLocation: Nullable<LocationFeature>? = nil,
-        lastSeenAtTimestamp: Nullable<Date>? = nil,
-        lastSeenBatteryLevel: Nullable<String>? = nil,
-        sessionId: Nullable<String>? = nil,
-        cargoId: Nullable<String>? = nil,
-        comments: Nullable<String>? = nil,
+        deviceToken: String? = nil,
+        type: TrackingDeviceTypeEnum1? = nil,
+        registeredAtTimestamp: Date? = nil,
+        firstSeenAtTimestamp: Date? = nil,
+        lastSeenAtLocation: LocationFeature? = nil,
+        lastSeenAtTimestamp: Date? = nil,
+        lastSeenBatteryLevel: String? = nil,
+        sessionId: String? = nil,
+        cargoId: String? = nil,
+        comments: String? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -58,16 +58,16 @@ public struct Device1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.deviceMacAddress = try container.decode(String.self, forKey: .deviceMacAddress)
-        self.deviceToken = try container.decodeNullableIfPresent(String.self, forKey: .deviceToken)
-        self.type = try container.decodeNullableIfPresent(TrackingDeviceTypeEnum1.self, forKey: .type)
-        self.registeredAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .registeredAtTimestamp)
-        self.firstSeenAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .firstSeenAtTimestamp)
-        self.lastSeenAtLocation = try container.decodeNullableIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
-        self.lastSeenAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
-        self.lastSeenBatteryLevel = try container.decodeNullableIfPresent(String.self, forKey: .lastSeenBatteryLevel)
-        self.sessionId = try container.decodeNullableIfPresent(String.self, forKey: .sessionId)
-        self.cargoId = try container.decodeNullableIfPresent(String.self, forKey: .cargoId)
-        self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+        self.deviceToken = try container.decodeIfPresent(String.self, forKey: .deviceToken)
+        self.type = try container.decodeIfPresent(TrackingDeviceTypeEnum1.self, forKey: .type)
+        self.registeredAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .registeredAtTimestamp)
+        self.firstSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .firstSeenAtTimestamp)
+        self.lastSeenAtLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
+        self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
+        self.lastSeenBatteryLevel = try container.decodeIfPresent(String.self, forKey: .lastSeenBatteryLevel)
+        self.sessionId = try container.decodeIfPresent(String.self, forKey: .sessionId)
+        self.cargoId = try container.decodeIfPresent(String.self, forKey: .cargoId)
+        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -78,16 +78,16 @@ public struct Device1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encode(self.deviceMacAddress, forKey: .deviceMacAddress)
-        try container.encodeNullableIfPresent(self.deviceToken, forKey: .deviceToken)
-        try container.encodeNullableIfPresent(self.type, forKey: .type)
-        try container.encodeNullableIfPresent(self.registeredAtTimestamp, forKey: .registeredAtTimestamp)
-        try container.encodeNullableIfPresent(self.firstSeenAtTimestamp, forKey: .firstSeenAtTimestamp)
-        try container.encodeNullableIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
-        try container.encodeNullableIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
-        try container.encodeNullableIfPresent(self.lastSeenBatteryLevel, forKey: .lastSeenBatteryLevel)
-        try container.encodeNullableIfPresent(self.sessionId, forKey: .sessionId)
-        try container.encodeNullableIfPresent(self.cargoId, forKey: .cargoId)
-        try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+        try container.encodeIfPresent(self.deviceToken, forKey: .deviceToken)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.registeredAtTimestamp, forKey: .registeredAtTimestamp)
+        try container.encodeIfPresent(self.firstSeenAtTimestamp, forKey: .firstSeenAtTimestamp)
+        try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
+        try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
+        try container.encodeIfPresent(self.lastSeenBatteryLevel, forKey: .lastSeenBatteryLevel)
+        try container.encodeIfPresent(self.sessionId, forKey: .sessionId)
+        try container.encodeIfPresent(self.cargoId, forKey: .cargoId)
+        try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encode(self.id, forKey: .id)
     }
 

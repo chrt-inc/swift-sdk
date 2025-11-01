@@ -5,7 +5,7 @@ public struct TrackingSessionByDeviceDataPoint1: Codable, Hashable, Sendable {
     public let timestamp: Date
     public let metadata: TrackingSessionByDeviceDataPointMetadata1
     public let location: LocationFeature
-    public let temperature: Nullable<Double>?
+    public let temperature: Double?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -15,7 +15,7 @@ public struct TrackingSessionByDeviceDataPoint1: Codable, Hashable, Sendable {
         timestamp: Date,
         metadata: TrackingSessionByDeviceDataPointMetadata1,
         location: LocationFeature,
-        temperature: Nullable<Double>? = nil,
+        temperature: Double? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -34,7 +34,7 @@ public struct TrackingSessionByDeviceDataPoint1: Codable, Hashable, Sendable {
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)
         self.metadata = try container.decode(TrackingSessionByDeviceDataPointMetadata1.self, forKey: .metadata)
         self.location = try container.decode(LocationFeature.self, forKey: .location)
-        self.temperature = try container.decodeNullableIfPresent(Double.self, forKey: .temperature)
+        self.temperature = try container.decodeIfPresent(Double.self, forKey: .temperature)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -46,7 +46,7 @@ public struct TrackingSessionByDeviceDataPoint1: Codable, Hashable, Sendable {
         try container.encode(self.timestamp, forKey: .timestamp)
         try container.encode(self.metadata, forKey: .metadata)
         try container.encode(self.location, forKey: .location)
-        try container.encodeNullableIfPresent(self.temperature, forKey: .temperature)
+        try container.encodeIfPresent(self.temperature, forKey: .temperature)
         try container.encode(self.id, forKey: .id)
     }
 

@@ -2,20 +2,20 @@ import Foundation
 
 extension Requests {
     public struct DevicesUpdateRequest1: Codable, Hashable, Sendable {
-        public let deviceId: Nullable<String>?
-        public let deviceMacAddress: Nullable<String>?
-        public let type: Nullable<TrackingDeviceTypeEnum1>?
-        public let comments: Nullable<String>?
+        public let deviceId: String?
+        public let deviceMacAddress: String?
+        public let type: TrackingDeviceTypeEnum1?
+        public let comments: String?
         public let deleteType: Bool?
         public let deleteComments: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            deviceId: Nullable<String>? = nil,
-            deviceMacAddress: Nullable<String>? = nil,
-            type: Nullable<TrackingDeviceTypeEnum1>? = nil,
-            comments: Nullable<String>? = nil,
+            deviceId: String? = nil,
+            deviceMacAddress: String? = nil,
+            type: TrackingDeviceTypeEnum1? = nil,
+            comments: String? = nil,
             deleteType: Bool? = nil,
             deleteComments: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -31,10 +31,10 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.deviceId = try container.decodeNullableIfPresent(String.self, forKey: .deviceId)
-            self.deviceMacAddress = try container.decodeNullableIfPresent(String.self, forKey: .deviceMacAddress)
-            self.type = try container.decodeNullableIfPresent(TrackingDeviceTypeEnum1.self, forKey: .type)
-            self.comments = try container.decodeNullableIfPresent(String.self, forKey: .comments)
+            self.deviceId = try container.decodeIfPresent(String.self, forKey: .deviceId)
+            self.deviceMacAddress = try container.decodeIfPresent(String.self, forKey: .deviceMacAddress)
+            self.type = try container.decodeIfPresent(TrackingDeviceTypeEnum1.self, forKey: .type)
+            self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.deleteType = try container.decodeIfPresent(Bool.self, forKey: .deleteType)
             self.deleteComments = try container.decodeIfPresent(Bool.self, forKey: .deleteComments)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -43,10 +43,10 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeNullableIfPresent(self.deviceId, forKey: .deviceId)
-            try container.encodeNullableIfPresent(self.deviceMacAddress, forKey: .deviceMacAddress)
-            try container.encodeNullableIfPresent(self.type, forKey: .type)
-            try container.encodeNullableIfPresent(self.comments, forKey: .comments)
+            try container.encodeIfPresent(self.deviceId, forKey: .deviceId)
+            try container.encodeIfPresent(self.deviceMacAddress, forKey: .deviceMacAddress)
+            try container.encodeIfPresent(self.type, forKey: .type)
+            try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.deleteType, forKey: .deleteType)
             try container.encodeIfPresent(self.deleteComments, forKey: .deleteComments)
         }

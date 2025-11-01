@@ -5,7 +5,7 @@ public struct LineItemClientCreate1: Codable, Hashable, Sendable {
     public let item: LineItemEnum1
     public let quantity: Double
     public let rate: Double
-    public let comment: Nullable<String>?
+    public let comment: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -14,7 +14,7 @@ public struct LineItemClientCreate1: Codable, Hashable, Sendable {
         item: LineItemEnum1,
         quantity: Double,
         rate: Double,
-        comment: Nullable<String>? = nil,
+        comment: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -31,7 +31,7 @@ public struct LineItemClientCreate1: Codable, Hashable, Sendable {
         self.item = try container.decode(LineItemEnum1.self, forKey: .item)
         self.quantity = try container.decode(Double.self, forKey: .quantity)
         self.rate = try container.decode(Double.self, forKey: .rate)
-        self.comment = try container.decodeNullableIfPresent(String.self, forKey: .comment)
+        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -42,7 +42,7 @@ public struct LineItemClientCreate1: Codable, Hashable, Sendable {
         try container.encode(self.item, forKey: .item)
         try container.encode(self.quantity, forKey: .quantity)
         try container.encode(self.rate, forKey: .rate)
-        try container.encodeNullableIfPresent(self.comment, forKey: .comment)
+        try container.encodeIfPresent(self.comment, forKey: .comment)
     }
 
     /// Keys for encoding/decoding struct properties.

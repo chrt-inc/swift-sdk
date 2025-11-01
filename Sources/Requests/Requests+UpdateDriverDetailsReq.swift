@@ -3,21 +3,21 @@ import Foundation
 extension Requests {
     public struct UpdateDriverDetailsReq: Codable, Hashable, Sendable {
         public let driverObjectId: String
-        public let emailAddressPrimary: Nullable<String>?
-        public let emailAddressSecondary: Nullable<String>?
-        public let phoneNumberPrimary: Nullable<String>?
-        public let phoneNumberSecondary: Nullable<String>?
-        public let vehicleTypes: Nullable<[VehicleTypeEnum]>?
+        public let emailAddressPrimary: String?
+        public let emailAddressSecondary: String?
+        public let phoneNumberPrimary: String?
+        public let phoneNumberSecondary: String?
+        public let vehicleTypes: [VehicleTypeEnum]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             driverObjectId: String,
-            emailAddressPrimary: Nullable<String>? = nil,
-            emailAddressSecondary: Nullable<String>? = nil,
-            phoneNumberPrimary: Nullable<String>? = nil,
-            phoneNumberSecondary: Nullable<String>? = nil,
-            vehicleTypes: Nullable<[VehicleTypeEnum]>? = nil,
+            emailAddressPrimary: String? = nil,
+            emailAddressSecondary: String? = nil,
+            phoneNumberPrimary: String? = nil,
+            phoneNumberSecondary: String? = nil,
+            vehicleTypes: [VehicleTypeEnum]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.driverObjectId = driverObjectId
@@ -32,11 +32,11 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.driverObjectId = try container.decode(String.self, forKey: .driverObjectId)
-            self.emailAddressPrimary = try container.decodeNullableIfPresent(String.self, forKey: .emailAddressPrimary)
-            self.emailAddressSecondary = try container.decodeNullableIfPresent(String.self, forKey: .emailAddressSecondary)
-            self.phoneNumberPrimary = try container.decodeNullableIfPresent(String.self, forKey: .phoneNumberPrimary)
-            self.phoneNumberSecondary = try container.decodeNullableIfPresent(String.self, forKey: .phoneNumberSecondary)
-            self.vehicleTypes = try container.decodeNullableIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
+            self.emailAddressPrimary = try container.decodeIfPresent(String.self, forKey: .emailAddressPrimary)
+            self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
+            self.phoneNumberPrimary = try container.decodeIfPresent(String.self, forKey: .phoneNumberPrimary)
+            self.phoneNumberSecondary = try container.decodeIfPresent(String.self, forKey: .phoneNumberSecondary)
+            self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -44,11 +44,11 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.driverObjectId, forKey: .driverObjectId)
-            try container.encodeNullableIfPresent(self.emailAddressPrimary, forKey: .emailAddressPrimary)
-            try container.encodeNullableIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
-            try container.encodeNullableIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
-            try container.encodeNullableIfPresent(self.phoneNumberSecondary, forKey: .phoneNumberSecondary)
-            try container.encodeNullableIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encodeIfPresent(self.emailAddressPrimary, forKey: .emailAddressPrimary)
+            try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
+            try container.encodeIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
+            try container.encodeIfPresent(self.phoneNumberSecondary, forKey: .phoneNumberSecondary)
+            try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
         }
 
         /// Keys for encoding/decoding struct properties.

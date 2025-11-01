@@ -4,7 +4,7 @@ public final class ConnectionsClient: Sendable {
     public let connectionToCourier: ConnectionToCourierClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.connectionToCourier = ConnectionToCourierClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }

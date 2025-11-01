@@ -3,14 +3,14 @@ import Foundation
 extension Requests {
     public struct UpdateTaskGroupReq: Codable, Hashable, Sendable {
         public let taskGroupId: String
-        public let setDriverId: Nullable<String>?
+        public let setDriverId: String?
         public let removeDriver: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             taskGroupId: String,
-            setDriverId: Nullable<String>? = nil,
+            setDriverId: String? = nil,
             removeDriver: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -23,7 +23,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-            self.setDriverId = try container.decodeNullableIfPresent(String.self, forKey: .setDriverId)
+            self.setDriverId = try container.decodeIfPresent(String.self, forKey: .setDriverId)
             self.removeDriver = try container.decodeIfPresent(Bool.self, forKey: .removeDriver)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
@@ -32,7 +32,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.taskGroupId, forKey: .taskGroupId)
-            try container.encodeNullableIfPresent(self.setDriverId, forKey: .setDriverId)
+            try container.encodeIfPresent(self.setDriverId, forKey: .setDriverId)
             try container.encodeIfPresent(self.removeDriver, forKey: .removeDriver)
         }
 

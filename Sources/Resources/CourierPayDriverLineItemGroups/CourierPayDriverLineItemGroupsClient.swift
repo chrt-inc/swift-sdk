@@ -5,7 +5,7 @@ public final class CourierPayDriverLineItemGroupsClient: Sendable {
     public let removeLineItems: RemoveLineItemsClient
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.addLineItems = AddLineItemsClient(config: config)
         self.removeLineItems = RemoveLineItemsClient(config: config)
         self.httpClient = HTTPClient(config: config)

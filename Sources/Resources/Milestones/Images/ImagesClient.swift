@@ -3,21 +3,22 @@ import Foundation
 public final class ImagesClient: Sendable {
     private let httpClient: HTTPClient
 
-    public init(config: ClientConfig) {
+    init(config: ClientConfig) {
         self.httpClient = HTTPClient(config: config)
     }
 
     /// Uploads an image file to a milestone with automatic blurhash generation.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func uploadByMilestoneIdV1(milestoneId: String, comments: Nullable<String>? = nil, request: any Codable, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func uploadByMilestoneIdV1(milestoneId: String, comments: String? = nil, request: Requests.BodyPostMilestonesUploadImageV1OortMilestonesImagesUploadV1MilestoneIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/milestones/images/upload/v1/\(milestoneId)",
+            contentType: .multipartFormData,
             queryParams: [
-                "comments": comments?.wrappedValue.map { .string($0) }
+                "comments": comments.map { .string($0) }
             ],
-            body: request,
+            body: request.asMultipartFormData(),
             requestOptions: requestOptions,
             responseType: Bool.self
         )

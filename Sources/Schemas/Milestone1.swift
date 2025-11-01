@@ -3,49 +3,49 @@ import Foundation
 public struct Milestone1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let type: MilestoneTypeEnum1
-    public let requestorComments: Nullable<String>?
+    public let requestorComments: String?
     public let id: String
     public let orderId: String
     public let orderShortId: String
     public let taskId: String
-    public let completedAtTimestamp: Nullable<Date>?
-    public let completedAtGeojsonFeature: Nullable<LocationFeature>?
+    public let completedAtTimestamp: Date?
+    public let completedAtGeojsonFeature: LocationFeature?
     /// Must be a string starting with `user_`
-    public let completedByUserId: Nullable<String>?
+    public let completedByUserId: String?
     public let completed: Bool
     public let milestoneS3ObjectMetadataIds: [String]?
     public let decodedScans: [String]?
     public let requestedByShipper: Bool
-    public let completorComments: Nullable<String>?
-    public let chrtComments: Nullable<String>?
-    public let notificationEmailIds: Nullable<[String]>?
-    public let notificationSmsIds: Nullable<[String]>?
-    public let notificationPushIds: Nullable<[String]>?
-    public let notificationVoiceIds: Nullable<[String]>?
+    public let completorComments: String?
+    public let chrtComments: String?
+    public let notificationEmailIds: [String]?
+    public let notificationSmsIds: [String]?
+    public let notificationPushIds: [String]?
+    public let notificationVoiceIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         schemaVersion: Int,
         type: MilestoneTypeEnum1,
-        requestorComments: Nullable<String>? = nil,
+        requestorComments: String? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
         taskId: String,
-        completedAtTimestamp: Nullable<Date>? = nil,
-        completedAtGeojsonFeature: Nullable<LocationFeature>? = nil,
-        completedByUserId: Nullable<String>? = nil,
+        completedAtTimestamp: Date? = nil,
+        completedAtGeojsonFeature: LocationFeature? = nil,
+        completedByUserId: String? = nil,
         completed: Bool,
         milestoneS3ObjectMetadataIds: [String]? = nil,
         decodedScans: [String]? = nil,
         requestedByShipper: Bool,
-        completorComments: Nullable<String>? = nil,
-        chrtComments: Nullable<String>? = nil,
-        notificationEmailIds: Nullable<[String]>? = nil,
-        notificationSmsIds: Nullable<[String]>? = nil,
-        notificationPushIds: Nullable<[String]>? = nil,
-        notificationVoiceIds: Nullable<[String]>? = nil,
+        completorComments: String? = nil,
+        chrtComments: String? = nil,
+        notificationEmailIds: [String]? = nil,
+        notificationSmsIds: [String]? = nil,
+        notificationPushIds: [String]? = nil,
+        notificationVoiceIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -75,24 +75,24 @@ public struct Milestone1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.type = try container.decode(MilestoneTypeEnum1.self, forKey: .type)
-        self.requestorComments = try container.decodeNullableIfPresent(String.self, forKey: .requestorComments)
+        self.requestorComments = try container.decodeIfPresent(String.self, forKey: .requestorComments)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
-        self.completedAtTimestamp = try container.decodeNullableIfPresent(Date.self, forKey: .completedAtTimestamp)
-        self.completedAtGeojsonFeature = try container.decodeNullableIfPresent(LocationFeature.self, forKey: .completedAtGeojsonFeature)
-        self.completedByUserId = try container.decodeNullableIfPresent(String.self, forKey: .completedByUserId)
+        self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.completedAtGeojsonFeature = try container.decodeIfPresent(LocationFeature.self, forKey: .completedAtGeojsonFeature)
+        self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
         self.completed = try container.decode(Bool.self, forKey: .completed)
         self.milestoneS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .milestoneS3ObjectMetadataIds)
         self.decodedScans = try container.decodeIfPresent([String].self, forKey: .decodedScans)
         self.requestedByShipper = try container.decode(Bool.self, forKey: .requestedByShipper)
-        self.completorComments = try container.decodeNullableIfPresent(String.self, forKey: .completorComments)
-        self.chrtComments = try container.decodeNullableIfPresent(String.self, forKey: .chrtComments)
-        self.notificationEmailIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationEmailIds)
-        self.notificationSmsIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationSmsIds)
-        self.notificationPushIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationPushIds)
-        self.notificationVoiceIds = try container.decodeNullableIfPresent([String].self, forKey: .notificationVoiceIds)
+        self.completorComments = try container.decodeIfPresent(String.self, forKey: .completorComments)
+        self.chrtComments = try container.decodeIfPresent(String.self, forKey: .chrtComments)
+        self.notificationEmailIds = try container.decodeIfPresent([String].self, forKey: .notificationEmailIds)
+        self.notificationSmsIds = try container.decodeIfPresent([String].self, forKey: .notificationSmsIds)
+        self.notificationPushIds = try container.decodeIfPresent([String].self, forKey: .notificationPushIds)
+        self.notificationVoiceIds = try container.decodeIfPresent([String].self, forKey: .notificationVoiceIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -101,24 +101,24 @@ public struct Milestone1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.type, forKey: .type)
-        try container.encodeNullableIfPresent(self.requestorComments, forKey: .requestorComments)
+        try container.encodeIfPresent(self.requestorComments, forKey: .requestorComments)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.taskId, forKey: .taskId)
-        try container.encodeNullableIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
-        try container.encodeNullableIfPresent(self.completedAtGeojsonFeature, forKey: .completedAtGeojsonFeature)
-        try container.encodeNullableIfPresent(self.completedByUserId, forKey: .completedByUserId)
+        try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.completedAtGeojsonFeature, forKey: .completedAtGeojsonFeature)
+        try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
         try container.encode(self.completed, forKey: .completed)
         try container.encodeIfPresent(self.milestoneS3ObjectMetadataIds, forKey: .milestoneS3ObjectMetadataIds)
         try container.encodeIfPresent(self.decodedScans, forKey: .decodedScans)
         try container.encode(self.requestedByShipper, forKey: .requestedByShipper)
-        try container.encodeNullableIfPresent(self.completorComments, forKey: .completorComments)
-        try container.encodeNullableIfPresent(self.chrtComments, forKey: .chrtComments)
-        try container.encodeNullableIfPresent(self.notificationEmailIds, forKey: .notificationEmailIds)
-        try container.encodeNullableIfPresent(self.notificationSmsIds, forKey: .notificationSmsIds)
-        try container.encodeNullableIfPresent(self.notificationPushIds, forKey: .notificationPushIds)
-        try container.encodeNullableIfPresent(self.notificationVoiceIds, forKey: .notificationVoiceIds)
+        try container.encodeIfPresent(self.completorComments, forKey: .completorComments)
+        try container.encodeIfPresent(self.chrtComments, forKey: .chrtComments)
+        try container.encodeIfPresent(self.notificationEmailIds, forKey: .notificationEmailIds)
+        try container.encodeIfPresent(self.notificationSmsIds, forKey: .notificationSmsIds)
+        try container.encodeIfPresent(self.notificationPushIds, forKey: .notificationPushIds)
+        try container.encodeIfPresent(self.notificationVoiceIds, forKey: .notificationVoiceIds)
     }
 
     /// Keys for encoding/decoding struct properties.

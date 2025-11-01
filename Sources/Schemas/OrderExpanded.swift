@@ -3,13 +3,13 @@ import Foundation
 /// Single order with optional expanded data
 public struct OrderExpanded: Codable, Hashable, Sendable {
     public let order: Order1
-    public let taskGroupsExpanded: Nullable<[TaskGroupExpanded]>?
+    public let taskGroupsExpanded: [TaskGroupExpanded]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         order: Order1,
-        taskGroupsExpanded: Nullable<[TaskGroupExpanded]>? = nil,
+        taskGroupsExpanded: [TaskGroupExpanded]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.order = order
@@ -20,7 +20,7 @@ public struct OrderExpanded: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.order = try container.decode(Order1.self, forKey: .order)
-        self.taskGroupsExpanded = try container.decodeNullableIfPresent([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
+        self.taskGroupsExpanded = try container.decodeIfPresent([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -28,7 +28,7 @@ public struct OrderExpanded: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.order, forKey: .order)
-        try container.encodeNullableIfPresent(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
+        try container.encodeIfPresent(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
     }
 
     /// Keys for encoding/decoding struct properties.

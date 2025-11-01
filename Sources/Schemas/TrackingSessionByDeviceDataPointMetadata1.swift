@@ -2,17 +2,17 @@ import Foundation
 
 public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
     public let sessionId: String
-    public let outlier: Nullable<Bool>?
-    public let outlierLabeller: Nullable<OutlierLabellerEnum>?
-    public let pytest: Nullable<Bool>?
+    public let outlier: Bool?
+    public let outlierLabeller: OutlierLabellerEnum?
+    public let pytest: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         sessionId: String,
-        outlier: Nullable<Bool>? = nil,
-        outlierLabeller: Nullable<OutlierLabellerEnum>? = nil,
-        pytest: Nullable<Bool>? = nil,
+        outlier: Bool? = nil,
+        outlierLabeller: OutlierLabellerEnum? = nil,
+        pytest: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.sessionId = sessionId
@@ -25,9 +25,9 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.sessionId = try container.decode(String.self, forKey: .sessionId)
-        self.outlier = try container.decodeNullableIfPresent(Bool.self, forKey: .outlier)
-        self.outlierLabeller = try container.decodeNullableIfPresent(OutlierLabellerEnum.self, forKey: .outlierLabeller)
-        self.pytest = try container.decodeNullableIfPresent(Bool.self, forKey: .pytest)
+        self.outlier = try container.decodeIfPresent(Bool.self, forKey: .outlier)
+        self.outlierLabeller = try container.decodeIfPresent(OutlierLabellerEnum.self, forKey: .outlierLabeller)
+        self.pytest = try container.decodeIfPresent(Bool.self, forKey: .pytest)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -35,9 +35,9 @@ public struct TrackingSessionByDeviceDataPointMetadata1: Codable, Hashable, Send
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.sessionId, forKey: .sessionId)
-        try container.encodeNullableIfPresent(self.outlier, forKey: .outlier)
-        try container.encodeNullableIfPresent(self.outlierLabeller, forKey: .outlierLabeller)
-        try container.encodeNullableIfPresent(self.pytest, forKey: .pytest)
+        try container.encodeIfPresent(self.outlier, forKey: .outlier)
+        try container.encodeIfPresent(self.outlierLabeller, forKey: .outlierLabeller)
+        try container.encodeIfPresent(self.pytest, forKey: .pytest)
     }
 
     /// Keys for encoding/decoding struct properties.
