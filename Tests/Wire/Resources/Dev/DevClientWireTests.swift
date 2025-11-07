@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("DevClient Wire Tests") struct DevClientWireTests {
     @Test func getAgentV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -18,12 +18,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.dev.getAgentV1()
+        let response = try await client.dev.getAgentV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getUserIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -37,12 +37,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.dev.getUserIdV1()
+        let response = try await client.dev.getUserIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getUserIdV21() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -56,12 +56,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.dev.getUserIdV2()
+        let response = try await client.dev.getUserIdV2(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getDecodedJwtV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -125,12 +125,12 @@ import Chrt
             userId: "user_id",
             orgId: "org_id"
         )
-        let response = try await client.dev.getDecodedJwtV1()
+        let response = try await client.dev.getDecodedJwtV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getEmailV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -144,12 +144,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.dev.getEmailV1()
+        let response = try await client.dev.getEmailV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getDurableV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -167,12 +167,12 @@ import Chrt
         let expectedResponse = [
             "key": JSONValue.string("value")
         ]
-        let response = try await client.dev.getDurableV1()
+        let response = try await client.dev.getDurableV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getTemplateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -186,12 +186,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.dev.getTemplateV1()
+        let response = try await client.dev.getTemplateV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createTemplateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -213,16 +213,19 @@ import Chrt
             number: 1,
             timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
-        let response = try await client.dev.createTemplateV1(request: .init(
-            message: "message",
-            number: 1,
-            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-        ))
+        let response = try await client.dev.createTemplateV1(
+            request: .init(
+                message: "message",
+                number: 1,
+                timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getGitInfoV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -240,7 +243,7 @@ import Chrt
         let expectedResponse = [
             "key": "value"
         ]
-        let response = try await client.dev.getGitInfoV1()
+        let response = try await client.dev.getGitInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ConnectionToCourierClient Wire Tests") struct ConnectionToCourierClientWireTests {
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -18,7 +18,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.connections.connectionToCourier.createV1(request: .init(handle: "handle"))
+        let response = try await client.connections.connectionToCourier.createV1(
+            request: .init(handle: "handle"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

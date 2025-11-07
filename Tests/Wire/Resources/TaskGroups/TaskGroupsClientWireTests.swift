@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("TaskGroupsClient Wire Tests") struct TaskGroupsClientWireTests {
     @Test func updateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -22,12 +22,15 @@ import Chrt
         let expectedResponse = UpdateTaskGroupRes(
             success: true
         )
-        let response = try await client.taskGroups.updateV1(request: .init(taskGroupId: "task_group_id"))
+        let response = try await client.taskGroups.updateV1(
+            request: .init(taskGroupId: "task_group_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func startV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -41,12 +44,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.taskGroups.startV1(id: "id")
+        let response = try await client.taskGroups.startV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func togglePauseV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -65,7 +71,8 @@ import Chrt
             request: .init(
                 taskGroupId: "task_group_id",
                 paused: true
-            )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

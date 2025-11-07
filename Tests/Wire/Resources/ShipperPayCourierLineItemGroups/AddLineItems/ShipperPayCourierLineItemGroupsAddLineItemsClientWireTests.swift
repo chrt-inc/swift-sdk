@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperPayCourierLineItemGroupsAddLineItemsClient Wire Tests") struct ShipperPayCourierLineItemGroupsAddLineItemsClientWireTests {
     @Test func byIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -67,7 +67,8 @@ import Chrt
                     quantity: 1.1,
                     rate: 1.1
                 )
-            ])
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

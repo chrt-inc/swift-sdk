@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ConnectionsClient Wire Tests") struct ConnectionsClientWireTests {
     @Test func listShippersV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -96,12 +96,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.connections.listShippersV1()
+        let response = try await client.connections.listShippersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listCouriersV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -193,7 +193,7 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.connections.listCouriersV1()
+        let response = try await client.connections.listCouriersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

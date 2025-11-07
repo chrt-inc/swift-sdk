@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("RemoveLineItemsClient Wire Tests") struct RemoveLineItemsClientWireTests {
     @Test func byIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -60,7 +60,8 @@ import Chrt
             id: "id",
             request: .init(lineItemUuidStrs: [
                 "line_item_uuid_strs"
-            ])
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

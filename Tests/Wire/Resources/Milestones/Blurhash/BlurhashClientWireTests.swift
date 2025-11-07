@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("BlurhashClient Wire Tests") struct BlurhashClientWireTests {
     @Test func getByMetadataIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -18,7 +18,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.milestones.blurhash.getByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
+        let response = try await client.milestones.blurhash.getByMetadataIdV1(
+            milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

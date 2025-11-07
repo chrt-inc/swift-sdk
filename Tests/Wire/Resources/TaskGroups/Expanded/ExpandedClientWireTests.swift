@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ExpandedClient Wire Tests") struct ExpandedClientWireTests {
     @Test func forCourierAdministratorByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -448,13 +448,14 @@ import Chrt
             id: "id",
             request: TaskGroupExpandedForCourierAdministratorReq(
 
-            )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func forCourierDriverByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -898,13 +899,14 @@ import Chrt
             id: "id",
             request: TaskGroupExpandedForCourierDriverReq(
 
-            )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func forShipperByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -1356,7 +1358,8 @@ import Chrt
         )
         let response = try await client.taskGroups.expanded.forShipperByIdV1(
             id: "id",
-            request: .init()
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

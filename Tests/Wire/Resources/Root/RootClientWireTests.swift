@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("RootClient Wire Tests") struct RootClientWireTests {
     @Test func pingAuthd1() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -22,12 +22,12 @@ import Chrt
         let expectedResponse = [
             "key": "value"
         ]
-        let response = try await client.root.pingAuthd()
+        let response = try await client.root.pingAuthd(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func pingOptionallyAuthd1() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -47,12 +47,12 @@ import Chrt
                 "key": JSONValue.string("value")
             ]
         )
-        let response = try await client.root.pingOptionallyAuthd()
+        let response = try await client.root.pingOptionallyAuthd(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func pingUnauthd1() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -72,12 +72,12 @@ import Chrt
                 "key": JSONValue.string("value")
             ]
         )
-        let response = try await client.root.pingUnauthd()
+        let response = try await client.root.pingUnauthd(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func health1() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -97,12 +97,12 @@ import Chrt
                 "key": JSONValue.string("value")
             ]
         )
-        let response = try await client.root.health()
+        let response = try await client.root.health(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func failure1() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -122,7 +122,7 @@ import Chrt
                 "key": JSONValue.string("value")
             ]
         )
-        let response = try await client.root.failure()
+        let response = try await client.root.failure(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

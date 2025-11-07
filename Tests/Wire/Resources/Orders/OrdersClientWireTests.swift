@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("OrdersClient Wire Tests") struct OrdersClientWireTests {
     @Test func getByOrderIdOrShortIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -86,12 +86,15 @@ import Chrt
                 orderCancelled: Optional(true)
             )
         )
-        let response = try await client.orders.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+        let response = try await client.orders.getByOrderIdOrShortIdV1(
+            orderIdOrShortId: "order_id_or_short_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func cancelByOrderIdOrShortIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -105,12 +108,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orders.cancelByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+        let response = try await client.orders.cancelByOrderIdOrShortIdV1(
+            orderIdOrShortId: "order_id_or_short_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -130,34 +136,37 @@ import Chrt
             orderId: "order_id",
             orderShortId: "order_short_id"
         )
-        let response = try await client.orders.createV1(request: .init(
-            orderClientCreate: OrderClientCreate1(
-                schemaVersion: 1
-            ),
-            taskClientCreatesBundleGroupings: [
-                [
-                    TaskCreateBundle(
-                        taskClientCreate: TaskClientCreate1(
-                            schemaVersion: 1
+        let response = try await client.orders.createV1(
+            request: .init(
+                orderClientCreate: OrderClientCreate1(
+                    schemaVersion: 1
+                ),
+                taskClientCreatesBundleGroupings: [
+                    [
+                        TaskCreateBundle(
+                            taskClientCreate: TaskClientCreate1(
+                                schemaVersion: 1
+                            )
                         )
+                    ]
+                ],
+                cargoClientCreatesMap: [
+                    "key": CargoClientCreate1(
+                        schemaVersion: 1,
+                        cargoType: .spareParts
                     )
-                ]
-            ],
-            cargoClientCreatesMap: [
-                "key": CargoClientCreate1(
-                    schemaVersion: 1,
-                    cargoType: .spareParts
-                )
-            ],
-            orderCreatedByType: .chrt,
-            orderDispatchType: .dtc,
-            transportType: .groundOnly
-        ))
+                ],
+                orderCreatedByType: .chrt,
+                orderDispatchType: .dtc,
+                transportType: .groundOnly
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func postExpandedV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -285,12 +294,15 @@ import Chrt
                 ])
             )
         )
-        let response = try await client.orders.postExpandedV1(request: .init(orderIdOrShortId: "order_id_or_short_id"))
+        let response = try await client.orders.postExpandedV1(
+            request: .init(orderIdOrShortId: "order_id_or_short_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func listByShipperOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -372,12 +384,12 @@ import Chrt
                 orderCancelled: Optional(true)
             )
         ]
-        let response = try await client.orders.listByShipperOrgIdV1()
+        let response = try await client.orders.listByShipperOrgIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listByCourierOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -459,7 +471,7 @@ import Chrt
                 orderCancelled: Optional(true)
             )
         ]
-        let response = try await client.orders.listByCourierOrgIdV1()
+        let response = try await client.orders.listByCourierOrgIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

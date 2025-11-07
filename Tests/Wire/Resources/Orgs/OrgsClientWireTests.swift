@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("OrgsClient Wire Tests") struct OrgsClientWireTests {
     @Test func getInfoV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -24,12 +24,12 @@ import Chrt
                 "key": JSONValue.string("value")
             ]
         )
-        let response = try await client.orgs.getInfoV1()
+        let response = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listMembersV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -59,12 +59,12 @@ import Chrt
                 lastName: Optional("last_name")
             )
         ]
-        let response = try await client.orgs.listMembersV1()
+        let response = try await client.orgs.listMembersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getPublicDataV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -110,12 +110,12 @@ import Chrt
             autoApproveShipperToCourierConnectionRequests: Optional(true),
             id: "_id"
         )
-        let response = try await client.orgs.getPublicDataV1()
+        let response = try await client.orgs.getPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getPublicDataByOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -161,12 +161,15 @@ import Chrt
             autoApproveShipperToCourierConnectionRequests: Optional(true),
             id: "_id"
         )
-        let response = try await client.orgs.getPublicDataByOrgIdV1(orgId: "org_id")
+        let response = try await client.orgs.getPublicDataByOrgIdV1(
+            orgId: "org_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getHandleV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -180,12 +183,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgs.getHandleV1()
+        let response = try await client.orgs.getHandleV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getHandleAvailabilityV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -199,12 +202,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.getHandleAvailabilityV1(handle: "handle")
+        let response = try await client.orgs.getHandleAvailabilityV1(
+            handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func createPublicDataV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -218,15 +224,18 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgs.createPublicDataV1(request: .init(
-            handle: "handle",
-            companyName: "company_name"
-        ))
+        let response = try await client.orgs.createPublicDataV1(
+            request: .init(
+                handle: "handle",
+                companyName: "company_name"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updatePublicDataV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -240,7 +249,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.updatePublicDataV1(request: .init())
+        let response = try await client.orgs.updatePublicDataV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

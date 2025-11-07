@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("DriversClient Wire Tests") struct DriversClientWireTests {
     @Test func listOrgMembersAndDriversV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -108,12 +108,12 @@ import Chrt
                 ))
             )
         ]
-        let response = try await client.drivers.listOrgMembersAndDriversV1()
+        let response = try await client.drivers.listOrgMembersAndDriversV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -211,12 +211,12 @@ import Chrt
                 userId: "user_id"
             )
         ]
-        let response = try await client.drivers.listV1()
+        let response = try await client.drivers.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -230,15 +230,18 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.drivers.createV1(request: .init(orgMember: OrgMemberDetails(
-            role: "role",
-            userId: "user_id"
-        )))
+        let response = try await client.drivers.createV1(
+            request: .init(orgMember: OrgMemberDetails(
+                role: "role",
+                userId: "user_id"
+            )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -344,12 +347,12 @@ import Chrt
             orgId: "org_id",
             userId: "user_id"
         )
-        let response = try await client.drivers.getV1()
+        let response = try await client.drivers.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getByDriverIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -455,12 +458,15 @@ import Chrt
             orgId: "org_id",
             userId: "user_id"
         )
-        let response = try await client.drivers.getByDriverIdV1(driverId: "driver_id")
+        let response = try await client.drivers.getByDriverIdV1(
+            driverId: "driver_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -474,12 +480,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.drivers.deleteV1(driverId: "driver_id")
+        let response = try await client.drivers.deleteV1(
+            driverId: "driver_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func setActivationV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -493,15 +502,18 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.drivers.setActivationV1(request: .init(
-            driverObjectId: "driver_object_id",
-            active: true
-        ))
+        let response = try await client.drivers.setActivationV1(
+            request: .init(
+                driverObjectId: "driver_object_id",
+                active: true
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func lastSeenV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -515,29 +527,32 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.drivers.lastSeenV1(request: .init(location: LocationFeature(
-            type: .feature,
-            geometry: Geometry.geometryCollection(
-                .init(
-                    geometries: [
-                        GeometryCollectionOutputGeometriesItem.lineString(
-                            .init(
-                                coordinates: [
-                                    LineStringCoordinatesItem.position2D(
-                                        []
-                                    )
-                                ]
+        let response = try await client.drivers.lastSeenV1(
+            request: .init(location: LocationFeature(
+                type: .feature,
+                geometry: Geometry.geometryCollection(
+                    .init(
+                        geometries: [
+                            GeometryCollectionOutputGeometriesItem.lineString(
+                                .init(
+                                    coordinates: [
+                                        LineStringCoordinatesItem.position2D(
+                                            []
+                                        )
+                                    ]
+                                )
                             )
-                        )
-                    ]
+                        ]
+                    )
                 )
-            )
-        )))
+            )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func lastSeenClearV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -551,12 +566,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.drivers.lastSeenClearV1()
+        let response = try await client.drivers.lastSeenClearV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func updateDriverV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -570,7 +585,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.drivers.updateDriverV1(request: .init(driverObjectId: "driver_object_id"))
+        let response = try await client.drivers.updateDriverV1(
+            request: .init(driverObjectId: "driver_object_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

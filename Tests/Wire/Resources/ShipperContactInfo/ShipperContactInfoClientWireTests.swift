@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperContactInfoClient Wire Tests") struct ShipperContactInfoClientWireTests {
     @Test func getByJwtUserIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -112,12 +112,12 @@ import Chrt
             createdByUserId: "created_by_user_id",
             id: "_id"
         )
-        let response = try await client.shipperContactInfo.getByJwtUserIdV1()
+        let response = try await client.shipperContactInfo.getByJwtUserIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listByJwtOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -217,12 +217,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.shipperContactInfo.listByJwtOrgIdV1()
+        let response = try await client.shipperContactInfo.listByJwtOrgIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listCourierContactsByShipperOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -322,12 +322,15 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.shipperContactInfo.listCourierContactsByShipperOrgIdV1(shipperOrgId: "shipper_org_id")
+        let response = try await client.shipperContactInfo.listCourierContactsByShipperOrgIdV1(
+            shipperOrgId: "shipper_org_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func listByOffChrtShipperOrgInfoIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -427,12 +430,15 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.shipperContactInfo.listByOffChrtShipperOrgInfoIdV1(offChrtShipperOrgInfoId: "off_chrt_shipper_org_info_id")
+        let response = try await client.shipperContactInfo.listByOffChrtShipperOrgInfoIdV1(
+            offChrtShipperOrgInfoId: "off_chrt_shipper_org_info_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -540,12 +546,15 @@ import Chrt
             createdByUserId: "created_by_user_id",
             id: "_id"
         )
-        let response = try await client.shipperContactInfo.getByIdV1(id: "id")
+        let response = try await client.shipperContactInfo.getByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func createOnPlatformV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -559,14 +568,17 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.shipperContactInfo.createOnPlatformV1(request: ShipperContactInfoClientCreate1(
-            schemaVersion: 1
-        ))
+        let response = try await client.shipperContactInfo.createOnPlatformV1(
+            request: ShipperContactInfoClientCreate1(
+                schemaVersion: 1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func createOffPlatformV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -580,14 +592,17 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.shipperContactInfo.createOffPlatformV1(request: ShipperContactInfoClientCreate1(
-            schemaVersion: 1
-        ))
+        let response = try await client.shipperContactInfo.createOffPlatformV1(
+            request: ShipperContactInfoClientCreate1(
+                schemaVersion: 1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -603,13 +618,14 @@ import Chrt
         let expectedResponse = true
         let response = try await client.shipperContactInfo.updateV1(
             shipperContactInfoId: "shipper_contact_info_id",
-            request: .init()
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -623,7 +639,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipperContactInfo.deleteByIdV1(id: "id")
+        let response = try await client.shipperContactInfo.deleteByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperPayCourierPaymentsClient Wire Tests") struct ShipperPayCourierPaymentsClientWireTests {
     @Test func getByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -58,12 +58,15 @@ import Chrt
             stripeInvoiceCompletedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
         )
-        let response = try await client.shipperPayCourierPayments.getByIdV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
+        let response = try await client.shipperPayCourierPayments.getByIdV1(
+            shipperPayCourierPaymentId: "shipper_pay_courier_payment_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -77,12 +80,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipperPayCourierPayments.deleteV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
+        let response = try await client.shipperPayCourierPayments.deleteV1(
+            shipperPayCourierPaymentId: "shipper_pay_courier_payment_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getByOrderIdOrShortIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -136,12 +142,15 @@ import Chrt
             stripeInvoiceCompletedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
         )
-        let response = try await client.shipperPayCourierPayments.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+        let response = try await client.shipperPayCourierPayments.getByOrderIdOrShortIdV1(
+            orderIdOrShortId: "order_id_or_short_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func listByShipperOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -203,14 +212,17 @@ import Chrt
                 )
             ]
         )
-        let response = try await client.shipperPayCourierPayments.listByShipperOrgIdV1(request: .init(statuses: [
-            .invoiceNotYetCreated
-        ]))
+        let response = try await client.shipperPayCourierPayments.listByShipperOrgIdV1(
+            request: .init(statuses: [
+                .invoiceNotYetCreated
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func listByCourierOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -272,14 +284,17 @@ import Chrt
                 )
             ]
         )
-        let response = try await client.shipperPayCourierPayments.listByCourierOrgIdV1(request: .init(statuses: [
-            .invoiceNotYetCreated
-        ]))
+        let response = try await client.shipperPayCourierPayments.listByCourierOrgIdV1(
+            request: .init(statuses: [
+                .invoiceNotYetCreated
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -293,14 +308,17 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.shipperPayCourierPayments.createV1(request: CreateShipperPayCourierPaymentReq(
-            orderIdOrShortId: "order_id_or_short_id"
-        ))
+        let response = try await client.shipperPayCourierPayments.createV1(
+            request: CreateShipperPayCourierPaymentReq(
+                orderIdOrShortId: "order_id_or_short_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func previewV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -406,9 +424,12 @@ import Chrt
             totalAmount: 1.1,
             paymentReady: true
         )
-        let response = try await client.shipperPayCourierPayments.previewV1(request: CreateShipperPayCourierPaymentReq(
-            orderIdOrShortId: "order_id_or_short_id"
-        ))
+        let response = try await client.shipperPayCourierPayments.previewV1(
+            request: CreateShipperPayCourierPaymentReq(
+                orderIdOrShortId: "order_id_or_short_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

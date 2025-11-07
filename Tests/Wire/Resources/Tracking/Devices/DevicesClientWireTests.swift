@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("DevicesClient Wire Tests") struct DevicesClientWireTests {
     @Test func registerToOrgV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -18,12 +18,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.tracking.devices.registerToOrgV1(request: .init(deviceMacAddress: "device_mac_address"))
+        let response = try await client.tracking.devices.registerToOrgV1(
+            request: .init(deviceMacAddress: "device_mac_address"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -37,12 +40,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.devices.updateV1(request: .init())
+        let response = try await client.tracking.devices.updateV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -58,13 +64,14 @@ import Chrt
         let expectedResponse = true
         let response = try await client.tracking.devices.deleteV1(
             deviceId: "device_id",
-            deviceMacAddress: "device_mac_address"
+            deviceMacAddress: "device_mac_address",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func getV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -166,13 +173,14 @@ import Chrt
         )
         let response = try await client.tracking.devices.getV1(
             deviceMacAddress: "device_mac_address",
-            deviceId: "device_id"
+            deviceId: "device_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func listV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -264,12 +272,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.tracking.devices.listV1()
+        let response = try await client.tracking.devices.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func linkToCargoV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -285,13 +293,14 @@ import Chrt
         let expectedResponse = true
         let response = try await client.tracking.devices.linkToCargoV1(
             deviceMacAddress: "device_mac_address",
-            cargoId: "cargo_id"
+            cargoId: "cargo_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func unlinkFromCargoV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -305,7 +314,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.devices.unlinkFromCargoV1(deviceMacAddress: "device_mac_address")
+        let response = try await client.tracking.devices.unlinkFromCargoV1(
+            deviceMacAddress: "device_mac_address",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("UsersClient Wire Tests") struct UsersClientWireTests {
     @Test func getPublicDataV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -36,7 +36,7 @@ import Chrt
             ]),
             id: "_id"
         )
-        let response = try await client.users.getPublicDataV1()
+        let response = try await client.users.getPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

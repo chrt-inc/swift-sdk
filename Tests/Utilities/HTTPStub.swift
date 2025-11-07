@@ -1,19 +1,22 @@
 import Foundation
 
-final class WireStub {
-    private static func buildURLSession(wireStubId: String) -> URLSession {
-        let config = buildURLSessionConfiguration(wireStubId: wireStubId)
-        let operationQueue = buildOperationQueue()
+final class HTTPStub {
+    private static func buildURLSession(stubId: String, operationQueue: OperationQueue)
+        -> URLSession
+    {
+        let config = buildURLSessionConfiguration(stubId: stubId)
+        if let uuid = UUID(uuidString: stubId) {
+            StubURLProtocol.register(queue: operationQueue, id: uuid)
+        }
         return URLSession(configuration: config, delegate: nil, delegateQueue: operationQueue)
     }
 
-    private static func buildURLSessionConfiguration(wireStubId: String) -> URLSessionConfiguration
-    {
+    private static func buildURLSessionConfiguration(stubId: String) -> URLSessionConfiguration {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [StubURLProtocol.self]
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
-        config.httpAdditionalHeaders = ["WireStub-ID": wireStubId]
+        config.httpAdditionalHeaders = ["Stub-ID": stubId]
         return config
     }
 
@@ -25,11 +28,14 @@ final class WireStub {
     }
 
     private let session: URLSession
+    private let delegateQueue: OperationQueue
     private let identifier: UUID
 
     init() {
         self.identifier = UUID()
-        self.session = Self.buildURLSession(wireStubId: identifier.uuidString)
+        self.delegateQueue = Self.buildOperationQueue()
+        self.session = Self.buildURLSession(
+            stubId: identifier.uuidString, operationQueue: delegateQueue)
         #if !canImport(Darwin)
             // On Linux, URLProtocol doesn't get the additional headers at canInit time.
             // Track the active stub id so the protocol can resolve responses without headers.
@@ -39,6 +45,10 @@ final class WireStub {
 
     var urlSession: URLSession {
         session
+    }
+
+    var headers: [String: String] {
+        ["Stub-ID": identifier.uuidString]
     }
 
     func setResponse(
@@ -54,12 +64,23 @@ final class WireStub {
         )
     }
 
+    func setResponseSequence(
+        _ responses: [(statusCode: Int, headers: [String: String], body: Data)]
+    ) {
+        StubURLProtocol.configureSequence(id: identifier, responses: responses)
+    }
+
     func takeLastRequest() -> URLRequest? {
         StubURLProtocol.takeLastRequest(for: identifier)
     }
 
+    func getRequestCount() -> Int {
+        StubURLProtocol.getRequestCount(for: identifier)
+    }
+
     deinit {
         StubURLProtocol.reset(id: identifier)
+        StubURLProtocol.deregister(queue: delegateQueue)
         #if !canImport(Darwin)
             StubURLProtocol.clearActiveStubId(identifier)
         #endif
@@ -74,8 +95,23 @@ private final class StubURLProtocol: URLProtocol {
         var lastRequest: URLRequest?
     }
 
+    struct ResponseSequence {
+        var responses: [Response]
+        var currentIndex: Int = 0
+        var lastRequest: URLRequest?
+
+        mutating func nextResponse() -> Response? {
+            guard currentIndex < responses.count else { return nil }
+            let response = responses[currentIndex]
+            currentIndex += 1
+            return response
+        }
+    }
+
     private static var responses: [UUID: Response] = [:]
+    private static var responseSequences: [UUID: ResponseSequence] = [:]
     private static let lock = NSLock()
+    private static var queueIdMap: [ObjectIdentifier: UUID] = [:]
     #if !canImport(Darwin)
         // Fallback for Linux where request headers may not be visible in canInit.
         private static var activeStubIds: [UUID] = []
@@ -90,12 +126,34 @@ private final class StubURLProtocol: URLProtocol {
         lock.lock()
         responses[id] = Response(
             statusCode: statusCode, headers: headers, body: body, lastRequest: nil)
+        responseSequences[id] = nil
+        lock.unlock()
+    }
+
+    static func configureSequence(
+        id: UUID,
+        responses: [(statusCode: Int, headers: [String: String], body: Data)]
+    ) {
+        lock.lock()
+        let responseList = responses.map {
+            Response(
+                statusCode: $0.statusCode, headers: $0.headers, body: $0.body, lastRequest: nil)
+        }
+        responseSequences[id] = ResponseSequence(responses: responseList)
+        StubURLProtocol.responses[id] = nil
         lock.unlock()
     }
 
     static func takeLastRequest(for id: UUID) -> URLRequest? {
         lock.lock()
         defer { lock.unlock() }
+
+        if var sequence = responseSequences[id], let request = sequence.lastRequest {
+            sequence.lastRequest = nil
+            responseSequences[id] = sequence
+            return request
+        }
+
         guard var response = responses[id], let request = response.lastRequest else {
             return nil
         }
@@ -104,9 +162,33 @@ private final class StubURLProtocol: URLProtocol {
         return request
     }
 
+    static func getRequestCount(for id: UUID) -> Int {
+        lock.lock()
+        defer { lock.unlock() }
+
+        if let sequence = responseSequences[id] {
+            return sequence.currentIndex
+        }
+
+        return responses[id]?.lastRequest != nil ? 1 : 0
+    }
+
     static func reset(id: UUID) {
         lock.lock()
         responses[id] = nil
+        responseSequences[id] = nil
+        lock.unlock()
+    }
+
+    static func register(queue: OperationQueue, id: UUID) {
+        lock.lock()
+        queueIdMap[ObjectIdentifier(queue)] = id
+        lock.unlock()
+    }
+
+    static func deregister(queue: OperationQueue) {
+        lock.lock()
+        queueIdMap[ObjectIdentifier(queue)] = nil
         lock.unlock()
     }
 
@@ -128,7 +210,7 @@ private final class StubURLProtocol: URLProtocol {
 
     override class func canInit(with request: URLRequest) -> Bool {
         #if canImport(Darwin)
-            return request.value(forHTTPHeaderField: "WireStub-ID") != nil
+            return request.value(forHTTPHeaderField: "Stub-ID") != nil
         #else
             // On Linux, intercept all requests created by the session that installed this protocol.
             // We'll resolve the correct stub id during startLoading using the active id stack.
@@ -143,24 +225,67 @@ private final class StubURLProtocol: URLProtocol {
     override func startLoading() {
         guard let client else { return }
         #if canImport(Darwin)
-            guard let idValue = request.value(forHTTPHeaderField: "WireStub-ID"),
+            guard let idValue = request.value(forHTTPHeaderField: "Stub-ID"),
                 let id = UUID(uuidString: idValue)
             else {
                 client.urlProtocol(self, didFailWithError: URLError(.cannotFindHost))
                 return
             }
         #else
-            // Use the most recent active stub id for this session on Linux.
-            StubURLProtocol.lock.lock()
-            let id = StubURLProtocol.activeStubIds.last
-            StubURLProtocol.lock.unlock()
-            guard let id else {
+            // Prefer the Stub-ID header if available on Linux; fall back to the active id stack.
+            var resolvedId: UUID?
+            if let idValue = request.value(forHTTPHeaderField: "Stub-ID"),
+                let headerId = UUID(uuidString: idValue)
+            {
+                resolvedId = headerId
+            } else {
+                if let currentQueue = OperationQueue.current {
+                    StubURLProtocol.lock.lock()
+                    if let mapped = StubURLProtocol.queueIdMap[ObjectIdentifier(currentQueue)] {
+                        resolvedId = mapped
+                    }
+                    StubURLProtocol.lock.unlock()
+                }
+                StubURLProtocol.lock.lock()
+                resolvedId = StubURLProtocol.activeStubIds.last
+                StubURLProtocol.lock.unlock()
+            }
+            guard let id = resolvedId else {
                 client.urlProtocol(self, didFailWithError: URLError(.unknown))
                 return
             }
         #endif
 
         StubURLProtocol.lock.lock()
+
+        if var sequence = StubURLProtocol.responseSequences[id] {
+            guard let response = sequence.nextResponse() else {
+                StubURLProtocol.lock.unlock()
+                client.urlProtocol(self, didFailWithError: URLError(.unknown))
+                return
+            }
+            sequence.lastRequest = request
+            StubURLProtocol.responseSequences[id] = sequence
+            StubURLProtocol.lock.unlock()
+
+            guard let url = request.url else {
+                client.urlProtocol(self, didFailWithError: URLError(.badURL))
+                return
+            }
+
+            let httpResponse = HTTPURLResponse(
+                url: url,
+                statusCode: response.statusCode,
+                httpVersion: "HTTP/1.1",
+                headerFields: response.headers
+            )!
+
+            client.urlProtocol(self, didReceive: httpResponse, cacheStoragePolicy: .notAllowed)
+            client.urlProtocol(self, didLoad: response.body)
+            client.urlProtocolDidFinishLoading(self)
+            return
+        }
+
         guard var response = StubURLProtocol.responses[id] else {
             StubURLProtocol.lock.unlock()
             client.urlProtocol(self, didFailWithError: URLError(.unknown))

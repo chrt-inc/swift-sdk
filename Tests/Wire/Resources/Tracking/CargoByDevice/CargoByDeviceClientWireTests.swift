@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("CargoByDeviceClient Wire Tests") struct CargoByDeviceClientWireTests {
     @Test func lastSeenV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -104,7 +104,8 @@ import Chrt
         ))
         let response = try await client.tracking.cargoByDevice.lastSeenV1(
             cargoId: "cargo_id",
-            taskGroupId: "task_group_id"
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

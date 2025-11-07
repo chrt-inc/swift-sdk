@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("UtilsClient Wire Tests") struct UtilsClientWireTests {
     @Test func getTimezoneV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -30,7 +30,8 @@ import Chrt
         )
         let response = try await client.utils.getTimezoneV1(
             lat: 37.7749,
-            lng: -122.4194
+            lng: -122.4194,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

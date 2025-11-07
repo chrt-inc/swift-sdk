@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("OrgConnectionInfosShipperClient Wire Tests") struct OrgConnectionInfosShipperClientWireTests {
     @Test func getV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -104,12 +104,12 @@ import Chrt
             shipperUserId: Optional("shipper_user_id"),
             id: "_id"
         )
-        let response = try await client.orgConnectionInfos.shipper.getV1()
+        let response = try await client.orgConnectionInfos.shipper.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -123,15 +123,18 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgConnectionInfos.shipper.createV1(request: .init(
-            schemaVersion: 1,
-            emailAddressPrimary: "email_address_primary"
-        ))
+        let response = try await client.orgConnectionInfos.shipper.createV1(
+            request: .init(
+                schemaVersion: 1,
+                emailAddressPrimary: "email_address_primary"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -145,7 +148,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgConnectionInfos.shipper.updateV1(request: .init())
+        let response = try await client.orgConnectionInfos.shipper.updateV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

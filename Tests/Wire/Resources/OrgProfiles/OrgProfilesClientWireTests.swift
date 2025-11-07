@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("OrgProfilesClient Wire Tests") struct OrgProfilesClientWireTests {
     @Test func getV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -32,12 +32,12 @@ import Chrt
             orgId: "org_id",
             id: "_id"
         )
-        let response = try await client.orgProfiles.getV1()
+        let response = try await client.orgProfiles.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -51,17 +51,20 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgProfiles.createV1(request: .init(
-            schemaVersion: 1,
-            description: "description",
-            emailAddressPrimary: "email_address_primary",
-            phoneNumberPrimary: "phone_number_primary"
-        ))
+        let response = try await client.orgProfiles.createV1(
+            request: .init(
+                schemaVersion: 1,
+                description: "description",
+                emailAddressPrimary: "email_address_primary",
+                phoneNumberPrimary: "phone_number_primary"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -75,12 +78,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgProfiles.updateV1(request: .init())
+        let response = try await client.orgProfiles.updateV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getByHandleV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -108,12 +114,15 @@ import Chrt
             orgId: "org_id",
             id: "_id"
         )
-        let response = try await client.orgProfiles.getByHandleV1(handle: "handle")
+        let response = try await client.orgProfiles.getByHandleV1(
+            handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getAvatarV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -127,7 +136,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgProfiles.getAvatarV1(handle: "handle")
+        let response = try await client.orgProfiles.getAvatarV1(
+            handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

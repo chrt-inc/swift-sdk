@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("FullClient Wire Tests") struct FullClientWireTests {
     @Test func getByOrderIdOrShortIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -356,12 +356,15 @@ import Chrt
                 )
             ]
         )
-        let response = try await client.orders.full.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
+        let response = try await client.orders.full.getByOrderIdOrShortIdV1(
+            orderIdOrShortId: "order_id_or_short_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func listByShipperOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -591,12 +594,12 @@ import Chrt
                 ]
             )
         ]
-        let response = try await client.orders.full.listByShipperOrgIdV1()
+        let response = try await client.orders.full.listByShipperOrgIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func listByCourierOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -826,7 +829,7 @@ import Chrt
                 ]
             )
         ]
-        let response = try await client.orders.full.listByCourierOrgIdV1()
+        let response = try await client.orders.full.listByCourierOrgIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

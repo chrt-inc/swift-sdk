@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperClient Wire Tests") struct ShipperClientWireTests {
     @Test func getPreferencesV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -58,12 +58,12 @@ import Chrt
             createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             id: "_id"
         )
-        let response = try await client.notifications.shipper.getPreferencesV1()
+        let response = try await client.notifications.shipper.getPreferencesV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func upsertPreferencesV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -77,7 +77,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.notifications.shipper.upsertPreferencesV1(request: .init(schemaVersion: 1))
+        let response = try await client.notifications.shipper.upsertPreferencesV1(
+            request: .init(schemaVersion: 1),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

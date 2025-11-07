@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperPayCourierLineItemGroupsClient Wire Tests") struct ShipperPayCourierLineItemGroupsClientWireTests {
     @Test func getByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -58,12 +58,15 @@ import Chrt
             ],
             id: "_id"
         )
-        let response = try await client.shipperPayCourierLineItemGroups.getByIdV1(id: "id")
+        let response = try await client.shipperPayCourierLineItemGroups.getByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -77,12 +80,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipperPayCourierLineItemGroups.deleteByIdV1(id: "id")
+        let response = try await client.shipperPayCourierLineItemGroups.deleteByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func byTaskGroupIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -136,12 +142,15 @@ import Chrt
             ],
             id: "_id"
         )
-        let response = try await client.shipperPayCourierLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
+        let response = try await client.shipperPayCourierLineItemGroups.byTaskGroupIdV1(
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func previewV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -193,15 +202,18 @@ import Chrt
                 )
             ]
         )
-        let response = try await client.shipperPayCourierLineItemGroups.previewV1(request: ShipperPayCourierLineItemGroupCreateReq(
-            shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
-            taskGroupId: "task_group_id"
-        ))
+        let response = try await client.shipperPayCourierLineItemGroups.previewV1(
+            request: ShipperPayCourierLineItemGroupCreateReq(
+                shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
+                taskGroupId: "task_group_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -215,10 +227,13 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.shipperPayCourierLineItemGroups.createV1(request: ShipperPayCourierLineItemGroupCreateReq(
-            shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
-            taskGroupId: "task_group_id"
-        ))
+        let response = try await client.shipperPayCourierLineItemGroups.createV1(
+            request: ShipperPayCourierLineItemGroupCreateReq(
+                shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
+                taskGroupId: "task_group_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

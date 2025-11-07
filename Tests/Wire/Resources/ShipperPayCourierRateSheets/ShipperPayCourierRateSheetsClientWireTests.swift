@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperPayCourierRateSheetsClient Wire Tests") struct ShipperPayCourierRateSheetsClientWireTests {
     @Test func listByCourierOrgIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -82,12 +82,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.shipperPayCourierRateSheets.listByCourierOrgIdV1()
+        let response = try await client.shipperPayCourierRateSheets.listByCourierOrgIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -101,27 +101,30 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.shipperPayCourierRateSheets.createV1(request: .init(
-            schemaVersion: 1,
-            baseMileageDistanceMiles: 1.1,
-            baseMileageRateUsdPerInstance: 1.1,
-            additionalMileageRateUsdPerMile: 1.1,
-            longDistanceSurchargeMilesBeforeSurcharge: 1.1,
-            longDistanceSurchargeRateUsdPerMile: 1.1,
-            fuelSurchargeRateUsdPerMile: 1.1,
-            waitTimeBeforeChargeMinutes: 1.1,
-            waitTimeRateUsdPerMinute: 1.1,
-            extraStopRateUsd: 1.1,
-            dangerousGoodsRateUsdPerInstance: 1.1,
-            afterHours: 1.1,
-            weekend: 1.1,
-            holiday: 1.1
-        ))
+        let response = try await client.shipperPayCourierRateSheets.createV1(
+            request: .init(
+                schemaVersion: 1,
+                baseMileageDistanceMiles: 1.1,
+                baseMileageRateUsdPerInstance: 1.1,
+                additionalMileageRateUsdPerMile: 1.1,
+                longDistanceSurchargeMilesBeforeSurcharge: 1.1,
+                longDistanceSurchargeRateUsdPerMile: 1.1,
+                fuelSurchargeRateUsdPerMile: 1.1,
+                waitTimeBeforeChargeMinutes: 1.1,
+                waitTimeRateUsdPerMinute: 1.1,
+                extraStopRateUsd: 1.1,
+                dangerousGoodsRateUsdPerInstance: 1.1,
+                afterHours: 1.1,
+                weekend: 1.1,
+                holiday: 1.1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func getV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -195,12 +198,15 @@ import Chrt
             courierOrgId: "courier_org_id",
             id: "_id"
         )
-        let response = try await client.shipperPayCourierRateSheets.getV1(id: "id")
+        let response = try await client.shipperPayCourierRateSheets.getV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -214,12 +220,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipperPayCourierRateSheets.deleteByIdV1(id: "id")
+        let response = try await client.shipperPayCourierRateSheets.deleteByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -295,7 +304,8 @@ import Chrt
         )
         let response = try await client.shipperPayCourierRateSheets.updateByIdV1(
             id: "id",
-            request: .init()
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("TaskGroupByDriverClient Wire Tests") struct TaskGroupByDriverClientWireTests {
     @Test func lastSeenV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -98,7 +98,10 @@ import Chrt
             ),
             id: "_id"
         ))
-        let response = try await client.tracking.taskGroupByDriver.lastSeenV1(taskGroupId: "task_group_id")
+        let response = try await client.tracking.taskGroupByDriver.lastSeenV1(
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

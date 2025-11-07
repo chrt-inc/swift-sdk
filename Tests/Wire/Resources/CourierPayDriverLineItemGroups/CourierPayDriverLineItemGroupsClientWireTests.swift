@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("CourierPayDriverLineItemGroupsClient Wire Tests") struct CourierPayDriverLineItemGroupsClientWireTests {
     @Test func getByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -56,12 +56,15 @@ import Chrt
             rateSheetId: "rate_sheet_id",
             id: "_id"
         )
-        let response = try await client.courierPayDriverLineItemGroups.getByIdV1(id: "id")
+        let response = try await client.courierPayDriverLineItemGroups.getByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func byTaskGroupIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -113,12 +116,15 @@ import Chrt
             rateSheetId: "rate_sheet_id",
             id: "_id"
         )
-        let response = try await client.courierPayDriverLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
+        let response = try await client.courierPayDriverLineItemGroups.byTaskGroupIdV1(
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func previewV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -173,13 +179,14 @@ import Chrt
             request: CourierPayDriverLineItemGroupCreateReq(
                 courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
                 taskGroupId: "task_group_id"
-            )
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -193,10 +200,13 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.courierPayDriverLineItemGroups.createV1(request: CourierPayDriverLineItemGroupCreateReq(
-            courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
-            taskGroupId: "task_group_id"
-        ))
+        let response = try await client.courierPayDriverLineItemGroups.createV1(
+            request: CourierPayDriverLineItemGroupCreateReq(
+                courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
+                taskGroupId: "task_group_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

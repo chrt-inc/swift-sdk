@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ShipperPayCourierLineItemGroupsShipperClient Wire Tests") struct ShipperPayCourierLineItemGroupsShipperClientWireTests {
     @Test func listV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -62,12 +62,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.shipperPayCourierLineItemGroups.shipper.listV1()
+        let response = try await client.shipperPayCourierLineItemGroups.shipper.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -121,12 +121,15 @@ import Chrt
             ],
             id: "_id"
         )
-        let response = try await client.shipperPayCourierLineItemGroups.shipper.getByIdV1(id: "id")
+        let response = try await client.shipperPayCourierLineItemGroups.shipper.getByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func byTaskGroupIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -180,7 +183,10 @@ import Chrt
             ],
             id: "_id"
         )
-        let response = try await client.shipperPayCourierLineItemGroups.shipper.byTaskGroupIdV1(taskGroupId: "task_group_id")
+        let response = try await client.shipperPayCourierLineItemGroups.shipper.byTaskGroupIdV1(
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

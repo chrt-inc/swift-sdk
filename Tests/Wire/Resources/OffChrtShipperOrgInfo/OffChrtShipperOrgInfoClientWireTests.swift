@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("OffChrtShipperOrgInfoClient Wire Tests") struct OffChrtShipperOrgInfoClientWireTests {
     @Test func createV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -18,15 +18,18 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.offChrtShipperOrgInfo.createV1(request: .init(
-            schemaVersion: 1,
-            emailAddressPrimary: "email_address_primary"
-        ))
+        let response = try await client.offChrtShipperOrgInfo.createV1(
+            request: .init(
+                schemaVersion: 1,
+                emailAddressPrimary: "email_address_primary"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func listV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -122,12 +125,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.offChrtShipperOrgInfo.listV1()
+        let response = try await client.offChrtShipperOrgInfo.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -231,12 +234,15 @@ import Chrt
             createdByUserId: "created_by_user_id",
             id: "_id"
         )
-        let response = try await client.offChrtShipperOrgInfo.getByIdV1(id: "id")
+        let response = try await client.offChrtShipperOrgInfo.getByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -250,12 +256,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.offChrtShipperOrgInfo.deleteByIdV1(id: "id")
+        let response = try await client.offChrtShipperOrgInfo.deleteByIdV1(
+            id: "id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateByIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -271,7 +280,8 @@ import Chrt
         let expectedResponse = true
         let response = try await client.offChrtShipperOrgInfo.updateByIdV1(
             id: "id",
-            request: .init()
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

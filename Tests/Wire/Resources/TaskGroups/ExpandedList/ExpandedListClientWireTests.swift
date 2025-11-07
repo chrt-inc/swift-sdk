@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ExpandedListClient Wire Tests") struct ExpandedListClientWireTests {
     @Test func forCourierAdministratorV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -278,13 +278,14 @@ import Chrt
             filterPaused: true,
             request: .init(body: TaskGroupExpandedForCourierAdministratorReq(
 
-            ))
+            )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func forCourierDriverV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -558,7 +559,8 @@ import Chrt
             filterPaused: true,
             request: .init(body: TaskGroupExpandedForCourierDriverReq(
 
-            ))
+            )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("PaymentsClient Wire Tests") struct PaymentsClientWireTests {
     @Test func createCheckoutSessionV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -22,12 +22,15 @@ import Chrt
         let expectedResponse = CreateCheckoutSessionRes(
             url: "url"
         )
-        let response = try await client.payments.createCheckoutSessionV1(request: .init(priceName: .courierOps100UsdPerMonth))
+        let response = try await client.payments.createCheckoutSessionV1(
+            request: .init(priceName: .courierOps100UsdPerMonth),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func syncStripeToClerkV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -41,12 +44,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.payments.syncStripeToClerkV1()
+        let response = try await client.payments.syncStripeToClerkV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createConnectAccountV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -64,12 +67,12 @@ import Chrt
         let expectedResponse = CreateConnectAccountRes(
             stripeConnectAccountId: "stripe_connect_account_id"
         )
-        let response = try await client.payments.createConnectAccountV1()
+        let response = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func createConnectAccountLinkV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -87,12 +90,12 @@ import Chrt
         let expectedResponse = CreateConnectAccountLinkRes(
             url: "url"
         )
-        let response = try await client.payments.createConnectAccountLinkV1()
+        let response = try await client.payments.createConnectAccountLinkV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func generateInvoiceV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -116,7 +119,10 @@ import Chrt
             amountDue: 1,
             dueDate: 1
         )
-        let response = try await client.payments.generateInvoiceV1(request: .init(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id"))
+        let response = try await client.payments.generateInvoiceV1(
+            request: .init(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }

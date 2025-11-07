@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("SessionByDeviceClient Wire Tests") struct SessionByDeviceClientWireTests {
     @Test func listV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -46,12 +46,12 @@ import Chrt
                 id: "_id"
             )
         ]
-        let response = try await client.tracking.sessionByDevice.listV1()
+        let response = try await client.tracking.sessionByDevice.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
     @Test func getV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -89,12 +89,15 @@ import Chrt
             public: Optional(true),
             id: "_id"
         )
-        let response = try await client.tracking.sessionByDevice.getV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.getV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func lastSeenV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -188,12 +191,15 @@ import Chrt
             temperature: Optional(1.1),
             id: "_id"
         ))
-        let response = try await client.tracking.sessionByDevice.lastSeenV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.lastSeenV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func dataPointsV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -281,13 +287,14 @@ import Chrt
         ]
         let response = try await client.tracking.sessionByDevice.dataPointsV1(
             sessionId: "session_id",
-            limit: 1
+            limit: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func createSessionV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -301,12 +308,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.tracking.sessionByDevice.createSessionV1(request: .init(deviceMacAddress: "device_mac_address"))
+        let response = try await client.tracking.sessionByDevice.createSessionV1(
+            request: .init(deviceMacAddress: "device_mac_address"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func updateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -320,12 +330,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.sessionByDevice.updateV1(request: .init(sessionId: "session_id"))
+        let response = try await client.tracking.sessionByDevice.updateV1(
+            request: .init(sessionId: "session_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func startV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -339,12 +352,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.sessionByDevice.startV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.startV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func pauseRecordingV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -358,12 +374,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.sessionByDevice.pauseRecordingV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.pauseRecordingV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func resumeRecordingV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -377,12 +396,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.sessionByDevice.resumeRecordingV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.resumeRecordingV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func terminateV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -396,12 +418,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.tracking.sessionByDevice.terminateV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.terminateV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func outlierV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -421,17 +446,20 @@ import Chrt
             successfulUpdates: 1,
             failedUpdates: 1
         )
-        let response = try await client.tracking.sessionByDevice.outlierV1(request: .init(
-            trackingSessionByDeviceDataPointIds: [
-                "tracking_session_by_device_data_point_ids"
-            ],
-            outlier: true
-        ))
+        let response = try await client.tracking.sessionByDevice.outlierV1(
+            request: .init(
+                trackingSessionByDeviceDataPointIds: [
+                    "tracking_session_by_device_data_point_ids"
+                ],
+                outlier: true
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -451,12 +479,15 @@ import Chrt
             sessionDeleted: true,
             trackingSessionByDeviceDataPointsDeleted: 1
         )
-        let response = try await client.tracking.sessionByDevice.deleteV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.deleteV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func lastSeenPublicV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -550,12 +581,15 @@ import Chrt
             temperature: Optional(1.1),
             id: "_id"
         ))
-        let response = try await client.tracking.sessionByDevice.lastSeenPublicV1(sessionId: "session_id")
+        let response = try await client.tracking.sessionByDevice.lastSeenPublicV1(
+            sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
     @Test func dataPointsPublicV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -643,7 +677,8 @@ import Chrt
         ]
         let response = try await client.tracking.sessionByDevice.dataPointsPublicV1(
             sessionId: "session_id",
-            limit: 1
+            limit: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }

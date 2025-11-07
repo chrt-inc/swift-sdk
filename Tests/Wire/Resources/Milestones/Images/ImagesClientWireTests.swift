@@ -4,7 +4,7 @@ import Chrt
 
 @Suite("ImagesClient Wire Tests") struct ImagesClientWireTests {
     @Test func uploadByMilestoneIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -21,13 +21,14 @@ import Chrt
         let response = try await client.milestones.images.uploadByMilestoneIdV1(
             milestoneId: "milestone_id",
             comments: "comments",
-            request: .init(image: .init(data: Data("".utf8)))
+            request: .init(image: .init(data: Data("".utf8))),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
     @Test func deleteByMetadataIdV11() async throws -> Void {
-        let stub = WireStub()
+        let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
@@ -41,7 +42,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.milestones.images.deleteByMetadataIdV1(milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id")
+        let response = try await client.milestones.images.deleteByMetadataIdV1(
+            milestoneS3ObjectMetadataId: "milestone_s3_object_metadata_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 }
