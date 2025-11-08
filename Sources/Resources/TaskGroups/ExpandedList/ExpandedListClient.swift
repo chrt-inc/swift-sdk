@@ -17,8 +17,8 @@ public final class ExpandedListClient: Sendable {
             queryParams: [
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "sort_by": sortBy.map { .unknown($0.rawValue) }, 
-                "sort_order": sortOrder.map { .unknown($0.rawValue) }, 
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "filter_created_at_gte": filterCreatedAtGte.map { .date($0) }, 
                 "filter_created_at_lte": filterCreatedAtLte.map { .date($0) }, 
                 "filter_started_at_gte": filterStartedAtGte.map { .date($0) }, 
@@ -26,7 +26,7 @@ public final class ExpandedListClient: Sendable {
                 "filter_completed_at_gte": filterCompletedAtGte.map { .date($0) }, 
                 "filter_completed_at_lte": filterCompletedAtLte.map { .date($0) }, 
                 "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }, 
-                "filter_statuses": filterStatuses.map { .unknown($0.rawValue) }, 
+                "filter_statuses": filterStatuses.map { .string($0.rawValue) }, 
                 "filter_completed": filterCompleted.map { .bool($0) }, 
                 "filter_paused": filterPaused.map { .bool($0) }
             ],
@@ -46,8 +46,8 @@ public final class ExpandedListClient: Sendable {
             queryParams: [
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "sort_by": sortBy.map { .unknown($0.rawValue) }, 
-                "sort_order": sortOrder.map { .unknown($0.rawValue) }, 
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "filter_created_at_gte": filterCreatedAtGte.map { .date($0) }, 
                 "filter_created_at_lte": filterCreatedAtLte.map { .date($0) }, 
                 "filter_started_at_gte": filterStartedAtGte.map { .date($0) }, 
@@ -55,7 +55,7 @@ public final class ExpandedListClient: Sendable {
                 "filter_completed_at_gte": filterCompletedAtGte.map { .date($0) }, 
                 "filter_completed_at_lte": filterCompletedAtLte.map { .date($0) }, 
                 "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }, 
-                "filter_statuses": filterStatuses.map { .unknown($0.rawValue) }, 
+                "filter_statuses": filterStatuses.map { .string($0.rawValue) }, 
                 "filter_completed": filterCompleted.map { .bool($0) }, 
                 "filter_paused": filterPaused.map { .bool($0) }
             ],

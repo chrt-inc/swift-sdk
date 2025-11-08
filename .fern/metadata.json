@@ -1,7 +1,7 @@
 {
   "cliVersion": "0.108.0",
   "generatorName": "fernapi/fern-swift-sdk",
-  "generatorVersion": "0.23.1",
+  "generatorVersion": "0.23.2",
   "generatorConfig": {
     "moduleName": "Chrt",
     "clientClassName": "ChrtClient",
