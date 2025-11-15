@@ -9,7 +9,7 @@ extension Requests {
         public let routeTypes: [RouteTypeEnum1]?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
-        public let offChrtShipperOrgInfoId: String?
+        public let offChrtShipperOrgId: String?
         public let comments: String?
         public let baseMileageDistanceMiles: Double
         public let baseMileageRateUsdPerInstance: Double
@@ -36,7 +36,7 @@ extension Requests {
             vehicleTypes: [VehicleTypeEnum]? = nil,
             routeTypes: [RouteTypeEnum1]? = nil,
             shipperOrgId: String? = nil,
-            offChrtShipperOrgInfoId: String? = nil,
+            offChrtShipperOrgId: String? = nil,
             comments: String? = nil,
             baseMileageDistanceMiles: Double,
             baseMileageRateUsdPerInstance: Double,
@@ -59,7 +59,7 @@ extension Requests {
             self.vehicleTypes = vehicleTypes
             self.routeTypes = routeTypes
             self.shipperOrgId = shipperOrgId
-            self.offChrtShipperOrgInfoId = offChrtShipperOrgInfoId
+            self.offChrtShipperOrgId = offChrtShipperOrgId
             self.comments = comments
             self.baseMileageDistanceMiles = baseMileageDistanceMiles
             self.baseMileageRateUsdPerInstance = baseMileageRateUsdPerInstance
@@ -85,7 +85,7 @@ extension Requests {
             self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
             self.routeTypes = try container.decodeIfPresent([RouteTypeEnum1].self, forKey: .routeTypes)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-            self.offChrtShipperOrgInfoId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
+            self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.baseMileageDistanceMiles = try container.decode(Double.self, forKey: .baseMileageDistanceMiles)
             self.baseMileageRateUsdPerInstance = try container.decode(Double.self, forKey: .baseMileageRateUsdPerInstance)
@@ -112,7 +112,7 @@ extension Requests {
             try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
             try container.encodeIfPresent(self.routeTypes, forKey: .routeTypes)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-            try container.encodeIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
+            try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
             try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encode(self.baseMileageDistanceMiles, forKey: .baseMileageDistanceMiles)
             try container.encode(self.baseMileageRateUsdPerInstance, forKey: .baseMileageRateUsdPerInstance)
@@ -137,7 +137,7 @@ extension Requests {
             case vehicleTypes = "vehicle_types"
             case routeTypes = "route_types"
             case shipperOrgId = "shipper_org_id"
-            case offChrtShipperOrgInfoId = "off_chrt_shipper_org_info_id"
+            case offChrtShipperOrgId = "off_chrt_shipper_org_id"
             case comments
             case baseMileageDistanceMiles = "base_mileage_distance_miles"
             case baseMileageRateUsdPerInstance = "base_mileage_rate_usd_per_instance"

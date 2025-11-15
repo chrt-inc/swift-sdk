@@ -63,7 +63,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func getPublicDataV11() async throws -> Void {
+    @Test func getOrgPublicDataV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -73,16 +73,7 @@ import Chrt
                   "org_id": "org_id",
                   "company_name": "company_name",
                   "handle": "handle",
-                  "stripe_connect_account_id": "stripe_connect_account_id",
-                  "stripe_connect_account_events": [
-                    {
-                      "timestamp": "2024-01-15T09:30:00Z",
-                      "user_id": "user_id",
-                      "stripe_connect_account_id": "stripe_connect_account_id",
-                      "event": "created"
-                    }
-                  ],
-                  "auto_approve_shipper_to_courier_connection_requests": true,
+                  "org_type": "courier",
                   "_id": "_id"
                 }
                 """.utf8
@@ -93,82 +84,19 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OrgPublicData2(
+        let expectedResponse = OrgPublicData1(
             schemaVersion: 1,
             orgId: "org_id",
             companyName: Optional("company_name"),
             handle: Optional("handle"),
-            stripeConnectAccountId: Optional("stripe_connect_account_id"),
-            stripeConnectAccountEvents: Optional([
-                StripeConnectAccountEvent(
-                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    userId: "user_id",
-                    stripeConnectAccountId: "stripe_connect_account_id",
-                    event: .created
-                )
-            ]),
-            autoApproveShipperToCourierConnectionRequests: Optional(true),
+            orgType: .courier,
             id: "_id"
         )
-        let response = try await client.orgs.getPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.orgs.getOrgPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
-    @Test func getPublicDataByOrgIdV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "schema_version": 1,
-                  "org_id": "org_id",
-                  "company_name": "company_name",
-                  "handle": "handle",
-                  "stripe_connect_account_id": "stripe_connect_account_id",
-                  "stripe_connect_account_events": [
-                    {
-                      "timestamp": "2024-01-15T09:30:00Z",
-                      "user_id": "user_id",
-                      "stripe_connect_account_id": "stripe_connect_account_id",
-                      "event": "created"
-                    }
-                  ],
-                  "auto_approve_shipper_to_courier_connection_requests": true,
-                  "_id": "_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrgPublicData2(
-            schemaVersion: 1,
-            orgId: "org_id",
-            companyName: Optional("company_name"),
-            handle: Optional("handle"),
-            stripeConnectAccountId: Optional("stripe_connect_account_id"),
-            stripeConnectAccountEvents: Optional([
-                StripeConnectAccountEvent(
-                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    userId: "user_id",
-                    stripeConnectAccountId: "stripe_connect_account_id",
-                    event: .created
-                )
-            ]),
-            autoApproveShipperToCourierConnectionRequests: Optional(true),
-            id: "_id"
-        )
-        let response = try await client.orgs.getPublicDataByOrgIdV1(
-            orgId: "org_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func getHandleV11() async throws -> Void {
+    @Test func createOrgPublicDataV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -183,11 +111,14 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgs.getHandleV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.orgs.createOrgPublicDataV1(
+            request: .init(orgType: .courier),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
-    @Test func getHandleAvailabilityV11() async throws -> Void {
+    @Test func updateOrgPublicDataV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -202,55 +133,66 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.getHandleAvailabilityV1(
-            handle: "handle",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func createPublicDataV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.orgs.createPublicDataV1(
-            request: .init(
-                handle: "handle",
-                companyName: "company_name"
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updatePublicDataV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.orgs.updatePublicDataV1(
+        let response = try await client.orgs.updateOrgPublicDataV1(
             request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getOrgPublicDataByOrgIdV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "org_id": "org_id",
+                  "company_name": "company_name",
+                  "handle": "handle",
+                  "org_type": "courier",
+                  "_id": "_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrgPublicData1(
+            schemaVersion: 1,
+            orgId: "org_id",
+            companyName: Optional("company_name"),
+            handle: Optional("handle"),
+            orgType: .courier,
+            id: "_id"
+        )
+        let response = try await client.orgs.getOrgPublicDataByOrgIdV1(
+            orgId: "org_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getOrgPublicDataHandleAvailabilityV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.getOrgPublicDataHandleAvailabilityV1(
+            handle: "handle",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

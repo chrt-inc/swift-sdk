@@ -8,6 +8,9 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
     public let lengthInches: Double?
     public let widthInches: Double?
     public let heightInches: Double?
+    public let turnable: Bool?
+    public let stackable: Bool?
+    public let descriptionFromShipper: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -19,6 +22,9 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         lengthInches: Double? = nil,
         widthInches: Double? = nil,
         heightInches: Double? = nil,
+        turnable: Bool? = nil,
+        stackable: Bool? = nil,
+        descriptionFromShipper: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -28,6 +34,9 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         self.lengthInches = lengthInches
         self.widthInches = widthInches
         self.heightInches = heightInches
+        self.turnable = turnable
+        self.stackable = stackable
+        self.descriptionFromShipper = descriptionFromShipper
         self.additionalProperties = additionalProperties
     }
 
@@ -40,6 +49,9 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
         self.widthInches = try container.decodeIfPresent(Double.self, forKey: .widthInches)
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
+        self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
+        self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
+        self.descriptionFromShipper = try container.decodeIfPresent(String.self, forKey: .descriptionFromShipper)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -53,6 +65,9 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
         try container.encodeIfPresent(self.widthInches, forKey: .widthInches)
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
+        try container.encodeIfPresent(self.turnable, forKey: .turnable)
+        try container.encodeIfPresent(self.stackable, forKey: .stackable)
+        try container.encodeIfPresent(self.descriptionFromShipper, forKey: .descriptionFromShipper)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -64,5 +79,8 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         case lengthInches = "length_inches"
         case widthInches = "width_inches"
         case heightInches = "height_inches"
+        case turnable
+        case stackable
+        case descriptionFromShipper = "description_from_shipper"
     }
 }

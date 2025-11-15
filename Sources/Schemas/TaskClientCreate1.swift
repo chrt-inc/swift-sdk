@@ -4,10 +4,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let location: LocationFeature?
     public let action: Action?
+    public let timeWindows: [TimeWindow1]?
+    public let orderPlacerComments: String?
     public let shipperContactInfoIds: [String]?
-    public let arriveBy: Date?
-    public let arriveAt: Date?
-    public let comments: String?
     public let flightNumber: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -16,20 +15,18 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         location: LocationFeature? = nil,
         action: Action? = nil,
+        timeWindows: [TimeWindow1]? = nil,
+        orderPlacerComments: String? = nil,
         shipperContactInfoIds: [String]? = nil,
-        arriveBy: Date? = nil,
-        arriveAt: Date? = nil,
-        comments: String? = nil,
         flightNumber: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
         self.location = location
         self.action = action
+        self.timeWindows = timeWindows
+        self.orderPlacerComments = orderPlacerComments
         self.shipperContactInfoIds = shipperContactInfoIds
-        self.arriveBy = arriveBy
-        self.arriveAt = arriveAt
-        self.comments = comments
         self.flightNumber = flightNumber
         self.additionalProperties = additionalProperties
     }
@@ -39,10 +36,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
+        self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.shipperContactInfoIds = try container.decodeIfPresent([String].self, forKey: .shipperContactInfoIds)
-        self.arriveBy = try container.decodeIfPresent(Date.self, forKey: .arriveBy)
-        self.arriveAt = try container.decodeIfPresent(Date.self, forKey: .arriveAt)
-        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -53,10 +49,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
+        try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.shipperContactInfoIds, forKey: .shipperContactInfoIds)
-        try container.encodeIfPresent(self.arriveBy, forKey: .arriveBy)
-        try container.encodeIfPresent(self.arriveAt, forKey: .arriveAt)
-        try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
     }
 
@@ -65,10 +60,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case location
         case action
+        case timeWindows = "time_windows"
+        case orderPlacerComments = "order_placer_comments"
         case shipperContactInfoIds = "shipper_contact_info_ids"
-        case arriveBy = "arrive_by"
-        case arriveAt = "arrive_at"
-        case comments
         case flightNumber = "flight_number"
     }
 }

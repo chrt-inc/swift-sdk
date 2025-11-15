@@ -7,25 +7,38 @@ public final class OrgProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the courier organization profile for the authenticated organization.
+    /// Retrieves the courier or forwarder organization profile for the authenticated organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> CourierOrgProfile3 {
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/org_profiles/v1",
+            path: "/connections/org_profiles/v1",
             requestOptions: requestOptions,
-            responseType: CourierOrgProfile3.self
+            responseType: OrgProfileRes1.self
         )
     }
 
     /// Creates a new courier organization profile. Fails if a profile already exists for the organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.CourierOrgProfileClientCreate3, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createCourierV1(request: Requests.CourierOrgProfileClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/org_profiles/create/v1",
+            path: "/connections/org_profiles/courier/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Creates a new forwarder organization profile. Fails if a profile already exists for the organization.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createForwarderV1(request: Requests.ForwarderOrgProfileClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/connections/org_profiles/forwarder/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
@@ -35,25 +48,38 @@ public final class OrgProfilesClient: Sendable {
     /// Updates an existing courier organization profile. Can update one or more fields.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(request: Requests.CourierOrgProfileClientUpdate3, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateCourierV1(request: Requests.CourierOrgProfileClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/org_profiles/update/v1",
+            path: "/connections/org_profiles/courier/update/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Retrieves a courier organization profile using the organization's handle for public profile viewing.
+    /// Updates an existing forwarder organization profile. Can update one or more fields.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> CourierOrgProfile3 {
+    public func updateForwarderV1(request: Requests.ForwarderOrgProfileClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/connections/org_profiles/forwarder/update/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Retrieves a courier or forwarder organization profile using the organization's handle for public profile viewing.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/org_profiles/v1/\(handle)",
+            path: "/connections/org_profiles/v1/\(handle)",
             requestOptions: requestOptions,
-            responseType: CourierOrgProfile3.self
+            responseType: OrgProfileRes1.self
         )
     }
 
@@ -63,7 +89,7 @@ public final class OrgProfilesClient: Sendable {
     public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/org_profiles/avatar/v1/\(handle)",
+            path: "/connections/org_profiles/avatar/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: String.self
         )

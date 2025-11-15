@@ -19,7 +19,9 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.connections.connectionToCourier.createV1(
-            request: .init(handle: "handle"),
+            request: CreateConnectionReq(
+                handle: "handle"
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

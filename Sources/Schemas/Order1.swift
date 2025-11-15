@@ -4,24 +4,25 @@ public struct Order1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let id: String
     public let shortId: String
-    public let orderCreatedByType: OrderCreatedByTypeEnum
-    public let orderDispatchType: OrderDispatchTypeEnum
-    public let transportType: TransportTypeEnum
+    public let taskGroupIds: [String]?
+    public let createdByOrgType: OrgTypeEnum
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
-    public let draftStartedAt: Date
-    public let taskGroupIds: [String]?
+    /// Must be a string starting with `org_`
+    public let forwarderOrgId: String?
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
-    /// Must be a string starting with `user_`
-    public let shipperUserId: String?
-    public let offChrtShipperOrgInfoId: String?
-    public let orderLevelExpensesIds: [String]?
-    public let orderLevelReceivablesLineItems: [LineItem1]?
+    public let offChrtShipperOrgId: String?
     public let status: OrderStatusEnum1?
+    public let draftStartedAtTimestamp: Date
+    public let stagedAtTimestamp: Date?
+    public let inProgressAtTimestamp: Date?
+    public let completedAtTimestamp: Date?
+    public let exceptionAtTimestamp: Date?
     public let orderCancelled: Bool?
+    public let orderCancelledAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -29,39 +30,41 @@ public struct Order1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         id: String,
         shortId: String,
-        orderCreatedByType: OrderCreatedByTypeEnum,
-        orderDispatchType: OrderDispatchTypeEnum,
-        transportType: TransportTypeEnum,
+        taskGroupIds: [String]? = nil,
+        createdByOrgType: OrgTypeEnum,
         createdByOrgId: String,
         createdByUserId: String,
-        draftStartedAt: Date,
-        taskGroupIds: [String]? = nil,
+        forwarderOrgId: String? = nil,
         shipperOrgId: String? = nil,
-        shipperUserId: String? = nil,
-        offChrtShipperOrgInfoId: String? = nil,
-        orderLevelExpensesIds: [String]? = nil,
-        orderLevelReceivablesLineItems: [LineItem1]? = nil,
+        offChrtShipperOrgId: String? = nil,
         status: OrderStatusEnum1? = nil,
+        draftStartedAtTimestamp: Date,
+        stagedAtTimestamp: Date? = nil,
+        inProgressAtTimestamp: Date? = nil,
+        completedAtTimestamp: Date? = nil,
+        exceptionAtTimestamp: Date? = nil,
         orderCancelled: Bool? = nil,
+        orderCancelledAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
         self.id = id
         self.shortId = shortId
-        self.orderCreatedByType = orderCreatedByType
-        self.orderDispatchType = orderDispatchType
-        self.transportType = transportType
+        self.taskGroupIds = taskGroupIds
+        self.createdByOrgType = createdByOrgType
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
-        self.draftStartedAt = draftStartedAt
-        self.taskGroupIds = taskGroupIds
+        self.forwarderOrgId = forwarderOrgId
         self.shipperOrgId = shipperOrgId
-        self.shipperUserId = shipperUserId
-        self.offChrtShipperOrgInfoId = offChrtShipperOrgInfoId
-        self.orderLevelExpensesIds = orderLevelExpensesIds
-        self.orderLevelReceivablesLineItems = orderLevelReceivablesLineItems
+        self.offChrtShipperOrgId = offChrtShipperOrgId
         self.status = status
+        self.draftStartedAtTimestamp = draftStartedAtTimestamp
+        self.stagedAtTimestamp = stagedAtTimestamp
+        self.inProgressAtTimestamp = inProgressAtTimestamp
+        self.completedAtTimestamp = completedAtTimestamp
+        self.exceptionAtTimestamp = exceptionAtTimestamp
         self.orderCancelled = orderCancelled
+        self.orderCancelledAtTimestamp = orderCancelledAtTimestamp
         self.additionalProperties = additionalProperties
     }
 
@@ -70,20 +73,21 @@ public struct Order1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.id = try container.decode(String.self, forKey: .id)
         self.shortId = try container.decode(String.self, forKey: .shortId)
-        self.orderCreatedByType = try container.decode(OrderCreatedByTypeEnum.self, forKey: .orderCreatedByType)
-        self.orderDispatchType = try container.decode(OrderDispatchTypeEnum.self, forKey: .orderDispatchType)
-        self.transportType = try container.decode(TransportTypeEnum.self, forKey: .transportType)
+        self.taskGroupIds = try container.decodeIfPresent([String].self, forKey: .taskGroupIds)
+        self.createdByOrgType = try container.decode(OrgTypeEnum.self, forKey: .createdByOrgType)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
-        self.draftStartedAt = try container.decode(Date.self, forKey: .draftStartedAt)
-        self.taskGroupIds = try container.decodeIfPresent([String].self, forKey: .taskGroupIds)
+        self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-        self.shipperUserId = try container.decodeIfPresent(String.self, forKey: .shipperUserId)
-        self.offChrtShipperOrgInfoId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgInfoId)
-        self.orderLevelExpensesIds = try container.decodeIfPresent([String].self, forKey: .orderLevelExpensesIds)
-        self.orderLevelReceivablesLineItems = try container.decodeIfPresent([LineItem1].self, forKey: .orderLevelReceivablesLineItems)
+        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.status = try container.decodeIfPresent(OrderStatusEnum1.self, forKey: .status)
+        self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
+        self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
+        self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
+        self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
+        self.orderCancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderCancelledAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -93,20 +97,21 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.shortId, forKey: .shortId)
-        try container.encode(self.orderCreatedByType, forKey: .orderCreatedByType)
-        try container.encode(self.orderDispatchType, forKey: .orderDispatchType)
-        try container.encode(self.transportType, forKey: .transportType)
+        try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
+        try container.encode(self.createdByOrgType, forKey: .createdByOrgType)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
-        try container.encode(self.draftStartedAt, forKey: .draftStartedAt)
-        try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
+        try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-        try container.encodeIfPresent(self.shipperUserId, forKey: .shipperUserId)
-        try container.encodeIfPresent(self.offChrtShipperOrgInfoId, forKey: .offChrtShipperOrgInfoId)
-        try container.encodeIfPresent(self.orderLevelExpensesIds, forKey: .orderLevelExpensesIds)
-        try container.encodeIfPresent(self.orderLevelReceivablesLineItems, forKey: .orderLevelReceivablesLineItems)
+        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
+        try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
+        try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
+        try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
+        try container.encodeIfPresent(self.orderCancelledAtTimestamp, forKey: .orderCancelledAtTimestamp)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -114,19 +119,20 @@ public struct Order1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case id = "_id"
         case shortId = "short_id"
-        case orderCreatedByType = "order_created_by_type"
-        case orderDispatchType = "order_dispatch_type"
-        case transportType = "transport_type"
+        case taskGroupIds = "task_group_ids"
+        case createdByOrgType = "created_by_org_type"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
-        case draftStartedAt = "draft_started_at"
-        case taskGroupIds = "task_group_ids"
+        case forwarderOrgId = "forwarder_org_id"
         case shipperOrgId = "shipper_org_id"
-        case shipperUserId = "shipper_user_id"
-        case offChrtShipperOrgInfoId = "off_chrt_shipper_org_info_id"
-        case orderLevelExpensesIds = "order_level_expenses_ids"
-        case orderLevelReceivablesLineItems = "order_level_receivables_line_items"
+        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case status
+        case draftStartedAtTimestamp = "draft_started_at_timestamp"
+        case stagedAtTimestamp = "staged_at_timestamp"
+        case inProgressAtTimestamp = "in_progress_at_timestamp"
+        case completedAtTimestamp = "completed_at_timestamp"
+        case exceptionAtTimestamp = "exception_at_timestamp"
         case orderCancelled = "order_cancelled"
+        case orderCancelledAtTimestamp = "order_cancelled_at_timestamp"
     }
 }

@@ -16,15 +16,15 @@ import Chrt
                   "task_group_ids": [
                     "task_group_ids"
                   ],
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "shipper_org_id": "shipper_org_id",
                   "courier_org_id": "courier_org_id",
-                  "stripe_connect_shipper_pay_courier_customer_id": "stripe_connect_shipper_pay_courier_customer_id",
+                  "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
                   "stripe_invoice_created_timestamp": "2024-01-15T09:30:00Z",
                   "stripe_invoice_created_by_user_id": "stripe_invoice_created_by_user_id",
-                  "payment_amount": 1.1,
+                  "statement_amount": 1.1,
                   "stripe_invoice_status": "invoice_not_yet_created",
                   "stripe_invoice_completed_timestamp": "2024-01-15T09:30:00Z",
                   "_id": "_id"
@@ -37,7 +37,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperPayCourierPayment1(
+        let expectedResponse = ShipperPayCourierStatement1(
             schemaVersion: 1,
             shipperPayCourierLineItemGroupIds: [
                 "shipper_pay_courier_line_item_group_ids"
@@ -45,15 +45,15 @@ import Chrt
             taskGroupIds: [
                 "task_group_ids"
             ],
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             shipperOrgId: Optional("shipper_org_id"),
             courierOrgId: "courier_org_id",
-            stripeConnectShipperPayCourierCustomerId: Optional("stripe_connect_shipper_pay_courier_customer_id"),
+            shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
             stripeInvoiceCreatedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeInvoiceCreatedByUserId: Optional("stripe_invoice_created_by_user_id"),
-            paymentAmount: 1.1,
+            statementAmount: 1.1,
             stripeInvoiceStatus: Optional(.invoiceNotYetCreated),
             stripeInvoiceCompletedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
@@ -100,15 +100,15 @@ import Chrt
                   "task_group_ids": [
                     "task_group_ids"
                   ],
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "shipper_org_id": "shipper_org_id",
                   "courier_org_id": "courier_org_id",
-                  "stripe_connect_shipper_pay_courier_customer_id": "stripe_connect_shipper_pay_courier_customer_id",
+                  "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
                   "stripe_invoice_created_timestamp": "2024-01-15T09:30:00Z",
                   "stripe_invoice_created_by_user_id": "stripe_invoice_created_by_user_id",
-                  "payment_amount": 1.1,
+                  "statement_amount": 1.1,
                   "stripe_invoice_status": "invoice_not_yet_created",
                   "stripe_invoice_completed_timestamp": "2024-01-15T09:30:00Z",
                   "_id": "_id"
@@ -121,7 +121,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperPayCourierPayment1(
+        let expectedResponse = ShipperPayCourierStatement1(
             schemaVersion: 1,
             shipperPayCourierLineItemGroupIds: [
                 "shipper_pay_courier_line_item_group_ids"
@@ -129,15 +129,15 @@ import Chrt
             taskGroupIds: [
                 "task_group_ids"
             ],
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             shipperOrgId: Optional("shipper_org_id"),
             courierOrgId: "courier_org_id",
-            stripeConnectShipperPayCourierCustomerId: Optional("stripe_connect_shipper_pay_courier_customer_id"),
+            shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
             stripeInvoiceCreatedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeInvoiceCreatedByUserId: Optional("stripe_invoice_created_by_user_id"),
-            paymentAmount: 1.1,
+            statementAmount: 1.1,
             stripeInvoiceStatus: Optional(.invoiceNotYetCreated),
             stripeInvoiceCompletedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
@@ -164,15 +164,15 @@ import Chrt
                       "task_group_ids": [
                         "task_group_ids"
                       ],
-                      "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "shipper_org_id": "shipper_org_id",
                       "courier_org_id": "courier_org_id",
-                      "stripe_connect_shipper_pay_courier_customer_id": "stripe_connect_shipper_pay_courier_customer_id",
+                      "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
                       "stripe_invoice_id": "stripe_invoice_id",
                       "stripe_invoice_url": "stripe_invoice_url",
                       "stripe_invoice_created_timestamp": "2024-01-15T09:30:00Z",
                       "stripe_invoice_created_by_user_id": "stripe_invoice_created_by_user_id",
-                      "payment_amount": 1.1,
+                      "statement_amount": 1.1,
                       "stripe_invoice_status": "invoice_not_yet_created",
                       "stripe_invoice_completed_timestamp": "2024-01-15T09:30:00Z",
                       "_id": "_id"
@@ -189,7 +189,7 @@ import Chrt
         )
         let expectedResponse = GetShipperPayCourierPaymentsForShipperRes(
             payments: [
-                ShipperPayCourierPayment1(
+                ShipperPayCourierStatement1(
                     schemaVersion: 1,
                     shipperPayCourierLineItemGroupIds: [
                         "shipper_pay_courier_line_item_group_ids"
@@ -197,15 +197,15 @@ import Chrt
                     taskGroupIds: [
                         "task_group_ids"
                     ],
-                    offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     shipperOrgId: Optional("shipper_org_id"),
                     courierOrgId: "courier_org_id",
-                    stripeConnectShipperPayCourierCustomerId: Optional("stripe_connect_shipper_pay_courier_customer_id"),
+                    shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
                     stripeInvoiceId: Optional("stripe_invoice_id"),
                     stripeInvoiceUrl: Optional("stripe_invoice_url"),
                     stripeInvoiceCreatedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stripeInvoiceCreatedByUserId: Optional("stripe_invoice_created_by_user_id"),
-                    paymentAmount: 1.1,
+                    statementAmount: 1.1,
                     stripeInvoiceStatus: Optional(.invoiceNotYetCreated),
                     stripeInvoiceCompletedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     id: "_id"
@@ -236,15 +236,15 @@ import Chrt
                       "task_group_ids": [
                         "task_group_ids"
                       ],
-                      "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "shipper_org_id": "shipper_org_id",
                       "courier_org_id": "courier_org_id",
-                      "stripe_connect_shipper_pay_courier_customer_id": "stripe_connect_shipper_pay_courier_customer_id",
+                      "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
                       "stripe_invoice_id": "stripe_invoice_id",
                       "stripe_invoice_url": "stripe_invoice_url",
                       "stripe_invoice_created_timestamp": "2024-01-15T09:30:00Z",
                       "stripe_invoice_created_by_user_id": "stripe_invoice_created_by_user_id",
-                      "payment_amount": 1.1,
+                      "statement_amount": 1.1,
                       "stripe_invoice_status": "invoice_not_yet_created",
                       "stripe_invoice_completed_timestamp": "2024-01-15T09:30:00Z",
                       "_id": "_id"
@@ -261,7 +261,7 @@ import Chrt
         )
         let expectedResponse = GetShipperPayCourierPaymentsForShipperRes(
             payments: [
-                ShipperPayCourierPayment1(
+                ShipperPayCourierStatement1(
                     schemaVersion: 1,
                     shipperPayCourierLineItemGroupIds: [
                         "shipper_pay_courier_line_item_group_ids"
@@ -269,15 +269,15 @@ import Chrt
                     taskGroupIds: [
                         "task_group_ids"
                     ],
-                    offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     shipperOrgId: Optional("shipper_org_id"),
                     courierOrgId: "courier_org_id",
-                    stripeConnectShipperPayCourierCustomerId: Optional("stripe_connect_shipper_pay_courier_customer_id"),
+                    shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
                     stripeInvoiceId: Optional("stripe_invoice_id"),
                     stripeInvoiceUrl: Optional("stripe_invoice_url"),
                     stripeInvoiceCreatedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stripeInvoiceCreatedByUserId: Optional("stripe_invoice_created_by_user_id"),
-                    paymentAmount: 1.1,
+                    statementAmount: 1.1,
                     stripeInvoiceStatus: Optional(.invoiceNotYetCreated),
                     stripeInvoiceCompletedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     id: "_id"
@@ -332,15 +332,33 @@ import Chrt
                       "task_ids": [
                         "task_ids"
                       ],
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
                       "courier_org_id": "courier_org_id",
-                      "order_cancelled": true,
-                      "status": "not_started",
                       "driver_id": "driver_id",
-                      "created_at": "2024-01-15T09:30:00Z",
-                      "started_at": "2024-01-15T09:30:00Z",
-                      "completed_at": "2024-01-15T09:30:00Z",
-                      "completed": true,
-                      "paused": true
+                      "task_group_s3_object_metadata_ids": [
+                        "task_group_s3_object_metadata_ids"
+                      ],
+                      "status": "draft",
+                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
+                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
+                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
+                      "exception_at_timestamp": "2024-01-15T09:30:00Z",
+                      "order_cancelled": true,
+                      "task_group_type": "chrt_ground_courier",
+                      "task_group_mileage": {
+                        "tasks_mileage": 1.1,
+                        "deadhead_mileage": 1.1
+                      },
+                      "messages": [
+                        {
+                          "message": "message",
+                          "user_id": "user_id",
+                          "org_id": "org_id",
+                          "timestamp": "2024-01-15T09:30:00Z"
+                        }
+                      ]
                     }
                   ],
                   "line_item_groups": [
@@ -349,7 +367,7 @@ import Chrt
                       "task_group_id": "task_group_id",
                       "courier_org_id": "courier_org_id",
                       "shipper_org_id": "shipper_org_id",
-                      "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "order_cancelled": true,
                       "rate_sheet_id": "rate_sheet_id",
                       "line_items": [
@@ -359,7 +377,7 @@ import Chrt
                           "quantity": 1.1,
                           "rate": 1.1,
                           "comment": null,
-                          "created_at": "2024-01-15T09:30:00Z",
+                          "created_at_timestamp": "2024-01-15T09:30:00Z",
                           "uuid_str": "uuid_str"
                         }
                       ],
@@ -384,18 +402,36 @@ import Chrt
                     id: "_id",
                     orderId: "order_id",
                     orderShortId: "order_short_id",
-                    taskIds: [
+                    taskIds: Optional([
                         "task_ids"
-                    ],
+                    ]),
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
                     courierOrgId: Optional("courier_org_id"),
-                    orderCancelled: Optional(true),
-                    status: Optional(.notStarted),
                     driverId: Optional("driver_id"),
-                    createdAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    startedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    completedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    completed: Optional(true),
-                    paused: Optional(true)
+                    taskGroupS3ObjectMetadataIds: Optional([
+                        "task_group_s3_object_metadata_ids"
+                    ]),
+                    status: Optional(.draft),
+                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    orderCancelled: Optional(true),
+                    taskGroupType: .chrtGroundCourier,
+                    taskGroupMileage: Optional(TaskGroupMileage1(
+                        tasksMileage: 1.1,
+                        deadheadMileage: 1.1
+                    )),
+                    messages: Optional([
+                        TaskGroupMessage1(
+                            message: "message",
+                            userId: "user_id",
+                            orgId: "org_id",
+                            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                        )
+                    ])
                 )
             ],
             lineItemGroups: [
@@ -404,7 +440,7 @@ import Chrt
                     taskGroupId: "task_group_id",
                     courierOrgId: "courier_org_id",
                     shipperOrgId: Optional("shipper_org_id"),
-                    offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     orderCancelled: Optional(true),
                     rateSheetId: "rate_sheet_id",
                     lineItems: [
@@ -414,7 +450,7 @@ import Chrt
                             quantity: 1.1,
                             rate: 1.1,
                             comment: Optional(nil),
-                            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             uuidStr: "uuid_str"
                         )
                     ],

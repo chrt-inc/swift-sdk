@@ -6,7 +6,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
     public let quantity: Double
     public let rate: Double
     public let comment: String?
-    public let createdAt: Date
+    public let createdAtTimestamp: Date
     public let uuidStr: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -17,7 +17,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         quantity: Double,
         rate: Double,
         comment: String? = nil,
-        createdAt: Date,
+        createdAtTimestamp: Date,
         uuidStr: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -26,7 +26,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         self.quantity = quantity
         self.rate = rate
         self.comment = comment
-        self.createdAt = createdAt
+        self.createdAtTimestamp = createdAtTimestamp
         self.uuidStr = uuidStr
         self.additionalProperties = additionalProperties
     }
@@ -38,7 +38,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         self.quantity = try container.decode(Double.self, forKey: .quantity)
         self.rate = try container.decode(Double.self, forKey: .rate)
         self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
-        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+        self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.uuidStr = try container.decode(String.self, forKey: .uuidStr)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -51,7 +51,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         try container.encode(self.quantity, forKey: .quantity)
         try container.encode(self.rate, forKey: .rate)
         try container.encodeIfPresent(self.comment, forKey: .comment)
-        try container.encode(self.createdAt, forKey: .createdAt)
+        try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.uuidStr, forKey: .uuidStr)
     }
 
@@ -62,7 +62,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         case quantity
         case rate
         case comment
-        case createdAt = "created_at"
+        case createdAtTimestamp = "created_at_timestamp"
         case uuidStr = "uuid_str"
     }
 }

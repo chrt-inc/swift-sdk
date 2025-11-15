@@ -1,12 +1,12 @@
 import Foundation
 
 public struct GetShipperPayCourierPaymentsForShipperRes: Codable, Hashable, Sendable {
-    public let payments: [ShipperPayCourierPayment1]
+    public let payments: [ShipperPayCourierStatement1]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        payments: [ShipperPayCourierPayment1],
+        payments: [ShipperPayCourierStatement1],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.payments = payments
@@ -15,7 +15,7 @@ public struct GetShipperPayCourierPaymentsForShipperRes: Codable, Hashable, Send
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.payments = try container.decode([ShipperPayCourierPayment1].self, forKey: .payments)
+        self.payments = try container.decode([ShipperPayCourierStatement1].self, forKey: .payments)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

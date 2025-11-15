@@ -4,7 +4,7 @@ import Foundation
 public struct TaskGroupExpandedForCourierAdministratorReq: Codable, Hashable, Sendable {
     public let expandTasks: Bool?
     public let expandCargos: Bool?
-    public let expandMilestones: Bool?
+    public let expandTaskArtifacts: Bool?
     public let expandShipperContactInfo: Bool?
     public let expandShipperOrgCompanyName: Bool?
     public let expandShipperOrgHandle: Bool?
@@ -19,7 +19,7 @@ public struct TaskGroupExpandedForCourierAdministratorReq: Codable, Hashable, Se
     public init(
         expandTasks: Bool? = nil,
         expandCargos: Bool? = nil,
-        expandMilestones: Bool? = nil,
+        expandTaskArtifacts: Bool? = nil,
         expandShipperContactInfo: Bool? = nil,
         expandShipperOrgCompanyName: Bool? = nil,
         expandShipperOrgHandle: Bool? = nil,
@@ -32,7 +32,7 @@ public struct TaskGroupExpandedForCourierAdministratorReq: Codable, Hashable, Se
     ) {
         self.expandTasks = expandTasks
         self.expandCargos = expandCargos
-        self.expandMilestones = expandMilestones
+        self.expandTaskArtifacts = expandTaskArtifacts
         self.expandShipperContactInfo = expandShipperContactInfo
         self.expandShipperOrgCompanyName = expandShipperOrgCompanyName
         self.expandShipperOrgHandle = expandShipperOrgHandle
@@ -48,7 +48,7 @@ public struct TaskGroupExpandedForCourierAdministratorReq: Codable, Hashable, Se
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.expandTasks = try container.decodeIfPresent(Bool.self, forKey: .expandTasks)
         self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
-        self.expandMilestones = try container.decodeIfPresent(Bool.self, forKey: .expandMilestones)
+        self.expandTaskArtifacts = try container.decodeIfPresent(Bool.self, forKey: .expandTaskArtifacts)
         self.expandShipperContactInfo = try container.decodeIfPresent(Bool.self, forKey: .expandShipperContactInfo)
         self.expandShipperOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandShipperOrgCompanyName)
         self.expandShipperOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandShipperOrgHandle)
@@ -65,7 +65,7 @@ public struct TaskGroupExpandedForCourierAdministratorReq: Codable, Hashable, Se
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.expandTasks, forKey: .expandTasks)
         try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
-        try container.encodeIfPresent(self.expandMilestones, forKey: .expandMilestones)
+        try container.encodeIfPresent(self.expandTaskArtifacts, forKey: .expandTaskArtifacts)
         try container.encodeIfPresent(self.expandShipperContactInfo, forKey: .expandShipperContactInfo)
         try container.encodeIfPresent(self.expandShipperOrgCompanyName, forKey: .expandShipperOrgCompanyName)
         try container.encodeIfPresent(self.expandShipperOrgHandle, forKey: .expandShipperOrgHandle)
@@ -80,7 +80,7 @@ public struct TaskGroupExpandedForCourierAdministratorReq: Codable, Hashable, Se
     enum CodingKeys: String, CodingKey, CaseIterable {
         case expandTasks = "expand_tasks"
         case expandCargos = "expand_cargos"
-        case expandMilestones = "expand_milestones"
+        case expandTaskArtifacts = "expand_task_artifacts"
         case expandShipperContactInfo = "expand_shipper_contact_info"
         case expandShipperOrgCompanyName = "expand_shipper_org_company_name"
         case expandShipperOrgHandle = "expand_shipper_org_handle"

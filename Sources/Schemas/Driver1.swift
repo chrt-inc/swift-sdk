@@ -2,7 +2,7 @@ import Foundation
 
 public struct Driver1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
-    public let active: Bool
+    public let active: Bool?
     public let emailAddressPrimary: String?
     public let emailAddressSecondary: String?
     public let phoneNumberPrimary: String?
@@ -23,7 +23,7 @@ public struct Driver1: Codable, Hashable, Sendable {
 
     public init(
         schemaVersion: Int,
-        active: Bool,
+        active: Bool? = nil,
         emailAddressPrimary: String? = nil,
         emailAddressSecondary: String? = nil,
         phoneNumberPrimary: String? = nil,
@@ -60,7 +60,7 @@ public struct Driver1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.active = try container.decode(Bool.self, forKey: .active)
+        self.active = try container.decodeIfPresent(Bool.self, forKey: .active)
         self.emailAddressPrimary = try container.decodeIfPresent(String.self, forKey: .emailAddressPrimary)
         self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
         self.phoneNumberPrimary = try container.decodeIfPresent(String.self, forKey: .phoneNumberPrimary)
@@ -81,7 +81,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encode(self.active, forKey: .active)
+        try container.encodeIfPresent(self.active, forKey: .active)
         try container.encodeIfPresent(self.emailAddressPrimary, forKey: .emailAddressPrimary)
         try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
         try container.encodeIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)

@@ -2,24 +2,26 @@ import Foundation
 
 /// Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 public final class ChrtClient: Sendable {
-    public let dev: DevClient
-    public let drivers: DriversClient
-    public let milestones: MilestonesClient
-    public let offChrtShipperOrgInfo: OffChrtShipperOrgInfoClient
-    public let orgProfiles: OrgProfilesClient
-    public let orders: OrdersClient
-    public let courierPayDriverRateSheets: CourierPayDriverRateSheetsClient
-    public let shipperPayCourierRateSheets: ShipperPayCourierRateSheetsClient
+    public let payments: PaymentsClient
     public let courierPayDriverLineItemGroups: CourierPayDriverLineItemGroupsClient
+    public let courierPayDriverPayouts: CourierPayDriverPayoutsClient
+    public let courierPayDriverRateSheets: CourierPayDriverRateSheetsClient
+    public let courierPayDriverStatements: CourierPayDriverStatementsClient
     public let shipperPayCourierLineItemGroups: ShipperPayCourierLineItemGroupsClient
     public let shipperPayCourierPayments: ShipperPayCourierPaymentsClient
-    public let courierPayDriverPayouts: CourierPayDriverPayoutsClient
+    public let shipperPayCourierRateSheets: ShipperPayCourierRateSheetsClient
+    public let shipperPayCourierStatements: ShipperPayCourierStatementsClient
     public let connections: ConnectionsClient
+    public let orgProfiles: OrgProfilesClient
+    public let dev: DevClient
+    public let taskArtifactNotifications: TaskArtifactNotificationsClient
+    public let drivers: DriversClient
+    public let taskArtifacts: TaskArtifactsClient
+    public let offChrtShipperOrg: OffChrtShipperOrgClient
+    public let orders: OrdersClient
     public let taskGroups: TaskGroupsClient
     public let shipperContactInfo: ShipperContactInfoClient
-    public let milestoneNotifications: MilestoneNotificationsClient
     public let orgs: OrgsClient
-    public let payments: PaymentsClient
     public let root: RootClient
     public let users: UsersClient
     public let utils: UtilsClient
@@ -108,24 +110,26 @@ public final class ChrtClient: Sendable {
             maxRetries: maxRetries,
             urlSession: urlSession
         )
-        self.dev = DevClient(config: config)
-        self.drivers = DriversClient(config: config)
-        self.milestones = MilestonesClient(config: config)
-        self.offChrtShipperOrgInfo = OffChrtShipperOrgInfoClient(config: config)
-        self.orgProfiles = OrgProfilesClient(config: config)
-        self.orders = OrdersClient(config: config)
-        self.courierPayDriverRateSheets = CourierPayDriverRateSheetsClient(config: config)
-        self.shipperPayCourierRateSheets = ShipperPayCourierRateSheetsClient(config: config)
+        self.payments = PaymentsClient(config: config)
         self.courierPayDriverLineItemGroups = CourierPayDriverLineItemGroupsClient(config: config)
+        self.courierPayDriverPayouts = CourierPayDriverPayoutsClient(config: config)
+        self.courierPayDriverRateSheets = CourierPayDriverRateSheetsClient(config: config)
+        self.courierPayDriverStatements = CourierPayDriverStatementsClient(config: config)
         self.shipperPayCourierLineItemGroups = ShipperPayCourierLineItemGroupsClient(config: config)
         self.shipperPayCourierPayments = ShipperPayCourierPaymentsClient(config: config)
-        self.courierPayDriverPayouts = CourierPayDriverPayoutsClient(config: config)
+        self.shipperPayCourierRateSheets = ShipperPayCourierRateSheetsClient(config: config)
+        self.shipperPayCourierStatements = ShipperPayCourierStatementsClient(config: config)
         self.connections = ConnectionsClient(config: config)
+        self.orgProfiles = OrgProfilesClient(config: config)
+        self.dev = DevClient(config: config)
+        self.taskArtifactNotifications = TaskArtifactNotificationsClient(config: config)
+        self.drivers = DriversClient(config: config)
+        self.taskArtifacts = TaskArtifactsClient(config: config)
+        self.offChrtShipperOrg = OffChrtShipperOrgClient(config: config)
+        self.orders = OrdersClient(config: config)
         self.taskGroups = TaskGroupsClient(config: config)
         self.shipperContactInfo = ShipperContactInfoClient(config: config)
-        self.milestoneNotifications = MilestoneNotificationsClient(config: config)
         self.orgs = OrgsClient(config: config)
-        self.payments = PaymentsClient(config: config)
         self.root = RootClient(config: config)
         self.users = UsersClient(config: config)
         self.utils = UtilsClient(config: config)

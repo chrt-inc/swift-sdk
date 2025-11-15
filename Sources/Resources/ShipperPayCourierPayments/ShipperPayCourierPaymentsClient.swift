@@ -10,12 +10,12 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
     /// Retrieves a shipper pay courier payment by its ID with Stripe invoice sync.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByIdV1(shipperPayCourierPaymentId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierPayment1 {
+    public func getByIdV1(shipperPayCourierPaymentId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierStatement1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/shipper_pay_courier_payments/v1/\(shipperPayCourierPaymentId)",
             requestOptions: requestOptions,
-            responseType: ShipperPayCourierPayment1.self
+            responseType: ShipperPayCourierStatement1.self
         )
     }
 
@@ -34,12 +34,12 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
     /// Retrieves a shipper pay courier payment by order ID or short ID with Stripe invoice sync.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByOrderIdOrShortIdV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierPayment1 {
+    public func getByOrderIdOrShortIdV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierStatement1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/shipper_pay_courier_payments/by_order/v1/\(orderIdOrShortId)",
             requestOptions: requestOptions,
-            responseType: ShipperPayCourierPayment1.self
+            responseType: ShipperPayCourierStatement1.self
         )
     }
 

@@ -10,6 +10,9 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
+                  "shipper_org_id": "shipper_org_id",
+                  "shipper_user_id": "shipper_user_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "company_name": "company_name",
                   "industry": "industry",
                   "street_address": {
@@ -32,8 +35,7 @@ import Chrt
                     },
                     "properties": {
                       "address": "address",
-                      "name": "name",
-                      "mapbox_id": "mapbox_id"
+                      "name": "name"
                     },
                     "id": 1
                   },
@@ -45,9 +47,6 @@ import Chrt
                   "email_address_secondary": "email_address_secondary",
                   "job_title": "job_title",
                   "notes": "notes",
-                  "shipper_org_id": "shipper_org_id",
-                  "shipper_user_id": "shipper_user_id",
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
                   "_id": "_id"
@@ -60,8 +59,11 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperContactInfo1(
+        let expectedResponse = ShipperContact1(
             schemaVersion: 1,
+            shipperOrgId: Optional("shipper_org_id"),
+            shipperUserId: Optional("shipper_user_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             companyName: Optional("company_name"),
             industry: Optional("industry"),
             streetAddress: Optional(LocationFeature(
@@ -90,8 +92,7 @@ import Chrt
                 ),
                 properties: Optional(LocationProperties(
                     address: Optional("address"),
-                    name: Optional("name"),
-                    mapboxId: Optional("mapbox_id")
+                    name: Optional("name")
                 )),
                 id: Optional(Id.int(
                     1
@@ -105,9 +106,6 @@ import Chrt
             emailAddressSecondary: Optional("email_address_secondary"),
             jobTitle: Optional("job_title"),
             notes: Optional("notes"),
-            shipperOrgId: Optional("shipper_org_id"),
-            shipperUserId: Optional("shipper_user_id"),
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
             createdByOrgId: "created_by_org_id",
             createdByUserId: "created_by_user_id",
             id: "_id"
@@ -124,6 +122,9 @@ import Chrt
                 [
                   {
                     "schema_version": 1,
+                    "shipper_org_id": "shipper_org_id",
+                    "shipper_user_id": "shipper_user_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "company_name": "company_name",
                     "industry": "industry",
                     "street_address": {
@@ -141,8 +142,7 @@ import Chrt
                       },
                       "properties": {
                         "address": null,
-                        "name": null,
-                        "mapbox_id": null
+                        "name": null
                       },
                       "id": 1
                     },
@@ -154,9 +154,6 @@ import Chrt
                     "email_address_secondary": "email_address_secondary",
                     "job_title": "job_title",
                     "notes": "notes",
-                    "shipper_org_id": "shipper_org_id",
-                    "shipper_user_id": "shipper_user_id",
-                    "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "_id": "_id"
@@ -171,8 +168,11 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            ShipperContactInfo1(
+            ShipperContact1(
                 schemaVersion: 1,
+                shipperOrgId: Optional("shipper_org_id"),
+                shipperUserId: Optional("shipper_user_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 companyName: Optional("company_name"),
                 industry: Optional("industry"),
                 streetAddress: Optional(LocationFeature(
@@ -194,8 +194,7 @@ import Chrt
                     ),
                     properties: Optional(LocationProperties(
                         address: Optional(nil),
-                        name: Optional(nil),
-                        mapboxId: Optional(nil)
+                        name: Optional(nil)
                     )),
                     id: Optional(Id.int(
                         1
@@ -209,9 +208,6 @@ import Chrt
                 emailAddressSecondary: Optional("email_address_secondary"),
                 jobTitle: Optional("job_title"),
                 notes: Optional("notes"),
-                shipperOrgId: Optional("shipper_org_id"),
-                shipperUserId: Optional("shipper_user_id"),
-                offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 id: "_id"
@@ -229,6 +225,9 @@ import Chrt
                 [
                   {
                     "schema_version": 1,
+                    "shipper_org_id": "shipper_org_id",
+                    "shipper_user_id": "shipper_user_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "company_name": "company_name",
                     "industry": "industry",
                     "street_address": {
@@ -246,8 +245,7 @@ import Chrt
                       },
                       "properties": {
                         "address": null,
-                        "name": null,
-                        "mapbox_id": null
+                        "name": null
                       },
                       "id": 1
                     },
@@ -259,9 +257,6 @@ import Chrt
                     "email_address_secondary": "email_address_secondary",
                     "job_title": "job_title",
                     "notes": "notes",
-                    "shipper_org_id": "shipper_org_id",
-                    "shipper_user_id": "shipper_user_id",
-                    "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "_id": "_id"
@@ -276,8 +271,11 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            ShipperContactInfo1(
+            ShipperContact1(
                 schemaVersion: 1,
+                shipperOrgId: Optional("shipper_org_id"),
+                shipperUserId: Optional("shipper_user_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 companyName: Optional("company_name"),
                 industry: Optional("industry"),
                 streetAddress: Optional(LocationFeature(
@@ -299,8 +297,7 @@ import Chrt
                     ),
                     properties: Optional(LocationProperties(
                         address: Optional(nil),
-                        name: Optional(nil),
-                        mapboxId: Optional(nil)
+                        name: Optional(nil)
                     )),
                     id: Optional(Id.int(
                         1
@@ -314,9 +311,6 @@ import Chrt
                 emailAddressSecondary: Optional("email_address_secondary"),
                 jobTitle: Optional("job_title"),
                 notes: Optional("notes"),
-                shipperOrgId: Optional("shipper_org_id"),
-                shipperUserId: Optional("shipper_user_id"),
-                offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 id: "_id"
@@ -329,7 +323,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listByOffChrtShipperOrgInfoIdV11() async throws -> Void {
+    @Test func listByOffChrtShipperOrgIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -337,6 +331,9 @@ import Chrt
                 [
                   {
                     "schema_version": 1,
+                    "shipper_org_id": "shipper_org_id",
+                    "shipper_user_id": "shipper_user_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "company_name": "company_name",
                     "industry": "industry",
                     "street_address": {
@@ -354,8 +351,7 @@ import Chrt
                       },
                       "properties": {
                         "address": null,
-                        "name": null,
-                        "mapbox_id": null
+                        "name": null
                       },
                       "id": 1
                     },
@@ -367,9 +363,6 @@ import Chrt
                     "email_address_secondary": "email_address_secondary",
                     "job_title": "job_title",
                     "notes": "notes",
-                    "shipper_org_id": "shipper_org_id",
-                    "shipper_user_id": "shipper_user_id",
-                    "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "_id": "_id"
@@ -384,8 +377,11 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            ShipperContactInfo1(
+            ShipperContact1(
                 schemaVersion: 1,
+                shipperOrgId: Optional("shipper_org_id"),
+                shipperUserId: Optional("shipper_user_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 companyName: Optional("company_name"),
                 industry: Optional("industry"),
                 streetAddress: Optional(LocationFeature(
@@ -407,8 +403,7 @@ import Chrt
                     ),
                     properties: Optional(LocationProperties(
                         address: Optional(nil),
-                        name: Optional(nil),
-                        mapboxId: Optional(nil)
+                        name: Optional(nil)
                     )),
                     id: Optional(Id.int(
                         1
@@ -422,16 +417,13 @@ import Chrt
                 emailAddressSecondary: Optional("email_address_secondary"),
                 jobTitle: Optional("job_title"),
                 notes: Optional("notes"),
-                shipperOrgId: Optional("shipper_org_id"),
-                shipperUserId: Optional("shipper_user_id"),
-                offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 id: "_id"
             )
         ]
-        let response = try await client.shipperContactInfo.listByOffChrtShipperOrgInfoIdV1(
-            offChrtShipperOrgInfoId: "off_chrt_shipper_org_info_id",
+        let response = try await client.shipperContactInfo.listByOffChrtShipperOrgIdV1(
+            offChrtShipperOrgId: "off_chrt_shipper_org_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -444,6 +436,9 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
+                  "shipper_org_id": "shipper_org_id",
+                  "shipper_user_id": "shipper_user_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "company_name": "company_name",
                   "industry": "industry",
                   "street_address": {
@@ -466,8 +461,7 @@ import Chrt
                     },
                     "properties": {
                       "address": "address",
-                      "name": "name",
-                      "mapbox_id": "mapbox_id"
+                      "name": "name"
                     },
                     "id": 1
                   },
@@ -479,9 +473,6 @@ import Chrt
                   "email_address_secondary": "email_address_secondary",
                   "job_title": "job_title",
                   "notes": "notes",
-                  "shipper_org_id": "shipper_org_id",
-                  "shipper_user_id": "shipper_user_id",
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
                   "_id": "_id"
@@ -494,8 +485,11 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperContactInfo1(
+        let expectedResponse = ShipperContact1(
             schemaVersion: 1,
+            shipperOrgId: Optional("shipper_org_id"),
+            shipperUserId: Optional("shipper_user_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             companyName: Optional("company_name"),
             industry: Optional("industry"),
             streetAddress: Optional(LocationFeature(
@@ -524,8 +518,7 @@ import Chrt
                 ),
                 properties: Optional(LocationProperties(
                     address: Optional("address"),
-                    name: Optional("name"),
-                    mapboxId: Optional("mapbox_id")
+                    name: Optional("name")
                 )),
                 id: Optional(Id.int(
                     1
@@ -539,9 +532,6 @@ import Chrt
             emailAddressSecondary: Optional("email_address_secondary"),
             jobTitle: Optional("job_title"),
             notes: Optional("notes"),
-            shipperOrgId: Optional("shipper_org_id"),
-            shipperUserId: Optional("shipper_user_id"),
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
             createdByOrgId: "created_by_org_id",
             createdByUserId: "created_by_user_id",
             id: "_id"
@@ -569,7 +559,7 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.shipperContactInfo.createOnPlatformV1(
-            request: ShipperContactInfoClientCreate1(
+            request: ShipperContactClientCreate1(
                 schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -593,7 +583,7 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.shipperContactInfo.createOffPlatformV1(
-            request: ShipperContactInfoClientCreate1(
+            request: ShipperContactClientCreate1(
                 schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

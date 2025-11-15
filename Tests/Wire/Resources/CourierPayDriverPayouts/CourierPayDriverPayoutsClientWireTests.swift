@@ -19,12 +19,12 @@ import Chrt
                   "task_group_ids": [
                     "task_group_ids"
                   ],
-                  "payout_amount": 1.1,
-                  "payout_status": "created",
-                  "payout_completed_at": "2024-01-15T09:30:00Z",
-                  "payout_completed_by_user_id": "payout_completed_by_user_id",
-                  "payout_created_at": "2024-01-15T09:30:00Z",
-                  "payout_created_by_user_id": "payout_created_by_user_id"
+                  "statement_amount": 1.1,
+                  "statement_status": "created",
+                  "statement_completed_at_timestamp": "2024-01-15T09:30:00Z",
+                  "statement_completed_by_user_id": "statement_completed_by_user_id",
+                  "statement_created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "statement_created_by_user_id": "statement_created_by_user_id"
                 }
                 """.utf8
             )
@@ -34,7 +34,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CourierPayDriverPayout1(
+        let expectedResponse = CourierPayDriverStatement1(
             schemaVersion: 1,
             courierPayDriverLineItemGroupIds: [
                 "courier_pay_driver_line_item_group_ids"
@@ -45,12 +45,12 @@ import Chrt
             taskGroupIds: [
                 "task_group_ids"
             ],
-            payoutAmount: 1.1,
-            payoutStatus: Optional(.created),
-            payoutCompletedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            payoutCompletedByUserId: Optional("payout_completed_by_user_id"),
-            payoutCreatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            payoutCreatedByUserId: "payout_created_by_user_id"
+            statementAmount: 1.1,
+            statementStatus: Optional(.created),
+            statementCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            statementCompletedByUserId: Optional("statement_completed_by_user_id"),
+            statementCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            statementCreatedByUserId: "statement_created_by_user_id"
         )
         let response = try await client.courierPayDriverPayouts.getByIdV1(
             id: "id",
@@ -76,12 +76,12 @@ import Chrt
                     "task_group_ids": [
                       "task_group_ids"
                     ],
-                    "payout_amount": 1.1,
-                    "payout_status": "created",
-                    "payout_completed_at": "2024-01-15T09:30:00Z",
-                    "payout_completed_by_user_id": "payout_completed_by_user_id",
-                    "payout_created_at": "2024-01-15T09:30:00Z",
-                    "payout_created_by_user_id": "payout_created_by_user_id"
+                    "statement_amount": 1.1,
+                    "statement_status": "created",
+                    "statement_completed_at_timestamp": "2024-01-15T09:30:00Z",
+                    "statement_completed_by_user_id": "statement_completed_by_user_id",
+                    "statement_created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "statement_created_by_user_id": "statement_created_by_user_id"
                   }
                 ]
                 """.utf8
@@ -93,7 +93,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            CourierPayDriverPayout1(
+            CourierPayDriverStatement1(
                 schemaVersion: 1,
                 courierPayDriverLineItemGroupIds: [
                     "courier_pay_driver_line_item_group_ids"
@@ -104,12 +104,12 @@ import Chrt
                 taskGroupIds: [
                     "task_group_ids"
                 ],
-                payoutAmount: 1.1,
-                payoutStatus: Optional(.created),
-                payoutCompletedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                payoutCompletedByUserId: Optional("payout_completed_by_user_id"),
-                payoutCreatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                payoutCreatedByUserId: "payout_created_by_user_id"
+                statementAmount: 1.1,
+                statementStatus: Optional(.created),
+                statementCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                statementCompletedByUserId: Optional("statement_completed_by_user_id"),
+                statementCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                statementCreatedByUserId: "statement_created_by_user_id"
             )
         ]
         let response = try await client.courierPayDriverPayouts.listByDriverIdV1(
@@ -135,7 +135,7 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.courierPayDriverPayouts.createV1(
-            request: .init(
+            request: CourierPayDriverStatementClientCreate1(
                 schemaVersion: 1,
                 courierPayDriverLineItemGroupIds: [
                     "courier_pay_driver_line_item_group_ids"
@@ -162,12 +162,12 @@ import Chrt
                   "task_group_ids": [
                     "task_group_ids"
                   ],
-                  "payout_amount": 1.1,
-                  "payout_status": "created",
-                  "payout_completed_at": "2024-01-15T09:30:00Z",
-                  "payout_completed_by_user_id": "payout_completed_by_user_id",
-                  "payout_created_at": "2024-01-15T09:30:00Z",
-                  "payout_created_by_user_id": "payout_created_by_user_id"
+                  "statement_amount": 1.1,
+                  "statement_status": "created",
+                  "statement_completed_at_timestamp": "2024-01-15T09:30:00Z",
+                  "statement_completed_by_user_id": "statement_completed_by_user_id",
+                  "statement_created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "statement_created_by_user_id": "statement_created_by_user_id"
                 }
                 """.utf8
             )
@@ -177,7 +177,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CourierPayDriverPayout1(
+        let expectedResponse = CourierPayDriverStatement1(
             schemaVersion: 1,
             courierPayDriverLineItemGroupIds: [
                 "courier_pay_driver_line_item_group_ids"
@@ -188,16 +188,18 @@ import Chrt
             taskGroupIds: [
                 "task_group_ids"
             ],
-            payoutAmount: 1.1,
-            payoutStatus: Optional(.created),
-            payoutCompletedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            payoutCompletedByUserId: Optional("payout_completed_by_user_id"),
-            payoutCreatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            payoutCreatedByUserId: "payout_created_by_user_id"
+            statementAmount: 1.1,
+            statementStatus: Optional(.created),
+            statementCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            statementCompletedByUserId: Optional("statement_completed_by_user_id"),
+            statementCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            statementCreatedByUserId: "statement_created_by_user_id"
         )
         let response = try await client.courierPayDriverPayouts.updateStatusV1(
             id: "id",
-            request: .init(),
+            request: CourierPayDriverStatementClientUpdate1(
+
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

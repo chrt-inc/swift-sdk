@@ -22,7 +22,7 @@ import Chrt
                       "routed"
                     ],
                     "shipper_org_id": "shipper_org_id",
-                    "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "comments": "comments",
                     "base_mileage_distance_miles": 1.1,
                     "base_mileage_rate_usd_per_instance": 1.1,
@@ -63,7 +63,7 @@ import Chrt
                     .routed
                 ]),
                 shipperOrgId: Optional("shipper_org_id"),
-                offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 comments: Optional("comments"),
                 baseMileageDistanceMiles: 1.1,
                 baseMileageRateUsdPerInstance: 1.1,
@@ -141,7 +141,7 @@ import Chrt
                     "routed"
                   ],
                   "shipper_org_id": "shipper_org_id",
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "comments": "comments",
                   "base_mileage_distance_miles": 1.1,
                   "base_mileage_rate_usd_per_instance": 1.1,
@@ -180,7 +180,7 @@ import Chrt
                 .routed
             ]),
             shipperOrgId: Optional("shipper_org_id"),
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             comments: Optional("comments"),
             baseMileageDistanceMiles: 1.1,
             baseMileageRateUsdPerInstance: 1.1,
@@ -245,7 +245,7 @@ import Chrt
                     "routed"
                   ],
                   "shipper_org_id": "shipper_org_id",
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "comments": "comments",
                   "base_mileage_distance_miles": 1.1,
                   "base_mileage_rate_usd_per_instance": 1.1,
@@ -284,7 +284,7 @@ import Chrt
                 .routed
             ]),
             shipperOrgId: Optional("shipper_org_id"),
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             comments: Optional("comments"),
             baseMileageDistanceMiles: 1.1,
             baseMileageRateUsdPerInstance: 1.1,

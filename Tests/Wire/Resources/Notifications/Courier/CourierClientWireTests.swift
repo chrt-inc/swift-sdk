@@ -26,7 +26,7 @@ import Chrt
                   },
                   "org_id": "org_id",
                   "created_by_user_id": "created_by_user_id",
-                  "created_at": "2024-01-15T09:30:00Z",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "_id": "_id"
                 }
                 """.utf8
@@ -55,7 +55,7 @@ import Chrt
             ]),
             orgId: "org_id",
             createdByUserId: "created_by_user_id",
-            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             id: "_id"
         )
         let response = try await client.notifications.courier.getPreferencesV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))

@@ -1,7 +1,9 @@
 import Foundation
 
 public enum TaskGroupStatusEnum1: String, Codable, Hashable, CaseIterable, Sendable {
-    case notStarted = "not_started"
+    case draft
+    case staged
     case inProgress = "in_progress"
     case completed
+    case exception
 }

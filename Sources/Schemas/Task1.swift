@@ -4,23 +4,34 @@ public struct Task1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let location: LocationFeature?
     public let action: Action?
+    public let timeWindows: [TimeWindow1]?
+    public let orderPlacerComments: String?
     public let shipperContactInfoIds: [String]?
-    public let arriveBy: Date?
-    public let arriveAt: Date?
-    public let comments: String?
     public let flightNumber: String?
     public let id: String
     public let orderId: String
     public let orderShortId: String
+    public let taskGroupId: String
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
-    public let orderCancelled: Bool?
-    public let completed: Bool?
-    public let completedAt: Date?
+    /// Must be a string starting with `org_`
+    public let completedByOrgId: String?
+    /// Must be a string starting with `user_`
+    public let completedByUserId: String?
     public let cargoIds: [String]?
-    public let milestoneIds: [String]?
+    public let taskArtifactIds: [String]?
+    public let status: TaskStatusEnum1?
+    public let draftStartedAtTimestamp: Date
+    public let stagedAtTimestamp: Date?
+    public let completedAtTimestamp: Date?
+    public let exceptionAtTimestamp: Date?
+    public let orderCancelled: Bool?
+    public let taskNotificationEmailIds: [String]?
+    public let taskNotificationSmsIds: [String]?
+    public let taskNotificationPushIds: [String]?
+    public let taskNotificationVoiceIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -28,41 +39,59 @@ public struct Task1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         location: LocationFeature? = nil,
         action: Action? = nil,
+        timeWindows: [TimeWindow1]? = nil,
+        orderPlacerComments: String? = nil,
         shipperContactInfoIds: [String]? = nil,
-        arriveBy: Date? = nil,
-        arriveAt: Date? = nil,
-        comments: String? = nil,
         flightNumber: String? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
+        taskGroupId: String,
         createdByOrgId: String,
         createdByUserId: String,
-        orderCancelled: Bool? = nil,
-        completed: Bool? = nil,
-        completedAt: Date? = nil,
+        completedByOrgId: String? = nil,
+        completedByUserId: String? = nil,
         cargoIds: [String]? = nil,
-        milestoneIds: [String]? = nil,
+        taskArtifactIds: [String]? = nil,
+        status: TaskStatusEnum1? = nil,
+        draftStartedAtTimestamp: Date,
+        stagedAtTimestamp: Date? = nil,
+        completedAtTimestamp: Date? = nil,
+        exceptionAtTimestamp: Date? = nil,
+        orderCancelled: Bool? = nil,
+        taskNotificationEmailIds: [String]? = nil,
+        taskNotificationSmsIds: [String]? = nil,
+        taskNotificationPushIds: [String]? = nil,
+        taskNotificationVoiceIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
         self.location = location
         self.action = action
+        self.timeWindows = timeWindows
+        self.orderPlacerComments = orderPlacerComments
         self.shipperContactInfoIds = shipperContactInfoIds
-        self.arriveBy = arriveBy
-        self.arriveAt = arriveAt
-        self.comments = comments
         self.flightNumber = flightNumber
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
+        self.taskGroupId = taskGroupId
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
-        self.orderCancelled = orderCancelled
-        self.completed = completed
-        self.completedAt = completedAt
+        self.completedByOrgId = completedByOrgId
+        self.completedByUserId = completedByUserId
         self.cargoIds = cargoIds
-        self.milestoneIds = milestoneIds
+        self.taskArtifactIds = taskArtifactIds
+        self.status = status
+        self.draftStartedAtTimestamp = draftStartedAtTimestamp
+        self.stagedAtTimestamp = stagedAtTimestamp
+        self.completedAtTimestamp = completedAtTimestamp
+        self.exceptionAtTimestamp = exceptionAtTimestamp
+        self.orderCancelled = orderCancelled
+        self.taskNotificationEmailIds = taskNotificationEmailIds
+        self.taskNotificationSmsIds = taskNotificationSmsIds
+        self.taskNotificationPushIds = taskNotificationPushIds
+        self.taskNotificationVoiceIds = taskNotificationVoiceIds
         self.additionalProperties = additionalProperties
     }
 
@@ -71,21 +100,30 @@ public struct Task1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
+        self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.shipperContactInfoIds = try container.decodeIfPresent([String].self, forKey: .shipperContactInfoIds)
-        self.arriveBy = try container.decodeIfPresent(Date.self, forKey: .arriveBy)
-        self.arriveAt = try container.decodeIfPresent(Date.self, forKey: .arriveAt)
-        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
+        self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
-        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
-        self.completed = try container.decodeIfPresent(Bool.self, forKey: .completed)
-        self.completedAt = try container.decodeIfPresent(Date.self, forKey: .completedAt)
+        self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
+        self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
         self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)
-        self.milestoneIds = try container.decodeIfPresent([String].self, forKey: .milestoneIds)
+        self.taskArtifactIds = try container.decodeIfPresent([String].self, forKey: .taskArtifactIds)
+        self.status = try container.decodeIfPresent(TaskStatusEnum1.self, forKey: .status)
+        self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
+        self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
+        self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
+        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
+        self.taskNotificationEmailIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationEmailIds)
+        self.taskNotificationSmsIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationSmsIds)
+        self.taskNotificationPushIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationPushIds)
+        self.taskNotificationVoiceIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationVoiceIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -95,21 +133,30 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
+        try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.shipperContactInfoIds, forKey: .shipperContactInfoIds)
-        try container.encodeIfPresent(self.arriveBy, forKey: .arriveBy)
-        try container.encodeIfPresent(self.arriveAt, forKey: .arriveAt)
-        try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
+        try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
-        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
-        try container.encodeIfPresent(self.completed, forKey: .completed)
-        try container.encodeIfPresent(self.completedAt, forKey: .completedAt)
+        try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
+        try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
         try container.encodeIfPresent(self.cargoIds, forKey: .cargoIds)
-        try container.encodeIfPresent(self.milestoneIds, forKey: .milestoneIds)
+        try container.encodeIfPresent(self.taskArtifactIds, forKey: .taskArtifactIds)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
+        try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
+        try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
+        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
+        try container.encodeIfPresent(self.taskNotificationEmailIds, forKey: .taskNotificationEmailIds)
+        try container.encodeIfPresent(self.taskNotificationSmsIds, forKey: .taskNotificationSmsIds)
+        try container.encodeIfPresent(self.taskNotificationPushIds, forKey: .taskNotificationPushIds)
+        try container.encodeIfPresent(self.taskNotificationVoiceIds, forKey: .taskNotificationVoiceIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -117,20 +164,29 @@ public struct Task1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case location
         case action
+        case timeWindows = "time_windows"
+        case orderPlacerComments = "order_placer_comments"
         case shipperContactInfoIds = "shipper_contact_info_ids"
-        case arriveBy = "arrive_by"
-        case arriveAt = "arrive_at"
-        case comments
         case flightNumber = "flight_number"
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
+        case taskGroupId = "task_group_id"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
-        case orderCancelled = "order_cancelled"
-        case completed
-        case completedAt = "completed_at"
+        case completedByOrgId = "completed_by_org_id"
+        case completedByUserId = "completed_by_user_id"
         case cargoIds = "cargo_ids"
-        case milestoneIds = "milestone_ids"
+        case taskArtifactIds = "task_artifact_ids"
+        case status
+        case draftStartedAtTimestamp = "draft_started_at_timestamp"
+        case stagedAtTimestamp = "staged_at_timestamp"
+        case completedAtTimestamp = "completed_at_timestamp"
+        case exceptionAtTimestamp = "exception_at_timestamp"
+        case orderCancelled = "order_cancelled"
+        case taskNotificationEmailIds = "task_notification_email_ids"
+        case taskNotificationSmsIds = "task_notification_sms_ids"
+        case taskNotificationPushIds = "task_notification_push_ids"
+        case taskNotificationVoiceIds = "task_notification_voice_ids"
     }
 }

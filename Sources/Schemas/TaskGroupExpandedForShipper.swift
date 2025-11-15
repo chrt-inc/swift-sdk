@@ -10,7 +10,7 @@ public struct TaskGroupExpandedForShipper: Codable, Hashable, Sendable {
     public let driver: Driver1?
     public let shipperPayCourierLineItemGroups: [ShipperPayCourierLineItemGroup1]?
     public let shipperPayCourierRateSheet: ShipperPayCourierRateSheet1?
-    public let shipperPayCourierPayment: ShipperPayCourierPayment1?
+    public let shipperPayCourierPayment: ShipperPayCourierStatement1?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -23,7 +23,7 @@ public struct TaskGroupExpandedForShipper: Codable, Hashable, Sendable {
         driver: Driver1? = nil,
         shipperPayCourierLineItemGroups: [ShipperPayCourierLineItemGroup1]? = nil,
         shipperPayCourierRateSheet: ShipperPayCourierRateSheet1? = nil,
-        shipperPayCourierPayment: ShipperPayCourierPayment1? = nil,
+        shipperPayCourierPayment: ShipperPayCourierStatement1? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.taskGroup = taskGroup
@@ -48,7 +48,7 @@ public struct TaskGroupExpandedForShipper: Codable, Hashable, Sendable {
         self.driver = try container.decodeIfPresent(Driver1.self, forKey: .driver)
         self.shipperPayCourierLineItemGroups = try container.decodeIfPresent([ShipperPayCourierLineItemGroup1].self, forKey: .shipperPayCourierLineItemGroups)
         self.shipperPayCourierRateSheet = try container.decodeIfPresent(ShipperPayCourierRateSheet1.self, forKey: .shipperPayCourierRateSheet)
-        self.shipperPayCourierPayment = try container.decodeIfPresent(ShipperPayCourierPayment1.self, forKey: .shipperPayCourierPayment)
+        self.shipperPayCourierPayment = try container.decodeIfPresent(ShipperPayCourierStatement1.self, forKey: .shipperPayCourierPayment)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

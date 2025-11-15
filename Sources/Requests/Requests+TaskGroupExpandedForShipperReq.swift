@@ -4,7 +4,7 @@ extension Requests {
     public struct TaskGroupExpandedForShipperReq: Codable, Hashable, Sendable {
         public let expandTasks: Bool?
         public let expandCargos: Bool?
-        public let expandMilestones: Bool?
+        public let expandTaskArtifacts: Bool?
         public let expandShipperContactInfo: Bool?
         public let expandCourierOrgCompanyName: Bool?
         public let expandCourierOrgHandle: Bool?
@@ -19,7 +19,7 @@ extension Requests {
         public init(
             expandTasks: Bool? = nil,
             expandCargos: Bool? = nil,
-            expandMilestones: Bool? = nil,
+            expandTaskArtifacts: Bool? = nil,
             expandShipperContactInfo: Bool? = nil,
             expandCourierOrgCompanyName: Bool? = nil,
             expandCourierOrgHandle: Bool? = nil,
@@ -32,7 +32,7 @@ extension Requests {
         ) {
             self.expandTasks = expandTasks
             self.expandCargos = expandCargos
-            self.expandMilestones = expandMilestones
+            self.expandTaskArtifacts = expandTaskArtifacts
             self.expandShipperContactInfo = expandShipperContactInfo
             self.expandCourierOrgCompanyName = expandCourierOrgCompanyName
             self.expandCourierOrgHandle = expandCourierOrgHandle
@@ -48,7 +48,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.expandTasks = try container.decodeIfPresent(Bool.self, forKey: .expandTasks)
             self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
-            self.expandMilestones = try container.decodeIfPresent(Bool.self, forKey: .expandMilestones)
+            self.expandTaskArtifacts = try container.decodeIfPresent(Bool.self, forKey: .expandTaskArtifacts)
             self.expandShipperContactInfo = try container.decodeIfPresent(Bool.self, forKey: .expandShipperContactInfo)
             self.expandCourierOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCourierOrgCompanyName)
             self.expandCourierOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCourierOrgHandle)
@@ -65,7 +65,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.expandTasks, forKey: .expandTasks)
             try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
-            try container.encodeIfPresent(self.expandMilestones, forKey: .expandMilestones)
+            try container.encodeIfPresent(self.expandTaskArtifacts, forKey: .expandTaskArtifacts)
             try container.encodeIfPresent(self.expandShipperContactInfo, forKey: .expandShipperContactInfo)
             try container.encodeIfPresent(self.expandCourierOrgCompanyName, forKey: .expandCourierOrgCompanyName)
             try container.encodeIfPresent(self.expandCourierOrgHandle, forKey: .expandCourierOrgHandle)
@@ -80,7 +80,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case expandTasks = "expand_tasks"
             case expandCargos = "expand_cargos"
-            case expandMilestones = "expand_milestones"
+            case expandTaskArtifacts = "expand_task_artifacts"
             case expandShipperContactInfo = "expand_shipper_contact_info"
             case expandCourierOrgCompanyName = "expand_courier_org_company_name"
             case expandCourierOrgHandle = "expand_courier_org_handle"

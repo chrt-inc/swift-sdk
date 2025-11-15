@@ -103,8 +103,7 @@ import Chrt
                     },
                     "properties": {
                       "address": "address",
-                      "name": "name",
-                      "mapbox_id": "mapbox_id"
+                      "name": "name"
                     },
                     "id": 1
                   },
@@ -157,8 +156,7 @@ import Chrt
                 ),
                 properties: Optional(LocationProperties(
                     address: Optional("address"),
-                    name: Optional("name"),
-                    mapboxId: Optional("mapbox_id")
+                    name: Optional("name")
                 )),
                 id: Optional(Id.int(
                     1
@@ -208,8 +206,7 @@ import Chrt
                       },
                       "properties": {
                         "address": null,
-                        "name": null,
-                        "mapbox_id": null
+                        "name": null
                       },
                       "id": 1
                     },
@@ -257,8 +254,7 @@ import Chrt
                     ),
                     properties: Optional(LocationProperties(
                         address: Optional(nil),
-                        name: Optional(nil),
-                        mapboxId: Optional(nil)
+                        name: Optional(nil)
                     )),
                     id: Optional(Id.int(
                         1

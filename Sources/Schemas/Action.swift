@@ -1,15 +1,18 @@
 import Foundation
 
 public enum Action: Codable, Hashable, Sendable {
-    case obcNfoTaskActionEnum(ObcNfoTaskActionEnum)
-    case taskActionEnum1(TaskActionEnum1)
+    case chrtGroundCourierTaskActionEnum1(ChrtGroundCourierTaskActionEnum1)
+    case flightTaskActionEnum1(FlightTaskActionEnum1)
+    case onboardCourierTaskActionEnum1(OnboardCourierTaskActionEnum1)
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(ObcNfoTaskActionEnum.self) {
-            self = .obcNfoTaskActionEnum(value)
-        } else if let value = try? container.decode(TaskActionEnum1.self) {
-            self = .taskActionEnum1(value)
+        if let value = try? container.decode(ChrtGroundCourierTaskActionEnum1.self) {
+            self = .chrtGroundCourierTaskActionEnum1(value)
+        } else if let value = try? container.decode(FlightTaskActionEnum1.self) {
+            self = .flightTaskActionEnum1(value)
+        } else if let value = try? container.decode(OnboardCourierTaskActionEnum1.self) {
+            self = .onboardCourierTaskActionEnum1(value)
         } else {
             throw DecodingError.dataCorruptedError(
                 in: container,
@@ -21,9 +24,11 @@ public enum Action: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.singleValueContainer()
         switch self {
-        case .obcNfoTaskActionEnum(let value):
+        case .chrtGroundCourierTaskActionEnum1(let value):
             try container.encode(value)
-        case .taskActionEnum1(let value):
+        case .flightTaskActionEnum1(let value):
+            try container.encode(value)
+        case .onboardCourierTaskActionEnum1(let value):
             try container.encode(value)
         }
     }

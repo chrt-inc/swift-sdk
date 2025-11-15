@@ -14,7 +14,7 @@ import Chrt
                     "task_group_id": "task_group_id",
                     "courier_org_id": "courier_org_id",
                     "shipper_org_id": "shipper_org_id",
-                    "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "order_cancelled": true,
                     "rate_sheet_id": "rate_sheet_id",
                     "line_items": [
@@ -24,7 +24,7 @@ import Chrt
                         "quantity": 1.1,
                         "rate": 1.1,
                         "comment": null,
-                        "created_at": "2024-01-15T09:30:00Z",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
                         "uuid_str": "uuid_str"
                       }
                     ],
@@ -45,7 +45,7 @@ import Chrt
                 taskGroupId: "task_group_id",
                 courierOrgId: "courier_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
-                offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 orderCancelled: Optional(true),
                 rateSheetId: "rate_sheet_id",
                 lineItems: [
@@ -55,7 +55,7 @@ import Chrt
                         quantity: 1.1,
                         rate: 1.1,
                         comment: Optional(nil),
-                        createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         uuidStr: "uuid_str"
                     )
                 ],
@@ -76,7 +76,7 @@ import Chrt
                   "task_group_id": "task_group_id",
                   "courier_org_id": "courier_org_id",
                   "shipper_org_id": "shipper_org_id",
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "order_cancelled": true,
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
@@ -86,7 +86,7 @@ import Chrt
                       "quantity": 1.1,
                       "rate": 1.1,
                       "comment": "comment",
-                      "created_at": "2024-01-15T09:30:00Z",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "uuid_str": "uuid_str"
                     }
                   ],
@@ -105,7 +105,7 @@ import Chrt
             taskGroupId: "task_group_id",
             courierOrgId: "courier_org_id",
             shipperOrgId: Optional("shipper_org_id"),
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             orderCancelled: Optional(true),
             rateSheetId: "rate_sheet_id",
             lineItems: [
@@ -115,7 +115,7 @@ import Chrt
                     quantity: 1.1,
                     rate: 1.1,
                     comment: Optional("comment"),
-                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     uuidStr: "uuid_str"
                 )
             ],
@@ -138,7 +138,7 @@ import Chrt
                   "task_group_id": "task_group_id",
                   "courier_org_id": "courier_org_id",
                   "shipper_org_id": "shipper_org_id",
-                  "off_chrt_shipper_org_info_id": "off_chrt_shipper_org_info_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "order_cancelled": true,
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
@@ -148,7 +148,7 @@ import Chrt
                       "quantity": 1.1,
                       "rate": 1.1,
                       "comment": "comment",
-                      "created_at": "2024-01-15T09:30:00Z",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "uuid_str": "uuid_str"
                     }
                   ],
@@ -167,7 +167,7 @@ import Chrt
             taskGroupId: "task_group_id",
             courierOrgId: "courier_org_id",
             shipperOrgId: Optional("shipper_org_id"),
-            offChrtShipperOrgInfoId: Optional("off_chrt_shipper_org_info_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             orderCancelled: Optional(true),
             rateSheetId: "rate_sheet_id",
             lineItems: [
@@ -177,7 +177,7 @@ import Chrt
                     quantity: 1.1,
                     rate: 1.1,
                     comment: Optional("comment"),
-                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     uuidStr: "uuid_str"
                 )
             ],

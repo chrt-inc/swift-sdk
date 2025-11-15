@@ -20,7 +20,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.299.2"),
+    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.302.0"),
 ]
 ```
 
@@ -39,11 +39,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.dev.createTemplateV1(request: .init(
-        message: "message",
-        number: 1,
-        timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-    ))
+    _ = try await client.payments.createConnectAccountV1()
 }
 
 try await main()
@@ -56,7 +52,7 @@ The SDK exports all request types as Swift structs. Simply import the SDK module
 ```swift
 import Chrt
 
-let request = Requests.TemplateReq(
+let request = Requests.GenerateInvoiceReq(
     ...
 )
 ```
@@ -68,7 +64,7 @@ let request = Requests.TemplateReq(
 If you would like to send additional headers as part of the request, use the `additionalHeaders` request option.
 
 ```swift
-try await client.dev.createTemplateV1(..., requestOptions: .init(
+try await client.payments.createConnectAccountV1(..., requestOptions: .init(
     additionalHeaders: [
         "X-Custom-Header": "custom value"
     ]
@@ -80,7 +76,7 @@ try await client.dev.createTemplateV1(..., requestOptions: .init(
 If you would like to send additional query string parameters as part of the request, use the `additionalQueryParameters` request option.
 
 ```swift
-try await client.dev.createTemplateV1(..., requestOptions: .init(
+try await client.payments.createConnectAccountV1(..., requestOptions: .init(
     additionalQueryParameters: [
         "custom_query_param_key": "custom_query_param_value"
     ]
@@ -92,7 +88,7 @@ try await client.dev.createTemplateV1(..., requestOptions: .init(
 The SDK defaults to a 60-second timeout. Use the `timeout` option to configure this behavior.
 
 ```swift
-try await client.dev.createTemplateV1(..., requestOptions: .init(
+try await client.payments.createConnectAccountV1(..., requestOptions: .init(
     timeout: 30
 ))
 ```

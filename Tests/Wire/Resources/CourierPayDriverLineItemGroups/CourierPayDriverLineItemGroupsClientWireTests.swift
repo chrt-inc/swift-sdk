@@ -21,7 +21,7 @@ import Chrt
                       "quantity": 1.1,
                       "rate": 1.1,
                       "comment": "comment",
-                      "created_at": "2024-01-15T09:30:00Z",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "uuid_str": "uuid_str"
                     }
                   ],
@@ -49,7 +49,7 @@ import Chrt
                     quantity: 1.1,
                     rate: 1.1,
                     comment: Optional("comment"),
-                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     uuidStr: "uuid_str"
                 )
             ],
@@ -81,7 +81,7 @@ import Chrt
                       "quantity": 1.1,
                       "rate": 1.1,
                       "comment": "comment",
-                      "created_at": "2024-01-15T09:30:00Z",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "uuid_str": "uuid_str"
                     }
                   ],
@@ -109,7 +109,7 @@ import Chrt
                     quantity: 1.1,
                     rate: 1.1,
                     comment: Optional("comment"),
-                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     uuidStr: "uuid_str"
                 )
             ],
@@ -141,7 +141,7 @@ import Chrt
                       "quantity": 1.1,
                       "rate": 1.1,
                       "comment": "comment",
-                      "created_at": "2024-01-15T09:30:00Z",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "uuid_str": "uuid_str"
                     }
                   ],
@@ -168,7 +168,7 @@ import Chrt
                     quantity: 1.1,
                     rate: 1.1,
                     comment: Optional("comment"),
-                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     uuidStr: "uuid_str"
                 )
             ],

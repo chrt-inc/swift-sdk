@@ -8,9 +8,7 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                {
-                  "success": true
-                }
+                true
                 """.utf8
             )
         )
@@ -19,9 +17,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = UpdateTaskGroupRes(
-            success: true
-        )
+        let expectedResponse = true
         let response = try await client.taskGroups.updateV1(
             request: .init(taskGroupId: "task_group_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -45,7 +41,7 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.taskGroups.startV1(
-            id: "id",
+            taskGroupId: "task_group_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

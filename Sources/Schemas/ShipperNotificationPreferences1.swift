@@ -11,7 +11,7 @@ public struct ShipperNotificationPreferences1: Codable, Hashable, Sendable {
     public let orgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
-    public let createdAt: Date
+    public let createdAtTimestamp: Date
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -24,7 +24,7 @@ public struct ShipperNotificationPreferences1: Codable, Hashable, Sendable {
         preferences: [String: [NotificationChannelEnum]]? = nil,
         orgId: String,
         createdByUserId: String,
-        createdAt: Date,
+        createdAtTimestamp: Date,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -35,7 +35,7 @@ public struct ShipperNotificationPreferences1: Codable, Hashable, Sendable {
         self.preferences = preferences
         self.orgId = orgId
         self.createdByUserId = createdByUserId
-        self.createdAt = createdAt
+        self.createdAtTimestamp = createdAtTimestamp
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -49,7 +49,7 @@ public struct ShipperNotificationPreferences1: Codable, Hashable, Sendable {
         self.preferences = try container.decodeIfPresent([String: [NotificationChannelEnum]].self, forKey: .preferences)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
-        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+        self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -64,7 +64,7 @@ public struct ShipperNotificationPreferences1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.preferences, forKey: .preferences)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
-        try container.encode(self.createdAt, forKey: .createdAt)
+        try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -77,7 +77,7 @@ public struct ShipperNotificationPreferences1: Codable, Hashable, Sendable {
         case preferences
         case orgId = "org_id"
         case createdByUserId = "created_by_user_id"
-        case createdAt = "created_at"
+        case createdAtTimestamp = "created_at_timestamp"
         case id = "_id"
     }
 }
