@@ -13,7 +13,7 @@ public final class DraftExpandedClient: Sendable {
     public func postExpandedV1(orderIdOrShortId: String, request: Requests.OrderDraftExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/orders/draft/expanded/v1/\(orderIdOrShortId)",
+            path: "/oort/order_drafts/expanded/v1/\(orderIdOrShortId)",
             body: request,
             requestOptions: requestOptions,
             responseType: OrderDraftExpandedRes.self
@@ -26,7 +26,7 @@ public final class DraftExpandedClient: Sendable {
     public func postExpandedListV1(request: Requests.OrderDraftExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/orders/draft/expanded/list/v1",
+            path: "/oort/order_drafts/expanded/list/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: OrderDraftExpandedListRes.self

@@ -21,7 +21,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -46,7 +49,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -71,7 +77,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -95,7 +104,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -118,7 +130,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -142,7 +157,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -166,7 +184,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -195,7 +216,10 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -234,7 +258,10 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -269,7 +296,10 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -315,7 +345,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -335,7 +368,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -359,7 +395,10 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.payments.generateInvoiceV1(
+                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }

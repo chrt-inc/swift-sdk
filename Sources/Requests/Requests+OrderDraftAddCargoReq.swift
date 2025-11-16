@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct OrderDraftCreateCargoReq: Codable, Hashable, Sendable {
+    public struct OrderDraftAddCargoReq: Codable, Hashable, Sendable {
         public let orderId: String
         public let cargo: CargoClientCreate1
         /// Additional properties that are not explicitly defined in the schema

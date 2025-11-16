@@ -3,52 +3,6 @@ import Testing
 import Chrt
 
 @Suite("PaymentsClient Wire Tests") struct PaymentsClientWireTests {
-    @Test func createConnectAccountV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "stripe_connect_account_id": "stripe_connect_account_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = CreateConnectAccountRes(
-            stripeConnectAccountId: "stripe_connect_account_id"
-        )
-        let response = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
-        try #require(response == expectedResponse)
-    }
-
-    @Test func createConnectAccountLinkV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "url": "url"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = CreateConnectAccountLinkRes(
-            url: "url"
-        )
-        let response = try await client.payments.createConnectAccountLinkV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
-        try #require(response == expectedResponse)
-    }
-
     @Test func generateInvoiceV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -123,6 +77,52 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.payments.syncStripeToClerkV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createConnectAccountV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "stripe_connect_account_id": "stripe_connect_account_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateConnectAccountRes(
+            stripeConnectAccountId: "stripe_connect_account_id"
+        )
+        let response = try await client.payments.createConnectAccountV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createConnectAccountLinkV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "url": "url"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CreateConnectAccountLinkRes(
+            url: "url"
+        )
+        let response = try await client.payments.createConnectAccountLinkV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

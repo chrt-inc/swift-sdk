@@ -19,6 +19,7 @@ public final class ChrtClient: Sendable {
     public let taskArtifacts: TaskArtifactsClient
     public let offChrtShipperOrg: OffChrtShipperOrgClient
     public let orders: OrdersClient
+    public let orderDrafts: OrderDraftsClient
     public let taskGroups: TaskGroupsClient
     public let shipperContactInfo: ShipperContactInfoClient
     public let orgs: OrgsClient
@@ -127,6 +128,7 @@ public final class ChrtClient: Sendable {
         self.taskArtifacts = TaskArtifactsClient(config: config)
         self.offChrtShipperOrg = OffChrtShipperOrgClient(config: config)
         self.orders = OrdersClient(config: config)
+        self.orderDrafts = OrderDraftsClient(config: config)
         self.taskGroups = TaskGroupsClient(config: config)
         self.shipperContactInfo = ShipperContactInfoClient(config: config)
         self.orgs = OrgsClient(config: config)
