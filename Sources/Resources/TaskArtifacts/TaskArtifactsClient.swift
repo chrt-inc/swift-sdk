@@ -11,7 +11,7 @@ public final class TaskArtifactsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Completes a task_artifact and updates all related task, cargo, task group, and order statuses.
+    /// Completes a task_artifact and updates all related task, cargo, task group, and order statuses. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func completeV1(taskArtifactId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -23,7 +23,7 @@ public final class TaskArtifactsClient: Sendable {
         )
     }
 
-    /// Updates the completor comments on a task_artifact without affecting completion status.
+    /// Updates the completor comments on a task_artifact without affecting completion status. | (TaskArtifactUpdateCommentsReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateCommentsV1(request: Requests.TaskArtifactUpdateCommentsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -36,7 +36,7 @@ public final class TaskArtifactsClient: Sendable {
         )
     }
 
-    /// Adds a new task_artifact to an existing task
+    /// Adds a new task_artifact to an existing task. | (TaskArtifactAddToTaskReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addToTaskV1(request: Requests.TaskArtifactAddToTaskReq, requestOptions: RequestOptions? = nil) async throws -> String {

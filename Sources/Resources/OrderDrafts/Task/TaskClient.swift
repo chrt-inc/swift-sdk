@@ -7,7 +7,7 @@ public final class TaskClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a task to an existing task group in a draft order. Validates order is in DRAFT status and task action type matches task group type.
+    /// Adds a task to an existing task group in a draft order. Validates order is in DRAFT status and task action type matches task group type. | (OrderDraftAddTaskReqV1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(request: Requests.OrderDraftAddTaskReqV1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -20,7 +20,7 @@ public final class TaskClient: Sendable {
         )
     }
 
-    /// Updates a task in an existing draft order
+    /// Updates a task in an existing draft order. | (OrderDraftUpdateTaskReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.OrderDraftUpdateTaskReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -33,7 +33,7 @@ public final class TaskClient: Sendable {
         )
     }
 
-    /// Deletes a task from a draft order, including all task artifacts. Cargo is preserved. Task is removed from task group.
+    /// Deletes a task from a draft order, including all task artifacts. Cargo is preserved. Task is removed from task group. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -7,7 +7,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates an off-platform shipper organization record.
+    /// Creates an off-platform shipper organization record. | (OffChrtShipperOrgClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.OffChrtShipperOrgClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -20,7 +20,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Lists all off-platform shipper organizations created by the authenticated organization.
+    /// Lists all off-platform shipper organizations created by the authenticated organization. | () -> (list[OffChrtShipperOrg1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [OffChrtShipperOrg1] {
@@ -32,7 +32,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Retrieves specific off-platform shipper organization by ID.
+    /// Retrieves specific off-platform shipper organization by ID. | () -> (OffChrtShipperOrg1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> OffChrtShipperOrg1 {
@@ -44,7 +44,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Deletes off-platform shipper organization owned by the authenticated organization.
+    /// Deletes off-platform shipper organization owned by the authenticated organization. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -56,7 +56,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Updates existing off-platform shipper organization owned by the authenticated organization.
+    /// Updates existing off-platform shipper organization owned by the authenticated organization. | (OffChrtShipperOrgClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateByIdV1(id: String, request: Requests.OffChrtShipperOrgClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

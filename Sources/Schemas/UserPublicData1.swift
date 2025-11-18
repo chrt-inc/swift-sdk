@@ -3,9 +3,8 @@ import Foundation
 public struct UserPublicData1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let primaryEmailAddress: String?
+    /// Must be a string starting with `user_`
     public let userId: String
-    public let customerId: String?
-    public let notes: [String: JSONValue]?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -14,16 +13,12 @@ public struct UserPublicData1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         primaryEmailAddress: String? = nil,
         userId: String,
-        customerId: String? = nil,
-        notes: [String: JSONValue]? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
         self.primaryEmailAddress = primaryEmailAddress
         self.userId = userId
-        self.customerId = customerId
-        self.notes = notes
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -33,8 +28,6 @@ public struct UserPublicData1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.userId = try container.decode(String.self, forKey: .userId)
-        self.customerId = try container.decodeIfPresent(String.self, forKey: .customerId)
-        self.notes = try container.decodeIfPresent([String: JSONValue].self, forKey: .notes)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -45,8 +38,6 @@ public struct UserPublicData1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encode(self.userId, forKey: .userId)
-        try container.encodeIfPresent(self.customerId, forKey: .customerId)
-        try container.encodeIfPresent(self.notes, forKey: .notes)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -55,8 +46,6 @@ public struct UserPublicData1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case primaryEmailAddress = "primary_email_address"
         case userId = "user_id"
-        case customerId = "customer_id"
-        case notes
         case id = "_id"
     }
 }

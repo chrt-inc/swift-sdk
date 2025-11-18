@@ -11,7 +11,7 @@ public final class TaskGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Updates task group driver assignments by adding or removing drivers.
+    /// Updates task group driver assignments by adding or removing drivers. | (UpdateTaskGroupReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -24,7 +24,7 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Starts a task group by changing its status to in-progress and updating the order status. Only authorized personas (task_group_driver or task_group_courier_org_administrator) can start a task group.
+    /// Starts a task group by changing its status to in-progress and updating the order status. Only authorized personas (task_group_driver or task_group_courier_org_administrator) can start a task group. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func startV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -36,7 +36,7 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Toggles the pause status of an in-progress task group.
+    /// Toggles the pause status of an in-progress task group. | (SetTaskGroupPauseReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func togglePauseV1(id: String, request: Requests.SetTaskGroupPauseReq, requestOptions: RequestOptions? = nil) async throws -> Bool {

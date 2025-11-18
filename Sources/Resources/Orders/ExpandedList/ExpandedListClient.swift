@@ -7,7 +7,7 @@ public final class ExpandedListClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves orders expanded list for the shipper organization with optional filters and related data.
+    /// Retrieves orders expanded list for the shipper organization with optional filters and related data. | (OrderExpandedForShipperReq) -> (OrdersExpandedForShipperRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postShipperExpandedListV1(page: Int? = nil, pageSize: Int? = nil, sortBy: OrderExpandedListSortFieldEnum? = nil, sortOrder: SortOrderEnum? = nil, filterDraftStartedAtGte: Date? = nil, filterDraftStartedAtLte: Date? = nil, filterStatuses: OrderStatusEnum1? = nil, filterOrderCancelled: Bool? = nil, request: OrderExpandedForShipperReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedForShipperRes {
@@ -30,7 +30,7 @@ public final class ExpandedListClient: Sendable {
         )
     }
 
-    /// Retrieves orders expanded list for order creator org with optional filters, shipper includes, and exclusions.
+    /// Retrieves orders expanded list for order creator org with optional filters, shipper includes, and exclusions. | (OrderExpandedForOrderCreatorReq) -> (OrdersExpandedForOrderCreatorRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postOrderCreatorExpandedListV1(page: Int? = nil, pageSize: Int? = nil, sortBy: OrderExpandedListSortFieldEnum? = nil, sortOrder: SortOrderEnum? = nil, filterDraftStartedAtGte: Date? = nil, filterDraftStartedAtLte: Date? = nil, filterStatuses: OrderStatusEnum1? = nil, filterOrderCancelled: Bool? = nil, includeShipperOrgIds: String? = nil, excludeShipperOrgIds: String? = nil, request: OrderExpandedForOrderCreatorReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedForOrderCreatorRes {

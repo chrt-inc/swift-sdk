@@ -7,7 +7,7 @@ public final class ExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Fetches a single order for the shipper organization with optional expanded related data.
+    /// Fetches a single order for the shipper organization with optional expanded related data. | (OrderExpandedForShipperReq) -> (OrderExpandedForShipper)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postForShipperByOrderIdV1(orderIdOrShortId: String, request: OrderExpandedForShipperReq, requestOptions: RequestOptions? = nil) async throws -> OrderExpandedForShipper {
@@ -20,7 +20,7 @@ public final class ExpandedClient: Sendable {
         )
     }
 
-    /// Fetches a single order for the organization that created it with optional expanded related data.
+    /// Fetches a single order for the organization that created it with optional expanded related data. | (OrderExpandedForOrderCreatorReq) -> (OrderExpandedForOrderCreator)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postForOrderCreatorByOrderIdV1(orderIdOrShortId: String, request: OrderExpandedForOrderCreatorReq, requestOptions: RequestOptions? = nil) async throws -> OrderExpandedForOrderCreator {

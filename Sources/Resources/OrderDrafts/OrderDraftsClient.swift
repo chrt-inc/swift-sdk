@@ -15,7 +15,7 @@ public final class OrderDraftsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates a new draft order with org assignments based on caller's organization type.
+    /// Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func newV1(request: Requests.OrdersNewDraftReq, requestOptions: RequestOptions? = nil) async throws -> OrdersNewDraftRes {
@@ -28,7 +28,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Updates forwarder and/or shipper org assignments for a draft order
+    /// Updates forwarder and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftUpdateRes {
@@ -41,7 +41,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Deletes a draft order and all associated entities
+    /// Deletes a draft order and all associated entities. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -53,7 +53,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it.
+    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderDraftExpandedReq) -> (OrderDraftExpandedRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func expandedV1(orderIdOrShortId: String, request: Requests.OrderDraftExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedRes {
@@ -66,7 +66,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Lists all draft orders created by the authenticated user with optional expanded related data.
+    /// Lists all draft orders created by the authenticated user with optional expanded related data. | (OrderDraftExpandedListReq) -> (OrderDraftExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func expandedListV1(request: Requests.OrderDraftExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
@@ -79,7 +79,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Checks whether the draft order satisfies all requirements to move into staging.
+    /// Checks whether the draft order satisfies all requirements to move into staging. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func validateV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

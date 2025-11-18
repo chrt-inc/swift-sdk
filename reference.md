@@ -4851,7 +4851,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all organization members paired with their driver information if they are drivers.
+Lists all organization members paired with their driver information if they are drivers. | () -> (list[OrgMembersAndDrivers])
 </dd>
 </dl>
 </dd>
@@ -4914,7 +4914,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all drivers belonging to the authenticated organization.
+Lists all drivers belonging to the authenticated organization. | () -> (list[Driver1])
 </dd>
 </dl>
 </dd>
@@ -4977,7 +4977,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new driver profile for an organization member with optional vehicle type assignments.
+Creates a new driver profile for an organization member with optional vehicle type assignments. | (DriverCreateReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -5051,7 +5051,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves driver information for the authenticated user within their organization.
+Retrieves driver information for the authenticated user within their organization. | () -> (Driver1)
 </dd>
 </dl>
 </dd>
@@ -5114,7 +5114,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves detailed driver information by driver ID within the organization.
+Retrieves detailed driver information by driver ID within the organization. | () -> (Driver1)
 </dd>
 </dl>
 </dd>
@@ -5185,7 +5185,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a driver from the organization and removes them from associated rate sheets.
+Deletes a driver from the organization and removes them from associated rate sheets. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5256,7 +5256,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the activation status of a driver (active/inactive) within the organization.
+Sets the activation status of a driver (active/inactive) within the organization. | (SetDriverActivationReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5330,7 +5330,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the driver's last known location and timestamp for tracking purposes.
+Updates the driver's last known location and timestamp for tracking purposes. | (DriverLastSeenReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5418,7 +5418,7 @@ try await main()
 <dl>
 <dd>
 
-Clears the driver's last known location and timestamp.
+Clears the driver's last known location and timestamp. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5481,7 +5481,7 @@ try await main()
 <dl>
 <dd>
 
-Updates driver contact details and vehicle type assignments within the organization.
+Updates driver contact details and vehicle type assignments within the organization. | (UpdateDriverDetailsReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5553,7 +5553,7 @@ try await main()
 <dl>
 <dd>
 
-Completes a task_artifact and updates all related task, cargo, task group, and order statuses.
+Completes a task_artifact and updates all related task, cargo, task group, and order statuses. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5624,7 +5624,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the completor comments on a task_artifact without affecting completion status.
+Updates the completor comments on a task_artifact without affecting completion status. | (TaskArtifactUpdateCommentsReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -5698,7 +5698,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a new task_artifact to an existing task
+Adds a new task_artifact to an existing task. | (TaskArtifactAddToTaskReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -5774,7 +5774,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an off-platform shipper organization record.
+Creates an off-platform shipper organization record. | (OffChrtShipperOrgClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -5848,7 +5848,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all off-platform shipper organizations created by the authenticated organization.
+Lists all off-platform shipper organizations created by the authenticated organization. | () -> (list[OffChrtShipperOrg1])
 </dd>
 </dl>
 </dd>
@@ -5911,7 +5911,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves specific off-platform shipper organization by ID.
+Retrieves specific off-platform shipper organization by ID. | () -> (OffChrtShipperOrg1)
 </dd>
 </dl>
 </dd>
@@ -5982,7 +5982,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes off-platform shipper organization owned by the authenticated organization.
+Deletes off-platform shipper organization owned by the authenticated organization. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6053,7 +6053,7 @@ try await main()
 <dl>
 <dd>
 
-Updates existing off-platform shipper organization owned by the authenticated organization.
+Updates existing off-platform shipper organization owned by the authenticated organization. | (OffChrtShipperOrgClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6136,7 +6136,7 @@ try await main()
 <dl>
 <dd>
 
-Validates a draft order and stages all related entities in a transaction.
+Validates a draft order and stages all related entities in a transaction. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6208,7 +6208,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new draft order with org assignments based on caller's organization type.
+Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
 </dd>
 </dl>
 </dd>
@@ -6279,7 +6279,7 @@ try await main()
 <dl>
 <dd>
 
-Updates forwarder and/or shipper org assignments for a draft order
+Updates forwarder and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
 </dd>
 </dl>
 </dd>
@@ -6350,7 +6350,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a draft order and all associated entities
+Deletes a draft order and all associated entities. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6421,7 +6421,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it.
+Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderDraftExpandedReq) -> (OrderDraftExpandedRes)
 </dd>
 </dl>
 </dd>
@@ -6503,7 +6503,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all draft orders created by the authenticated user with optional expanded related data.
+Lists all draft orders created by the authenticated user with optional expanded related data. | (OrderDraftExpandedListReq) -> (OrderDraftExpandedListRes)
 </dd>
 </dl>
 </dd>
@@ -6574,7 +6574,7 @@ try await main()
 <dl>
 <dd>
 
-Checks whether the draft order satisfies all requirements to move into staging.
+Checks whether the draft order satisfies all requirements to move into staging. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6646,7 +6646,7 @@ try await main()
 <dl>
 <dd>
 
-Updates task group driver assignments by adding or removing drivers.
+Updates task group driver assignments by adding or removing drivers. | (UpdateTaskGroupReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6717,7 +6717,7 @@ try await main()
 <dl>
 <dd>
 
-Starts a task group by changing its status to in-progress and updating the order status. Only authorized personas (task_group_driver or task_group_courier_org_administrator) can start a task group.
+Starts a task group by changing its status to in-progress and updating the order status. Only authorized personas (task_group_driver or task_group_courier_org_administrator) can start a task group. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6788,7 +6788,7 @@ try await main()
 <dl>
 <dd>
 
-Toggles the pause status of an in-progress task group.
+Toggles the pause status of an in-progress task group. | (SetTaskGroupPauseReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6874,7 +6874,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the authenticated user's own shipper contact information.
+Retrieves the authenticated user's own shipper contact information. | () -> (ShipperContact1)
 </dd>
 </dl>
 </dd>
@@ -6937,7 +6937,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper contacts created by the authenticated organization.
+Lists all shipper contacts created by the authenticated organization. | () -> (list[ShipperContact1])
 </dd>
 </dl>
 </dd>
@@ -7000,7 +7000,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper contacts accessible to the courier organization for a specific on-platform shipper.
+Lists all shipper contacts accessible to the courier organization for a specific on-platform shipper. | () -> (list[ShipperContact1])
 </dd>
 </dl>
 </dd>
@@ -7071,7 +7071,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper contacts for a specific off-platform shipper connection.
+Lists all shipper contacts for a specific off-platform shipper connection. | () -> (list[ShipperContact1])
 </dd>
 </dl>
 </dd>
@@ -7142,7 +7142,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a specific shipper contact by ID if authorized to access it.
+Retrieves a specific shipper contact by ID if authorized to access it. | () -> (ShipperContact1)
 </dd>
 </dl>
 </dd>
@@ -7213,7 +7213,7 @@ try await main()
 <dl>
 <dd>
 
-Creates contact information for an on-platform shipper organization or user.
+Creates contact information for an on-platform shipper organization or user. | (ShipperContactClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -7286,7 +7286,7 @@ try await main()
 <dl>
 <dd>
 
-Creates contact information for an off-platform shipper using connection info.
+Creates contact information for an off-platform shipper using connection info. | (ShipperContactClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -7359,7 +7359,7 @@ try await main()
 <dl>
 <dd>
 
-Updates existing shipper contact information owned by the authenticated organization.
+Updates existing shipper contact information owned by the authenticated organization. | (ShipperContactClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7441,7 +7441,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes shipper contact information owned by the authenticated organization.
+Deletes shipper contact information owned by the authenticated organization. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7974,6 +7974,69 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">getStripeConnectAccountIdV1</a>(requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the Stripe Connect account ID for the authenticated organization. Returns 404 if not set. | () -> (str)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.getStripeConnectAccountIdV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Root
 <details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingAuthd</a>(requestOptions: RequestOptions?) -> [String: String]</code></summary>
 <dl>
@@ -8291,7 +8354,7 @@ try await main()
 </details>
 
 ## Users
-<details><summary><code>client.users.<a href="/Sources/Resources/Users/UsersClient.swift">getPublicDataV1</a>(requestOptions: RequestOptions?) -> UserPublicData1</code></summary>
+<details><summary><code>client.users.<a href="/Sources/Resources/Users/UsersClient.swift">getUserPublicDataV1</a>(requestOptions: RequestOptions?) -> UserPublicData1</code></summary>
 <dl>
 <dd>
 
@@ -8303,7 +8366,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves public user data for the authenticated user, including email, notes, and Stripe customer information. | () -> (UserPublicData1)
+Retrieves public user data for the authenticated user. | () -> (UserPublicData1)
 </dd>
 </dl>
 </dd>
@@ -8324,7 +8387,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.users.getPublicDataV1()
+    _ = try await client.users.getUserPublicDataV1()
 }
 
 try await main()
@@ -9117,7 +9180,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a task group to an existing order draft. Validates order is in DRAFT status and owned by caller.
+Adds a task group to an existing order draft. Validates order is in DRAFT status and owned by caller. | (OrderDraftAddTaskGroupReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9191,7 +9254,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order.
+Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -9263,7 +9326,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a task to an existing task group in a draft order. Validates order is in DRAFT status and task action type matches task group type.
+Adds a task to an existing task group in a draft order. Validates order is in DRAFT status and task action type matches task group type. | (OrderDraftAddTaskReqV1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9339,7 +9402,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a task in an existing draft order
+Updates a task in an existing draft order. | (OrderDraftUpdateTaskReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9415,7 +9478,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task from a draft order, including all task artifacts. Cargo is preserved. Task is removed from task group.
+Deletes a task from a draft order, including all task artifacts. Cargo is preserved. Task is removed from task group. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -9487,7 +9550,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a task artifact to an existing task in a draft order.
+Adds a task artifact to an existing task in a draft order. | (OrderDraftAddTaskArtifactReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9561,7 +9624,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task artifact from a draft order and removes it from the associated task.
+Deletes a task artifact from a draft order and removes it from the associated task. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -9633,7 +9696,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a cargo item to an existing draft order. Validates order is in DRAFT status and owned by caller.
+Adds a cargo item to an existing draft order. Validates order is in DRAFT status and owned by caller. | (OrderDraftAddCargoReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9710,7 +9773,7 @@ try await main()
 <dl>
 <dd>
 
-Associates existing cargo with a task in a draft order.
+Associates existing cargo with a task in a draft order. | (OrderDraftAssociateCargoWithTaskReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -9785,7 +9848,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a cargo item in an existing draft order. Validates order is in DRAFT status and owned by caller.
+Updates a cargo item in an existing draft order. Validates order is in DRAFT status and owned by caller. | (OrderDraftUpdateCargoReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9861,7 +9924,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a cargo item from a draft order and removes references from associated tasks
+Deletes a cargo item from a draft order and removes references from associated tasks. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -9933,7 +9996,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches a single order for the shipper organization with optional expanded related data.
+Fetches a single order for the shipper organization with optional expanded related data. | (OrderExpandedForShipperReq) -> (OrderExpandedForShipper)
 </dd>
 </dl>
 </dd>
@@ -10017,7 +10080,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches a single order for the organization that created it with optional expanded related data.
+Fetches a single order for the organization that created it with optional expanded related data. | (OrderExpandedForOrderCreatorReq) -> (OrderExpandedForOrderCreator)
 </dd>
 </dl>
 </dd>
@@ -10102,7 +10165,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves orders expanded list for the shipper organization with optional filters and related data.
+Retrieves orders expanded list for the shipper organization with optional filters and related data. | (OrderExpandedForShipperReq) -> (OrdersExpandedForShipperRes)
 </dd>
 </dl>
 </dd>
@@ -10248,7 +10311,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves orders expanded list for order creator org with optional filters, shipper includes, and exclusions.
+Retrieves orders expanded list for order creator org with optional filters, shipper includes, and exclusions. | (OrderExpandedForOrderCreatorReq) -> (OrdersExpandedForOrderCreatorRes)
 </dd>
 </dl>
 </dd>
@@ -11274,7 +11337,7 @@ try await main()
 <dl>
 <dd>
 
-Streams a task_artifact image file from S3 storage.
+Streams a task_artifact image file from S3 storage. | () -> (StreamingResponse)
 </dd>
 </dl>
 </dd>
@@ -11345,7 +11408,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads an image file to a task_artifact with automatic blurhash generation.
+Uploads an image file to a task_artifact with automatic blurhash generation. | (UploadFile) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -11427,7 +11490,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task_artifact image from both S3 storage and database metadata.
+Deletes a task_artifact image from both S3 storage and database metadata. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -11499,7 +11562,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the blurhash string for a task_artifact image for fast placeholder loading.
+Retrieves the blurhash string for a task_artifact image for fast placeholder loading. | () -> (BlurHash)
 </dd>
 </dl>
 </dd>
@@ -11571,7 +11634,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches an expanded task group for the courier org with expanded related data.
+Fetches an expanded task group for the courier org with expanded related data. | (TaskGroupExpandedForCourierAdministratorReq) -> (TaskGroupExpandedForCourierAdministrator)
 </dd>
 </dl>
 </dd>
@@ -11655,7 +11718,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches an expanded task group assigned to a courier driver with optional expanded related data.
+Fetches an expanded task group assigned to a courier driver with optional expanded related data. | (TaskGroupExpandedForCourierDriverReq) -> (TaskGroupExpandedForCourierDriver)
 </dd>
 </dl>
 </dd>
@@ -11739,7 +11802,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches an expanded task group for the shipper org with expanded related data.
+Fetches an expanded task group for the shipper org with expanded related data. | (TaskGroupExpandedForShipperReq) -> (TaskGroupExpandedForShipper)
 </dd>
 </dl>
 </dd>
@@ -11822,7 +11885,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches expanded task groups for the courier org with optional filters and expanded related data.
+Fetches expanded task groups for the courier org with optional filters and expanded related data. | (TaskGroupExpandedForCourierAdministratorReq) -> (TaskGroupsExpandedForCourierAdministratorRes)
 </dd>
 </dl>
 </dd>
@@ -12022,7 +12085,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches expanded task groups assigned to a courier driver with optional expanded related data.
+Fetches expanded task groups assigned to a courier driver with optional expanded related data. | (TaskGroupExpandedForCourierDriverReq) -> (TaskGroupsExpandedForCourierDriverRes)
 </dd>
 </dl>
 </dd>

@@ -7,7 +7,7 @@ public final class TaskGroupsExpandedListClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Fetches expanded task groups for the courier org with optional filters and expanded related data.
+    /// Fetches expanded task groups for the courier org with optional filters and expanded related data. | (TaskGroupExpandedForCourierAdministratorReq) -> (TaskGroupsExpandedForCourierAdministratorRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func forCourierAdministratorV1(page: Int? = nil, pageSize: Int? = nil, sortBy: TaskGroupExpandedSortFieldEnum? = nil, sortOrder: SortOrderEnum? = nil, filterCreatedAtGte: Date? = nil, filterCreatedAtLte: Date? = nil, filterStartedAtGte: Date? = nil, filterStartedAtLte: Date? = nil, filterCompletedAtGte: Date? = nil, filterCompletedAtLte: Date? = nil, filterOrderCancelled: Bool? = nil, filterStatuses: TaskGroupStatusEnum1? = nil, filterCompleted: Bool? = nil, filterPaused: Bool? = nil, request: TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupsExpandedForCourierAdministratorRes {
@@ -36,7 +36,7 @@ public final class TaskGroupsExpandedListClient: Sendable {
         )
     }
 
-    /// Fetches expanded task groups assigned to a courier driver with optional expanded related data.
+    /// Fetches expanded task groups assigned to a courier driver with optional expanded related data. | (TaskGroupExpandedForCourierDriverReq) -> (TaskGroupsExpandedForCourierDriverRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func forCourierDriverV1(page: Int? = nil, pageSize: Int? = nil, sortBy: TaskGroupExpandedSortFieldEnum? = nil, sortOrder: SortOrderEnum? = nil, filterCreatedAtGte: Date? = nil, filterCreatedAtLte: Date? = nil, filterStartedAtGte: Date? = nil, filterStartedAtLte: Date? = nil, filterCompletedAtGte: Date? = nil, filterCompletedAtLte: Date? = nil, filterOrderCancelled: Bool? = nil, filterStatuses: TaskGroupStatusEnum1? = nil, filterCompleted: Bool? = nil, filterPaused: Bool? = nil, request: TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupsExpandedForCourierDriverRes {

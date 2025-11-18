@@ -7,7 +7,7 @@ public final class ShipperContactInfoClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the authenticated user's own shipper contact information.
+    /// Retrieves the authenticated user's own shipper contact information. | () -> (ShipperContact1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByJwtUserIdV1(requestOptions: RequestOptions? = nil) async throws -> ShipperContact1 {
@@ -19,7 +19,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Lists all shipper contacts created by the authenticated organization.
+    /// Lists all shipper contacts created by the authenticated organization. | () -> (list[ShipperContact1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByJwtOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
@@ -31,7 +31,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Lists all shipper contacts accessible to the courier organization for a specific on-platform shipper.
+    /// Lists all shipper contacts accessible to the courier organization for a specific on-platform shipper. | () -> (list[ShipperContact1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listCourierContactsByShipperOrgIdV1(shipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
@@ -43,7 +43,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Lists all shipper contacts for a specific off-platform shipper connection.
+    /// Lists all shipper contacts for a specific off-platform shipper connection. | () -> (list[ShipperContact1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByOffChrtShipperOrgIdV1(offChrtShipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
@@ -55,7 +55,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Retrieves a specific shipper contact by ID if authorized to access it.
+    /// Retrieves a specific shipper contact by ID if authorized to access it. | () -> (ShipperContact1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperContact1 {
@@ -67,7 +67,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Creates contact information for an on-platform shipper organization or user.
+    /// Creates contact information for an on-platform shipper organization or user. | (ShipperContactClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createOnPlatformV1(request: ShipperContactClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -80,7 +80,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Creates contact information for an off-platform shipper using connection info.
+    /// Creates contact information for an off-platform shipper using connection info. | (ShipperContactClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createOffPlatformV1(request: ShipperContactClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -93,7 +93,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Updates existing shipper contact information owned by the authenticated organization.
+    /// Updates existing shipper contact information owned by the authenticated organization. | (ShipperContactClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(shipperContactInfoId: String, request: Requests.ShipperContactClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -106,7 +106,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Deletes shipper contact information owned by the authenticated organization.
+    /// Deletes shipper contact information owned by the authenticated organization. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -7,7 +7,7 @@ public final class TaskGroupsExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Fetches an expanded task group for the courier org with expanded related data.
+    /// Fetches an expanded task group for the courier org with expanded related data. | (TaskGroupExpandedForCourierAdministratorReq) -> (TaskGroupExpandedForCourierAdministrator)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func forCourierAdministratorByIdV1(id: String, request: TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedForCourierAdministrator {
@@ -20,7 +20,7 @@ public final class TaskGroupsExpandedClient: Sendable {
         )
     }
 
-    /// Fetches an expanded task group assigned to a courier driver with optional expanded related data.
+    /// Fetches an expanded task group assigned to a courier driver with optional expanded related data. | (TaskGroupExpandedForCourierDriverReq) -> (TaskGroupExpandedForCourierDriver)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func forCourierDriverByIdV1(id: String, request: TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedForCourierDriver {
@@ -33,7 +33,7 @@ public final class TaskGroupsExpandedClient: Sendable {
         )
     }
 
-    /// Fetches an expanded task group for the shipper org with expanded related data.
+    /// Fetches an expanded task group for the shipper org with expanded related data. | (TaskGroupExpandedForShipperReq) -> (TaskGroupExpandedForShipper)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func forShipperByIdV1(id: String, request: Requests.TaskGroupExpandedForShipperReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedForShipper {

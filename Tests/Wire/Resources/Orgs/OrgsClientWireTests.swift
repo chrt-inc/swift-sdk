@@ -68,10 +68,10 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
+                  "org_type": "courier",
                   "org_id": "org_id",
                   "company_name": "company_name",
                   "handle": "handle",
-                  "org_type": "courier",
                   "_id": "_id"
                 }
                 """.utf8
@@ -84,10 +84,10 @@ import Chrt
         )
         let expectedResponse = OrgPublicData1(
             schemaVersion: 1,
+            orgType: .courier,
             orgId: "org_id",
             companyName: Optional("company_name"),
             handle: Optional("handle"),
-            orgType: .courier,
             id: "_id"
         )
         let response = try await client.orgs.getOrgPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -145,10 +145,10 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
+                  "org_type": "courier",
                   "org_id": "org_id",
                   "company_name": "company_name",
                   "handle": "handle",
-                  "org_type": "courier",
                   "_id": "_id"
                 }
                 """.utf8
@@ -161,10 +161,10 @@ import Chrt
         )
         let expectedResponse = OrgPublicData1(
             schemaVersion: 1,
+            orgType: .courier,
             orgId: "org_id",
             companyName: Optional("company_name"),
             handle: Optional("handle"),
-            orgType: .courier,
             id: "_id"
         )
         let response = try await client.orgs.getOrgPublicDataByOrgIdV1(
@@ -193,6 +193,25 @@ import Chrt
             handle: "handle",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getStripeConnectAccountIdV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.orgs.getStripeConnectAccountIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

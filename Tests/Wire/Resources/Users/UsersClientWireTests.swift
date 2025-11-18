@@ -3,7 +3,7 @@ import Testing
 import Chrt
 
 @Suite("UsersClient Wire Tests") struct UsersClientWireTests {
-    @Test func getPublicDataV11() async throws -> Void {
+    @Test func getUserPublicDataV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -12,10 +12,6 @@ import Chrt
                   "schema_version": 1,
                   "primary_email_address": "primary_email_address",
                   "user_id": "user_id",
-                  "customer_id": "customer_id",
-                  "notes": {
-                    "key": "value"
-                  },
                   "_id": "_id"
                 }
                 """.utf8
@@ -30,13 +26,9 @@ import Chrt
             schemaVersion: 1,
             primaryEmailAddress: Optional("primary_email_address"),
             userId: "user_id",
-            customerId: Optional("customer_id"),
-            notes: Optional([
-                "key": JSONValue.string("value")
-            ]),
             id: "_id"
         )
-        let response = try await client.users.getPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.users.getUserPublicDataV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

@@ -7,7 +7,7 @@ public final class TaskArtifactClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a task artifact to an existing task in a draft order.
+    /// Adds a task artifact to an existing task in a draft order. | (OrderDraftAddTaskArtifactReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(request: Requests.OrderDraftAddTaskArtifactReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -20,7 +20,7 @@ public final class TaskArtifactClient: Sendable {
         )
     }
 
-    /// Deletes a task artifact from a draft order and removes it from the associated task.
+    /// Deletes a task artifact from a draft order and removes it from the associated task. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(taskArtifactId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

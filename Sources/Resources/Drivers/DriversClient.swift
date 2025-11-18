@@ -7,7 +7,7 @@ public final class DriversClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all organization members paired with their driver information if they are drivers.
+    /// Lists all organization members paired with their driver information if they are drivers. | () -> (list[OrgMembersAndDrivers])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listOrgMembersAndDriversV1(requestOptions: RequestOptions? = nil) async throws -> [OrgMembersAndDrivers] {
@@ -19,7 +19,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Lists all drivers belonging to the authenticated organization.
+    /// Lists all drivers belonging to the authenticated organization. | () -> (list[Driver1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Driver1] {
@@ -31,7 +31,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Creates a new driver profile for an organization member with optional vehicle type assignments.
+    /// Creates a new driver profile for an organization member with optional vehicle type assignments. | (DriverCreateReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.DriverCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -44,7 +44,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Retrieves driver information for the authenticated user within their organization.
+    /// Retrieves driver information for the authenticated user within their organization. | () -> (Driver1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> Driver1 {
@@ -56,7 +56,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Retrieves detailed driver information by driver ID within the organization.
+    /// Retrieves detailed driver information by driver ID within the organization. | () -> (Driver1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Driver1 {
@@ -68,7 +68,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Deletes a driver from the organization and removes them from associated rate sheets.
+    /// Deletes a driver from the organization and removes them from associated rate sheets. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -80,7 +80,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Sets the activation status of a driver (active/inactive) within the organization.
+    /// Sets the activation status of a driver (active/inactive) within the organization. | (SetDriverActivationReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setActivationV1(request: Requests.SetDriverActivationReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -93,7 +93,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates the driver's last known location and timestamp for tracking purposes.
+    /// Updates the driver's last known location and timestamp for tracking purposes. | (DriverLastSeenReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(request: Requests.DriverLastSeenReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -106,7 +106,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Clears the driver's last known location and timestamp.
+    /// Clears the driver's last known location and timestamp. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenClearV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -118,7 +118,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates driver contact details and vehicle type assignments within the organization.
+    /// Updates driver contact details and vehicle type assignments within the organization. | (UpdateDriverDetailsReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateDriverV1(request: Requests.UpdateDriverDetailsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -7,7 +7,7 @@ public final class CargoClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a cargo item to an existing draft order. Validates order is in DRAFT status and owned by caller.
+    /// Adds a cargo item to an existing draft order. Validates order is in DRAFT status and owned by caller. | (OrderDraftAddCargoReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(request: Requests.OrderDraftAddCargoReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -20,7 +20,7 @@ public final class CargoClient: Sendable {
         )
     }
 
-    /// Associates existing cargo with a task in a draft order.
+    /// Associates existing cargo with a task in a draft order. | (OrderDraftAssociateCargoWithTaskReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func associateWithTaskV1(request: Requests.OrderDraftAssociateCargoWithTaskReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -33,7 +33,7 @@ public final class CargoClient: Sendable {
         )
     }
 
-    /// Updates a cargo item in an existing draft order. Validates order is in DRAFT status and owned by caller.
+    /// Updates a cargo item in an existing draft order. Validates order is in DRAFT status and owned by caller. | (OrderDraftUpdateCargoReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.OrderDraftUpdateCargoReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -46,7 +46,7 @@ public final class CargoClient: Sendable {
         )
     }
 
-    /// Deletes a cargo item from a draft order and removes references from associated tasks
+    /// Deletes a cargo item from a draft order and removes references from associated tasks. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(cargoId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

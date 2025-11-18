@@ -87,9 +87,21 @@ public final class OrgsClient: Sendable {
     public func getOrgPublicDataHandleAvailabilityV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/org_public_data/handle_available/v1/\(handle)",
+            path: "/orgs/org_public_data/handle_availability/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves the Stripe Connect account ID for the authenticated organization. Returns 404 if not set. | () -> (str)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getStripeConnectAccountIdV1(requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/stripe_connect_account_id/v1",
+            requestOptions: requestOptions,
+            responseType: String.self
         )
     }
 }
