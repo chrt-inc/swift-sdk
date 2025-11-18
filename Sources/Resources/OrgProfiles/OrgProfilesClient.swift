@@ -7,7 +7,7 @@ public final class OrgProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the courier or forwarder organization profile for the authenticated organization.
+    /// Retrieves the courier or forwarder organization profile for the authenticated organization. | () -> (OrgProfileRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {
@@ -19,7 +19,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Creates a new courier organization profile. Fails if a profile already exists for the organization.
+    /// Creates a new courier organization profile. Fails if a profile already exists for the organization. | (CourierOrgProfileClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createCourierV1(request: Requests.CourierOrgProfileClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -32,7 +32,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Creates a new forwarder organization profile. Fails if a profile already exists for the organization.
+    /// Creates a new forwarder organization profile. Fails if a profile already exists for the organization. | (ForwarderOrgProfileClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createForwarderV1(request: Requests.ForwarderOrgProfileClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -45,7 +45,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Updates an existing courier organization profile. Can update one or more fields.
+    /// Updates an existing courier organization profile. Can update one or more fields. | (CourierOrgProfileClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateCourierV1(request: Requests.CourierOrgProfileClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -58,7 +58,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Updates an existing forwarder organization profile. Can update one or more fields.
+    /// Updates an existing forwarder organization profile. Can update one or more fields. | (ForwarderOrgProfileClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateForwarderV1(request: Requests.ForwarderOrgProfileClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -71,7 +71,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Retrieves a courier or forwarder organization profile using the organization's handle for public profile viewing.
+    /// Retrieves a courier or forwarder organization profile using the organization's handle for public profile viewing. | () -> (OrgProfileRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {
@@ -83,7 +83,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Returns the organization avatar image URL from Clerk or a placeholder if not found.
+    /// Returns the organization avatar image URL from Clerk or a placeholder if not found. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {

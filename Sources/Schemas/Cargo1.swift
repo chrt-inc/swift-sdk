@@ -10,7 +10,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let heightInches: Double?
     public let turnable: Bool?
     public let stackable: Bool?
-    public let descriptionFromShipper: String?
+    public let description: String?
     public let id: String
     public let orderId: String
     public let orderShortId: String
@@ -38,7 +38,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         heightInches: Double? = nil,
         turnable: Bool? = nil,
         stackable: Bool? = nil,
-        descriptionFromShipper: String? = nil,
+        description: String? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
@@ -62,7 +62,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.heightInches = heightInches
         self.turnable = turnable
         self.stackable = stackable
-        self.descriptionFromShipper = descriptionFromShipper
+        self.description = description
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
@@ -89,7 +89,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
-        self.descriptionFromShipper = try container.decodeIfPresent(String.self, forKey: .descriptionFromShipper)
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -117,7 +117,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
-        try container.encodeIfPresent(self.descriptionFromShipper, forKey: .descriptionFromShipper)
+        try container.encodeIfPresent(self.description, forKey: .description)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -143,7 +143,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case heightInches = "height_inches"
         case turnable
         case stackable
-        case descriptionFromShipper = "description_from_shipper"
+        case description
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"

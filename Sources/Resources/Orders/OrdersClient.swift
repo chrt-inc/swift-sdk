@@ -3,13 +3,11 @@ import Foundation
 public final class OrdersClient: Sendable {
     public let expanded: ExpandedClient
     public let expandedList: ExpandedListClient
-    public let draft: DraftClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.expanded = ExpandedClient(config: config)
         self.expandedList = ExpandedListClient(config: config)
-        self.draft = DraftClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

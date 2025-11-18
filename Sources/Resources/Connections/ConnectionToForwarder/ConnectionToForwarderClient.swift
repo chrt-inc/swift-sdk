@@ -7,7 +7,7 @@ public final class ConnectionToForwarderClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates a new connection to a forwarder organization. Only shippers can initiate connections to forwarders.
+    /// Creates a new connection to a forwarder organization. Only shippers can initiate connections to forwarders. | (CreateConnectionReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {

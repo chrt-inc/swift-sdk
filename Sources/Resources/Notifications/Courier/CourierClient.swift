@@ -7,7 +7,7 @@ public final class CourierClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves notification preferences for the authenticated courier organization.
+    /// Retrieves notification preferences for the authenticated courier organization. | () -> (CourierNotificationPreferences1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getPreferencesV1(requestOptions: RequestOptions? = nil) async throws -> CourierNotificationPreferences1 {
@@ -19,7 +19,7 @@ public final class CourierClient: Sendable {
         )
     }
 
-    /// Creates or updates notification preferences for the authenticated courier organization.
+    /// Creates or updates notification preferences for the authenticated courier organization. | (CourierNotificationPreferencesClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func upsertPreferencesV1(request: Requests.CourierNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {

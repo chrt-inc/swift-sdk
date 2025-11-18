@@ -13,7 +13,7 @@ public final class ConnectionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists shipper organizations based on the authenticated organization type. Couriers see connected shippers, forwarders see connected shippers.
+    /// Lists shipper organizations based on the authenticated organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (list[ShipperConnectionRes])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listShippersV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperConnectionRes] {
@@ -25,7 +25,7 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Lists courier organizations based on the authenticated organization type. Shippers see connected couriers, forwarders see connected couriers.
+    /// Lists courier organizations based on the authenticated organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (list[CourierConnectionRes])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listCouriersV1(requestOptions: RequestOptions? = nil) async throws -> [CourierConnectionRes] {
@@ -37,7 +37,7 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Lists forwarder organizations based on the authenticated organization type. Shippers see connected forwarders, couriers see connected forwarders.
+    /// Lists forwarder organizations based on the authenticated organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (list[ForwarderConnectionRes])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listForwardersV1(requestOptions: RequestOptions? = nil) async throws -> [ForwarderConnectionRes] {

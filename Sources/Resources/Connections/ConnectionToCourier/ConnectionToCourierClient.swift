@@ -7,7 +7,7 @@ public final class ConnectionToCourierClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates a new connection to a courier organization. Shippers and forwarders can initiate connections to couriers.
+    /// Creates a new connection to a courier organization. Shippers and forwarders can initiate connections to couriers. | (CreateConnectionReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {

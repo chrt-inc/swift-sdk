@@ -7,7 +7,7 @@ public final class UtilsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the IANA timezone identifier (e.g., 'America/Los_Angeles') for the given latitude and longitude coordinates. Falls back to closest timezone if the point is in the ocean or at an edge.
+    /// Returns the IANA timezone identifier (e.g., 'America/Los_Angeles') for the given latitude and longitude coordinates. Falls back to closest timezone if the point is in the ocean or at an edge. | () -> (TimezoneResponse)
     ///
     /// - Parameter lat: Latitude in decimal degrees (range: -90 to 90)
     /// - Parameter lng: Longitude in decimal degrees (range: -180 to 180)

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Response showing what was updated.
-public struct DriverUpdateResp: Codable, Hashable, Sendable {
+public struct DriverUpdateRes: Codable, Hashable, Sendable {
     public let driverUpdated: Bool
     public let taskGroupTrackingWritten: Bool
     public let cargoTrackingCount: Int

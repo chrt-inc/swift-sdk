@@ -21,7 +21,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = DriverUpdateResp(
+        let expectedResponse = DriverUpdateRes(
             driverUpdated: true,
             taskGroupTrackingWritten: true,
             cargoTrackingCount: 1

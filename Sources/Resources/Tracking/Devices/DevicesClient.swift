@@ -7,7 +7,7 @@ public final class DevicesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Registers a tracking device to the authenticated user's organization. If device is already registered to a different organization, registration is blocked.
+    /// Registers a tracking device to the authenticated user's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func registerToOrgV1(request: Requests.DevicesRegisterToOrgReq1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -20,7 +20,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Updates a device's type and/or comments. Can update one or both fields, or delete them by setting delete flags.
+    /// Updates a device's type and/or comments. Can update one or both fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.DevicesUpdateRequest1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -33,7 +33,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion.
+    /// Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(deviceId: String? = nil, deviceMacAddress: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -49,7 +49,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Retrieves a single device by its MAC address or ID. Access restricted to the device's organization.
+    /// Retrieves a single device by its MAC address or ID. Access restricted to the device's organization. | () -> (Device1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(deviceMacAddress: String? = nil, deviceId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
@@ -65,7 +65,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Returns all tracking devices registered to the authenticated user's organization.
+    /// Returns all tracking devices registered to the authenticated user's organization. | () -> (list[Device1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Device1] {
@@ -77,7 +77,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Links a device to cargo with bidirectional references. Device must not already be linked to a session or different cargo.
+    /// Links a device to cargo with bidirectional references. Device must not already be linked to a session or different cargo. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func linkToCargoV1(deviceMacAddress: String, cargoId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -93,7 +93,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Unlinks a device from its linked cargo, removing the bidirectional reference. Returns false if device is not linked to any cargo.
+    /// Unlinks a device from its linked cargo, removing the bidirectional reference. Returns false if device is not linked to any cargo. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func unlinkFromCargoV1(deviceMacAddress: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

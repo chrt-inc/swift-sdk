@@ -19,11 +19,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = JSONValue.object(
-            [
-                "key": JSONValue.string("value")
-            ]
-        )
+        let expectedResponse = [
+            "key": JSONValue.string("value")
+        ]
         let response = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }

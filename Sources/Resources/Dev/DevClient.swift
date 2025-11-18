@@ -7,7 +7,7 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes.
+    /// Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getAgentV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -19,7 +19,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token.
+    /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getUserIdV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -31,7 +31,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Extracts and returns the user ID from the authenticated request's JWT token.
+    /// Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getUserIdV2(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -43,7 +43,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Returns the complete decoded JWT token information for development purposes.
+    /// Returns the complete decoded JWT token information for development purposes. | () -> (DecodedJWTWithOrgAndUserId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getDecodedJwtV1(requestOptions: RequestOptions? = nil) async throws -> DecodedJwtWithOrgAndUserId {
@@ -55,7 +55,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Retrieves the primary email address for the authenticated user from the authentication service.
+    /// Retrieves the primary email address for the authenticated user from the authentication service. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getEmailV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -67,7 +67,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes.
+    /// Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes. | () -> (dict[str, Any])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getDurableV1(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
@@ -79,7 +79,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Development template endpoint that returns the authenticated user's ID for testing.
+    /// Development template endpoint that returns the authenticated user's ID for testing. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getTemplateV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -91,7 +91,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Development template endpoint that demonstrates transaction handling and request mirroring.
+    /// Development template endpoint that demonstrates transaction handling and request mirroring. | (TemplateReq) -> (TemplateRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createTemplateV1(request: Requests.TemplateReq, requestOptions: RequestOptions? = nil) async throws -> TemplateRes {
@@ -104,7 +104,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Returns the current GitHub PR number and commit hash for the deployment.
+    /// Returns the current GitHub PR number and commit hash for the deployment. | () -> (dict[str, str])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getGitInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: String] {

@@ -7,7 +7,7 @@ public final class ShipperClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves notification preferences for the authenticated shipper organization.
+    /// Retrieves notification preferences for the authenticated shipper organization. | () -> (ShipperNotificationPreferences1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getPreferencesV1(requestOptions: RequestOptions? = nil) async throws -> ShipperNotificationPreferences1 {
@@ -19,7 +19,7 @@ public final class ShipperClient: Sendable {
         )
     }
 
-    /// Creates or updates notification preferences for the authenticated shipper organization.
+    /// Creates or updates notification preferences for the authenticated shipper organization. | (ShipperNotificationPreferencesClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func upsertPreferencesV1(request: Requests.ShipperNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {

@@ -42,11 +42,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = JSONValue.object(
-            [
-                "key": JSONValue.string("value")
-            ]
-        )
+        let expectedResponse = [
+            "key": JSONValue.string("value")
+        ]
         let response = try await client.root.pingOptionallyAuthd(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
@@ -67,11 +65,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = JSONValue.object(
-            [
-                "key": JSONValue.string("value")
-            ]
-        )
+        let expectedResponse = [
+            "key": JSONValue.string("value")
+        ]
         let response = try await client.root.pingUnauthd(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
@@ -92,11 +88,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = JSONValue.object(
-            [
-                "key": JSONValue.string("value")
-            ]
-        )
+        let expectedResponse = [
+            "key": JSONValue.string("value")
+        ]
         let response = try await client.root.health(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }

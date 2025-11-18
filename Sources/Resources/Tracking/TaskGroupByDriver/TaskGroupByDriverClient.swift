@@ -7,7 +7,7 @@ public final class TaskGroupByDriverClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint.
+    /// Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | () -> (TrackingTaskGroupByDriverDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingTaskGroupByDriverDataPoint1? {

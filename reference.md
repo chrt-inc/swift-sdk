@@ -3446,7 +3446,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper organizations based on the authenticated organization type. Couriers see connected shippers, forwarders see connected shippers.
+Lists shipper organizations based on the authenticated organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (list[ShipperConnectionRes])
 </dd>
 </dl>
 </dd>
@@ -3509,7 +3509,7 @@ try await main()
 <dl>
 <dd>
 
-Lists courier organizations based on the authenticated organization type. Shippers see connected couriers, forwarders see connected couriers.
+Lists courier organizations based on the authenticated organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (list[CourierConnectionRes])
 </dd>
 </dl>
 </dd>
@@ -3572,7 +3572,7 @@ try await main()
 <dl>
 <dd>
 
-Lists forwarder organizations based on the authenticated organization type. Shippers see connected forwarders, couriers see connected forwarders.
+Lists forwarder organizations based on the authenticated organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (list[ForwarderConnectionRes])
 </dd>
 </dl>
 </dd>
@@ -3636,7 +3636,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the courier or forwarder organization profile for the authenticated organization.
+Retrieves the courier or forwarder organization profile for the authenticated organization. | () -> (OrgProfileRes1)
 </dd>
 </dl>
 </dd>
@@ -3699,7 +3699,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new courier organization profile. Fails if a profile already exists for the organization.
+Creates a new courier organization profile. Fails if a profile already exists for the organization. | (CourierOrgProfileClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -3775,7 +3775,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new forwarder organization profile. Fails if a profile already exists for the organization.
+Creates a new forwarder organization profile. Fails if a profile already exists for the organization. | (ForwarderOrgProfileClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -3851,7 +3851,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an existing courier organization profile. Can update one or more fields.
+Updates an existing courier organization profile. Can update one or more fields. | (CourierOrgProfileClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -3922,7 +3922,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an existing forwarder organization profile. Can update one or more fields.
+Updates an existing forwarder organization profile. Can update one or more fields. | (ForwarderOrgProfileClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -3993,7 +3993,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a courier or forwarder organization profile using the organization's handle for public profile viewing.
+Retrieves a courier or forwarder organization profile using the organization's handle for public profile viewing. | () -> (OrgProfileRes1)
 </dd>
 </dl>
 </dd>
@@ -4064,7 +4064,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the organization avatar image URL from Clerk or a placeholder if not found.
+Returns the organization avatar image URL from Clerk or a placeholder if not found. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4136,7 +4136,7 @@ try await main()
 <dl>
 <dd>
 
-Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes.
+Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4199,7 +4199,7 @@ try await main()
 <dl>
 <dd>
 
-(DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token.
+(DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4262,7 +4262,7 @@ try await main()
 <dl>
 <dd>
 
-Extracts and returns the user ID from the authenticated request's JWT token.
+Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4325,7 +4325,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the complete decoded JWT token information for development purposes.
+Returns the complete decoded JWT token information for development purposes. | () -> (DecodedJWTWithOrgAndUserId)
 </dd>
 </dl>
 </dd>
@@ -4388,7 +4388,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the primary email address for the authenticated user from the authentication service.
+Retrieves the primary email address for the authenticated user from the authentication service. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4451,7 +4451,7 @@ try await main()
 <dl>
 <dd>
 
-Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes.
+Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes. | () -> (dict[str, Any])
 </dd>
 </dl>
 </dd>
@@ -4514,7 +4514,7 @@ try await main()
 <dl>
 <dd>
 
-Development template endpoint that returns the authenticated user's ID for testing.
+Development template endpoint that returns the authenticated user's ID for testing. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4577,7 +4577,7 @@ try await main()
 <dl>
 <dd>
 
-Development template endpoint that demonstrates transaction handling and request mirroring.
+Development template endpoint that demonstrates transaction handling and request mirroring. | (TemplateReq) -> (TemplateRes)
 </dd>
 </dl>
 </dd>
@@ -4652,7 +4652,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the current GitHub PR number and commit hash for the deployment.
+Returns the current GitHub PR number and commit hash for the deployment. | () -> (dict[str, str])
 </dd>
 </dl>
 </dd>
@@ -4716,7 +4716,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves task_artifact notification preferences for the authenticated organization.
+Retrieves task_artifact notification preferences for the authenticated organization. | () -> (TaskArtifactNotificationPreferences1)
 </dd>
 </dl>
 </dd>
@@ -4779,7 +4779,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates task_artifact notification preferences for the authenticated organization.
+Creates or updates task_artifact notification preferences for the authenticated organization. | (TaskArtifactNotificationPreferencesClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -6409,6 +6409,159 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orderDrafts.<a href="/Sources/Resources/OrderDrafts/OrderDraftsClient.swift">expandedV1</a>(orderIdOrShortId: String, request: Requests.OrderDraftExpandedReq, requestOptions: RequestOptions?) -> OrderDraftExpandedRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.expandedV1(
+        orderIdOrShortId: "order_id_or_short_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderIdOrShortId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderDraftExpandedReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orderDrafts.<a href="/Sources/Resources/OrderDrafts/OrderDraftsClient.swift">expandedListV1</a>(request: Requests.OrderDraftExpandedListReq, requestOptions: RequestOptions?) -> OrderDraftExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all draft orders created by the authenticated user with optional expanded related data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.expandedListV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderDraftExpandedListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orderDrafts.<a href="/Sources/Resources/OrderDrafts/OrderDraftsClient.swift">validateV1</a>(orderId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -7348,7 +7501,7 @@ try await main()
 </details>
 
 ## Orgs
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">getInfoV1</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">getInfoV1</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
 <dl>
 <dd>
 
@@ -7360,7 +7513,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves basic organization information from the authentication service.
+Retrieves basic organization information from the authentication service. | () -> (dict)
 </dd>
 </dl>
 </dd>
@@ -7423,7 +7576,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all members of the authenticated organization with their roles and details.
+Lists all members of the authenticated organization with their roles and details. | () -> (list[OrgMemberDetails])
 </dd>
 </dl>
 </dd>
@@ -7486,7 +7639,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves public organization data for the authenticated organization.
+Retrieves public organization data for the authenticated organization. | () -> (OrgPublicData1)
 </dd>
 </dl>
 </dd>
@@ -7549,7 +7702,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an org_public_data document for the authenticated organization.
+Creates an org_public_data document for the authenticated organization. | (CreateOrgPublicDataReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -7620,7 +7773,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the handle and/or company_name for the authenticated organization.
+Updates the handle and/or company_name for the authenticated organization. | (UpdateOrgPublicDataReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7691,7 +7844,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves public organization data for a specific organization by ID.
+Retrieves public organization data for a specific organization by ID. | () -> (OrgPublicData1)
 </dd>
 </dl>
 </dd>
@@ -7762,7 +7915,7 @@ try await main()
 <dl>
 <dd>
 
-Returns True when the provided handle is available, otherwise False.
+Returns True when the provided handle is available, otherwise False. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7834,7 +7987,7 @@ try await main()
 <dl>
 <dd>
 
-Test endpoint for authenticated requests that requires valid authentication tokens.
+Test endpoint for authenticated requests that requires valid authentication tokens. | () -> (dict[str, str])
 </dd>
 </dl>
 </dd>
@@ -7885,7 +8038,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingOptionallyAuthd</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingOptionallyAuthd</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
 <dl>
 <dd>
 
@@ -7897,7 +8050,7 @@ try await main()
 <dl>
 <dd>
 
-Test endpoint for optionally authenticated requests that works with or without authentication.
+Test endpoint for optionally authenticated requests that works with or without authentication. | () -> (dict)
 </dd>
 </dl>
 </dd>
@@ -7948,7 +8101,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingUnauthd</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">pingUnauthd</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
 <dl>
 <dd>
 
@@ -7960,7 +8113,7 @@ try await main()
 <dl>
 <dd>
 
-Returns a greeting message to verify the API is accessible.
+Returns a greeting message to verify the API is accessible. | () -> (dict)
 </dd>
 </dl>
 </dd>
@@ -8011,7 +8164,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">health</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.root.<a href="/Sources/Resources/Root/RootClient.swift">health</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
 <dl>
 <dd>
 
@@ -8023,7 +8176,7 @@ try await main()
 <dl>
 <dd>
 
-Returns a health status message used for monitoring system availability and uptime.
+Returns a health status message used for monitoring system availability and uptime. | () -> (dict)
 </dd>
 </dl>
 </dd>
@@ -8086,7 +8239,7 @@ try await main()
 <dl>
 <dd>
 
-Test endpoint that intentionally fails for error handling validation and monitoring purposes.
+Test endpoint that intentionally fails for error handling validation and monitoring purposes. | () -> (None)
 </dd>
 </dl>
 </dd>
@@ -8150,7 +8303,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves public user data for the authenticated user, including email, notes, and Stripe customer information.
+Retrieves public user data for the authenticated user, including email, notes, and Stripe customer information. | () -> (UserPublicData1)
 </dd>
 </dl>
 </dd>
@@ -8214,7 +8367,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the IANA timezone identifier (e.g., 'America/Los_Angeles') for the given latitude and longitude coordinates. Falls back to closest timezone if the point is in the ocean or at an edge.
+Returns the IANA timezone identifier (e.g., 'America/Los_Angeles') for the given latitude and longitude coordinates. Falls back to closest timezone if the point is in the ocean or at an edge. | () -> (TimezoneResponse)
 </dd>
 </dl>
 </dd>
@@ -8297,7 +8450,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new connection to a courier organization. Shippers and forwarders can initiate connections to couriers.
+Creates a new connection to a courier organization. Shippers and forwarders can initiate connections to couriers. | (CreateConnectionReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -8371,7 +8524,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new connection to a shipper organization. Only forwarders can initiate connections to shippers.
+Creates a new connection to a shipper organization. Only forwarders can initiate connections to shippers. | (CreateConnectionReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -8445,7 +8598,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new connection to a forwarder organization. Only shippers can initiate connections to forwarders.
+Creates a new connection to a forwarder organization. Only shippers can initiate connections to forwarders. | (CreateConnectionReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -8694,7 +8847,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves notification preferences for the authenticated shipper organization.
+Retrieves notification preferences for the authenticated shipper organization. | () -> (ShipperNotificationPreferences1)
 </dd>
 </dl>
 </dd>
@@ -8757,7 +8910,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates notification preferences for the authenticated shipper organization.
+Creates or updates notification preferences for the authenticated shipper organization. | (ShipperNotificationPreferencesClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -8829,7 +8982,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves notification preferences for the authenticated courier organization.
+Retrieves notification preferences for the authenticated courier organization. | () -> (CourierNotificationPreferences1)
 </dd>
 </dl>
 </dd>
@@ -8892,7 +9045,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates notification preferences for the authenticated courier organization.
+Creates or updates notification preferences for the authenticated courier organization. | (CourierNotificationPreferencesClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -10245,160 +10398,6 @@ try await main()
 </dl>
 </details>
 
-## Orders Draft Expanded
-<details><summary><code>client.orders.draft.expanded.<a href="/Sources/Resources/Orders/Draft/Expanded/DraftExpandedClient.swift">postExpandedV1</a>(orderIdOrShortId: String, request: Requests.OrderDraftExpandedReq, requestOptions: RequestOptions?) -> OrderDraftExpandedRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orders.draft.expanded.postExpandedV1(
-        orderIdOrShortId: "order_id_or_short_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderIdOrShortId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderDraftExpandedReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.orders.draft.expanded.<a href="/Sources/Resources/Orders/Draft/Expanded/DraftExpandedClient.swift">postExpandedListV1</a>(request: Requests.OrderDraftExpandedListReq, requestOptions: RequestOptions?) -> OrderDraftExpandedListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all draft orders created by the authenticated user with optional expanded related data.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orders.draft.expanded.postExpandedListV1(request: .init())
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderDraftExpandedListReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## OrgConnectionInfos Shipper
 <details><summary><code>client.orgConnectionInfos.shipper.<a href="/Sources/Resources/OrgConnectionInfos/Shipper/OrgConnectionInfosShipperClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ShipperOrgInfoForConnections1</code></summary>
 <dl>
@@ -10412,7 +10411,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves shipper organization connection information for the authenticated organization.
+Retrieves shipper organization connection information for the authenticated organization. | () -> (ShipperOrgInfoForConnections1)
 </dd>
 </dl>
 </dd>
@@ -10475,7 +10474,7 @@ try await main()
 <dl>
 <dd>
 
-Creates shipper organization connection information. Fails if already exists.
+Creates shipper organization connection information. Fails if already exists. | (ShipperOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -10549,7 +10548,7 @@ try await main()
 <dl>
 <dd>
 
-Updates existing shipper organization connection information.
+Updates existing shipper organization connection information. | (ShipperOrgInfoForConnectionsClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -10621,7 +10620,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves courier organization connection information for the authenticated organization.
+Retrieves courier organization connection information for the authenticated organization. | () -> (CourierOrgInfoForConnections1)
 </dd>
 </dl>
 </dd>
@@ -10684,7 +10683,7 @@ try await main()
 <dl>
 <dd>
 
-Creates courier organization connection information. Fails if already exists.
+Creates courier organization connection information. Fails if already exists. | (CourierOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -10758,7 +10757,7 @@ try await main()
 <dl>
 <dd>
 
-Updates existing courier organization connection information.
+Updates existing courier organization connection information. | (CourierOrgInfoForConnectionsClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12224,7 +12223,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent device location data point for cargo within a task group. Access granted to courier or shipper organization.
+Returns the most recent device location data point for cargo within a task group. Access granted to courier or shipper organization. | () -> (TrackingCargoByDeviceDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -12307,7 +12306,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for cargo within a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint.
+Returns the most recent driver location data point for cargo within a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | () -> (TrackingCargoByDriverDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -12390,7 +12389,7 @@ try await main()
 <dl>
 <dd>
 
-Registers a tracking device to the authenticated user's organization. If device is already registered to a different organization, registration is blocked.
+Registers a tracking device to the authenticated user's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -12461,7 +12460,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a device's type and/or comments. Can update one or both fields, or delete them by setting delete flags.
+Updates a device's type and/or comments. Can update one or both fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12532,7 +12531,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion.
+Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12614,7 +12613,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single device by its MAC address or ID. Access restricted to the device's organization.
+Retrieves a single device by its MAC address or ID. Access restricted to the device's organization. | () -> (Device1)
 </dd>
 </dl>
 </dd>
@@ -12696,7 +12695,7 @@ try await main()
 <dl>
 <dd>
 
-Returns all tracking devices registered to the authenticated user's organization.
+Returns all tracking devices registered to the authenticated user's organization. | () -> (list[Device1])
 </dd>
 </dl>
 </dd>
@@ -12759,7 +12758,7 @@ try await main()
 <dl>
 <dd>
 
-Links a device to cargo with bidirectional references. Device must not already be linked to a session or different cargo.
+Links a device to cargo with bidirectional references. Device must not already be linked to a session or different cargo. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12841,7 +12840,7 @@ try await main()
 <dl>
 <dd>
 
-Unlinks a device from its linked cargo, removing the bidirectional reference. Returns false if device is not linked to any cargo.
+Unlinks a device from its linked cargo, removing the bidirectional reference. Returns false if device is not linked to any cargo. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12901,7 +12900,7 @@ try await main()
 </details>
 
 ## Tracking Driver
-<details><summary><code>client.tracking.driver.<a href="/Sources/Resources/Tracking/Driver/DriverClient.swift">updateV1</a>(request: Requests.DriverUpdateReq, requestOptions: RequestOptions?) -> DriverUpdateResp</code></summary>
+<details><summary><code>client.tracking.driver.<a href="/Sources/Resources/Tracking/Driver/DriverClient.swift">updateV1</a>(request: Requests.DriverUpdateReq, requestOptions: RequestOptions?) -> DriverUpdateRes</code></summary>
 <dl>
 <dd>
 
@@ -12913,7 +12912,7 @@ try await main()
 <dl>
 <dd>
 
-Records driver location updates for a task group. Automatically writes to task group tracking if IN_PROGRESS and cargo tracking if IN_TRANSIT. Updates driver's last seen timestamp and location.
+Records driver location updates for a task group. Automatically writes to task group tracking if IN_PROGRESS and cargo tracking if IN_TRANSIT. Updates driver's last seen timestamp and location. | (DriverUpdateReq) -> (DriverUpdateRes)
 </dd>
 </dl>
 </dd>
@@ -13006,7 +13005,7 @@ try await main()
 <dl>
 <dd>
 
-Returns all tracking sessions for the authenticated user's organization.
+Returns all tracking sessions for the authenticated user's organization. | () -> (list[Session1])
 </dd>
 </dl>
 </dd>
@@ -13069,7 +13068,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single session by its ID. Access restricted to the session's organization.
+Retrieves a single session by its ID. Access restricted to the session's organization. | () -> (Session1)
 </dd>
 </dl>
 </dd>
@@ -13140,7 +13139,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization.
+Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization. | () -> (TrackingSessionByDeviceDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -13211,7 +13210,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers.
+Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[TrackingSessionByDeviceDataPoint1])
 </dd>
 </dl>
 </dd>
@@ -13293,7 +13292,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device and links the device to it. The device must be registered to the caller's organization.
+Creates a new tracking session for a device and links the device to it. The device must be registered to the caller's organization. | (SessionByDeviceCreateSessionRequest1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -13364,7 +13363,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a session's comments and/or public visibility status. Can update one or both fields.
+Updates a session's comments and/or public visibility status. Can update one or both fields. | (SessionByDeviceUpdateRequest1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -13435,7 +13434,7 @@ try await main()
 <dl>
 <dd>
 
-Starts location recording for a session by setting recording status to true. Sets the recording initiated timestamp on first start.
+Starts location recording for a session by setting recording status to true. Sets the recording initiated timestamp on first start. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -13506,7 +13505,7 @@ try await main()
 <dl>
 <dd>
 
-Pauses location recording for a session by setting recording status to false. Device remains linked to the session.
+Pauses location recording for a session by setting recording status to false. Device remains linked to the session. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -13577,7 +13576,7 @@ try await main()
 <dl>
 <dd>
 
-Resumes location recording for a session by setting recording status to true.
+Resumes location recording for a session by setting recording status to true. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -13648,7 +13647,7 @@ try await main()
 <dl>
 <dd>
 
-Terminates a session by setting recording to false and marking it as terminated. Unlinks the device from the session.
+Terminates a session by setting recording to false and marking it as terminated. Unlinks the device from the session. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -13719,7 +13718,7 @@ try await main()
 <dl>
 <dd>
 
-Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates.
+Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | (SessionByDeviceMarkOutliersRequest1) -> (SessionByDeviceMarkOutliersResponse1)
 </dd>
 </dl>
 </dd>
@@ -13795,7 +13794,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a terminated session and all its associated timeseries data points. Only sessions marked as terminated can be deleted.
+Deletes a terminated session and all its associated timeseries data points. Only sessions marked as terminated can be deleted. | () -> (SessionByDeviceDeleteResponse1)
 </dd>
 </dl>
 </dd>
@@ -13866,7 +13865,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled.
+Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled. | () -> (TrackingSessionByDeviceDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -13937,7 +13936,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled.
+Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[TrackingSessionByDeviceDataPoint1])
 </dd>
 </dl>
 </dd>
@@ -14020,7 +14019,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint.
+Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | () -> (TrackingTaskGroupByDriverDataPoint1 | None)
 </dd>
 </dl>
 </dd>

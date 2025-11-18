@@ -7,7 +7,7 @@ public final class CargoByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the most recent device location data point for cargo within a task group. Access granted to courier or shipper organization.
+    /// Returns the most recent device location data point for cargo within a task group. Access granted to courier or shipper organization. | () -> (TrackingCargoByDeviceDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingCargoByDeviceDataPoint1? {

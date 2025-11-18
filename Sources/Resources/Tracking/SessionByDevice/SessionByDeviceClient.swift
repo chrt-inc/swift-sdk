@@ -7,7 +7,7 @@ public final class SessionByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns all tracking sessions for the authenticated user's organization.
+    /// Returns all tracking sessions for the authenticated user's organization. | () -> (list[Session1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Session1] {
@@ -19,7 +19,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Retrieves a single session by its ID. Access restricted to the session's organization.
+    /// Retrieves a single session by its ID. Access restricted to the session's organization. | () -> (Session1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session1 {
@@ -34,7 +34,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization.
+    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization. | () -> (TrackingSessionByDeviceDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingSessionByDeviceDataPoint1? {
@@ -49,7 +49,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers.
+    /// Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[TrackingSessionByDeviceDataPoint1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {
@@ -65,7 +65,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Creates a new tracking session for a device and links the device to it. The device must be registered to the caller's organization.
+    /// Creates a new tracking session for a device and links the device to it. The device must be registered to the caller's organization. | (SessionByDeviceCreateSessionRequest1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createSessionV1(request: Requests.SessionByDeviceCreateSessionRequest1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -78,7 +78,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Updates a session's comments and/or public visibility status. Can update one or both fields.
+    /// Updates a session's comments and/or public visibility status. Can update one or both fields. | (SessionByDeviceUpdateRequest1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.SessionByDeviceUpdateRequest1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -91,7 +91,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Starts location recording for a session by setting recording status to true. Sets the recording initiated timestamp on first start.
+    /// Starts location recording for a session by setting recording status to true. Sets the recording initiated timestamp on first start. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func startV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -106,7 +106,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Pauses location recording for a session by setting recording status to false. Device remains linked to the session.
+    /// Pauses location recording for a session by setting recording status to false. Device remains linked to the session. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func pauseRecordingV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -121,7 +121,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Resumes location recording for a session by setting recording status to true.
+    /// Resumes location recording for a session by setting recording status to true. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func resumeRecordingV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -136,7 +136,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Terminates a session by setting recording to false and marking it as terminated. Unlinks the device from the session.
+    /// Terminates a session by setting recording to false and marking it as terminated. Unlinks the device from the session. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func terminateV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -151,7 +151,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates.
+    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | (SessionByDeviceMarkOutliersRequest1) -> (SessionByDeviceMarkOutliersResponse1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func outlierV1(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceMarkOutliersResponse1 {
@@ -164,7 +164,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Deletes a terminated session and all its associated timeseries data points. Only sessions marked as terminated can be deleted.
+    /// Deletes a terminated session and all its associated timeseries data points. Only sessions marked as terminated can be deleted. | () -> (SessionByDeviceDeleteResponse1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDeleteResponse1 {
@@ -179,7 +179,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled.
+    /// Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled. | () -> (TrackingSessionByDeviceDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenPublicV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingSessionByDeviceDataPoint1? {
@@ -194,7 +194,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled.
+    /// Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[TrackingSessionByDeviceDataPoint1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsPublicV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingSessionByDeviceDataPoint1] {

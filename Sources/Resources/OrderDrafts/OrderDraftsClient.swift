@@ -53,6 +53,32 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
+    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func expandedV1(orderIdOrShortId: String, request: Requests.OrderDraftExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/order_drafts/expanded/v1/\(orderIdOrShortId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderDraftExpandedRes.self
+        )
+    }
+
+    /// Lists all draft orders created by the authenticated user with optional expanded related data.
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func expandedListV1(request: Requests.OrderDraftExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/order_drafts/expanded/list/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderDraftExpandedListRes.self
+        )
+    }
+
     /// Checks whether the draft order satisfies all requirements to move into staging.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
