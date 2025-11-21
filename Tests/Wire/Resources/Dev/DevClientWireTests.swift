@@ -81,7 +81,7 @@ import Chrt
                   "v": 1,
                   "o": {
                     "id": "id",
-                    "rol": "org:owner",
+                    "rol": "owner",
                     "slg": "slg"
                   },
                   "org_public_metadata": {
@@ -115,7 +115,7 @@ import Chrt
             v: Optional(1),
             o: Optional(ClerkOrgData(
                 id: Optional("id"),
-                rol: Optional(.orgOwner),
+                rol: Optional(.owner),
                 slg: Optional("slg")
             )),
             orgPublicMetadata: Optional([

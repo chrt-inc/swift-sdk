@@ -33,8 +33,7 @@ import Chrt
                 """
                 [
                   {
-                    "role": "role",
-                    "role_name": "role_name",
+                    "role": "owner",
                     "user_id": "user_id",
                     "first_name": "first_name",
                     "last_name": "last_name"
@@ -50,8 +49,7 @@ import Chrt
         )
         let expectedResponse = [
             OrgMemberDetails(
-                role: "role",
-                roleName: Optional("role_name"),
+                role: .owner,
                 userId: "user_id",
                 firstName: Optional("first_name"),
                 lastName: Optional("last_name")

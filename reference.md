@@ -4999,7 +4999,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.drivers.createV1(request: .init(orgMember: OrgMemberDetails(
-        role: "role",
+        role: .owner,
         userId: "user_id"
     )))
 }
