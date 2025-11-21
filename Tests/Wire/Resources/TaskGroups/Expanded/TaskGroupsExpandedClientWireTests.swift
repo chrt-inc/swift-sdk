@@ -52,7 +52,6 @@ import Chrt
                         "schema_version": 1,
                         "location": null,
                         "order_placer_comments": null,
-                        "shipper_contact_info_ids": null,
                         "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
@@ -62,16 +61,10 @@ import Chrt
                         "created_by_user_id": "created_by_user_id",
                         "completed_by_org_id": null,
                         "completed_by_user_id": null,
-                        "cargo_ids": null,
-                        "task_artifact_ids": null,
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "staged_at_timestamp": null,
                         "completed_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "task_notification_email_ids": null,
-                        "task_notification_sms_ids": null,
-                        "task_notification_push_ids": null,
-                        "task_notification_voice_ids": null
+                        "exception_at_timestamp": null
                       },
                       "cargos": [
                         {
@@ -90,7 +83,6 @@ import Chrt
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "device_ids": null,
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                           "staged_at_timestamp": null,
                           "in_transit_at_timestamp": null,
@@ -306,7 +298,6 @@ import Chrt
                         schemaVersion: 1,
                         location: Optional(nil),
                         orderPlacerComments: Optional(nil),
-                        shipperContactInfoIds: Optional(nil),
                         flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
@@ -316,16 +307,10 @@ import Chrt
                         createdByUserId: "created_by_user_id",
                         completedByOrgId: Optional(nil),
                         completedByUserId: Optional(nil),
-                        cargoIds: Optional(nil),
-                        taskArtifactIds: Optional(nil),
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         stagedAtTimestamp: Optional(nil),
                         completedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        taskNotificationEmailIds: Optional(nil),
-                        taskNotificationSmsIds: Optional(nil),
-                        taskNotificationPushIds: Optional(nil),
-                        taskNotificationVoiceIds: Optional(nil)
+                        exceptionAtTimestamp: Optional(nil)
                     ),
                     cargos: Optional([
                         Cargo1(
@@ -344,7 +329,6 @@ import Chrt
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            deviceIds: Optional(nil),
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             stagedAtTimestamp: Optional(nil),
                             inTransitAtTimestamp: Optional(nil),
@@ -573,7 +557,6 @@ import Chrt
                         "schema_version": 1,
                         "location": null,
                         "order_placer_comments": null,
-                        "shipper_contact_info_ids": null,
                         "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
@@ -583,16 +566,10 @@ import Chrt
                         "created_by_user_id": "created_by_user_id",
                         "completed_by_org_id": null,
                         "completed_by_user_id": null,
-                        "cargo_ids": null,
-                        "task_artifact_ids": null,
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "staged_at_timestamp": null,
                         "completed_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "task_notification_email_ids": null,
-                        "task_notification_sms_ids": null,
-                        "task_notification_push_ids": null,
-                        "task_notification_voice_ids": null
+                        "exception_at_timestamp": null
                       },
                       "cargos": [
                         {
@@ -611,7 +588,6 @@ import Chrt
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "device_ids": null,
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                           "staged_at_timestamp": null,
                           "in_transit_at_timestamp": null,
@@ -827,7 +803,6 @@ import Chrt
                         schemaVersion: 1,
                         location: Optional(nil),
                         orderPlacerComments: Optional(nil),
-                        shipperContactInfoIds: Optional(nil),
                         flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
@@ -837,16 +812,10 @@ import Chrt
                         createdByUserId: "created_by_user_id",
                         completedByOrgId: Optional(nil),
                         completedByUserId: Optional(nil),
-                        cargoIds: Optional(nil),
-                        taskArtifactIds: Optional(nil),
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         stagedAtTimestamp: Optional(nil),
                         completedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        taskNotificationEmailIds: Optional(nil),
-                        taskNotificationSmsIds: Optional(nil),
-                        taskNotificationPushIds: Optional(nil),
-                        taskNotificationVoiceIds: Optional(nil)
+                        exceptionAtTimestamp: Optional(nil)
                     ),
                     cargos: Optional([
                         Cargo1(
@@ -865,7 +834,6 @@ import Chrt
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            deviceIds: Optional(nil),
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             stagedAtTimestamp: Optional(nil),
                             inTransitAtTimestamp: Optional(nil),
@@ -1094,7 +1062,6 @@ import Chrt
                         "schema_version": 1,
                         "location": null,
                         "order_placer_comments": null,
-                        "shipper_contact_info_ids": null,
                         "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
@@ -1104,16 +1071,10 @@ import Chrt
                         "created_by_user_id": "created_by_user_id",
                         "completed_by_org_id": null,
                         "completed_by_user_id": null,
-                        "cargo_ids": null,
-                        "task_artifact_ids": null,
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "staged_at_timestamp": null,
                         "completed_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "task_notification_email_ids": null,
-                        "task_notification_sms_ids": null,
-                        "task_notification_push_ids": null,
-                        "task_notification_voice_ids": null
+                        "exception_at_timestamp": null
                       },
                       "cargos": [
                         {
@@ -1132,7 +1093,6 @@ import Chrt
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "device_ids": null,
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                           "staged_at_timestamp": null,
                           "in_transit_at_timestamp": null,
@@ -1353,7 +1313,6 @@ import Chrt
                         schemaVersion: 1,
                         location: Optional(nil),
                         orderPlacerComments: Optional(nil),
-                        shipperContactInfoIds: Optional(nil),
                         flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
@@ -1363,16 +1322,10 @@ import Chrt
                         createdByUserId: "created_by_user_id",
                         completedByOrgId: Optional(nil),
                         completedByUserId: Optional(nil),
-                        cargoIds: Optional(nil),
-                        taskArtifactIds: Optional(nil),
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         stagedAtTimestamp: Optional(nil),
                         completedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        taskNotificationEmailIds: Optional(nil),
-                        taskNotificationSmsIds: Optional(nil),
-                        taskNotificationPushIds: Optional(nil),
-                        taskNotificationVoiceIds: Optional(nil)
+                        exceptionAtTimestamp: Optional(nil)
                     ),
                     cargos: Optional([
                         Cargo1(
@@ -1391,7 +1344,6 @@ import Chrt
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            deviceIds: Optional(nil),
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             stagedAtTimestamp: Optional(nil),
                             inTransitAtTimestamp: Optional(nil),
