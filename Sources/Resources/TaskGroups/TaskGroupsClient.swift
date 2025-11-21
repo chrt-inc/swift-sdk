@@ -11,39 +11,65 @@ public final class TaskGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Updates task group driver assignments by adding or removing drivers. | (UpdateTaskGroupReq) -> (bool)
+    /// Updates the ordering of tasks in a task group. Task group must be in STAGED or IN_PROGRESS status. | authz_personas=[lig_org_operators] | (SetTaskOrderingReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setTaskOrderingV1(taskGroupId: String, request: Requests.SetTaskOrderingReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/task_groups/update/v1",
+            path: "/oort/task_groups/set_task_ordering/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Starts a task group by changing its status to in-progress and updating the order status. Only authorized personas (task_group_driver or task_group_courier_org_administrator) can start a task group. | () -> (bool)
+    /// Updates the flight number on both task group and all its tasks. Task group must be in STAGED or IN_PROGRESS status. | authz_personas=[lig_org_operators] | (SetFlightNumberReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setFlightNumberV1(taskGroupId: String, request: Requests.SetFlightNumberReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/task_groups/set_flight_number/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Sets or removes the driver assigned to a task group. | authz_personas=[courier_org_operators] | (UpdateTaskGroupDriverReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDriverV1(taskGroupId: String, request: Requests.UpdateTaskGroupDriverReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/task_groups/update_driver/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Sets or removes the courier organization assigned to a task group. | authz_personas=[forwarder_org_operators] | (UpdateTaskGroupCourierOrgReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCourierOrgV1(taskGroupId: String, request: Requests.UpdateTaskGroupCourierOrgReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/task_groups/update_courier_org/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Starts a task group by changing its status to in-progress and updating the order status. | authz_personas=[courier_driver, lig_org_operators] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func startV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .put,
             path: "/oort/task_groups/start/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Toggles the pause status of an in-progress task group. | (SetTaskGroupPauseReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func togglePauseV1(id: String, request: Requests.SetTaskGroupPauseReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .put,
-            path: "/oort/task_groups/toggle_pause/v1/\(id)",
-            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

@@ -45,7 +45,8 @@ import Chrt
                           "completed_at_timestamp": null,
                           "exception_at_timestamp": null,
                           "task_group_type": "chrt_ground_courier",
-                          "task_group_mileage": null
+                          "task_group_mileage": null,
+                          "flight_number": null
                         }
                       ],
                       "tasks": [
@@ -172,7 +173,8 @@ import Chrt
                             completedAtTimestamp: Optional(nil),
                             exceptionAtTimestamp: Optional(nil),
                             taskGroupType: .chrtGroundCourier,
-                            taskGroupMileage: Optional(nil)
+                            taskGroupMileage: Optional(nil),
+                            flightNumber: Optional(nil)
                         )
                     ]),
                     tasks: Optional([
@@ -312,7 +314,8 @@ import Chrt
                           "completed_at_timestamp": null,
                           "exception_at_timestamp": null,
                           "task_group_type": "chrt_ground_courier",
-                          "task_group_mileage": null
+                          "task_group_mileage": null,
+                          "flight_number": null
                         }
                       ],
                       "tasks": [
@@ -439,7 +442,8 @@ import Chrt
                             completedAtTimestamp: Optional(nil),
                             exceptionAtTimestamp: Optional(nil),
                             taskGroupType: .chrtGroundCourier,
-                            taskGroupMileage: Optional(nil)
+                            taskGroupMileage: Optional(nil),
+                            flightNumber: Optional(nil)
                         )
                     ]),
                     tasks: Optional([

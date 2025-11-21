@@ -99,7 +99,10 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                string
+                {
+                  "org_public_data_inserted_id": "org_public_data_inserted_id",
+                  "org_private_data_inserted_id": "org_private_data_inserted_id"
+                }
                 """.utf8
             )
         )
@@ -108,9 +111,12 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
+        let expectedResponse = CreateOrgPublicDataRes(
+            orgPublicDataInsertedId: "org_public_data_inserted_id",
+            orgPrivateDataInsertedId: Optional("org_private_data_inserted_id")
+        )
         let response = try await client.orgs.createOrgPublicDataV1(
-            request: .init(orgType: .courier),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -191,6 +197,28 @@ import Chrt
         let expectedResponse = true
         let response = try await client.orgs.getOrgPublicDataHandleAvailabilityV1(
             handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setOrgTypeV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.setOrgTypeV1(
+            request: .init(orgType: .courier),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -43,16 +43,16 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Creates an org_public_data document for the authenticated organization. | (CreateOrgPublicDataReq) -> (PydanticObjectId)
+    /// Creates org_public_data and org_private_data documents for the authenticated organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createOrgPublicDataV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createOrgPublicDataV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> CreateOrgPublicDataRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/orgs/org_public_data/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: CreateOrgPublicDataRes.self
         )
     }
 
@@ -88,6 +88,19 @@ public final class OrgsClient: Sendable {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/org_public_data/handle_availability/v1/\(handle)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Sets the org_type in Clerk's JWT public metadata. Returns True if already set and matching, sets it if not present, or raises exception if conflicting. | (SetOrgTypeReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setOrgTypeV1(request: Requests.SetOrgTypeReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/orgs/set_org_type/v1",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

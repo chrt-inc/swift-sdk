@@ -20,6 +20,19 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
+    /// Sets or removes courier org. Sets task ordering (must provide all task ids). | (UpdateTaskGroupDraftReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(taskGroupId: String, request: Requests.UpdateTaskGroupDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/oort/order_drafts/task_group/update/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

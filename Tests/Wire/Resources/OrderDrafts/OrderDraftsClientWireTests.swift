@@ -132,7 +132,8 @@ import Chrt
                         "completed_at_timestamp": null,
                         "exception_at_timestamp": null,
                         "task_group_type": "chrt_ground_courier",
-                        "task_group_mileage": null
+                        "task_group_mileage": null,
+                        "flight_number": null
                       },
                       "tasks_expanded": [
                         {
@@ -168,6 +169,34 @@ import Chrt
                       ],
                       "courier_org_company_name": "courier_org_company_name",
                       "courier_org_handle": "courier_org_handle"
+                    }
+                  ],
+                  "cargos": [
+                    {
+                      "schema_version": 1,
+                      "cargo_type": "spare_parts",
+                      "quantity": 1,
+                      "weight_pounds": 1.1,
+                      "length_inches": 1.1,
+                      "width_inches": 1.1,
+                      "height_inches": 1.1,
+                      "turnable": true,
+                      "stackable": true,
+                      "description": "description",
+                      "_id": "_id",
+                      "order_id": "order_id",
+                      "order_short_id": "order_short_id",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "device_ids": [
+                        "device_ids"
+                      ],
+                      "status": "draft",
+                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
+                      "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
+                      "delivered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "exception_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ],
                   "shipper_org_company_name": "shipper_org_company_name",
@@ -224,7 +253,8 @@ import Chrt
                         completedAtTimestamp: Optional(nil),
                         exceptionAtTimestamp: Optional(nil),
                         taskGroupType: .chrtGroundCourier,
-                        taskGroupMileage: Optional(nil)
+                        taskGroupMileage: Optional(nil),
+                        flightNumber: Optional(nil)
                     ),
                     tasksExpanded: Optional([
                         TaskDraftExpanded(
@@ -260,6 +290,34 @@ import Chrt
                     ]),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
                     courierOrgHandle: Optional("courier_org_handle")
+                )
+            ]),
+            cargos: Optional([
+                Cargo1(
+                    schemaVersion: 1,
+                    cargoType: .spareParts,
+                    quantity: Optional(1),
+                    weightPounds: Optional(1.1),
+                    lengthInches: Optional(1.1),
+                    widthInches: Optional(1.1),
+                    heightInches: Optional(1.1),
+                    turnable: Optional(true),
+                    stackable: Optional(true),
+                    description: Optional("description"),
+                    id: "_id",
+                    orderId: "order_id",
+                    orderShortId: "order_short_id",
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
+                    deviceIds: Optional([
+                        "device_ids"
+                    ]),
+                    status: Optional(.draft),
+                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ]),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -319,11 +377,37 @@ import Chrt
                             "completed_at_timestamp": null,
                             "exception_at_timestamp": null,
                             "task_group_type": "chrt_ground_courier",
-                            "task_group_mileage": null
+                            "task_group_mileage": null,
+                            "flight_number": null
                           },
                           "tasks_expanded": null,
                           "courier_org_company_name": null,
                           "courier_org_handle": null
+                        }
+                      ],
+                      "cargos": [
+                        {
+                          "schema_version": 1,
+                          "cargo_type": "spare_parts",
+                          "quantity": null,
+                          "weight_pounds": null,
+                          "length_inches": null,
+                          "width_inches": null,
+                          "height_inches": null,
+                          "turnable": null,
+                          "stackable": null,
+                          "description": null,
+                          "_id": "_id",
+                          "order_id": "order_id",
+                          "order_short_id": "order_short_id",
+                          "created_by_org_id": "created_by_org_id",
+                          "created_by_user_id": "created_by_user_id",
+                          "device_ids": null,
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                          "staged_at_timestamp": null,
+                          "in_transit_at_timestamp": null,
+                          "delivered_at_timestamp": null,
+                          "exception_at_timestamp": null
                         }
                       ],
                       "shipper_org_company_name": "shipper_org_company_name",
@@ -381,11 +465,37 @@ import Chrt
                                 completedAtTimestamp: Optional(nil),
                                 exceptionAtTimestamp: Optional(nil),
                                 taskGroupType: .chrtGroundCourier,
-                                taskGroupMileage: Optional(nil)
+                                taskGroupMileage: Optional(nil),
+                                flightNumber: Optional(nil)
                             ),
                             tasksExpanded: Optional(nil),
                             courierOrgCompanyName: Optional(nil),
                             courierOrgHandle: Optional(nil)
+                        )
+                    ]),
+                    cargos: Optional([
+                        Cargo1(
+                            schemaVersion: 1,
+                            cargoType: .spareParts,
+                            quantity: Optional(nil),
+                            weightPounds: Optional(nil),
+                            lengthInches: Optional(nil),
+                            widthInches: Optional(nil),
+                            heightInches: Optional(nil),
+                            turnable: Optional(nil),
+                            stackable: Optional(nil),
+                            description: Optional(nil),
+                            id: "_id",
+                            orderId: "order_id",
+                            orderShortId: "order_short_id",
+                            createdByOrgId: "created_by_org_id",
+                            createdByUserId: "created_by_user_id",
+                            deviceIds: Optional(nil),
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            stagedAtTimestamp: Optional(nil),
+                            inTransitAtTimestamp: Optional(nil),
+                            deliveredAtTimestamp: Optional(nil),
+                            exceptionAtTimestamp: Optional(nil)
                         )
                     ]),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),

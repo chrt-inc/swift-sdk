@@ -351,6 +351,7 @@ import Chrt
                         "tasks_mileage": 1.1,
                         "deadhead_mileage": 1.1
                       },
+                      "flight_number": "flight_number",
                       "messages": [
                         {
                           "message": "message",
@@ -424,6 +425,7 @@ import Chrt
                         tasksMileage: 1.1,
                         deadheadMileage: 1.1
                     )),
+                    flightNumber: Optional("flight_number"),
                     messages: Optional([
                         TaskGroupMessage1(
                             message: "message",

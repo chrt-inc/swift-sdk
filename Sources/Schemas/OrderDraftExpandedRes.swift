@@ -3,6 +3,7 @@ import Foundation
 public struct OrderDraftExpandedRes: Codable, Hashable, Sendable {
     public let order: Order1
     public let taskGroupsExpanded: [TaskGroupDraftExpanded]?
+    public let cargos: [Cargo1]?
     public let shipperOrgCompanyName: String?
     public let shipperOrgHandle: String?
     public let offChrtShipperOrgCompanyName: String?
@@ -14,6 +15,7 @@ public struct OrderDraftExpandedRes: Codable, Hashable, Sendable {
     public init(
         order: Order1,
         taskGroupsExpanded: [TaskGroupDraftExpanded]? = nil,
+        cargos: [Cargo1]? = nil,
         shipperOrgCompanyName: String? = nil,
         shipperOrgHandle: String? = nil,
         offChrtShipperOrgCompanyName: String? = nil,
@@ -23,6 +25,7 @@ public struct OrderDraftExpandedRes: Codable, Hashable, Sendable {
     ) {
         self.order = order
         self.taskGroupsExpanded = taskGroupsExpanded
+        self.cargos = cargos
         self.shipperOrgCompanyName = shipperOrgCompanyName
         self.shipperOrgHandle = shipperOrgHandle
         self.offChrtShipperOrgCompanyName = offChrtShipperOrgCompanyName
@@ -35,6 +38,7 @@ public struct OrderDraftExpandedRes: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.order = try container.decode(Order1.self, forKey: .order)
         self.taskGroupsExpanded = try container.decodeIfPresent([TaskGroupDraftExpanded].self, forKey: .taskGroupsExpanded)
+        self.cargos = try container.decodeIfPresent([Cargo1].self, forKey: .cargos)
         self.shipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .shipperOrgCompanyName)
         self.shipperOrgHandle = try container.decodeIfPresent(String.self, forKey: .shipperOrgHandle)
         self.offChrtShipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgCompanyName)
@@ -48,6 +52,7 @@ public struct OrderDraftExpandedRes: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.order, forKey: .order)
         try container.encodeIfPresent(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
+        try container.encodeIfPresent(self.cargos, forKey: .cargos)
         try container.encodeIfPresent(self.shipperOrgCompanyName, forKey: .shipperOrgCompanyName)
         try container.encodeIfPresent(self.shipperOrgHandle, forKey: .shipperOrgHandle)
         try container.encodeIfPresent(self.offChrtShipperOrgCompanyName, forKey: .offChrtShipperOrgCompanyName)
@@ -59,6 +64,7 @@ public struct OrderDraftExpandedRes: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case order
         case taskGroupsExpanded = "task_groups_expanded"
+        case cargos
         case shipperOrgCompanyName = "shipper_org_company_name"
         case shipperOrgHandle = "shipper_org_handle"
         case offChrtShipperOrgCompanyName = "off_chrt_shipper_org_company_name"

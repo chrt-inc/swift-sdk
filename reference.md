@@ -6634,7 +6634,7 @@ try await main()
 </details>
 
 ## TaskGroups
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">updateV1</a>(request: Requests.UpdateTaskGroupReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setTaskOrderingV1</a>(taskGroupId: String, request: Requests.SetTaskOrderingReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -6646,7 +6646,7 @@ try await main()
 <dl>
 <dd>
 
-Updates task group driver assignments by adding or removing drivers. | (UpdateTaskGroupReq) -> (bool)
+Updates the ordering of tasks in a task group. Task group must be in STAGED or IN_PROGRESS status. | authz_personas=[lig_org_operators] | (SetTaskOrderingReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6667,7 +6667,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.taskGroups.updateV1(request: .init(taskGroupId: "task_group_id"))
+    _ = try await client.taskGroups.setTaskOrderingV1(
+        taskGroupId: "task_group_id",
+        request: .init(taskOrdering: [
+            "task_ordering"
+        ])
+    )
 }
 
 try await main()
@@ -6685,7 +6690,261 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.UpdateTaskGroupReq` 
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetTaskOrderingReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setFlightNumberV1</a>(taskGroupId: String, request: Requests.SetFlightNumberReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the flight number on both task group and all its tasks. Task group must be in STAGED or IN_PROGRESS status. | authz_personas=[lig_org_operators] | (SetFlightNumberReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.setFlightNumberV1(
+        taskGroupId: "task_group_id",
+        request: .init(flightNumber: "flight_number")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetFlightNumberReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">updateDriverV1</a>(taskGroupId: String, request: Requests.UpdateTaskGroupDriverReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or removes the driver assigned to a task group. | authz_personas=[courier_org_operators] | (UpdateTaskGroupDriverReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.updateDriverV1(
+        taskGroupId: "task_group_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.UpdateTaskGroupDriverReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">updateCourierOrgV1</a>(taskGroupId: String, request: Requests.UpdateTaskGroupCourierOrgReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or removes the courier organization assigned to a task group. | authz_personas=[forwarder_org_operators] | (UpdateTaskGroupCourierOrgReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.updateCourierOrgV1(
+        taskGroupId: "task_group_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.UpdateTaskGroupCourierOrgReq` 
     
 </dd>
 </dl>
@@ -6717,7 +6976,7 @@ try await main()
 <dl>
 <dd>
 
-Starts a task group by changing its status to in-progress and updating the order status. Only authorized personas (task_group_driver or task_group_courier_org_administrator) can start a task group. | () -> (bool)
+Starts a task group by changing its status to in-progress and updating the order status. | authz_personas=[courier_driver, lig_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6757,91 +7016,6 @@ try await main()
 <dd>
 
 **taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">togglePauseV1</a>(id: String, request: Requests.SetTaskGroupPauseReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Toggles the pause status of an in-progress task group. | (SetTaskGroupPauseReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.togglePauseV1(
-        id: "id",
-        request: .init(
-            taskGroupId: "task_group_id",
-            paused: true
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.SetTaskGroupPauseReq` 
     
 </dd>
 </dl>
@@ -7690,7 +7864,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">createOrgPublicDataV1</a>(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">createOrgPublicDataV1</a>(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions?) -> CreateOrgPublicDataRes</code></summary>
 <dl>
 <dd>
 
@@ -7702,7 +7876,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an org_public_data document for the authenticated organization. | (CreateOrgPublicDataReq) -> (PydanticObjectId)
+Creates org_public_data and org_private_data documents for the authenticated organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
 </dd>
 </dl>
 </dd>
@@ -7723,7 +7897,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgs.createOrgPublicDataV1(request: .init(orgType: .courier))
+    _ = try await client.orgs.createOrgPublicDataV1(request: .init())
 }
 
 try await main()
@@ -7955,6 +8129,77 @@ try await main()
 <dd>
 
 **handle:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">setOrgTypeV1</a>(request: Requests.SetOrgTypeReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the org_type in Clerk's JWT public metadata. Returns True if already set and matching, sets it if not present, or raises exception if conflicting. | (SetOrgTypeReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.setOrgTypeV1(request: .init(orgType: .courier))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetOrgTypeReq` 
     
 </dd>
 </dl>
@@ -9223,6 +9468,88 @@ try await main()
 <dd>
 
 **request:** `Requests.OrderDraftAddTaskGroupReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">updateV1</a>(taskGroupId: String, request: Requests.UpdateTaskGroupDraftReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or removes courier org. Sets task ordering (must provide all task ids). | (UpdateTaskGroupDraftReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.taskGroup.updateV1(
+        taskGroupId: "task_group_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.UpdateTaskGroupDraftReq` 
     
 </dd>
 </dl>

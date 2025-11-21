@@ -3,14 +3,14 @@ import Foundation
 public struct ClerkOrgData: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let id: String?
-    public let rol: String?
+    public let rol: OrgRoleEnum?
     public let slg: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         id: String? = nil,
-        rol: String? = nil,
+        rol: OrgRoleEnum? = nil,
         slg: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -23,7 +23,7 @@ public struct ClerkOrgData: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
-        self.rol = try container.decodeIfPresent(String.self, forKey: .rol)
+        self.rol = try container.decodeIfPresent(OrgRoleEnum.self, forKey: .rol)
         self.slg = try container.decodeIfPresent(String.self, forKey: .slg)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
