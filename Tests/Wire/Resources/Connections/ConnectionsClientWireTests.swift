@@ -275,4 +275,42 @@ import Chrt
         let response = try await client.connections.listForwardersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
+
+    @Test func getByHandleV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "shipper_org_id": "shipper_org_id",
+                  "courier_org_id": "courier_org_id",
+                  "connected": true,
+                  "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
+                  "_id": "_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Optional(ConnectionsGetByHandleV1Response.shipperCourierConnection1(
+            ShipperCourierConnection1(
+                schemaVersion: 1,
+                shipperOrgId: "shipper_org_id",
+                courierOrgId: "courier_org_id",
+                connected: Optional(true),
+                shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
+                id: "_id"
+            )
+        ))
+        let response = try await client.connections.getByHandleV1(
+            handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

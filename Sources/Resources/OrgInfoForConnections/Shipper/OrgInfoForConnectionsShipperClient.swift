@@ -1,6 +1,6 @@
 import Foundation
 
-public final class OrgConnectionInfosShipperClient: Sendable {
+public final class OrgInfoForConnectionsShipperClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
@@ -13,7 +13,7 @@ public final class OrgConnectionInfosShipperClient: Sendable {
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> ShipperOrgInfoForConnections1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/connections/org_connection_infos/shipper/v1",
+            path: "/connections/org_info_for_connections/shipper/v1",
             requestOptions: requestOptions,
             responseType: ShipperOrgInfoForConnections1.self
         )
@@ -25,7 +25,7 @@ public final class OrgConnectionInfosShipperClient: Sendable {
     public func createV1(request: Requests.ShipperOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/connections/org_connection_infos/shipper/create/v1",
+            path: "/connections/org_info_for_connections/shipper/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
@@ -38,7 +38,7 @@ public final class OrgConnectionInfosShipperClient: Sendable {
     public func updateV1(request: Requests.ShipperOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/connections/org_connection_infos/shipper/update/v1",
+            path: "/connections/org_info_for_connections/shipper/update/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

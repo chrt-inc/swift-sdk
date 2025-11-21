@@ -3623,6 +3623,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.connections.<a href="/Sources/Resources/Connections/ConnectionsClient.swift">getByHandleV1</a>(handle: String, requestOptions: RequestOptions?) -> ConnectionsGetByHandleV1Response?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets connection between authenticated org and org with specified handle. | () -> (ShipperCourierConnection1 | ShipperForwarderConnection1 | ForwarderCourierConnection1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.connections.getByHandleV1(handle: "handle")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**handle:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## OrgProfiles
 <details><summary><code>client.orgProfiles.<a href="/Sources/Resources/OrgProfiles/OrgProfilesClient.swift">getV1</a>(requestOptions: RequestOptions?) -> OrgProfileRes1</code></summary>
 <dl>
@@ -10788,8 +10859,8 @@ try await main()
 </dl>
 </details>
 
-## OrgConnectionInfos Shipper
-<details><summary><code>client.orgConnectionInfos.shipper.<a href="/Sources/Resources/OrgConnectionInfos/Shipper/OrgConnectionInfosShipperClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ShipperOrgInfoForConnections1</code></summary>
+## OrgInfoForConnections Shipper
+<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ShipperOrgInfoForConnections1</code></summary>
 <dl>
 <dd>
 
@@ -10822,7 +10893,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgConnectionInfos.shipper.getV1()
+    _ = try await client.orgInfoForConnections.shipper.getV1()
 }
 
 try await main()
@@ -10852,7 +10923,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgConnectionInfos.shipper.<a href="/Sources/Resources/OrgConnectionInfos/Shipper/OrgConnectionInfosShipperClient.swift">createV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">createV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -10885,7 +10956,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgConnectionInfos.shipper.createV1(request: .init(
+    _ = try await client.orgInfoForConnections.shipper.createV1(request: .init(
         schemaVersion: 1,
         emailAddressPrimary: "email_address_primary"
     ))
@@ -10926,7 +10997,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgConnectionInfos.shipper.<a href="/Sources/Resources/OrgConnectionInfos/Shipper/OrgConnectionInfosShipperClient.swift">updateV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">updateV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10959,7 +11030,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgConnectionInfos.shipper.updateV1(request: .init())
+    _ = try await client.orgInfoForConnections.shipper.updateV1(request: .init())
 }
 
 try await main()
@@ -10997,8 +11068,8 @@ try await main()
 </dl>
 </details>
 
-## OrgConnectionInfos Courier
-<details><summary><code>client.orgConnectionInfos.courier.<a href="/Sources/Resources/OrgConnectionInfos/Courier/OrgConnectionInfosCourierClient.swift">getV1</a>(requestOptions: RequestOptions?) -> CourierOrgInfoForConnections1</code></summary>
+## OrgInfoForConnections Courier
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">getV1</a>(requestOptions: RequestOptions?) -> CourierOrgInfoForConnections1</code></summary>
 <dl>
 <dd>
 
@@ -11031,7 +11102,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgConnectionInfos.courier.getV1()
+    _ = try await client.orgInfoForConnections.courier.getV1()
 }
 
 try await main()
@@ -11061,7 +11132,70 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgConnectionInfos.courier.<a href="/Sources/Resources/OrgConnectionInfos/Courier/OrgConnectionInfosCourierClient.swift">createV1</a>(request: Requests.CourierOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [CourierOrgInfoForConnections1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves list of connected courier organizations for forwarder or shipper organizations. Not accessible by courier organizations. | () -> (list[CourierOrgInfoForConnections1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgInfoForConnections.courier.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">createV1</a>(request: Requests.CourierOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -11094,7 +11228,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgConnectionInfos.courier.createV1(request: .init(
+    _ = try await client.orgInfoForConnections.courier.createV1(request: .init(
         schemaVersion: 1,
         emailAddressPrimary: "email_address_primary"
     ))
@@ -11135,7 +11269,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgConnectionInfos.courier.<a href="/Sources/Resources/OrgConnectionInfos/Courier/OrgConnectionInfosCourierClient.swift">updateV1</a>(request: Requests.CourierOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">updateV1</a>(request: Requests.CourierOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -11168,7 +11302,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgConnectionInfos.courier.updateV1(request: .init())
+    _ = try await client.orgInfoForConnections.courier.updateV1(request: .init())
 }
 
 try await main()
@@ -11187,6 +11321,152 @@ try await main()
 <dd>
 
 **request:** `Requests.CourierOrgInfoForConnectionsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OrgInfoForConnections Forwarder
+<details><summary><code>client.orgInfoForConnections.forwarder.<a href="/Sources/Resources/OrgInfoForConnections/Forwarder/ForwarderClient.swift">createV1</a>(request: Requests.ForwarderOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates forwarder organization connection information. Fails if already exists. | (ForwarderOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgInfoForConnections.forwarder.createV1(request: .init(
+        schemaVersion: 1,
+        emailAddressPrimary: "email_address_primary"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ForwarderOrgInfoForConnectionsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgInfoForConnections.forwarder.<a href="/Sources/Resources/OrgInfoForConnections/Forwarder/ForwarderClient.swift">updateV1</a>(request: Requests.ForwarderOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates existing forwarder organization connection information. | (ForwarderOrgInfoForConnectionsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgInfoForConnections.forwarder.updateV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ForwarderOrgInfoForConnectionsClientUpdate1` 
     
 </dd>
 </dl>

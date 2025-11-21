@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("OrgConnectionInfosCourierClient Wire Tests") struct OrgConnectionInfosCourierClientWireTests {
+@Suite("OrgInfoForConnectionsShipperClient Wire Tests") struct OrgInfoForConnectionsShipperClientWireTests {
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -43,8 +43,8 @@ import Chrt
                   "email_address_secondary": "email_address_secondary",
                   "job_title": "job_title",
                   "notes": "notes",
-                  "courier_org_id": "courier_org_id",
-                  "courier_user_id": "courier_user_id",
+                  "shipper_org_id": "shipper_org_id",
+                  "shipper_user_id": "shipper_user_id",
                   "_id": "_id"
                 }
                 """.utf8
@@ -55,7 +55,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CourierOrgInfoForConnections1(
+        let expectedResponse = ShipperOrgInfoForConnections1(
             schemaVersion: 1,
             industry: Optional("industry"),
             streetAddress: Optional(LocationFeature(
@@ -98,11 +98,11 @@ import Chrt
             emailAddressSecondary: Optional("email_address_secondary"),
             jobTitle: Optional("job_title"),
             notes: Optional("notes"),
-            courierOrgId: "courier_org_id",
-            courierUserId: Optional("courier_user_id"),
+            shipperOrgId: "shipper_org_id",
+            shipperUserId: Optional("shipper_user_id"),
             id: "_id"
         )
-        let response = try await client.orgConnectionInfos.courier.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.orgInfoForConnections.shipper.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -121,7 +121,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgConnectionInfos.courier.createV1(
+        let response = try await client.orgInfoForConnections.shipper.createV1(
             request: .init(
                 schemaVersion: 1,
                 emailAddressPrimary: "email_address_primary"
@@ -146,7 +146,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgConnectionInfos.courier.updateV1(
+        let response = try await client.orgInfoForConnections.shipper.updateV1(
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

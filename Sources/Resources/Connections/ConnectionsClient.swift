@@ -48,4 +48,16 @@ public final class ConnectionsClient: Sendable {
             responseType: [ForwarderConnectionRes].self
         )
     }
+
+    /// Gets connection between authenticated org and org with specified handle. | () -> (ShipperCourierConnection1 | ShipperForwarderConnection1 | ForwarderCourierConnection1 | None)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> ConnectionsGetByHandleV1Response? {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/connections/by_handle/\(handle)/v1",
+            requestOptions: requestOptions,
+            responseType: ConnectionsGetByHandleV1Response?.self
+        )
+    }
 }
