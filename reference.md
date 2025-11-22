@@ -11341,6 +11341,69 @@ try await main()
 </details>
 
 ## OrgInfoForConnections Forwarder
+<details><summary><code>client.orgInfoForConnections.forwarder.<a href="/Sources/Resources/OrgInfoForConnections/Forwarder/ForwarderClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ForwarderOrgInfoForConnections1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves forwarder organization connection information for the authenticated organization. | () -> (ForwarderOrgInfoForConnections1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgInfoForConnections.forwarder.getV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orgInfoForConnections.forwarder.<a href="/Sources/Resources/OrgInfoForConnections/Forwarder/ForwarderClient.swift">createV1</a>(request: Requests.ForwarderOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
