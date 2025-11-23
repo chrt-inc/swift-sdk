@@ -1,82 +1,12 @@
 import Foundation
 
 public final class TaskGroupsClient: Sendable {
+    public let expanded: TaskGroupsExpandedClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.expanded = TaskGroupsExpandedClient(config: config)
         self.httpClient = HTTPClient(config: config)
-    }
-
-    /// Retrieves an expanded task group with optional related data for courier operators. | authz_personas=[courier_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForCourierOperatorsV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/task_groups/expanded/for_courier_operators/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpanded.self
-        )
-    }
-
-    /// Retrieves expanded task groups by order ID or short ID for courier operators. | authz_personas=[courier_org_operators] | (OrderAndTaskGroupExpandedReq) -> (list[TaskGroupExpanded])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForCourierOperatorsByOrderV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupExpanded] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/task_groups/expanded/for_courier_operators/by_order/v1/\(orderIdOrShortId)",
-            requestOptions: requestOptions,
-            responseType: [TaskGroupExpanded].self
-        )
-    }
-
-    /// Retrieves an expanded task group with optional related data for courier drivers. | authz_personas=[courier_driver] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForCourierDriverV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/task_groups/expanded/for_courier_driver/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpanded.self
-        )
-    }
-
-    /// Retrieves expanded task groups by order ID or short ID for courier drivers. | authz_personas=[courier_driver] | (OrderAndTaskGroupExpandedReq) -> (list[TaskGroupExpanded])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForCourierDriverByOrderV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupExpanded] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/task_groups/expanded/for_courier_driver/by_order/v1/\(orderIdOrShortId)",
-            requestOptions: requestOptions,
-            responseType: [TaskGroupExpanded].self
-        )
-    }
-
-    /// Retrieves an expanded task group with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForShipperOperatorsV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/task_groups/expanded/for_shipper_operators/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpanded.self
-        )
-    }
-
-    /// Retrieves an expanded task group with optional related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForForwarderOperatorsV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/task_groups/task_groups/expanded/for_forwarder_operators/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpanded.self
-        )
     }
 
     /// Retrieves a list of expanded task groups with optional filters and related data for courier operators. | authz_personas=[courier_org_operators] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)

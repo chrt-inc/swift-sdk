@@ -1,34 +1,12 @@
 import Foundation
 
 public final class OrdersClient: Sendable {
+    public let expanded: ExpandedClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.expanded = ExpandedClient(config: config)
         self.httpClient = HTTPClient(config: config)
-    }
-
-    /// Retrieves an expanded order with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForShipperOperatorsV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderExpanded {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/orders/orders/expanded/for_shipper_operators/v1/\(orderId)",
-            requestOptions: requestOptions,
-            responseType: OrderExpanded.self
-        )
-    }
-
-    /// Retrieves an expanded order with optional related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedForForwarderOperatorsV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderExpanded {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/orders/orders/expanded/for_forwarder_operators/v1/\(orderId)",
-            requestOptions: requestOptions,
-            responseType: OrderExpanded.self
-        )
     }
 
     /// Retrieves a list of expanded orders with optional filters and related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrdersExpandedListForShipperReq) -> (OrdersExpandedListRes)
