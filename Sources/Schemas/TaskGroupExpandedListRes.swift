@@ -1,25 +1,24 @@
 import Foundation
 
-/// Response payload for shipper order expanded list.
-public struct OrdersExpandedForShipperRes: Codable, Hashable, Sendable {
-    public let ordersExpanded: [OrderExpandedForShipper]
+public struct TaskGroupExpandedListRes: Codable, Hashable, Sendable {
+    public let taskGroupsExpanded: [TaskGroupExpanded]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        ordersExpanded: [OrderExpandedForShipper],
+        taskGroupsExpanded: [TaskGroupExpanded],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.ordersExpanded = ordersExpanded
+        self.taskGroupsExpanded = taskGroupsExpanded
         self.totalCount = totalCount
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ordersExpanded = try container.decode([OrderExpandedForShipper].self, forKey: .ordersExpanded)
+        self.taskGroupsExpanded = try container.decode([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -27,13 +26,13 @@ public struct OrdersExpandedForShipperRes: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.ordersExpanded, forKey: .ordersExpanded)
+        try container.encode(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
         try container.encode(self.totalCount, forKey: .totalCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case ordersExpanded = "orders_expanded"
+        case taskGroupsExpanded = "task_groups_expanded"
         case totalCount = "total_count"
     }
 }

@@ -6,7 +6,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public let action: Action?
     public let timeWindows: [TimeWindow1]?
     public let orderPlacerComments: String?
-    public let shipperContactInfoIds: [String]?
+    public let shipperContactIds: [String]?
     public let flightNumber: String?
     public let id: String
     public let orderId: String
@@ -41,7 +41,7 @@ public struct Task1: Codable, Hashable, Sendable {
         action: Action? = nil,
         timeWindows: [TimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
-        shipperContactInfoIds: [String]? = nil,
+        shipperContactIds: [String]? = nil,
         flightNumber: String? = nil,
         id: String,
         orderId: String,
@@ -70,7 +70,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.action = action
         self.timeWindows = timeWindows
         self.orderPlacerComments = orderPlacerComments
-        self.shipperContactInfoIds = shipperContactInfoIds
+        self.shipperContactIds = shipperContactIds
         self.flightNumber = flightNumber
         self.id = id
         self.orderId = orderId
@@ -102,7 +102,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
         self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
-        self.shipperContactInfoIds = try container.decodeIfPresent([String].self, forKey: .shipperContactInfoIds)
+        self.shipperContactIds = try container.decodeIfPresent([String].self, forKey: .shipperContactIds)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
@@ -135,7 +135,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
-        try container.encodeIfPresent(self.shipperContactInfoIds, forKey: .shipperContactInfoIds)
+        try container.encodeIfPresent(self.shipperContactIds, forKey: .shipperContactIds)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
@@ -166,7 +166,7 @@ public struct Task1: Codable, Hashable, Sendable {
         case action
         case timeWindows = "time_windows"
         case orderPlacerComments = "order_placer_comments"
-        case shipperContactInfoIds = "shipper_contact_info_ids"
+        case shipperContactIds = "shipper_contact_ids"
         case flightNumber = "flight_number"
         case id = "_id"
         case orderId = "order_id"

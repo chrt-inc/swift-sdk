@@ -1,14 +1,13 @@
 import Foundation
 
-/// Response payload for order creator order expanded list.
-public struct OrdersExpandedForOrderCreatorRes: Codable, Hashable, Sendable {
-    public let ordersExpanded: [OrderExpandedForOrderCreator]
+public struct OrdersExpandedListRes: Codable, Hashable, Sendable {
+    public let ordersExpanded: [OrderExpanded]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        ordersExpanded: [OrderExpandedForOrderCreator],
+        ordersExpanded: [OrderExpanded],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -19,7 +18,7 @@ public struct OrdersExpandedForOrderCreatorRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ordersExpanded = try container.decode([OrderExpandedForOrderCreator].self, forKey: .ordersExpanded)
+        self.ordersExpanded = try container.decode([OrderExpanded].self, forKey: .ordersExpanded)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

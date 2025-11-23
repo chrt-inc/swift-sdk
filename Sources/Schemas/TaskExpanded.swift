@@ -1,11 +1,10 @@
 import Foundation
 
-/// A task with optionally expanded related entities.
 public struct TaskExpanded: Codable, Hashable, Sendable {
     public let task: Task1
     public let cargos: [Cargo1]?
     public let taskArtifacts: [TaskArtifact1]?
-    public let shipperContactInfo: [ShipperContact1]?
+    public let shipperContacts: [ShipperContact1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -13,13 +12,13 @@ public struct TaskExpanded: Codable, Hashable, Sendable {
         task: Task1,
         cargos: [Cargo1]? = nil,
         taskArtifacts: [TaskArtifact1]? = nil,
-        shipperContactInfo: [ShipperContact1]? = nil,
+        shipperContacts: [ShipperContact1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.task = task
         self.cargos = cargos
         self.taskArtifacts = taskArtifacts
-        self.shipperContactInfo = shipperContactInfo
+        self.shipperContacts = shipperContacts
         self.additionalProperties = additionalProperties
     }
 
@@ -28,7 +27,7 @@ public struct TaskExpanded: Codable, Hashable, Sendable {
         self.task = try container.decode(Task1.self, forKey: .task)
         self.cargos = try container.decodeIfPresent([Cargo1].self, forKey: .cargos)
         self.taskArtifacts = try container.decodeIfPresent([TaskArtifact1].self, forKey: .taskArtifacts)
-        self.shipperContactInfo = try container.decodeIfPresent([ShipperContact1].self, forKey: .shipperContactInfo)
+        self.shipperContacts = try container.decodeIfPresent([ShipperContact1].self, forKey: .shipperContacts)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -38,7 +37,7 @@ public struct TaskExpanded: Codable, Hashable, Sendable {
         try container.encode(self.task, forKey: .task)
         try container.encodeIfPresent(self.cargos, forKey: .cargos)
         try container.encodeIfPresent(self.taskArtifacts, forKey: .taskArtifacts)
-        try container.encodeIfPresent(self.shipperContactInfo, forKey: .shipperContactInfo)
+        try container.encodeIfPresent(self.shipperContacts, forKey: .shipperContacts)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -46,6 +45,6 @@ public struct TaskExpanded: Codable, Hashable, Sendable {
         case task
         case cargos
         case taskArtifacts = "task_artifacts"
-        case shipperContactInfo = "shipper_contact_info"
+        case shipperContacts = "shipper_contacts"
     }
 }

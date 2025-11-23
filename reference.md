@@ -6195,6 +6195,290 @@ try await main()
 </details>
 
 ## Orders
+<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">getExpandedForShipperOperatorsV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an expanded order with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orders.getExpandedForShipperOperatorsV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">getExpandedForForwarderOperatorsV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an expanded order with optional related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orders.getExpandedForForwarderOperatorsV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">postExpandedListForShipperOperatorsV1</a>(request: Requests.OrdersExpandedListForShipperReq, requestOptions: RequestOptions?) -> OrdersExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a list of expanded orders with optional filters and related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrdersExpandedListForShipperReq) -> (OrdersExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orders.postExpandedListForShipperOperatorsV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrdersExpandedListForShipperReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">postExpandedListForForwarderOperatorsV1</a>(request: Requests.OrdersExpandedListForForwarderReq, requestOptions: RequestOptions?) -> OrdersExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a list of expanded orders with optional filters and related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (OrdersExpandedListForForwarderReq) -> (OrdersExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orders.postExpandedListForForwarderOperatorsV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrdersExpandedListForForwarderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orders.<a href="/Sources/Resources/Orders/OrdersClient.swift">stageV1</a>(orderId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -6705,6 +6989,651 @@ try await main()
 </details>
 
 ## TaskGroups
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getExpandedForCourierOperatorsV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an expanded task group with optional related data for courier operators. | authz_personas=[courier_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.getExpandedForCourierOperatorsV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getExpandedForCourierOperatorsByOrderV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TaskGroupExpanded]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves expanded task groups by order ID or short ID for courier operators. | authz_personas=[courier_org_operators] | (OrderAndTaskGroupExpandedReq) -> (list[TaskGroupExpanded])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.getExpandedForCourierOperatorsByOrderV1(orderIdOrShortId: "order_id_or_short_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderIdOrShortId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getExpandedForCourierDriverV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an expanded task group with optional related data for courier drivers. | authz_personas=[courier_driver] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.getExpandedForCourierDriverV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getExpandedForCourierDriverByOrderV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TaskGroupExpanded]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves expanded task groups by order ID or short ID for courier drivers. | authz_personas=[courier_driver] | (OrderAndTaskGroupExpandedReq) -> (list[TaskGroupExpanded])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.getExpandedForCourierDriverByOrderV1(orderIdOrShortId: "order_id_or_short_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderIdOrShortId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getExpandedForShipperOperatorsV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an expanded task group with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.getExpandedForShipperOperatorsV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">getExpandedForForwarderOperatorsV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an expanded task group with optional related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.getExpandedForForwarderOperatorsV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedListForCourierOperatorsV1</a>(request: TaskGroupExpandedListReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a list of expanded task groups with optional filters and related data for courier operators. | authz_personas=[courier_org_operators] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.postExpandedListForCourierOperatorsV1(request: TaskGroupExpandedListReq(
+
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TaskGroupExpandedListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedListForCourierDriverV1</a>(request: TaskGroupExpandedListReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a list of expanded task groups with optional filters and related data for courier drivers. | authz_personas=[courier_driver] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.postExpandedListForCourierDriverV1(request: TaskGroupExpandedListReq(
+
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TaskGroupExpandedListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">postExpandedListForForwarderOperatorsV1</a>(request: TaskGroupExpandedListReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a list of expanded task groups with optional filters and related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.postExpandedListForForwarderOperatorsV1(request: TaskGroupExpandedListReq(
+
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TaskGroupExpandedListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setTaskOrderingV1</a>(taskGroupId: String, request: Requests.SetTaskOrderingReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -10381,484 +11310,6 @@ try await main()
 </dl>
 </details>
 
-## Orders Expanded
-<details><summary><code>client.orders.expanded.<a href="/Sources/Resources/Orders/Expanded/ExpandedClient.swift">postForShipperByOrderIdV1</a>(orderIdOrShortId: String, request: OrderExpandedForShipperReq, requestOptions: RequestOptions?) -> OrderExpandedForShipper</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches a single order for the shipper organization with optional expanded related data. | (OrderExpandedForShipperReq) -> (OrderExpandedForShipper)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orders.expanded.postForShipperByOrderIdV1(
-        orderIdOrShortId: "order_id_or_short_id",
-        request: OrderExpandedForShipperReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderIdOrShortId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderExpandedForShipperReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.orders.expanded.<a href="/Sources/Resources/Orders/Expanded/ExpandedClient.swift">postForOrderCreatorByOrderIdV1</a>(orderIdOrShortId: String, request: OrderExpandedForOrderCreatorReq, requestOptions: RequestOptions?) -> OrderExpandedForOrderCreator</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches a single order for the organization that created it with optional expanded related data. | (OrderExpandedForOrderCreatorReq) -> (OrderExpandedForOrderCreator)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orders.expanded.postForOrderCreatorByOrderIdV1(
-        orderIdOrShortId: "order_id_or_short_id",
-        request: OrderExpandedForOrderCreatorReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderIdOrShortId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderExpandedForOrderCreatorReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Orders ExpandedList
-<details><summary><code>client.orders.expandedList.<a href="/Sources/Resources/Orders/ExpandedList/ExpandedListClient.swift">postShipperExpandedListV1</a>(page: Int?, pageSize: Int?, sortBy: OrderExpandedListSortFieldEnum?, sortOrder: SortOrderEnum?, filterDraftStartedAtGte: Date?, filterDraftStartedAtLte: Date?, filterStatuses: OrderStatusEnum1?, filterOrderCancelled: Bool?, request: OrderExpandedForShipperReq, requestOptions: RequestOptions?) -> OrdersExpandedForShipperRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves orders expanded list for the shipper organization with optional filters and related data. | (OrderExpandedForShipperReq) -> (OrdersExpandedForShipperRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orders.expandedList.postShipperExpandedListV1(
-        page: 1,
-        pageSize: 1,
-        sortBy: .draftStartedAt,
-        sortOrder: .asc,
-        filterDraftStartedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterDraftStartedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOrderCancelled: true,
-        request: .init(body: OrderExpandedForShipperReq(
-
-        ))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortBy:** `OrderExpandedListSortFieldEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatuses:** `OrderStatusEnum1?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderCancelled:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderExpandedForShipperReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.orders.expandedList.<a href="/Sources/Resources/Orders/ExpandedList/ExpandedListClient.swift">postOrderCreatorExpandedListV1</a>(page: Int?, pageSize: Int?, sortBy: OrderExpandedListSortFieldEnum?, sortOrder: SortOrderEnum?, filterDraftStartedAtGte: Date?, filterDraftStartedAtLte: Date?, filterStatuses: OrderStatusEnum1?, filterOrderCancelled: Bool?, includeShipperOrgIds: String?, excludeShipperOrgIds: String?, request: OrderExpandedForOrderCreatorReq, requestOptions: RequestOptions?) -> OrdersExpandedForOrderCreatorRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves orders expanded list for order creator org with optional filters, shipper includes, and exclusions. | (OrderExpandedForOrderCreatorReq) -> (OrdersExpandedForOrderCreatorRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orders.expandedList.postOrderCreatorExpandedListV1(
-        page: 1,
-        pageSize: 1,
-        sortBy: .draftStartedAt,
-        sortOrder: .asc,
-        filterDraftStartedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterDraftStartedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOrderCancelled: true,
-        request: .init(body: OrderExpandedForOrderCreatorReq(
-
-        ))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortBy:** `OrderExpandedListSortFieldEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatuses:** `OrderStatusEnum1?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderCancelled:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**includeShipperOrgIds:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**excludeShipperOrgIds:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderExpandedForOrderCreatorReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## OrgInfoForConnections Shipper
 <details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ShipperOrgInfoForConnections1</code></summary>
 <dl>
@@ -12272,658 +12723,6 @@ try await main()
 <dd>
 
 **taskArtifactS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## TaskGroups Expanded
-<details><summary><code>client.taskGroups.expanded.<a href="/Sources/Resources/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forCourierAdministratorByIdV1</a>(id: String, request: TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions?) -> TaskGroupExpandedForCourierAdministrator</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches an expanded task group for the courier org with expanded related data. | (TaskGroupExpandedForCourierAdministratorReq) -> (TaskGroupExpandedForCourierAdministrator)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.expanded.forCourierAdministratorByIdV1(
-        id: "id",
-        request: TaskGroupExpandedForCourierAdministratorReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `TaskGroupExpandedForCourierAdministratorReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.expanded.<a href="/Sources/Resources/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forCourierDriverByIdV1</a>(id: String, request: TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions?) -> TaskGroupExpandedForCourierDriver</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches an expanded task group assigned to a courier driver with optional expanded related data. | (TaskGroupExpandedForCourierDriverReq) -> (TaskGroupExpandedForCourierDriver)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.expanded.forCourierDriverByIdV1(
-        id: "id",
-        request: TaskGroupExpandedForCourierDriverReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `TaskGroupExpandedForCourierDriverReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.expanded.<a href="/Sources/Resources/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forShipperByIdV1</a>(id: String, request: Requests.TaskGroupExpandedForShipperReq, requestOptions: RequestOptions?) -> TaskGroupExpandedForShipper</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches an expanded task group for the shipper org with expanded related data. | (TaskGroupExpandedForShipperReq) -> (TaskGroupExpandedForShipper)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.expanded.forShipperByIdV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskGroupExpandedForShipperReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## TaskGroups ExpandedList
-<details><summary><code>client.taskGroups.expandedList.<a href="/Sources/Resources/TaskGroups/ExpandedList/TaskGroupsExpandedListClient.swift">forCourierAdministratorV1</a>(page: Int?, pageSize: Int?, sortBy: TaskGroupExpandedSortFieldEnum?, sortOrder: SortOrderEnum?, filterCreatedAtGte: Date?, filterCreatedAtLte: Date?, filterStartedAtGte: Date?, filterStartedAtLte: Date?, filterCompletedAtGte: Date?, filterCompletedAtLte: Date?, filterOrderCancelled: Bool?, filterStatuses: TaskGroupStatusEnum1?, filterCompleted: Bool?, filterPaused: Bool?, request: TaskGroupExpandedForCourierAdministratorReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierAdministratorRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches expanded task groups for the courier org with optional filters and expanded related data. | (TaskGroupExpandedForCourierAdministratorReq) -> (TaskGroupsExpandedForCourierAdministratorRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.expandedList.forCourierAdministratorV1(
-        page: 1,
-        pageSize: 1,
-        sortBy: .stagedAtTimestamp,
-        sortOrder: .asc,
-        filterCreatedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStartedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStartedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOrderCancelled: true,
-        filterCompleted: true,
-        filterPaused: true,
-        request: .init(body: TaskGroupExpandedForCourierAdministratorReq(
-
-        ))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortBy:** `TaskGroupExpandedSortFieldEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStartedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStartedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderCancelled:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatuses:** `TaskGroupStatusEnum1?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompleted:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaused:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `TaskGroupExpandedForCourierAdministratorReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.expandedList.<a href="/Sources/Resources/TaskGroups/ExpandedList/TaskGroupsExpandedListClient.swift">forCourierDriverV1</a>(page: Int?, pageSize: Int?, sortBy: TaskGroupExpandedSortFieldEnum?, sortOrder: SortOrderEnum?, filterCreatedAtGte: Date?, filterCreatedAtLte: Date?, filterStartedAtGte: Date?, filterStartedAtLte: Date?, filterCompletedAtGte: Date?, filterCompletedAtLte: Date?, filterOrderCancelled: Bool?, filterStatuses: TaskGroupStatusEnum1?, filterCompleted: Bool?, filterPaused: Bool?, request: TaskGroupExpandedForCourierDriverReq, requestOptions: RequestOptions?) -> TaskGroupsExpandedForCourierDriverRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches expanded task groups assigned to a courier driver with optional expanded related data. | (TaskGroupExpandedForCourierDriverReq) -> (TaskGroupsExpandedForCourierDriverRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.expandedList.forCourierDriverV1(
-        page: 1,
-        pageSize: 1,
-        sortBy: .stagedAtTimestamp,
-        sortOrder: .asc,
-        filterCreatedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStartedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStartedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOrderCancelled: true,
-        filterCompleted: true,
-        filterPaused: true,
-        request: .init(body: TaskGroupExpandedForCourierDriverReq(
-
-        ))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortBy:** `TaskGroupExpandedSortFieldEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStartedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStartedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderCancelled:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatuses:** `TaskGroupStatusEnum1?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompleted:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaused:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `TaskGroupExpandedForCourierDriverReq` 
     
 </dd>
 </dl>
