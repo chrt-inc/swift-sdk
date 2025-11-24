@@ -9,45 +9,6 @@ public final class TaskGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a list of expanded task groups with optional filters and related data for courier operators. | authz_personas=[courier_org_operators] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postExpandedListForCourierOperatorsV1(request: TaskGroupExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/task_groups/task_groups/expanded/list/for_courier_operators/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpandedListRes.self
-        )
-    }
-
-    /// Retrieves a list of expanded task groups with optional filters and related data for courier drivers. | authz_personas=[courier_driver] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postExpandedListForCourierDriverV1(request: TaskGroupExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/task_groups/task_groups/expanded/list/for_courier_driver/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpandedListRes.self
-        )
-    }
-
-    /// Retrieves a list of expanded task groups with optional filters and related data for forwarder operators. | authz_personas=[forwarder_org_operators] | (TaskGroupExpandedListReq) -> (TaskGroupExpandedListRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postExpandedListForForwarderOperatorsV1(request: TaskGroupExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/task_groups/task_groups/expanded/list/for_forwarder_operators/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpandedListRes.self
-        )
-    }
-
     /// Updates the ordering of tasks in a task group. Task group must be in STAGED or IN_PROGRESS status. | authz_personas=[lig_org_operators] | (SetTaskOrderingReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
