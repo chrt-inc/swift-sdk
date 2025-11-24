@@ -9,6 +9,30 @@ public final class TaskGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves the task group ID for the courier organization assigned to an order. | authz_personas=[courier_org_operators] | () -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getTaskGroupIdForCourierOperatorsV1(byOrderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/oort/task_groups/task_group_id/for_courier_operators/v1/\(byOrderIdOrShortId)",
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Retrieves the task group ID for the courier driver assigned to an order. | authz_personas=[courier_driver] | () -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getTaskGroupIdForCourierDriverV1(byOrderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/oort/task_groups/task_group_id/for_courier_driver/v1/\(byOrderIdOrShortId)",
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Updates the ordering of tasks in a task group. Task group must be in STAGED or IN_PROGRESS status. | authz_personas=[lig_org_operators] | (SetTaskOrderingReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
