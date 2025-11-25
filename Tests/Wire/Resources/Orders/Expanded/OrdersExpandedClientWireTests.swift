@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("ExpandedClient Wire Tests") struct ExpandedClientWireTests {
+@Suite("OrdersExpandedClient Wire Tests") struct OrdersExpandedClientWireTests {
     @Test func forShipperOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

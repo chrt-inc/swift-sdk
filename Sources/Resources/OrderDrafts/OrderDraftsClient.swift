@@ -5,6 +5,7 @@ public final class OrderDraftsClient: Sendable {
     public let task: TaskClient
     public let taskArtifact: TaskArtifactClient
     public let cargo: CargoClient
+    public let expanded: ExpandedClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
@@ -12,6 +13,7 @@ public final class OrderDraftsClient: Sendable {
         self.task = TaskClient(config: config)
         self.taskArtifact = TaskArtifactClient(config: config)
         self.cargo = CargoClient(config: config)
+        self.expanded = ExpandedClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -53,29 +55,16 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderDraftExpandedReq) -> (OrderDraftExpandedRes)
+    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpanded)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedV1(orderIdOrShortId: String, request: Requests.OrderDraftExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedRes {
+    public func expandedV1(orderIdOrShortId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpanded {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/order_drafts/expanded/v1/\(orderIdOrShortId)",
             body: request,
             requestOptions: requestOptions,
-            responseType: OrderDraftExpandedRes.self
-        )
-    }
-
-    /// Lists all draft orders created by the authenticated user with optional expanded related data. | (OrderDraftExpandedListReq) -> (OrderDraftExpandedListRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedListV1(request: Requests.OrderDraftExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/order_drafts/expanded/list/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrderDraftExpandedListRes.self
+            responseType: OrderDraftExpanded.self
         )
     }
 

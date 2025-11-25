@@ -1,6 +1,6 @@
 import Foundation
 
-public final class ExpandedClient: Sendable {
+public final class OrdersExpandedClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {

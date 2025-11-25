@@ -115,6 +115,10 @@ import Chrt
                     "order_cancelled": true,
                     "order_cancelled_at_timestamp": "2024-01-15T09:30:00Z"
                   },
+                  "forwarder_org_company_name": "forwarder_org_company_name",
+                  "forwarder_org_handle": "forwarder_org_handle",
+                  "shipper_org_company_name": "shipper_org_company_name",
+                  "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "task_groups_expanded": [
                     {
                       "task_group": {
@@ -160,8 +164,27 @@ import Chrt
                           "shipper_contacts": null
                         }
                       ],
+                      "driver": {
+                        "schema_version": 1,
+                        "active": null,
+                        "email_address_primary": null,
+                        "email_address_secondary": null,
+                        "phone_number_primary": null,
+                        "phone_number_secondary": null,
+                        "first_name": null,
+                        "last_name": null,
+                        "last_seen_at_location": null,
+                        "last_seen_at_timestamp": null,
+                        "_id": "_id",
+                        "org_id": "org_id",
+                        "user_id": "user_id"
+                      },
                       "courier_org_company_name": "courier_org_company_name",
-                      "courier_org_handle": "courier_org_handle"
+                      "courier_org_handle": "courier_org_handle",
+                      "forwarder_org_company_name": "forwarder_org_company_name",
+                      "forwarder_org_handle": "forwarder_org_handle",
+                      "shipper_org_company_name": "shipper_org_company_name",
+                      "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name"
                     }
                   ],
                   "cargos": [
@@ -191,12 +214,7 @@ import Chrt
                       "delivered_at_timestamp": "2024-01-15T09:30:00Z",
                       "exception_at_timestamp": "2024-01-15T09:30:00Z"
                     }
-                  ],
-                  "shipper_org_company_name": "shipper_org_company_name",
-                  "shipper_org_handle": "shipper_org_handle",
-                  "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle"
+                  ]
                 }
                 """.utf8
             )
@@ -206,7 +224,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OrderDraftExpandedRes(
+        let expectedResponse = OrderDraftExpanded(
             order: Order1(
                 schemaVersion: 1,
                 id: "_id",
@@ -229,8 +247,12 @@ import Chrt
                 orderCancelled: Optional(true),
                 orderCancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             ),
+            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
+            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            shipperOrgCompanyName: Optional("shipper_org_company_name"),
+            offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             taskGroupsExpanded: Optional([
-                TaskGroupDraftExpanded(
+                TaskGroupExpanded(
                     taskGroup: TaskGroup1(
                         schemaVersion: 1,
                         id: "_id",
@@ -250,7 +272,7 @@ import Chrt
                         flightNumber: Optional(nil)
                     ),
                     tasksExpanded: Optional([
-                        TaskDraftExpanded(
+                        TaskExpanded(
                             task: Task1(
                                 schemaVersion: 1,
                                 location: Optional(nil),
@@ -274,8 +296,27 @@ import Chrt
                             shipperContacts: Optional(nil)
                         )
                     ]),
+                    driver: Optional(Driver1(
+                        schemaVersion: 1,
+                        active: Optional(nil),
+                        emailAddressPrimary: Optional(nil),
+                        emailAddressSecondary: Optional(nil),
+                        phoneNumberPrimary: Optional(nil),
+                        phoneNumberSecondary: Optional(nil),
+                        firstName: Optional(nil),
+                        lastName: Optional(nil),
+                        lastSeenAtLocation: Optional(nil),
+                        lastSeenAtTimestamp: Optional(nil),
+                        id: "_id",
+                        orgId: "org_id",
+                        userId: "user_id"
+                    )),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
-                    courierOrgHandle: Optional("courier_org_handle")
+                    courierOrgHandle: Optional("courier_org_handle"),
+                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
+                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    shipperOrgCompanyName: Optional("shipper_org_company_name"),
+                    offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name")
                 )
             ]),
             cargos: Optional([
@@ -305,192 +346,13 @@ import Chrt
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
-            ]),
-            shipperOrgCompanyName: Optional("shipper_org_company_name"),
-            shipperOrgHandle: Optional("shipper_org_handle"),
-            offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle")
+            ])
         )
         let response = try await client.orderDrafts.expandedV1(
             orderIdOrShortId: "order_id_or_short_id",
-            request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
+            request: OrderAndTaskGroupExpandedReq(
 
-    @Test func expandedListV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "orders_expanded": [
-                    {
-                      "order": {
-                        "schema_version": 1,
-                        "_id": "_id",
-                        "short_id": "short_id",
-                        "created_by_org_type": "courier",
-                        "created_by_org_id": "created_by_org_id",
-                        "created_by_user_id": "created_by_user_id",
-                        "forwarder_org_id": null,
-                        "shipper_org_id": null,
-                        "off_chrt_shipper_org_id": null,
-                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "in_progress_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "order_cancelled_at_timestamp": null
-                      },
-                      "task_groups_expanded": [
-                        {
-                          "task_group": {
-                            "schema_version": 1,
-                            "_id": "_id",
-                            "order_id": "order_id",
-                            "order_short_id": "order_short_id",
-                            "created_by_org_id": "created_by_org_id",
-                            "created_by_user_id": "created_by_user_id",
-                            "courier_org_id": null,
-                            "driver_id": null,
-                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                            "staged_at_timestamp": null,
-                            "in_progress_at_timestamp": null,
-                            "completed_at_timestamp": null,
-                            "exception_at_timestamp": null,
-                            "task_group_type": "chrt_ground_courier",
-                            "task_group_mileage": null,
-                            "flight_number": null
-                          },
-                          "tasks_expanded": null,
-                          "courier_org_company_name": null,
-                          "courier_org_handle": null
-                        }
-                      ],
-                      "cargos": [
-                        {
-                          "schema_version": 1,
-                          "cargo_type": "spare_parts",
-                          "quantity": null,
-                          "weight_pounds": null,
-                          "length_inches": null,
-                          "width_inches": null,
-                          "height_inches": null,
-                          "turnable": null,
-                          "stackable": null,
-                          "description": null,
-                          "_id": "_id",
-                          "order_id": "order_id",
-                          "order_short_id": "order_short_id",
-                          "created_by_org_id": "created_by_org_id",
-                          "created_by_user_id": "created_by_user_id",
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "in_transit_at_timestamp": null,
-                          "delivered_at_timestamp": null,
-                          "exception_at_timestamp": null
-                        }
-                      ],
-                      "shipper_org_company_name": "shipper_org_company_name",
-                      "shipper_org_handle": "shipper_org_handle",
-                      "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle"
-                    }
-                  ],
-                  "total_count": 1
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrderDraftExpandedListRes(
-            ordersExpanded: [
-                OrderDraftExpandedRes(
-                    order: Order1(
-                        schemaVersion: 1,
-                        id: "_id",
-                        shortId: "short_id",
-                        createdByOrgType: .courier,
-                        createdByOrgId: "created_by_org_id",
-                        createdByUserId: "created_by_user_id",
-                        forwarderOrgId: Optional(nil),
-                        shipperOrgId: Optional(nil),
-                        offChrtShipperOrgId: Optional(nil),
-                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        inProgressAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        orderCancelledAtTimestamp: Optional(nil)
-                    ),
-                    taskGroupsExpanded: Optional([
-                        TaskGroupDraftExpanded(
-                            taskGroup: TaskGroup1(
-                                schemaVersion: 1,
-                                id: "_id",
-                                orderId: "order_id",
-                                orderShortId: "order_short_id",
-                                createdByOrgId: "created_by_org_id",
-                                createdByUserId: "created_by_user_id",
-                                courierOrgId: Optional(nil),
-                                driverId: Optional(nil),
-                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                                stagedAtTimestamp: Optional(nil),
-                                inProgressAtTimestamp: Optional(nil),
-                                completedAtTimestamp: Optional(nil),
-                                exceptionAtTimestamp: Optional(nil),
-                                taskGroupType: .chrtGroundCourier,
-                                taskGroupMileage: Optional(nil),
-                                flightNumber: Optional(nil)
-                            ),
-                            tasksExpanded: Optional(nil),
-                            courierOrgCompanyName: Optional(nil),
-                            courierOrgHandle: Optional(nil)
-                        )
-                    ]),
-                    cargos: Optional([
-                        Cargo1(
-                            schemaVersion: 1,
-                            cargoType: .spareParts,
-                            quantity: Optional(nil),
-                            weightPounds: Optional(nil),
-                            lengthInches: Optional(nil),
-                            widthInches: Optional(nil),
-                            heightInches: Optional(nil),
-                            turnable: Optional(nil),
-                            stackable: Optional(nil),
-                            description: Optional(nil),
-                            id: "_id",
-                            orderId: "order_id",
-                            orderShortId: "order_short_id",
-                            createdByOrgId: "created_by_org_id",
-                            createdByUserId: "created_by_user_id",
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            inTransitAtTimestamp: Optional(nil),
-                            deliveredAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
-                        )
-                    ]),
-                    shipperOrgCompanyName: Optional("shipper_org_company_name"),
-                    shipperOrgHandle: Optional("shipper_org_handle"),
-                    offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle")
-                )
-            ],
-            totalCount: 1
-        )
-        let response = try await client.orderDrafts.expandedListV1(
-            request: .init(),
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
