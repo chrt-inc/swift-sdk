@@ -7,7 +7,7 @@ public final class ForwarderClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves forwarder organization connection information for the authenticated organization. | () -> (ForwarderOrgInfoForConnections1)
+    /// Retrieves forwarder organization connection information for the caller's organization. | () -> (ForwarderOrgInfoForConnections1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> ForwarderOrgInfoForConnections1 {

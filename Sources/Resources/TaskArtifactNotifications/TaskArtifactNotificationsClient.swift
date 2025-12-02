@@ -7,7 +7,7 @@ public final class TaskArtifactNotificationsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves task_artifact notification preferences for the authenticated organization. | () -> (TaskArtifactNotificationPreferences1)
+    /// Retrieves task_artifact notification preferences for the caller's organization. | () -> (TaskArtifactNotificationPreferences1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getPreferencesV1(requestOptions: RequestOptions? = nil) async throws -> TaskArtifactNotificationPreferences1 {
@@ -19,7 +19,7 @@ public final class TaskArtifactNotificationsClient: Sendable {
         )
     }
 
-    /// Creates or updates task_artifact notification preferences for the authenticated organization. | (TaskArtifactNotificationPreferencesClientCreate1) -> (PydanticObjectId)
+    /// Creates or updates task_artifact notification preferences for the caller's organization. | (TaskArtifactNotificationPreferencesClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func upsertPreferencesV1(request: Requests.TaskArtifactNotificationPreferencesClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {

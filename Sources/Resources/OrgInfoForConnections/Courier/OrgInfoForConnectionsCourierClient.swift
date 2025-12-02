@@ -7,7 +7,7 @@ public final class OrgInfoForConnectionsCourierClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves courier organization connection information for the authenticated organization. | () -> (CourierOrgInfoForConnections1)
+    /// Retrieves courier organization connection information for the caller's organization. | () -> (CourierOrgInfoForConnections1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> CourierOrgInfoForConnections1 {

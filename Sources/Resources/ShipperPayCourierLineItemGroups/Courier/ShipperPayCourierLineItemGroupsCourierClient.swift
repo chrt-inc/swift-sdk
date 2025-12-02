@@ -7,7 +7,7 @@ public final class ShipperPayCourierLineItemGroupsCourierClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all shipper pay courier line item groups for the authenticated courier organization.
+    /// Lists all shipper pay courier line item groups for the caller's courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperPayCourierLineItemGroup1] {

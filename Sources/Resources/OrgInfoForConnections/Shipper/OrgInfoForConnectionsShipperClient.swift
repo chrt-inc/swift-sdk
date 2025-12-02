@@ -7,7 +7,7 @@ public final class OrgInfoForConnectionsShipperClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves shipper organization connection information for the authenticated organization. | () -> (ShipperOrgInfoForConnections1)
+    /// Retrieves shipper organization connection information for the caller's organization. | () -> (ShipperOrgInfoForConnections1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> ShipperOrgInfoForConnections1 {

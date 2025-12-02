@@ -7,7 +7,7 @@ public final class DevicesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Registers a tracking device to the authenticated user's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
+    /// Registers a tracking device to the caller's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func registerToOrgV1(request: Requests.DevicesRegisterToOrgReq1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -49,7 +49,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Retrieves a single device by its MAC address or ID. Access restricted to the device's organization. | () -> (Device1)
+    /// Retrieves a single device by its MAC address or ID. Access restricted to the caller's organization. | () -> (Device1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(deviceMacAddress: String? = nil, deviceId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
@@ -65,7 +65,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Returns all tracking devices registered to the authenticated user's organization. | () -> (list[Device1])
+    /// Returns all tracking devices registered to the caller's organization. | () -> (list[Device1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Device1] {

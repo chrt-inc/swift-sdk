@@ -646,7 +646,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a specific courier driver payout by ID for the authenticated organization.
+Retrieves a specific courier driver payout by ID for the caller's organization.
 </dd>
 </dl>
 </dd>
@@ -717,7 +717,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all payouts for a specific driver within the authenticated organization.
+Lists all payouts for a specific driver within the caller's organization.
 </dd>
 </dl>
 </dd>
@@ -949,7 +949,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all driver rate sheets for the authenticated courier organization.
+Lists all driver rate sheets for the caller's courier organization.
 </dd>
 </dl>
 </dd>
@@ -1241,7 +1241,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a driver rate sheet owned by the authenticated organization.
+Deletes a driver rate sheet owned by the caller's organization.
 </dd>
 </dl>
 </dd>
@@ -1312,7 +1312,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an existing driver rate sheet owned by the authenticated organization.
+Updates an existing driver rate sheet owned by the caller's organization.
 </dd>
 </dl>
 </dd>
@@ -1395,7 +1395,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a specific courier driver statement by ID for the authenticated organization.
+Retrieves a specific courier driver statement by ID for the caller's organization.
 </dd>
 </dl>
 </dd>
@@ -1466,7 +1466,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all statements for a specific driver within the authenticated organization.
+Lists all statements for a specific driver within the caller's organization.
 </dd>
 </dl>
 </dd>
@@ -1698,7 +1698,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its ID for the authenticated courier organization.
+Retrieves a shipper pay courier line item group by its ID for the caller's courier organization.
 </dd>
 </dl>
 </dd>
@@ -1840,7 +1840,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its associated task group ID for the authenticated courier organization.
+Retrieves a shipper pay courier line item group by its associated task group ID for the caller's courier organization.
 </dd>
 </dl>
 </dd>
@@ -3446,7 +3446,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper organizations based on the authenticated organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (list[ShipperConnectionRes])
+Lists shipper organizations based on the caller's organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (list[ShipperConnectionRes])
 </dd>
 </dl>
 </dd>
@@ -3509,7 +3509,7 @@ try await main()
 <dl>
 <dd>
 
-Lists courier organizations based on the authenticated organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (list[CourierConnectionRes])
+Lists courier organizations based on the caller's organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (list[CourierConnectionRes])
 </dd>
 </dl>
 </dd>
@@ -3572,7 +3572,7 @@ try await main()
 <dl>
 <dd>
 
-Lists forwarder organizations based on the authenticated organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (list[ForwarderConnectionRes])
+Lists forwarder organizations based on the caller's organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (list[ForwarderConnectionRes])
 </dd>
 </dl>
 </dd>
@@ -3635,7 +3635,7 @@ try await main()
 <dl>
 <dd>
 
-Gets connection between authenticated org and org with specified handle. | () -> (ShipperCourierConnection1 | ShipperForwarderConnection1 | ForwarderCourierConnection1 | None)
+Gets connection between caller's org and org with specified handle. | () -> (ShipperCourierConnection1 | ShipperForwarderConnection1 | ForwarderCourierConnection1 | None)
 </dd>
 </dl>
 </dd>
@@ -3707,7 +3707,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the courier or forwarder organization profile for the authenticated organization. | () -> (OrgProfileRes1)
+Retrieves the courier or forwarder organization profile for the caller's organization. | () -> (OrgProfileRes1)
 </dd>
 </dl>
 </dd>
@@ -4207,7 +4207,7 @@ try await main()
 <dl>
 <dd>
 
-Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes. | () -> (str)
+Experimental endpoint for running AI agentic workflows. Returns the caller's ID for testing purposes. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4459,7 +4459,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the primary email address for the authenticated user from the authentication service. | () -> (str)
+Retrieves the primary email address for the caller from the authentication service. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4522,7 +4522,7 @@ try await main()
 <dl>
 <dd>
 
-Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes. | () -> (dict[str, Any])
+Experimental endpoint for running durable execution workflows. Returns the caller's ID for testing purposes. | () -> (dict[str, Any])
 </dd>
 </dl>
 </dd>
@@ -4585,7 +4585,7 @@ try await main()
 <dl>
 <dd>
 
-Development template endpoint that returns the authenticated user's ID for testing. | () -> (str)
+Development template endpoint that returns the caller's ID for testing. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -4787,7 +4787,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves task_artifact notification preferences for the authenticated organization. | () -> (TaskArtifactNotificationPreferences1)
+Retrieves task_artifact notification preferences for the caller's organization. | () -> (TaskArtifactNotificationPreferences1)
 </dd>
 </dl>
 </dd>
@@ -4850,7 +4850,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates task_artifact notification preferences for the authenticated organization. | (TaskArtifactNotificationPreferencesClientCreate1) -> (PydanticObjectId)
+Creates or updates task_artifact notification preferences for the caller's organization. | (TaskArtifactNotificationPreferencesClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -4985,7 +4985,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all drivers belonging to the authenticated organization. | () -> (list[Driver1])
+Lists all drivers belonging to the caller's organization. | () -> (list[Driver1])
 </dd>
 </dl>
 </dd>
@@ -5122,7 +5122,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves driver information for the authenticated user within their organization. | () -> (Driver1)
+Retrieves driver information for the caller within their organization. | () -> (Driver1)
 </dd>
 </dl>
 </dd>
@@ -5611,8 +5611,8 @@ try await main()
 </dl>
 </details>
 
-## TaskArtifacts
-<details><summary><code>client.taskArtifacts.<a href="/Sources/Resources/TaskArtifacts/TaskArtifactsClient.swift">completeV1</a>(taskArtifactId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+## Cargos
+<details><summary><code>client.cargos.<a href="/Sources/Resources/Cargos/CargosClient.swift">updateV1</a>(cargoId: String, request: CargoClientUpdate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -5624,7 +5624,7 @@ try await main()
 <dl>
 <dd>
 
-Completes a task_artifact and updates all related task, cargo, task group, and order statuses. | () -> (bool)
+Updates a cargo's details. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, or EXCEPTION status. | authz_personas=[lig_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -5645,7 +5645,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.taskArtifacts.completeV1(taskArtifactId: "task_artifact_id")
+    _ = try await client.cargos.updateV1(
+        cargoId: "cargo_id",
+        request: CargoClientUpdate1(
+
+        )
+    )
 }
 
 try await main()
@@ -5663,7 +5668,7 @@ try await main()
 <dl>
 <dd>
 
-**taskArtifactId:** `String` 
+**cargoId:** `String` 
     
 </dd>
 </dl>
@@ -5671,148 +5676,7 @@ try await main()
 <dl>
 <dd>
 
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskArtifacts.<a href="/Sources/Resources/TaskArtifacts/TaskArtifactsClient.swift">updateCommentsV1</a>(request: Requests.TaskArtifactUpdateCommentsReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates the completor comments on a task_artifact without affecting completion status. | (TaskArtifactUpdateCommentsReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskArtifacts.updateCommentsV1(request: .init(
-        taskArtifactId: "task_artifact_id",
-        completorComments: "completor_comments"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskArtifactUpdateCommentsReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskArtifacts.<a href="/Sources/Resources/TaskArtifacts/TaskArtifactsClient.swift">addToTaskV1</a>(request: Requests.TaskArtifactAddToTaskReq, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Adds a new task_artifact to an existing task. | (TaskArtifactAddToTaskReq) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskArtifacts.addToTaskV1(request: .init(
-        taskId: "task_id",
-        taskArtifactType: .image,
-        taskArtifactIsCompleted: true
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskArtifactAddToTaskReq` 
+**request:** `CargoClientUpdate1` 
     
 </dd>
 </dl>
@@ -5919,7 +5783,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all off-platform shipper organizations created by the authenticated organization. | () -> (list[OffChrtShipperOrg1])
+Lists all off-platform shipper organizations created by the caller's organization. | () -> (list[OffChrtShipperOrg1])
 </dd>
 </dl>
 </dd>
@@ -6053,7 +5917,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes off-platform shipper organization owned by the authenticated organization. | () -> (bool)
+Deletes off-platform shipper organization owned by the caller's organization. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6124,7 +5988,7 @@ try await main()
 <dl>
 <dd>
 
-Updates existing off-platform shipper organization owned by the authenticated organization. | (OffChrtShipperOrgClientUpdate1) -> (bool)
+Updates existing off-platform shipper organization owned by the caller's organization. | (OffChrtShipperOrgClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7180,7 +7044,7 @@ try await main()
 </details>
 
 ## ShipperContactInfo
-<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">getByJwtUserIdV1</a>(requestOptions: RequestOptions?) -> ShipperContact1</code></summary>
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">getCallerV1</a>(requestOptions: RequestOptions?) -> ShipperContact1</code></summary>
 <dl>
 <dd>
 
@@ -7192,7 +7056,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the authenticated user's own shipper contact information. | () -> (ShipperContact1)
+Retrieves the shipper contact information associated with the caller's ID. | () -> (ShipperContact1)
 </dd>
 </dl>
 </dd>
@@ -7213,7 +7077,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipperContactInfo.getByJwtUserIdV1()
+    _ = try await client.shipperContactInfo.getCallerV1()
 }
 
 try await main()
@@ -7243,7 +7107,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listByJwtOrgIdV1</a>(requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
 <dl>
 <dd>
 
@@ -7255,7 +7119,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper contacts created by the authenticated organization. | () -> (list[ShipperContact1])
+Lists all shipper contacts for the caller's organization. | () -> (list[ShipperContact1])
 </dd>
 </dl>
 </dd>
@@ -7276,7 +7140,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipperContactInfo.listByJwtOrgIdV1()
+    _ = try await client.shipperContactInfo.listV1()
 }
 
 try await main()
@@ -7306,7 +7170,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listCourierContactsByShipperOrgIdV1</a>(shipperOrgId: String, requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listCourierContactsV1</a>(shipperOrgId: String, requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
 <dl>
 <dd>
 
@@ -7339,7 +7203,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipperContactInfo.listCourierContactsByShipperOrgIdV1(shipperOrgId: "shipper_org_id")
+    _ = try await client.shipperContactInfo.listCourierContactsV1(shipperOrgId: "shipper_org_id")
 }
 
 try await main()
@@ -7377,7 +7241,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listByOffChrtShipperOrgIdV1</a>(offChrtShipperOrgId: String, requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listForwarderContactsV1</a>(shipperOrgId: String, requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
 <dl>
 <dd>
 
@@ -7389,7 +7253,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper contacts for a specific off-platform shipper connection. | () -> (list[ShipperContact1])
+Lists all shipper contacts accessible to the forwarder organization for a specific on-platform shipper. | () -> (list[ShipperContact1])
 </dd>
 </dl>
 </dd>
@@ -7410,7 +7274,78 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipperContactInfo.listByOffChrtShipperOrgIdV1(offChrtShipperOrgId: "off_chrt_shipper_org_id")
+    _ = try await client.shipperContactInfo.listForwarderContactsV1(shipperOrgId: "shipper_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**shipperOrgId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">listOffPlatformContactsV1</a>(offChrtShipperOrgId: String, requestOptions: RequestOptions?) -> [ShipperContact1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all shipper contacts for a specific off-platform shipper. | () -> (list[ShipperContact1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipperContactInfo.listOffPlatformContactsV1(offChrtShipperOrgId: "off_chrt_shipper_org_id")
 }
 
 try await main()
@@ -7448,7 +7383,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> ShipperContact1</code></summary>
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">getV1</a>(id: String, requestOptions: RequestOptions?) -> ShipperContact1</code></summary>
 <dl>
 <dd>
 
@@ -7481,7 +7416,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipperContactInfo.getByIdV1(id: "id")
+    _ = try await client.shipperContactInfo.getV1(id: "id")
 }
 
 try await main()
@@ -7677,7 +7612,7 @@ try await main()
 <dl>
 <dd>
 
-Updates existing shipper contact information owned by the authenticated organization. | (ShipperContactClientUpdate1) -> (bool)
+Updates existing shipper contact information owned by the caller's organization. | (ShipperContactClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7747,7 +7682,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">deleteByIdV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipperContactInfo.<a href="/Sources/Resources/ShipperContactInfo/ShipperContactInfoClient.swift">deleteV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -7759,7 +7694,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes shipper contact information owned by the authenticated organization. | () -> (bool)
+Deletes shipper contact information owned by the caller's organization. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7780,7 +7715,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipperContactInfo.deleteByIdV1(id: "id")
+    _ = try await client.shipperContactInfo.deleteV1(id: "id")
 }
 
 try await main()
@@ -7894,7 +7829,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all members of the authenticated organization with their roles and details. | () -> (list[OrgMemberDetails])
+Lists all members of the caller's organization with their roles and details. | () -> (list[OrgMemberDetails])
 </dd>
 </dl>
 </dd>
@@ -7957,7 +7892,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves public organization data for the authenticated organization. | () -> (OrgPublicData1)
+Retrieves public organization data for the caller's organization. | () -> (OrgPublicData1)
 </dd>
 </dl>
 </dd>
@@ -8020,7 +7955,7 @@ try await main()
 <dl>
 <dd>
 
-Creates org_public_data and org_private_data documents for the authenticated organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
+Creates org_public_data and org_private_data documents for the caller's organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
 </dd>
 </dl>
 </dd>
@@ -8091,7 +8026,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the handle and/or company_name for the authenticated organization. | (UpdateOrgPublicDataReq) -> (bool)
+Updates the handle and/or company_name for the caller's organization. | (UpdateOrgPublicDataReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -8375,7 +8310,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the Stripe Connect account ID for the authenticated organization. Returns 404 if not set. | () -> (str)
+Retrieves the Stripe Connect account ID for the caller's organization. Returns 404 if not set. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -8755,7 +8690,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves public user data for the authenticated user. | () -> (UserPublicData1)
+Retrieves public user data for the caller. | () -> (UserPublicData1)
 </dd>
 </dl>
 </dd>
@@ -9299,7 +9234,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves notification preferences for the authenticated shipper organization. | () -> (ShipperNotificationPreferences1)
+Retrieves notification preferences for the caller's shipper organization. | () -> (ShipperNotificationPreferences1)
 </dd>
 </dl>
 </dd>
@@ -9362,7 +9297,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates notification preferences for the authenticated shipper organization. | (ShipperNotificationPreferencesClientCreate1) -> (PydanticObjectId)
+Creates or updates notification preferences for the caller's shipper organization. | (ShipperNotificationPreferencesClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -9434,7 +9369,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves notification preferences for the authenticated courier organization. | () -> (CourierNotificationPreferences1)
+Retrieves notification preferences for the caller's courier organization. | () -> (CourierNotificationPreferences1)
 </dd>
 </dl>
 </dd>
@@ -9497,7 +9432,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates notification preferences for the authenticated courier organization. | (CourierNotificationPreferencesClientCreate1) -> (PydanticObjectId)
+Creates or updates notification preferences for the caller's courier organization. | (CourierNotificationPreferencesClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -11220,7 +11155,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves shipper organization connection information for the authenticated organization. | () -> (ShipperOrgInfoForConnections1)
+Retrieves shipper organization connection information for the caller's organization. | () -> (ShipperOrgInfoForConnections1)
 </dd>
 </dl>
 </dd>
@@ -11429,7 +11364,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves courier organization connection information for the authenticated organization. | () -> (CourierOrgInfoForConnections1)
+Retrieves courier organization connection information for the caller's organization. | () -> (CourierOrgInfoForConnections1)
 </dd>
 </dl>
 </dd>
@@ -11701,7 +11636,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves forwarder organization connection information for the authenticated organization. | () -> (ForwarderOrgInfoForConnections1)
+Retrieves forwarder organization connection information for the caller's organization. | () -> (ForwarderOrgInfoForConnections1)
 </dd>
 </dl>
 </dd>
@@ -11910,7 +11845,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper pay courier line item groups for the authenticated shipper organization.
+Lists all shipper pay courier line item groups for the caller's shipper organization.
 </dd>
 </dl>
 </dd>
@@ -11973,7 +11908,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its ID for the authenticated shipper organization.
+Retrieves a shipper pay courier line item group by its ID for the caller's shipper organization.
 </dd>
 </dl>
 </dd>
@@ -12044,7 +11979,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its associated task group ID for the authenticated shipper organization.
+Retrieves a shipper pay courier line item group by its associated task group ID for the caller's shipper organization.
 </dd>
 </dl>
 </dd>
@@ -12116,7 +12051,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper pay courier line item groups for the authenticated courier organization.
+Lists all shipper pay courier line item groups for the caller's courier organization.
 </dd>
 </dl>
 </dd>
@@ -12377,159 +12312,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.taskArtifacts.images.getByMetadataIdV1(taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskArtifactS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskArtifacts.images.<a href="/Sources/Resources/TaskArtifacts/Images/ImagesClient.swift">uploadByTaskArtifactIdV1</a>(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsUploadImageV1OortTaskArtifactsImagesUploadV1TaskArtifactIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Uploads an image file to a task_artifact with automatic blurhash generation. | (UploadFile) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskArtifacts.images.uploadByTaskArtifactIdV1(
-        taskArtifactId: "task_artifact_id",
-        request: .init(image: .init(data: Data("".utf8)))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskArtifactId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.BodyPostTaskArtifactsUploadImageV1OortTaskArtifactsImagesUploadV1TaskArtifactIdPost` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskArtifacts.images.<a href="/Sources/Resources/TaskArtifacts/Images/ImagesClient.swift">deleteByMetadataIdV1</a>(taskArtifactS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a task_artifact image from both S3 storage and database metadata. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskArtifacts.images.deleteByMetadataIdV1(taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id")
 }
 
 try await main()
@@ -13573,7 +13355,7 @@ try await main()
 <dl>
 <dd>
 
-Registers a tracking device to the authenticated user's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
+Registers a tracking device to the caller's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -13797,7 +13579,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single device by its MAC address or ID. Access restricted to the device's organization. | () -> (Device1)
+Retrieves a single device by its MAC address or ID. Access restricted to the caller's organization. | () -> (Device1)
 </dd>
 </dl>
 </dd>
@@ -13879,7 +13661,7 @@ try await main()
 <dl>
 <dd>
 
-Returns all tracking devices registered to the authenticated user's organization. | () -> (list[Device1])
+Returns all tracking devices registered to the caller's organization. | () -> (list[Device1])
 </dd>
 </dl>
 </dd>
@@ -14189,7 +13971,7 @@ try await main()
 <dl>
 <dd>
 
-Returns all tracking sessions for the authenticated user's organization. | () -> (list[Session1])
+Returns all tracking sessions for the caller's organization. | () -> (list[Session1])
 </dd>
 </dl>
 </dd>
@@ -14252,7 +14034,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single session by its ID. Access restricted to the session's organization. | () -> (Session1)
+Retrieves a single session by its ID. Access restricted to the caller's organization. | () -> (Session1)
 </dd>
 </dl>
 </dd>
@@ -14323,7 +14105,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization. | () -> (TrackingSessionByDeviceDataPoint1 | None)
+Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | () -> (TrackingSessionByDeviceDataPoint1 | None)
 </dd>
 </dl>
 </dd>

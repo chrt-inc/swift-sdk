@@ -19,7 +19,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Lists all members of the authenticated organization with their roles and details. | () -> (list[OrgMemberDetails])
+    /// Lists all members of the caller's organization with their roles and details. | () -> (list[OrgMemberDetails])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listMembersV1(requestOptions: RequestOptions? = nil) async throws -> [OrgMemberDetails] {
@@ -31,7 +31,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Retrieves public organization data for the authenticated organization. | () -> (OrgPublicData1)
+    /// Retrieves public organization data for the caller's organization. | () -> (OrgPublicData1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getOrgPublicDataV1(requestOptions: RequestOptions? = nil) async throws -> OrgPublicData1 {
@@ -43,7 +43,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Creates org_public_data and org_private_data documents for the authenticated organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
+    /// Creates org_public_data and org_private_data documents for the caller's organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createOrgPublicDataV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> CreateOrgPublicDataRes {
@@ -56,7 +56,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Updates the handle and/or company_name for the authenticated organization. | (UpdateOrgPublicDataReq) -> (bool)
+    /// Updates the handle and/or company_name for the caller's organization. | (UpdateOrgPublicDataReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateOrgPublicDataV1(request: Requests.UpdateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -106,7 +106,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Retrieves the Stripe Connect account ID for the authenticated organization. Returns 404 if not set. | () -> (str)
+    /// Retrieves the Stripe Connect account ID for the caller's organization. Returns 404 if not set. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getStripeConnectAccountIdV1(requestOptions: RequestOptions? = nil) async throws -> String {

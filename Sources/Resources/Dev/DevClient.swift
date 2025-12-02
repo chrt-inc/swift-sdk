@@ -7,7 +7,7 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Experimental endpoint for running AI agentic workflows. Returns the authenticated user's ID for testing purposes. | () -> (str)
+    /// Experimental endpoint for running AI agentic workflows. Returns the caller's ID for testing purposes. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getAgentV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -55,7 +55,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Retrieves the primary email address for the authenticated user from the authentication service. | () -> (str)
+    /// Retrieves the primary email address for the caller from the authentication service. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getEmailV1(requestOptions: RequestOptions? = nil) async throws -> String {
@@ -67,7 +67,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Experimental endpoint for running durable execution workflows. Returns the authenticated user's ID for testing purposes. | () -> (dict[str, Any])
+    /// Experimental endpoint for running durable execution workflows. Returns the caller's ID for testing purposes. | () -> (dict[str, Any])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getDurableV1(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
@@ -79,7 +79,7 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Development template endpoint that returns the authenticated user's ID for testing. | () -> (str)
+    /// Development template endpoint that returns the caller's ID for testing. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getTemplateV1(requestOptions: RequestOptions? = nil) async throws -> String {

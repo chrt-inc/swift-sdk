@@ -7,7 +7,7 @@ public final class SessionByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns all tracking sessions for the authenticated user's organization. | () -> (list[Session1])
+    /// Returns all tracking sessions for the caller's organization. | () -> (list[Session1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Session1] {
@@ -19,7 +19,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Retrieves a single session by its ID. Access restricted to the session's organization. | () -> (Session1)
+    /// Retrieves a single session by its ID. Access restricted to the caller's organization. | () -> (Session1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session1 {
@@ -34,7 +34,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the session's organization. | () -> (TrackingSessionByDeviceDataPoint1 | None)
+    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | () -> (TrackingSessionByDeviceDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> TrackingSessionByDeviceDataPoint1? {

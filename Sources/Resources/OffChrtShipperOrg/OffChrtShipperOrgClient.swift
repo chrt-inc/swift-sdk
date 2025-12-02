@@ -20,7 +20,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Lists all off-platform shipper organizations created by the authenticated organization. | () -> (list[OffChrtShipperOrg1])
+    /// Lists all off-platform shipper organizations created by the caller's organization. | () -> (list[OffChrtShipperOrg1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [OffChrtShipperOrg1] {
@@ -44,7 +44,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Deletes off-platform shipper organization owned by the authenticated organization. | () -> (bool)
+    /// Deletes off-platform shipper organization owned by the caller's organization. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -56,7 +56,7 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Updates existing off-platform shipper organization owned by the authenticated organization. | (OffChrtShipperOrgClientUpdate1) -> (bool)
+    /// Updates existing off-platform shipper organization owned by the caller's organization. | (OffChrtShipperOrgClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateByIdV1(id: String, request: Requests.OffChrtShipperOrgClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -7,25 +7,25 @@ public final class ShipperContactInfoClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the authenticated user's own shipper contact information. | () -> (ShipperContact1)
+    /// Retrieves the shipper contact information associated with the caller's ID. | () -> (ShipperContact1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByJwtUserIdV1(requestOptions: RequestOptions? = nil) async throws -> ShipperContact1 {
+    public func getCallerV1(requestOptions: RequestOptions? = nil) async throws -> ShipperContact1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/shipper_contact_info/by_jwt_user_id/v1",
+            path: "/oort/shipper_contact_info/self/v1",
             requestOptions: requestOptions,
             responseType: ShipperContact1.self
         )
     }
 
-    /// Lists all shipper contacts created by the authenticated organization. | () -> (list[ShipperContact1])
+    /// Lists all shipper contacts for the caller's organization. | () -> (list[ShipperContact1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByJwtOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
+    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/shipper_contact_info/list/by_jwt_org_id/v1",
+            path: "/oort/shipper_contact_info/list/v1",
             requestOptions: requestOptions,
             responseType: [ShipperContact1].self
         )
@@ -34,7 +34,7 @@ public final class ShipperContactInfoClient: Sendable {
     /// Lists all shipper contacts accessible to the courier organization for a specific on-platform shipper. | () -> (list[ShipperContact1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCourierContactsByShipperOrgIdV1(shipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
+    public func listCourierContactsV1(shipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/shipper_contact_info/courier_contacts/list/v1/\(shipperOrgId)",
@@ -43,13 +43,25 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Lists all shipper contacts for a specific off-platform shipper connection. | () -> (list[ShipperContact1])
+    /// Lists all shipper contacts accessible to the forwarder organization for a specific on-platform shipper. | () -> (list[ShipperContact1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByOffChrtShipperOrgIdV1(offChrtShipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
+    public func listForwarderContactsV1(shipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/oort/shipper_contact_info/list/v1/\(offChrtShipperOrgId)",
+            path: "/oort/shipper_contact_info/forwarder_contacts/list/v1/\(shipperOrgId)",
+            requestOptions: requestOptions,
+            responseType: [ShipperContact1].self
+        )
+    }
+
+    /// Lists all shipper contacts for a specific off-platform shipper. | () -> (list[ShipperContact1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listOffPlatformContactsV1(offChrtShipperOrgId: String, requestOptions: RequestOptions? = nil) async throws -> [ShipperContact1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/oort/shipper_contact_info/off_platform_contacts/list/v1/\(offChrtShipperOrgId)",
             requestOptions: requestOptions,
             responseType: [ShipperContact1].self
         )
@@ -58,7 +70,7 @@ public final class ShipperContactInfoClient: Sendable {
     /// Retrieves a specific shipper contact by ID if authorized to access it. | () -> (ShipperContact1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperContact1 {
+    public func getV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperContact1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/shipper_contact_info/v1/\(id)",
@@ -93,7 +105,7 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Updates existing shipper contact information owned by the authenticated organization. | (ShipperContactClientUpdate1) -> (bool)
+    /// Updates existing shipper contact information owned by the caller's organization. | (ShipperContactClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(shipperContactInfoId: String, request: Requests.ShipperContactClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -106,10 +118,10 @@ public final class ShipperContactInfoClient: Sendable {
         )
     }
 
-    /// Deletes shipper contact information owned by the authenticated organization. | () -> (bool)
+    /// Deletes shipper contact information owned by the caller's organization. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
             path: "/oort/shipper_contact_info/delete/v1/\(id)",

@@ -19,7 +19,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Lists all drivers belonging to the authenticated organization. | () -> (list[Driver1])
+    /// Lists all drivers belonging to the caller's organization. | () -> (list[Driver1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Driver1] {
@@ -44,7 +44,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Retrieves driver information for the authenticated user within their organization. | () -> (Driver1)
+    /// Retrieves driver information for the caller within their organization. | () -> (Driver1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> Driver1 {

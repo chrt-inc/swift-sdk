@@ -7,7 +7,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all driver rate sheets for the authenticated courier organization.
+    /// Lists all driver rate sheets for the caller's courier organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
@@ -56,7 +56,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Deletes a driver rate sheet owned by the authenticated organization.
+    /// Deletes a driver rate sheet owned by the caller's organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -68,7 +68,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Updates an existing driver rate sheet owned by the authenticated organization.
+    /// Updates an existing driver rate sheet owned by the caller's organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateByIdV1(id: String, request: Requests.CourierPayDriverRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {

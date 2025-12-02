@@ -7,7 +7,7 @@ public final class OrgProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the courier or forwarder organization profile for the authenticated organization. | () -> (OrgProfileRes1)
+    /// Retrieves the courier or forwarder organization profile for the caller's organization. | () -> (OrgProfileRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {

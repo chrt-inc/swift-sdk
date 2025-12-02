@@ -7,7 +7,7 @@ public final class CourierPayDriverStatementsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a specific courier driver statement by ID for the authenticated organization.
+    /// Retrieves a specific courier driver statement by ID for the caller's organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverStatement1 {
@@ -19,7 +19,7 @@ public final class CourierPayDriverStatementsClient: Sendable {
         )
     }
 
-    /// Lists all statements for a specific driver within the authenticated organization.
+    /// Lists all statements for a specific driver within the caller's organization.
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverStatement1] {

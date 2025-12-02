@@ -7,7 +7,7 @@ public final class UsersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves public user data for the authenticated user. | () -> (UserPublicData1)
+    /// Retrieves public user data for the caller. | () -> (UserPublicData1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getUserPublicDataV1(requestOptions: RequestOptions? = nil) async throws -> UserPublicData1 {
