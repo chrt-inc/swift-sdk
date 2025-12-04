@@ -2,14 +2,12 @@ import Foundation
 
 public final class TaskGroupsClient: Sendable {
     public let taskGroupId: TaskGroupIdClient
-    public let s3ObjectMetadata: TaskGroupsS3ObjectMetadataClient
     public let s3Object: TaskGroupsS3ObjectClient
     public let expanded: TaskGroupsExpandedClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.taskGroupId = TaskGroupIdClient(config: config)
-        self.s3ObjectMetadata = TaskGroupsS3ObjectMetadataClient(config: config)
         self.s3Object = TaskGroupsS3ObjectClient(config: config)
         self.expanded = TaskGroupsExpandedClient(config: config)
         self.httpClient = HTTPClient(config: config)
@@ -99,32 +97,6 @@ public final class TaskGroupsClient: Sendable {
             method: .post,
             path: "/oort/task_groups/add_message/v1/\(taskGroupId)",
             body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Uploads an image file to a task group with automatic blurhash generation. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addS3ObjectV1(taskGroupId: String, request: Requests.BodyPostAddS3ObjectV1OortTaskGroupsAddS3ObjectV1TaskGroupIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/task_groups/add_s3_object/v1/\(taskGroupId)",
-            contentType: .multipartFormData,
-            body: request.asMultipartFormData(),
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Deletes an S3 object metadata and the associated S3 object from a task group. Only the uploader or an operator from the uploading org can delete. | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteS3ObjectV1(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/oort/task_groups/delete_s3_object/v1/\(taskGroupS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
