@@ -7,6 +7,30 @@ public final class DriversClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves driver information for the caller within their organization. | () -> (Driver1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getForCallerV1(requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/oort/drivers/for_caller/v1",
+            requestOptions: requestOptions,
+            responseType: Driver1.self
+        )
+    }
+
+    /// Retrieves detailed driver information by driver ID within the organization. | () -> (Driver1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/oort/drivers/v1/\(driverId)",
+            requestOptions: requestOptions,
+            responseType: Driver1.self
+        )
+    }
+
     /// Lists all organization members paired with their driver information if they are drivers. | () -> (list[OrgMembersAndDrivers])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -31,10 +55,10 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Creates a new driver profile for an organization member with optional vehicle type assignments. | (DriverCreateReq) -> (PydanticObjectId)
+    /// Creates a new driver profile for the caller. Returns existing driver ID if one already exists. Courier orgs only, min role: operator. | (DriverClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.DriverCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(request: Requests.DriverClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/drivers/create/v1",
@@ -44,62 +68,26 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Retrieves driver information for the caller within their organization. | () -> (Driver1)
+    /// Updates driver contact details and vehicle type assignments. Courier orgs only; caller must be the driver (self) or an operator+. | (DriverClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+    public func updateV1(driverId: String, request: Requests.DriverClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/drivers/by_jwt_user_id/v1",
-            requestOptions: requestOptions,
-            responseType: Driver1.self
-        )
-    }
-
-    /// Retrieves detailed driver information by driver ID within the organization. | () -> (Driver1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Driver1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/oort/drivers/v1/\(driverId)",
-            requestOptions: requestOptions,
-            responseType: Driver1.self
-        )
-    }
-
-    /// Deletes a driver from the organization and removes them from associated rate sheets. | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/oort/drivers/v1/\(driverId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Sets the activation status of a driver (active/inactive) within the organization. | (SetDriverActivationReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setActivationV1(request: Requests.SetDriverActivationReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/drivers/set_activation/v1",
+            method: .patch,
+            path: "/oort/drivers/update/v1/\(driverId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Updates the driver's last known location and timestamp for tracking purposes. | (DriverLastSeenReq) -> (bool)
+    /// Updates the caller's driver last known location and timestamp for tracking. Only updates if timestamp is newer than existing (DB-side validation). Returns False if driver not found or timestamp is stale. | (DriverLastSeenReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenV1(request: Requests.DriverLastSeenReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateLastSeenV1(request: Requests.DriverLastSeenReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/oort/drivers/last_seen/v1",
+            path: "/oort/drivers/last_seen/update/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -109,7 +97,7 @@ public final class DriversClient: Sendable {
     /// Clears the driver's last known location and timestamp. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenClearV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func clearLastSeenV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/drivers/last_seen/clear/v1",
@@ -118,13 +106,26 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates driver contact details and vehicle type assignments within the organization. | (UpdateDriverDetailsReq) -> (bool)
+    /// Updates the caller's driver availability status. Must have status UNASSIGNED to set availability to False; always allows setting to True. Courier orgs only. | (DriverUpdateAvailabilityReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateDriverV1(request: Requests.UpdateDriverDetailsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateAvailabilityAccordingToDriverV1(request: DriverUpdateAvailabilityReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/drivers/update/v1",
+            path: "/oort/drivers/update_availability/according_to_driver/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates a driver's availability status. Must have status UNASSIGNED to set availability to False; always allows setting to True. Courier orgs only, min role: operator. | (DriverUpdateAvailabilityReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateAvailabilityAccordingToOperatorsV1(driverId: String, request: DriverUpdateAvailabilityReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/oort/drivers/update_availability/according_to_operators/v1/\(driverId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

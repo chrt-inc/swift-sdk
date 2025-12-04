@@ -2,6 +2,7 @@ import Foundation
 
 extension Requests {
     public struct SetFlightNumberReq: Codable, Hashable, Sendable {
+        /// Flight number to set on the task group
         public let flightNumber: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

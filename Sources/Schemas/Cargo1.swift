@@ -24,6 +24,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let stagedAtTimestamp: Date?
     public let inTransitAtTimestamp: Date?
     public let deliveredAtTimestamp: Date?
+    public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -50,6 +51,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         stagedAtTimestamp: Date? = nil,
         inTransitAtTimestamp: Date? = nil,
         deliveredAtTimestamp: Date? = nil,
+        skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -74,6 +76,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = stagedAtTimestamp
         self.inTransitAtTimestamp = inTransitAtTimestamp
         self.deliveredAtTimestamp = deliveredAtTimestamp
+        self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.additionalProperties = additionalProperties
     }
@@ -101,6 +104,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.inTransitAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inTransitAtTimestamp)
         self.deliveredAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .deliveredAtTimestamp)
+        self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -129,6 +133,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.inTransitAtTimestamp, forKey: .inTransitAtTimestamp)
         try container.encodeIfPresent(self.deliveredAtTimestamp, forKey: .deliveredAtTimestamp)
+        try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
     }
 
@@ -155,6 +160,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case stagedAtTimestamp = "staged_at_timestamp"
         case inTransitAtTimestamp = "in_transit_at_timestamp"
         case deliveredAtTimestamp = "delivered_at_timestamp"
+        case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
     }
 }

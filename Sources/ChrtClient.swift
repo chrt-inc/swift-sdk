@@ -17,10 +17,12 @@ public final class ChrtClient: Sendable {
     public let taskArtifactNotifications: TaskArtifactNotificationsClient
     public let drivers: DriversClient
     public let cargos: CargosClient
+    public let taskArtifacts: TaskArtifactsClient
     public let offChrtShipperOrg: OffChrtShipperOrgClient
     public let orders: OrdersClient
     public let orderDrafts: OrderDraftsClient
     public let taskGroups: TaskGroupsClient
+    public let tasks: TasksClient
     public let shipperContactInfo: ShipperContactInfoClient
     public let orgs: OrgsClient
     public let root: RootClient
@@ -28,7 +30,6 @@ public final class ChrtClient: Sendable {
     public let utils: UtilsClient
     public let notifications: NotificationsClient
     public let orgInfoForConnections: OrgInfoForConnectionsClient
-    public let taskArtifacts: TaskArtifactsClient
     public let tracking: TrackingClient
     private let httpClient: HTTPClient
 
@@ -127,10 +128,12 @@ public final class ChrtClient: Sendable {
         self.taskArtifactNotifications = TaskArtifactNotificationsClient(config: config)
         self.drivers = DriversClient(config: config)
         self.cargos = CargosClient(config: config)
+        self.taskArtifacts = TaskArtifactsClient(config: config)
         self.offChrtShipperOrg = OffChrtShipperOrgClient(config: config)
         self.orders = OrdersClient(config: config)
         self.orderDrafts = OrderDraftsClient(config: config)
         self.taskGroups = TaskGroupsClient(config: config)
+        self.tasks = TasksClient(config: config)
         self.shipperContactInfo = ShipperContactInfoClient(config: config)
         self.orgs = OrgsClient(config: config)
         self.root = RootClient(config: config)
@@ -138,7 +141,6 @@ public final class ChrtClient: Sendable {
         self.utils = UtilsClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
-        self.taskArtifacts = TaskArtifactsClient(config: config)
         self.tracking = TrackingClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }

@@ -4,7 +4,6 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
     public let location: LocationFeature?
     public let action: Action?
     public let timeWindows: [TimeWindow1]?
-    public let orderPlacerComments: String?
     public let shipperContactIds: [String]?
     public let flightNumber: String?
     /// Additional properties that are not explicitly defined in the schema
@@ -14,7 +13,6 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         location: LocationFeature? = nil,
         action: Action? = nil,
         timeWindows: [TimeWindow1]? = nil,
-        orderPlacerComments: String? = nil,
         shipperContactIds: [String]? = nil,
         flightNumber: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -22,7 +20,6 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         self.location = location
         self.action = action
         self.timeWindows = timeWindows
-        self.orderPlacerComments = orderPlacerComments
         self.shipperContactIds = shipperContactIds
         self.flightNumber = flightNumber
         self.additionalProperties = additionalProperties
@@ -33,7 +30,6 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
         self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
-        self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.shipperContactIds = try container.decodeIfPresent([String].self, forKey: .shipperContactIds)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -45,7 +41,6 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
-        try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.shipperContactIds, forKey: .shipperContactIds)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
     }
@@ -55,7 +50,6 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         case location
         case action
         case timeWindows = "time_windows"
-        case orderPlacerComments = "order_placer_comments"
         case shipperContactIds = "shipper_contact_ids"
         case flightNumber = "flight_number"
     }

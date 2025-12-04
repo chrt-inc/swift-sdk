@@ -1,40 +1,35 @@
 import Foundation
 
 extension Requests {
-    public struct DriverCreateReq: Codable, Hashable, Sendable {
-        public let orgMember: OrgMemberDetails
-        public let vehicleTypes: [VehicleTypeEnum]?
+    public struct AddMessageReq: Codable, Hashable, Sendable {
+        /// Message content to add
+        public let message: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            orgMember: OrgMemberDetails,
-            vehicleTypes: [VehicleTypeEnum]? = nil,
+            message: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.orgMember = orgMember
-            self.vehicleTypes = vehicleTypes
+            self.message = message
             self.additionalProperties = additionalProperties
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.orgMember = try container.decode(OrgMemberDetails.self, forKey: .orgMember)
-            self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
+            self.message = try container.decode(String.self, forKey: .message)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encode(self.orgMember, forKey: .orgMember)
-            try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encode(self.message, forKey: .message)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case orgMember = "org_member"
-            case vehicleTypes = "vehicle_types"
+            case message
         }
     }
 }

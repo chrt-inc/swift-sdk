@@ -134,6 +134,7 @@ import Chrt
                         "staged_at_timestamp": null,
                         "in_progress_at_timestamp": null,
                         "completed_at_timestamp": null,
+                        "skipped_at_timestamp": null,
                         "exception_at_timestamp": null,
                         "task_group_type": "chrt_ground_courier",
                         "task_group_mileage": null,
@@ -157,6 +158,7 @@ import Chrt
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "staged_at_timestamp": null,
                             "completed_at_timestamp": null,
+                            "skipped_at_timestamp": null,
                             "exception_at_timestamp": null
                           },
                           "cargos": null,
@@ -166,18 +168,17 @@ import Chrt
                       ],
                       "driver": {
                         "schema_version": 1,
-                        "active": null,
                         "email_address_primary": null,
                         "email_address_secondary": null,
                         "phone_number_primary": null,
                         "phone_number_secondary": null,
                         "first_name": null,
                         "last_name": null,
-                        "last_seen_at_location": null,
-                        "last_seen_at_timestamp": null,
                         "_id": "_id",
                         "org_id": "org_id",
-                        "user_id": "user_id"
+                        "user_id": "user_id",
+                        "last_seen_at_location": null,
+                        "last_seen_at_timestamp": null
                       },
                       "courier_org_company_name": "courier_org_company_name",
                       "courier_org_handle": "courier_org_handle",
@@ -212,6 +213,7 @@ import Chrt
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                       "delivered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "skipped_at_timestamp": "2024-01-15T09:30:00Z",
                       "exception_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ]
@@ -266,6 +268,7 @@ import Chrt
                         stagedAtTimestamp: Optional(nil),
                         inProgressAtTimestamp: Optional(nil),
                         completedAtTimestamp: Optional(nil),
+                        skippedAtTimestamp: Optional(nil),
                         exceptionAtTimestamp: Optional(nil),
                         taskGroupType: .chrtGroundCourier,
                         taskGroupMileage: Optional(nil),
@@ -289,6 +292,7 @@ import Chrt
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 stagedAtTimestamp: Optional(nil),
                                 completedAtTimestamp: Optional(nil),
+                                skippedAtTimestamp: Optional(nil),
                                 exceptionAtTimestamp: Optional(nil)
                             ),
                             cargos: Optional(nil),
@@ -298,18 +302,17 @@ import Chrt
                     ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
-                        active: Optional(nil),
                         emailAddressPrimary: Optional(nil),
                         emailAddressSecondary: Optional(nil),
                         phoneNumberPrimary: Optional(nil),
                         phoneNumberSecondary: Optional(nil),
                         firstName: Optional(nil),
                         lastName: Optional(nil),
-                        lastSeenAtLocation: Optional(nil),
-                        lastSeenAtTimestamp: Optional(nil),
                         id: "_id",
                         orgId: "org_id",
-                        userId: "user_id"
+                        userId: "user_id",
+                        lastSeenAtLocation: Optional(nil),
+                        lastSeenAtTimestamp: Optional(nil)
                     )),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
                     courierOrgHandle: Optional("courier_org_handle"),
@@ -344,6 +347,7 @@ import Chrt
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ])

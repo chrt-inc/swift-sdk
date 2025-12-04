@@ -2,13 +2,15 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("BlurhashClient Wire Tests") struct BlurhashClientWireTests {
-    @Test func getByMetadataIdV11() async throws -> Void {
+@Suite("TaskGroupsS3ObjectClient Wire Tests") struct TaskGroupsS3ObjectClientWireTests {
+    @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                string
+                {
+                  "key": "value"
+                }
                 """.utf8
             )
         )
@@ -17,9 +19,13 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
-        let response = try await client.taskArtifacts.blurhash.getByMetadataIdV1(
-            taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id",
+        let expectedResponse = JSONValue.object(
+            [
+                "key": JSONValue.string("value")
+            ]
+        )
+        let response = try await client.taskGroups.s3Object.getV1(
+            taskGroupS3ObjectMetadataId: "task_group_s3_object_metadata_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

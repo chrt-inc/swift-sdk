@@ -20,4 +20,16 @@ public final class OrdersClient: Sendable {
             responseType: Bool.self
         )
     }
+
+    /// Cancels an order and all related task groups and tasks in a transaction. | authz_personas=[lig_org_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func cancelV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/oort/orders/cancel/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
 }

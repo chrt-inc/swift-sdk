@@ -25,6 +25,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
     public let completedAtTimestamp: Date?
+    public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -48,6 +49,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
+        skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -69,6 +71,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
+        self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.additionalProperties = additionalProperties
     }
@@ -93,6 +96,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -118,6 +122,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
     }
 
@@ -141,6 +146,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
+        case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
     }
 }

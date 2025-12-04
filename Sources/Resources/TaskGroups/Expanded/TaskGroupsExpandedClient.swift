@@ -62,7 +62,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// Lists expanded task groups for courier operators with filtering, sorting, and pagination. | authz_personas=[courier_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForCourierOperatorsV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: ExpandedListForCourierOperatorsV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForCourierOperatorsV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: ExpandedListForCourierOperatorsV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/task_groups/expanded/list/for_courier_operators/v1",
@@ -80,6 +80,8 @@ public final class TaskGroupsExpandedClient: Sendable {
                 "filter_in_progress_at_timestamp_gte": filterInProgressAtTimestampGte.map { .date($0) }, 
                 "filter_completed_at_timestamp_lte": filterCompletedAtTimestampLte.map { .date($0) }, 
                 "filter_completed_at_timestamp_gte": filterCompletedAtTimestampGte.map { .date($0) }, 
+                "filter_skipped_at_timestamp_lte": filterSkippedAtTimestampLte.map { .date($0) }, 
+                "filter_skipped_at_timestamp_gte": filterSkippedAtTimestampGte.map { .date($0) }, 
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 
                 "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }
             ],
@@ -92,7 +94,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// Lists expanded task groups for courier driver with filtering, sorting, and pagination. | authz_personas=[courier_driver] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForCourierDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: ExpandedListForCourierDriverV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForCourierDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: ExpandedListForCourierDriverV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/task_groups/expanded/list/for_courier_driver/v1",
@@ -110,6 +112,8 @@ public final class TaskGroupsExpandedClient: Sendable {
                 "filter_in_progress_at_timestamp_gte": filterInProgressAtTimestampGte.map { .date($0) }, 
                 "filter_completed_at_timestamp_lte": filterCompletedAtTimestampLte.map { .date($0) }, 
                 "filter_completed_at_timestamp_gte": filterCompletedAtTimestampGte.map { .date($0) }, 
+                "filter_skipped_at_timestamp_lte": filterSkippedAtTimestampLte.map { .date($0) }, 
+                "filter_skipped_at_timestamp_gte": filterSkippedAtTimestampGte.map { .date($0) }, 
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 
                 "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }
             ],

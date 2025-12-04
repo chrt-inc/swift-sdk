@@ -47,6 +47,7 @@ import Chrt
                             "staged_at_timestamp": null,
                             "in_progress_at_timestamp": null,
                             "completed_at_timestamp": null,
+                            "skipped_at_timestamp": null,
                             "exception_at_timestamp": null,
                             "task_group_type": "chrt_ground_courier",
                             "task_group_mileage": null,
@@ -83,6 +84,7 @@ import Chrt
                           "staged_at_timestamp": null,
                           "in_transit_at_timestamp": null,
                           "delivered_at_timestamp": null,
+                          "skipped_at_timestamp": null,
                           "exception_at_timestamp": null
                         }
                       ]
@@ -137,6 +139,7 @@ import Chrt
                                 stagedAtTimestamp: Optional(nil),
                                 inProgressAtTimestamp: Optional(nil),
                                 completedAtTimestamp: Optional(nil),
+                                skippedAtTimestamp: Optional(nil),
                                 exceptionAtTimestamp: Optional(nil),
                                 taskGroupType: .chrtGroundCourier,
                                 taskGroupMileage: Optional(nil),
@@ -173,6 +176,7 @@ import Chrt
                             stagedAtTimestamp: Optional(nil),
                             inTransitAtTimestamp: Optional(nil),
                             deliveredAtTimestamp: Optional(nil),
+                            skippedAtTimestamp: Optional(nil),
                             exceptionAtTimestamp: Optional(nil)
                         )
                     ])

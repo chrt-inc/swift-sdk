@@ -26,6 +26,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
     public let completedAtTimestamp: Date?
+    public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let orderCancelled: Bool?
     public let taskNotificationEmailIds: [String]?
@@ -57,6 +58,7 @@ public struct Task1: Codable, Hashable, Sendable {
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
+        skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         orderCancelled: Bool? = nil,
         taskNotificationEmailIds: [String]? = nil,
@@ -86,6 +88,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
+        self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.orderCancelled = orderCancelled
         self.taskNotificationEmailIds = taskNotificationEmailIds
@@ -118,6 +121,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.taskNotificationEmailIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationEmailIds)
@@ -151,6 +155,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encodeIfPresent(self.taskNotificationEmailIds, forKey: .taskNotificationEmailIds)
@@ -182,6 +187,7 @@ public struct Task1: Codable, Hashable, Sendable {
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
+        case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case orderCancelled = "order_cancelled"
         case taskNotificationEmailIds = "task_notification_email_ids"

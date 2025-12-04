@@ -19,6 +19,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let stagedAtTimestamp: Date?
     public let inProgressAtTimestamp: Date?
     public let completedAtTimestamp: Date?
+    public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let orderCancelled: Bool?
     public let taskGroupType: TaskGroupTypeEnum1
@@ -44,6 +45,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         stagedAtTimestamp: Date? = nil,
         inProgressAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
+        skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         orderCancelled: Bool? = nil,
         taskGroupType: TaskGroupTypeEnum1,
@@ -67,6 +69,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = stagedAtTimestamp
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
+        self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.orderCancelled = orderCancelled
         self.taskGroupType = taskGroupType
@@ -93,6 +96,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
@@ -120,6 +124,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
@@ -145,6 +150,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case stagedAtTimestamp = "staged_at_timestamp"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
+        case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case orderCancelled = "order_cancelled"
         case taskGroupType = "task_group_type"
