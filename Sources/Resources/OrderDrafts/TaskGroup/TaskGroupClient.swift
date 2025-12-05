@@ -20,13 +20,51 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets or removes courier org. Sets task ordering (must provide all task ids). | (UpdateTaskGroupDraftReq) -> (bool)
+    /// Sets the flight number on a draft task group. | (SetFlightNumberDraftReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(taskGroupId: String, request: Requests.UpdateTaskGroupDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setFlightNumberV1(taskGroupId: String, request: Requests.SetFlightNumberDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/order_drafts/task_group/update/v1/\(taskGroupId)",
+            path: "/oort/order_drafts/task_group/set_flight_number/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates the courier organization assigned to a draft task group. | (UpdateCourierOrgDraftReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCourierOrgV1(taskGroupId: String, request: Requests.UpdateCourierOrgDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/oort/order_drafts/task_group/update_courier_org/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Removes the courier organization from a draft task group (sets courier_org_id to null). | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeCourierOrgV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/oort/order_drafts/task_group/remove_courier_org/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setTaskOrderingV1(taskGroupId: String, request: Requests.SetTaskOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/oort/order_drafts/task_group/set_task_ordering/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

@@ -5044,7 +5044,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(requestOptions: RequestOptions?) -> [OrgMembersAndDrivers]</code></summary>
+<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(availableAccordingToDriver: Bool?, availableAccordingToOperators: Bool?, requestOptions: RequestOptions?) -> [OrgMembersAndDrivers]</code></summary>
 <dl>
 <dd>
 
@@ -5056,7 +5056,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all organization members paired with their driver information if they are drivers. | () -> (list[OrgMembersAndDrivers])
+Lists all organization members paired with their driver information if they are drivers. Filter by availability. | () -> (list[OrgMembersAndDrivers])
 </dd>
 </dl>
 </dd>
@@ -5077,7 +5077,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.drivers.listOrgMembersAndDriversV1()
+    _ = try await client.drivers.listOrgMembersAndDriversV1(
+        availableAccordingToDriver: true,
+        availableAccordingToOperators: true
+    )
 }
 
 try await main()
@@ -5091,6 +5094,22 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**availableAccordingToDriver:** `Bool?` — Filter by driver's self-reported availability.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**availableAccordingToOperators:** `Bool?` — Filter by operator-set availability.
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -5107,7 +5126,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [Driver1]</code></summary>
+<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">listV1</a>(availableAccordingToDriver: Bool?, availableAccordingToOperators: Bool?, requestOptions: RequestOptions?) -> [Driver1]</code></summary>
 <dl>
 <dd>
 
@@ -5119,7 +5138,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all drivers belonging to the caller's organization. | () -> (list[Driver1])
+Lists all drivers belonging to the caller's organization. Filter by availability. | () -> (list[Driver1])
 </dd>
 </dl>
 </dd>
@@ -5140,7 +5159,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.drivers.listV1()
+    _ = try await client.drivers.listV1(
+        availableAccordingToDriver: true,
+        availableAccordingToOperators: true
+    )
 }
 
 try await main()
@@ -5154,6 +5176,22 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**availableAccordingToDriver:** `Bool?` — Filter by driver's self-reported availability.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**availableAccordingToOperators:** `Bool?` — Filter by operator-set availability.
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -10356,7 +10394,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">updateV1</a>(taskGroupId: String, request: Requests.UpdateTaskGroupDraftReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">setFlightNumberV1</a>(taskGroupId: String, request: Requests.SetFlightNumberDraftReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10368,7 +10406,7 @@ try await main()
 <dl>
 <dd>
 
-Sets or removes courier org. Sets task ordering (must provide all task ids). | (UpdateTaskGroupDraftReq) -> (bool)
+Sets the flight number on a draft task group. | (SetFlightNumberDraftReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -10389,9 +10427,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orderDrafts.taskGroup.updateV1(
+    _ = try await client.orderDrafts.taskGroup.setFlightNumberV1(
         taskGroupId: "task_group_id",
-        request: .init()
+        request: .init(flightNumber: "flight_number")
     )
 }
 
@@ -10418,7 +10456,244 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.UpdateTaskGroupDraftReq` 
+**request:** `Requests.SetFlightNumberDraftReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">updateCourierOrgV1</a>(taskGroupId: String, request: Requests.UpdateCourierOrgDraftReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the courier organization assigned to a draft task group. | (UpdateCourierOrgDraftReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.taskGroup.updateCourierOrgV1(
+        taskGroupId: "task_group_id",
+        request: .init(courierOrgId: "courier_org_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.UpdateCourierOrgDraftReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">removeCourierOrgV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the courier organization from a draft task group (sets courier_org_id to null). | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.taskGroup.removeCourierOrgV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">setTaskOrderingV1</a>(taskGroupId: String, request: Requests.SetTaskOrderingDraftReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.taskGroup.setTaskOrderingV1(
+        taskGroupId: "task_group_id",
+        request: .init(taskIds: [
+            "task_ids"
+        ])
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetTaskOrderingDraftReq` 
     
 </dd>
 </dl>

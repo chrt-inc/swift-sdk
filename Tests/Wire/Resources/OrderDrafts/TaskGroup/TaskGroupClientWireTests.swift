@@ -28,7 +28,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateV11() async throws -> Void {
+    @Test func setFlightNumberV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -43,9 +43,79 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orderDrafts.taskGroup.updateV1(
+        let response = try await client.orderDrafts.taskGroup.setFlightNumberV1(
             taskGroupId: "task_group_id",
-            request: .init(),
+            request: .init(flightNumber: "flight_number"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateCourierOrgV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orderDrafts.taskGroup.updateCourierOrgV1(
+            taskGroupId: "task_group_id",
+            request: .init(courierOrgId: "courier_org_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeCourierOrgV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orderDrafts.taskGroup.removeCourierOrgV1(
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setTaskOrderingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orderDrafts.taskGroup.setTaskOrderingV1(
+            taskGroupId: "task_group_id",
+            request: .init(taskIds: [
+                "task_ids"
+            ]),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

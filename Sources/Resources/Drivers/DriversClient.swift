@@ -31,25 +31,37 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Lists all organization members paired with their driver information if they are drivers. | () -> (list[OrgMembersAndDrivers])
+    /// Lists all organization members paired with their driver information if they are drivers. Filter by availability. | () -> (list[OrgMembersAndDrivers])
     ///
+    /// - Parameter availableAccordingToDriver: Filter by driver's self-reported availability.
+    /// - Parameter availableAccordingToOperators: Filter by operator-set availability.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listOrgMembersAndDriversV1(requestOptions: RequestOptions? = nil) async throws -> [OrgMembersAndDrivers] {
+    public func listOrgMembersAndDriversV1(availableAccordingToDriver: Bool? = nil, availableAccordingToOperators: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrgMembersAndDrivers] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/drivers/org_members_and_drivers/list/v1",
+            queryParams: [
+                "available_according_to_driver": availableAccordingToDriver.map { .bool($0) }, 
+                "available_according_to_operators": availableAccordingToOperators.map { .bool($0) }
+            ],
             requestOptions: requestOptions,
             responseType: [OrgMembersAndDrivers].self
         )
     }
 
-    /// Lists all drivers belonging to the caller's organization. | () -> (list[Driver1])
+    /// Lists all drivers belonging to the caller's organization. Filter by availability. | () -> (list[Driver1])
     ///
+    /// - Parameter availableAccordingToDriver: Filter by driver's self-reported availability.
+    /// - Parameter availableAccordingToOperators: Filter by operator-set availability.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Driver1] {
+    public func listV1(availableAccordingToDriver: Bool? = nil, availableAccordingToOperators: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> [Driver1] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/drivers/list/v1",
+            queryParams: [
+                "available_according_to_driver": availableAccordingToDriver.map { .bool($0) }, 
+                "available_according_to_operators": availableAccordingToOperators.map { .bool($0) }
+            ],
             requestOptions: requestOptions,
             responseType: [Driver1].self
         )

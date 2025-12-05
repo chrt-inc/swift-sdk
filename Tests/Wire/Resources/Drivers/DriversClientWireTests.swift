@@ -351,7 +351,11 @@ import Chrt
                 ))
             )
         ]
-        let response = try await client.drivers.listOrgMembersAndDriversV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.drivers.listOrgMembersAndDriversV1(
+            availableAccordingToDriver: true,
+            availableAccordingToOperators: true,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -460,7 +464,11 @@ import Chrt
                 lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )
         ]
-        let response = try await client.drivers.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.drivers.listV1(
+            availableAccordingToDriver: true,
+            availableAccordingToOperators: true,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
