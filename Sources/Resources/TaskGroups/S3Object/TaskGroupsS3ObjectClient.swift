@@ -19,15 +19,15 @@ public final class TaskGroupsS3ObjectClient: Sendable {
         )
     }
 
-    /// Streams a task group S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (StreamingResponse)
+    /// Streams a task group S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (binary)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func getV1(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/task_groups/s3_object/v1/\(taskGroupS3ObjectMetadataId)",
             requestOptions: requestOptions,
-            responseType: JSONValue.self
+            responseType: Data.self
         )
     }
 

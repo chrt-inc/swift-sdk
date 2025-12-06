@@ -5682,7 +5682,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a cargo's details. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, or EXCEPTION status. | authz_personas=[lig_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
+Updates a cargo's details. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, SKIPPED, or EXCEPTION status. | authz_personas=[lig_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -13414,7 +13414,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskArtifacts.s3Object.<a href="/Sources/Resources/TaskArtifacts/S3Object/S3ObjectClient.swift">getV1</a>(taskArtifactS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.taskArtifacts.s3Object.<a href="/Sources/Resources/TaskArtifacts/S3Object/S3ObjectClient.swift">getV1</a>(taskArtifactS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
 <dl>
 <dd>
 
@@ -13426,7 +13426,7 @@ try await main()
 <dl>
 <dd>
 
-Streams a task artifact S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (StreamingResponse)
+Streams a task artifact S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (binary)
 </dd>
 </dl>
 </dd>
@@ -13853,7 +13853,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskGroups.s3Object.<a href="/Sources/Resources/TaskGroups/S3Object/TaskGroupsS3ObjectClient.swift">getV1</a>(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.taskGroups.s3Object.<a href="/Sources/Resources/TaskGroups/S3Object/TaskGroupsS3ObjectClient.swift">getV1</a>(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
 <dl>
 <dd>
 
@@ -13865,7 +13865,7 @@ try await main()
 <dl>
 <dd>
 
-Streams a task group S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (StreamingResponse)
+Streams a task group S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (binary)
 </dd>
 </dl>
 </dd>
