@@ -25,6 +25,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let taskGroupType: TaskGroupTypeEnum1
     public let taskGroupMileage: TaskGroupMileage1?
     public let flightNumber: String?
+    public let faFlightId: String?
     public let messages: [TaskGroupMessage1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -51,6 +52,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         taskGroupType: TaskGroupTypeEnum1,
         taskGroupMileage: TaskGroupMileage1? = nil,
         flightNumber: String? = nil,
+        faFlightId: String? = nil,
         messages: [TaskGroupMessage1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -75,6 +77,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.taskGroupType = taskGroupType
         self.taskGroupMileage = taskGroupMileage
         self.flightNumber = flightNumber
+        self.faFlightId = faFlightId
         self.messages = messages
         self.additionalProperties = additionalProperties
     }
@@ -102,6 +105,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.taskGroupMileage = try container.decodeIfPresent(TaskGroupMileage1.self, forKey: .taskGroupMileage)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
+        self.faFlightId = try container.decodeIfPresent(String.self, forKey: .faFlightId)
         self.messages = try container.decodeIfPresent([TaskGroupMessage1].self, forKey: .messages)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -130,6 +134,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
         try container.encodeIfPresent(self.taskGroupMileage, forKey: .taskGroupMileage)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
+        try container.encodeIfPresent(self.faFlightId, forKey: .faFlightId)
         try container.encodeIfPresent(self.messages, forKey: .messages)
     }
 
@@ -156,6 +161,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case taskGroupType = "task_group_type"
         case taskGroupMileage = "task_group_mileage"
         case flightNumber = "flight_number"
+        case faFlightId = "fa_flight_id"
         case messages
     }
 }

@@ -4774,6 +4774,78 @@ try await main()
 </dl>
 </details>
 
+## Flights
+<details><summary><code>client.flights.<a href="/Sources/Resources/Flights/FlightsClient.swift">getFlightInfoForTaskV1</a>(taskId: String, requestOptions: RequestOptions?) -> FlightInfoForTaskRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns flight info from an adjacent FLIGHT task group for TENDER_TO_AIRLINE or RECOVER_FROM_AIRLINE tasks. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators, shipper_org_operators] | () -> (FlightInfoForTaskRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.flights.getFlightInfoForTaskV1(taskId: "task_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## TaskArtifactNotifications
 <details><summary><code>client.taskArtifactNotifications.<a href="/Sources/Resources/TaskArtifactNotifications/TaskArtifactNotificationsClient.swift">getPreferencesV1</a>(requestOptions: RequestOptions?) -> TaskArtifactNotificationPreferences1</code></summary>
 <dl>
@@ -7097,7 +7169,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setFlightNumberV1</a>(taskGroupId: String, request: Requests.SetFlightNumberReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setFlightInfoV1</a>(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -7109,7 +7181,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the flight number on a task group, plus any TENDER_TO_AIRLINE tasks in the immediately preceding task group and RECOVER_FROM_AIRLINE tasks in the immediately following task group. | authz_personas=[lig_org_operators] | (SetFlightNumberReq) -> (bool)
+Sets the flight number and/or fa_flight_id on a task group. | authz_personas=[lig_org_operators] | (SetFlightInfoReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7130,9 +7202,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.taskGroups.setFlightNumberV1(
+    _ = try await client.taskGroups.setFlightInfoV1(
         taskGroupId: "task_group_id",
-        request: .init(flightNumber: "flight_number")
+        request: SetFlightInfoReq(
+
+        )
     )
 }
 
@@ -7159,7 +7233,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.SetFlightNumberReq` 
+**request:** `SetFlightInfoReq` 
     
 </dd>
 </dl>
@@ -10405,7 +10479,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">setFlightNumberV1</a>(taskGroupId: String, request: Requests.SetFlightNumberDraftReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">setFlightInfoV1</a>(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -10417,7 +10491,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the flight number on a draft task group. | (SetFlightNumberDraftReq) -> (bool)
+Sets the flight number and/or fa_flight_id on a draft task group. | (SetFlightInfoReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -10438,9 +10512,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orderDrafts.taskGroup.setFlightNumberV1(
+    _ = try await client.orderDrafts.taskGroup.setFlightInfoV1(
         taskGroupId: "task_group_id",
-        request: .init(flightNumber: "flight_number")
+        request: SetFlightInfoReq(
+
+        )
     )
 }
 
@@ -10467,7 +10543,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.SetFlightNumberDraftReq` 
+**request:** `SetFlightInfoReq` 
     
 </dd>
 </dl>
@@ -15403,7 +15479,7 @@ try await main()
 </details>
 
 ## Tracking Driver
-<details><summary><code>client.tracking.driver.<a href="/Sources/Resources/Tracking/Driver/DriverClient.swift">updateV1</a>(request: Requests.DriverUpdateReq, requestOptions: RequestOptions?) -> DriverUpdateRes</code></summary>
+<details><summary><code>client.tracking.driver.<a href="/Sources/Resources/Tracking/Driver/DriverClient.swift">updateV1</a>(request: LocationFeature, requestOptions: RequestOptions?) -> DriverUpdateRes</code></summary>
 <dl>
 <dd>
 
@@ -15415,7 +15491,7 @@ try await main()
 <dl>
 <dd>
 
-Records driver location updates. Automatically writes to all IN_PROGRESS task groups and their associated cargos. Updates driver's last seen timestamp and location. | (DriverUpdateReq) -> (DriverUpdateRes)
+Records driver location updates. Automatically writes to all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. Updates driver's last seen timestamp and location. | (DriverUpdateReq) -> (DriverUpdateRes)
 </dd>
 </dl>
 </dd>
@@ -15436,24 +15512,21 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.driver.updateV1(request: .init(
-        timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        location: LocationFeature(
-            type: .feature,
-            geometry: Geometry.geometryCollection(
-                .init(
-                    geometries: [
-                        GeometryCollectionOutputGeometriesItem.lineString(
-                            .init(
-                                coordinates: [
-                                    LineStringCoordinatesItem.position2D(
-                                        []
-                                    )
-                                ]
-                            )
+    _ = try await client.tracking.driver.updateV1(request: LocationFeature(
+        type: .feature,
+        geometry: Geometry.geometryCollection(
+            .init(
+                geometries: [
+                    GeometryCollectionOutputGeometriesItem.lineString(
+                        .init(
+                            coordinates: [
+                                LineStringCoordinatesItem.position2D(
+                                    []
+                                )
+                            ]
                         )
-                    ]
-                )
+                    )
+                ]
             )
         )
     ))
@@ -15474,7 +15547,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.DriverUpdateReq` 
+**request:** `LocationFeature` 
     
 </dd>
 </dl>
@@ -16126,8 +16199,8 @@ try await main()
 </dl>
 </details>
 
-## Tracking Sharing
-<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">getSettingsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TrackingSharingSettingsRes]</code></summary>
+## Tracking SharingSettings
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">getSettingsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TrackingSharingSettingsRes]</code></summary>
 <dl>
 <dd>
 
@@ -16160,7 +16233,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sharing.getSettingsV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.tracking.sharingSettings.getSettingsV1(orderIdOrShortId: "order_id_or_short_id")
 }
 
 try await main()
@@ -16198,7 +16271,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">taskGroupByDriverSharingSettingsV1</a>(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> TaskGroupByDriverSharingSettings1</code></summary>
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">taskGroupByDriverSharingSettingsV1</a>(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> TaskGroupByDriverSharingSettings1</code></summary>
 <dl>
 <dd>
 
@@ -16231,7 +16304,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sharing.taskGroupByDriverSharingSettingsV1(request: .init(
+    _ = try await client.tracking.sharingSettings.taskGroupByDriverSharingSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         driverId: "driver_id",
         public: true
@@ -16273,7 +16346,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">cargoByDriverSettingsV1</a>(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDriverSharingSettings1</code></summary>
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">cargoByDriverSettingsV1</a>(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDriverSharingSettings1</code></summary>
 <dl>
 <dd>
 
@@ -16306,7 +16379,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sharing.cargoByDriverSettingsV1(request: .init(
+    _ = try await client.tracking.sharingSettings.cargoByDriverSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         cargoId: "cargo_id",
         driverId: "driver_id",
@@ -16349,7 +16422,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">cargoByDeviceSettingsV1</a>(request: Requests.CargoByDeviceSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDeviceSharingSettings1</code></summary>
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">cargoByDeviceSettingsV1</a>(request: Requests.CargoByDeviceSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDeviceSharingSettings1</code></summary>
 <dl>
 <dd>
 
@@ -16382,7 +16455,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sharing.cargoByDeviceSettingsV1(request: .init(
+    _ = try await client.tracking.sharingSettings.cargoByDeviceSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         cargoId: "cargo_id",
         deviceId: "device_id",

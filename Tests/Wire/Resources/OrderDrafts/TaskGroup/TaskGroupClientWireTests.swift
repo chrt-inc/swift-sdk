@@ -28,7 +28,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func setFlightNumberV11() async throws -> Void {
+    @Test func setFlightInfoV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -43,9 +43,11 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orderDrafts.taskGroup.setFlightNumberV1(
+        let response = try await client.orderDrafts.taskGroup.setFlightInfoV1(
             taskGroupId: "task_group_id",
-            request: .init(flightNumber: "flight_number"),
+            request: SetFlightInfoReq(
+
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("SharingClient Wire Tests") struct SharingClientWireTests {
+@Suite("SharingSettingsClient Wire Tests") struct SharingSettingsClientWireTests {
     @Test func getSettingsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -48,7 +48,7 @@ import Chrt
                 )
             )
         ]
-        let response = try await client.tracking.sharing.getSettingsV1(
+        let response = try await client.tracking.sharingSettings.getSettingsV1(
             orderIdOrShortId: "order_id_or_short_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -88,7 +88,7 @@ import Chrt
             lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
         )
-        let response = try await client.tracking.sharing.taskGroupByDriverSharingSettingsV1(
+        let response = try await client.tracking.sharingSettings.taskGroupByDriverSharingSettingsV1(
             request: .init(
                 taskGroupId: "task_group_id",
                 driverId: "driver_id",
@@ -134,7 +134,7 @@ import Chrt
             lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
         )
-        let response = try await client.tracking.sharing.cargoByDriverSettingsV1(
+        let response = try await client.tracking.sharingSettings.cargoByDriverSettingsV1(
             request: .init(
                 taskGroupId: "task_group_id",
                 cargoId: "cargo_id",
@@ -181,7 +181,7 @@ import Chrt
             lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             id: "_id"
         )
-        let response = try await client.tracking.sharing.cargoByDeviceSettingsV1(
+        let response = try await client.tracking.sharingSettings.cargoByDeviceSettingsV1(
             request: .init(
                 taskGroupId: "task_group_id",
                 cargoId: "cargo_id",

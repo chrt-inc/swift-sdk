@@ -38,6 +38,7 @@ import Chrt
                       "deadhead_mileage": 1.1
                     },
                     "flight_number": "flight_number",
+                    "fa_flight_id": "fa_flight_id",
                     "messages": [
                       {
                         "message": "message",
@@ -177,6 +178,7 @@ import Chrt
                     deadheadMileage: 1.1
                 )),
                 flightNumber: Optional("flight_number"),
+                faFlightId: Optional("fa_flight_id"),
                 messages: Optional([
                     TaskGroupMessage1(
                         message: "message",
@@ -329,6 +331,7 @@ import Chrt
                       "deadhead_mileage": 1.1
                     },
                     "flight_number": "flight_number",
+                    "fa_flight_id": "fa_flight_id",
                     "messages": [
                       {
                         "message": "message",
@@ -468,6 +471,7 @@ import Chrt
                     deadheadMileage: 1.1
                 )),
                 flightNumber: Optional("flight_number"),
+                faFlightId: Optional("fa_flight_id"),
                 messages: Optional([
                     TaskGroupMessage1(
                         message: "message",
@@ -620,6 +624,7 @@ import Chrt
                       "deadhead_mileage": 1.1
                     },
                     "flight_number": "flight_number",
+                    "fa_flight_id": "fa_flight_id",
                     "messages": [
                       {
                         "message": "message",
@@ -759,6 +764,7 @@ import Chrt
                     deadheadMileage: 1.1
                 )),
                 flightNumber: Optional("flight_number"),
+                faFlightId: Optional("fa_flight_id"),
                 messages: Optional([
                     TaskGroupMessage1(
                         message: "message",
@@ -911,6 +917,7 @@ import Chrt
                       "deadhead_mileage": 1.1
                     },
                     "flight_number": "flight_number",
+                    "fa_flight_id": "fa_flight_id",
                     "messages": [
                       {
                         "message": "message",
@@ -1050,6 +1057,7 @@ import Chrt
                     deadheadMileage: 1.1
                 )),
                 flightNumber: Optional("flight_number"),
+                faFlightId: Optional("fa_flight_id"),
                 messages: Optional([
                     TaskGroupMessage1(
                         message: "message",

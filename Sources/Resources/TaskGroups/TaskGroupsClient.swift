@@ -38,13 +38,13 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Sets the flight number on a task group, plus any TENDER_TO_AIRLINE tasks in the immediately preceding task group and RECOVER_FROM_AIRLINE tasks in the immediately following task group. | authz_personas=[lig_org_operators] | (SetFlightNumberReq) -> (bool)
+    /// Sets the flight number and/or fa_flight_id on a task group. | authz_personas=[lig_org_operators] | (SetFlightInfoReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setFlightNumberV1(taskGroupId: String, request: Requests.SetFlightNumberReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setFlightInfoV1(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/task_groups/set_flight_number/v1/\(taskGroupId)",
+            path: "/oort/task_groups/set_flight_info/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

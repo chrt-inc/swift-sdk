@@ -20,13 +20,13 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the flight number on a draft task group. | (SetFlightNumberDraftReq) -> (bool)
+    /// Sets the flight number and/or fa_flight_id on a draft task group. | (SetFlightInfoReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setFlightNumberV1(taskGroupId: String, request: Requests.SetFlightNumberDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setFlightInfoV1(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/oort/order_drafts/task_group/set_flight_number/v1/\(taskGroupId)",
+            path: "/oort/order_drafts/task_group/set_flight_info/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

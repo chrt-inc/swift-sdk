@@ -14,6 +14,7 @@ public final class ChrtClient: Sendable {
     public let connections: ConnectionsClient
     public let orgProfiles: OrgProfilesClient
     public let dev: DevClient
+    public let flights: FlightsClient
     public let taskArtifactNotifications: TaskArtifactNotificationsClient
     public let drivers: DriversClient
     public let cargos: CargosClient
@@ -125,6 +126,7 @@ public final class ChrtClient: Sendable {
         self.connections = ConnectionsClient(config: config)
         self.orgProfiles = OrgProfilesClient(config: config)
         self.dev = DevClient(config: config)
+        self.flights = FlightsClient(config: config)
         self.taskArtifactNotifications = TaskArtifactNotificationsClient(config: config)
         self.drivers = DriversClient(config: config)
         self.cargos = CargosClient(config: config)

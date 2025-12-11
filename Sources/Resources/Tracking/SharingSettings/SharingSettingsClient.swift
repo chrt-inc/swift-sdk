@@ -1,6 +1,6 @@
 import Foundation
 
-public final class SharingClient: Sendable {
+public final class SharingSettingsClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
