@@ -7,7 +7,7 @@ public final class ShipperPayCourierLineItemGroupsAddLineItemsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds additional line items to an existing shipper pay courier line item group.
+    /// Adds additional line items to an existing shipper pay courier line item group. | (ShipperPayCourierLineItemGroupAddLineItemsReq) -> (ShipperPayCourierLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(id: String, request: Requests.ShipperPayCourierLineItemGroupAddLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {

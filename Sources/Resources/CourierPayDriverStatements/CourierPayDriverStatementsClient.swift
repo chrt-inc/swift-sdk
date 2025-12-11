@@ -7,7 +7,7 @@ public final class CourierPayDriverStatementsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a specific courier driver statement by ID for the caller's organization.
+    /// Retrieves a specific courier driver statement for the caller's organization. | () -> (CourierPayDriverStatement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverStatement1 {
@@ -19,7 +19,7 @@ public final class CourierPayDriverStatementsClient: Sendable {
         )
     }
 
-    /// Lists all statements for a specific driver within the caller's organization.
+    /// Lists all statements for a specific driver within the caller's organization. | () -> (list[CourierPayDriverStatement1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverStatement1] {
@@ -31,7 +31,7 @@ public final class CourierPayDriverStatementsClient: Sendable {
         )
     }
 
-    /// Creates a new driver statement from selected line item groups and calculates the total amount.
+    /// Creates a new driver statement from selected line item groups and calculates the total amount. | (CourierPayDriverStatementClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: CourierPayDriverStatementClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -44,7 +44,7 @@ public final class CourierPayDriverStatementsClient: Sendable {
         )
     }
 
-    /// Updates the status of a courier driver statement with validation of allowed state transitions.
+    /// Updates the status of a courier driver statement with validation of allowed state transitions. | (CourierPayDriverStatementClientUpdate1) -> (CourierPayDriverStatement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateStatusV1(id: String, request: CourierPayDriverStatementClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverStatement1 {

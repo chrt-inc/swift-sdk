@@ -7,7 +7,7 @@ public final class RemoveLineItemsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Removes specific line items from a courier driver line item group by their UUID identifiers.
+    /// Removes specific line items from a courier driver line item group by their UUID identifiers. | (CourierPayDriverLineItemGroupRemoveLineItemsReq) -> (CourierPayDriverLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(id: String, request: Requests.CourierPayDriverLineItemGroupRemoveLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverLineItemGroup1 {

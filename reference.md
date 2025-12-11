@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Generates and sends a Stripe invoice for a shipper statement to a courier organization's Connect account. Applies a 10% application fee.
+Generates and sends a Stripe invoice for a shipper statement to a courier organization's Connect account. Applies a 10% application fee. | (GenerateInvoiceReq) -> (GenerateInvoiceRes)
 </dd>
 </dl>
 </dd>
@@ -83,7 +83,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a Stripe checkout session for a subscription with pricing based on the selected plan.
+Creates a Stripe checkout session for a subscription with pricing based on the selected plan. | (CreateCheckoutSessionReq) -> (CreateCheckoutSessionRes)
 </dd>
 </dl>
 </dd>
@@ -154,7 +154,7 @@ try await main()
 <dl>
 <dd>
 
-Synchronizes subscription data from Stripe to the authentication service for the current user.
+Synchronizes subscription data from Stripe to the authentication service for the current user. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -217,7 +217,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created.
+Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateConnectAccountRes)
 </dd>
 </dl>
 </dd>
@@ -280,7 +280,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup.
+Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (CreateConnectAccountLinkRes)
 </dd>
 </dl>
 </dd>
@@ -344,7 +344,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a courier driver line item group by its ID.
+Retrieves a courier driver line item group by its ID. | () -> (CourierPayDriverLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -415,7 +415,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a courier driver line item group by its associated task group ID.
+Retrieves a courier driver line item group by its associated task group ID. | () -> (CourierPayDriverLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -486,7 +486,7 @@ try await main()
 <dl>
 <dd>
 
-Previews calculated line items for a driver based on a rate sheet and task group. Does not write to the database.
+Previews calculated line items for a driver based on a rate sheet and task group. Does not write to the database. | (CourierPayDriverLineItemGroupCreateReq) -> (CourierPayDriverLineItemGroupServerCreate1)
 </dd>
 </dl>
 </dd>
@@ -571,7 +571,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a courier pay driver line item group by calculating items from a rate sheet and task group.
+Creates a courier pay driver line item group by calculating items from a rate sheet and task group. | (CourierPayDriverLineItemGroupCreateReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -646,7 +646,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a specific courier driver payout by ID for the caller's organization.
+Retrieves a specific courier driver payout for the caller's organization. | () -> (CourierPayDriverStatement1)
 </dd>
 </dl>
 </dd>
@@ -717,7 +717,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all payouts for a specific driver within the caller's organization.
+Lists all payouts for a specific driver within the caller's organization. | () -> (list[CourierPayDriverStatement1])
 </dd>
 </dl>
 </dd>
@@ -788,7 +788,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new driver payout from selected line item groups and calculates the total amount.
+Creates a new driver payout from selected line item groups and calculates the total amount. | (CourierPayDriverStatementClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -864,7 +864,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the status of a courier driver payout with validation of allowed state transitions.
+Updates the status of a courier driver payout with validation of allowed state transitions. | (CourierPayDriverStatementClientUpdate1) -> (CourierPayDriverStatement1)
 </dd>
 </dl>
 </dd>
@@ -949,7 +949,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all driver rate sheets for the caller's courier organization.
+Lists all driver rate sheets for the caller's courier organization. | () -> (list[CourierPayDriverRateSheet1])
 </dd>
 </dl>
 </dd>
@@ -1012,7 +1012,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves all rate sheets assigned to a specific driver.
+Retrieves all rate sheets assigned to a specific driver. | () -> (list[CourierPayDriverRateSheet1])
 </dd>
 </dl>
 </dd>
@@ -1083,7 +1083,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new driver rate sheet for calculating courier payments.
+Creates a new driver rate sheet for calculating courier payments. | (CourierPayDriverRateSheetClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -1170,7 +1170,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single rate sheet by its ID.
+Retrieves a single rate sheet by its ID. | () -> (CourierPayDriverRateSheet1)
 </dd>
 </dl>
 </dd>
@@ -1241,7 +1241,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a driver rate sheet owned by the caller's organization.
+Deletes a driver rate sheet owned by the caller's organization. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -1312,7 +1312,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an existing driver rate sheet owned by the caller's organization.
+Updates an existing driver rate sheet owned by the caller's organization. | (CourierPayDriverRateSheetClientUpdate1) -> (CourierPayDriverRateSheet1)
 </dd>
 </dl>
 </dd>
@@ -1395,7 +1395,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a specific courier driver statement by ID for the caller's organization.
+Retrieves a specific courier driver statement for the caller's organization. | () -> (CourierPayDriverStatement1)
 </dd>
 </dl>
 </dd>
@@ -1466,7 +1466,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all statements for a specific driver within the caller's organization.
+Lists all statements for a specific driver within the caller's organization. | () -> (list[CourierPayDriverStatement1])
 </dd>
 </dl>
 </dd>
@@ -1537,7 +1537,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new driver statement from selected line item groups and calculates the total amount.
+Creates a new driver statement from selected line item groups and calculates the total amount. | (CourierPayDriverStatementClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -1613,7 +1613,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the status of a courier driver statement with validation of allowed state transitions.
+Updates the status of a courier driver statement with validation of allowed state transitions. | (CourierPayDriverStatementClientUpdate1) -> (CourierPayDriverStatement1)
 </dd>
 </dl>
 </dd>
@@ -1698,7 +1698,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its ID for the caller's courier organization.
+Retrieves a shipper pay courier line item group by its ID for the caller's courier organization. | () -> (ShipperPayCourierLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -1769,7 +1769,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a shipper pay courier line item group by its ID if not referenced by any payment.
+Deletes a shipper pay courier line item group by its ID if not referenced by any payment. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -1840,7 +1840,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its associated task group ID for the caller's courier organization.
+Retrieves a shipper pay courier line item group by its associated task group ID for the caller's courier organization. | () -> (ShipperPayCourierLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -1911,7 +1911,7 @@ try await main()
 <dl>
 <dd>
 
-Previews calculated line items for a shipper pay courier based on rate sheet and task group without creating the group.
+Previews calculated line items for a shipper pay courier based on rate sheet and task group without creating the group. | (ShipperPayCourierLineItemGroupCreateReq) -> (ShipperPayCourierLineItemGroupServerCreate1)
 </dd>
 </dl>
 </dd>
@@ -1985,7 +1985,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a shipper pay courier line item group by calculating items from rate sheet and task group.
+Creates a shipper pay courier line item group by calculating items from rate sheet and task group. | (ShipperPayCourierLineItemGroupCreateReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -2060,7 +2060,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier payment by its ID with Stripe invoice sync.
+Retrieves a shipper pay courier payment by its ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
 </dd>
 </dl>
 </dd>
@@ -2131,7 +2131,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a shipper-to-courier payment record if invoice not yet created.
+Deletes a shipper-to-courier payment record if invoice not yet created. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -2202,7 +2202,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier payment by order ID or short ID with Stripe invoice sync.
+Retrieves a shipper pay courier payment by order ID or short ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
 </dd>
 </dl>
 </dd>
@@ -2273,7 +2273,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper pay courier payments by shipper org ID with status filtering and Stripe sync.
+Lists shipper pay courier payments by shipper org ID with status filtering and Stripe sync. | (ListPaymentsByShipperReq) -> (GetShipperPayCourierPaymentsForShipperRes)
 </dd>
 </dl>
 </dd>
@@ -2346,7 +2346,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper pay courier payments by courier org ID with status filtering and Stripe sync.
+Lists shipper pay courier payments by courier org ID with status filtering and Stripe sync. | (ListPaymentsByCourierReq) -> (GetShipperPayCourierPaymentsForShipperRes)
 </dd>
 </dl>
 </dd>
@@ -2419,7 +2419,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a shipper-to-courier payment record based on all task groups in an order.
+Creates a shipper-to-courier payment record based on all task groups in an order. | (CreateShipperPayCourierPaymentReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -2492,7 +2492,7 @@ try await main()
 <dl>
 <dd>
 
-Previews a shipper-to-courier payment showing task groups, line item groups, total amount, and readiness status.
+Previews a shipper-to-courier payment showing task groups, line item groups, total amount, and readiness status. | (CreateShipperPayCourierPaymentReq) -> (PaymentPreviewResponse)
 </dd>
 </dl>
 </dd>
@@ -2566,7 +2566,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all rate sheets created by the authenticated courier organization.
+Lists all rate sheets created by the authenticated courier organization. | () -> (list[ShipperPayCourierRateSheet1])
 </dd>
 </dl>
 </dd>
@@ -2629,7 +2629,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new rate sheet for a courier to charge shippers.
+Creates a new rate sheet for a courier to charge shippers. | (ShipperPayCourierRateSheetClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -2715,7 +2715,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single rate sheet by its ID (courier access only).
+Retrieves a single rate sheet by its ID (courier access only). | () -> (ShipperPayCourierRateSheet1)
 </dd>
 </dl>
 </dd>
@@ -2786,7 +2786,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a rate sheet owned by the authenticated courier organization.
+Deletes a rate sheet owned by the authenticated courier organization. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -2857,7 +2857,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an existing rate sheet owned by the authenticated courier organization.
+Updates an existing rate sheet owned by the authenticated courier organization. | (ShipperPayCourierRateSheetClientUpdate1) -> (ShipperPayCourierRateSheet1)
 </dd>
 </dl>
 </dd>
@@ -2940,7 +2940,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier statement by its ID with Stripe invoice sync.
+Retrieves a shipper pay courier statement by its ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
 </dd>
 </dl>
 </dd>
@@ -3011,7 +3011,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a shipper-to-courier statement record if invoice not yet created.
+Deletes a shipper-to-courier statement record if invoice not yet created. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -3082,7 +3082,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier statement by order ID or short ID with Stripe invoice sync.
+Retrieves a shipper pay courier statement by order ID or short ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
 </dd>
 </dl>
 </dd>
@@ -3153,7 +3153,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper pay courier statements by shipper org ID with status filtering and Stripe sync.
+Lists shipper pay courier statements by shipper org ID with status filtering and Stripe sync. | (ListStatementsByShipperReq) -> (GetShipperPayCourierStatementsForShipperRes)
 </dd>
 </dl>
 </dd>
@@ -3226,7 +3226,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper pay courier statements by courier org ID with status filtering and Stripe sync.
+Lists shipper pay courier statements by courier org ID with status filtering and Stripe sync. | (ListStatementsByCourierReq) -> (GetShipperPayCourierStatementsForShipperRes)
 </dd>
 </dl>
 </dd>
@@ -3299,7 +3299,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a shipper-to-courier statement record based on all task groups in an order.
+Creates a shipper-to-courier statement record based on all task groups in an order. | (CreateShipperPayCourierStatementReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -3372,7 +3372,7 @@ try await main()
 <dl>
 <dd>
 
-Previews a shipper-to-courier statement showing task groups, line item groups, total amount, and readiness status.
+Previews a shipper-to-courier statement showing task groups, line item groups, total amount, and readiness status. | (CreateShipperPayCourierStatementReq) -> (StatementPreviewResponse)
 </dd>
 </dl>
 </dd>
@@ -9898,7 +9898,7 @@ try await main()
 <dl>
 <dd>
 
-Adds additional line items to an existing courier driver line item group.
+Adds additional line items to an existing courier driver line item group. | (CourierPayDriverLineItemGroupAddLineItemsReq) -> (CourierPayDriverLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -9988,7 +9988,7 @@ try await main()
 <dl>
 <dd>
 
-Removes specific line items from a courier driver line item group by their UUID identifiers.
+Removes specific line items from a courier driver line item group by their UUID identifiers. | (CourierPayDriverLineItemGroupRemoveLineItemsReq) -> (CourierPayDriverLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -11776,7 +11776,7 @@ try await main()
 <dl>
 <dd>
 
-Lists expanded orders for forwarder operators with filtering, sorting, and pagination. | authz_personas=[forwarder_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
+Lists expanded orders for forwarder operators with filtering, sorting, and pagination. | authz: allowed_org_types=[forwarder], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
 </dd>
 </dl>
 </dd>
@@ -12003,7 +12003,7 @@ try await main()
 <dl>
 <dd>
 
-Lists expanded orders for shipper operators with filtering, sorting, and pagination. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
+Lists expanded orders for shipper operators with filtering, sorting, and pagination. | authz: allowed_org_types=[shipper], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
 </dd>
 </dl>
 </dd>
@@ -12921,7 +12921,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper pay courier line item groups for the caller's shipper organization.
+Lists all shipper pay courier line item groups for the caller's shipper organization. | () -> (list[ShipperPayCourierLineItemGroup1])
 </dd>
 </dl>
 </dd>
@@ -12984,7 +12984,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its ID for the caller's shipper organization.
+Retrieves a shipper pay courier line item group by its ID for the caller's shipper organization. | () -> (ShipperPayCourierLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -13055,7 +13055,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a shipper pay courier line item group by its associated task group ID for the caller's shipper organization.
+Retrieves a shipper pay courier line item group by its associated task group ID for the caller's shipper organization. | () -> (ShipperPayCourierLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -13127,7 +13127,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all shipper pay courier line item groups for the caller's courier organization.
+Lists all shipper pay courier line item groups for the caller's courier organization. | () -> (list[ShipperPayCourierLineItemGroup1])
 </dd>
 </dl>
 </dd>
@@ -13191,7 +13191,7 @@ try await main()
 <dl>
 <dd>
 
-Adds additional line items to an existing shipper pay courier line item group.
+Adds additional line items to an existing shipper pay courier line item group. | (ShipperPayCourierLineItemGroupAddLineItemsReq) -> (ShipperPayCourierLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -13281,7 +13281,7 @@ try await main()
 <dl>
 <dd>
 
-Removes specific line items from a shipper pay courier line item group by their UUID identifiers.
+Removes specific line items from a shipper pay courier line item group by their UUID identifiers. | (ShipperPayCourierLineItemGroupRemoveLineItemsReq) -> (ShipperPayCourierLineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -14879,8 +14879,8 @@ try await main()
 </dl>
 </details>
 
-## Tracking CargoByDeviceTimeseries
-<details><summary><code>client.tracking.cargoByDeviceTimeseries.<a href="/Sources/Resources/Tracking/CargoByDeviceTimeseries/CargoByDeviceTimeseriesClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDeviceDataPoint1?</code></summary>
+## Tracking Timeseries
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDeviceLastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDeviceDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -14913,7 +14913,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDeviceTimeseries.lastSeenV1(
+    _ = try await client.tracking.timeseries.cargoByDeviceLastSeenV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id"
     )
@@ -14962,7 +14962,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.cargoByDeviceTimeseries.<a href="/Sources/Resources/Tracking/CargoByDeviceTimeseries/CargoByDeviceTimeseriesClient.swift">dataPointsV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDeviceDataPointsV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDeviceDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -14995,7 +14995,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDeviceTimeseries.dataPointsV1(
+    _ = try await client.tracking.timeseries.cargoByDeviceDataPointsV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id",
         limit: 1
@@ -15053,7 +15053,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.cargoByDeviceTimeseries.<a href="/Sources/Resources/Tracking/CargoByDeviceTimeseries/CargoByDeviceTimeseriesClient.swift">outlierV1</a>(request: Requests.CargoByDeviceMarkOutliersRequest1, requestOptions: RequestOptions?) -> CargoByDeviceMarkOutliersResponse1</code></summary>
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDeviceOutlierV1</a>(request: Requests.CargoByDeviceMarkOutliersRequest1, requestOptions: RequestOptions?) -> CargoByDeviceMarkOutliersResponse1</code></summary>
 <dl>
 <dd>
 
@@ -15086,7 +15086,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDeviceTimeseries.outlierV1(request: .init(
+    _ = try await client.tracking.timeseries.cargoByDeviceOutlierV1(request: .init(
         trackingCargoByDeviceDataPointIds: [
             "tracking_cargo_by_device_data_point_ids"
         ],
@@ -15129,181 +15129,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.cargoByDeviceTimeseries.<a href="/Sources/Resources/Tracking/CargoByDeviceTimeseries/CargoByDeviceTimeseriesClient.swift">lastSeenPublicV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDeviceDataPoint1?</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the most recent device location data point for a cargo within a public task group. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (CargoByDeviceDataPoint1 | None)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.cargoByDeviceTimeseries.lastSeenPublicV1(
-        cargoId: "cargo_id",
-        taskGroupId: "task_group_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**cargoId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.cargoByDeviceTimeseries.<a href="/Sources/Resources/Tracking/CargoByDeviceTimeseries/CargoByDeviceTimeseriesClient.swift">dataPointsPublicV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDeviceDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns up to the specified number of data points for a cargo within a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (list[CargoByDeviceDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.cargoByDeviceTimeseries.dataPointsPublicV1(
-        cargoId: "cargo_id",
-        taskGroupId: "task_group_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**cargoId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Tracking CargoByDriverTimeseries
-<details><summary><code>client.tracking.cargoByDriverTimeseries.<a href="/Sources/Resources/Tracking/CargoByDriverTimeseries/CargoByDriverTimeseriesClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDriverDataPoint1?</code></summary>
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDriverLastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDriverDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -15336,7 +15162,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDriverTimeseries.lastSeenV1(
+    _ = try await client.tracking.timeseries.cargoByDriverLastSeenV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id"
     )
@@ -15385,7 +15211,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.cargoByDriverTimeseries.<a href="/Sources/Resources/Tracking/CargoByDriverTimeseries/CargoByDriverTimeseriesClient.swift">dataPointsV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDriverDataPoint1]</code></summary>
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDriverDataPointsV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDriverDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -15418,7 +15244,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDriverTimeseries.dataPointsV1(
+    _ = try await client.tracking.timeseries.cargoByDriverDataPointsV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id",
         limit: 1
@@ -15476,7 +15302,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.cargoByDriverTimeseries.<a href="/Sources/Resources/Tracking/CargoByDriverTimeseries/CargoByDriverTimeseriesClient.swift">lastSeenPublicV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDriverDataPoint1?</code></summary>
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">sessionByDeviceLastSeenV1</a>(sessionId: String, requestOptions: RequestOptions?) -> SessionByDeviceDataPoint1?</code></summary>
 <dl>
 <dd>
 
@@ -15488,7 +15314,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a cargo within a public task group. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (CargoByDriverDataPoint1 | None)
+Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -15509,7 +15335,389 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDriverTimeseries.lastSeenPublicV1(
+    _ = try await client.tracking.timeseries.sessionByDeviceLastSeenV1(sessionId: "session_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">sessionByDeviceDataPointsV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [SessionByDeviceDataPoint1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[SessionByDeviceDataPoint1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.sessionByDeviceDataPointsV1(
+        sessionId: "session_id",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">sessionByDeviceOutlierV1</a>(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions?) -> SessionByDeviceMarkOutliersResponse1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | (SessionByDeviceMarkOutliersRequest1) -> (SessionByDeviceMarkOutliersResponse1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.sessionByDeviceOutlierV1(request: .init(
+        trackingSessionByDeviceDataPointIds: [
+            "tracking_session_by_device_data_point_ids"
+        ],
+        outlier: true
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionByDeviceMarkOutliersRequest1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">taskGroupByDriverLastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPoint1?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | () -> (TaskGroupByDriverDataPoint1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.taskGroupByDriverLastSeenV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">taskGroupByDriverDataPointsV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [TaskGroupByDriverDataPoint1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns up to the specified number of data points for a task group, intelligently sampled across the time range. Excludes outliers. | () -> (list[TaskGroupByDriverDataPoint1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.taskGroupByDriverDataPointsV1(
+        taskGroupId: "task_group_id",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDeviceLastSeenPublicV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDeviceDataPoint1?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the most recent device location data point for a cargo within a public task group. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (CargoByDeviceDataPoint1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.cargoByDeviceLastSeenPublicV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id"
     )
@@ -15558,7 +15766,486 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.cargoByDriverTimeseries.<a href="/Sources/Resources/Tracking/CargoByDriverTimeseries/CargoByDriverTimeseriesClient.swift">dataPointsPublicV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDriverDataPoint1]</code></summary>
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDeviceDataPointsPublicV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDeviceDataPoint1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns up to the specified number of data points for a cargo within a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (list[CargoByDeviceDataPoint1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.cargoByDeviceDataPointsPublicV1(
+        cargoId: "cargo_id",
+        taskGroupId: "task_group_id",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">sessionByDeviceLastSeenPublicV1</a>(sessionId: String, requestOptions: RequestOptions?) -> SessionByDeviceDataPoint1?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled. | () -> (SessionByDeviceDataPoint1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.sessionByDeviceLastSeenPublicV1(sessionId: "session_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">sessionByDeviceDataPointsPublicV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [SessionByDeviceDataPoint1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[SessionByDeviceDataPoint1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.sessionByDeviceDataPointsPublicV1(
+        sessionId: "session_id",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">taskGroupByDriverLastSeenPublicV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPoint1?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the most recent driver location data point for a public task group. No authentication required if task group has public visibility enabled via sharing settings. | () -> (TaskGroupByDriverDataPoint1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.taskGroupByDriverLastSeenPublicV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">taskGroupByDriverDataPointsPublicV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [TaskGroupByDriverDataPoint1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns up to the specified number of data points for a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if task group has public visibility enabled via sharing settings. | () -> (list[TaskGroupByDriverDataPoint1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.taskGroupByDriverDataPointsPublicV1(
+        taskGroupId: "task_group_id",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDriverLastSeenPublicV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDriverDataPoint1?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the most recent driver location data point for a cargo within a public task group. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (CargoByDriverDataPoint1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.timeseries.cargoByDriverLastSeenPublicV1(
+        cargoId: "cargo_id",
+        taskGroupId: "task_group_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.timeseries.<a href="/Sources/Resources/Tracking/Timeseries/TimeseriesClient.swift">cargoByDriverDataPointsPublicV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDriverDataPoint1]</code></summary>
 <dl>
 <dd>
 
@@ -15591,7 +16278,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDriverTimeseries.dataPointsPublicV1(
+    _ = try await client.tracking.timeseries.cargoByDriverDataPointsPublicV1(
         cargoId: "cargo_id",
         taskGroupId: "task_group_id",
         limit: 1
@@ -16896,8 +17583,8 @@ try await main()
 </dl>
 </details>
 
-## Tracking SharingSettings
-<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">byOrderV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TrackingSharingSettingsRes]</code></summary>
+## Tracking Sharing
+<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">getSettingsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TrackingSharingSettingsRes]</code></summary>
 <dl>
 <dd>
 
@@ -16930,7 +17617,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sharingSettings.byOrderV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.tracking.sharing.getSettingsV1(orderIdOrShortId: "order_id_or_short_id")
 }
 
 try await main()
@@ -16968,8 +17655,7 @@ try await main()
 </dl>
 </details>
 
-## Tracking TaskGroupByDriverSharing
-<details><summary><code>client.tracking.taskGroupByDriverSharing.<a href="/Sources/Resources/Tracking/TaskGroupByDriverSharing/TaskGroupByDriverSharingClient.swift">postSharingSettingsV1</a>(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> TaskGroupByDriverSharingSettings1</code></summary>
+<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">taskGroupByDriverSharingSettingsV1</a>(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> TaskGroupByDriverSharingSettings1</code></summary>
 <dl>
 <dd>
 
@@ -17002,7 +17688,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.taskGroupByDriverSharing.postSharingSettingsV1(request: .init(
+    _ = try await client.tracking.sharing.taskGroupByDriverSharingSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         driverId: "driver_id",
         public: true
@@ -17044,8 +17730,7 @@ try await main()
 </dl>
 </details>
 
-## Tracking CargoByDriverSharing
-<details><summary><code>client.tracking.cargoByDriverSharing.<a href="/Sources/Resources/Tracking/CargoByDriverSharing/CargoByDriverSharingClient.swift">postSharingSettingsV1</a>(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDriverSharingSettings1</code></summary>
+<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">cargoByDriverSettingsV1</a>(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDriverSharingSettings1</code></summary>
 <dl>
 <dd>
 
@@ -17078,7 +17763,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDriverSharing.postSharingSettingsV1(request: .init(
+    _ = try await client.tracking.sharing.cargoByDriverSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         cargoId: "cargo_id",
         driverId: "driver_id",
@@ -17121,8 +17806,7 @@ try await main()
 </dl>
 </details>
 
-## Tracking CargoByDeviceSharing
-<details><summary><code>client.tracking.cargoByDeviceSharing.<a href="/Sources/Resources/Tracking/CargoByDeviceSharing/CargoByDeviceSharingClient.swift">postSharingSettingsV1</a>(request: Requests.CargoByDeviceSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDeviceSharingSettings1</code></summary>
+<details><summary><code>client.tracking.sharing.<a href="/Sources/Resources/Tracking/Sharing/SharingClient.swift">cargoByDeviceSettingsV1</a>(request: Requests.CargoByDeviceSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> CargoByDeviceSharingSettings1</code></summary>
 <dl>
 <dd>
 
@@ -17155,7 +17839,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.cargoByDeviceSharing.postSharingSettingsV1(request: .init(
+    _ = try await client.tracking.sharing.cargoByDeviceSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         cargoId: "cargo_id",
         deviceId: "device_id",
@@ -17179,696 +17863,6 @@ try await main()
 <dd>
 
 **request:** `Requests.CargoByDeviceSharingSettingsUpdateReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Tracking SessionByDeviceTimeseries
-<details><summary><code>client.tracking.sessionByDeviceTimeseries.<a href="/Sources/Resources/Tracking/SessionByDeviceTimeseries/SessionByDeviceTimeseriesClient.swift">lastSeenV1</a>(sessionId: String, requestOptions: RequestOptions?) -> SessionByDeviceDataPoint1?</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessionByDeviceTimeseries.lastSeenV1(sessionId: "session_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessionByDeviceTimeseries.<a href="/Sources/Resources/Tracking/SessionByDeviceTimeseries/SessionByDeviceTimeseriesClient.swift">dataPointsV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [SessionByDeviceDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[SessionByDeviceDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessionByDeviceTimeseries.dataPointsV1(
-        sessionId: "session_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessionByDeviceTimeseries.<a href="/Sources/Resources/Tracking/SessionByDeviceTimeseries/SessionByDeviceTimeseriesClient.swift">outlierV1</a>(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions?) -> SessionByDeviceMarkOutliersResponse1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | (SessionByDeviceMarkOutliersRequest1) -> (SessionByDeviceMarkOutliersResponse1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessionByDeviceTimeseries.outlierV1(request: .init(
-        trackingSessionByDeviceDataPointIds: [
-            "tracking_session_by_device_data_point_ids"
-        ],
-        outlier: true
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.SessionByDeviceMarkOutliersRequest1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessionByDeviceTimeseries.<a href="/Sources/Resources/Tracking/SessionByDeviceTimeseries/SessionByDeviceTimeseriesClient.swift">lastSeenPublicV1</a>(sessionId: String, requestOptions: RequestOptions?) -> SessionByDeviceDataPoint1?</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the most recent data point for a public session, excluding outliers. No authentication required if session has public visibility enabled. | () -> (SessionByDeviceDataPoint1 | None)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessionByDeviceTimeseries.lastSeenPublicV1(sessionId: "session_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessionByDeviceTimeseries.<a href="/Sources/Resources/Tracking/SessionByDeviceTimeseries/SessionByDeviceTimeseriesClient.swift">dataPointsPublicV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [SessionByDeviceDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[SessionByDeviceDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessionByDeviceTimeseries.dataPointsPublicV1(
-        sessionId: "session_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Tracking TaskGroupByDriverTimeseries
-<details><summary><code>client.tracking.taskGroupByDriverTimeseries.<a href="/Sources/Resources/Tracking/TaskGroupByDriverTimeseries/TaskGroupByDriverTimeseriesClient.swift">lastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPoint1?</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | () -> (TaskGroupByDriverDataPoint1 | None)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.taskGroupByDriverTimeseries.lastSeenV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.taskGroupByDriverTimeseries.<a href="/Sources/Resources/Tracking/TaskGroupByDriverTimeseries/TaskGroupByDriverTimeseriesClient.swift">dataPointsV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [TaskGroupByDriverDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns up to the specified number of data points for a task group, intelligently sampled across the time range. Excludes outliers. | () -> (list[TaskGroupByDriverDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.taskGroupByDriverTimeseries.dataPointsV1(
-        taskGroupId: "task_group_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.taskGroupByDriverTimeseries.<a href="/Sources/Resources/Tracking/TaskGroupByDriverTimeseries/TaskGroupByDriverTimeseriesClient.swift">lastSeenPublicV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPoint1?</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the most recent driver location data point for a public task group. No authentication required if task group has public visibility enabled via sharing settings. | () -> (TaskGroupByDriverDataPoint1 | None)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.taskGroupByDriverTimeseries.lastSeenPublicV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.taskGroupByDriverTimeseries.<a href="/Sources/Resources/Tracking/TaskGroupByDriverTimeseries/TaskGroupByDriverTimeseriesClient.swift">dataPointsPublicV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [TaskGroupByDriverDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns up to the specified number of data points for a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if task group has public visibility enabled via sharing settings. | () -> (list[TaskGroupByDriverDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.taskGroupByDriverTimeseries.dataPointsPublicV1(
-        taskGroupId: "task_group_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
     
 </dd>
 </dl>

@@ -7,7 +7,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all driver rate sheets for the caller's courier organization.
+    /// Lists all driver rate sheets for the caller's courier organization. | () -> (list[CourierPayDriverRateSheet1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
@@ -19,7 +19,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Retrieves all rate sheets assigned to a specific driver.
+    /// Retrieves all rate sheets assigned to a specific driver. | () -> (list[CourierPayDriverRateSheet1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> [CourierPayDriverRateSheet1] {
@@ -31,7 +31,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Creates a new driver rate sheet for calculating courier payments.
+    /// Creates a new driver rate sheet for calculating courier payments. | (CourierPayDriverRateSheetClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.CourierPayDriverRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -44,7 +44,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Retrieves a single rate sheet by its ID.
+    /// Retrieves a single rate sheet by its ID. | () -> (CourierPayDriverRateSheet1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(id: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {
@@ -56,7 +56,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Deletes a driver rate sheet owned by the caller's organization.
+    /// Deletes a driver rate sheet owned by the caller's organization. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -68,7 +68,7 @@ public final class CourierPayDriverRateSheetsClient: Sendable {
         )
     }
 
-    /// Updates an existing driver rate sheet owned by the caller's organization.
+    /// Updates an existing driver rate sheet owned by the caller's organization. | (CourierPayDriverRateSheetClientUpdate1) -> (CourierPayDriverRateSheet1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateByIdV1(id: String, request: Requests.CourierPayDriverRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverRateSheet1 {

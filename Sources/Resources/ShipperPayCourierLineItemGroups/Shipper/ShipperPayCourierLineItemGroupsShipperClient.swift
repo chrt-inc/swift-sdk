@@ -7,7 +7,7 @@ public final class ShipperPayCourierLineItemGroupsShipperClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all shipper pay courier line item groups for the caller's shipper organization.
+    /// Lists all shipper pay courier line item groups for the caller's shipper organization. | () -> (list[ShipperPayCourierLineItemGroup1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperPayCourierLineItemGroup1] {
@@ -19,7 +19,7 @@ public final class ShipperPayCourierLineItemGroupsShipperClient: Sendable {
         )
     }
 
-    /// Retrieves a shipper pay courier line item group by its ID for the caller's shipper organization.
+    /// Retrieves a shipper pay courier line item group by its ID for the caller's shipper organization. | () -> (ShipperPayCourierLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {
@@ -31,7 +31,7 @@ public final class ShipperPayCourierLineItemGroupsShipperClient: Sendable {
         )
     }
 
-    /// Retrieves a shipper pay courier line item group by its associated task group ID for the caller's shipper organization.
+    /// Retrieves a shipper pay courier line item group by its associated task group ID for the caller's shipper organization. | () -> (ShipperPayCourierLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byTaskGroupIdV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {

@@ -7,7 +7,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all rate sheets created by the authenticated courier organization.
+    /// Lists all rate sheets created by the authenticated courier organization. | () -> (list[ShipperPayCourierRateSheet1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByCourierOrgIdV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperPayCourierRateSheet1] {
@@ -19,7 +19,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
         )
     }
 
-    /// Creates a new rate sheet for a courier to charge shippers.
+    /// Creates a new rate sheet for a courier to charge shippers. | (ShipperPayCourierRateSheetClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.ShipperPayCourierRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -32,7 +32,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
         )
     }
 
-    /// Retrieves a single rate sheet by its ID (courier access only).
+    /// Retrieves a single rate sheet by its ID (courier access only). | () -> (ShipperPayCourierRateSheet1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {
@@ -44,7 +44,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
         )
     }
 
-    /// Deletes a rate sheet owned by the authenticated courier organization.
+    /// Deletes a rate sheet owned by the authenticated courier organization. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -56,7 +56,7 @@ public final class ShipperPayCourierRateSheetsClient: Sendable {
         )
     }
 
-    /// Updates an existing rate sheet owned by the authenticated courier organization.
+    /// Updates an existing rate sheet owned by the authenticated courier organization. | (ShipperPayCourierRateSheetClientUpdate1) -> (ShipperPayCourierRateSheet1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateByIdV1(id: String, request: Requests.ShipperPayCourierRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierRateSheet1 {

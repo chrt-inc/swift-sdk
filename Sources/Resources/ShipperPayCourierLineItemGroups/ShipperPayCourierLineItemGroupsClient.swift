@@ -15,7 +15,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a shipper pay courier line item group by its ID for the caller's courier organization.
+    /// Retrieves a shipper pay courier line item group by its ID for the caller's courier organization. | () -> (ShipperPayCourierLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {
@@ -27,7 +27,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Deletes a shipper pay courier line item group by its ID if not referenced by any payment.
+    /// Deletes a shipper pay courier line item group by its ID if not referenced by any payment. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -39,7 +39,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Retrieves a shipper pay courier line item group by its associated task group ID for the caller's courier organization.
+    /// Retrieves a shipper pay courier line item group by its associated task group ID for the caller's courier organization. | () -> (ShipperPayCourierLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byTaskGroupIdV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {
@@ -51,7 +51,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Previews calculated line items for a shipper pay courier based on rate sheet and task group without creating the group.
+    /// Previews calculated line items for a shipper pay courier based on rate sheet and task group without creating the group. | (ShipperPayCourierLineItemGroupCreateReq) -> (ShipperPayCourierLineItemGroupServerCreate1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func previewV1(request: ShipperPayCourierLineItemGroupCreateReq, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroupServerCreate1 {
@@ -64,7 +64,7 @@ public final class ShipperPayCourierLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Creates a shipper pay courier line item group by calculating items from rate sheet and task group.
+    /// Creates a shipper pay courier line item group by calculating items from rate sheet and task group. | (ShipperPayCourierLineItemGroupCreateReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: ShipperPayCourierLineItemGroupCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {

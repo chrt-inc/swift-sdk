@@ -7,7 +7,7 @@ public final class PaymentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Generates and sends a Stripe invoice for a shipper statement to a courier organization's Connect account. Applies a 10% application fee.
+    /// Generates and sends a Stripe invoice for a shipper statement to a courier organization's Connect account. Applies a 10% application fee. | (GenerateInvoiceReq) -> (GenerateInvoiceRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func generateInvoiceV1(request: Requests.GenerateInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> GenerateInvoiceRes {
@@ -20,7 +20,7 @@ public final class PaymentsClient: Sendable {
         )
     }
 
-    /// Creates a Stripe checkout session for a subscription with pricing based on the selected plan.
+    /// Creates a Stripe checkout session for a subscription with pricing based on the selected plan. | (CreateCheckoutSessionReq) -> (CreateCheckoutSessionRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createCheckoutSessionV1(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes {
@@ -33,7 +33,7 @@ public final class PaymentsClient: Sendable {
         )
     }
 
-    /// Synchronizes subscription data from Stripe to the authentication service for the current user.
+    /// Synchronizes subscription data from Stripe to the authentication service for the current user. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func syncStripeToClerkV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -45,7 +45,7 @@ public final class PaymentsClient: Sendable {
         )
     }
 
-    /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created.
+    /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateConnectAccountRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createConnectAccountV1(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountRes {
@@ -57,7 +57,7 @@ public final class PaymentsClient: Sendable {
         )
     }
 
-    /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup.
+    /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (CreateConnectAccountLinkRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createConnectAccountLinkV1(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountLinkRes {

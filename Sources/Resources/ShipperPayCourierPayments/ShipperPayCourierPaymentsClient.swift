@@ -7,7 +7,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a shipper pay courier payment by its ID with Stripe invoice sync.
+    /// Retrieves a shipper pay courier payment by its ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(shipperPayCourierPaymentId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierStatement1 {
@@ -19,7 +19,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Deletes a shipper-to-courier payment record if invoice not yet created.
+    /// Deletes a shipper-to-courier payment record if invoice not yet created. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(shipperPayCourierPaymentId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -31,7 +31,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Retrieves a shipper pay courier payment by order ID or short ID with Stripe invoice sync.
+    /// Retrieves a shipper pay courier payment by order ID or short ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByOrderIdOrShortIdV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierStatement1 {
@@ -43,7 +43,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Lists shipper pay courier payments by shipper org ID with status filtering and Stripe sync.
+    /// Lists shipper pay courier payments by shipper org ID with status filtering and Stripe sync. | (ListPaymentsByShipperReq) -> (GetShipperPayCourierPaymentsForShipperRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByShipperOrgIdV1(request: Requests.ListPaymentsByShipperReq, requestOptions: RequestOptions? = nil) async throws -> GetShipperPayCourierPaymentsForShipperRes {
@@ -56,7 +56,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Lists shipper pay courier payments by courier org ID with status filtering and Stripe sync.
+    /// Lists shipper pay courier payments by courier org ID with status filtering and Stripe sync. | (ListPaymentsByCourierReq) -> (GetShipperPayCourierPaymentsForShipperRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByCourierOrgIdV1(request: Requests.ListPaymentsByCourierReq, requestOptions: RequestOptions? = nil) async throws -> GetShipperPayCourierPaymentsForShipperRes {
@@ -69,7 +69,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Creates a shipper-to-courier payment record based on all task groups in an order.
+    /// Creates a shipper-to-courier payment record based on all task groups in an order. | (CreateShipperPayCourierPaymentReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: CreateShipperPayCourierPaymentReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -82,7 +82,7 @@ public final class ShipperPayCourierPaymentsClient: Sendable {
         )
     }
 
-    /// Previews a shipper-to-courier payment showing task groups, line item groups, total amount, and readiness status.
+    /// Previews a shipper-to-courier payment showing task groups, line item groups, total amount, and readiness status. | (CreateShipperPayCourierPaymentReq) -> (PaymentPreviewResponse)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func previewV1(request: CreateShipperPayCourierPaymentReq, requestOptions: RequestOptions? = nil) async throws -> PaymentPreviewResponse {

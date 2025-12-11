@@ -7,7 +7,7 @@ public final class ShipperPayCourierLineItemGroupsRemoveLineItemsClient: Sendabl
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Removes specific line items from a shipper pay courier line item group by their UUID identifiers.
+    /// Removes specific line items from a shipper pay courier line item group by their UUID identifiers. | (ShipperPayCourierLineItemGroupRemoveLineItemsReq) -> (ShipperPayCourierLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(id: String, request: Requests.ShipperPayCourierLineItemGroupRemoveLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> ShipperPayCourierLineItemGroup1 {

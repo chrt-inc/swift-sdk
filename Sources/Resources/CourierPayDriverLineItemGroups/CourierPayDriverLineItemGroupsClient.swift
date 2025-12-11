@@ -11,7 +11,7 @@ public final class CourierPayDriverLineItemGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a courier driver line item group by its ID.
+    /// Retrieves a courier driver line item group by its ID. | () -> (CourierPayDriverLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(id: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverLineItemGroup1 {
@@ -23,7 +23,7 @@ public final class CourierPayDriverLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Retrieves a courier driver line item group by its associated task group ID.
+    /// Retrieves a courier driver line item group by its associated task group ID. | () -> (CourierPayDriverLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byTaskGroupIdV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverLineItemGroup1 {
@@ -35,7 +35,7 @@ public final class CourierPayDriverLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Previews calculated line items for a driver based on a rate sheet and task group. Does not write to the database.
+    /// Previews calculated line items for a driver based on a rate sheet and task group. Does not write to the database. | (CourierPayDriverLineItemGroupCreateReq) -> (CourierPayDriverLineItemGroupServerCreate1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func previewV1(driverId: String, request: CourierPayDriverLineItemGroupCreateReq, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverLineItemGroupServerCreate1 {
@@ -48,7 +48,7 @@ public final class CourierPayDriverLineItemGroupsClient: Sendable {
         )
     }
 
-    /// Creates a courier pay driver line item group by calculating items from a rate sheet and task group.
+    /// Creates a courier pay driver line item group by calculating items from a rate sheet and task group. | (CourierPayDriverLineItemGroupCreateReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: CourierPayDriverLineItemGroupCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {

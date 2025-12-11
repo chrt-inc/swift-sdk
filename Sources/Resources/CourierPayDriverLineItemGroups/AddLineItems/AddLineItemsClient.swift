@@ -7,7 +7,7 @@ public final class AddLineItemsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds additional line items to an existing courier driver line item group.
+    /// Adds additional line items to an existing courier driver line item group. | (CourierPayDriverLineItemGroupAddLineItemsReq) -> (CourierPayDriverLineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(id: String, request: Requests.CourierPayDriverLineItemGroupAddLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> CourierPayDriverLineItemGroup1 {

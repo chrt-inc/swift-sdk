@@ -33,7 +33,7 @@ public final class OrdersExpandedClient: Sendable {
         )
     }
 
-    /// Lists expanded orders for forwarder operators with filtering, sorting, and pagination. | authz_personas=[forwarder_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
+    /// Lists expanded orders for forwarder operators with filtering, sorting, and pagination. | authz: allowed_org_types=[forwarder], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listForForwarderOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: ExpandedListForForwarderOperatorsV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: OrderStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelledAtTimestampLte: Date? = nil, filterOrderCancelledAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListRes {
@@ -65,7 +65,7 @@ public final class OrdersExpandedClient: Sendable {
         )
     }
 
-    /// Lists expanded orders for shipper operators with filtering, sorting, and pagination. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
+    /// Lists expanded orders for shipper operators with filtering, sorting, and pagination. | authz: allowed_org_types=[shipper], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: ExpandedListForShipperOperatorsV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: OrderStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelledAtTimestampLte: Date? = nil, filterOrderCancelledAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListRes {
