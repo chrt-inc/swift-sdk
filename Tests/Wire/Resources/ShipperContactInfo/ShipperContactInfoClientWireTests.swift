@@ -140,10 +140,6 @@ import Chrt
                         ],
                         "type": "GeometryCollection"
                       },
-                      "properties": {
-                        "address": null,
-                        "name": null
-                      },
                       "id": 1
                     },
                     "contact_first_name": "contact_first_name",
@@ -192,10 +188,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -243,10 +235,6 @@ import Chrt
                         ],
                         "type": "GeometryCollection"
                       },
-                      "properties": {
-                        "address": null,
-                        "name": null
-                      },
                       "id": 1
                     },
                     "contact_first_name": "contact_first_name",
@@ -295,10 +283,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -349,10 +333,6 @@ import Chrt
                         ],
                         "type": "GeometryCollection"
                       },
-                      "properties": {
-                        "address": null,
-                        "name": null
-                      },
                       "id": 1
                     },
                     "contact_first_name": "contact_first_name",
@@ -401,10 +381,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -455,10 +431,6 @@ import Chrt
                         ],
                         "type": "GeometryCollection"
                       },
-                      "properties": {
-                        "address": null,
-                        "name": null
-                      },
                       "id": 1
                     },
                     "contact_first_name": "contact_first_name",
@@ -507,10 +479,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))

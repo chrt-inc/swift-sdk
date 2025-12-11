@@ -51,46 +51,24 @@ import Chrt
                     {
                       "task": {
                         "schema_version": 1,
-                        "location": null,
-                        "order_placer_comments": null,
-                        "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
                         "task_group_id": "task_group_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "completed_by_org_id": null,
-                        "completed_by_user_id": null,
-                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
                       "cargos": [
                         {
                           "schema_version": 1,
                           "cargo_type": "spare_parts",
-                          "quantity": null,
-                          "weight_pounds": null,
-                          "length_inches": null,
-                          "width_inches": null,
-                          "height_inches": null,
-                          "turnable": null,
-                          "stackable": null,
-                          "description": null,
                           "_id": "_id",
                           "order_id": "order_id",
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "in_transit_at_timestamp": null,
-                          "delivered_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "task_artifacts": [
@@ -104,34 +82,12 @@ import Chrt
                           "task_id": "task_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "requested_by_org_id": null,
-                          "requested_by_user_id": null,
-                          "completed_by_org_id": null,
-                          "completed_by_user_id": null,
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "completed_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "shipper_contacts": [
                         {
                           "schema_version": 1,
-                          "shipper_org_id": null,
-                          "shipper_user_id": null,
-                          "off_chrt_shipper_org_id": null,
-                          "company_name": null,
-                          "industry": null,
-                          "street_address": null,
-                          "contact_first_name": null,
-                          "contact_last_name": null,
-                          "phone_number_primary": null,
-                          "phone_number_secondary": null,
-                          "email_address_primary": null,
-                          "email_address_secondary": null,
-                          "job_title": null,
-                          "notes": null,
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
                           "_id": "_id"
@@ -171,10 +127,6 @@ import Chrt
                           }
                         ],
                         "type": "GeometryCollection"
-                      },
-                      "properties": {
-                        "address": null,
-                        "name": null
                       },
                       "id": 1
                     },
@@ -238,46 +190,24 @@ import Chrt
                 TaskExpanded(
                     task: Task1(
                         schemaVersion: 1,
-                        location: Optional(nil),
-                        orderPlacerComments: Optional(nil),
-                        flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         taskGroupId: "task_group_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        completedByOrgId: Optional(nil),
-                        completedByUserId: Optional(nil),
-                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil)
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
                     cargos: Optional([
                         Cargo1(
                             schemaVersion: 1,
                             cargoType: .spareParts,
-                            quantity: Optional(nil),
-                            weightPounds: Optional(nil),
-                            lengthInches: Optional(nil),
-                            widthInches: Optional(nil),
-                            heightInches: Optional(nil),
-                            turnable: Optional(nil),
-                            stackable: Optional(nil),
-                            description: Optional(nil),
                             id: "_id",
                             orderId: "order_id",
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            inTransitAtTimestamp: Optional(nil),
-                            deliveredAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     taskArtifacts: Optional([
@@ -291,34 +221,12 @@ import Chrt
                             taskId: "task_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            requestedByOrgId: Optional(nil),
-                            requestedByUserId: Optional(nil),
-                            completedByOrgId: Optional(nil),
-                            completedByUserId: Optional(nil),
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            completedAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     shipperContacts: Optional([
                         ShipperContact1(
                             schemaVersion: 1,
-                            shipperOrgId: Optional(nil),
-                            shipperUserId: Optional(nil),
-                            offChrtShipperOrgId: Optional(nil),
-                            companyName: Optional(nil),
-                            industry: Optional(nil),
-                            streetAddress: Optional(nil),
-                            contactFirstName: Optional(nil),
-                            contactLastName: Optional(nil),
-                            phoneNumberPrimary: Optional(nil),
-                            phoneNumberSecondary: Optional(nil),
-                            emailAddressPrimary: Optional(nil),
-                            emailAddressSecondary: Optional(nil),
-                            jobTitle: Optional(nil),
-                            notes: Optional(nil),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
                             id: "_id"
@@ -363,10 +271,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -438,46 +342,24 @@ import Chrt
                     {
                       "task": {
                         "schema_version": 1,
-                        "location": null,
-                        "order_placer_comments": null,
-                        "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
                         "task_group_id": "task_group_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "completed_by_org_id": null,
-                        "completed_by_user_id": null,
-                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
                       "cargos": [
                         {
                           "schema_version": 1,
                           "cargo_type": "spare_parts",
-                          "quantity": null,
-                          "weight_pounds": null,
-                          "length_inches": null,
-                          "width_inches": null,
-                          "height_inches": null,
-                          "turnable": null,
-                          "stackable": null,
-                          "description": null,
                           "_id": "_id",
                           "order_id": "order_id",
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "in_transit_at_timestamp": null,
-                          "delivered_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "task_artifacts": [
@@ -491,34 +373,12 @@ import Chrt
                           "task_id": "task_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "requested_by_org_id": null,
-                          "requested_by_user_id": null,
-                          "completed_by_org_id": null,
-                          "completed_by_user_id": null,
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "completed_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "shipper_contacts": [
                         {
                           "schema_version": 1,
-                          "shipper_org_id": null,
-                          "shipper_user_id": null,
-                          "off_chrt_shipper_org_id": null,
-                          "company_name": null,
-                          "industry": null,
-                          "street_address": null,
-                          "contact_first_name": null,
-                          "contact_last_name": null,
-                          "phone_number_primary": null,
-                          "phone_number_secondary": null,
-                          "email_address_primary": null,
-                          "email_address_secondary": null,
-                          "job_title": null,
-                          "notes": null,
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
                           "_id": "_id"
@@ -558,10 +418,6 @@ import Chrt
                           }
                         ],
                         "type": "GeometryCollection"
-                      },
-                      "properties": {
-                        "address": null,
-                        "name": null
                       },
                       "id": 1
                     },
@@ -625,46 +481,24 @@ import Chrt
                 TaskExpanded(
                     task: Task1(
                         schemaVersion: 1,
-                        location: Optional(nil),
-                        orderPlacerComments: Optional(nil),
-                        flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         taskGroupId: "task_group_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        completedByOrgId: Optional(nil),
-                        completedByUserId: Optional(nil),
-                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil)
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
                     cargos: Optional([
                         Cargo1(
                             schemaVersion: 1,
                             cargoType: .spareParts,
-                            quantity: Optional(nil),
-                            weightPounds: Optional(nil),
-                            lengthInches: Optional(nil),
-                            widthInches: Optional(nil),
-                            heightInches: Optional(nil),
-                            turnable: Optional(nil),
-                            stackable: Optional(nil),
-                            description: Optional(nil),
                             id: "_id",
                             orderId: "order_id",
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            inTransitAtTimestamp: Optional(nil),
-                            deliveredAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     taskArtifacts: Optional([
@@ -678,34 +512,12 @@ import Chrt
                             taskId: "task_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            requestedByOrgId: Optional(nil),
-                            requestedByUserId: Optional(nil),
-                            completedByOrgId: Optional(nil),
-                            completedByUserId: Optional(nil),
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            completedAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     shipperContacts: Optional([
                         ShipperContact1(
                             schemaVersion: 1,
-                            shipperOrgId: Optional(nil),
-                            shipperUserId: Optional(nil),
-                            offChrtShipperOrgId: Optional(nil),
-                            companyName: Optional(nil),
-                            industry: Optional(nil),
-                            streetAddress: Optional(nil),
-                            contactFirstName: Optional(nil),
-                            contactLastName: Optional(nil),
-                            phoneNumberPrimary: Optional(nil),
-                            phoneNumberSecondary: Optional(nil),
-                            emailAddressPrimary: Optional(nil),
-                            emailAddressSecondary: Optional(nil),
-                            jobTitle: Optional(nil),
-                            notes: Optional(nil),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
                             id: "_id"
@@ -750,10 +562,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -825,46 +633,24 @@ import Chrt
                     {
                       "task": {
                         "schema_version": 1,
-                        "location": null,
-                        "order_placer_comments": null,
-                        "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
                         "task_group_id": "task_group_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "completed_by_org_id": null,
-                        "completed_by_user_id": null,
-                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
                       "cargos": [
                         {
                           "schema_version": 1,
                           "cargo_type": "spare_parts",
-                          "quantity": null,
-                          "weight_pounds": null,
-                          "length_inches": null,
-                          "width_inches": null,
-                          "height_inches": null,
-                          "turnable": null,
-                          "stackable": null,
-                          "description": null,
                           "_id": "_id",
                           "order_id": "order_id",
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "in_transit_at_timestamp": null,
-                          "delivered_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "task_artifacts": [
@@ -878,34 +664,12 @@ import Chrt
                           "task_id": "task_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "requested_by_org_id": null,
-                          "requested_by_user_id": null,
-                          "completed_by_org_id": null,
-                          "completed_by_user_id": null,
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "completed_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "shipper_contacts": [
                         {
                           "schema_version": 1,
-                          "shipper_org_id": null,
-                          "shipper_user_id": null,
-                          "off_chrt_shipper_org_id": null,
-                          "company_name": null,
-                          "industry": null,
-                          "street_address": null,
-                          "contact_first_name": null,
-                          "contact_last_name": null,
-                          "phone_number_primary": null,
-                          "phone_number_secondary": null,
-                          "email_address_primary": null,
-                          "email_address_secondary": null,
-                          "job_title": null,
-                          "notes": null,
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
                           "_id": "_id"
@@ -945,10 +709,6 @@ import Chrt
                           }
                         ],
                         "type": "GeometryCollection"
-                      },
-                      "properties": {
-                        "address": null,
-                        "name": null
                       },
                       "id": 1
                     },
@@ -1012,46 +772,24 @@ import Chrt
                 TaskExpanded(
                     task: Task1(
                         schemaVersion: 1,
-                        location: Optional(nil),
-                        orderPlacerComments: Optional(nil),
-                        flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         taskGroupId: "task_group_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        completedByOrgId: Optional(nil),
-                        completedByUserId: Optional(nil),
-                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil)
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
                     cargos: Optional([
                         Cargo1(
                             schemaVersion: 1,
                             cargoType: .spareParts,
-                            quantity: Optional(nil),
-                            weightPounds: Optional(nil),
-                            lengthInches: Optional(nil),
-                            widthInches: Optional(nil),
-                            heightInches: Optional(nil),
-                            turnable: Optional(nil),
-                            stackable: Optional(nil),
-                            description: Optional(nil),
                             id: "_id",
                             orderId: "order_id",
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            inTransitAtTimestamp: Optional(nil),
-                            deliveredAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     taskArtifacts: Optional([
@@ -1065,34 +803,12 @@ import Chrt
                             taskId: "task_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            requestedByOrgId: Optional(nil),
-                            requestedByUserId: Optional(nil),
-                            completedByOrgId: Optional(nil),
-                            completedByUserId: Optional(nil),
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            completedAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     shipperContacts: Optional([
                         ShipperContact1(
                             schemaVersion: 1,
-                            shipperOrgId: Optional(nil),
-                            shipperUserId: Optional(nil),
-                            offChrtShipperOrgId: Optional(nil),
-                            companyName: Optional(nil),
-                            industry: Optional(nil),
-                            streetAddress: Optional(nil),
-                            contactFirstName: Optional(nil),
-                            contactLastName: Optional(nil),
-                            phoneNumberPrimary: Optional(nil),
-                            phoneNumberSecondary: Optional(nil),
-                            emailAddressPrimary: Optional(nil),
-                            emailAddressSecondary: Optional(nil),
-                            jobTitle: Optional(nil),
-                            notes: Optional(nil),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
                             id: "_id"
@@ -1137,10 +853,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -1212,46 +924,24 @@ import Chrt
                     {
                       "task": {
                         "schema_version": 1,
-                        "location": null,
-                        "order_placer_comments": null,
-                        "flight_number": null,
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
                         "task_group_id": "task_group_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "completed_by_org_id": null,
-                        "completed_by_user_id": null,
-                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
                       "cargos": [
                         {
                           "schema_version": 1,
                           "cargo_type": "spare_parts",
-                          "quantity": null,
-                          "weight_pounds": null,
-                          "length_inches": null,
-                          "width_inches": null,
-                          "height_inches": null,
-                          "turnable": null,
-                          "stackable": null,
-                          "description": null,
                           "_id": "_id",
                           "order_id": "order_id",
                           "order_short_id": "order_short_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "in_transit_at_timestamp": null,
-                          "delivered_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "task_artifacts": [
@@ -1265,34 +955,12 @@ import Chrt
                           "task_id": "task_id",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "requested_by_org_id": null,
-                          "requested_by_user_id": null,
-                          "completed_by_org_id": null,
-                          "completed_by_user_id": null,
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                          "staged_at_timestamp": null,
-                          "completed_at_timestamp": null,
-                          "skipped_at_timestamp": null,
-                          "exception_at_timestamp": null
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
                       "shipper_contacts": [
                         {
                           "schema_version": 1,
-                          "shipper_org_id": null,
-                          "shipper_user_id": null,
-                          "off_chrt_shipper_org_id": null,
-                          "company_name": null,
-                          "industry": null,
-                          "street_address": null,
-                          "contact_first_name": null,
-                          "contact_last_name": null,
-                          "phone_number_primary": null,
-                          "phone_number_secondary": null,
-                          "email_address_primary": null,
-                          "email_address_secondary": null,
-                          "job_title": null,
-                          "notes": null,
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
                           "_id": "_id"
@@ -1332,10 +1000,6 @@ import Chrt
                           }
                         ],
                         "type": "GeometryCollection"
-                      },
-                      "properties": {
-                        "address": null,
-                        "name": null
                       },
                       "id": 1
                     },
@@ -1399,46 +1063,24 @@ import Chrt
                 TaskExpanded(
                     task: Task1(
                         schemaVersion: 1,
-                        location: Optional(nil),
-                        orderPlacerComments: Optional(nil),
-                        flightNumber: Optional(nil),
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         taskGroupId: "task_group_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        completedByOrgId: Optional(nil),
-                        completedByUserId: Optional(nil),
-                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil)
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
                     cargos: Optional([
                         Cargo1(
                             schemaVersion: 1,
                             cargoType: .spareParts,
-                            quantity: Optional(nil),
-                            weightPounds: Optional(nil),
-                            lengthInches: Optional(nil),
-                            widthInches: Optional(nil),
-                            heightInches: Optional(nil),
-                            turnable: Optional(nil),
-                            stackable: Optional(nil),
-                            description: Optional(nil),
                             id: "_id",
                             orderId: "order_id",
                             orderShortId: "order_short_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            inTransitAtTimestamp: Optional(nil),
-                            deliveredAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     taskArtifacts: Optional([
@@ -1452,34 +1094,12 @@ import Chrt
                             taskId: "task_id",
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            requestedByOrgId: Optional(nil),
-                            requestedByUserId: Optional(nil),
-                            completedByOrgId: Optional(nil),
-                            completedByUserId: Optional(nil),
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                            stagedAtTimestamp: Optional(nil),
-                            completedAtTimestamp: Optional(nil),
-                            skippedAtTimestamp: Optional(nil),
-                            exceptionAtTimestamp: Optional(nil)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
                     shipperContacts: Optional([
                         ShipperContact1(
                             schemaVersion: 1,
-                            shipperOrgId: Optional(nil),
-                            shipperUserId: Optional(nil),
-                            offChrtShipperOrgId: Optional(nil),
-                            companyName: Optional(nil),
-                            industry: Optional(nil),
-                            streetAddress: Optional(nil),
-                            contactFirstName: Optional(nil),
-                            contactLastName: Optional(nil),
-                            phoneNumberPrimary: Optional(nil),
-                            phoneNumberSecondary: Optional(nil),
-                            emailAddressPrimary: Optional(nil),
-                            emailAddressSecondary: Optional(nil),
-                            jobTitle: Optional(nil),
-                            notes: Optional(nil),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
                             id: "_id"
@@ -1524,10 +1144,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
@@ -1566,57 +1182,28 @@ import Chrt
                         "order_short_id": "order_short_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "courier_org_id": null,
-                        "driver_id": null,
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "in_progress_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "task_group_type": "chrt_ground_courier",
-                        "task_group_mileage": null,
-                        "flight_number": null
+                        "task_group_type": "chrt_ground_courier"
                       },
                       "tasks_expanded": [
                         {
                           "task": {
                             "schema_version": 1,
-                            "location": null,
-                            "order_placer_comments": null,
-                            "flight_number": null,
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
                             "task_group_id": "task_group_id",
                             "created_by_org_id": "created_by_org_id",
                             "created_by_user_id": "created_by_user_id",
-                            "completed_by_org_id": null,
-                            "completed_by_user_id": null,
-                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                            "staged_at_timestamp": null,
-                            "completed_at_timestamp": null,
-                            "skipped_at_timestamp": null,
-                            "exception_at_timestamp": null
-                          },
-                          "cargos": null,
-                          "task_artifacts": null,
-                          "shipper_contacts": null
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
+                          }
                         }
                       ],
                       "driver": {
                         "schema_version": 1,
-                        "email_address_primary": null,
-                        "email_address_secondary": null,
-                        "phone_number_primary": null,
-                        "phone_number_secondary": null,
-                        "first_name": null,
-                        "last_name": null,
                         "_id": "_id",
                         "org_id": "org_id",
-                        "user_id": "user_id",
-                        "last_seen_at_location": null,
-                        "last_seen_at_timestamp": null
+                        "user_id": "user_id"
                       },
                       "courier_org_company_name": "courier_org_company_name",
                       "courier_org_handle": "courier_org_handle",
@@ -1646,57 +1233,28 @@ import Chrt
                         orderShortId: "order_short_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        courierOrgId: Optional(nil),
-                        driverId: Optional(nil),
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        inProgressAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        taskGroupType: .chrtGroundCourier,
-                        taskGroupMileage: Optional(nil),
-                        flightNumber: Optional(nil)
+                        taskGroupType: .chrtGroundCourier
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
                             task: Task1(
                                 schemaVersion: 1,
-                                location: Optional(nil),
-                                orderPlacerComments: Optional(nil),
-                                flightNumber: Optional(nil),
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 taskGroupId: "task_group_id",
                                 createdByOrgId: "created_by_org_id",
                                 createdByUserId: "created_by_user_id",
-                                completedByOrgId: Optional(nil),
-                                completedByUserId: Optional(nil),
-                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                                stagedAtTimestamp: Optional(nil),
-                                completedAtTimestamp: Optional(nil),
-                                skippedAtTimestamp: Optional(nil),
-                                exceptionAtTimestamp: Optional(nil)
-                            ),
-                            cargos: Optional(nil),
-                            taskArtifacts: Optional(nil),
-                            shipperContacts: Optional(nil)
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                            )
                         )
                     ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
-                        emailAddressPrimary: Optional(nil),
-                        emailAddressSecondary: Optional(nil),
-                        phoneNumberPrimary: Optional(nil),
-                        phoneNumberSecondary: Optional(nil),
-                        firstName: Optional(nil),
-                        lastName: Optional(nil),
                         id: "_id",
                         orgId: "org_id",
-                        userId: "user_id",
-                        lastSeenAtLocation: Optional(nil),
-                        lastSeenAtTimestamp: Optional(nil)
+                        userId: "user_id"
                     )),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
                     courierOrgHandle: Optional("courier_org_handle"),
@@ -1748,57 +1306,28 @@ import Chrt
                         "order_short_id": "order_short_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "courier_org_id": null,
-                        "driver_id": null,
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "in_progress_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "task_group_type": "chrt_ground_courier",
-                        "task_group_mileage": null,
-                        "flight_number": null
+                        "task_group_type": "chrt_ground_courier"
                       },
                       "tasks_expanded": [
                         {
                           "task": {
                             "schema_version": 1,
-                            "location": null,
-                            "order_placer_comments": null,
-                            "flight_number": null,
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
                             "task_group_id": "task_group_id",
                             "created_by_org_id": "created_by_org_id",
                             "created_by_user_id": "created_by_user_id",
-                            "completed_by_org_id": null,
-                            "completed_by_user_id": null,
-                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                            "staged_at_timestamp": null,
-                            "completed_at_timestamp": null,
-                            "skipped_at_timestamp": null,
-                            "exception_at_timestamp": null
-                          },
-                          "cargos": null,
-                          "task_artifacts": null,
-                          "shipper_contacts": null
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
+                          }
                         }
                       ],
                       "driver": {
                         "schema_version": 1,
-                        "email_address_primary": null,
-                        "email_address_secondary": null,
-                        "phone_number_primary": null,
-                        "phone_number_secondary": null,
-                        "first_name": null,
-                        "last_name": null,
                         "_id": "_id",
                         "org_id": "org_id",
-                        "user_id": "user_id",
-                        "last_seen_at_location": null,
-                        "last_seen_at_timestamp": null
+                        "user_id": "user_id"
                       },
                       "courier_org_company_name": "courier_org_company_name",
                       "courier_org_handle": "courier_org_handle",
@@ -1828,57 +1357,28 @@ import Chrt
                         orderShortId: "order_short_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        courierOrgId: Optional(nil),
-                        driverId: Optional(nil),
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        inProgressAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        taskGroupType: .chrtGroundCourier,
-                        taskGroupMileage: Optional(nil),
-                        flightNumber: Optional(nil)
+                        taskGroupType: .chrtGroundCourier
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
                             task: Task1(
                                 schemaVersion: 1,
-                                location: Optional(nil),
-                                orderPlacerComments: Optional(nil),
-                                flightNumber: Optional(nil),
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 taskGroupId: "task_group_id",
                                 createdByOrgId: "created_by_org_id",
                                 createdByUserId: "created_by_user_id",
-                                completedByOrgId: Optional(nil),
-                                completedByUserId: Optional(nil),
-                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                                stagedAtTimestamp: Optional(nil),
-                                completedAtTimestamp: Optional(nil),
-                                skippedAtTimestamp: Optional(nil),
-                                exceptionAtTimestamp: Optional(nil)
-                            ),
-                            cargos: Optional(nil),
-                            taskArtifacts: Optional(nil),
-                            shipperContacts: Optional(nil)
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                            )
                         )
                     ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
-                        emailAddressPrimary: Optional(nil),
-                        emailAddressSecondary: Optional(nil),
-                        phoneNumberPrimary: Optional(nil),
-                        phoneNumberSecondary: Optional(nil),
-                        firstName: Optional(nil),
-                        lastName: Optional(nil),
                         id: "_id",
                         orgId: "org_id",
-                        userId: "user_id",
-                        lastSeenAtLocation: Optional(nil),
-                        lastSeenAtTimestamp: Optional(nil)
+                        userId: "user_id"
                     )),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
                     courierOrgHandle: Optional("courier_org_handle"),

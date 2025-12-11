@@ -128,57 +128,28 @@ import Chrt
                         "order_short_id": "order_short_id",
                         "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
-                        "courier_org_id": null,
-                        "driver_id": null,
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "staged_at_timestamp": null,
-                        "in_progress_at_timestamp": null,
-                        "completed_at_timestamp": null,
-                        "skipped_at_timestamp": null,
-                        "exception_at_timestamp": null,
-                        "task_group_type": "chrt_ground_courier",
-                        "task_group_mileage": null,
-                        "flight_number": null
+                        "task_group_type": "chrt_ground_courier"
                       },
                       "tasks_expanded": [
                         {
                           "task": {
                             "schema_version": 1,
-                            "location": null,
-                            "order_placer_comments": null,
-                            "flight_number": null,
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
                             "task_group_id": "task_group_id",
                             "created_by_org_id": "created_by_org_id",
                             "created_by_user_id": "created_by_user_id",
-                            "completed_by_org_id": null,
-                            "completed_by_user_id": null,
-                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                            "staged_at_timestamp": null,
-                            "completed_at_timestamp": null,
-                            "skipped_at_timestamp": null,
-                            "exception_at_timestamp": null
-                          },
-                          "cargos": null,
-                          "task_artifacts": null,
-                          "shipper_contacts": null
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
+                          }
                         }
                       ],
                       "driver": {
                         "schema_version": 1,
-                        "email_address_primary": null,
-                        "email_address_secondary": null,
-                        "phone_number_primary": null,
-                        "phone_number_secondary": null,
-                        "first_name": null,
-                        "last_name": null,
                         "_id": "_id",
                         "org_id": "org_id",
-                        "user_id": "user_id",
-                        "last_seen_at_location": null,
-                        "last_seen_at_timestamp": null
+                        "user_id": "user_id"
                       },
                       "courier_org_company_name": "courier_org_company_name",
                       "courier_org_handle": "courier_org_handle",
@@ -262,57 +233,28 @@ import Chrt
                         orderShortId: "order_short_id",
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
-                        courierOrgId: Optional(nil),
-                        driverId: Optional(nil),
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        stagedAtTimestamp: Optional(nil),
-                        inProgressAtTimestamp: Optional(nil),
-                        completedAtTimestamp: Optional(nil),
-                        skippedAtTimestamp: Optional(nil),
-                        exceptionAtTimestamp: Optional(nil),
-                        taskGroupType: .chrtGroundCourier,
-                        taskGroupMileage: Optional(nil),
-                        flightNumber: Optional(nil)
+                        taskGroupType: .chrtGroundCourier
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
                             task: Task1(
                                 schemaVersion: 1,
-                                location: Optional(nil),
-                                orderPlacerComments: Optional(nil),
-                                flightNumber: Optional(nil),
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 taskGroupId: "task_group_id",
                                 createdByOrgId: "created_by_org_id",
                                 createdByUserId: "created_by_user_id",
-                                completedByOrgId: Optional(nil),
-                                completedByUserId: Optional(nil),
-                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                                stagedAtTimestamp: Optional(nil),
-                                completedAtTimestamp: Optional(nil),
-                                skippedAtTimestamp: Optional(nil),
-                                exceptionAtTimestamp: Optional(nil)
-                            ),
-                            cargos: Optional(nil),
-                            taskArtifacts: Optional(nil),
-                            shipperContacts: Optional(nil)
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                            )
                         )
                     ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
-                        emailAddressPrimary: Optional(nil),
-                        emailAddressSecondary: Optional(nil),
-                        phoneNumberPrimary: Optional(nil),
-                        phoneNumberSecondary: Optional(nil),
-                        firstName: Optional(nil),
-                        lastName: Optional(nil),
                         id: "_id",
                         orgId: "org_id",
-                        userId: "user_id",
-                        lastSeenAtLocation: Optional(nil),
-                        lastSeenAtTimestamp: Optional(nil)
+                        userId: "user_id"
                     )),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
                     courierOrgHandle: Optional("courier_org_handle"),

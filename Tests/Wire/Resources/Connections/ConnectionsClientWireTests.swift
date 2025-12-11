@@ -25,8 +25,7 @@ import Chrt
                             }
                           ],
                           "type": "GeometryCollection"
-                        },
-                        "properties": null
+                        }
                       },
                       "contact_first_name": "contact_first_name",
                       "contact_last_name": "contact_last_name",
@@ -72,8 +71,7 @@ import Chrt
                                     )
                                 ]
                             )
-                        ),
-                        properties: Optional(nil)
+                        )
                     )),
                     contactFirstName: Optional("contact_first_name"),
                     contactLastName: Optional("contact_last_name"),
@@ -116,8 +114,7 @@ import Chrt
                             }
                           ],
                           "type": "GeometryCollection"
-                        },
-                        "properties": null
+                        }
                       },
                       "contact_first_name": "contact_first_name",
                       "contact_last_name": "contact_last_name",
@@ -163,8 +160,7 @@ import Chrt
                                     )
                                 ]
                             )
-                        ),
-                        properties: Optional(nil)
+                        )
                     )),
                     contactFirstName: Optional("contact_first_name"),
                     contactLastName: Optional("contact_last_name"),
@@ -207,8 +203,7 @@ import Chrt
                             }
                           ],
                           "type": "GeometryCollection"
-                        },
-                        "properties": null
+                        }
                       },
                       "contact_first_name": "contact_first_name",
                       "contact_last_name": "contact_last_name",
@@ -254,8 +249,7 @@ import Chrt
                                     )
                                 ]
                             )
-                        ),
-                        properties: Optional(nil)
+                        )
                     )),
                     contactFirstName: Optional("contact_first_name"),
                     contactLastName: Optional("contact_last_name"),

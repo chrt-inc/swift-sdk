@@ -249,10 +249,6 @@ import Chrt
                         ],
                         "type": "GeometryCollection"
                       },
-                      "properties": {
-                        "address": null,
-                        "name": null
-                      },
                       "id": 1
                     },
                     "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
@@ -297,10 +293,6 @@ import Chrt
                             ]
                         )
                     ),
-                    properties: Optional(LocationProperties(
-                        address: Optional(nil),
-                        name: Optional(nil)
-                    )),
                     id: Optional(Id.int(
                         1
                     ))
