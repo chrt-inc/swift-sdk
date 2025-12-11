@@ -67,13 +67,16 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Creates a new driver profile for the caller. Returns existing driver ID if one already exists. Courier orgs only, min role: operator. | (DriverClientCreate1) -> (PydanticObjectId)
+    /// Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Courier orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.DriverClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(targetUserId: String? = nil, request: Requests.DriverClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/oort/drivers/create/v1",
+            queryParams: [
+                "target_user_id": targetUserId.map { .string($0) }
+            ],
             body: request,
             requestOptions: requestOptions,
             responseType: String.self

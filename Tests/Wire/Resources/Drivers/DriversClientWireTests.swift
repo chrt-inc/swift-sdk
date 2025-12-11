@@ -25,8 +25,8 @@ import Chrt
                   "status": "unassigned",
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
-                  "non_terminal_task_group_ids": [
-                    "non_terminal_task_group_ids"
+                  "active_task_group_ids": [
+                    "active_task_group_ids"
                   ],
                   "last_seen_at_location": {
                     "bbox": [
@@ -79,8 +79,8 @@ import Chrt
             status: Optional(.unassigned),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
-            nonTerminalTaskGroupIds: Optional([
-                "non_terminal_task_group_ids"
+            activeTaskGroupIds: Optional([
+                "active_task_group_ids"
             ]),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
@@ -142,8 +142,8 @@ import Chrt
                   "status": "unassigned",
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
-                  "non_terminal_task_group_ids": [
-                    "non_terminal_task_group_ids"
+                  "active_task_group_ids": [
+                    "active_task_group_ids"
                   ],
                   "last_seen_at_location": {
                     "bbox": [
@@ -196,8 +196,8 @@ import Chrt
             status: Optional(.unassigned),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
-            nonTerminalTaskGroupIds: Optional([
-                "non_terminal_task_group_ids"
+            activeTaskGroupIds: Optional([
+                "active_task_group_ids"
             ]),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
@@ -270,8 +270,8 @@ import Chrt
                       "status": "unassigned",
                       "available_according_to_driver": true,
                       "available_according_to_operators": true,
-                      "non_terminal_task_group_ids": [
-                        "non_terminal_task_group_ids"
+                      "active_task_group_ids": [
+                        "active_task_group_ids"
                       ],
                       "last_seen_at_location": {
                         "type": "Feature",
@@ -325,8 +325,8 @@ import Chrt
                     status: Optional(.unassigned),
                     availableAccordingToDriver: Optional(true),
                     availableAccordingToOperators: Optional(true),
-                    nonTerminalTaskGroupIds: Optional([
-                        "non_terminal_task_group_ids"
+                    activeTaskGroupIds: Optional([
+                        "active_task_group_ids"
                     ]),
                     lastSeenAtLocation: Optional(LocationFeature(
                         type: .feature,
@@ -382,8 +382,8 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
-                    "non_terminal_task_group_ids": [
-                      "non_terminal_task_group_ids"
+                    "active_task_group_ids": [
+                      "active_task_group_ids"
                     ],
                     "last_seen_at_location": {
                       "type": "Feature",
@@ -433,8 +433,8 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
-                nonTerminalTaskGroupIds: Optional([
-                    "non_terminal_task_group_ids"
+                activeTaskGroupIds: Optional([
+                    "active_task_group_ids"
                 ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
@@ -488,6 +488,7 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.drivers.createV1(
+            targetUserId: "target_user_id",
             request: .init(schemaVersion: 1),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

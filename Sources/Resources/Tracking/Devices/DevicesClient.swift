@@ -49,34 +49,6 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Retrieves a single device by its MAC address or ID. Access restricted to the caller's organization. | () -> (Device1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(deviceMacAddress: String? = nil, deviceId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/devices/v1",
-            queryParams: [
-                "device_mac_address": deviceMacAddress.map { .string($0) }, 
-                "device_id": deviceId.map { .string($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: Device1.self
-        )
-    }
-
-    /// Returns all tracking devices registered to the caller's organization. | () -> (list[Device1])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Device1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/devices/list/v1",
-            requestOptions: requestOptions,
-            responseType: [Device1].self
-        )
-    }
-
     /// Links a device to cargo with bidirectional references. Device must not already be linked to a session or different cargo. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -105,6 +77,34 @@ public final class DevicesClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves a single device by its MAC address or ID. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (Device1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(deviceMacAddress: String? = nil, deviceId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Device1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/devices/v1",
+            queryParams: [
+                "device_mac_address": deviceMacAddress.map { .string($0) }, 
+                "device_id": deviceId.map { .string($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: Device1.self
+        )
+    }
+
+    /// Returns all tracking devices registered to the caller's organization. | authz: min_org_role=operator | () -> (list[Device1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Device1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/devices/list/v1",
+            requestOptions: requestOptions,
+            responseType: [Device1].self
         )
     }
 }

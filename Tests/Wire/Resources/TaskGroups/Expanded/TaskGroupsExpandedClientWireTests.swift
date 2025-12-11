@@ -156,8 +156,8 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
-                    "non_terminal_task_group_ids": [
-                      "non_terminal_task_group_ids"
+                    "active_task_group_ids": [
+                      "active_task_group_ids"
                     ],
                     "last_seen_at_location": {
                       "type": "Feature",
@@ -343,8 +343,8 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
-                nonTerminalTaskGroupIds: Optional([
-                    "non_terminal_task_group_ids"
+                activeTaskGroupIds: Optional([
+                    "active_task_group_ids"
                 ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
@@ -543,8 +543,8 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
-                    "non_terminal_task_group_ids": [
-                      "non_terminal_task_group_ids"
+                    "active_task_group_ids": [
+                      "active_task_group_ids"
                     ],
                     "last_seen_at_location": {
                       "type": "Feature",
@@ -730,8 +730,8 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
-                nonTerminalTaskGroupIds: Optional([
-                    "non_terminal_task_group_ids"
+                activeTaskGroupIds: Optional([
+                    "active_task_group_ids"
                 ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
@@ -930,8 +930,8 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
-                    "non_terminal_task_group_ids": [
-                      "non_terminal_task_group_ids"
+                    "active_task_group_ids": [
+                      "active_task_group_ids"
                     ],
                     "last_seen_at_location": {
                       "type": "Feature",
@@ -1117,8 +1117,8 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
-                nonTerminalTaskGroupIds: Optional([
-                    "non_terminal_task_group_ids"
+                activeTaskGroupIds: Optional([
+                    "active_task_group_ids"
                 ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
@@ -1317,8 +1317,8 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
-                    "non_terminal_task_group_ids": [
-                      "non_terminal_task_group_ids"
+                    "active_task_group_ids": [
+                      "active_task_group_ids"
                     ],
                     "last_seen_at_location": {
                       "type": "Feature",
@@ -1504,8 +1504,8 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
-                nonTerminalTaskGroupIds: Optional([
-                    "non_terminal_task_group_ids"
+                activeTaskGroupIds: Optional([
+                    "active_task_group_ids"
                 ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
