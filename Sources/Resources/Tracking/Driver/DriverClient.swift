@@ -7,7 +7,7 @@ public final class DriverClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Records driver location updates. Automatically writes to all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. Updates driver's last seen timestamp and location. | (DriverUpdateReq) -> (DriverUpdateRes)
+    /// Records driver location updates. Updates driver's last seen timestamp and location. Automatically records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | (LocationFeature) -> (DriverUpdateRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: LocationFeature, requestOptions: RequestOptions? = nil) async throws -> DriverUpdateRes {

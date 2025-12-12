@@ -5444,94 +5444,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">updateLastSeenV1</a>(request: Requests.DriverLastSeenReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates the caller's driver last known location and timestamp for tracking. Only updates if timestamp is newer than existing (DB-side validation). Returns False if driver not found or timestamp is stale. | (DriverLastSeenReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.drivers.updateLastSeenV1(request: .init(location: LocationFeature(
-        type: .feature,
-        geometry: Geometry.geometryCollection(
-            .init(
-                geometries: [
-                    GeometryCollectionOutputGeometriesItem.lineString(
-                        .init(
-                            coordinates: [
-                                LineStringCoordinatesItem.position2D(
-                                    []
-                                )
-                            ]
-                        )
-                    )
-                ]
-            )
-        )
-    )))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.DriverLastSeenReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">clearLastSeenV1</a>(requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -15491,7 +15403,7 @@ try await main()
 <dl>
 <dd>
 
-Records driver location updates. Automatically writes to all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. Updates driver's last seen timestamp and location. | (DriverUpdateReq) -> (DriverUpdateRes)
+Records driver location updates. Updates driver's last seen timestamp and location. Automatically records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | (LocationFeature) -> (DriverUpdateRes)
 </dd>
 </dl>
 </dd>

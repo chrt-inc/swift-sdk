@@ -13,7 +13,7 @@ public final class TaskGroupByDriverClient: Sendable {
     public func lastSeenV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/task_group_by_driver_timeseries/last_seen/v1",
+            path: "/tracking/timeseries/task_group_by_driver/last_seen/v1",
             queryParams: [
                 "task_group_id": .string(taskGroupId)
             ],
@@ -28,7 +28,7 @@ public final class TaskGroupByDriverClient: Sendable {
     public func dataPointsV1(taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupByDriverDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/task_group_by_driver_timeseries/data_points/v1",
+            path: "/tracking/timeseries/task_group_by_driver/data_points/v1",
             queryParams: [
                 "task_group_id": .string(taskGroupId), 
                 "limit": limit.map { .int($0) }
@@ -44,7 +44,7 @@ public final class TaskGroupByDriverClient: Sendable {
     public func lastSeenPublicV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/task_group_by_driver_timeseries/last_seen_public/v1",
+            path: "/tracking/timeseries/task_group_by_driver/last_seen_public/v1",
             queryParams: [
                 "task_group_id": .string(taskGroupId)
             ],
@@ -59,7 +59,7 @@ public final class TaskGroupByDriverClient: Sendable {
     public func dataPointsPublicV1(taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupByDriverDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/task_group_by_driver_timeseries/data_points_public/v1",
+            path: "/tracking/timeseries/task_group_by_driver/data_points_public/v1",
             queryParams: [
                 "task_group_id": .string(taskGroupId), 
                 "limit": limit.map { .int($0) }

@@ -13,7 +13,7 @@ public final class CargoByDeviceClient: Sendable {
     public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_device_timeseries/last_seen/v1",
+            path: "/tracking/timeseries/cargo_by_device/last_seen/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId)
@@ -29,7 +29,7 @@ public final class CargoByDeviceClient: Sendable {
     public func dataPointsV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_device_timeseries/data_points/v1",
+            path: "/tracking/timeseries/cargo_by_device/data_points/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId), 
@@ -46,7 +46,7 @@ public final class CargoByDeviceClient: Sendable {
     public func outlierV1(request: Requests.CargoByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceMarkOutliersResponse1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/cargo_by_device_timeseries/outlier/v1",
+            path: "/tracking/timeseries/cargo_by_device/outlier/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: CargoByDeviceMarkOutliersResponse1.self
@@ -59,7 +59,7 @@ public final class CargoByDeviceClient: Sendable {
     public func lastSeenPublicV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_device_timeseries/last_seen_public/v1",
+            path: "/tracking/timeseries/cargo_by_device/last_seen_public/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId)
@@ -75,7 +75,7 @@ public final class CargoByDeviceClient: Sendable {
     public func dataPointsPublicV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_device_timeseries/data_points_public/v1",
+            path: "/tracking/timeseries/cargo_by_device/data_points_public/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId), 

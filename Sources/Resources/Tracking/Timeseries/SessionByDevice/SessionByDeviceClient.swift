@@ -13,7 +13,7 @@ public final class SessionByDeviceClient: Sendable {
     public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/session_by_device_timeseries/last_seen/v1",
+            path: "/tracking/timeseries/session_by_device/last_seen/v1",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
@@ -28,7 +28,7 @@ public final class SessionByDeviceClient: Sendable {
     public func dataPointsV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/session_by_device_timeseries/data_points/v1",
+            path: "/tracking/timeseries/session_by_device/data_points/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
                 "limit": limit.map { .int($0) }
@@ -44,7 +44,7 @@ public final class SessionByDeviceClient: Sendable {
     public func outlierV1(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceMarkOutliersResponse1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/session_by_device_timeseries/outlier/v1",
+            path: "/tracking/timeseries/session_by_device/outlier/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: SessionByDeviceMarkOutliersResponse1.self
@@ -57,7 +57,7 @@ public final class SessionByDeviceClient: Sendable {
     public func lastSeenPublicV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/session_by_device_timeseries/last_seen_public/v1",
+            path: "/tracking/timeseries/session_by_device/last_seen_public/v1",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
@@ -72,7 +72,7 @@ public final class SessionByDeviceClient: Sendable {
     public func dataPointsPublicV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/session_by_device_timeseries/data_points_public/v1",
+            path: "/tracking/timeseries/session_by_device/data_points_public/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
                 "limit": limit.map { .int($0) }

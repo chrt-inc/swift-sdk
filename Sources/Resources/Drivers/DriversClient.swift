@@ -96,19 +96,6 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates the caller's driver last known location and timestamp for tracking. Only updates if timestamp is newer than existing (DB-side validation). Returns False if driver not found or timestamp is stale. | (DriverLastSeenReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateLastSeenV1(request: Requests.DriverLastSeenReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/oort/drivers/last_seen/update/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Clears the driver's last known location and timestamp. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

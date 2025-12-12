@@ -25,7 +25,7 @@ public final class SharingSettingsClient: Sendable {
     public func taskGroupByDriverSharingSettingsV1(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverSharingSettings1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/task_group_by_driver/sharing_settings/v1",
+            path: "/tracking/sharing_settings/task_group_by_driver/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: TaskGroupByDriverSharingSettings1.self
@@ -38,7 +38,7 @@ public final class SharingSettingsClient: Sendable {
     public func cargoByDriverSettingsV1(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverSharingSettings1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/cargo_by_driver/sharing_settings/v1",
+            path: "/tracking/sharing_settings/cargo_by_driver/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: CargoByDriverSharingSettings1.self
@@ -51,7 +51,7 @@ public final class SharingSettingsClient: Sendable {
     public func cargoByDeviceSettingsV1(request: Requests.CargoByDeviceSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceSharingSettings1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/tracking/cargo_by_device/sharing_settings/v1",
+            path: "/tracking/sharing_settings/cargo_by_device/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: CargoByDeviceSharingSettings1.self

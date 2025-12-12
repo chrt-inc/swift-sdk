@@ -13,7 +13,7 @@ public final class CargoByDriverClient: Sendable {
     public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_driver_timeseries/last_seen/v1",
+            path: "/tracking/timeseries/cargo_by_driver/last_seen/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId)
@@ -29,7 +29,7 @@ public final class CargoByDriverClient: Sendable {
     public func dataPointsV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDriverDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_driver_timeseries/data_points/v1",
+            path: "/tracking/timeseries/cargo_by_driver/data_points/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId), 
@@ -46,7 +46,7 @@ public final class CargoByDriverClient: Sendable {
     public func lastSeenPublicV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverDataPoint1? {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_driver_timeseries/last_seen_public/v1",
+            path: "/tracking/timeseries/cargo_by_driver/last_seen_public/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId)
@@ -62,7 +62,7 @@ public final class CargoByDriverClient: Sendable {
     public func dataPointsPublicV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDriverDataPoint1] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/cargo_by_driver_timeseries/data_points_public/v1",
+            path: "/tracking/timeseries/cargo_by_driver/data_points_public/v1",
             queryParams: [
                 "cargo_id": .string(cargoId), 
                 "task_group_id": .string(taskGroupId), 
