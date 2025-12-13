@@ -7,6 +7,19 @@ public final class ExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpanded)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func retrieveV1(orderIdOrShortId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpanded {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/oort/order_drafts/expanded/retrieve/v1/\(orderIdOrShortId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderDraftExpanded.self
+        )
+    }
+
     /// Lists expanded draft orders for the creator with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
