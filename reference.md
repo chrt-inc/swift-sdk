@@ -7009,7 +7009,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the flight number and/or fa_flight_id on a task group. | authz_personas=[lig_org_operators] | (SetFlightInfoReq) -> (bool)
+Sets the flight number and/or fa_flight_ids on a task group. | authz_personas=[lig_org_operators] | (SetFlightInfoReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -10319,7 +10319,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the flight number and/or fa_flight_id on a draft task group. | (SetFlightInfoReq) -> (bool)
+Sets the flight number and/or fa_flight_ids on a draft task group. | (SetFlightInfoReq) -> (bool)
 </dd>
 </dl>
 </dd>

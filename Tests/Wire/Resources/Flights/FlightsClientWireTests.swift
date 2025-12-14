@@ -10,7 +10,9 @@ import Chrt
                 """
                 {
                   "flight_number": "flight_number",
-                  "fa_flight_id": "fa_flight_id"
+                  "fa_flight_ids": [
+                    "fa_flight_ids"
+                  ]
                 }
                 """.utf8
             )
@@ -22,7 +24,9 @@ import Chrt
         )
         let expectedResponse = FlightInfoForTaskRes(
             flightNumber: Optional("flight_number"),
-            faFlightId: Optional("fa_flight_id")
+            faFlightIds: Optional([
+                "fa_flight_ids"
+            ])
         )
         let response = try await client.flights.getFlightInfoForTaskV1(
             taskId: "task_id",
