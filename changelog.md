@@ -1,3 +1,10 @@
+## 1.341.13 - 2026-01-15
+* chore: bump CLI version to 3.42.2
+* Updates the Fern CLI version from 3.42.0 to 3.42.2 in the metadata configuration. This is a routine maintenance update to keep the project aligned with the latest CLI release.
+* Key changes:
+* Update cliVersion from 3.42.0 to 3.42.2 in .fern/metadata.json
+* 🌿 Generated with Fern
+
 ## 1.341.12 - 2026-01-14
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
