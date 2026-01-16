@@ -1,3 +1,12 @@
+## 1.344.1 - 2026-01-16
+* chore: update Fern CLI version to 3.47.0
+* This commit updates the Fern CLI version in the metadata configuration from 3.46.0 to 3.47.0. This is a routine maintenance update to keep the toolchain current with the latest Fern CLI release.
+* Key changes:
+* Update cliVersion from 3.46.0 to 3.47.0 in .fern/metadata.json
+* Maintain existing generator configuration and versions
+* No functional changes to the generated SDK
+* 🌿 Generated with Fern
+
 ## 1.341.19 - 2026-01-16
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
