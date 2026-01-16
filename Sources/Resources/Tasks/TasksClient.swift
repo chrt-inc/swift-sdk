@@ -7,7 +7,7 @@ public final class TasksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a new task to a task group at a specific index. | authz_personas=[lig_org_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
+    /// Adds a new task to a task group at a specific index. | authz_personas=[lig_owner_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addToTaskGroupV1(taskGroupId: String, request: Requests.AddTaskToGroupReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -20,7 +20,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Updates a task. Task must be in STAGED status. | authz_personas=[lig_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
+    /// Updates a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -57,7 +57,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Deletes a task. Task must be in STAGED status. | authz_personas=[lig_org_operators] | () -> (bool)
+    /// Deletes a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

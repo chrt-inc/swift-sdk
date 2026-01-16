@@ -50,31 +50,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func setFlightInfoV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.taskGroups.setFlightInfoV1(
-            taskGroupId: "task_group_id",
-            request: SetFlightInfoReq(
-
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func updateDriverV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -138,6 +113,31 @@ import Chrt
         let response = try await client.taskGroups.updateCourierOrgV1(
             taskGroupId: "task_group_id",
             request: .init(courierOrgId: "courier_org_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setFlightInfoV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.taskGroups.setFlightInfoV1(
+            taskGroupId: "task_group_id",
+            request: SetFlightInfoReq(
+
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

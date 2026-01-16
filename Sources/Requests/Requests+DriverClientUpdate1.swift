@@ -9,6 +9,12 @@ extension Requests {
         public let firstName: String?
         public let lastName: String?
         public let vehicleTypes: [VehicleTypeEnum]?
+        public let emailAddressPrimarySetToNone: Bool?
+        public let emailAddressSecondarySetToNone: Bool?
+        public let phoneNumberPrimarySetToNone: Bool?
+        public let phoneNumberSecondarySetToNone: Bool?
+        public let firstNameSetToNone: Bool?
+        public let lastNameSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -20,6 +26,12 @@ extension Requests {
             firstName: String? = nil,
             lastName: String? = nil,
             vehicleTypes: [VehicleTypeEnum]? = nil,
+            emailAddressPrimarySetToNone: Bool? = nil,
+            emailAddressSecondarySetToNone: Bool? = nil,
+            phoneNumberPrimarySetToNone: Bool? = nil,
+            phoneNumberSecondarySetToNone: Bool? = nil,
+            firstNameSetToNone: Bool? = nil,
+            lastNameSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.emailAddressPrimary = emailAddressPrimary
@@ -29,6 +41,12 @@ extension Requests {
             self.firstName = firstName
             self.lastName = lastName
             self.vehicleTypes = vehicleTypes
+            self.emailAddressPrimarySetToNone = emailAddressPrimarySetToNone
+            self.emailAddressSecondarySetToNone = emailAddressSecondarySetToNone
+            self.phoneNumberPrimarySetToNone = phoneNumberPrimarySetToNone
+            self.phoneNumberSecondarySetToNone = phoneNumberSecondarySetToNone
+            self.firstNameSetToNone = firstNameSetToNone
+            self.lastNameSetToNone = lastNameSetToNone
             self.additionalProperties = additionalProperties
         }
 
@@ -41,6 +59,12 @@ extension Requests {
             self.firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
             self.lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
             self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
+            self.emailAddressPrimarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .emailAddressPrimarySetToNone)
+            self.emailAddressSecondarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .emailAddressSecondarySetToNone)
+            self.phoneNumberPrimarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .phoneNumberPrimarySetToNone)
+            self.phoneNumberSecondarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .phoneNumberSecondarySetToNone)
+            self.firstNameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .firstNameSetToNone)
+            self.lastNameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .lastNameSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -54,6 +78,12 @@ extension Requests {
             try container.encodeIfPresent(self.firstName, forKey: .firstName)
             try container.encodeIfPresent(self.lastName, forKey: .lastName)
             try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encodeIfPresent(self.emailAddressPrimarySetToNone, forKey: .emailAddressPrimarySetToNone)
+            try container.encodeIfPresent(self.emailAddressSecondarySetToNone, forKey: .emailAddressSecondarySetToNone)
+            try container.encodeIfPresent(self.phoneNumberPrimarySetToNone, forKey: .phoneNumberPrimarySetToNone)
+            try container.encodeIfPresent(self.phoneNumberSecondarySetToNone, forKey: .phoneNumberSecondarySetToNone)
+            try container.encodeIfPresent(self.firstNameSetToNone, forKey: .firstNameSetToNone)
+            try container.encodeIfPresent(self.lastNameSetToNone, forKey: .lastNameSetToNone)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -65,6 +95,12 @@ extension Requests {
             case firstName = "first_name"
             case lastName = "last_name"
             case vehicleTypes = "vehicle_types"
+            case emailAddressPrimarySetToNone = "email_address_primary__set_to_None"
+            case emailAddressSecondarySetToNone = "email_address_secondary__set_to_None"
+            case phoneNumberPrimarySetToNone = "phone_number_primary__set_to_None"
+            case phoneNumberSecondarySetToNone = "phone_number_secondary__set_to_None"
+            case firstNameSetToNone = "first_name__set_to_None"
+            case lastNameSetToNone = "last_name__set_to_None"
         }
     }
 }

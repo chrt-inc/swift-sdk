@@ -21,6 +21,7 @@ import Chrt
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
                     "driver_id": "driver_id",
+                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
@@ -33,10 +34,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "order_cancelled": true,
                     "task_group_type": "chrt_ground_courier",
-                    "task_group_mileage": {
-                      "tasks_mileage": 1.1,
-                      "deadhead_mileage": 1.1
-                    },
+                    "tasks_mileage": 1.1,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -48,7 +46,15 @@ import Chrt
                         "org_id": "org_id",
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
-                    ]
+                    ],
+                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
+                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
+                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
+                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
+                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
+                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
+                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
+                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
                   },
                   "tasks_expanded": [
                     {
@@ -133,7 +139,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "default_rate_sheet__routed": "default_rate_sheet__routed",
+                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                   },
                   "courier_org_company_name": "courier_org_company_name",
                   "courier_org_handle": "courier_org_handle",
@@ -163,6 +171,7 @@ import Chrt
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
                 driverId: Optional("driver_id"),
+                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
@@ -175,10 +184,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 orderCancelled: Optional(true),
                 taskGroupType: .chrtGroundCourier,
-                taskGroupMileage: Optional(TaskGroupMileage1(
-                    tasksMileage: 1.1,
-                    deadheadMileage: 1.1
-                )),
+                tasksMileage: Optional(1.1),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -190,7 +196,15 @@ import Chrt
                         orgId: "org_id",
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
-                ])
+                ]),
+                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
+                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
+                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
+                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
+                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
+                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
+                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
+                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -281,7 +295,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
             )),
             courierOrgCompanyName: Optional("courier_org_company_name"),
             courierOrgHandle: Optional("courier_org_handle"),
@@ -318,6 +334,7 @@ import Chrt
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
                     "driver_id": "driver_id",
+                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
@@ -330,10 +347,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "order_cancelled": true,
                     "task_group_type": "chrt_ground_courier",
-                    "task_group_mileage": {
-                      "tasks_mileage": 1.1,
-                      "deadhead_mileage": 1.1
-                    },
+                    "tasks_mileage": 1.1,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -345,7 +359,15 @@ import Chrt
                         "org_id": "org_id",
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
-                    ]
+                    ],
+                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
+                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
+                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
+                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
+                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
+                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
+                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
+                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
                   },
                   "tasks_expanded": [
                     {
@@ -430,7 +452,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "default_rate_sheet__routed": "default_rate_sheet__routed",
+                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                   },
                   "courier_org_company_name": "courier_org_company_name",
                   "courier_org_handle": "courier_org_handle",
@@ -460,6 +484,7 @@ import Chrt
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
                 driverId: Optional("driver_id"),
+                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
@@ -472,10 +497,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 orderCancelled: Optional(true),
                 taskGroupType: .chrtGroundCourier,
-                taskGroupMileage: Optional(TaskGroupMileage1(
-                    tasksMileage: 1.1,
-                    deadheadMileage: 1.1
-                )),
+                tasksMileage: Optional(1.1),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -487,7 +509,15 @@ import Chrt
                         orgId: "org_id",
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
-                ])
+                ]),
+                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
+                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
+                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
+                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
+                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
+                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
+                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
+                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -578,7 +608,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
             )),
             courierOrgCompanyName: Optional("courier_org_company_name"),
             courierOrgHandle: Optional("courier_org_handle"),
@@ -615,6 +647,7 @@ import Chrt
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
                     "driver_id": "driver_id",
+                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
@@ -627,10 +660,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "order_cancelled": true,
                     "task_group_type": "chrt_ground_courier",
-                    "task_group_mileage": {
-                      "tasks_mileage": 1.1,
-                      "deadhead_mileage": 1.1
-                    },
+                    "tasks_mileage": 1.1,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -642,7 +672,15 @@ import Chrt
                         "org_id": "org_id",
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
-                    ]
+                    ],
+                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
+                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
+                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
+                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
+                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
+                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
+                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
+                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
                   },
                   "tasks_expanded": [
                     {
@@ -727,7 +765,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "default_rate_sheet__routed": "default_rate_sheet__routed",
+                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                   },
                   "courier_org_company_name": "courier_org_company_name",
                   "courier_org_handle": "courier_org_handle",
@@ -757,6 +797,7 @@ import Chrt
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
                 driverId: Optional("driver_id"),
+                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
@@ -769,10 +810,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 orderCancelled: Optional(true),
                 taskGroupType: .chrtGroundCourier,
-                taskGroupMileage: Optional(TaskGroupMileage1(
-                    tasksMileage: 1.1,
-                    deadheadMileage: 1.1
-                )),
+                tasksMileage: Optional(1.1),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -784,7 +822,15 @@ import Chrt
                         orgId: "org_id",
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
-                ])
+                ]),
+                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
+                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
+                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
+                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
+                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
+                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
+                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
+                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -875,7 +921,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
             )),
             courierOrgCompanyName: Optional("courier_org_company_name"),
             courierOrgHandle: Optional("courier_org_handle"),
@@ -912,6 +960,7 @@ import Chrt
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
                     "driver_id": "driver_id",
+                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
@@ -924,10 +973,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "order_cancelled": true,
                     "task_group_type": "chrt_ground_courier",
-                    "task_group_mileage": {
-                      "tasks_mileage": 1.1,
-                      "deadhead_mileage": 1.1
-                    },
+                    "tasks_mileage": 1.1,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -939,7 +985,15 @@ import Chrt
                         "org_id": "org_id",
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
-                    ]
+                    ],
+                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
+                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
+                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
+                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
+                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
+                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
+                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
+                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
                   },
                   "tasks_expanded": [
                     {
@@ -1024,7 +1078,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "default_rate_sheet__routed": "default_rate_sheet__routed",
+                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                   },
                   "courier_org_company_name": "courier_org_company_name",
                   "courier_org_handle": "courier_org_handle",
@@ -1054,6 +1110,7 @@ import Chrt
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
                 driverId: Optional("driver_id"),
+                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
@@ -1066,10 +1123,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 orderCancelled: Optional(true),
                 taskGroupType: .chrtGroundCourier,
-                taskGroupMileage: Optional(TaskGroupMileage1(
-                    tasksMileage: 1.1,
-                    deadheadMileage: 1.1
-                )),
+                tasksMileage: Optional(1.1),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -1081,7 +1135,15 @@ import Chrt
                         orgId: "org_id",
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
-                ])
+                ]),
+                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
+                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
+                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
+                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
+                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
+                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
+                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
+                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -1172,7 +1234,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
             )),
             courierOrgCompanyName: Optional("courier_org_company_name"),
             courierOrgHandle: Optional("courier_org_handle"),

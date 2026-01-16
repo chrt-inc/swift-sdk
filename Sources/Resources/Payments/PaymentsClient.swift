@@ -7,26 +7,13 @@ public final class PaymentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Generates and sends a Stripe invoice for a shipper statement to a courier organization's Connect account. Applies a 10% application fee. | (GenerateInvoiceReq) -> (GenerateInvoiceRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func generateInvoiceV1(request: Requests.GenerateInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> GenerateInvoiceRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/generate-invoice/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: GenerateInvoiceRes.self
-        )
-    }
-
     /// Creates a Stripe checkout session for a subscription with pricing based on the selected plan. | (CreateCheckoutSessionReq) -> (CreateCheckoutSessionRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createCheckoutSessionV1(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions? = nil) async throws -> CreateCheckoutSessionRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/create-checkout-session/v1",
+            path: "/billing/create-checkout-session/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: CreateCheckoutSessionRes.self
@@ -39,33 +26,9 @@ public final class PaymentsClient: Sendable {
     public func syncStripeToClerkV1(requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/sync_stripe_to_clerk/v1",
+            path: "/billing/sync_stripe_to_clerk/v1",
             requestOptions: requestOptions,
             responseType: Bool.self
-        )
-    }
-
-    /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateConnectAccountRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectAccountV1(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/create-connect-account/v1",
-            requestOptions: requestOptions,
-            responseType: CreateConnectAccountRes.self
-        )
-    }
-
-    /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (CreateConnectAccountLinkRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectAccountLinkV1(requestOptions: RequestOptions? = nil) async throws -> CreateConnectAccountLinkRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/create-connect-account-link/v1",
-            requestOptions: requestOptions,
-            responseType: CreateConnectAccountLinkRes.self
         )
     }
 }

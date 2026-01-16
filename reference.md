@@ -1,76 +1,5 @@
 # Reference
 ## Payments
-<details><summary><code>client.payments.<a href="/Sources/Resources/Payments/PaymentsClient.swift">generateInvoiceV1</a>(request: Requests.GenerateInvoiceReq, requestOptions: RequestOptions?) -> GenerateInvoiceRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Generates and sends a Stripe invoice for a shipper statement to a courier organization's Connect account. Applies a 10% application fee. | (GenerateInvoiceReq) -> (GenerateInvoiceRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.payments.generateInvoiceV1(request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.GenerateInvoiceReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.payments.<a href="/Sources/Resources/Payments/PaymentsClient.swift">createCheckoutSessionV1</a>(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions?) -> CreateCheckoutSessionRes</code></summary>
 <dl>
 <dd>
@@ -189,3234 +118,6 @@ try await main()
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.payments.<a href="/Sources/Resources/Payments/PaymentsClient.swift">createConnectAccountV1</a>(requestOptions: RequestOptions?) -> CreateConnectAccountRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateConnectAccountRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.payments.createConnectAccountV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.payments.<a href="/Sources/Resources/Payments/PaymentsClient.swift">createConnectAccountLinkV1</a>(requestOptions: RequestOptions?) -> CreateConnectAccountLinkRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (CreateConnectAccountLinkRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.payments.createConnectAccountLinkV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## CourierPayDriverLineItemGroups
-<details><summary><code>client.courierPayDriverLineItemGroups.<a href="/Sources/Resources/CourierPayDriverLineItemGroups/CourierPayDriverLineItemGroupsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> CourierPayDriverLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a courier driver line item group by its ID. | () -> (CourierPayDriverLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverLineItemGroups.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverLineItemGroups.<a href="/Sources/Resources/CourierPayDriverLineItemGroups/CourierPayDriverLineItemGroupsClient.swift">byTaskGroupIdV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> CourierPayDriverLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a courier driver line item group by its associated task group ID. | () -> (CourierPayDriverLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverLineItemGroups.<a href="/Sources/Resources/CourierPayDriverLineItemGroups/CourierPayDriverLineItemGroupsClient.swift">previewV1</a>(driverId: String, request: CourierPayDriverLineItemGroupCreateReq, requestOptions: RequestOptions?) -> CourierPayDriverLineItemGroupServerCreate1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Previews calculated line items for a driver based on a rate sheet and task group. Does not write to the database. | (CourierPayDriverLineItemGroupCreateReq) -> (CourierPayDriverLineItemGroupServerCreate1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverLineItemGroups.previewV1(
-        driverId: "driver_id",
-        request: CourierPayDriverLineItemGroupCreateReq(
-            courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
-            taskGroupId: "task_group_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `CourierPayDriverLineItemGroupCreateReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverLineItemGroups.<a href="/Sources/Resources/CourierPayDriverLineItemGroups/CourierPayDriverLineItemGroupsClient.swift">createV1</a>(request: CourierPayDriverLineItemGroupCreateReq, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a courier pay driver line item group by calculating items from a rate sheet and task group. | (CourierPayDriverLineItemGroupCreateReq) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverLineItemGroups.createV1(request: CourierPayDriverLineItemGroupCreateReq(
-        courierPayDriverRateSheetId: "courier_pay_driver_rate_sheet_id",
-        taskGroupId: "task_group_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CourierPayDriverLineItemGroupCreateReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## CourierPayDriverPayouts
-<details><summary><code>client.courierPayDriverPayouts.<a href="/Sources/Resources/CourierPayDriverPayouts/CourierPayDriverPayoutsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> CourierPayDriverStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific courier driver payout for the caller's organization. | () -> (CourierPayDriverStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverPayouts.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverPayouts.<a href="/Sources/Resources/CourierPayDriverPayouts/CourierPayDriverPayoutsClient.swift">listByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> [CourierPayDriverStatement1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all payouts for a specific driver within the caller's organization. | () -> (list[CourierPayDriverStatement1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverPayouts.listByDriverIdV1(driverId: "driver_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverPayouts.<a href="/Sources/Resources/CourierPayDriverPayouts/CourierPayDriverPayoutsClient.swift">createV1</a>(request: CourierPayDriverStatementClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new driver payout from selected line item groups and calculates the total amount. | (CourierPayDriverStatementClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverPayouts.createV1(request: CourierPayDriverStatementClientCreate1(
-        schemaVersion: 1,
-        courierPayDriverLineItemGroupIds: [
-            "courier_pay_driver_line_item_group_ids"
-        ]
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CourierPayDriverStatementClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverPayouts.<a href="/Sources/Resources/CourierPayDriverPayouts/CourierPayDriverPayoutsClient.swift">updateStatusV1</a>(id: String, request: CourierPayDriverStatementClientUpdate1, requestOptions: RequestOptions?) -> CourierPayDriverStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates the status of a courier driver payout with validation of allowed state transitions. | (CourierPayDriverStatementClientUpdate1) -> (CourierPayDriverStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverPayouts.updateStatusV1(
-        id: "id",
-        request: CourierPayDriverStatementClientUpdate1(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `CourierPayDriverStatementClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## CourierPayDriverRateSheets
-<details><summary><code>client.courierPayDriverRateSheets.<a href="/Sources/Resources/CourierPayDriverRateSheets/CourierPayDriverRateSheetsClient.swift">listByCourierOrgIdV1</a>(requestOptions: RequestOptions?) -> [CourierPayDriverRateSheet1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all driver rate sheets for the caller's courier organization. | () -> (list[CourierPayDriverRateSheet1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverRateSheets.listByCourierOrgIdV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverRateSheets.<a href="/Sources/Resources/CourierPayDriverRateSheets/CourierPayDriverRateSheetsClient.swift">listByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> [CourierPayDriverRateSheet1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves all rate sheets assigned to a specific driver. | () -> (list[CourierPayDriverRateSheet1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverRateSheets.listByDriverIdV1(driverId: "driver_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverRateSheets.<a href="/Sources/Resources/CourierPayDriverRateSheets/CourierPayDriverRateSheetsClient.swift">createV1</a>(request: Requests.CourierPayDriverRateSheetClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new driver rate sheet for calculating courier payments. | (CourierPayDriverRateSheetClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverRateSheets.createV1(request: .init(
-        schemaVersion: 1,
-        courierOrgId: "courier_org_id",
-        baseMileageDistanceMiles: 1.1,
-        baseMileageRateUsdPerInstance: 1.1,
-        additionalMileageRateUsdPerMile: 1.1,
-        longDistanceSurchargeMilesBeforeSurcharge: 1.1,
-        longDistanceSurchargeRateUsdPerMile: 1.1,
-        fuelSurchargeRateUsdPerMile: 1.1,
-        waitTimeBeforeChargeMinutes: 1.1,
-        waitTimeRateUsdPerMinute: 1.1,
-        extraStopRateUsd: 1.1,
-        dangerousGoodsRateUsdPerInstance: 1.1,
-        afterHours: 1.1,
-        weekend: 1.1,
-        holiday: 1.1
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CourierPayDriverRateSheetClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverRateSheets.<a href="/Sources/Resources/CourierPayDriverRateSheets/CourierPayDriverRateSheetsClient.swift">getV1</a>(id: String, requestOptions: RequestOptions?) -> CourierPayDriverRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a single rate sheet by its ID. | () -> (CourierPayDriverRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverRateSheets.getV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverRateSheets.<a href="/Sources/Resources/CourierPayDriverRateSheets/CourierPayDriverRateSheetsClient.swift">deleteByIdV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a driver rate sheet owned by the caller's organization. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverRateSheets.deleteByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverRateSheets.<a href="/Sources/Resources/CourierPayDriverRateSheets/CourierPayDriverRateSheetsClient.swift">updateByIdV1</a>(id: String, request: Requests.CourierPayDriverRateSheetClientUpdate1, requestOptions: RequestOptions?) -> CourierPayDriverRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing driver rate sheet owned by the caller's organization. | (CourierPayDriverRateSheetClientUpdate1) -> (CourierPayDriverRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverRateSheets.updateByIdV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.CourierPayDriverRateSheetClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## CourierPayDriverStatements
-<details><summary><code>client.courierPayDriverStatements.<a href="/Sources/Resources/CourierPayDriverStatements/CourierPayDriverStatementsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> CourierPayDriverStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific courier driver statement for the caller's organization. | () -> (CourierPayDriverStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverStatements.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverStatements.<a href="/Sources/Resources/CourierPayDriverStatements/CourierPayDriverStatementsClient.swift">listByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> [CourierPayDriverStatement1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all statements for a specific driver within the caller's organization. | () -> (list[CourierPayDriverStatement1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverStatements.listByDriverIdV1(driverId: "driver_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**driverId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverStatements.<a href="/Sources/Resources/CourierPayDriverStatements/CourierPayDriverStatementsClient.swift">createV1</a>(request: CourierPayDriverStatementClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new driver statement from selected line item groups and calculates the total amount. | (CourierPayDriverStatementClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverStatements.createV1(request: CourierPayDriverStatementClientCreate1(
-        schemaVersion: 1,
-        courierPayDriverLineItemGroupIds: [
-            "courier_pay_driver_line_item_group_ids"
-        ]
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CourierPayDriverStatementClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.courierPayDriverStatements.<a href="/Sources/Resources/CourierPayDriverStatements/CourierPayDriverStatementsClient.swift">updateStatusV1</a>(id: String, request: CourierPayDriverStatementClientUpdate1, requestOptions: RequestOptions?) -> CourierPayDriverStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates the status of a courier driver statement with validation of allowed state transitions. | (CourierPayDriverStatementClientUpdate1) -> (CourierPayDriverStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverStatements.updateStatusV1(
-        id: "id",
-        request: CourierPayDriverStatementClientUpdate1(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `CourierPayDriverStatementClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierLineItemGroups
-<details><summary><code>client.shipperPayCourierLineItemGroups.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/ShipperPayCourierLineItemGroupsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier line item group by its ID for the caller's courier organization. | () -> (ShipperPayCourierLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierLineItemGroups.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/ShipperPayCourierLineItemGroupsClient.swift">deleteByIdV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a shipper pay courier line item group by its ID if not referenced by any payment. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.deleteByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierLineItemGroups.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/ShipperPayCourierLineItemGroupsClient.swift">byTaskGroupIdV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier line item group by its associated task group ID for the caller's courier organization. | () -> (ShipperPayCourierLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.byTaskGroupIdV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierLineItemGroups.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/ShipperPayCourierLineItemGroupsClient.swift">previewV1</a>(request: ShipperPayCourierLineItemGroupCreateReq, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroupServerCreate1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Previews calculated line items for a shipper pay courier based on rate sheet and task group without creating the group. | (ShipperPayCourierLineItemGroupCreateReq) -> (ShipperPayCourierLineItemGroupServerCreate1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.previewV1(request: ShipperPayCourierLineItemGroupCreateReq(
-        shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
-        taskGroupId: "task_group_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ShipperPayCourierLineItemGroupCreateReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierLineItemGroups.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/ShipperPayCourierLineItemGroupsClient.swift">createV1</a>(request: ShipperPayCourierLineItemGroupCreateReq, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a shipper pay courier line item group by calculating items from rate sheet and task group. | (ShipperPayCourierLineItemGroupCreateReq) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.createV1(request: ShipperPayCourierLineItemGroupCreateReq(
-        shipperPayCourierRateSheetId: "shipper_pay_courier_rate_sheet_id",
-        taskGroupId: "task_group_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ShipperPayCourierLineItemGroupCreateReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierPayments
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">getByIdV1</a>(shipperPayCourierPaymentId: String, requestOptions: RequestOptions?) -> ShipperPayCourierStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier payment by its ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.getByIdV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**shipperPayCourierPaymentId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">deleteV1</a>(shipperPayCourierPaymentId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a shipper-to-courier payment record if invoice not yet created. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.deleteV1(shipperPayCourierPaymentId: "shipper_pay_courier_payment_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**shipperPayCourierPaymentId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">getByOrderIdOrShortIdV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> ShipperPayCourierStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier payment by order ID or short ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderIdOrShortId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">listByShipperOrgIdV1</a>(request: Requests.ListPaymentsByShipperReq, requestOptions: RequestOptions?) -> GetShipperPayCourierPaymentsForShipperRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists shipper pay courier payments by shipper org ID with status filtering and Stripe sync. | (ListPaymentsByShipperReq) -> (GetShipperPayCourierPaymentsForShipperRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.listByShipperOrgIdV1(request: .init(statuses: [
-        .invoiceNotYetCreated
-    ]))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ListPaymentsByShipperReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">listByCourierOrgIdV1</a>(request: Requests.ListPaymentsByCourierReq, requestOptions: RequestOptions?) -> GetShipperPayCourierPaymentsForShipperRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists shipper pay courier payments by courier org ID with status filtering and Stripe sync. | (ListPaymentsByCourierReq) -> (GetShipperPayCourierPaymentsForShipperRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.listByCourierOrgIdV1(request: .init(statuses: [
-        .invoiceNotYetCreated
-    ]))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ListPaymentsByCourierReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">createV1</a>(request: CreateShipperPayCourierPaymentReq, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a shipper-to-courier payment record based on all task groups in an order. | (CreateShipperPayCourierPaymentReq) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.createV1(request: CreateShipperPayCourierPaymentReq(
-        orderIdOrShortId: "order_id_or_short_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateShipperPayCourierPaymentReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierPayments.<a href="/Sources/Resources/ShipperPayCourierPayments/ShipperPayCourierPaymentsClient.swift">previewV1</a>(request: CreateShipperPayCourierPaymentReq, requestOptions: RequestOptions?) -> PaymentPreviewResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Previews a shipper-to-courier payment showing task groups, line item groups, total amount, and readiness status. | (CreateShipperPayCourierPaymentReq) -> (PaymentPreviewResponse)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierPayments.previewV1(request: CreateShipperPayCourierPaymentReq(
-        orderIdOrShortId: "order_id_or_short_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateShipperPayCourierPaymentReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierRateSheets
-<details><summary><code>client.shipperPayCourierRateSheets.<a href="/Sources/Resources/ShipperPayCourierRateSheets/ShipperPayCourierRateSheetsClient.swift">listByCourierOrgIdV1</a>(requestOptions: RequestOptions?) -> [ShipperPayCourierRateSheet1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all rate sheets created by the authenticated courier organization. | () -> (list[ShipperPayCourierRateSheet1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierRateSheets.listByCourierOrgIdV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierRateSheets.<a href="/Sources/Resources/ShipperPayCourierRateSheets/ShipperPayCourierRateSheetsClient.swift">createV1</a>(request: Requests.ShipperPayCourierRateSheetClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new rate sheet for a courier to charge shippers. | (ShipperPayCourierRateSheetClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierRateSheets.createV1(request: .init(
-        schemaVersion: 1,
-        baseMileageDistanceMiles: 1.1,
-        baseMileageRateUsdPerInstance: 1.1,
-        additionalMileageRateUsdPerMile: 1.1,
-        longDistanceSurchargeMilesBeforeSurcharge: 1.1,
-        longDistanceSurchargeRateUsdPerMile: 1.1,
-        fuelSurchargeRateUsdPerMile: 1.1,
-        waitTimeBeforeChargeMinutes: 1.1,
-        waitTimeRateUsdPerMinute: 1.1,
-        extraStopRateUsd: 1.1,
-        dangerousGoodsRateUsdPerInstance: 1.1,
-        afterHours: 1.1,
-        weekend: 1.1,
-        holiday: 1.1
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ShipperPayCourierRateSheetClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierRateSheets.<a href="/Sources/Resources/ShipperPayCourierRateSheets/ShipperPayCourierRateSheetsClient.swift">getV1</a>(id: String, requestOptions: RequestOptions?) -> ShipperPayCourierRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a single rate sheet by its ID (courier access only). | () -> (ShipperPayCourierRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierRateSheets.getV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierRateSheets.<a href="/Sources/Resources/ShipperPayCourierRateSheets/ShipperPayCourierRateSheetsClient.swift">deleteByIdV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a rate sheet owned by the authenticated courier organization. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierRateSheets.deleteByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierRateSheets.<a href="/Sources/Resources/ShipperPayCourierRateSheets/ShipperPayCourierRateSheetsClient.swift">updateByIdV1</a>(id: String, request: Requests.ShipperPayCourierRateSheetClientUpdate1, requestOptions: RequestOptions?) -> ShipperPayCourierRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing rate sheet owned by the authenticated courier organization. | (ShipperPayCourierRateSheetClientUpdate1) -> (ShipperPayCourierRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierRateSheets.updateByIdV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.ShipperPayCourierRateSheetClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierStatements
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">getByIdV1</a>(shipperPayCourierStatementId: String, requestOptions: RequestOptions?) -> ShipperPayCourierStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier statement by its ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.getByIdV1(shipperPayCourierStatementId: "shipper_pay_courier_statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**shipperPayCourierStatementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">deleteV1</a>(shipperPayCourierStatementId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a shipper-to-courier statement record if invoice not yet created. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.deleteV1(shipperPayCourierStatementId: "shipper_pay_courier_statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**shipperPayCourierStatementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">getByOrderIdOrShortIdV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> ShipperPayCourierStatement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier statement by order ID or short ID with Stripe invoice sync. | () -> (ShipperPayCourierStatement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.getByOrderIdOrShortIdV1(orderIdOrShortId: "order_id_or_short_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderIdOrShortId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">listByShipperOrgIdV1</a>(request: Requests.ListStatementsByShipperReq, requestOptions: RequestOptions?) -> GetShipperPayCourierStatementsForShipperRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists shipper pay courier statements by shipper org ID with status filtering and Stripe sync. | (ListStatementsByShipperReq) -> (GetShipperPayCourierStatementsForShipperRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.listByShipperOrgIdV1(request: .init(statuses: [
-        .invoiceNotYetCreated
-    ]))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ListStatementsByShipperReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">listByCourierOrgIdV1</a>(request: Requests.ListStatementsByCourierReq, requestOptions: RequestOptions?) -> GetShipperPayCourierStatementsForShipperRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists shipper pay courier statements by courier org ID with status filtering and Stripe sync. | (ListStatementsByCourierReq) -> (GetShipperPayCourierStatementsForShipperRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.listByCourierOrgIdV1(request: .init(statuses: [
-        .invoiceNotYetCreated
-    ]))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ListStatementsByCourierReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">createV1</a>(request: CreateShipperPayCourierStatementReq, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a shipper-to-courier statement record based on all task groups in an order. | (CreateShipperPayCourierStatementReq) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.createV1(request: CreateShipperPayCourierStatementReq(
-        orderIdOrShortId: "order_id_or_short_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateShipperPayCourierStatementReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierStatements.<a href="/Sources/Resources/ShipperPayCourierStatements/ShipperPayCourierStatementsClient.swift">previewV1</a>(request: CreateShipperPayCourierStatementReq, requestOptions: RequestOptions?) -> StatementPreviewResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Previews a shipper-to-courier statement showing task groups, line item groups, total amount, and readiness status. | (CreateShipperPayCourierStatementReq) -> (StatementPreviewResponse)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierStatements.previewV1(request: CreateShipperPayCourierStatementReq(
-        orderIdOrShortId: "order_id_or_short_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateShipperPayCourierStatementReq` 
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5677,7 +2378,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a cargo's details. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, SKIPPED, or EXCEPTION status. | authz_personas=[lig_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
+Updates a cargo's details. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, SKIPPED, or EXCEPTION status. | authz_personas=[lig_owner_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -5992,7 +2693,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task artifact. | authz_personas=[lig_org_operators] | () -> (bool)
+Deletes a task artifact. | authz_personas=[lig_owner_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6497,7 +3198,7 @@ try await main()
 <dl>
 <dd>
 
-Cancels an order and all related task groups and tasks in a transaction. | authz_personas=[lig_org_operators] | () -> (bool)
+Cancels an order and all related task groups and tasks in a transaction. | authz_personas=[lig_owner_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6854,7 +3555,7 @@ try await main()
 <dl>
 <dd>
 
-Starts a task group by transitioning it from STAGED to IN_PROGRESS and syncing related order state. | authz_personas=[courier_driver, lig_org_operators] | () -> (bool)
+Starts a task group by transitioning it from STAGED to IN_PROGRESS and syncing related order state. | authz_personas=[courier_driver, lig_owner_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6925,7 +3626,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the ordering of tasks within a task group. Requires complete list of task IDs in desired order. Completed tasks must be before staged tasks. | authz_personas=[lig_org_operators] | (SetTaskOrderingReq) -> (bool)
+Sets the ordering of tasks within a task group. Requires complete list of task IDs in desired order. Completed tasks must be before staged tasks. | authz_personas=[lig_owner_operators] | (SetTaskOrderingReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6978,90 +3679,6 @@ try await main()
 <dd>
 
 **request:** `Requests.SetTaskOrderingReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setFlightInfoV1</a>(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Sets the flight number and/or fa_flight_ids on a task group. | authz_personas=[lig_org_operators] | (SetFlightInfoReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.taskGroups.setFlightInfoV1(
-        taskGroupId: "task_group_id",
-        request: SetFlightInfoReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `SetFlightInfoReq` 
     
 </dd>
 </dl>
@@ -7316,6 +3933,90 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">setFlightInfoV1</a>(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the flight number and/or fa_flight_ids on a task group. | authz_personas=[lig_owner_operators] | (SetFlightInfoReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.taskGroups.setFlightInfoV1(
+        taskGroupId: "task_group_id",
+        request: SetFlightInfoReq(
+
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `SetFlightInfoReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.taskGroups.<a href="/Sources/Resources/TaskGroups/TaskGroupsClient.swift">addMessageV1</a>(taskGroupId: String, request: Requests.AddMessageReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -7411,7 +4112,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a new task to a task group at a specific index. | authz_personas=[lig_org_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
+Adds a new task to a task group at a specific index. | authz_personas=[lig_owner_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -7499,7 +4200,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a task. Task must be in STAGED status. | authz_personas=[lig_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
+Updates a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -7725,7 +4426,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task. Task must be in STAGED status. | authz_personas=[lig_org_operators] | () -> (bool)
+Deletes a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -9565,6 +6266,3026 @@ try await main()
 </dl>
 </details>
 
+## Billing LineItemGroups
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">getV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a line item group by ID. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.getV1(lineItemGroupId: "line_item_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">listForCourierOrgV1</a>(filterDriverId: String?, filterStatus: LineItemGroupStatusEnum1?, filterAttachedToStatement: Bool?, filterPaymentRole: PaymentRoleFilterEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> LineItemGroupListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists line item groups for the authenticated courier organization with filtering and pagination. | org_type=[courier], min_org_role=operator | () -> (LineItemGroupListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.listForCourierOrgV1(
+        filterDriverId: "filter_driver_id",
+        filterAttachedToStatement: true,
+        filterPaymentRole: .origin,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterDriverId:** `String?` — Filter by driver ID (payment_destination_driver_id)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `LineItemGroupStatusEnum1?` — Filter by line item group status(es)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterAttachedToStatement:** `Bool?` — Filter by whether line item group is attached to a statement
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaymentRole:** `PaymentRoleFilterEnum?` — Filter by payment role: origin (courier pays) or destination (courier receives). Returns both if not specified.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">finalizeV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Finalizes a line item group. LIG must be in ADJUSTABLE status. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.finalizeV1(lineItemGroupId: "line_item_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">calculateLineItemsV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+(Re)calculates line items for a line item group. LIG must be PENDING_CALCULATION or ADJUSTABLE and must be associated with a TaskGroup. Note: Line item calculation normally happens automatically; this route is primarily for PENDING_CALCULATION LIGs where automatic calculation failed (e.g., due to third-party service failure). | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.calculateLineItemsV1(lineItemGroupId: "line_item_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">associateWithStatementV1</a>(lineItemGroupId: String, statementId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Associates a line item group with a statement. LIG must be PENDING_RATES, PENDING_CALCULATION, ADJUSTABLE, or FINALIZED (before OPEN). Statement must be OPEN. LIG payment info must match Statement. Also removes from previous statement if any. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators, statement_owner_operators] | (PydanticObjectId) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.associateWithStatementV1(
+        lineItemGroupId: "line_item_group_id",
+        statementId: "statement_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">adjustLineItemV1</a>(lineItemGroupId: String, request: Requests.AdjustLineItemReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adjusts a line item within a line item group. LIG must be ADJUSTABLE. Adjustment can be negative beyond item.amount to serve as a credit. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (AdjustLineItemReq) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.adjustLineItemV1(
+        lineItemGroupId: "line_item_group_id",
+        request: .init(
+            lineItemUuidStr: "line_item_uuid_str",
+            adjustment: 1.1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AdjustLineItemReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing RateSheets
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">getV1</a>(rateSheetId: String, requestOptions: RequestOptions?) -> RateSheet1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a rate sheet by ID. Only the owning org can fetch. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (RateSheet1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.getV1(rateSheetId: "rate_sheet_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">updateV1</a>(rateSheetId: String, request: Requests.RateSheetClientUpdate1, requestOptions: RequestOptions?) -> RateSheet1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a rate sheet. Only name, comments, cargo_types, and vehicle_types can be changed. Use the archive endpoint for archiving. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | (RateSheetClientUpdate1) -> (RateSheet1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.updateV1(
+        rateSheetId: "rate_sheet_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.RateSheetClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">listByOrgV1</a>(sortBy: RateSheetSortByEnum?, sortOrder: RateSheetsListByOrgV1RequestSortOrder?, page: Int?, pageSize: Int?, filterArchived: Bool?, filterPaymentVectorType: PaymentVectorTypeEnum1?, filterServiceType: ServiceTypeEnum1?, filterCargoType: CargoTypeEnum1?, filterVehicleType: VehicleTypeEnum?, requestOptions: RequestOptions?) -> RateSheetListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists rate sheets for the caller's organization with filtering, sorting, and pagination. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (RateSheetListResponse)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.listByOrgV1(
+        sortBy: .id,
+        sortOrder: .ascending,
+        page: 1,
+        pageSize: 1,
+        filterArchived: true,
+        filterPaymentVectorType: .shipperPayForwarder,
+        filterServiceType: .onDemand,
+        filterCargoType: .spareParts,
+        filterVehicleType: .sedan
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `RateSheetSortByEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `RateSheetsListByOrgV1RequestSortOrder?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaymentVectorType:** `PaymentVectorTypeEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterServiceType:** `ServiceTypeEnum1?` — Filter by service type (exact match)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCargoType:** `CargoTypeEnum1?` — Filter by cargo type (checks if value is in cargo_types array)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterVehicleType:** `VehicleTypeEnum?` — Filter by vehicle type (checks if value is in vehicle_types array)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">createV1</a>(paymentVectorType: PaymentVectorTypeEnum1, request: Requests.RateSheetClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a rate sheet. Couriers and forwarders only. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | (RateSheetClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.createV1(
+        paymentVectorType: .shipperPayForwarder,
+        request: .init(
+            schemaVersion: 1,
+            serviceType: .onDemand
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentVectorType:** `PaymentVectorTypeEnum1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.RateSheetClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">archiveV1</a>(rateSheetId: String, archive: Bool, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives or unarchives a rate sheet. When archiving, automatically removes the rate sheet from all default assignments (OrgPrivateData, Connections, Drivers). | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.archiveV1(
+        rateSheetId: "rate_sheet_id",
+        archive: true
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**archive:** `Bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">updateOrgDefaultForServiceTypeV1</a>(paymentVectorType: PaymentVectorTypeEnum1, serviceType: ServiceTypeEnum1, rateSheetId: String?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or clears the org's default rate sheet for a payment vector type and service type. Pass rate_sheet_id to set a default, or omit it to clear the default. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.updateOrgDefaultForServiceTypeV1(
+        paymentVectorType: .shipperPayForwarder,
+        serviceType: .onDemand,
+        rateSheetId: "rate_sheet_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentVectorType:** `PaymentVectorTypeEnum1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serviceType:** `ServiceTypeEnum1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">updateDefaultForConnectionV1</a>(connectionId: String, serviceType: ServiceTypeEnum1, rateSheetId: String?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or clears a rate sheet as the default for a connection. Pass rate_sheet_id to set a default, or omit it to clear the default. One default per service type per connection. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.updateDefaultForConnectionV1(
+        connectionId: "connection_id",
+        serviceType: .onDemand,
+        rateSheetId: "rate_sheet_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**connectionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serviceType:** `ServiceTypeEnum1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">updateDefaultForDriverV1</a>(driverId: String, serviceType: ServiceTypeEnum1, rateSheetId: String?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or clears a rate sheet as the default for a driver. Pass rate_sheet_id to set a default, or omit it to clear the default. One default per service type per driver. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.updateDefaultForDriverV1(
+        driverId: "driver_id",
+        serviceType: .onDemand,
+        rateSheetId: "rate_sheet_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serviceType:** `ServiceTypeEnum1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing Statements
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">getV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a statement by ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.getV1(statementId: "statement_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">getByLigIdV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a statement by its associated LineItemGroup ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.getByLigIdV1(lineItemGroupId: "line_item_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">expandedRetrieveV1</a>(request: Requests.StatementExpandedRetrieveReq, requestOptions: RequestOptions?) -> StatementExpandedRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a statement with its associated LineItemGroups expanded. | authz_personas=[statement_org_operators, statement_driver] | (StatementExpandedRetrieveReq) -> (StatementExpandedRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.expandedRetrieveV1(request: .init(statementId: "statement_id"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.StatementExpandedRetrieveReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">listV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterVoidedAtTimestampGte: Date?, filterVoidedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists statements with filtering, sorting, and pagination. | authz_personas=[statement_org_operators, statement_driver] | () -> (StatementsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.listV1(
+        sortBy: .amount,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterSettlementType: .stripeConnect,
+        filterPaymentOriginOrgId: "filter_payment_origin_org_id",
+        filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
+        filterOwnedByOrgId: "filter_owned_by_org_id",
+        filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOpenedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterVoidedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterVoidedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `StatementSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (ascending or descending)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `StatementStatusEnum1?` — Filter by statement status(es)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterSettlementType:** `SettlementTypeEnum1?` — Filter by settlement type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaymentOriginOrgId:** `String?` — Filter by payment origin org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaymentDestinationOrgId:** `String?` — Filter by payment destination org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOwnedByOrgId:** `String?` — Filter by owned by org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStagedAtTimestampGte:** `Date?` — Filter by staged_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStagedAtTimestampLte:** `Date?` — Filter by staged_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOpenedAtTimestampGte:** `Date?` — Filter by opened_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOpenedAtTimestampLte:** `Date?` — Filter by opened_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaidAtTimestampGte:** `Date?` — Filter by paid_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaidAtTimestampLte:** `Date?` — Filter by paid_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterVoidedAtTimestampGte:** `Date?` — Filter by voided_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterVoidedAtTimestampLte:** `Date?` — Filter by voided_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">createV1</a>(request: Requests.CreateStatementReq, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new statement without LIG IDs, starting in STAGED status. Requires payment vector, origin, and destination. | authz: org_type=[courier, forwarder], min_org_role=operator | (CreateStatementReq) -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.createV1(request: .init(
+        paymentVectorType: .shipperPayForwarder,
+        settlementType: .stripeConnect
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CreateStatementReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">deleteV1</a>(statementId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a statement. Only allowed if statement has no LineItemGroup IDs. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.deleteV1(statementId: "statement_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateSettlementTypeV1</a>(statementId: String, request: Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingUpdateSettlementTypeV1StatementIdPatch, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the settlement type of a statement. Statement must be in STAGED status. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED | (SettlementTypeEnum1) -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.updateSettlementTypeV1(
+        statementId: "statement_id",
+        request: .init(settlementType: .stripeConnect)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingUpdateSettlementTypeV1StatementIdPatch` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateOffChrtSettlementStateV1</a>(statementId: String, request: Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingUpdateOffChrtSettlementStateV1StatementIdPatch, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the status of an off-CHRT settlement statement. Used to manually transition OFF_CHRT statements between STAGED, OPEN, PAID, and VOID. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | (StatementStatusEnum1) -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.updateOffChrtSettlementStateV1(
+        statementId: "statement_id",
+        request: .init(newStatus: .staged)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingUpdateOffChrtSettlementStateV1StatementIdPatch` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">openInvoiceV1</a>(statementId: String, request: Requests.OpenInvoiceReq, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Opens a Stripe Connect invoice for a statement and attempt to send via email. Org must have a Stripe Connect account. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED, line_item_groups_status=FINALIZED | (OpenInvoiceReq) -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.openInvoiceV1(
+        statementId: "statement_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OpenInvoiceReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">syncInvoiceV1</a>(statementId: String, requestOptions: RequestOptions?) -> SyncInvoiceRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Syncs invoice state from Stripe to the Statement and LineItemGroups. The webhook usually keeps invoices up to date, but users can manually trigger a sync. | authz: min_org_role=operator | () -> (SyncInvoiceRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.syncInvoiceV1(statementId: "statement_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">cancelInvoiceV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancels/voids a Stripe Connect invoice. Statement must be OPEN or VOID. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=OPEN, VOID | () -> (Statement1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.cancelInvoiceV1(statementId: "statement_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**statementId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing StripeConnect
+<details><summary><code>client.billing.stripeConnect.<a href="/Sources/Resources/Billing/StripeConnect/StripeConnectClient.swift">createAccountV1</a>(requestOptions: RequestOptions?) -> CreateStripeConnectAccountRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateStripeConnectAccountRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.stripeConnect.createAccountV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.stripeConnect.<a href="/Sources/Resources/Billing/StripeConnect/StripeConnectClient.swift">onboardingLinkV1</a>(requestOptions: RequestOptions?) -> StripeConnectAccountOnboardingLinkRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (StripeConnectAccountOnboardingLinkRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.stripeConnect.onboardingLinkV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing LineItemGroups AdHoc
+<details><summary><code>client.billing.lineItemGroups.adHoc.<a href="/Sources/Resources/Billing/LineItemGroups/AdHoc/AdHocClient.swift">createV1</a>(request: Requests.CreateAdHocLineItemGroupReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an ad-hoc line item group (not associated with a TaskGroup). Starts as ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator | (CreateAdHocLineItemGroupReq) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.adHoc.createV1(request: .init(
+        paymentVectorType: .shipperPayForwarder,
+        settlementType: .stripeConnect
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CreateAdHocLineItemGroupReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.adHoc.<a href="/Sources/Resources/Billing/LineItemGroups/AdHoc/AdHocClient.swift">addLineItemV1</a>(lineItemGroupId: String, request: Requests.LineItemClientCreate1, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a line item to an ad-hoc line item group. LIG must be ad-hoc (task_group_id is None) and ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (LineItemClientCreate1) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.adHoc.addLineItemV1(
+        lineItemGroupId: "line_item_group_id",
+        request: .init(
+            item: .baseRate,
+            quantity: 1.1,
+            rate: 1.1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.LineItemClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.adHoc.<a href="/Sources/Resources/Billing/LineItemGroups/AdHoc/AdHocClient.swift">removeLineItemV1</a>(lineItemGroupId: String, lineItemUuidStr: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a line item from an ad-hoc line item group. LIG must be ad-hoc (task_group_id is None) and ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (line_item_uuid_str) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.adHoc.removeLineItemV1(
+        lineItemGroupId: "line_item_group_id",
+        lineItemUuidStr: "line_item_uuid_str"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**lineItemUuidStr:** `String` — UUID of the line item to remove from the LIG
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.adHoc.<a href="/Sources/Resources/Billing/LineItemGroups/AdHoc/AdHocClient.swift">deleteV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an ad-hoc line item group. LIG must be ad-hoc (task_group_id is None) and ADJUSTABLE or FINALIZED. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.adHoc.deleteV1(lineItemGroupId: "line_item_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing LineItemGroups Messages
+<details><summary><code>client.billing.lineItemGroups.messages.<a href="/Sources/Resources/Billing/LineItemGroups/Messages/MessagesClient.swift">addV1</a>(lineItemGroupId: String, request: Requests.AddLineItemGroupMessageReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a message to a line item group's message log. | authz_personas=[lig_org_operators, lig_driver] | (AddLineItemGroupMessageReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.messages.addV1(
+        lineItemGroupId: "line_item_group_id",
+        request: .init(message: "message")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AddLineItemGroupMessageReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing LineItemGroups S3Objects
+<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">getS3ObjectMetadataV1</a>(lineItemGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> LineItemGroupS3ObjectMetadata1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the metadata for a line item group S3 object, including blurhash for placeholder loading. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupS3ObjectMetadata1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.s3Objects.getS3ObjectMetadataV1(lineItemGroupS3ObjectMetadataId: "line_item_group_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">getV1</a>(lineItemGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams a line item group S3 object file from storage. | authz_personas=[lig_org_operators, lig_driver] | () -> (binary)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.s3Objects.getV1(lineItemGroupS3ObjectMetadataId: "line_item_group_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">addV1</a>(lineItemGroupId: String, request: Requests.BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads an image file to a line item group with automatic blurhash generation. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.s3Objects.addV1(
+        lineItemGroupId: "line_item_group_id",
+        request: .init(image: .init(data: Data("".utf8)))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">deleteV1</a>(lineItemGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an S3 object metadata and the associated S3 object from a line item group. | authz_personas=[lig_org_operators, lig_driver] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.s3Objects.deleteV1(lineItemGroupS3ObjectMetadataId: "line_item_group_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Connections ConnectionToCourier
 <details><summary><code>client.connections.connectionToCourier.<a href="/Sources/Resources/Connections/ConnectionToCourier/ConnectionToCourierClient.swift">createV1</a>(request: CreateConnectionReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
@@ -9768,181 +9489,6 @@ try await main()
 <dd>
 
 **request:** `CreateConnectionReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## CourierPayDriverLineItemGroups AddLineItems
-<details><summary><code>client.courierPayDriverLineItemGroups.addLineItems.<a href="/Sources/Resources/CourierPayDriverLineItemGroups/AddLineItems/AddLineItemsClient.swift">byIdV1</a>(id: String, request: Requests.CourierPayDriverLineItemGroupAddLineItemsReq, requestOptions: RequestOptions?) -> CourierPayDriverLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Adds additional line items to an existing courier driver line item group. | (CourierPayDriverLineItemGroupAddLineItemsReq) -> (CourierPayDriverLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverLineItemGroups.addLineItems.byIdV1(
-        id: "id",
-        request: .init(lineItems: [
-            LineItemClientCreate1(
-                schemaVersion: 1,
-                item: .baseRate,
-                quantity: 1.1,
-                rate: 1.1
-            )
-        ])
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.CourierPayDriverLineItemGroupAddLineItemsReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## CourierPayDriverLineItemGroups RemoveLineItems
-<details><summary><code>client.courierPayDriverLineItemGroups.removeLineItems.<a href="/Sources/Resources/CourierPayDriverLineItemGroups/RemoveLineItems/RemoveLineItemsClient.swift">byIdV1</a>(id: String, request: Requests.CourierPayDriverLineItemGroupRemoveLineItemsReq, requestOptions: RequestOptions?) -> CourierPayDriverLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Removes specific line items from a courier driver line item group by their UUID identifiers. | (CourierPayDriverLineItemGroupRemoveLineItemsReq) -> (CourierPayDriverLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.courierPayDriverLineItemGroups.removeLineItems.byIdV1(
-        id: "id",
-        request: .init(lineItemUuidStrs: [
-            "line_item_uuid_strs"
-        ])
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.CourierPayDriverLineItemGroupRemoveLineItemsReq` 
     
 </dd>
 </dl>
@@ -10628,6 +10174,170 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">setRateSheetsV1</a>(taskGroupId: String, request: Requests.SetRateSheetsReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets rate sheet IDs on a draft task group. Forwarder mode (SPF/FPC) and direct shipper mode (SPC) are mutually exclusive. CPD is independent. | (SetRateSheetsReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.taskGroup.setRateSheetsV1(
+        taskGroupId: "task_group_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetRateSheetsReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">setServiceTypeV1</a>(taskGroupId: String, request: Requests.SetServiceTypeReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the service type on a draft task group. Can only be set when task group is in DRAFT status. | (SetServiceTypeReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orderDrafts.taskGroup.setServiceTypeV1(
+        taskGroupId: "task_group_id",
+        request: .init(serviceType: .onDemand)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetServiceTypeReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">deleteV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -10712,7 +10422,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a task to an existing task group in a draft order. Validates order is in DRAFT status and task action type matches task group type. | (OrderDraftAddTaskReqV1) -> (PydanticObjectId)
+Adds a task to an existing task group in a draft order. Validates task action type matches task group type. | authz_personas=[draft_creator_org_operator] | (OrderDraftAddTaskReqV1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -10788,7 +10498,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a task in an existing draft order. | (OrderDraftUpdateTaskReq) -> (PydanticObjectId)
+Updates a task in an existing draft order. | authz_personas=[draft_creator_org_operator] | (OrderDraftUpdateTaskReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -10864,7 +10574,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task from a draft order, including all task artifacts. Cargo is preserved. Task is removed from task group. | () -> (bool)
+Deletes a task from a draft order, including all task artifacts. Cargo is preserved. Task is removed from task group. | authz_personas=[draft_creator_org_operator] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -11382,7 +11092,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpanded)
+Fetches a single draft order with optional expanded related data. Any user in the org (with operator+ role) can access it. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpanded)
 </dd>
 </dl>
 </dd>
@@ -11466,7 +11176,7 @@ try await main()
 <dl>
 <dd>
 
-Lists expanded draft orders for the creator with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
+Lists expanded draft orders for the organization with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
 </dd>
 </dl>
 </dd>
@@ -12877,451 +12587,6 @@ try await main()
 <dd>
 
 **request:** `Requests.ForwarderOrgInfoForConnectionsClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierLineItemGroups Shipper
-<details><summary><code>client.shipperPayCourierLineItemGroups.shipper.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/Shipper/ShipperPayCourierLineItemGroupsShipperClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [ShipperPayCourierLineItemGroup1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all shipper pay courier line item groups for the caller's shipper organization. | () -> (list[ShipperPayCourierLineItemGroup1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.shipper.listV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierLineItemGroups.shipper.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/Shipper/ShipperPayCourierLineItemGroupsShipperClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier line item group by its ID for the caller's shipper organization. | () -> (ShipperPayCourierLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.shipper.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipperPayCourierLineItemGroups.shipper.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/Shipper/ShipperPayCourierLineItemGroupsShipperClient.swift">byTaskGroupIdV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a shipper pay courier line item group by its associated task group ID for the caller's shipper organization. | () -> (ShipperPayCourierLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.shipper.byTaskGroupIdV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierLineItemGroups Courier
-<details><summary><code>client.shipperPayCourierLineItemGroups.courier.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/Courier/ShipperPayCourierLineItemGroupsCourierClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [ShipperPayCourierLineItemGroup1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all shipper pay courier line item groups for the caller's courier organization. | () -> (list[ShipperPayCourierLineItemGroup1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.courier.listV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierLineItemGroups AddLineItems
-<details><summary><code>client.shipperPayCourierLineItemGroups.addLineItems.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/AddLineItems/ShipperPayCourierLineItemGroupsAddLineItemsClient.swift">byIdV1</a>(id: String, request: Requests.ShipperPayCourierLineItemGroupAddLineItemsReq, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Adds additional line items to an existing shipper pay courier line item group. | (ShipperPayCourierLineItemGroupAddLineItemsReq) -> (ShipperPayCourierLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.addLineItems.byIdV1(
-        id: "id",
-        request: .init(lineItems: [
-            LineItemClientCreate1(
-                schemaVersion: 1,
-                item: .baseRate,
-                quantity: 1.1,
-                rate: 1.1
-            )
-        ])
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.ShipperPayCourierLineItemGroupAddLineItemsReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ShipperPayCourierLineItemGroups RemoveLineItems
-<details><summary><code>client.shipperPayCourierLineItemGroups.removeLineItems.<a href="/Sources/Resources/ShipperPayCourierLineItemGroups/RemoveLineItems/ShipperPayCourierLineItemGroupsRemoveLineItemsClient.swift">byIdV1</a>(id: String, request: Requests.ShipperPayCourierLineItemGroupRemoveLineItemsReq, requestOptions: RequestOptions?) -> ShipperPayCourierLineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Removes specific line items from a shipper pay courier line item group by their UUID identifiers. | (ShipperPayCourierLineItemGroupRemoveLineItemsReq) -> (ShipperPayCourierLineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipperPayCourierLineItemGroups.removeLineItems.byIdV1(
-        id: "id",
-        request: .init(lineItemUuidStrs: [
-            "line_item_uuid_strs"
-        ])
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.ShipperPayCourierLineItemGroupRemoveLineItemsReq` 
     
 </dd>
 </dl>

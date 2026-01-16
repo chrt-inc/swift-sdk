@@ -52,7 +52,9 @@ import Chrt
                     },
                     "id": 1
                   },
-                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                  "default_rate_sheet__routed": "default_rate_sheet__routed",
+                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                 }
                 """.utf8
             )
@@ -114,7 +116,9 @@ import Chrt
                     1
                 ))
             )),
-            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+            defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
         )
         let response = try await client.drivers.getForCallerV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -169,7 +173,9 @@ import Chrt
                     },
                     "id": 1
                   },
-                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                  "default_rate_sheet__routed": "default_rate_sheet__routed",
+                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                 }
                 """.utf8
             )
@@ -231,7 +237,9 @@ import Chrt
                     1
                 ))
             )),
-            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+            defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
         )
         let response = try await client.drivers.getByDriverIdV1(
             driverId: "driver_id",
@@ -287,7 +295,9 @@ import Chrt
                           "type": "GeometryCollection"
                         }
                       },
-                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                      "default_rate_sheet__routed": "default_rate_sheet__routed",
+                      "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                     }
                   }
                 ]
@@ -345,7 +355,9 @@ import Chrt
                             )
                         )
                     )),
-                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                    defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
                 ))
             )
         ]
@@ -398,7 +410,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "default_rate_sheet__routed": "default_rate_sheet__routed",
+                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
                   }
                 ]
                 """.utf8
@@ -451,7 +465,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
             )
         ]
         let response = try await client.drivers.listV1(

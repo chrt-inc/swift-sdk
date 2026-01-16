@@ -3,14 +3,6 @@ import Foundation
 /// Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 public final class ChrtClient: Sendable {
     public let payments: PaymentsClient
-    public let courierPayDriverLineItemGroups: CourierPayDriverLineItemGroupsClient
-    public let courierPayDriverPayouts: CourierPayDriverPayoutsClient
-    public let courierPayDriverRateSheets: CourierPayDriverRateSheetsClient
-    public let courierPayDriverStatements: CourierPayDriverStatementsClient
-    public let shipperPayCourierLineItemGroups: ShipperPayCourierLineItemGroupsClient
-    public let shipperPayCourierPayments: ShipperPayCourierPaymentsClient
-    public let shipperPayCourierRateSheets: ShipperPayCourierRateSheetsClient
-    public let shipperPayCourierStatements: ShipperPayCourierStatementsClient
     public let connections: ConnectionsClient
     public let orgProfiles: OrgProfilesClient
     public let dev: DevClient
@@ -29,6 +21,7 @@ public final class ChrtClient: Sendable {
     public let root: RootClient
     public let users: UsersClient
     public let utils: UtilsClient
+    public let billing: BillingClient
     public let notifications: NotificationsClient
     public let orgInfoForConnections: OrgInfoForConnectionsClient
     public let tracking: TrackingClient
@@ -115,14 +108,6 @@ public final class ChrtClient: Sendable {
             urlSession: urlSession
         )
         self.payments = PaymentsClient(config: config)
-        self.courierPayDriverLineItemGroups = CourierPayDriverLineItemGroupsClient(config: config)
-        self.courierPayDriverPayouts = CourierPayDriverPayoutsClient(config: config)
-        self.courierPayDriverRateSheets = CourierPayDriverRateSheetsClient(config: config)
-        self.courierPayDriverStatements = CourierPayDriverStatementsClient(config: config)
-        self.shipperPayCourierLineItemGroups = ShipperPayCourierLineItemGroupsClient(config: config)
-        self.shipperPayCourierPayments = ShipperPayCourierPaymentsClient(config: config)
-        self.shipperPayCourierRateSheets = ShipperPayCourierRateSheetsClient(config: config)
-        self.shipperPayCourierStatements = ShipperPayCourierStatementsClient(config: config)
         self.connections = ConnectionsClient(config: config)
         self.orgProfiles = OrgProfilesClient(config: config)
         self.dev = DevClient(config: config)
@@ -141,6 +126,7 @@ public final class ChrtClient: Sendable {
         self.root = RootClient(config: config)
         self.users = UsersClient(config: config)
         self.utils = UtilsClient(config: config)
+        self.billing = BillingClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
         self.tracking = TrackingClient(config: config)

@@ -21,8 +21,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -49,8 +49,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -77,8 +77,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -104,8 +104,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -130,8 +130,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -157,8 +157,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -184,8 +184,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -216,8 +216,8 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -258,8 +258,8 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -296,8 +296,8 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -345,8 +345,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers)
             )
 
@@ -368,8 +368,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers)
             )
 
@@ -395,8 +395,8 @@ import Testing
         )
 
         do {
-            _ = try await client.payments.generateInvoiceV1(
-                request: .init(shipperPayCourierStatementId: "shipper_pay_courier_statement_id"),
+            _ = try await client.payments.createCheckoutSessionV1(
+                request: .init(priceName: .courierOps100UsdPerMonth),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 

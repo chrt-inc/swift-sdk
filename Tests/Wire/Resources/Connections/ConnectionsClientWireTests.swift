@@ -281,6 +281,8 @@ import Chrt
                   "courier_org_id": "courier_org_id",
                   "connected": true,
                   "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
+                  "default_rate_sheet__routed": "default_rate_sheet__routed",
+                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand",
                   "_id": "_id"
                 }
                 """.utf8
@@ -298,6 +300,8 @@ import Chrt
                 courierOrgId: "courier_org_id",
                 connected: Optional(true),
                 shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand"),
                 id: "_id"
             )
         ))

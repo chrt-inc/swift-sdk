@@ -8,6 +8,8 @@ public struct ShipperForwarderConnection1: Codable, Hashable, Sendable {
     public let forwarderOrgId: String
     public let connected: Bool?
     public let shipperCustomerIdForForwarderStripeConnectAccount: String?
+    public let defaultRateSheetRouted: String?
+    public let defaultRateSheetOnDemand: String?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -18,6 +20,8 @@ public struct ShipperForwarderConnection1: Codable, Hashable, Sendable {
         forwarderOrgId: String,
         connected: Bool? = nil,
         shipperCustomerIdForForwarderStripeConnectAccount: String? = nil,
+        defaultRateSheetRouted: String? = nil,
+        defaultRateSheetOnDemand: String? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -26,6 +30,8 @@ public struct ShipperForwarderConnection1: Codable, Hashable, Sendable {
         self.forwarderOrgId = forwarderOrgId
         self.connected = connected
         self.shipperCustomerIdForForwarderStripeConnectAccount = shipperCustomerIdForForwarderStripeConnectAccount
+        self.defaultRateSheetRouted = defaultRateSheetRouted
+        self.defaultRateSheetOnDemand = defaultRateSheetOnDemand
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -37,6 +43,8 @@ public struct ShipperForwarderConnection1: Codable, Hashable, Sendable {
         self.forwarderOrgId = try container.decode(String.self, forKey: .forwarderOrgId)
         self.connected = try container.decodeIfPresent(Bool.self, forKey: .connected)
         self.shipperCustomerIdForForwarderStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForForwarderStripeConnectAccount)
+        self.defaultRateSheetRouted = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRouted)
+        self.defaultRateSheetOnDemand = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemand)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -49,6 +57,8 @@ public struct ShipperForwarderConnection1: Codable, Hashable, Sendable {
         try container.encode(self.forwarderOrgId, forKey: .forwarderOrgId)
         try container.encodeIfPresent(self.connected, forKey: .connected)
         try container.encodeIfPresent(self.shipperCustomerIdForForwarderStripeConnectAccount, forKey: .shipperCustomerIdForForwarderStripeConnectAccount)
+        try container.encodeIfPresent(self.defaultRateSheetRouted, forKey: .defaultRateSheetRouted)
+        try container.encodeIfPresent(self.defaultRateSheetOnDemand, forKey: .defaultRateSheetOnDemand)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -59,6 +69,8 @@ public struct ShipperForwarderConnection1: Codable, Hashable, Sendable {
         case forwarderOrgId = "forwarder_org_id"
         case connected
         case shipperCustomerIdForForwarderStripeConnectAccount = "shipper_customer_id_for_forwarder_stripe_connect_account"
+        case defaultRateSheetRouted = "default_rate_sheet__routed"
+        case defaultRateSheetOnDemand = "default_rate_sheet__on_demand"
         case id = "_id"
     }
 }

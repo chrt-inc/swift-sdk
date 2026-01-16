@@ -61,7 +61,7 @@ import Chrt
                     "email_address_secondary": "email_address_secondary",
                     "job_title": "job_title",
                     "notes": "notes",
-                    "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
+                    "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "_id": "_id"
@@ -109,7 +109,7 @@ import Chrt
                 emailAddressSecondary: Optional("email_address_secondary"),
                 jobTitle: Optional("job_title"),
                 notes: Optional("notes"),
-                shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
+                shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 id: "_id"
@@ -160,7 +160,7 @@ import Chrt
                   "email_address_secondary": "email_address_secondary",
                   "job_title": "job_title",
                   "notes": "notes",
-                  "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
+                  "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
                   "_id": "_id"
@@ -217,7 +217,7 @@ import Chrt
             emailAddressSecondary: Optional("email_address_secondary"),
             jobTitle: Optional("job_title"),
             notes: Optional("notes"),
-            shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
+            shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
             createdByOrgId: "created_by_org_id",
             createdByUserId: "created_by_user_id",
             id: "_id"

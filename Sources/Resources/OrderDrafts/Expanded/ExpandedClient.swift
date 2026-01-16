@@ -7,7 +7,7 @@ public final class ExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Fetches a single draft order with optional expanded related data. Only the creator of the draft order can access it. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpanded)
+    /// Fetches a single draft order with optional expanded related data. Any user in the org (with operator+ role) can access it. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpanded)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieveV1(orderIdOrShortId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpanded {
@@ -20,7 +20,7 @@ public final class ExpandedClient: Sendable {
         )
     }
 
-    /// Lists expanded draft orders for the creator with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
+    /// Lists expanded draft orders for the organization with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: ExpandedListV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {

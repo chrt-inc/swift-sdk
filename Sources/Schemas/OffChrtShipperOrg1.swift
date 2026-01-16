@@ -13,7 +13,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
     public let emailAddressSecondary: String?
     public let jobTitle: String?
     public let notes: String?
-    public let shipperCustomerIdForCourierStripeConnectAccount: String?
+    public let shipperCustomerIdForStripeConnectAccount: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
@@ -35,7 +35,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         emailAddressSecondary: String? = nil,
         jobTitle: String? = nil,
         notes: String? = nil,
-        shipperCustomerIdForCourierStripeConnectAccount: String? = nil,
+        shipperCustomerIdForStripeConnectAccount: String? = nil,
         createdByOrgId: String,
         createdByUserId: String,
         id: String,
@@ -53,7 +53,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         self.emailAddressSecondary = emailAddressSecondary
         self.jobTitle = jobTitle
         self.notes = notes
-        self.shipperCustomerIdForCourierStripeConnectAccount = shipperCustomerIdForCourierStripeConnectAccount
+        self.shipperCustomerIdForStripeConnectAccount = shipperCustomerIdForStripeConnectAccount
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.id = id
@@ -74,7 +74,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
         self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
         self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
-        self.shipperCustomerIdForCourierStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForCourierStripeConnectAccount)
+        self.shipperCustomerIdForStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForStripeConnectAccount)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.id = try container.decode(String.self, forKey: .id)
@@ -96,7 +96,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
         try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
         try container.encodeIfPresent(self.notes, forKey: .notes)
-        try container.encodeIfPresent(self.shipperCustomerIdForCourierStripeConnectAccount, forKey: .shipperCustomerIdForCourierStripeConnectAccount)
+        try container.encodeIfPresent(self.shipperCustomerIdForStripeConnectAccount, forKey: .shipperCustomerIdForStripeConnectAccount)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.id, forKey: .id)
@@ -116,7 +116,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         case emailAddressSecondary = "email_address_secondary"
         case jobTitle = "job_title"
         case notes
-        case shipperCustomerIdForCourierStripeConnectAccount = "shipper_customer_id_for_courier_stripe_connect_account"
+        case shipperCustomerIdForStripeConnectAccount = "shipper_customer_id_for_stripe_connect_account"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case id = "_id"

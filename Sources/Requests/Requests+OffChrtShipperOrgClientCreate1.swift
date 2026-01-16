@@ -14,7 +14,7 @@ extension Requests {
         public let emailAddressSecondary: String?
         public let jobTitle: String?
         public let notes: String?
-        public let shipperCustomerIdForCourierStripeConnectAccount: String?
+        public let shipperCustomerIdForStripeConnectAccount: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -31,7 +31,7 @@ extension Requests {
             emailAddressSecondary: String? = nil,
             jobTitle: String? = nil,
             notes: String? = nil,
-            shipperCustomerIdForCourierStripeConnectAccount: String? = nil,
+            shipperCustomerIdForStripeConnectAccount: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
@@ -46,7 +46,7 @@ extension Requests {
             self.emailAddressSecondary = emailAddressSecondary
             self.jobTitle = jobTitle
             self.notes = notes
-            self.shipperCustomerIdForCourierStripeConnectAccount = shipperCustomerIdForCourierStripeConnectAccount
+            self.shipperCustomerIdForStripeConnectAccount = shipperCustomerIdForStripeConnectAccount
             self.additionalProperties = additionalProperties
         }
 
@@ -64,7 +64,7 @@ extension Requests {
             self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
             self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
             self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
-            self.shipperCustomerIdForCourierStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForCourierStripeConnectAccount)
+            self.shipperCustomerIdForStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForStripeConnectAccount)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -83,7 +83,7 @@ extension Requests {
             try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
             try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
             try container.encodeIfPresent(self.notes, forKey: .notes)
-            try container.encodeIfPresent(self.shipperCustomerIdForCourierStripeConnectAccount, forKey: .shipperCustomerIdForCourierStripeConnectAccount)
+            try container.encodeIfPresent(self.shipperCustomerIdForStripeConnectAccount, forKey: .shipperCustomerIdForStripeConnectAccount)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -100,7 +100,7 @@ extension Requests {
             case emailAddressSecondary = "email_address_secondary"
             case jobTitle = "job_title"
             case notes
-            case shipperCustomerIdForCourierStripeConnectAccount = "shipper_customer_id_for_courier_stripe_connect_account"
+            case shipperCustomerIdForStripeConnectAccount = "shipper_customer_id_for_stripe_connect_account"
         }
     }
 }

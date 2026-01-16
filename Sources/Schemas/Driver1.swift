@@ -20,6 +20,8 @@ public struct Driver1: Codable, Hashable, Sendable {
     public let activeTaskGroupIds: [String]?
     public let lastSeenAtLocation: LocationFeature?
     public let lastSeenAtTimestamp: Date?
+    public let defaultRateSheetRouted: String?
+    public let defaultRateSheetOnDemand: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -41,6 +43,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         activeTaskGroupIds: [String]? = nil,
         lastSeenAtLocation: LocationFeature? = nil,
         lastSeenAtTimestamp: Date? = nil,
+        defaultRateSheetRouted: String? = nil,
+        defaultRateSheetOnDemand: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -60,6 +64,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         self.activeTaskGroupIds = activeTaskGroupIds
         self.lastSeenAtLocation = lastSeenAtLocation
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
+        self.defaultRateSheetRouted = defaultRateSheetRouted
+        self.defaultRateSheetOnDemand = defaultRateSheetOnDemand
         self.additionalProperties = additionalProperties
     }
 
@@ -82,6 +88,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         self.activeTaskGroupIds = try container.decodeIfPresent([String].self, forKey: .activeTaskGroupIds)
         self.lastSeenAtLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
+        self.defaultRateSheetRouted = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRouted)
+        self.defaultRateSheetOnDemand = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemand)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -105,6 +113,8 @@ public struct Driver1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.activeTaskGroupIds, forKey: .activeTaskGroupIds)
         try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
+        try container.encodeIfPresent(self.defaultRateSheetRouted, forKey: .defaultRateSheetRouted)
+        try container.encodeIfPresent(self.defaultRateSheetOnDemand, forKey: .defaultRateSheetOnDemand)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -126,5 +136,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         case activeTaskGroupIds = "active_task_group_ids"
         case lastSeenAtLocation = "last_seen_at_location"
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
+        case defaultRateSheetRouted = "default_rate_sheet__routed"
+        case defaultRateSheetOnDemand = "default_rate_sheet__on_demand"
     }
 }
