@@ -1,3 +1,10 @@
+## 1.341.18 - 2026-01-16
+* chore: update Fern CLI version to 3.45.0
+* Update the Fern CLI version from 3.44.0 to 3.45.0 in the metadata configuration. This version bump ensures the project uses the latest Fern CLI features and improvements.
+* Key changes:
+* Update cliVersion from 3.44.0 to 3.45.0 in .fern/metadata.json
+* 🌿 Generated with Fern
+
 ## 1.341.17 - 2026-01-15
 * chore: update Fern CLI version to 3.44.0
 * Update the Fern CLI version from 3.43.0 to 3.44.0 in the metadata configuration. This version update likely includes improvements, bug fixes, or new features in the Fern CLI toolchain used for SDK generation.
