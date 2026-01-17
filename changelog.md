@@ -1,3 +1,17 @@
+## 2.0.0 - 2026-01-17
+* refactor: remove void status and related functionality from billing API
+* This change removes the "void" status from statements and line item groups, streamlining the billing state management to focus on the core statuses: staged, open, paid, and uncollectible.
+* Key changes:
+* Remove void status from StatementStatusEnum1 and LineItemGroupStatusEnum1 enums
+* Remove voided_at_timestamp and marked_voided_by_user_id fields from Statement1 schema
+* Update listV1 method to remove filterVoidedAtTimestampGte/Lte parameters
+* Rename cancelInvoiceV1 to voidInvoiceV1 with updated behavior and documentation
+* Change syncInvoiceV1 return type from SyncInvoiceRes to Statement1
+* Delete SyncInvoiceRes schema type
+* Update tracking sharing settings method order and documentation
+* Update method documentation to reflect Stripe Connect integration and revised authorization rules
+* 🌿 Generated with Fern
+
 ## 1.344.1 - 2026-01-16
 * chore: update Fern CLI version to 3.47.0
 * This commit updates the Fern CLI version in the metadata configuration from 3.46.0 to 3.47.0. This is a routine maintenance update to keep the toolchain current with the latest Fern CLI release.

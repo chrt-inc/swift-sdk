@@ -5,5 +5,4 @@ public enum StatementStatusEnum1: String, Codable, Hashable, CaseIterable, Senda
     case open
     case paid
     case uncollectible
-    case void
 }

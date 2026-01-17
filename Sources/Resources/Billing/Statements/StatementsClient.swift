@@ -59,10 +59,8 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterOpenedAtTimestampLte: Filter by opened_at_timestamp <= value
     /// - Parameter filterPaidAtTimestampGte: Filter by paid_at_timestamp >= value
     /// - Parameter filterPaidAtTimestampLte: Filter by paid_at_timestamp <= value
-    /// - Parameter filterVoidedAtTimestampGte: Filter by voided_at_timestamp >= value
-    /// - Parameter filterVoidedAtTimestampLte: Filter by voided_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterVoidedAtTimestampGte: Date? = nil, filterVoidedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsListRes {
+    public func listV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing/list/v1",
@@ -81,9 +79,7 @@ public final class StatementsClient: Sendable {
                 "filter_opened_at_timestamp_gte": filterOpenedAtTimestampGte.map { .date($0) }, 
                 "filter_opened_at_timestamp_lte": filterOpenedAtTimestampLte.map { .date($0) }, 
                 "filter_paid_at_timestamp_gte": filterPaidAtTimestampGte.map { .date($0) }, 
-                "filter_paid_at_timestamp_lte": filterPaidAtTimestampLte.map { .date($0) }, 
-                "filter_voided_at_timestamp_gte": filterVoidedAtTimestampGte.map { .date($0) }, 
-                "filter_voided_at_timestamp_lte": filterVoidedAtTimestampLte.map { .date($0) }
+                "filter_paid_at_timestamp_lte": filterPaidAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: StatementsListRes.self
@@ -154,25 +150,25 @@ public final class StatementsClient: Sendable {
         )
     }
 
-    /// Syncs invoice state from Stripe to the Statement and LineItemGroups. The webhook usually keeps invoices up to date, but users can manually trigger a sync. | authz: min_org_role=operator | () -> (SyncInvoiceRes)
+    /// Syncs invoice state from Stripe Connect to the Statement and LineItemGroups. The webhook usually keeps invoices up to date, but users can manually trigger a sync. | authz: org_type=[courier, forwarder, shipper], min_org_role=operator, authz_personas=[statement_org_operators] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func syncInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> SyncInvoiceRes {
+    public func syncInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/sync_invoice/v1/\(statementId)",
             requestOptions: requestOptions,
-            responseType: SyncInvoiceRes.self
+            responseType: Statement1.self
         )
     }
 
-    /// Cancels/voids a Stripe Connect invoice. Statement must be OPEN or VOID. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=OPEN, VOID | () -> (Statement1)
+    /// Voids a Stripe Connect invoice. Statement reverts to STAGED and LIGs revert to FINALIZED. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=OPEN | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func cancelInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+    public func voidInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/billing/cancel_invoice/v1/\(statementId)",
+            path: "/billing/void_invoice/v1/\(statementId)",
             requestOptions: requestOptions,
             responseType: Statement1.self
         )

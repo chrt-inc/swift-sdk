@@ -27,14 +27,11 @@ public struct Statement1: Codable, Hashable, Sendable {
     public let stagedAtTimestamp: Date?
     public let openedAtTimestamp: Date?
     public let paidAtTimestamp: Date?
-    public let voidedAtTimestamp: Date?
     public let uncollectibleAtTimestamp: Date?
     /// Must be a string starting with `user_`
     public let markedOpenByUserId: String?
     /// Must be a string starting with `user_`
     public let markedPaidByUserId: String?
-    /// Must be a string starting with `user_`
-    public let markedVoidedByUserId: String?
     /// Must be a string starting with `user_`
     public let markedUncollectibleByUserId: String?
     /// Additional properties that are not explicitly defined in the schema
@@ -62,11 +59,9 @@ public struct Statement1: Codable, Hashable, Sendable {
         stagedAtTimestamp: Date? = nil,
         openedAtTimestamp: Date? = nil,
         paidAtTimestamp: Date? = nil,
-        voidedAtTimestamp: Date? = nil,
         uncollectibleAtTimestamp: Date? = nil,
         markedOpenByUserId: String? = nil,
         markedPaidByUserId: String? = nil,
-        markedVoidedByUserId: String? = nil,
         markedUncollectibleByUserId: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -91,11 +86,9 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = stagedAtTimestamp
         self.openedAtTimestamp = openedAtTimestamp
         self.paidAtTimestamp = paidAtTimestamp
-        self.voidedAtTimestamp = voidedAtTimestamp
         self.uncollectibleAtTimestamp = uncollectibleAtTimestamp
         self.markedOpenByUserId = markedOpenByUserId
         self.markedPaidByUserId = markedPaidByUserId
-        self.markedVoidedByUserId = markedVoidedByUserId
         self.markedUncollectibleByUserId = markedUncollectibleByUserId
         self.additionalProperties = additionalProperties
     }
@@ -123,11 +116,9 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.openedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .openedAtTimestamp)
         self.paidAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .paidAtTimestamp)
-        self.voidedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .voidedAtTimestamp)
         self.uncollectibleAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .uncollectibleAtTimestamp)
         self.markedOpenByUserId = try container.decodeIfPresent(String.self, forKey: .markedOpenByUserId)
         self.markedPaidByUserId = try container.decodeIfPresent(String.self, forKey: .markedPaidByUserId)
-        self.markedVoidedByUserId = try container.decodeIfPresent(String.self, forKey: .markedVoidedByUserId)
         self.markedUncollectibleByUserId = try container.decodeIfPresent(String.self, forKey: .markedUncollectibleByUserId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -156,11 +147,9 @@ public struct Statement1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.openedAtTimestamp, forKey: .openedAtTimestamp)
         try container.encodeIfPresent(self.paidAtTimestamp, forKey: .paidAtTimestamp)
-        try container.encodeIfPresent(self.voidedAtTimestamp, forKey: .voidedAtTimestamp)
         try container.encodeIfPresent(self.uncollectibleAtTimestamp, forKey: .uncollectibleAtTimestamp)
         try container.encodeIfPresent(self.markedOpenByUserId, forKey: .markedOpenByUserId)
         try container.encodeIfPresent(self.markedPaidByUserId, forKey: .markedPaidByUserId)
-        try container.encodeIfPresent(self.markedVoidedByUserId, forKey: .markedVoidedByUserId)
         try container.encodeIfPresent(self.markedUncollectibleByUserId, forKey: .markedUncollectibleByUserId)
     }
 
@@ -187,11 +176,9 @@ public struct Statement1: Codable, Hashable, Sendable {
         case stagedAtTimestamp = "staged_at_timestamp"
         case openedAtTimestamp = "opened_at_timestamp"
         case paidAtTimestamp = "paid_at_timestamp"
-        case voidedAtTimestamp = "voided_at_timestamp"
         case uncollectibleAtTimestamp = "uncollectible_at_timestamp"
         case markedOpenByUserId = "marked_open_by_user_id"
         case markedPaidByUserId = "marked_paid_by_user_id"
-        case markedVoidedByUserId = "marked_voided_by_user_id"
         case markedUncollectibleByUserId = "marked_uncollectible_by_user_id"
     }
 }

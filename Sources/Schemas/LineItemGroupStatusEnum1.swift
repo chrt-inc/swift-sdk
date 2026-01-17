@@ -9,5 +9,4 @@ public enum LineItemGroupStatusEnum1: String, Codable, Hashable, CaseIterable, S
     case open
     case paid
     case uncollectible
-    case void
 }
