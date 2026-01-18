@@ -76,6 +76,18 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
+    /// Assigns a rate sheet to a task group. Syncs the corresponding LineItemGroup and recalculates LineItems. | authz_personas=[lig_owner_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func assignRateSheetV1(rateSheetId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/oort/task_groups/assign_rate_sheet/v1/\(rateSheetId)/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Sets the flight number and/or fa_flight_ids on a task group. | authz_personas=[lig_owner_operators] | (SetFlightInfoReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

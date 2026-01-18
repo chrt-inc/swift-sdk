@@ -1,3 +1,13 @@
+## 1.353.0 - 2026-01-18
+* feat: add organization private data endpoint and task group rate sheet assignment
+* Add new capabilities for retrieving organization private data and managing task group rate sheets.
+* Key changes:
+* Add getOrgPrivateDataV1 method to retrieve private organization data with operator authorization
+* Add assignRateSheetV1 method to assign rate sheets to task groups with automatic LineItemGroup sync
+* Add OrgPrivateData1 schema with comprehensive organization data including Stripe and rate sheet configurations
+* Include corresponding unit tests for both new endpoints
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-01-17
 * refactor: remove void status and related functionality from billing API
 * This change removes the "void" status from statements and line item groups, streamlining the billing state management to focus on the core statuses: staged, open, paid, and uncollectible.

@@ -118,6 +118,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func assignRateSheetV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.taskGroups.assignRateSheetV1(
+            rateSheetId: "rate_sheet_id",
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func setFlightInfoV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
