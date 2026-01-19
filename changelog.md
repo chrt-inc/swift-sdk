@@ -1,3 +1,13 @@
+## 1.355.0 - 2026-01-19
+* feat: add quote calculation endpoint for line item groups
+* Add new quote endpoint that calculates line item group previews for task groups and payment vectors without persisting data. This enables cost estimation before committing to changes.
+* Key changes:
+* Add quoteV1 method to LineItemGroupsClient for calculating quotes
+* Create new Quote schema with task group ID, rate sheet ID, and line items
+* Update assignRateSheetV1 documentation to clarify hot-swap capability
+* Add comprehensive test coverage for the new quote endpoint
+* 🌿 Generated with Fern
+
 ## 1.353.0 - 2026-01-18
 * feat: add organization private data endpoint and task group rate sheet assignment
 * Add new capabilities for retrieving organization private data and managing task group rate sheets.

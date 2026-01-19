@@ -3945,7 +3945,7 @@ try await main()
 <dl>
 <dd>
 
-Assigns a rate sheet to a task group. Syncs the corresponding LineItemGroup and recalculates LineItems. | authz_personas=[lig_owner_operators] | () -> (bool)
+Assigns a rate sheet to a task group. Can also hot-swap an existing rate sheet for a new one. Syncs the corresponding LineItemGroup and recalculates LineItems. | authz_personas=[lig_owner_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6581,6 +6581,97 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">quoteV1</a>(taskGroupId: String, paymentVectorType: PaymentVectorTypeEnum1, rateSheetId: String?, requestOptions: RequestOptions?) -> Quote</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Calculates a quote (line item group preview) for a task group and payment vector without persisting any data. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | () -> (Quote)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.quoteV1(
+        taskGroupId: "task_group_id",
+        paymentVectorType: .shipperPayForwarder,
+        rateSheetId: "rate_sheet_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**paymentVectorType:** `PaymentVectorTypeEnum1` — The payment vector type to calculate a quote for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String?` — Optional rate sheet ID to use. Must match the payment_vector_type. If not provided, rate sheet is resolved using standard priority.
     
 </dd>
 </dl>

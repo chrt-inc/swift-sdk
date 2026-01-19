@@ -207,6 +207,66 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func quoteV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "task_group_id": "task_group_id",
+                  "rate_sheet_id": "rate_sheet_id",
+                  "line_items": [
+                    {
+                      "schema_version": 1,
+                      "item": "base_rate",
+                      "quantity": 1.1,
+                      "rate": 1.1,
+                      "units": "usd",
+                      "comments": "comments",
+                      "adjustment": 1.1,
+                      "adjustment_comments": "adjustment_comments",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "uuid_str": "uuid_str",
+                      "amount": 1.1
+                    }
+                  ]
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = Quote(
+            taskGroupId: "task_group_id",
+            rateSheetId: "rate_sheet_id",
+            lineItems: [
+                LineItem1(
+                    schemaVersion: Optional(1),
+                    item: .baseRate,
+                    quantity: 1.1,
+                    rate: 1.1,
+                    units: Optional(.usd),
+                    comments: Optional("comments"),
+                    adjustment: Optional(1.1),
+                    adjustmentComments: Optional("adjustment_comments"),
+                    createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    uuidStr: Optional("uuid_str"),
+                    amount: 1.1
+                )
+            ]
+        )
+        let response = try await client.billing.lineItemGroups.quoteV1(
+            taskGroupId: "task_group_id",
+            paymentVectorType: .shipperPayForwarder,
+            rateSheetId: "rate_sheet_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func finalizeV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

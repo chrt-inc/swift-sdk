@@ -49,6 +49,24 @@ public final class LineItemGroupsClient: Sendable {
         )
     }
 
+    /// Calculates a quote (line item group preview) for a task group and payment vector without persisting any data. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | () -> (Quote)
+    ///
+    /// - Parameter paymentVectorType: The payment vector type to calculate a quote for.
+    /// - Parameter rateSheetId: Optional rate sheet ID to use. Must match the payment_vector_type. If not provided, rate sheet is resolved using standard priority.
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func quoteV1(taskGroupId: String, paymentVectorType: PaymentVectorTypeEnum1, rateSheetId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Quote {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing/line_item_groups/quote/v1/\(taskGroupId)",
+            queryParams: [
+                "payment_vector_type": .string(paymentVectorType.rawValue), 
+                "rate_sheet_id": rateSheetId.map { .string($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: Quote.self
+        )
+    }
+
     /// Finalizes a line item group. LIG must be in ADJUSTABLE status. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
