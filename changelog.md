@@ -1,3 +1,12 @@
+## 1.359.1 - 2026-01-19
+* chore: update Fern CLI version
+* Update the Fern CLI version from 3.47.0 to 3.47.1 in the metadata configuration. This is a routine dependency update that ensures the SDK is built with the latest stable version of the Fern CLI toolchain.
+* Key changes:
+* Update cliVersion in .fern/metadata.json from 3.47.0 to 3.47.1
+* Maintain compatibility with existing generator configuration
+* No functional changes to the generated SDK code
+* 🌿 Generated with Fern
+
 ## 1.357.0 - 2026-01-19
 * feat: add default rate sheet support for off-chart shippers
 * This change introduces default rate sheet functionality for off-chart shippers, allowing separate defaults for routed and on-demand service types. The implementation includes new optional properties in the shipper organization models and a new API endpoint for managing these defaults.
