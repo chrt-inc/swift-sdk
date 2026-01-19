@@ -139,4 +139,21 @@ public final class RateSheetsClient: Sendable {
             responseType: Bool.self
         )
     }
+
+    /// Sets or clears a rate sheet as the default for an off-chrt shipper. Pass rate_sheet_id to set a default, or omit it to clear the default. One default per service type per off-chrt shipper. | authz: allowed_org_types=[courier], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDefaultForOffChrtShipperV1(offChrtShipperOrgId: String, serviceType: ServiceTypeEnum1, rateSheetId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/rate_sheets/update_default_for_off_chrt_shipper/v1",
+            queryParams: [
+                "off_chrt_shipper_org_id": .string(offChrtShipperOrgId), 
+                "service_type": .string(serviceType.rawValue), 
+                "rate_sheet_id": rateSheetId.map { .string($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
 }

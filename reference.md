@@ -7739,6 +7739,97 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.billing.rateSheets.<a href="/Sources/Resources/Billing/RateSheets/RateSheetsClient.swift">updateDefaultForOffChrtShipperV1</a>(offChrtShipperOrgId: String, serviceType: ServiceTypeEnum1, rateSheetId: String?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or clears a rate sheet as the default for an off-chrt shipper. Pass rate_sheet_id to set a default, or omit it to clear the default. One default per service type per off-chrt shipper. | authz: allowed_org_types=[courier], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheets.updateDefaultForOffChrtShipperV1(
+        offChrtShipperOrgId: "off_chrt_shipper_org_id",
+        serviceType: .onDemand,
+        rateSheetId: "rate_sheet_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**offChrtShipperOrgId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**serviceType:** `ServiceTypeEnum1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Billing Statements
 <details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">getV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
 <dl>

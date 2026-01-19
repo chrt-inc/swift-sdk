@@ -15,6 +15,8 @@ extension Requests {
         public let jobTitle: String?
         public let notes: String?
         public let shipperCustomerIdForStripeConnectAccount: String?
+        public let defaultRateSheetRouted: String?
+        public let defaultRateSheetOnDemand: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -32,6 +34,8 @@ extension Requests {
             jobTitle: String? = nil,
             notes: String? = nil,
             shipperCustomerIdForStripeConnectAccount: String? = nil,
+            defaultRateSheetRouted: String? = nil,
+            defaultRateSheetOnDemand: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
@@ -47,6 +51,8 @@ extension Requests {
             self.jobTitle = jobTitle
             self.notes = notes
             self.shipperCustomerIdForStripeConnectAccount = shipperCustomerIdForStripeConnectAccount
+            self.defaultRateSheetRouted = defaultRateSheetRouted
+            self.defaultRateSheetOnDemand = defaultRateSheetOnDemand
             self.additionalProperties = additionalProperties
         }
 
@@ -65,6 +71,8 @@ extension Requests {
             self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
             self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
             self.shipperCustomerIdForStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForStripeConnectAccount)
+            self.defaultRateSheetRouted = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRouted)
+            self.defaultRateSheetOnDemand = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemand)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -84,6 +92,8 @@ extension Requests {
             try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
             try container.encodeIfPresent(self.notes, forKey: .notes)
             try container.encodeIfPresent(self.shipperCustomerIdForStripeConnectAccount, forKey: .shipperCustomerIdForStripeConnectAccount)
+            try container.encodeIfPresent(self.defaultRateSheetRouted, forKey: .defaultRateSheetRouted)
+            try container.encodeIfPresent(self.defaultRateSheetOnDemand, forKey: .defaultRateSheetOnDemand)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -101,6 +111,8 @@ extension Requests {
             case jobTitle = "job_title"
             case notes
             case shipperCustomerIdForStripeConnectAccount = "shipper_customer_id_for_stripe_connect_account"
+            case defaultRateSheetRouted = "default_rate_sheet__routed"
+            case defaultRateSheetOnDemand = "default_rate_sheet__on_demand"
         }
     }
 }

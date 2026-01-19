@@ -62,6 +62,8 @@ import Chrt
                     "job_title": "job_title",
                     "notes": "notes",
                     "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
+                    "default_rate_sheet__routed": "default_rate_sheet__routed",
+                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "_id": "_id"
@@ -110,6 +112,8 @@ import Chrt
                 jobTitle: Optional("job_title"),
                 notes: Optional("notes"),
                 shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
+                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 id: "_id"
@@ -161,6 +165,8 @@ import Chrt
                   "job_title": "job_title",
                   "notes": "notes",
                   "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
+                  "default_rate_sheet__routed": "default_rate_sheet__routed",
+                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
                   "_id": "_id"
@@ -218,6 +224,8 @@ import Chrt
             jobTitle: Optional("job_title"),
             notes: Optional("notes"),
             shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
+            defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
+            defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand"),
             createdByOrgId: "created_by_org_id",
             createdByUserId: "created_by_user_id",
             id: "_id"

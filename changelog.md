@@ -1,3 +1,14 @@
+## 1.357.0 - 2026-01-19
+* feat: add default rate sheet support for off-chart shippers
+* This change introduces default rate sheet functionality for off-chart shippers, allowing separate defaults for routed and on-demand service types. The implementation includes new optional properties in the shipper organization models and a new API endpoint for managing these defaults.
+* Key changes:
+* Added defaultRateSheetRouted and defaultRateSheetOnDemand optional properties to OffChrtShipperOrg models
+* Introduced updateDefaultForOffChrtShipperV1 API endpoint for setting/clearing default rate sheets
+* Added proper JSON encoding/decoding with snake_case field mapping
+* Included comprehensive test coverage for new functionality
+* Updated API documentation with usage examples
+* 🌿 Generated with Fern
+
 ## 1.355.0 - 2026-01-19
 * feat: add quote calculation endpoint for line item groups
 * Add new quote endpoint that calculates line item group previews for task groups and payment vectors without persisting data. This enables cost estimation before committing to changes.
