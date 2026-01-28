@@ -7,7 +7,7 @@ public final class ChrtClient: Sendable {
     public let orgProfiles: OrgProfilesClient
     public let dev: DevClient
     public let flights: FlightsClient
-    public let taskArtifactNotifications: TaskArtifactNotificationsClient
+    public let notifications: NotificationsClient
     public let drivers: DriversClient
     public let cargos: CargosClient
     public let taskArtifacts: TaskArtifactsClient
@@ -22,7 +22,6 @@ public final class ChrtClient: Sendable {
     public let users: UsersClient
     public let utils: UtilsClient
     public let billing: BillingClient
-    public let notifications: NotificationsClient
     public let orgInfoForConnections: OrgInfoForConnectionsClient
     public let tracking: TrackingClient
     private let httpClient: HTTPClient
@@ -112,7 +111,7 @@ public final class ChrtClient: Sendable {
         self.orgProfiles = OrgProfilesClient(config: config)
         self.dev = DevClient(config: config)
         self.flights = FlightsClient(config: config)
-        self.taskArtifactNotifications = TaskArtifactNotificationsClient(config: config)
+        self.notifications = NotificationsClient(config: config)
         self.drivers = DriversClient(config: config)
         self.cargos = CargosClient(config: config)
         self.taskArtifacts = TaskArtifactsClient(config: config)
@@ -127,7 +126,6 @@ public final class ChrtClient: Sendable {
         self.users = UsersClient(config: config)
         self.utils = UtilsClient(config: config)
         self.billing = BillingClient(config: config)
-        self.notifications = NotificationsClient(config: config)
         self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
         self.tracking = TrackingClient(config: config)
         self.httpClient = HTTPClient(config: config)

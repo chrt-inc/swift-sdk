@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-01-28
+* refactor: restructure notifications API and remove legacy preference clients
+* This change significantly refactors the notifications module by removing complex preference management systems and replacing them with a simplified direct notification interface. The API now focuses on core notification functionality rather than managing notification preferences across different organization types.
+* Key changes:
+* Remove TaskArtifactNotificationsClient and all preference-based notification clients
+* Simplify NotificationsClient to provide direct notification endpoints
+* Add new NotificationReq and NotificationRes types for simplified email notifications
+* Replace complex preference schemas with ChrtEmailRecipient enum for specific recipients
+* Rename OrgInfoForConnections sub-clients from prefixed names to simple ShipperClient/CourierClient
+* Remove notification preference-related request types and enums
+* Update client property organization to use consolidated notifications client
+* 🌿 Generated with Fern
+
 ## 1.359.1 - 2026-01-19
 * chore: update Fern CLI version
 * Update the Fern CLI version from 3.47.0 to 3.47.1 in the metadata configuration. This is a routine dependency update that ensures the SDK is built with the latest stable version of the Fern CLI toolchain.

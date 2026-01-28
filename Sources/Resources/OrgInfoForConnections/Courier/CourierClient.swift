@@ -1,6 +1,6 @@
 import Foundation
 
-public final class OrgInfoForConnectionsCourierClient: Sendable {
+public final class CourierClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {

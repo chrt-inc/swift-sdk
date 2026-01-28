@@ -1547,8 +1547,8 @@ try await main()
 </dl>
 </details>
 
-## TaskArtifactNotifications
-<details><summary><code>client.taskArtifactNotifications.<a href="/Sources/Resources/TaskArtifactNotifications/TaskArtifactNotificationsClient.swift">getPreferencesV1</a>(requestOptions: RequestOptions?) -> TaskArtifactNotificationPreferences1</code></summary>
+## Notifications
+<details><summary><code>client.notifications.<a href="/Sources/Resources/Notifications/NotificationsClient.swift">getNotificationV1</a>(requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -1560,7 +1560,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves task_artifact notification preferences for the caller's organization. | () -> (TaskArtifactNotificationPreferences1)
+Development notification endpoint that returns the caller's ID for testing. | () -> (str)
 </dd>
 </dl>
 </dd>
@@ -1581,7 +1581,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.taskArtifactNotifications.getPreferencesV1()
+    _ = try await client.notifications.getNotificationV1()
 }
 
 try await main()
@@ -1611,7 +1611,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskArtifactNotifications.<a href="/Sources/Resources/TaskArtifactNotifications/TaskArtifactNotificationsClient.swift">upsertPreferencesV1</a>(request: Requests.TaskArtifactNotificationPreferencesClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.notifications.<a href="/Sources/Resources/Notifications/NotificationsClient.swift">createNotificationV1</a>(request: Requests.NotificationReq, requestOptions: RequestOptions?) -> NotificationRes</code></summary>
 <dl>
 <dd>
 
@@ -1623,7 +1623,7 @@ try await main()
 <dl>
 <dd>
 
-Creates or updates task_artifact notification preferences for the caller's organization. | (TaskArtifactNotificationPreferencesClientCreate1) -> (PydanticObjectId)
+Send a notification email to a chrt.com recipient. | (NotificationReq) -> (NotificationRes)
 </dd>
 </dl>
 </dd>
@@ -1644,7 +1644,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.taskArtifactNotifications.upsertPreferencesV1(request: .init(schemaVersion: 1))
+    _ = try await client.notifications.createNotificationV1(request: .init(
+        recipient: .aaron,
+        name: "name",
+        message: "message"
+    ))
 }
 
 try await main()
@@ -1662,7 +1666,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.TaskArtifactNotificationPreferencesClientCreate1` 
+**request:** `Requests.NotificationReq` 
     
 </dd>
 </dl>
@@ -9817,276 +9821,6 @@ try await main()
 </dl>
 </details>
 
-## Notifications Shipper
-<details><summary><code>client.notifications.shipper.<a href="/Sources/Resources/Notifications/Shipper/ShipperClient.swift">getPreferencesV1</a>(requestOptions: RequestOptions?) -> ShipperNotificationPreferences1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves notification preferences for the caller's shipper organization. | () -> (ShipperNotificationPreferences1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.notifications.shipper.getPreferencesV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.notifications.shipper.<a href="/Sources/Resources/Notifications/Shipper/ShipperClient.swift">upsertPreferencesV1</a>(request: Requests.ShipperNotificationPreferencesClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates or updates notification preferences for the caller's shipper organization. | (ShipperNotificationPreferencesClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.notifications.shipper.upsertPreferencesV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ShipperNotificationPreferencesClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Notifications Courier
-<details><summary><code>client.notifications.courier.<a href="/Sources/Resources/Notifications/Courier/CourierClient.swift">getPreferencesV1</a>(requestOptions: RequestOptions?) -> CourierNotificationPreferences1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves notification preferences for the caller's courier organization. | () -> (CourierNotificationPreferences1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.notifications.courier.getPreferencesV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.notifications.courier.<a href="/Sources/Resources/Notifications/Courier/CourierClient.swift">upsertPreferencesV1</a>(request: Requests.CourierNotificationPreferencesClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates or updates notification preferences for the caller's courier organization. | (CourierNotificationPreferencesClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.notifications.courier.upsertPreferencesV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CourierNotificationPreferencesClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## OrderDrafts TaskGroup
 <details><summary><code>client.orderDrafts.taskGroup.<a href="/Sources/Resources/OrderDrafts/TaskGroup/TaskGroupClient.swift">addV1</a>(request: Requests.OrderDraftAddTaskGroupReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
@@ -12226,7 +11960,7 @@ try await main()
 </details>
 
 ## OrgInfoForConnections Shipper
-<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ShipperOrgInfoForConnections1</code></summary>
+<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/ShipperClient.swift">getV1</a>(requestOptions: RequestOptions?) -> ShipperOrgInfoForConnections1</code></summary>
 <dl>
 <dd>
 
@@ -12289,7 +12023,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">createV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/ShipperClient.swift">createV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -12363,7 +12097,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/OrgInfoForConnectionsShipperClient.swift">updateV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgInfoForConnections.shipper.<a href="/Sources/Resources/OrgInfoForConnections/Shipper/ShipperClient.swift">updateV1</a>(request: Requests.ShipperOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -12435,7 +12169,7 @@ try await main()
 </details>
 
 ## OrgInfoForConnections Courier
-<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">getV1</a>(requestOptions: RequestOptions?) -> CourierOrgInfoForConnections1</code></summary>
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/CourierClient.swift">getV1</a>(requestOptions: RequestOptions?) -> CourierOrgInfoForConnections1</code></summary>
 <dl>
 <dd>
 
@@ -12498,7 +12232,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [CourierOrgInfoForConnections1]</code></summary>
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/CourierClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [CourierOrgInfoForConnections1]</code></summary>
 <dl>
 <dd>
 
@@ -12561,7 +12295,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">createV1</a>(request: Requests.CourierOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/CourierClient.swift">createV1</a>(request: Requests.CourierOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -12635,7 +12369,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/OrgInfoForConnectionsCourierClient.swift">updateV1</a>(request: Requests.CourierOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgInfoForConnections.courier.<a href="/Sources/Resources/OrgInfoForConnections/Courier/CourierClient.swift">updateV1</a>(request: Requests.CourierOrgInfoForConnectionsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
