@@ -2,13 +2,13 @@ import Foundation
 
 public struct OrgMembersAndDrivers: Codable, Hashable, Sendable {
     public let orgMember: OrgMemberDetails
-    public let driver: Driver1?
+    public let driver: Driver1Output?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         orgMember: OrgMemberDetails,
-        driver: Driver1? = nil,
+        driver: Driver1Output? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.orgMember = orgMember
@@ -19,7 +19,7 @@ public struct OrgMembersAndDrivers: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.orgMember = try container.decode(OrgMemberDetails.self, forKey: .orgMember)
-        self.driver = try container.decodeIfPresent(Driver1.self, forKey: .driver)
+        self.driver = try container.decodeIfPresent(Driver1Output.self, forKey: .driver)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

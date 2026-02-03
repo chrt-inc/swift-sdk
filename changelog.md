@@ -1,3 +1,7 @@
+## 1.363.1 - 2026-02-03
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 2.0.0 - 2026-01-28
 * refactor: restructure notifications API and remove legacy preference clients
 * This change significantly refactors the notifications module by removing complex preference management systems and replacing them with a simplified direct notification interface. The API now focuses on core notification functionality rather than managing notification preferences across different organization types.

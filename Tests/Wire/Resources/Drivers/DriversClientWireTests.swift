@@ -64,7 +64,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Driver1(
+        let expectedResponse = Driver1Output(
             schemaVersion: 1,
             emailAddressPrimary: Optional("email_address_primary"),
             emailAddressSecondary: Optional("email_address_secondary"),
@@ -185,7 +185,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Driver1(
+        let expectedResponse = Driver1Output(
             schemaVersion: 1,
             emailAddressPrimary: Optional("email_address_primary"),
             emailAddressSecondary: Optional("email_address_secondary"),
@@ -317,7 +317,7 @@ import Chrt
                     firstName: Optional("first_name"),
                     lastName: Optional("last_name")
                 ),
-                driver: Optional(Driver1(
+                driver: Optional(Driver1Output(
                     schemaVersion: 1,
                     emailAddressPrimary: Optional("email_address_primary"),
                     emailAddressSecondary: Optional("email_address_secondary"),
@@ -424,7 +424,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            Driver1(
+            Driver1Output(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),

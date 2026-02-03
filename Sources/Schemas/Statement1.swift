@@ -4,7 +4,7 @@ public struct Statement1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let id: String
     public let lineItemGroupIds: [String]?
-    public let amount: Int
+    public let amount: Int?
     public let units: UnitsEnum?
     /// Must be a string starting with `user_`
     public let stagedByUserId: String?
@@ -41,7 +41,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         id: String,
         lineItemGroupIds: [String]? = nil,
-        amount: Int,
+        amount: Int? = nil,
         units: UnitsEnum? = nil,
         stagedByUserId: String? = nil,
         settlementType: SettlementTypeEnum1,
@@ -98,7 +98,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.id = try container.decode(String.self, forKey: .id)
         self.lineItemGroupIds = try container.decodeIfPresent([String].self, forKey: .lineItemGroupIds)
-        self.amount = try container.decode(Int.self, forKey: .amount)
+        self.amount = try container.decodeIfPresent(Int.self, forKey: .amount)
         self.units = try container.decodeIfPresent(UnitsEnum.self, forKey: .units)
         self.stagedByUserId = try container.decodeIfPresent(String.self, forKey: .stagedByUserId)
         self.settlementType = try container.decode(SettlementTypeEnum1.self, forKey: .settlementType)
@@ -129,7 +129,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.lineItemGroupIds, forKey: .lineItemGroupIds)
-        try container.encode(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
         try container.encodeIfPresent(self.units, forKey: .units)
         try container.encodeIfPresent(self.stagedByUserId, forKey: .stagedByUserId)
         try container.encode(self.settlementType, forKey: .settlementType)

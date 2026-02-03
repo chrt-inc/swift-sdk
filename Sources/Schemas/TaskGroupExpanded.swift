@@ -3,7 +3,7 @@ import Foundation
 public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let taskGroup: TaskGroup1
     public let tasksExpanded: [TaskExpanded]?
-    public let driver: Driver1?
+    public let driver: Driver1Output?
     public let courierOrgCompanyName: String?
     public let courierOrgHandle: String?
     public let forwarderOrgCompanyName: String?
@@ -16,7 +16,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public init(
         taskGroup: TaskGroup1,
         tasksExpanded: [TaskExpanded]? = nil,
-        driver: Driver1? = nil,
+        driver: Driver1Output? = nil,
         courierOrgCompanyName: String? = nil,
         courierOrgHandle: String? = nil,
         forwarderOrgCompanyName: String? = nil,
@@ -41,7 +41,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.taskGroup = try container.decode(TaskGroup1.self, forKey: .taskGroup)
         self.tasksExpanded = try container.decodeIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
-        self.driver = try container.decodeIfPresent(Driver1.self, forKey: .driver)
+        self.driver = try container.decodeIfPresent(Driver1Output.self, forKey: .driver)
         self.courierOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .courierOrgCompanyName)
         self.courierOrgHandle = try container.decodeIfPresent(String.self, forKey: .courierOrgHandle)
         self.forwarderOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .forwarderOrgCompanyName)

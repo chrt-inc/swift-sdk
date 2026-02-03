@@ -6,7 +6,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let action: Action?
     public let timeWindows: [TimeWindow1]?
     public let orderPlacerComments: String?
-    public let shipperContactIds: [String]?
+    public let directoryEntryIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -16,7 +16,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         action: Action? = nil,
         timeWindows: [TimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
-        shipperContactIds: [String]? = nil,
+        directoryEntryIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -24,7 +24,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         self.action = action
         self.timeWindows = timeWindows
         self.orderPlacerComments = orderPlacerComments
-        self.shipperContactIds = shipperContactIds
+        self.directoryEntryIds = directoryEntryIds
         self.additionalProperties = additionalProperties
     }
 
@@ -35,7 +35,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
         self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
-        self.shipperContactIds = try container.decodeIfPresent([String].self, forKey: .shipperContactIds)
+        self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -47,7 +47,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
-        try container.encodeIfPresent(self.shipperContactIds, forKey: .shipperContactIds)
+        try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -57,6 +57,6 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         case action
         case timeWindows = "time_windows"
         case orderPlacerComments = "order_placer_comments"
-        case shipperContactIds = "shipper_contact_ids"
+        case directoryEntryIds = "directory_entry_ids"
     }
 }

@@ -6,6 +6,8 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let stripeConnectAccountId: String?
+    public let webhookEnabled: Bool?
+    public let svixAppId: String?
     public let defaultRateSheetRoutedShipperPayCourier: String?
     public let defaultRateSheetOnDemandShipperPayCourier: String?
     public let defaultRateSheetRoutedCourierPayDriver: String?
@@ -23,6 +25,8 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         orgType: OrgTypeEnum,
         orgId: String,
         stripeConnectAccountId: String? = nil,
+        webhookEnabled: Bool? = nil,
+        svixAppId: String? = nil,
         defaultRateSheetRoutedShipperPayCourier: String? = nil,
         defaultRateSheetOnDemandShipperPayCourier: String? = nil,
         defaultRateSheetRoutedCourierPayDriver: String? = nil,
@@ -38,6 +42,8 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.orgType = orgType
         self.orgId = orgId
         self.stripeConnectAccountId = stripeConnectAccountId
+        self.webhookEnabled = webhookEnabled
+        self.svixAppId = svixAppId
         self.defaultRateSheetRoutedShipperPayCourier = defaultRateSheetRoutedShipperPayCourier
         self.defaultRateSheetOnDemandShipperPayCourier = defaultRateSheetOnDemandShipperPayCourier
         self.defaultRateSheetRoutedCourierPayDriver = defaultRateSheetRoutedCourierPayDriver
@@ -56,6 +62,8 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.orgType = try container.decode(OrgTypeEnum.self, forKey: .orgType)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.stripeConnectAccountId = try container.decodeIfPresent(String.self, forKey: .stripeConnectAccountId)
+        self.webhookEnabled = try container.decodeIfPresent(Bool.self, forKey: .webhookEnabled)
+        self.svixAppId = try container.decodeIfPresent(String.self, forKey: .svixAppId)
         self.defaultRateSheetRoutedShipperPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedShipperPayCourier)
         self.defaultRateSheetOnDemandShipperPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandShipperPayCourier)
         self.defaultRateSheetRoutedCourierPayDriver = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedCourierPayDriver)
@@ -75,6 +83,8 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         try container.encode(self.orgType, forKey: .orgType)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.stripeConnectAccountId, forKey: .stripeConnectAccountId)
+        try container.encodeIfPresent(self.webhookEnabled, forKey: .webhookEnabled)
+        try container.encodeIfPresent(self.svixAppId, forKey: .svixAppId)
         try container.encodeIfPresent(self.defaultRateSheetRoutedShipperPayCourier, forKey: .defaultRateSheetRoutedShipperPayCourier)
         try container.encodeIfPresent(self.defaultRateSheetOnDemandShipperPayCourier, forKey: .defaultRateSheetOnDemandShipperPayCourier)
         try container.encodeIfPresent(self.defaultRateSheetRoutedCourierPayDriver, forKey: .defaultRateSheetRoutedCourierPayDriver)
@@ -92,6 +102,8 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         case orgType = "org_type"
         case orgId = "org_id"
         case stripeConnectAccountId = "stripe_connect_account_id"
+        case webhookEnabled = "webhook_enabled"
+        case svixAppId = "svix_app_id"
         case defaultRateSheetRoutedShipperPayCourier = "default_rate_sheet__routed__shipper_pay_courier"
         case defaultRateSheetOnDemandShipperPayCourier = "default_rate_sheet__on_demand__shipper_pay_courier"
         case defaultRateSheetRoutedCourierPayDriver = "default_rate_sheet__routed__courier_pay_driver"

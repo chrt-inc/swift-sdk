@@ -7,7 +7,6 @@ public final class ChrtClient: Sendable {
     public let orgProfiles: OrgProfilesClient
     public let dev: DevClient
     public let flights: FlightsClient
-    public let notifications: NotificationsClient
     public let drivers: DriversClient
     public let cargos: CargosClient
     public let taskArtifacts: TaskArtifactsClient
@@ -16,12 +15,13 @@ public final class ChrtClient: Sendable {
     public let orderDrafts: OrderDraftsClient
     public let taskGroups: TaskGroupsClient
     public let tasks: TasksClient
-    public let shipperContactInfo: ShipperContactInfoClient
+    public let directoryEntries: DirectoryEntriesClient
     public let orgs: OrgsClient
     public let root: RootClient
     public let users: UsersClient
     public let utils: UtilsClient
     public let billing: BillingClient
+    public let notifications: NotificationsClient
     public let orgInfoForConnections: OrgInfoForConnectionsClient
     public let tracking: TrackingClient
     private let httpClient: HTTPClient
@@ -111,7 +111,6 @@ public final class ChrtClient: Sendable {
         self.orgProfiles = OrgProfilesClient(config: config)
         self.dev = DevClient(config: config)
         self.flights = FlightsClient(config: config)
-        self.notifications = NotificationsClient(config: config)
         self.drivers = DriversClient(config: config)
         self.cargos = CargosClient(config: config)
         self.taskArtifacts = TaskArtifactsClient(config: config)
@@ -120,12 +119,13 @@ public final class ChrtClient: Sendable {
         self.orderDrafts = OrderDraftsClient(config: config)
         self.taskGroups = TaskGroupsClient(config: config)
         self.tasks = TasksClient(config: config)
-        self.shipperContactInfo = ShipperContactInfoClient(config: config)
+        self.directoryEntries = DirectoryEntriesClient(config: config)
         self.orgs = OrgsClient(config: config)
         self.root = RootClient(config: config)
         self.users = UsersClient(config: config)
         self.utils = UtilsClient(config: config)
         self.billing = BillingClient(config: config)
+        self.notifications = NotificationsClient(config: config)
         self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
         self.tracking = TrackingClient(config: config)
         self.httpClient = HTTPClient(config: config)

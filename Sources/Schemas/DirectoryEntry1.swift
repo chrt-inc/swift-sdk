@@ -1,15 +1,13 @@
 import Foundation
 
-public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
+public struct DirectoryEntry1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
-    public let shipperOrgId: String?
-    /// Must be a string starting with `user_`
-    public let shipperUserId: String?
-    public let offChrtShipperOrgId: String?
+    public let entryOrgId: String?
+    public let entryOffChrtShipperOrgId: String?
     public let companyName: String?
     public let industry: String?
-    public let streetAddress: LocationFeature?
+    public let location: LocationFeature?
     public let contactFirstName: String?
     public let contactLastName: String?
     public let phoneNumberPrimary: String?
@@ -18,17 +16,21 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
     public let emailAddressSecondary: String?
     public let jobTitle: String?
     public let notes: String?
+    /// Must be a string starting with `org_`
+    public let createdByOrgId: String
+    /// Must be a string starting with `user_`
+    public let createdByUserId: String
+    public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         schemaVersion: Int,
-        shipperOrgId: String? = nil,
-        shipperUserId: String? = nil,
-        offChrtShipperOrgId: String? = nil,
+        entryOrgId: String? = nil,
+        entryOffChrtShipperOrgId: String? = nil,
         companyName: String? = nil,
         industry: String? = nil,
-        streetAddress: LocationFeature? = nil,
+        location: LocationFeature? = nil,
         contactFirstName: String? = nil,
         contactLastName: String? = nil,
         phoneNumberPrimary: String? = nil,
@@ -37,15 +39,17 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
         emailAddressSecondary: String? = nil,
         jobTitle: String? = nil,
         notes: String? = nil,
+        createdByOrgId: String,
+        createdByUserId: String,
+        id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
-        self.shipperOrgId = shipperOrgId
-        self.shipperUserId = shipperUserId
-        self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.entryOrgId = entryOrgId
+        self.entryOffChrtShipperOrgId = entryOffChrtShipperOrgId
         self.companyName = companyName
         self.industry = industry
-        self.streetAddress = streetAddress
+        self.location = location
         self.contactFirstName = contactFirstName
         self.contactLastName = contactLastName
         self.phoneNumberPrimary = phoneNumberPrimary
@@ -54,18 +58,20 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
         self.emailAddressSecondary = emailAddressSecondary
         self.jobTitle = jobTitle
         self.notes = notes
+        self.createdByOrgId = createdByOrgId
+        self.createdByUserId = createdByUserId
+        self.id = id
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-        self.shipperUserId = try container.decodeIfPresent(String.self, forKey: .shipperUserId)
-        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.entryOrgId = try container.decodeIfPresent(String.self, forKey: .entryOrgId)
+        self.entryOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .entryOffChrtShipperOrgId)
         self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
         self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
-        self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
+        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
         self.contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
         self.phoneNumberPrimary = try container.decodeIfPresent(String.self, forKey: .phoneNumberPrimary)
@@ -74,6 +80,9 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
         self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
         self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
         self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
+        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
+        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -81,12 +90,11 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-        try container.encodeIfPresent(self.shipperUserId, forKey: .shipperUserId)
-        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.entryOrgId, forKey: .entryOrgId)
+        try container.encodeIfPresent(self.entryOffChrtShipperOrgId, forKey: .entryOffChrtShipperOrgId)
         try container.encodeIfPresent(self.companyName, forKey: .companyName)
         try container.encodeIfPresent(self.industry, forKey: .industry)
-        try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
+        try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.contactFirstName, forKey: .contactFirstName)
         try container.encodeIfPresent(self.contactLastName, forKey: .contactLastName)
         try container.encodeIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
@@ -95,17 +103,19 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
         try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
         try container.encodeIfPresent(self.notes, forKey: .notes)
+        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
+        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encode(self.id, forKey: .id)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
-        case shipperOrgId = "shipper_org_id"
-        case shipperUserId = "shipper_user_id"
-        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case entryOrgId = "entry_org_id"
+        case entryOffChrtShipperOrgId = "entry_off_chrt_shipper_org_id"
         case companyName = "company_name"
         case industry
-        case streetAddress = "street_address"
+        case location
         case contactFirstName = "contact_first_name"
         case contactLastName = "contact_last_name"
         case phoneNumberPrimary = "phone_number_primary"
@@ -114,5 +124,8 @@ public struct ShipperContactClientCreate1: Codable, Hashable, Sendable {
         case emailAddressSecondary = "email_address_secondary"
         case jobTitle = "job_title"
         case notes
+        case createdByOrgId = "created_by_org_id"
+        case createdByUserId = "created_by_user_id"
+        case id = "_id"
     }
 }

@@ -94,7 +94,7 @@ import Chrt
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
-                      "shipper_contacts": [
+                      "directory_entries": [
                         {
                           "schema_version": 1,
                           "created_by_org_id": "created_by_org_id",
@@ -208,7 +208,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1(
+                    task: Task1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -244,8 +244,8 @@ import Chrt
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
-                    shipperContacts: Optional([
-                        ShipperContact1(
+                    directoryEntries: Optional([
+                        DirectoryEntry1(
                             schemaVersion: 1,
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
@@ -254,7 +254,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1(
+            driver: Optional(Driver1Output(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -407,7 +407,7 @@ import Chrt
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
-                      "shipper_contacts": [
+                      "directory_entries": [
                         {
                           "schema_version": 1,
                           "created_by_org_id": "created_by_org_id",
@@ -521,7 +521,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1(
+                    task: Task1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -557,8 +557,8 @@ import Chrt
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
-                    shipperContacts: Optional([
-                        ShipperContact1(
+                    directoryEntries: Optional([
+                        DirectoryEntry1(
                             schemaVersion: 1,
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
@@ -567,7 +567,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1(
+            driver: Optional(Driver1Output(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -720,7 +720,7 @@ import Chrt
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
-                      "shipper_contacts": [
+                      "directory_entries": [
                         {
                           "schema_version": 1,
                           "created_by_org_id": "created_by_org_id",
@@ -834,7 +834,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1(
+                    task: Task1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -870,8 +870,8 @@ import Chrt
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
-                    shipperContacts: Optional([
-                        ShipperContact1(
+                    directoryEntries: Optional([
+                        DirectoryEntry1(
                             schemaVersion: 1,
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
@@ -880,7 +880,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1(
+            driver: Optional(Driver1Output(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -1033,7 +1033,7 @@ import Chrt
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                         }
                       ],
-                      "shipper_contacts": [
+                      "directory_entries": [
                         {
                           "schema_version": 1,
                           "created_by_org_id": "created_by_org_id",
@@ -1147,7 +1147,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1(
+                    task: Task1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -1183,8 +1183,8 @@ import Chrt
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                         )
                     ]),
-                    shipperContacts: Optional([
-                        ShipperContact1(
+                    directoryEntries: Optional([
+                        DirectoryEntry1(
                             schemaVersion: 1,
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
@@ -1193,7 +1193,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1(
+            driver: Optional(Driver1Output(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -1326,7 +1326,7 @@ import Chrt
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
-                            task: Task1(
+                            task: Task1Output(
                                 schemaVersion: 1,
                                 id: "_id",
                                 orderId: "order_id",
@@ -1338,7 +1338,7 @@ import Chrt
                             )
                         )
                     ]),
-                    driver: Optional(Driver1(
+                    driver: Optional(Driver1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orgId: "org_id",
@@ -1450,7 +1450,7 @@ import Chrt
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
-                            task: Task1(
+                            task: Task1Output(
                                 schemaVersion: 1,
                                 id: "_id",
                                 orderId: "order_id",
@@ -1462,7 +1462,7 @@ import Chrt
                             )
                         )
                     ]),
-                    driver: Optional(Driver1(
+                    driver: Optional(Driver1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orgId: "org_id",

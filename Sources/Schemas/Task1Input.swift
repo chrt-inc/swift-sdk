@@ -1,12 +1,12 @@
 import Foundation
 
-public struct Task1: Codable, Hashable, Sendable {
+public struct Task1Input: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let location: LocationFeature?
     public let action: Action?
     public let timeWindows: [TimeWindow1]?
     public let orderPlacerComments: String?
-    public let shipperContactIds: [String]?
+    public let directoryEntryIds: [String]?
     public let id: String
     public let orderId: String
     public let orderShortId: String
@@ -28,10 +28,6 @@ public struct Task1: Codable, Hashable, Sendable {
     public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let orderCancelled: Bool?
-    public let taskNotificationEmailIds: [String]?
-    public let taskNotificationSmsIds: [String]?
-    public let taskNotificationPushIds: [String]?
-    public let taskNotificationVoiceIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -41,7 +37,7 @@ public struct Task1: Codable, Hashable, Sendable {
         action: Action? = nil,
         timeWindows: [TimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
-        shipperContactIds: [String]? = nil,
+        directoryEntryIds: [String]? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
@@ -59,10 +55,6 @@ public struct Task1: Codable, Hashable, Sendable {
         skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         orderCancelled: Bool? = nil,
-        taskNotificationEmailIds: [String]? = nil,
-        taskNotificationSmsIds: [String]? = nil,
-        taskNotificationPushIds: [String]? = nil,
-        taskNotificationVoiceIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -70,7 +62,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.action = action
         self.timeWindows = timeWindows
         self.orderPlacerComments = orderPlacerComments
-        self.shipperContactIds = shipperContactIds
+        self.directoryEntryIds = directoryEntryIds
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
@@ -88,10 +80,6 @@ public struct Task1: Codable, Hashable, Sendable {
         self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.orderCancelled = orderCancelled
-        self.taskNotificationEmailIds = taskNotificationEmailIds
-        self.taskNotificationSmsIds = taskNotificationSmsIds
-        self.taskNotificationPushIds = taskNotificationPushIds
-        self.taskNotificationVoiceIds = taskNotificationVoiceIds
         self.additionalProperties = additionalProperties
     }
 
@@ -102,7 +90,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
         self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
-        self.shipperContactIds = try container.decodeIfPresent([String].self, forKey: .shipperContactIds)
+        self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -120,10 +108,6 @@ public struct Task1: Codable, Hashable, Sendable {
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
-        self.taskNotificationEmailIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationEmailIds)
-        self.taskNotificationSmsIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationSmsIds)
-        self.taskNotificationPushIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationPushIds)
-        self.taskNotificationVoiceIds = try container.decodeIfPresent([String].self, forKey: .taskNotificationVoiceIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -135,7 +119,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
-        try container.encodeIfPresent(self.shipperContactIds, forKey: .shipperContactIds)
+        try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -153,10 +137,6 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
-        try container.encodeIfPresent(self.taskNotificationEmailIds, forKey: .taskNotificationEmailIds)
-        try container.encodeIfPresent(self.taskNotificationSmsIds, forKey: .taskNotificationSmsIds)
-        try container.encodeIfPresent(self.taskNotificationPushIds, forKey: .taskNotificationPushIds)
-        try container.encodeIfPresent(self.taskNotificationVoiceIds, forKey: .taskNotificationVoiceIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -166,7 +146,7 @@ public struct Task1: Codable, Hashable, Sendable {
         case action
         case timeWindows = "time_windows"
         case orderPlacerComments = "order_placer_comments"
-        case shipperContactIds = "shipper_contact_ids"
+        case directoryEntryIds = "directory_entry_ids"
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
@@ -184,9 +164,5 @@ public struct Task1: Codable, Hashable, Sendable {
         case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case orderCancelled = "order_cancelled"
-        case taskNotificationEmailIds = "task_notification_email_ids"
-        case taskNotificationSmsIds = "task_notification_sms_ids"
-        case taskNotificationPushIds = "task_notification_push_ids"
-        case taskNotificationVoiceIds = "task_notification_voice_ids"
     }
 }

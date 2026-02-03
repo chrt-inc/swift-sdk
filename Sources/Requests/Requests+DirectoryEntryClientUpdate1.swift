@@ -1,10 +1,10 @@
 import Foundation
 
 extension Requests {
-    public struct ShipperContactClientUpdate1: Codable, Hashable, Sendable {
+    public struct DirectoryEntryClientUpdate1: Codable, Hashable, Sendable {
         public let companyName: String?
         public let industry: String?
-        public let streetAddress: LocationFeature?
+        public let location: LocationFeature?
         public let contactFirstName: String?
         public let contactLastName: String?
         public let phoneNumberPrimary: String?
@@ -19,7 +19,7 @@ extension Requests {
         public init(
             companyName: String? = nil,
             industry: String? = nil,
-            streetAddress: LocationFeature? = nil,
+            location: LocationFeature? = nil,
             contactFirstName: String? = nil,
             contactLastName: String? = nil,
             phoneNumberPrimary: String? = nil,
@@ -32,7 +32,7 @@ extension Requests {
         ) {
             self.companyName = companyName
             self.industry = industry
-            self.streetAddress = streetAddress
+            self.location = location
             self.contactFirstName = contactFirstName
             self.contactLastName = contactLastName
             self.phoneNumberPrimary = phoneNumberPrimary
@@ -48,7 +48,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
             self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
-            self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
+            self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
             self.contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
             self.contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
             self.phoneNumberPrimary = try container.decodeIfPresent(String.self, forKey: .phoneNumberPrimary)
@@ -65,7 +65,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.companyName, forKey: .companyName)
             try container.encodeIfPresent(self.industry, forKey: .industry)
-            try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
+            try container.encodeIfPresent(self.location, forKey: .location)
             try container.encodeIfPresent(self.contactFirstName, forKey: .contactFirstName)
             try container.encodeIfPresent(self.contactLastName, forKey: .contactLastName)
             try container.encodeIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
@@ -80,7 +80,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case companyName = "company_name"
             case industry
-            case streetAddress = "street_address"
+            case location
             case contactFirstName = "contact_first_name"
             case contactLastName = "contact_last_name"
             case phoneNumberPrimary = "phone_number_primary"

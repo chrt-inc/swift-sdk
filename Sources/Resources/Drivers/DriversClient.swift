@@ -10,24 +10,24 @@ public final class DriversClient: Sendable {
     /// Retrieves driver information for the caller within their organization. | () -> (Driver1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getForCallerV1(requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+    public func getForCallerV1(requestOptions: RequestOptions? = nil) async throws -> Driver1Output {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/drivers/for_caller/v1",
             requestOptions: requestOptions,
-            responseType: Driver1.self
+            responseType: Driver1Output.self
         )
     }
 
     /// Retrieves detailed driver information by driver ID within the organization. | () -> (Driver1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+    public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Driver1Output {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/drivers/v1/\(driverId)",
             requestOptions: requestOptions,
-            responseType: Driver1.self
+            responseType: Driver1Output.self
         )
     }
 
@@ -54,7 +54,7 @@ public final class DriversClient: Sendable {
     /// - Parameter availableAccordingToDriver: Filter by driver's self-reported availability.
     /// - Parameter availableAccordingToOperators: Filter by operator-set availability.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(availableAccordingToDriver: Bool? = nil, availableAccordingToOperators: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> [Driver1] {
+    public func listV1(availableAccordingToDriver: Bool? = nil, availableAccordingToOperators: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> [Driver1Output] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/oort/drivers/list/v1",
@@ -63,7 +63,7 @@ public final class DriversClient: Sendable {
                 "available_according_to_operators": availableAccordingToOperators.map { .bool($0) }
             ],
             requestOptions: requestOptions,
-            responseType: [Driver1].self
+            responseType: [Driver1Output].self
         )
     }
 

@@ -51,7 +51,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -129,7 +129,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -246,7 +246,7 @@ import Chrt
                 lineItemGroupIds: Optional([
                     "line_item_group_ids"
                 ]),
-                amount: 1,
+                amount: Optional(1),
                 units: Optional(.usd),
                 stagedByUserId: Optional("staged_by_user_id"),
                 settlementType: .stripeConnect,
@@ -368,7 +368,7 @@ import Chrt
                     lineItemGroupIds: Optional([
                         "line_item_group_ids"
                     ]),
-                    amount: 1,
+                    amount: Optional(1),
                     units: Optional(.usd),
                     stagedByUserId: Optional("staged_by_user_id"),
                     settlementType: .stripeConnect,
@@ -462,7 +462,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -565,7 +565,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -644,7 +644,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -723,7 +723,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -802,7 +802,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,
@@ -880,7 +880,7 @@ import Chrt
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
             ]),
-            amount: 1,
+            amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
             settlementType: .stripeConnect,

@@ -154,7 +154,7 @@ import Chrt
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
-                            task: Task1(
+                            task: Task1Output(
                                 schemaVersion: 1,
                                 id: "_id",
                                 orderId: "order_id",
@@ -166,7 +166,7 @@ import Chrt
                             )
                         )
                     ]),
-                    driver: Optional(Driver1(
+                    driver: Optional(Driver1Output(
                         schemaVersion: 1,
                         id: "_id",
                         orgId: "org_id",

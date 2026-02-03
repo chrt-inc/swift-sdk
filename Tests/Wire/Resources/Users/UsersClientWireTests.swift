@@ -11,7 +11,6 @@ import Chrt
                 {
                   "schema_version": 1,
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "primary_email_address": "primary_email_address",
                   "user_id": "user_id",
                   "_id": "_id"
                 }
@@ -26,7 +25,6 @@ import Chrt
         let expectedResponse = UserPublicData1(
             schemaVersion: 1,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            primaryEmailAddress: Optional("primary_email_address"),
             userId: "user_id",
             id: "_id"
         )
