@@ -1548,7 +1548,7 @@ try await main()
 </details>
 
 ## Drivers
-<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">getForCallerV1</a>(requestOptions: RequestOptions?) -> Driver1Output</code></summary>
+<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">getForCallerV1</a>(requestOptions: RequestOptions?) -> Driver1</code></summary>
 <dl>
 <dd>
 
@@ -1611,7 +1611,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">getByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> Driver1Output</code></summary>
+<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">getByDriverIdV1</a>(driverId: String, requestOptions: RequestOptions?) -> Driver1</code></summary>
 <dl>
 <dd>
 
@@ -1764,7 +1764,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">listV1</a>(availableAccordingToDriver: Bool?, availableAccordingToOperators: Bool?, requestOptions: RequestOptions?) -> [Driver1Output]</code></summary>
+<details><summary><code>client.drivers.<a href="/Sources/Resources/Drivers/DriversClient.swift">listV1</a>(availableAccordingToDriver: Bool?, availableAccordingToOperators: Bool?, requestOptions: RequestOptions?) -> [Driver1]</code></summary>
 <dl>
 <dd>
 

@@ -1,7 +1,7 @@
 import Foundation
 
 public struct TaskExpanded: Codable, Hashable, Sendable {
-    public let task: Task1Output
+    public let task: Task1
     public let cargos: [Cargo1]?
     public let taskArtifacts: [TaskArtifact1]?
     public let directoryEntries: [DirectoryEntry1]?
@@ -9,7 +9,7 @@ public struct TaskExpanded: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        task: Task1Output,
+        task: Task1,
         cargos: [Cargo1]? = nil,
         taskArtifacts: [TaskArtifact1]? = nil,
         directoryEntries: [DirectoryEntry1]? = nil,
@@ -24,7 +24,7 @@ public struct TaskExpanded: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.task = try container.decode(Task1Output.self, forKey: .task)
+        self.task = try container.decode(Task1.self, forKey: .task)
         self.cargos = try container.decodeIfPresent([Cargo1].self, forKey: .cargos)
         self.taskArtifacts = try container.decodeIfPresent([TaskArtifact1].self, forKey: .taskArtifacts)
         self.directoryEntries = try container.decodeIfPresent([DirectoryEntry1].self, forKey: .directoryEntries)

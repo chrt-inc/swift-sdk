@@ -9,7 +9,7 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case shippingOrderCancelled = "shipping.order.cancelled"
     case shippingTaskGroupCourierOrgAssigned = "shipping.task_group.courier_org_assigned"
     case shippingTaskGroupInProgress = "shipping.task_group.in_progress"
-    case shippingTaskGroupS3ObjectAdded = "shipping.task_group.s3_object_added"
+    case shippingTaskGroupFileAdded = "shipping.task_group.file_added"
     case shippingTaskGroupDriverAssigned = "shipping.task_group.driver_assigned"
     case shippingTaskGroupMessage = "shipping.task_group.message"
     case shippingTaskGroupTasksOrderingUpdated = "shipping.task_group.tasks_ordering_updated"
@@ -21,5 +21,5 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case billingStatementOpened = "billing.statement.opened"
     case billingStatementPaid = "billing.statement.paid"
     case billingLineItemGroupMessage = "billing.line_item_group.message"
-    case billingLineItemGroupS3ObjectAdded = "billing.line_item_group.s3_object_added"
+    case billingLineItemGroupFileAdded = "billing.line_item_group.file_added"
 }

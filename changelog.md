@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-02-03
+* refactor: consolidate schema models and update webhook event types
+* This is a comprehensive schema refactoring that simplifies the type system by consolidating separate input/output models and updating webhook event naming conventions for better consistency.
+* Key changes:
+* Merge Driver1Input and Driver1Output into unified Driver1 model
+* Merge Task1Input and Task1Output into unified Task1 model
+* Update webhook payloads to use IDs instead of full objects for better performance
+* Rename S3-specific events to generic file events (s3_object_added → file_added)
+* Simplify task event payloads by including essential fields directly
+* Reorder struct properties for better logical grouping
+* Update all API clients and tests to use consolidated types
+* 🌿 Generated with Fern
+
 ## 1.363.1 - 2026-02-03
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

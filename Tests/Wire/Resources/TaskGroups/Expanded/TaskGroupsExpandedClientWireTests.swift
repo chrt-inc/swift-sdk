@@ -208,7 +208,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1Output(
+                    task: Task1(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -254,7 +254,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1Output(
+            driver: Optional(Driver1(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -521,7 +521,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1Output(
+                    task: Task1(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -567,7 +567,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1Output(
+            driver: Optional(Driver1(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -834,7 +834,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1Output(
+                    task: Task1(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -880,7 +880,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1Output(
+            driver: Optional(Driver1(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -1147,7 +1147,7 @@ import Chrt
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
-                    task: Task1Output(
+                    task: Task1(
                         schemaVersion: 1,
                         id: "_id",
                         orderId: "order_id",
@@ -1193,7 +1193,7 @@ import Chrt
                     ])
                 )
             ]),
-            driver: Optional(Driver1Output(
+            driver: Optional(Driver1(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
                 emailAddressSecondary: Optional("email_address_secondary"),
@@ -1326,7 +1326,7 @@ import Chrt
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
-                            task: Task1Output(
+                            task: Task1(
                                 schemaVersion: 1,
                                 id: "_id",
                                 orderId: "order_id",
@@ -1338,7 +1338,7 @@ import Chrt
                             )
                         )
                     ]),
-                    driver: Optional(Driver1Output(
+                    driver: Optional(Driver1(
                         schemaVersion: 1,
                         id: "_id",
                         orgId: "org_id",
@@ -1450,7 +1450,7 @@ import Chrt
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
-                            task: Task1Output(
+                            task: Task1(
                                 schemaVersion: 1,
                                 id: "_id",
                                 orderId: "order_id",
@@ -1462,7 +1462,7 @@ import Chrt
                             )
                         )
                     ]),
-                    driver: Optional(Driver1Output(
+                    driver: Optional(Driver1(
                         schemaVersion: 1,
                         id: "_id",
                         orgId: "org_id",

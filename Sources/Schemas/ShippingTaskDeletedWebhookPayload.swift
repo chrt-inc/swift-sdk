@@ -10,6 +10,10 @@ public struct ShippingTaskDeletedWebhookPayload: Codable, Hashable, Sendable {
     public let taskGroupId: String
     /// The ID of the task that was deleted
     public let taskId: String
+    /// The task action type (e.g., PICKUP, DELIVER)
+    public let action: Action?
+    /// The location where the task was to be performed
+    public let location: LocationFeature?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -19,6 +23,8 @@ public struct ShippingTaskDeletedWebhookPayload: Codable, Hashable, Sendable {
         orderId: String,
         taskGroupId: String,
         taskId: String,
+        action: Action? = nil,
+        location: LocationFeature? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
@@ -26,6 +32,8 @@ public struct ShippingTaskDeletedWebhookPayload: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.taskGroupId = taskGroupId
         self.taskId = taskId
+        self.action = action
+        self.location = location
         self.additionalProperties = additionalProperties
     }
 
@@ -36,6 +44,8 @@ public struct ShippingTaskDeletedWebhookPayload: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -47,6 +57,8 @@ public struct ShippingTaskDeletedWebhookPayload: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskId, forKey: .taskId)
+        try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.location, forKey: .location)
     }
 
     public enum ShippingTaskDeleted: String, Codable, Hashable, CaseIterable, Sendable {
@@ -60,5 +72,7 @@ public struct ShippingTaskDeletedWebhookPayload: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
         case taskId = "task_id"
+        case action
+        case location
     }
 }

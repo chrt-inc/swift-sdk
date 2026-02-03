@@ -9,7 +9,7 @@ public struct ShippingTaskGroupDriverAssignedWebhookPayload: Codable, Hashable, 
     /// The specific task group the driver was assigned to
     public let taskGroupId: String
     /// The driver that was assigned
-    public let driver: Driver1Input
+    public let driverId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -18,14 +18,14 @@ public struct ShippingTaskGroupDriverAssignedWebhookPayload: Codable, Hashable, 
         eventTimestamp: Date,
         orderId: String,
         taskGroupId: String,
-        driver: Driver1Input,
+        driverId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
         self.eventTimestamp = eventTimestamp
         self.orderId = orderId
         self.taskGroupId = taskGroupId
-        self.driver = driver
+        self.driverId = driverId
         self.additionalProperties = additionalProperties
     }
 
@@ -35,7 +35,7 @@ public struct ShippingTaskGroupDriverAssignedWebhookPayload: Codable, Hashable, 
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.driver = try container.decode(Driver1Input.self, forKey: .driver)
+        self.driverId = try container.decode(String.self, forKey: .driverId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -46,7 +46,7 @@ public struct ShippingTaskGroupDriverAssignedWebhookPayload: Codable, Hashable, 
         try container.encode(self.eventTimestamp, forKey: .eventTimestamp)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encode(self.driver, forKey: .driver)
+        try container.encode(self.driverId, forKey: .driverId)
     }
 
     public enum ShippingTaskGroupDriverAssigned: String, Codable, Hashable, CaseIterable, Sendable {
@@ -59,6 +59,6 @@ public struct ShippingTaskGroupDriverAssignedWebhookPayload: Codable, Hashable, 
         case eventTimestamp = "event_timestamp"
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
-        case driver
+        case driverId = "driver_id"
     }
 }

@@ -9,7 +9,11 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
     /// The task group containing the task
     public let taskGroupId: String
     /// The task that was skipped
-    public let task: Task1Input
+    public let taskId: String
+    /// The task action type (e.g., PICKUP, DELIVER)
+    public let action: Action?
+    /// The location where the task was to be performed
+    public let location: LocationFeature?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -18,14 +22,18 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
         eventTimestamp: Date,
         orderId: String,
         taskGroupId: String,
-        task: Task1Input,
+        taskId: String,
+        action: Action? = nil,
+        location: LocationFeature? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
         self.eventTimestamp = eventTimestamp
         self.orderId = orderId
         self.taskGroupId = taskGroupId
-        self.task = task
+        self.taskId = taskId
+        self.action = action
+        self.location = location
         self.additionalProperties = additionalProperties
     }
 
@@ -35,7 +43,9 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.task = try container.decode(Task1Input.self, forKey: .task)
+        self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -46,7 +56,9 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
         try container.encode(self.eventTimestamp, forKey: .eventTimestamp)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encode(self.task, forKey: .task)
+        try container.encode(self.taskId, forKey: .taskId)
+        try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.location, forKey: .location)
     }
 
     public enum ShippingTaskSkipped: String, Codable, Hashable, CaseIterable, Sendable {
@@ -59,6 +71,8 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
         case eventTimestamp = "event_timestamp"
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
-        case task
+        case taskId = "task_id"
+        case action
+        case location
     }
 }

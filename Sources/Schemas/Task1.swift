@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Task1Input: Codable, Hashable, Sendable {
+public struct Task1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let location: LocationFeature?
     public let action: Action?

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Driver1Output: Codable, Hashable, Sendable {
+public struct Driver1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let emailAddressPrimary: String?
     public let emailAddressSecondary: String?

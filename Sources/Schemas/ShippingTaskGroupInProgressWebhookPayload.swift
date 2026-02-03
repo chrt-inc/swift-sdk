@@ -7,7 +7,7 @@ public struct ShippingTaskGroupInProgressWebhookPayload: Codable, Hashable, Send
     /// The order containing the task group
     public let orderId: String
     /// The task group that is now in progress
-    public let taskGroup: TaskGroup1
+    public let taskGroupId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -15,13 +15,13 @@ public struct ShippingTaskGroupInProgressWebhookPayload: Codable, Hashable, Send
         eventType: ShippingTaskGroupInProgress? = nil,
         eventTimestamp: Date,
         orderId: String,
-        taskGroup: TaskGroup1,
+        taskGroupId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
         self.eventTimestamp = eventTimestamp
         self.orderId = orderId
-        self.taskGroup = taskGroup
+        self.taskGroupId = taskGroupId
         self.additionalProperties = additionalProperties
     }
 
@@ -30,7 +30,7 @@ public struct ShippingTaskGroupInProgressWebhookPayload: Codable, Hashable, Send
         self.eventType = try container.decodeIfPresent(ShippingTaskGroupInProgress.self, forKey: .eventType)
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
         self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.taskGroup = try container.decode(TaskGroup1.self, forKey: .taskGroup)
+        self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -40,7 +40,7 @@ public struct ShippingTaskGroupInProgressWebhookPayload: Codable, Hashable, Send
         try container.encodeIfPresent(self.eventType, forKey: .eventType)
         try container.encode(self.eventTimestamp, forKey: .eventTimestamp)
         try container.encode(self.orderId, forKey: .orderId)
-        try container.encode(self.taskGroup, forKey: .taskGroup)
+        try container.encode(self.taskGroupId, forKey: .taskGroupId)
     }
 
     public enum ShippingTaskGroupInProgress: String, Codable, Hashable, CaseIterable, Sendable {
@@ -52,6 +52,6 @@ public struct ShippingTaskGroupInProgressWebhookPayload: Codable, Hashable, Send
         case eventType = "event_type"
         case eventTimestamp = "event_timestamp"
         case orderId = "order_id"
-        case taskGroup = "task_group"
+        case taskGroupId = "task_group_id"
     }
 }

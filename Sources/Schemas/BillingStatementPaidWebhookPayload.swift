@@ -5,19 +5,19 @@ public struct BillingStatementPaidWebhookPayload: Codable, Hashable, Sendable {
     /// UTC timestamp when the event occurred
     public let eventTimestamp: Date
     /// The statement that was paid
-    public let statement: Statement1
+    public let statementId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         eventType: BillingStatementPaid? = nil,
         eventTimestamp: Date,
-        statement: Statement1,
+        statementId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
         self.eventTimestamp = eventTimestamp
-        self.statement = statement
+        self.statementId = statementId
         self.additionalProperties = additionalProperties
     }
 
@@ -25,7 +25,7 @@ public struct BillingStatementPaidWebhookPayload: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.eventType = try container.decodeIfPresent(BillingStatementPaid.self, forKey: .eventType)
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
-        self.statement = try container.decode(Statement1.self, forKey: .statement)
+        self.statementId = try container.decode(String.self, forKey: .statementId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -34,7 +34,7 @@ public struct BillingStatementPaidWebhookPayload: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.eventType, forKey: .eventType)
         try container.encode(self.eventTimestamp, forKey: .eventTimestamp)
-        try container.encode(self.statement, forKey: .statement)
+        try container.encode(self.statementId, forKey: .statementId)
     }
 
     public enum BillingStatementPaid: String, Codable, Hashable, CaseIterable, Sendable {
@@ -45,6 +45,6 @@ public struct BillingStatementPaidWebhookPayload: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case eventType = "event_type"
         case eventTimestamp = "event_timestamp"
-        case statement
+        case statementId = "statement_id"
     }
 }
