@@ -6,6 +6,9 @@ import Foundation
 /// - created_at_timestamp
 /// - user_ids
 /// - user_ids_opted_out
+/// 
+/// Includes computed fields:
+/// - is_opted_out: True if the requesting user is in user_ids_opted_out
 public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
     public let id: String
     public let schemaVersion: Int
@@ -16,6 +19,7 @@ public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
     public let emailEvents: [NotificationEventsForOrgsEnum]
     public let pushEvents: [NotificationEventsForOrgsEnum]
     public let smsEvents: [NotificationEventsForOrgsEnum]
+    public let isOptedOut: Bool
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -28,6 +32,7 @@ public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
         emailEvents: [NotificationEventsForOrgsEnum],
         pushEvents: [NotificationEventsForOrgsEnum],
         smsEvents: [NotificationEventsForOrgsEnum],
+        isOptedOut: Bool,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
@@ -38,6 +43,7 @@ public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
         self.emailEvents = emailEvents
         self.pushEvents = pushEvents
         self.smsEvents = smsEvents
+        self.isOptedOut = isOptedOut
         self.additionalProperties = additionalProperties
     }
 
@@ -51,6 +57,7 @@ public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
         self.emailEvents = try container.decode([NotificationEventsForOrgsEnum].self, forKey: .emailEvents)
         self.pushEvents = try container.decode([NotificationEventsForOrgsEnum].self, forKey: .pushEvents)
         self.smsEvents = try container.decode([NotificationEventsForOrgsEnum].self, forKey: .smsEvents)
+        self.isOptedOut = try container.decode(Bool.self, forKey: .isOptedOut)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -65,6 +72,7 @@ public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
         try container.encode(self.emailEvents, forKey: .emailEvents)
         try container.encode(self.pushEvents, forKey: .pushEvents)
         try container.encode(self.smsEvents, forKey: .smsEvents)
+        try container.encode(self.isOptedOut, forKey: .isOptedOut)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -77,5 +85,6 @@ public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {
         case emailEvents = "email_events"
         case pushEvents = "push_events"
         case smsEvents = "sms_events"
+        case isOptedOut = "is_opted_out"
     }
 }

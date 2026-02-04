@@ -1,10 +1,5 @@
 import Foundation
 
-/// Notes for order validation logic
-/// - the tasks below are already in sequential order, they might not all be present in the task group, but they must follow this order
-/// - exceptions
-///     - a courier might have multiple flights, thus these four can occur in "loops" but otherwise must be in proper order: {COURIER_BOARDED_FLIGHT, FLIGHT_DEPARTED, FLIGHT_ARRIVED, COURIER_DEBOARDED_FLIGHT}
-///     - CARGO_RECEIVED_BY_AIRLINE and COURIER_RECOVERED_CARGO which can occur at any time
 public enum OnboardCourierTaskActionEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case obcCourierDepartedForPickupLocation = "obc__courier_departed_for_pickup_location"
     case obcCourierArrivedAtPickupLocation = "obc__courier_arrived_at_pickup_location"

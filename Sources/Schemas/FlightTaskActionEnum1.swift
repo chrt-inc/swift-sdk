@@ -1,7 +1,5 @@
 import Foundation
 
-/// Notes for order validation logic
-/// - the tasks below are already in sequential order, they might not all be present in the task group, but they must follow this order
 public enum FlightTaskActionEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case flightCargoReceivedByAirline = "flight__cargo_received_by_airline"
     case flightCargoLoadedOntoFlight = "flight__cargo_loaded_onto_flight"

@@ -156,7 +156,8 @@ import Chrt
                     ],
                     "sms_events": [
                       "shipping.order.staged"
-                    ]
+                    ],
+                    "is_opted_out": true
                   }
                 ]
                 """.utf8
@@ -182,7 +183,8 @@ import Chrt
                 ],
                 smsEvents: [
                     .shippingOrderStaged
-                ]
+                ],
+                isOptedOut: true
             )
         ]
         let response = try await client.notifications.groups.listByUserV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -208,7 +210,8 @@ import Chrt
                   ],
                   "sms_events": [
                     "shipping.order.staged"
-                  ]
+                  ],
+                  "is_opted_out": true
                 }
                 """.utf8
             )
@@ -232,7 +235,8 @@ import Chrt
             ],
             smsEvents: [
                 .shippingOrderStaged
-            ]
+            ],
+            isOptedOut: true
         )
         let response = try await client.notifications.groups.getForMemberV1(
             groupId: "group_id",

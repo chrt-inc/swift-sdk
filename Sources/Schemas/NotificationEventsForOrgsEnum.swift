@@ -18,6 +18,7 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case shippingTaskCompleted = "shipping.task.completed"
     case shippingTaskSkipped = "shipping.task.skipped"
     case shippingTaskDeleted = "shipping.task.deleted"
+    case shippingTaskTaskArtifactCompleted = "shipping.task.task_artifact_completed"
     case billingStatementOpened = "billing.statement.opened"
     case billingStatementPaid = "billing.statement.paid"
     case billingLineItemGroupMessage = "billing.line_item_group.message"

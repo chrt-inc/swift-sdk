@@ -1,56 +1,51 @@
 import Foundation
 
-public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
-    public let eventType: ShippingTaskCompleted?
+public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable, Sendable {
+    public let eventType: ShippingTaskTaskArtifactCompleted?
     /// UTC timestamp when the event occurred
     public let eventTimestamp: Date
     /// The order containing the task
     public let orderId: String
     /// The task group containing the task
     public let taskGroupId: String
-    /// The type of task group (CHRT_GROUND_COURIER, FLIGHT, ONBOARD_COURIER)
-    public let taskGroupType: TaskGroupTypeEnum1
-    /// The task that was completed
+    /// The task the artifact belongs to
     public let taskId: String
-    /// The task action type (e.g., PICKUP, DELIVER)
-    public let action: Action?
-    /// The location where the task was performed
-    public let location: LocationFeature?
+    /// The task artifact that was completed
+    public let taskArtifactId: String
+    /// The type of task artifact (e.g., IMAGE, SIGNATURE)
+    public let taskArtifactType: TaskArtifactTypeEnum1
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        eventType: ShippingTaskCompleted? = nil,
+        eventType: ShippingTaskTaskArtifactCompleted? = nil,
         eventTimestamp: Date,
         orderId: String,
         taskGroupId: String,
-        taskGroupType: TaskGroupTypeEnum1,
         taskId: String,
-        action: Action? = nil,
-        location: LocationFeature? = nil,
+        taskArtifactId: String,
+        taskArtifactType: TaskArtifactTypeEnum1,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
         self.eventTimestamp = eventTimestamp
         self.orderId = orderId
         self.taskGroupId = taskGroupId
-        self.taskGroupType = taskGroupType
         self.taskId = taskId
-        self.action = action
-        self.location = location
+        self.taskArtifactId = taskArtifactId
+        self.taskArtifactType = taskArtifactType
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.eventType = try container.decodeIfPresent(ShippingTaskCompleted.self, forKey: .eventType)
+        self.eventType = try container.decodeIfPresent(ShippingTaskTaskArtifactCompleted.self, forKey: .eventType)
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.taskId = try container.decode(String.self, forKey: .taskId)
-        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
-        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
+        self.taskArtifactId = try container.decode(String.self, forKey: .taskArtifactId)
+        self.taskArtifactType = try container.decode(TaskArtifactTypeEnum1.self, forKey: .taskArtifactType)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -61,14 +56,13 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         try container.encode(self.eventTimestamp, forKey: .eventTimestamp)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encode(self.taskGroupType, forKey: .taskGroupType)
         try container.encode(self.taskId, forKey: .taskId)
-        try container.encodeIfPresent(self.action, forKey: .action)
-        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encode(self.taskArtifactId, forKey: .taskArtifactId)
+        try container.encode(self.taskArtifactType, forKey: .taskArtifactType)
     }
 
-    public enum ShippingTaskCompleted: String, Codable, Hashable, CaseIterable, Sendable {
-        case shippingTaskCompleted = "shipping.task.completed"
+    public enum ShippingTaskTaskArtifactCompleted: String, Codable, Hashable, CaseIterable, Sendable {
+        case shippingTaskTaskArtifactCompleted = "shipping.task.task_artifact_completed"
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -77,9 +71,8 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         case eventTimestamp = "event_timestamp"
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
-        case taskGroupType = "task_group_type"
         case taskId = "task_id"
-        case action
-        case location
+        case taskArtifactId = "task_artifact_id"
+        case taskArtifactType = "task_artifact_type"
     }
 }

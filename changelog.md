@@ -1,3 +1,18 @@
+## 1.381.0 - 2026-02-04
+* feat: add new webhook event and enhance notification system
+* Add support for task artifact completed events and improve notification
+* group functionality with opt-out status tracking. This update expands
+* webhook capabilities and provides better user experience for managing
+* notification preferences.
+* Key changes:
+* Add shipping.task.task_artifact_completed event to NotificationEventsForOrgsEnum
+* Create new ShippingTaskTaskArtifactCompletedWebhookPayload struct for webhook handling
+* Add taskGroupType field to ShippingTaskCompletedWebhookPayload for better task categorization
+* Add isOptedOut computed field to NotificationGroupLimitedForDriver1 for user preference tracking
+* Remove detailed validation logic comments from task action enums for cleaner code
+* Update test cases to include new isOptedOut field
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-02-03
 * refactor: consolidate schema models and update webhook event types
 * This is a comprehensive schema refactoring that simplifies the type system by consolidating separate input/output models and updating webhook event naming conventions for better consistency.
