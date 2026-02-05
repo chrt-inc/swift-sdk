@@ -31,7 +31,7 @@ public final class S3ObjectsClient: Sendable {
         )
     }
 
-    /// Uploads an image file to a line item group with automatic blurhash generation. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
+    /// Uploads a file (image, PDF, etc.) to a line item group. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(lineItemGroupId: String, request: Requests.BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {

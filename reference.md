@@ -8968,7 +8968,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads an image file to a line item group with automatic blurhash generation. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
+Uploads a file (image, PDF, etc.) to a line item group. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -8991,7 +8991,7 @@ private func main() async throws {
 
     _ = try await client.billing.lineItemGroups.s3Objects.addV1(
         lineItemGroupId: "line_item_group_id",
-        request: .init(image: .init(data: Data("".utf8)))
+        request: .init(file: .init(data: Data("".utf8)))
     )
 }
 
@@ -13977,7 +13977,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads an image file to a task artifact with automatic blurhash generation. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -14000,7 +14000,7 @@ private func main() async throws {
 
     _ = try await client.taskArtifacts.s3Object.addV1(
         taskArtifactId: "task_artifact_id",
-        request: .init(image: .init(data: Data("".utf8)))
+        request: .init(file: .init(data: Data("".utf8)))
     )
 }
 
@@ -14416,7 +14416,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads an image file to a task group with automatic blurhash generation. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -14439,7 +14439,7 @@ private func main() async throws {
 
     _ = try await client.taskGroups.s3Object.addV1(
         taskGroupId: "task_group_id",
-        request: .init(image: .init(data: Data("".utf8)))
+        request: .init(file: .init(data: Data("".utf8)))
     )
 }
 

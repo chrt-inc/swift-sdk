@@ -2,12 +2,12 @@ import Foundation
 
 extension Requests {
     public struct BodyPostTaskGroupsS3ObjectAddV1OortTaskGroupsS3ObjectAddV1TaskGroupIdPost {
-        public let image: FormFile
+        public let file: FormFile
 
         public init(
-            image: FormFile
+            file: FormFile
         ) {
-            self.image = image
+            self.file = file
         }
     }
 }
@@ -15,7 +15,7 @@ extension Requests {
 extension Requests.BodyPostTaskGroupsS3ObjectAddV1OortTaskGroupsS3ObjectAddV1TaskGroupIdPost: MultipartFormDataConvertible {
     var multipartFormFields: [MultipartFormField] {
         [
-            .file(image, fieldName: "image")
+            .file(file, fieldName: "file")
         ]
     }
 }

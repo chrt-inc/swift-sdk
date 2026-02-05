@@ -1,3 +1,13 @@
+## 2.0.0 - 2026-02-05
+* feat: enhance file upload API to support multiple file types
+* This change expands file upload capabilities from image-only to support various file types including PDFs and other documents. The API now provides better file metadata tracking and more accurate parameter naming.
+* Key changes:
+* Rename parameter from `image` to `file` across all upload endpoints
+* Add `contentType` and `filename` fields to S3 object metadata schemas
+* Update API documentation to reflect support for multiple file types
+* Maintain backward compatibility with automatic blurhash generation for images
+* 🌿 Generated with Fern
+
 ## 1.381.0 - 2026-02-04
 * feat: add new webhook event and enhance notification system
 * Add support for task artifact completed events and improve notification

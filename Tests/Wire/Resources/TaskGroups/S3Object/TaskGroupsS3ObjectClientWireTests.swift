@@ -16,7 +16,9 @@ import Chrt
                   "uploaded_by_user_id": "uploaded_by_user_id",
                   "uploaded_by_org_id": "uploaded_by_org_id",
                   "s3_key_prefix": "oort/task_group_s3_object_metadata",
-                  "blurhash": "blurhash"
+                  "blurhash": "blurhash",
+                  "content_type": "content_type",
+                  "filename": "filename"
                 }
                 """.utf8
             )
@@ -34,7 +36,9 @@ import Chrt
             uploadedByUserId: "uploaded_by_user_id",
             uploadedByOrgId: "uploaded_by_org_id",
             s3KeyPrefix: Optional(.oortTaskGroupS3ObjectMetadata),
-            blurhash: Optional("blurhash")
+            blurhash: Optional("blurhash"),
+            contentType: Optional("content_type"),
+            filename: Optional("filename")
         )
         let response = try await client.taskGroups.s3Object.getS3ObjectMetadataV1(
             taskGroupS3ObjectMetadataId: "task_group_s3_object_metadata_id",
@@ -60,7 +64,7 @@ import Chrt
         let expectedResponse = true
         let response = try await client.taskGroups.s3Object.addV1(
             taskGroupId: "task_group_id",
-            request: .init(image: .init(data: Data("".utf8))),
+            request: .init(file: .init(data: Data("".utf8))),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

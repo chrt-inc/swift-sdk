@@ -2,12 +2,12 @@ import Foundation
 
 extension Requests {
     public struct BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost {
-        public let image: FormFile
+        public let file: FormFile
 
         public init(
-            image: FormFile
+            file: FormFile
         ) {
-            self.image = image
+            self.file = file
         }
     }
 }
@@ -15,7 +15,7 @@ extension Requests {
 extension Requests.BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost: MultipartFormDataConvertible {
     var multipartFormFields: [MultipartFormField] {
         [
-            .file(image, fieldName: "image")
+            .file(file, fieldName: "file")
         ]
     }
 }

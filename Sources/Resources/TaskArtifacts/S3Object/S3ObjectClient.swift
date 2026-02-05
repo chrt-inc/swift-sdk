@@ -31,7 +31,7 @@ public final class S3ObjectClient: Sendable {
         )
     }
 
-    /// Uploads an image file to a task artifact with automatic blurhash generation. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+    /// Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1OortTaskArtifactsS3ObjectAddV1TaskArtifactIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -31,7 +31,7 @@ public final class TaskGroupsS3ObjectClient: Sendable {
         )
     }
 
-    /// Uploads an image file to a task group with automatic blurhash generation. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+    /// Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1OortTaskGroupsS3ObjectAddV1TaskGroupIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
