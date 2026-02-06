@@ -896,7 +896,7 @@ try await main()
 </details>
 
 ## Dev
-<details><summary><code>client.dev.<a href="/Sources/Resources/Dev/DevClient.swift">getAgentV1</a>(requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.dev.<a href="/Sources/Resources/Dev/DevClient.swift">postAgentV1</a>(request: Requests.AgentReq, requestOptions: RequestOptions?) -> AgentRes</code></summary>
 <dl>
 <dd>
 
@@ -908,7 +908,7 @@ try await main()
 <dl>
 <dd>
 
-Experimental endpoint for running AI agentic workflows. Returns the caller's ID for testing purposes. | () -> (str)
+Runs a customer service agent that responds with logistics fun facts (real order data not yet available). | (AgentReq) -> (AgentRes)
 </dd>
 </dl>
 </dd>
@@ -929,7 +929,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.dev.getAgentV1()
+    _ = try await client.dev.postAgentV1(request: .init())
 }
 
 try await main()
@@ -943,6 +943,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AgentReq` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -1182,69 +1190,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.dev.getEmailV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.dev.<a href="/Sources/Resources/Dev/DevClient.swift">getDurableV1</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Experimental endpoint for running durable execution workflows. Returns the caller's ID for testing purposes. | () -> (dict[str, Any])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.dev.getDurableV1()
 }
 
 try await main()
@@ -5842,6 +5787,211 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.users.<a href="/Sources/Resources/Users/UsersClient.swift">getUserPrivateDataV1</a>(requestOptions: RequestOptions?) -> UserPrivateData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves private user data for the caller. | () -> (UserPrivateData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.users.getUserPrivateDataV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/Sources/Resources/Users/UsersClient.swift">createUserPrivateDataV1</a>(request: Requests.UserPrivateDataClientCreate1, requestOptions: RequestOptions?) -> UserPrivateData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates private user data for the caller. | (UserPrivateDataClientCreate1) -> (UserPrivateData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.users.createUserPrivateDataV1(request: .init(schemaVersion: 1))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.UserPrivateDataClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/Sources/Resources/Users/UsersClient.swift">updateUserPrivateDataV1</a>(request: Requests.UserPrivateDataClientUpdate1, requestOptions: RequestOptions?) -> UserPrivateData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates private user data for the caller. | (UserPrivateDataClientUpdate1) -> (UserPrivateData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.users.updateUserPrivateDataV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.UserPrivateDataClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Utils
 <details><summary><code>client.utils.<a href="/Sources/Resources/Utils/UtilsClient.swift">getTimezoneV1</a>(lat: Double, lng: Double, requestOptions: RequestOptions?) -> TimezoneResponse</code></summary>
 <dl>
@@ -5906,6 +6056,81 @@ try await main()
 <dd>
 
 **lng:** `Double` — Longitude in decimal degrees (range: -180 to 180)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Analytics Shipping
+<details><summary><code>client.analytics.shipping.<a href="/Sources/Resources/Analytics/Shipping/ShippingClient.swift">retrieveOrdersCountV1</a>(request: Requests.AnalyticsTimePeriodRequest, requestOptions: RequestOptions?) -> AnalyticsTimeBucketResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves order counts bucketed by time period. | (AnalyticsTimePeriodRequest) -> (AnalyticsTimeBucketResponse)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.analytics.shipping.retrieveOrdersCountV1(request: .init(
+        start: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        end: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AnalyticsTimePeriodRequest` 
     
 </dd>
 </dl>

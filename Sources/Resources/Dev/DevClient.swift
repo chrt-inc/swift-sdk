@@ -7,15 +7,16 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Experimental endpoint for running AI agentic workflows. Returns the caller's ID for testing purposes. | () -> (str)
+    /// Runs a customer service agent that responds with logistics fun facts (real order data not yet available). | (AgentReq) -> (AgentRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getAgentV1(requestOptions: RequestOptions? = nil) async throws -> String {
+    public func postAgentV1(request: Requests.AgentReq, requestOptions: RequestOptions? = nil) async throws -> AgentRes {
         return try await httpClient.performRequest(
-            method: .get,
+            method: .post,
             path: "/dev/agent/v1",
+            body: request,
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: AgentRes.self
         )
     }
 
@@ -64,18 +65,6 @@ public final class DevClient: Sendable {
             path: "/dev/email/v1",
             requestOptions: requestOptions,
             responseType: String.self
-        )
-    }
-
-    /// Experimental endpoint for running durable execution workflows. Returns the caller's ID for testing purposes. | () -> (dict[str, Any])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getDurableV1(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/dev/durable/v1",
-            requestOptions: requestOptions,
-            responseType: [String: JSONValue].self
         )
     }
 

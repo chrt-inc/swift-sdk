@@ -3,12 +3,18 @@ import Testing
 import Chrt
 
 @Suite("DevClient Wire Tests") struct DevClientWireTests {
-    @Test func getAgentV11() async throws -> Void {
+    @Test func postAgentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                string
+                {
+                  "response": "response",
+                  "logistics_fact": "logistics_fact",
+                  "topics_used": [
+                    "topics_used"
+                  ]
+                }
                 """.utf8
             )
         )
@@ -17,8 +23,17 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
-        let response = try await client.dev.getAgentV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = AgentRes(
+            response: "response",
+            logisticsFact: "logistics_fact",
+            topicsUsed: [
+                "topics_used"
+            ]
+        )
+        let response = try await client.dev.postAgentV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -145,29 +160,6 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.dev.getEmailV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
-        try #require(response == expectedResponse)
-    }
-
-    @Test func getDurableV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "key": "value"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            "key": JSONValue.string("value")
-        ]
-        let response = try await client.dev.getDurableV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 

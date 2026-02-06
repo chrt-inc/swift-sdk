@@ -6,6 +6,7 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
     public let forwarderOrgHandle: String?
     public let shipperOrgCompanyName: String?
     public let offChrtShipperOrgCompanyName: String?
+    public let notificationIntentsAdHoc: [NotificationIntentAdHoc1]?
     public let taskGroupsExpanded: [TaskGroupExpanded]?
     public let cargos: [Cargo1]?
     /// Additional properties that are not explicitly defined in the schema
@@ -17,6 +18,7 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         forwarderOrgHandle: String? = nil,
         shipperOrgCompanyName: String? = nil,
         offChrtShipperOrgCompanyName: String? = nil,
+        notificationIntentsAdHoc: [NotificationIntentAdHoc1]? = nil,
         taskGroupsExpanded: [TaskGroupExpanded]? = nil,
         cargos: [Cargo1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -26,6 +28,7 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         self.forwarderOrgHandle = forwarderOrgHandle
         self.shipperOrgCompanyName = shipperOrgCompanyName
         self.offChrtShipperOrgCompanyName = offChrtShipperOrgCompanyName
+        self.notificationIntentsAdHoc = notificationIntentsAdHoc
         self.taskGroupsExpanded = taskGroupsExpanded
         self.cargos = cargos
         self.additionalProperties = additionalProperties
@@ -38,6 +41,7 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         self.forwarderOrgHandle = try container.decodeIfPresent(String.self, forKey: .forwarderOrgHandle)
         self.shipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .shipperOrgCompanyName)
         self.offChrtShipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgCompanyName)
+        self.notificationIntentsAdHoc = try container.decodeIfPresent([NotificationIntentAdHoc1].self, forKey: .notificationIntentsAdHoc)
         self.taskGroupsExpanded = try container.decodeIfPresent([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
         self.cargos = try container.decodeIfPresent([Cargo1].self, forKey: .cargos)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -51,6 +55,7 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.forwarderOrgHandle, forKey: .forwarderOrgHandle)
         try container.encodeIfPresent(self.shipperOrgCompanyName, forKey: .shipperOrgCompanyName)
         try container.encodeIfPresent(self.offChrtShipperOrgCompanyName, forKey: .offChrtShipperOrgCompanyName)
+        try container.encodeIfPresent(self.notificationIntentsAdHoc, forKey: .notificationIntentsAdHoc)
         try container.encodeIfPresent(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
         try container.encodeIfPresent(self.cargos, forKey: .cargos)
     }
@@ -62,6 +67,7 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         case forwarderOrgHandle = "forwarder_org_handle"
         case shipperOrgCompanyName = "shipper_org_company_name"
         case offChrtShipperOrgCompanyName = "off_chrt_shipper_org_company_name"
+        case notificationIntentsAdHoc = "notification_intents_ad_hoc"
         case taskGroupsExpanded = "task_groups_expanded"
         case cargos
     }

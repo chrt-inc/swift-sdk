@@ -1,3 +1,16 @@
+## 1.391.0 - 2026-02-06
+* feat: add analytics client and expand user management capabilities
+* Add comprehensive analytics functionality for order tracking and expand user management with private data handling. The analytics client provides order count analytics with time-based bucketing, while enhanced user endpoints support full CRUD operations for private user data. Additional improvements include agent workflow updates and expanded notification intent support.
+* Key changes:
+* Add AnalyticsClient with shipping order count analytics endpoints
+* Add user private data management endpoints (create, read, update)
+* Update agent endpoints from GET to POST with structured request/response
+* Add support for notification intents ad hoc in order expansion
+* Add new time-related schemas (TimeGranularity, TimezoneEnum, StartOfWeek)
+* Remove deprecated durable workflow endpoint
+* Add comprehensive test coverage for new functionality
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-02-05
 * feat: enhance file upload API to support multiple file types
 * This change expands file upload capabilities from image-only to support various file types including PDFs and other documents. The API now provides better file metadata tracking and more accurate parameter naming.

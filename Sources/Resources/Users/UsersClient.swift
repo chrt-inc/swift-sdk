@@ -18,4 +18,42 @@ public final class UsersClient: Sendable {
             responseType: UserPublicData1.self
         )
     }
+
+    /// Retrieves private user data for the caller. | () -> (UserPrivateData1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getUserPrivateDataV1(requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/users/user_private_data/v1",
+            requestOptions: requestOptions,
+            responseType: UserPrivateData1.self
+        )
+    }
+
+    /// Creates private user data for the caller. | (UserPrivateDataClientCreate1) -> (UserPrivateData1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createUserPrivateDataV1(request: Requests.UserPrivateDataClientCreate1, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/users/user_private_data/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: UserPrivateData1.self
+        )
+    }
+
+    /// Updates private user data for the caller. | (UserPrivateDataClientUpdate1) -> (UserPrivateData1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateUserPrivateDataV1(request: Requests.UserPrivateDataClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/users/user_private_data/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: UserPrivateData1.self
+        )
+    }
 }

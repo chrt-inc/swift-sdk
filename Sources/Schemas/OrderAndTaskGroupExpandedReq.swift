@@ -5,6 +5,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public let expandForwarderOrgHandle: Bool?
     public let expandShipperOrgCompanyName: Bool?
     public let expandOffChrtShipperOrgCompanyName: Bool?
+    public let expandNotificationIntentsAdHoc: Bool?
     public let expandTasks: Bool?
     public let expandCargos: Bool?
     public let expandTaskArtifacts: Bool?
@@ -20,6 +21,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         expandForwarderOrgHandle: Bool? = nil,
         expandShipperOrgCompanyName: Bool? = nil,
         expandOffChrtShipperOrgCompanyName: Bool? = nil,
+        expandNotificationIntentsAdHoc: Bool? = nil,
         expandTasks: Bool? = nil,
         expandCargos: Bool? = nil,
         expandTaskArtifacts: Bool? = nil,
@@ -33,6 +35,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandForwarderOrgHandle = expandForwarderOrgHandle
         self.expandShipperOrgCompanyName = expandShipperOrgCompanyName
         self.expandOffChrtShipperOrgCompanyName = expandOffChrtShipperOrgCompanyName
+        self.expandNotificationIntentsAdHoc = expandNotificationIntentsAdHoc
         self.expandTasks = expandTasks
         self.expandCargos = expandCargos
         self.expandTaskArtifacts = expandTaskArtifacts
@@ -49,6 +52,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandForwarderOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandForwarderOrgHandle)
         self.expandShipperOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandShipperOrgCompanyName)
         self.expandOffChrtShipperOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandOffChrtShipperOrgCompanyName)
+        self.expandNotificationIntentsAdHoc = try container.decodeIfPresent(Bool.self, forKey: .expandNotificationIntentsAdHoc)
         self.expandTasks = try container.decodeIfPresent(Bool.self, forKey: .expandTasks)
         self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
         self.expandTaskArtifacts = try container.decodeIfPresent(Bool.self, forKey: .expandTaskArtifacts)
@@ -66,6 +70,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.expandForwarderOrgHandle, forKey: .expandForwarderOrgHandle)
         try container.encodeIfPresent(self.expandShipperOrgCompanyName, forKey: .expandShipperOrgCompanyName)
         try container.encodeIfPresent(self.expandOffChrtShipperOrgCompanyName, forKey: .expandOffChrtShipperOrgCompanyName)
+        try container.encodeIfPresent(self.expandNotificationIntentsAdHoc, forKey: .expandNotificationIntentsAdHoc)
         try container.encodeIfPresent(self.expandTasks, forKey: .expandTasks)
         try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
         try container.encodeIfPresent(self.expandTaskArtifacts, forKey: .expandTaskArtifacts)
@@ -81,6 +86,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         case expandForwarderOrgHandle = "expand_forwarder_org_handle"
         case expandShipperOrgCompanyName = "expand_shipper_org_company_name"
         case expandOffChrtShipperOrgCompanyName = "expand_off_chrt_shipper_org_company_name"
+        case expandNotificationIntentsAdHoc = "expand_notification_intents_ad_hoc"
         case expandTasks = "expand_tasks"
         case expandCargos = "expand_cargos"
         case expandTaskArtifacts = "expand_task_artifacts"

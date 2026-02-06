@@ -1,0 +1,46 @@
+import Foundation
+
+extension Requests {
+    public struct UserPrivateDataClientCreate1: Codable, Hashable, Sendable {
+        public let schemaVersion: Int
+        public let primaryEmailAddress: String?
+        public let phoneNumber: String?
+        /// Additional properties that are not explicitly defined in the schema
+        public let additionalProperties: [String: JSONValue]
+
+        public init(
+            schemaVersion: Int,
+            primaryEmailAddress: String? = nil,
+            phoneNumber: String? = nil,
+            additionalProperties: [String: JSONValue] = .init()
+        ) {
+            self.schemaVersion = schemaVersion
+            self.primaryEmailAddress = primaryEmailAddress
+            self.phoneNumber = phoneNumber
+            self.additionalProperties = additionalProperties
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
+            self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
+            self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
+        }
+
+        public func encode(to encoder: Encoder) throws -> Void {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
+            try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
+        }
+
+        /// Keys for encoding/decoding struct properties.
+        enum CodingKeys: String, CodingKey, CaseIterable {
+            case schemaVersion = "schema_version"
+            case primaryEmailAddress = "primary_email_address"
+            case phoneNumber = "phone_number"
+        }
+    }
+}

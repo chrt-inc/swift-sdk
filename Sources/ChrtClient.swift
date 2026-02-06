@@ -20,6 +20,7 @@ public final class ChrtClient: Sendable {
     public let root: RootClient
     public let users: UsersClient
     public let utils: UtilsClient
+    public let analytics: AnalyticsClient
     public let billing: BillingClient
     public let notifications: NotificationsClient
     public let orgInfoForConnections: OrgInfoForConnectionsClient
@@ -124,6 +125,7 @@ public final class ChrtClient: Sendable {
         self.root = RootClient(config: config)
         self.users = UsersClient(config: config)
         self.utils = UtilsClient(config: config)
+        self.analytics = AnalyticsClient(config: config)
         self.billing = BillingClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)

@@ -35,6 +35,26 @@ import Chrt
                   "forwarder_org_handle": "forwarder_org_handle",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
+                  "notification_intents_ad_hoc": [
+                    {
+                      "schema_version": 1,
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "order_id": "order_id",
+                      "directory_entry_id": "directory_entry_id",
+                      "email_events": [
+                        "shipping.order.staged"
+                      ],
+                      "push_events": [
+                        "shipping.order.staged"
+                      ],
+                      "sms_events": [
+                        "shipping.order.staged"
+                      ],
+                      "_id": "_id"
+                    }
+                  ],
                   "task_groups_expanded": [
                     {
                       "task_group": {
@@ -111,6 +131,26 @@ import Chrt
             forwarderOrgHandle: Optional("forwarder_org_handle"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
+            notificationIntentsAdHoc: Optional([
+                NotificationIntentAdHoc1(
+                    schemaVersion: 1,
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
+                    orderId: "order_id",
+                    directoryEntryId: "directory_entry_id",
+                    emailEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    pushEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    smsEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    id: "_id"
+                )
+            ]),
             taskGroupsExpanded: Optional([
                 TaskGroupExpanded(
                     taskGroup: TaskGroup1(
@@ -194,6 +234,26 @@ import Chrt
                   "forwarder_org_handle": "forwarder_org_handle",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
+                  "notification_intents_ad_hoc": [
+                    {
+                      "schema_version": 1,
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "order_id": "order_id",
+                      "directory_entry_id": "directory_entry_id",
+                      "email_events": [
+                        "shipping.order.staged"
+                      ],
+                      "push_events": [
+                        "shipping.order.staged"
+                      ],
+                      "sms_events": [
+                        "shipping.order.staged"
+                      ],
+                      "_id": "_id"
+                    }
+                  ],
                   "task_groups_expanded": [
                     {
                       "task_group": {
@@ -270,6 +330,26 @@ import Chrt
             forwarderOrgHandle: Optional("forwarder_org_handle"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
+            notificationIntentsAdHoc: Optional([
+                NotificationIntentAdHoc1(
+                    schemaVersion: 1,
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
+                    orderId: "order_id",
+                    directoryEntryId: "directory_entry_id",
+                    emailEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    pushEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    smsEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    id: "_id"
+                )
+            ]),
             taskGroupsExpanded: Optional([
                 TaskGroupExpanded(
                     taskGroup: TaskGroup1(
@@ -342,6 +422,17 @@ import Chrt
                       "forwarder_org_handle": "forwarder_org_handle",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
+                      "notification_intents_ad_hoc": [
+                        {
+                          "schema_version": 1,
+                          "created_at_timestamp": "2024-01-15T09:30:00Z",
+                          "created_by_org_id": "created_by_org_id",
+                          "created_by_user_id": "created_by_user_id",
+                          "order_id": "order_id",
+                          "directory_entry_id": "directory_entry_id",
+                          "_id": "_id"
+                        }
+                      ],
                       "task_groups_expanded": [
                         {
                           "task_group": {
@@ -384,6 +475,17 @@ import Chrt
                     forwarderOrgHandle: Optional("forwarder_org_handle"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
+                    notificationIntentsAdHoc: Optional([
+                        NotificationIntentAdHoc1(
+                            schemaVersion: 1,
+                            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            createdByOrgId: "created_by_org_id",
+                            createdByUserId: "created_by_user_id",
+                            orderId: "order_id",
+                            directoryEntryId: "directory_entry_id",
+                            id: "_id"
+                        )
+                    ]),
                     taskGroupsExpanded: Optional([
                         TaskGroupExpanded(
                             taskGroup: TaskGroup1(
@@ -448,6 +550,17 @@ import Chrt
                       "forwarder_org_handle": "forwarder_org_handle",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
+                      "notification_intents_ad_hoc": [
+                        {
+                          "schema_version": 1,
+                          "created_at_timestamp": "2024-01-15T09:30:00Z",
+                          "created_by_org_id": "created_by_org_id",
+                          "created_by_user_id": "created_by_user_id",
+                          "order_id": "order_id",
+                          "directory_entry_id": "directory_entry_id",
+                          "_id": "_id"
+                        }
+                      ],
                       "task_groups_expanded": [
                         {
                           "task_group": {
@@ -490,6 +603,17 @@ import Chrt
                     forwarderOrgHandle: Optional("forwarder_org_handle"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
+                    notificationIntentsAdHoc: Optional([
+                        NotificationIntentAdHoc1(
+                            schemaVersion: 1,
+                            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            createdByOrgId: "created_by_org_id",
+                            createdByUserId: "created_by_user_id",
+                            orderId: "order_id",
+                            directoryEntryId: "directory_entry_id",
+                            id: "_id"
+                        )
+                    ]),
                     taskGroupsExpanded: Optional([
                         TaskGroupExpanded(
                             taskGroup: TaskGroup1(
