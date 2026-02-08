@@ -56,4 +56,17 @@ public final class UsersClient: Sendable {
             responseType: UserPrivateData1.self
         )
     }
+
+    /// Upserts a Firebase Cloud Messaging token for the caller. Dedupes on token; if token exists, updates last_used_timestamp. | (FirebaseCloudMessagingTokenClientCreate1) -> (UserPrivateData1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func upsertFirebaseCloudMessagingTokenV1(request: Requests.FirebaseCloudMessagingTokenClientCreate1, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/users/user_private_data/firebase_cloud_messaging_token/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: UserPrivateData1.self
+        )
+    }
 }

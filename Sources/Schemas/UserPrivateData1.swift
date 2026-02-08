@@ -7,6 +7,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
     public let stripeCustomerId: String?
     public let primaryEmailAddress: String?
     public let phoneNumber: String?
+    public let firebaseCloudMessagingTokenData: [FirebaseCloudMessagingTokenData1]?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -18,6 +19,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         stripeCustomerId: String? = nil,
         primaryEmailAddress: String? = nil,
         phoneNumber: String? = nil,
+        firebaseCloudMessagingTokenData: [FirebaseCloudMessagingTokenData1]? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -27,6 +29,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.stripeCustomerId = stripeCustomerId
         self.primaryEmailAddress = primaryEmailAddress
         self.phoneNumber = phoneNumber
+        self.firebaseCloudMessagingTokenData = firebaseCloudMessagingTokenData
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -39,6 +42,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.stripeCustomerId = try container.decodeIfPresent(String.self, forKey: .stripeCustomerId)
         self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
+        self.firebaseCloudMessagingTokenData = try container.decodeIfPresent([FirebaseCloudMessagingTokenData1].self, forKey: .firebaseCloudMessagingTokenData)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -52,6 +56,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stripeCustomerId, forKey: .stripeCustomerId)
         try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
+        try container.encodeIfPresent(self.firebaseCloudMessagingTokenData, forKey: .firebaseCloudMessagingTokenData)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -63,6 +68,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         case stripeCustomerId = "stripe_customer_id"
         case primaryEmailAddress = "primary_email_address"
         case phoneNumber = "phone_number"
+        case firebaseCloudMessagingTokenData = "firebase_cloud_messaging_token_data"
         case id = "_id"
     }
 }

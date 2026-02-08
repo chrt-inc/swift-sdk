@@ -1,3 +1,16 @@
+## 1.396.0 - 2026-02-08
+* feat: add Firebase Cloud Messaging token support for users
+* Introduces comprehensive Firebase Cloud Messaging token management functionality to enable push notification capabilities. This feature allows users to register, update, and manage FCM tokens with platform-specific tracking and automatic deduplication.
+* Key changes:
+* Add FirebaseCloudMessagingTokenClientCreate1 request model with token and platform fields
+* Add FirebaseCloudMessagingTokenData1 schema with last used timestamp tracking
+* Add PlatformEnum supporting Android, iOS, and web platforms
+* Add firebaseCloudMessagingTokenData array field to UserPrivateData1 model
+* Add upsertFirebaseCloudMessagingTokenV1 method to UsersClient for token management
+* Add comprehensive test coverage for new FCM token functionality
+* Update API documentation with usage examples and method descriptions
+* 🌿 Generated with Fern
+
 ## 1.391.0 - 2026-02-06
 * feat: add analytics client and expand user management capabilities
 * Add comprehensive analytics functionality for order tracking and expand user management with private data handling. The analytics client provides order count analytics with time-based bucketing, while enhanced user endpoints support full CRUD operations for private user data. Additional improvements include agent workflow updates and expanded notification intent support.
