@@ -12,6 +12,9 @@ public struct Session1: Codable, Hashable, Sendable {
     public let sessionCreatedAtTimestamp: Date
     public let recordingInitiatedAtTimestamp: Date?
     public let `public`: Bool?
+    public let flightNumber: String?
+    public let faFlightIds: [String]?
+    public let offChrtOrderId: String?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -27,6 +30,9 @@ public struct Session1: Codable, Hashable, Sendable {
         sessionCreatedAtTimestamp: Date,
         recordingInitiatedAtTimestamp: Date? = nil,
         public: Bool? = nil,
+        flightNumber: String? = nil,
+        faFlightIds: [String]? = nil,
+        offChrtOrderId: String? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -40,6 +46,9 @@ public struct Session1: Codable, Hashable, Sendable {
         self.sessionCreatedAtTimestamp = sessionCreatedAtTimestamp
         self.recordingInitiatedAtTimestamp = recordingInitiatedAtTimestamp
         self.public = `public`
+        self.flightNumber = flightNumber
+        self.faFlightIds = faFlightIds
+        self.offChrtOrderId = offChrtOrderId
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -56,6 +65,9 @@ public struct Session1: Codable, Hashable, Sendable {
         self.sessionCreatedAtTimestamp = try container.decode(Date.self, forKey: .sessionCreatedAtTimestamp)
         self.recordingInitiatedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .recordingInitiatedAtTimestamp)
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
+        self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
+        self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
+        self.offChrtOrderId = try container.decodeIfPresent(String.self, forKey: .offChrtOrderId)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -73,6 +85,9 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encode(self.sessionCreatedAtTimestamp, forKey: .sessionCreatedAtTimestamp)
         try container.encodeIfPresent(self.recordingInitiatedAtTimestamp, forKey: .recordingInitiatedAtTimestamp)
         try container.encodeIfPresent(self.public, forKey: .public)
+        try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
+        try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
+        try container.encodeIfPresent(self.offChrtOrderId, forKey: .offChrtOrderId)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -88,6 +103,9 @@ public struct Session1: Codable, Hashable, Sendable {
         case sessionCreatedAtTimestamp = "session_created_at_timestamp"
         case recordingInitiatedAtTimestamp = "recording_initiated_at_timestamp"
         case `public`
+        case flightNumber = "flight_number"
+        case faFlightIds = "fa_flight_ids"
+        case offChrtOrderId = "off_chrt_order_id"
         case id = "_id"
     }
 }

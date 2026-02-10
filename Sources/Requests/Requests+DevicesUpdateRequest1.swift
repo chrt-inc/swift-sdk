@@ -8,6 +8,8 @@ extension Requests {
         public let comments: String?
         public let deleteType: Bool?
         public let deleteComments: Bool?
+        public let offChrtOrderId: String?
+        public let deleteOffChrtOrderId: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -18,6 +20,8 @@ extension Requests {
             comments: String? = nil,
             deleteType: Bool? = nil,
             deleteComments: Bool? = nil,
+            offChrtOrderId: String? = nil,
+            deleteOffChrtOrderId: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.deviceId = deviceId
@@ -26,6 +30,8 @@ extension Requests {
             self.comments = comments
             self.deleteType = deleteType
             self.deleteComments = deleteComments
+            self.offChrtOrderId = offChrtOrderId
+            self.deleteOffChrtOrderId = deleteOffChrtOrderId
             self.additionalProperties = additionalProperties
         }
 
@@ -37,6 +43,8 @@ extension Requests {
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.deleteType = try container.decodeIfPresent(Bool.self, forKey: .deleteType)
             self.deleteComments = try container.decodeIfPresent(Bool.self, forKey: .deleteComments)
+            self.offChrtOrderId = try container.decodeIfPresent(String.self, forKey: .offChrtOrderId)
+            self.deleteOffChrtOrderId = try container.decodeIfPresent(Bool.self, forKey: .deleteOffChrtOrderId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -49,6 +57,8 @@ extension Requests {
             try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.deleteType, forKey: .deleteType)
             try container.encodeIfPresent(self.deleteComments, forKey: .deleteComments)
+            try container.encodeIfPresent(self.offChrtOrderId, forKey: .offChrtOrderId)
+            try container.encodeIfPresent(self.deleteOffChrtOrderId, forKey: .deleteOffChrtOrderId)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -59,6 +69,8 @@ extension Requests {
             case comments
             case deleteType = "delete_type"
             case deleteComments = "delete_comments"
+            case offChrtOrderId = "off_chrt_order_id"
+            case deleteOffChrtOrderId = "delete_off_chrt_order_id"
         }
     }
 }

@@ -20,7 +20,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Updates a device's type and/or comments. Can update one or both fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
+    /// Updates a device's type, comments, and/or off_chrt_order_id. Can update one or more fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.DevicesUpdateRequest1, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -8,21 +8,29 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "schema_version": 1,
-                    "device_id": "device_id",
-                    "device_mac_address": "device_mac_address",
-                    "org_id": "org_id",
-                    "comments": "comments",
-                    "recording": true,
-                    "terminated": true,
-                    "session_created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "recording_initiated_at_timestamp": "2024-01-15T09:30:00Z",
-                    "public": true,
-                    "_id": "_id"
-                  }
-                ]
+                {
+                  "sessions": [
+                    {
+                      "schema_version": 1,
+                      "device_id": "device_id",
+                      "device_mac_address": "device_mac_address",
+                      "org_id": "org_id",
+                      "comments": "comments",
+                      "recording": true,
+                      "terminated": true,
+                      "session_created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "recording_initiated_at_timestamp": "2024-01-15T09:30:00Z",
+                      "public": true,
+                      "flight_number": "flight_number",
+                      "fa_flight_ids": [
+                        "fa_flight_ids"
+                      ],
+                      "off_chrt_order_id": "off_chrt_order_id",
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -31,22 +39,46 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            Session1(
-                schemaVersion: 1,
-                deviceId: "device_id",
-                deviceMacAddress: "device_mac_address",
-                orgId: "org_id",
-                comments: Optional("comments"),
-                recording: Optional(true),
-                terminated: Optional(true),
-                sessionCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                recordingInitiatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                public: Optional(true),
-                id: "_id"
-            )
-        ]
-        let response = try await client.tracking.sessions.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = SessionListRes(
+            sessions: [
+                Session1(
+                    schemaVersion: 1,
+                    deviceId: "device_id",
+                    deviceMacAddress: "device_mac_address",
+                    orgId: "org_id",
+                    comments: Optional("comments"),
+                    recording: Optional(true),
+                    terminated: Optional(true),
+                    sessionCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    recordingInitiatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    public: Optional(true),
+                    flightNumber: Optional("flight_number"),
+                    faFlightIds: Optional([
+                        "fa_flight_ids"
+                    ]),
+                    offChrtOrderId: Optional("off_chrt_order_id"),
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.tracking.sessions.listV1(
+            sortBy: .sessionCreatedAtTimestamp,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            filterRecording: true,
+            filterTerminated: true,
+            filterPublic: true,
+            filterDeviceId: "filter_device_id",
+            filterOffChrtOrderId: "filter_off_chrt_order_id",
+            filterFlightNumber: "filter_flight_number",
+            filterSessionCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterSessionCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterRecordingInitiatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterRecordingInitiatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -66,6 +98,11 @@ import Chrt
                   "session_created_at_timestamp": "2024-01-15T09:30:00Z",
                   "recording_initiated_at_timestamp": "2024-01-15T09:30:00Z",
                   "public": true,
+                  "flight_number": "flight_number",
+                  "fa_flight_ids": [
+                    "fa_flight_ids"
+                  ],
+                  "off_chrt_order_id": "off_chrt_order_id",
                   "_id": "_id"
                 }
                 """.utf8
@@ -87,10 +124,110 @@ import Chrt
             sessionCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             recordingInitiatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             public: Optional(true),
+            flightNumber: Optional("flight_number"),
+            faFlightIds: Optional([
+                "fa_flight_ids"
+            ]),
+            offChrtOrderId: Optional("off_chrt_order_id"),
             id: "_id"
         )
         let response = try await client.tracking.sessions.getV1(
             sessionId: "session_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadOffChrtOrderIdV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  "string"
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "string"
+        ]
+        let response = try await client.tracking.sessions.typeaheadOffChrtOrderIdV1(
+            query: "query",
+            limit: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func searchV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "sessions": [
+                    {
+                      "schema_version": 1,
+                      "device_id": "device_id",
+                      "device_mac_address": "device_mac_address",
+                      "org_id": "org_id",
+                      "comments": "comments",
+                      "recording": true,
+                      "terminated": true,
+                      "session_created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "recording_initiated_at_timestamp": "2024-01-15T09:30:00Z",
+                      "public": true,
+                      "flight_number": "flight_number",
+                      "fa_flight_ids": [
+                        "fa_flight_ids"
+                      ],
+                      "off_chrt_order_id": "off_chrt_order_id",
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = SessionSearchRes(
+            sessions: [
+                Session1(
+                    schemaVersion: 1,
+                    deviceId: "device_id",
+                    deviceMacAddress: "device_mac_address",
+                    orgId: "org_id",
+                    comments: Optional("comments"),
+                    recording: Optional(true),
+                    terminated: Optional(true),
+                    sessionCreatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    recordingInitiatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    public: Optional(true),
+                    flightNumber: Optional("flight_number"),
+                    faFlightIds: Optional([
+                        "fa_flight_ids"
+                    ]),
+                    offChrtOrderId: Optional("off_chrt_order_id"),
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.tracking.sessions.searchV1(
+            query: "query",
+            page: 1,
+            pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

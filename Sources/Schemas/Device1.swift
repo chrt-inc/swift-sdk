@@ -15,6 +15,7 @@ public struct Device1: Codable, Hashable, Sendable {
     public let sessionId: String?
     public let cargoId: String?
     public let comments: String?
+    public let offChrtOrderId: String?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -33,6 +34,7 @@ public struct Device1: Codable, Hashable, Sendable {
         sessionId: String? = nil,
         cargoId: String? = nil,
         comments: String? = nil,
+        offChrtOrderId: String? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -49,6 +51,7 @@ public struct Device1: Codable, Hashable, Sendable {
         self.sessionId = sessionId
         self.cargoId = cargoId
         self.comments = comments
+        self.offChrtOrderId = offChrtOrderId
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -68,6 +71,7 @@ public struct Device1: Codable, Hashable, Sendable {
         self.sessionId = try container.decodeIfPresent(String.self, forKey: .sessionId)
         self.cargoId = try container.decodeIfPresent(String.self, forKey: .cargoId)
         self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
+        self.offChrtOrderId = try container.decodeIfPresent(String.self, forKey: .offChrtOrderId)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -88,6 +92,7 @@ public struct Device1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.sessionId, forKey: .sessionId)
         try container.encodeIfPresent(self.cargoId, forKey: .cargoId)
         try container.encodeIfPresent(self.comments, forKey: .comments)
+        try container.encodeIfPresent(self.offChrtOrderId, forKey: .offChrtOrderId)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -106,6 +111,7 @@ public struct Device1: Codable, Hashable, Sendable {
         case sessionId = "session_id"
         case cargoId = "cargo_id"
         case comments
+        case offChrtOrderId = "off_chrt_order_id"
         case id = "_id"
     }
 }

@@ -15728,7 +15728,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a device's type and/or comments. Can update one or both fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
+Updates a device's type, comments, and/or off_chrt_order_id. Can update one or more fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -16257,7 +16257,7 @@ try await main()
 </details>
 
 ## Tracking Sessions
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [Session1]</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterRecording: Bool?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtOrderId: String?, filterFlightNumber: String?, filterSessionCreatedAtTimestampGte: Date?, filterSessionCreatedAtTimestampLte: Date?, filterRecordingInitiatedAtTimestampGte: Date?, filterRecordingInitiatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
 <dl>
 <dd>
 
@@ -16269,7 +16269,7 @@ try await main()
 <dl>
 <dd>
 
-Returns all tracking sessions for the caller's organization. | () -> (list[Session1])
+Lists sessions with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (SessionListRes)
 </dd>
 </dl>
 </dd>
@@ -16290,7 +16290,22 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sessions.listV1()
+    _ = try await client.tracking.sessions.listV1(
+        sortBy: .sessionCreatedAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterRecording: true,
+        filterTerminated: true,
+        filterPublic: true,
+        filterDeviceId: "filter_device_id",
+        filterOffChrtOrderId: "filter_off_chrt_order_id",
+        filterFlightNumber: "filter_flight_number",
+        filterSessionCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterSessionCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterRecordingInitiatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterRecordingInitiatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
 }
 
 try await main()
@@ -16304,6 +16319,118 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**sortBy:** `SessionSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (ascending or descending)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterRecording:** `Bool?` — Filter by recording status
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTerminated:** `Bool?` — Filter by terminated status
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPublic:** `Bool?` — Filter by public visibility
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDeviceId:** `String?` — Filter by device ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOffChrtOrderId:** `String?` — Filter by off-CHRT order ID (exact match)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterFlightNumber:** `String?` — Filter by flight number (exact match)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterSessionCreatedAtTimestampGte:** `Date?` — Filter by session_created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterSessionCreatedAtTimestampLte:** `Date?` — Filter by session_created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterRecordingInitiatedAtTimestampGte:** `Date?` — Filter by recording_initiated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterRecordingInitiatedAtTimestampLte:** `Date?` — Filter by recording_initiated_at_timestamp <= value
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -16332,7 +16459,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single session by its ID. Access restricted to the caller's organization. | () -> (Session1)
+Retrieves a single session by its ID. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (Session1)
 </dd>
 </dl>
 </dd>
@@ -16372,6 +16499,179 @@ try await main()
 <dd>
 
 **sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">typeaheadOffChrtOrderIdV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [String]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns distinct off_chrt_order_id values matching the query via case-insensitive regex, searching across both sessions and devices. | authz: min_org_role=operator | () -> (list[str])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessions.typeaheadOffChrtOrderIdV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">searchV1</a>(query: String, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> SessionSearchRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Full-text search across session comments, device_mac_address, flight_number, and off_chrt_order_id using Atlas Search. | authz: min_org_role=operator | () -> (SessionSearchRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessions.searchV1(
+        query: "query",
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Full-text search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
     
 </dd>
 </dl>
@@ -16474,7 +16774,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a session's comments and/or public visibility status. Can update one or both fields. | (SessionUpdateRequest1) -> (bool)
+Updates a session's mutable fields (comments, public, off_chrt_order_id, flight_number, fa_flight_ids). | (SessionUpdateRequest1) -> (bool)
 </dd>
 </dl>
 </dd>

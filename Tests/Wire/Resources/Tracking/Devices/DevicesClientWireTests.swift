@@ -157,6 +157,7 @@ import Chrt
                   "session_id": "session_id",
                   "cargo_id": "cargo_id",
                   "comments": "comments",
+                  "off_chrt_order_id": "off_chrt_order_id",
                   "_id": "_id"
                 }
                 """.utf8
@@ -212,6 +213,7 @@ import Chrt
             sessionId: Optional("session_id"),
             cargoId: Optional("cargo_id"),
             comments: Optional("comments"),
+            offChrtOrderId: Optional("off_chrt_order_id"),
             id: "_id"
         )
         let response = try await client.tracking.devices.getV1(
@@ -256,6 +258,7 @@ import Chrt
                     "session_id": "session_id",
                     "cargo_id": "cargo_id",
                     "comments": "comments",
+                    "off_chrt_order_id": "off_chrt_order_id",
                     "_id": "_id"
                   }
                 ]
@@ -302,6 +305,7 @@ import Chrt
                 sessionId: Optional("session_id"),
                 cargoId: Optional("cargo_id"),
                 comments: Optional("comments"),
+                offChrtOrderId: Optional("off_chrt_order_id"),
                 id: "_id"
             )
         ]

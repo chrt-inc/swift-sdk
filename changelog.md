@@ -1,3 +1,16 @@
+## 1.405.0 - 2026-02-10
+* feat: add flight tracking and off-chart order support to sessions and devices
+* This update extends device registration and session management capabilities by adding support for flight tracking and off-chart order management. The changes enable better tracking integration with external systems and improved data management capabilities.
+* Key changes:
+* Add offChrtOrderId field to device registration and update requests
+* Add flight tracking fields (flightNumber, faFlightIds) to session creation and updates
+* Add comprehensive session filtering by new fields and timestamps
+* Add typeahead search for off-chart order IDs across sessions and devices
+* Add full-text search across session metadata using Atlas Search
+* Update API documentation and method signatures for enhanced filtering capabilities
+* Add new response schemas for paginated session results
+* 🌿 Generated with Fern
+
 ## 1.396.0 - 2026-02-08
 * feat: add Firebase Cloud Messaging token support for users
 * Introduces comprehensive Firebase Cloud Messaging token management functionality to enable push notification capabilities. This feature allows users to register, update, and manage FCM tokens with platform-specific tracking and automatic deduplication.
