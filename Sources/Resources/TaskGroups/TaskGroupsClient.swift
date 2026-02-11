@@ -51,7 +51,7 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Removes the driver from a task group (sets driver_id to null). | authz_personas=[courier_org_operators, courier_driver] | () -> (bool)
+    /// Removes the driver from a task group (sets driver_id to null). Allowed when STAGED or IN_PROGRESS (if no tasks have reached a terminal status). | authz_personas=[courier_org_operators, courier_driver] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeDriverV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

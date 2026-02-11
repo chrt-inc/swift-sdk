@@ -33,7 +33,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. | () -> (bool)
+    /// Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. Deregisters from Shiprec (transfers to deactivate account) before removing from database. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(deviceId: String? = nil, deviceMacAddress: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {

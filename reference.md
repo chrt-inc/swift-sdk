@@ -3602,7 +3602,7 @@ try await main()
 <dl>
 <dd>
 
-Removes the driver from a task group (sets driver_id to null). | authz_personas=[courier_org_operators, courier_driver] | () -> (bool)
+Removes the driver from a task group (sets driver_id to null). Allowed when STAGED or IN_PROGRESS (if no tasks have reached a terminal status). | authz_personas=[courier_org_operators, courier_driver] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -15799,7 +15799,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. | () -> (bool)
+Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. Deregisters from Shiprec (transfers to deactivate account) before removing from database. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -18653,7 +18653,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | () -> (TaskGroupByDriverDataPoint1 | None)
+Returns the most recent driver location data point for a task group. | authz_personas=[forwarder_org_operators, shipper_org_operators, courier_org_operators, courier_driver] | () -> (TaskGroupByDriverDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -18724,7 +18724,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a task group, intelligently sampled across the time range. Excludes outliers. | () -> (list[TaskGroupByDriverDataPoint1])
+Returns sampled driver location data points for a task group. Excludes outliers. | authz_personas=[forwarder_org_operators, shipper_org_operators, courier_org_operators, courier_driver] | () -> (list[TaskGroupByDriverDataPoint1])
 </dd>
 </dl>
 </dd>
@@ -18806,7 +18806,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a public task group. No authentication required if task group has public visibility enabled via sharing settings. | () -> (TaskGroupByDriverDataPoint1 | None)
+Returns the most recent driver location data point for a publicly shared task group. No authentication required. | () -> (TaskGroupByDriverDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -18877,7 +18877,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if task group has public visibility enabled via sharing settings. | () -> (list[TaskGroupByDriverDataPoint1])
+Returns sampled driver location data points for a publicly shared task group. Excludes outliers. No authentication required. | () -> (list[TaskGroupByDriverDataPoint1])
 </dd>
 </dl>
 </dd>

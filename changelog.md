@@ -1,3 +1,14 @@
+## 1.406.1 - 2026-02-11
+* docs: update method documentation for task groups and device management
+* Updates API documentation across multiple endpoints to provide clearer descriptions and authorization details. Improves clarity around constraints and access patterns for task group operations and device management.
+* Key changes:
+* Add state constraints for task group driver removal operations
+* Clarify device deletion process with Shiprec deregistration details
+* Standardize authorization personas documentation format
+* Simplify public endpoint descriptions for better readability
+* Update tracking endpoint descriptions with more concise language
+* 🌿 Generated with Fern
+
 ## 1.405.0 - 2026-02-10
 * feat: add flight tracking and off-chart order support to sessions and devices
 * This update extends device registration and session management capabilities by adding support for flight tracking and off-chart order management. The changes enable better tracking integration with external systems and improved data management capabilities.
