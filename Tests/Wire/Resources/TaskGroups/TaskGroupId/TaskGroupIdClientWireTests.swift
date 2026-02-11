@@ -8,7 +8,9 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                string
+                [
+                  "string"
+                ]
                 """.utf8
             )
         )
@@ -17,7 +19,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
+        let expectedResponse = [
+            "string"
+        ]
         let response = try await client.taskGroups.taskGroupId.forCourierOperatorsV1(
             orderIdOrShortId: "order_id_or_short_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -30,7 +34,9 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                string
+                [
+                  "string"
+                ]
                 """.utf8
             )
         )
@@ -39,7 +45,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
+        let expectedResponse = [
+            "string"
+        ]
         let response = try await client.taskGroups.taskGroupId.forCourierDriverV1(
             orderIdOrShortId: "order_id_or_short_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

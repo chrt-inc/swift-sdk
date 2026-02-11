@@ -1,3 +1,18 @@
+## 2.0.0 - 2026-02-11
+* feat: change task group methods to return arrays
+* Updates the TaskGroupIdClient API to support multiple task groups per order.
+* Previously, the forCourierOperatorsV1 and forCourierDriverV1 methods
+* returned a single task group ID as a String. This change modifies both
+* methods to return an array of task group IDs ([String]) to better align
+* with the business requirement that orders can have multiple task groups.
+* Key changes:
+* Change return type from String to [String] for forCourierOperatorsV1
+* Change return type from String to [String] for forCourierDriverV1
+* Update documentation comments to reflect plural form and list return type
+* Update corresponding test cases to expect array responses
+* Update reference documentation to show new method signatures
+* 🌿 Generated with Fern
+
 ## 1.406.1 - 2026-02-11
 * docs: update method documentation for task groups and device management
 * Updates API documentation across multiple endpoints to provide clearer descriptions and authorization details. Improves clarity around constraints and access patterns for task group operations and device management.

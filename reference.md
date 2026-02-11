@@ -14415,7 +14415,7 @@ try await main()
 </details>
 
 ## TaskGroups TaskGroupId
-<details><summary><code>client.taskGroups.taskGroupId.<a href="/Sources/Resources/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierOperatorsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.taskGroups.taskGroupId.<a href="/Sources/Resources/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierOperatorsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -14427,7 +14427,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the task group ID for the courier organization assigned to an order's task group. | authz_personas=[courier_org_operators] | () -> (PydanticObjectId)
+Retrieves the task group IDs for the courier organization assigned to an order's task groups. | authz_personas=[courier_org_operators] | () -> (list[PydanticObjectId])
 </dd>
 </dl>
 </dd>
@@ -14486,7 +14486,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.taskGroups.taskGroupId.<a href="/Sources/Resources/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierDriverV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.taskGroups.taskGroupId.<a href="/Sources/Resources/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierDriverV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -14498,7 +14498,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the task group ID for the courier driver assigned to an order's task group. | authz_personas=[courier_driver] | () -> (PydanticObjectId)
+Retrieves the task group IDs for the courier driver assigned to an order's task groups. | authz_personas=[courier_driver] | () -> (list[PydanticObjectId])
 </dd>
 </dl>
 </dd>
