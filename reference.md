@@ -4737,7 +4737,7 @@ try await main()
 </details>
 
 ## Orgs
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">getInfoV1</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">getInfoV1</a>(requestOptions: RequestOptions?) -> OrgInfoResponse</code></summary>
 <dl>
 <dd>
 
@@ -4749,7 +4749,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves basic organization information from the authentication service. | () -> (dict)
+Retrieves basic organization information from the authentication service. | () -> (OrgInfoResponse)
 </dd>
 </dl>
 </dd>
@@ -16104,7 +16104,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [Device1]</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOffChrtOrderId: String?, filterDeviceMacAddress: String?, filterType: TrackingDeviceTypeEnum1?, filterCargoId: String?, filterSessionId: String?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
 <dl>
 <dd>
 
@@ -16116,7 +16116,7 @@ try await main()
 <dl>
 <dd>
 
-Returns all tracking devices registered to the caller's organization. | authz: min_org_role=operator | () -> (list[Device1])
+Lists devices with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (DeviceListRes)
 </dd>
 </dl>
 </dd>
@@ -16137,7 +16137,21 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.devices.listV1()
+    _ = try await client.tracking.devices.listV1(
+        sortBy: .registeredAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterOffChrtOrderId: "filter_off_chrt_order_id",
+        filterDeviceMacAddress: "filter_device_mac_address",
+        filterType: .d15NTag,
+        filterCargoId: "filter_cargo_id",
+        filterSessionId: "filter_session_id",
+        filterRegisteredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
 }
 
 try await main()
@@ -16151,6 +16165,110 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**sortBy:** `DeviceSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (ascending or descending)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOffChrtOrderId:** `String?` — Filter by off-CHRT order ID (exact match)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDeviceMacAddress:** `String?` — Filter by device MAC address (exact match)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterType:** `TrackingDeviceTypeEnum1?` — Filter by device type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCargoId:** `String?` — Filter by linked cargo ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterSessionId:** `String?` — Filter by linked session ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterRegisteredAtTimestampGte:** `Date?` — Filter by registered_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterRegisteredAtTimestampLte:** `Date?` — Filter by registered_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastSeenAtTimestampGte:** `Date?` — Filter by last_seen_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastSeenAtTimestampLte:** `Date?` — Filter by last_seen_at_timestamp <= value
+    
+</dd>
+</dl>
 
 <dl>
 <dd>

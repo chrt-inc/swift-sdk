@@ -23,4 +23,7 @@ public enum LineItemEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case adjustment
     case dispute
     case other
+    case trackingDeviceLabel = "tracking_device_label"
+    case trackingDeviceTag = "tracking_device_tag"
+    case trackingDeviceOther = "tracking_device_other"
 }

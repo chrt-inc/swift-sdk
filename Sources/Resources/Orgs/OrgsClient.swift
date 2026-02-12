@@ -7,15 +7,15 @@ public final class OrgsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves basic organization information from the authentication service. | () -> (dict)
+    /// Retrieves basic organization information from the authentication service. | () -> (OrgInfoResponse)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
+    public func getInfoV1(requestOptions: RequestOptions? = nil) async throws -> OrgInfoResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/info/v1",
             requestOptions: requestOptions,
-            responseType: [String: JSONValue].self
+            responseType: OrgInfoResponse.self
         )
     }
 

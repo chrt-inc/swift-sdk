@@ -96,15 +96,41 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Returns all tracking devices registered to the caller's organization. | authz: min_org_role=operator | () -> (list[Device1])
+    /// Lists devices with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (DeviceListRes)
     ///
+    /// - Parameter sortBy: Field to sort by
+    /// - Parameter sortOrder: Sort order (ascending or descending)
+    /// - Parameter filterOffChrtOrderId: Filter by off-CHRT order ID (exact match)
+    /// - Parameter filterDeviceMacAddress: Filter by device MAC address (exact match)
+    /// - Parameter filterType: Filter by device type
+    /// - Parameter filterCargoId: Filter by linked cargo ID
+    /// - Parameter filterSessionId: Filter by linked session ID
+    /// - Parameter filterRegisteredAtTimestampGte: Filter by registered_at_timestamp >= value
+    /// - Parameter filterRegisteredAtTimestampLte: Filter by registered_at_timestamp <= value
+    /// - Parameter filterLastSeenAtTimestampGte: Filter by last_seen_at_timestamp >= value
+    /// - Parameter filterLastSeenAtTimestampLte: Filter by last_seen_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [Device1] {
+    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterOffChrtOrderId: String? = nil, filterDeviceMacAddress: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterCargoId: String? = nil, filterSessionId: String? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/list/v1",
+            queryParams: [
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }, 
+                "filter_off_chrt_order_id": filterOffChrtOrderId.map { .string($0) }, 
+                "filter_device_mac_address": filterDeviceMacAddress.map { .string($0) }, 
+                "filter_type": filterType.map { .string($0.rawValue) }, 
+                "filter_cargo_id": filterCargoId.map { .string($0) }, 
+                "filter_session_id": filterSessionId.map { .string($0) }, 
+                "filter_registered_at_timestamp_gte": filterRegisteredAtTimestampGte.map { .date($0) }, 
+                "filter_registered_at_timestamp_lte": filterRegisteredAtTimestampLte.map { .date($0) }, 
+                "filter_last_seen_at_timestamp_gte": filterLastSeenAtTimestampGte.map { .date($0) }, 
+                "filter_last_seen_at_timestamp_lte": filterLastSeenAtTimestampLte.map { .date($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [Device1].self
+            responseType: DeviceListRes.self
         )
     }
 }

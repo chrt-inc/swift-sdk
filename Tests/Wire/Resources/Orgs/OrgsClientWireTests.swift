@@ -9,7 +9,19 @@ import Chrt
             body: Data(
                 """
                 {
-                  "key": "value"
+                  "id": "id",
+                  "name": "name",
+                  "slug": "slug",
+                  "image_url": "image_url",
+                  "has_image": true,
+                  "members_count": 1,
+                  "max_allowed_memberships": 1,
+                  "admin_delete_enabled": true,
+                  "public_metadata": {
+                    "key": "value"
+                  },
+                  "created_at": 1,
+                  "updated_at": 1
                 }
                 """.utf8
             )
@@ -19,9 +31,21 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            "key": JSONValue.string("value")
-        ]
+        let expectedResponse = OrgInfoResponse(
+            id: "id",
+            name: "name",
+            slug: Optional("slug"),
+            imageUrl: Optional("image_url"),
+            hasImage: true,
+            membersCount: Optional(1),
+            maxAllowedMemberships: 1,
+            adminDeleteEnabled: true,
+            publicMetadata: [
+                "key": JSONValue.string("value")
+            ],
+            createdAt: 1,
+            updatedAt: 1
+        )
         let response = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }

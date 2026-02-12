@@ -1,3 +1,16 @@
+## 1.411.0 - 2026-02-12
+* feat: enhance tracking devices API with filtering and pagination
+* This change significantly improves the tracking devices API by replacing the simple list endpoint with a comprehensive device listing system that supports advanced filtering, sorting, and pagination capabilities.
+* Key changes:
+* Replace generic dictionary return type with structured OrgInfoResponse for organization info endpoint
+* Add comprehensive filtering options to device list endpoint including MAC address, cargo ID, session ID, and timestamp range filters
+* Implement sorting capabilities with DeviceSortByEnum for various timestamp fields
+* Add pagination support with page and pageSize parameters
+* Return structured DeviceListRes with device array and total count instead of plain array
+* Add new tracking device line item types for better categorization
+* Update all related test files to reflect the new structured API responses
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-02-11
 * feat: change task group methods to return arrays
 * Updates the TaskGroupIdClient API to support multiple task groups per order.
