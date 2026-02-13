@@ -133,4 +133,40 @@ public final class DevicesClient: Sendable {
             responseType: DeviceListRes.self
         )
     }
+
+    /// Returns distinct off_chrt_order_id values matching the query via case-insensitive regex, searching devices. | authz: min_org_role=operator | () -> (list[str])
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadOffChrtOrderIdV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/devices/typeahead/off_chrt_order_id/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [String].self
+        )
+    }
+
+    /// Full-text search across device device_mac_address, comments, and off_chrt_order_id using Atlas Search. | authz: min_org_role=operator | () -> (DeviceSearchRes)
+    ///
+    /// - Parameter query: Full-text search query
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func searchV1(query: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceSearchRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/devices/search/v1",
+            queryParams: [
+                "query": .string(query), 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: DeviceSearchRes.self
+        )
+    }
 }

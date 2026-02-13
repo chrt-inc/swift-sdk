@@ -1,3 +1,14 @@
+## 1.415.0 - 2026-02-13
+* feat: add device search and typeahead capabilities
+* Add comprehensive search functionality to the DevicesClient with two new methods for enhanced device discovery and filtering. The typeahead endpoint enables fast search suggestions while the full-text search provides detailed device results with pagination support.
+* Key changes:
+* Add typeaheadOffChrtOrderIdV1 method for autocomplete functionality on off_chrt_order_id field
+* Add searchV1 method for full-text search across device properties using Atlas Search
+* Create DeviceSearchRes schema to support paginated search results
+* Update SessionsClient documentation to clarify search scope is sessions-only
+* Add comprehensive test coverage for both new endpoints with mock responses
+* 🌿 Generated with Fern
+
 ## 1.411.0 - 2026-02-12
 * feat: enhance tracking devices API with filtering and pagination
 * This change significantly improves the tracking devices API by replacing the simple list endpoint with a comprehensive device listing system that supports advanced filtering, sorting, and pagination capabilities.

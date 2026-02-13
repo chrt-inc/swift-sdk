@@ -329,4 +329,127 @@ import Chrt
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func typeaheadOffChrtOrderIdV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  "string"
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "string"
+        ]
+        let response = try await client.tracking.devices.typeaheadOffChrtOrderIdV1(
+            query: "query",
+            limit: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func searchV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "devices": [
+                    {
+                      "schema_version": 1,
+                      "org_id": "org_id",
+                      "device_mac_address": "device_mac_address",
+                      "device_token": "device_token",
+                      "type": "D15N-tag",
+                      "registered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "first_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_seen_at_location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_seen_battery_level": "last_seen_battery_level",
+                      "session_id": "session_id",
+                      "cargo_id": "cargo_id",
+                      "comments": "comments",
+                      "off_chrt_order_id": "off_chrt_order_id",
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DeviceSearchRes(
+            devices: [
+                Device1(
+                    schemaVersion: 1,
+                    orgId: "org_id",
+                    deviceMacAddress: "device_mac_address",
+                    deviceToken: Optional("device_token"),
+                    type: Optional(.d15NTag),
+                    registeredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    firstSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lastSeenAtLocation: Optional(LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    )),
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lastSeenBatteryLevel: Optional("last_seen_battery_level"),
+                    sessionId: Optional("session_id"),
+                    cargoId: Optional("cargo_id"),
+                    comments: Optional("comments"),
+                    offChrtOrderId: Optional("off_chrt_order_id"),
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.tracking.devices.searchV1(
+            query: "query",
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

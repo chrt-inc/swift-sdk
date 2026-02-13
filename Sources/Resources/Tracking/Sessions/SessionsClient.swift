@@ -62,7 +62,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Returns distinct off_chrt_order_id values matching the query via case-insensitive regex, searching across both sessions and devices. | authz: min_org_role=operator | () -> (list[str])
+    /// Returns distinct off_chrt_order_id values matching the query via case-insensitive regex, searching sessions. | authz: min_org_role=operator | () -> (list[str])
     ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results
