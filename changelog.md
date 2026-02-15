@@ -1,3 +1,14 @@
+## 1.419.0 - 2026-02-15
+* feat: add FlightAware alert support with new schema types
+* Add comprehensive support for FlightAware alerts including new schema types and session tracking capabilities. This extends the API to handle alert payloads, flight information, and webhook responses while maintaining backward compatibility.
+* Key changes:
+* Add FlightAwareAlertPayload schema with alert metadata (description, summary, event codes)
+* Add FlightAwareAlertFlight schema for flight-specific alert data
+* Add FlightAwareWebhookResponse schema for webhook response handling
+* Add faAlertIds field to Session1 schema for alert tracking
+* Update wire tests to include alert ID validation
+* 🌿 Generated with Fern
+
 ## 1.415.0 - 2026-02-13
 * feat: add device search and typeahead capabilities
 * Add comprehensive search functionality to the DevicesClient with two new methods for enhanced device discovery and filtering. The typeahead endpoint enables fast search suggestions while the full-text search provides detailed device results with pagination support.

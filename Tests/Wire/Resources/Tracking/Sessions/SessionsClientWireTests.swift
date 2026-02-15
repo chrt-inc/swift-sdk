@@ -26,6 +26,9 @@ import Chrt
                         "fa_flight_ids"
                       ],
                       "off_chrt_order_id": "off_chrt_order_id",
+                      "fa_alert_ids": [
+                        1
+                      ],
                       "_id": "_id"
                     }
                   ],
@@ -57,6 +60,9 @@ import Chrt
                         "fa_flight_ids"
                     ]),
                     offChrtOrderId: Optional("off_chrt_order_id"),
+                    faAlertIds: Optional([
+                        1
+                    ]),
                     id: "_id"
                 )
             ],
@@ -103,6 +109,9 @@ import Chrt
                     "fa_flight_ids"
                   ],
                   "off_chrt_order_id": "off_chrt_order_id",
+                  "fa_alert_ids": [
+                    1
+                  ],
                   "_id": "_id"
                 }
                 """.utf8
@@ -129,6 +138,9 @@ import Chrt
                 "fa_flight_ids"
             ]),
             offChrtOrderId: Optional("off_chrt_order_id"),
+            faAlertIds: Optional([
+                1
+            ]),
             id: "_id"
         )
         let response = try await client.tracking.sessions.getV1(
@@ -188,6 +200,9 @@ import Chrt
                         "fa_flight_ids"
                       ],
                       "off_chrt_order_id": "off_chrt_order_id",
+                      "fa_alert_ids": [
+                        1
+                      ],
                       "_id": "_id"
                     }
                   ],
@@ -219,6 +234,9 @@ import Chrt
                         "fa_flight_ids"
                     ]),
                     offChrtOrderId: Optional("off_chrt_order_id"),
+                    faAlertIds: Optional([
+                        1
+                    ]),
                     id: "_id"
                 )
             ],

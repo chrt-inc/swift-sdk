@@ -15,6 +15,7 @@ public struct Session1: Codable, Hashable, Sendable {
     public let flightNumber: String?
     public let faFlightIds: [String]?
     public let offChrtOrderId: String?
+    public let faAlertIds: [Int]?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -33,6 +34,7 @@ public struct Session1: Codable, Hashable, Sendable {
         flightNumber: String? = nil,
         faFlightIds: [String]? = nil,
         offChrtOrderId: String? = nil,
+        faAlertIds: [Int]? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -49,6 +51,7 @@ public struct Session1: Codable, Hashable, Sendable {
         self.flightNumber = flightNumber
         self.faFlightIds = faFlightIds
         self.offChrtOrderId = offChrtOrderId
+        self.faAlertIds = faAlertIds
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -68,6 +71,7 @@ public struct Session1: Codable, Hashable, Sendable {
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
         self.offChrtOrderId = try container.decodeIfPresent(String.self, forKey: .offChrtOrderId)
+        self.faAlertIds = try container.decodeIfPresent([Int].self, forKey: .faAlertIds)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -88,6 +92,7 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
         try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
         try container.encodeIfPresent(self.offChrtOrderId, forKey: .offChrtOrderId)
+        try container.encodeIfPresent(self.faAlertIds, forKey: .faAlertIds)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -106,6 +111,7 @@ public struct Session1: Codable, Hashable, Sendable {
         case flightNumber = "flight_number"
         case faFlightIds = "fa_flight_ids"
         case offChrtOrderId = "off_chrt_order_id"
+        case faAlertIds = "fa_alert_ids"
         case id = "_id"
     }
 }
