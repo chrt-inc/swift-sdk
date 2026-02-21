@@ -1,3 +1,7 @@
+## 1.421.1 - 2026-02-21
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 1.419.0 - 2026-02-15
 * feat: add FlightAware alert support with new schema types
 * Add comprehensive support for FlightAware alerts including new schema types and session tracking capabilities. This extends the API to handle alert payloads, flight information, and webhook responses while maintaining backward compatibility.

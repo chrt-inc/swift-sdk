@@ -15645,7 +15645,7 @@ try await main()
 </details>
 
 ## Tracking Devices
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">registerToOrgV1</a>(request: Requests.DevicesRegisterToOrgReq1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">registerToOrgV1</a>(request: Requests.DeviceClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -15657,7 +15657,7 @@ try await main()
 <dl>
 <dd>
 
-Registers a tracking device to the caller's organization. If device is already registered to a different organization, registration is blocked. | (DevicesRegisterToOrgReq1) -> (PydanticObjectId)
+Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | (DeviceClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -15678,152 +15678,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.devices.registerToOrgV1(request: .init(deviceMacAddress: "device_mac_address"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.DevicesRegisterToOrgReq1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">updateV1</a>(request: Requests.DevicesUpdateRequest1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a device's type, comments, and/or off_chrt_order_id. Can update one or more fields, or delete them by setting delete flags. | (DevicesUpdateRequest1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.devices.updateV1(request: .init())
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.DevicesUpdateRequest1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">deleteV1</a>(deviceId: String?, deviceMacAddress: String?, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a device by ID or MAC address. Device must be unlinked from any session or cargo before deletion. Deregisters from Shiprec (transfers to deactivate account) before removing from database. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.devices.deleteV1(
-        deviceId: "device_id",
+    _ = try await client.tracking.devices.registerToOrgV1(request: .init(
+        schemaVersion: 1,
         deviceMacAddress: "device_mac_address"
-    )
+    ))
 }
 
 try await main()
@@ -15841,15 +15699,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**deviceMacAddress:** `String?` 
+**request:** `Requests.DeviceClientCreate1` 
     
 </dd>
 </dl>
@@ -15869,7 +15719,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">linkToCargoV1</a>(deviceMacAddress: String, cargoId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">updateV1</a>(deviceId: String, request: Requests.DeviceClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -15881,7 +15731,7 @@ try await main()
 <dl>
 <dd>
 
-Links a device to cargo with bidirectional references. Device must not already be linked to a session or different cargo. | () -> (bool)
+Updates a device's type, comments, and/or off_chrt_reference_id. Use __set_to_None flags to explicitly clear Optional fields. | (DeviceClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -15902,9 +15752,9 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.devices.linkToCargoV1(
-        deviceMacAddress: "device_mac_address",
-        cargoId: "cargo_id"
+    _ = try await client.tracking.devices.updateV1(
+        deviceId: "device_id",
+        request: .init()
     )
 }
 
@@ -15923,7 +15773,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `String` 
+**deviceId:** `String` 
     
 </dd>
 </dl>
@@ -15931,7 +15781,7 @@ try await main()
 <dl>
 <dd>
 
-**cargoId:** `String` 
+**request:** `Requests.DeviceClientUpdate1` 
     
 </dd>
 </dl>
@@ -15951,7 +15801,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">unlinkFromCargoV1</a>(deviceMacAddress: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">archiveV1</a>(deviceId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -15963,7 +15813,7 @@ try await main()
 <dl>
 <dd>
 
-Unlinks a device from its linked cargo, removing the bidirectional reference. Returns false if device is not linked to any cargo. | () -> (bool)
+Archives a device by setting archived=True. Device must not have an active session — terminate it first. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -15984,7 +15834,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.devices.unlinkFromCargoV1(deviceMacAddress: "device_mac_address")
+    _ = try await client.tracking.devices.archiveV1(deviceId: "device_id")
 }
 
 try await main()
@@ -16002,7 +15852,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `String` 
+**deviceId:** `String` 
     
 </dd>
 </dl>
@@ -16022,7 +15872,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">getV1</a>(deviceMacAddress: String?, deviceId: String?, requestOptions: RequestOptions?) -> Device1</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">updateSharedOrgsV1</a>(request: Requests.DevicesUpdateSharedOrgsReq1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -16034,7 +15884,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single device by its MAC address or ID. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (Device1)
+Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | (DevicesUpdateSharedOrgsReq1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -16055,10 +15905,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.devices.getV1(
-        deviceMacAddress: "device_mac_address",
-        deviceId: "device_id"
-    )
+    _ = try await client.tracking.devices.updateSharedOrgsV1(request: .init(deviceId: "device_id"))
 }
 
 try await main()
@@ -16076,15 +15923,7 @@ try await main()
 <dl>
 <dd>
 
-**deviceMacAddress:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**deviceId:** `String?` 
+**request:** `Requests.DevicesUpdateSharedOrgsReq1` 
     
 </dd>
 </dl>
@@ -16104,7 +15943,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOffChrtOrderId: String?, filterDeviceMacAddress: String?, filterType: TrackingDeviceTypeEnum1?, filterCargoId: String?, filterSessionId: String?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">getV1</a>(deviceId: String, requestOptions: RequestOptions?) -> DeviceExpandedRes</code></summary>
 <dl>
 <dd>
 
@@ -16116,7 +15955,78 @@ try await main()
 <dl>
 <dd>
 
-Lists devices with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (DeviceListRes)
+Retrieves a single device by its ID with expanded sessions and cargos. Access restricted to the caller's organization or shared organizations. | authz: min_org_role=operator | () -> (DeviceExpandedRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.devices.getV1(deviceId: "device_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**deviceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists devices with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (DeviceListRes)
 </dd>
 </dl>
 </dd>
@@ -16142,11 +16052,11 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterOffChrtOrderId: "filter_off_chrt_order_id",
-        filterDeviceMacAddress: "filter_device_mac_address",
+        orgScope: .owned,
+        filterOffChrtReferenceId: "filter_off_chrt_reference_id",
         filterType: .d15NTag,
-        filterCargoId: "filter_cargo_id",
-        filterSessionId: "filter_session_id",
+        filterActiveCargoId: "filter_active_cargo_id",
+        filterActiveSessionId: "filter_active_session_id",
         filterRegisteredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -16201,7 +16111,7 @@ try await main()
 <dl>
 <dd>
 
-**filterOffChrtOrderId:** `String?` — Filter by off-CHRT order ID (exact match)
+**orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
     
 </dd>
 </dl>
@@ -16209,7 +16119,7 @@ try await main()
 <dl>
 <dd>
 
-**filterDeviceMacAddress:** `String?` — Filter by device MAC address (exact match)
+**filterOffChrtReferenceId:** `String?` — Filter by off-CHRT reference ID (exact match)
     
 </dd>
 </dl>
@@ -16225,7 +16135,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCargoId:** `String?` — Filter by linked cargo ID
+**filterActiveCargoId:** `String?` — Filter by active cargo ID
     
 </dd>
 </dl>
@@ -16233,7 +16143,7 @@ try await main()
 <dl>
 <dd>
 
-**filterSessionId:** `String?` — Filter by linked session ID
+**filterActiveSessionId:** `String?` — Filter by active session ID
     
 </dd>
 </dl>
@@ -16285,7 +16195,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">typeaheadOffChrtOrderIdV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">typeaheadV1</a>(query: String, limit: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> [TrackingTypeaheadResult]</code></summary>
 <dl>
 <dd>
 
@@ -16297,7 +16207,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct off_chrt_order_id values matching the query via case-insensitive regex, searching devices. | authz: min_org_role=operator | () -> (list[str])
+Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -16318,9 +16228,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.devices.typeaheadOffChrtOrderIdV1(
+    _ = try await client.tracking.devices.typeaheadV1(
         query: "query",
-        limit: 1
+        limit: 1,
+        orgScope: .owned
     )
 }
 
@@ -16347,7 +16258,15 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Int?` — Max results
+**limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
     
 </dd>
 </dl>
@@ -16367,7 +16286,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">searchV1</a>(query: String, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> DeviceSearchRes</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">searchV1</a>(query: String, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> DeviceSearchRes</code></summary>
 <dl>
 <dd>
 
@@ -16379,7 +16298,7 @@ try await main()
 <dl>
 <dd>
 
-Full-text search across device device_mac_address, comments, and off_chrt_order_id using Atlas Search. | authz: min_org_role=operator | () -> (DeviceSearchRes)
+Search across device device_mac_address, comments, and off_chrt_reference_id. Handles both partial (typing) and full query submission. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (DeviceSearchRes)
 </dd>
 </dl>
 </dd>
@@ -16403,7 +16322,8 @@ private func main() async throws {
     _ = try await client.tracking.devices.searchV1(
         query: "query",
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        orgScope: .owned
     )
 }
 
@@ -16422,7 +16342,7 @@ try await main()
 <dl>
 <dd>
 
-**query:** `String` — Full-text search query
+**query:** `String` — Search query
     
 </dd>
 </dl>
@@ -16439,6 +16359,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
     
 </dd>
 </dl>
@@ -16548,7 +16476,7 @@ try await main()
 </details>
 
 ## Tracking Sessions
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterRecording: Bool?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtOrderId: String?, filterFlightNumber: String?, filterSessionCreatedAtTimestampGte: Date?, filterSessionCreatedAtTimestampLte: Date?, filterRecordingInitiatedAtTimestampGte: Date?, filterRecordingInitiatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtReferenceId: String?, filterFlightNumber: String?, filterFaFlightId: String?, filterFlightLoadedStatus: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterTerminationScheduledForTimestampGte: Date?, filterTerminationScheduledForTimestampLte: Date?, filterTerminatedAtTimestampGte: Date?, filterTerminatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
 <dl>
 <dd>
 
@@ -16560,7 +16488,7 @@ try await main()
 <dl>
 <dd>
 
-Lists sessions with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (SessionListRes)
+Lists sessions with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (SessionListRes)
 </dd>
 </dl>
 </dd>
@@ -16582,20 +16510,24 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.tracking.sessions.listV1(
-        sortBy: .sessionCreatedAtTimestamp,
+        sortBy: .createdAtTimestamp,
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterRecording: true,
+        orgScope: .owned,
         filterTerminated: true,
         filterPublic: true,
         filterDeviceId: "filter_device_id",
-        filterOffChrtOrderId: "filter_off_chrt_order_id",
+        filterOffChrtReferenceId: "filter_off_chrt_reference_id",
         filterFlightNumber: "filter_flight_number",
-        filterSessionCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterSessionCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterRecordingInitiatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterRecordingInitiatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        filterFaFlightId: "filter_fa_flight_id",
+        filterFlightLoadedStatus: "filter_flight_loaded_status",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterTerminationScheduledForTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterTerminationScheduledForTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterTerminatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterTerminatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
 
@@ -16646,7 +16578,7 @@ try await main()
 <dl>
 <dd>
 
-**filterRecording:** `Bool?` — Filter by recording status
+**orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
     
 </dd>
 </dl>
@@ -16678,7 +16610,7 @@ try await main()
 <dl>
 <dd>
 
-**filterOffChrtOrderId:** `String?` — Filter by off-CHRT order ID (exact match)
+**filterOffChrtReferenceId:** `String?` — Filter by off-CHRT reference ID (exact match)
     
 </dd>
 </dl>
@@ -16694,7 +16626,7 @@ try await main()
 <dl>
 <dd>
 
-**filterSessionCreatedAtTimestampGte:** `Date?` — Filter by session_created_at_timestamp >= value
+**filterFaFlightId:** `String?` — Filter by FlightAware flight ID (exact match)
     
 </dd>
 </dl>
@@ -16702,7 +16634,7 @@ try await main()
 <dl>
 <dd>
 
-**filterSessionCreatedAtTimestampLte:** `Date?` — Filter by session_created_at_timestamp <= value
+**filterFlightLoadedStatus:** `String?` — Filter by flight loaded status (exact match)
     
 </dd>
 </dl>
@@ -16710,7 +16642,7 @@ try await main()
 <dl>
 <dd>
 
-**filterRecordingInitiatedAtTimestampGte:** `Date?` — Filter by recording_initiated_at_timestamp >= value
+**filterCreatedAtTimestampGte:** `Date?` — Filter by created_at_timestamp >= value
     
 </dd>
 </dl>
@@ -16718,7 +16650,39 @@ try await main()
 <dl>
 <dd>
 
-**filterRecordingInitiatedAtTimestampLte:** `Date?` — Filter by recording_initiated_at_timestamp <= value
+**filterCreatedAtTimestampLte:** `Date?` — Filter by created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTerminationScheduledForTimestampGte:** `Date?` — Filter by termination_scheduled_for_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTerminationScheduledForTimestampLte:** `Date?` — Filter by termination_scheduled_for_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTerminatedAtTimestampGte:** `Date?` — Filter by terminated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTerminatedAtTimestampLte:** `Date?` — Filter by terminated_at_timestamp <= value
     
 </dd>
 </dl>
@@ -16750,7 +16714,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single session by its ID. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (Session1)
+Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | authz: min_org_role=operator | () -> (Session1)
 </dd>
 </dl>
 </dd>
@@ -16809,7 +16773,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">typeaheadOffChrtOrderIdV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">typeaheadV1</a>(query: String, limit: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> [TrackingTypeaheadResult]</code></summary>
 <dl>
 <dd>
 
@@ -16821,7 +16785,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct off_chrt_order_id values matching the query via case-insensitive regex, searching sessions. | authz: min_org_role=operator | () -> (list[str])
+Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -16842,9 +16806,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sessions.typeaheadOffChrtOrderIdV1(
+    _ = try await client.tracking.sessions.typeaheadV1(
         query: "query",
-        limit: 1
+        limit: 1,
+        orgScope: .owned
     )
 }
 
@@ -16871,7 +16836,15 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Int?` — Max results
+**limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
     
 </dd>
 </dl>
@@ -16891,7 +16864,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">searchV1</a>(query: String, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> SessionSearchRes</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">searchV1</a>(query: String, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> SessionSearchRes</code></summary>
 <dl>
 <dd>
 
@@ -16903,7 +16876,7 @@ try await main()
 <dl>
 <dd>
 
-Full-text search across session comments, device_mac_address, flight_number, and off_chrt_order_id using Atlas Search. | authz: min_org_role=operator | () -> (SessionSearchRes)
+Search across session comments, device_mac_address, flight_numbers, and off_chrt_reference_id. Handles both partial and full matches. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (SessionSearchRes)
 </dd>
 </dl>
 </dd>
@@ -16927,7 +16900,8 @@ private func main() async throws {
     _ = try await client.tracking.sessions.searchV1(
         query: "query",
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        orgScope: .owned
     )
 }
 
@@ -16946,7 +16920,7 @@ try await main()
 <dl>
 <dd>
 
-**query:** `String` — Full-text search query
+**query:** `String` — Search query
     
 </dd>
 </dl>
@@ -16970,6 +16944,14 @@ try await main()
 <dl>
 <dd>
 
+**orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
     
 </dd>
@@ -16982,7 +16964,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">createSessionV1</a>(request: Requests.SessionCreateSessionRequest1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">createSessionV1</a>(deviceId: String, terminationScheduledForTimestamp: Date?, request: Requests.SessionClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -16994,7 +16976,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device and links the device to it. The device must be registered to the caller's organization. | (SessionCreateSessionRequest1) -> (PydanticObjectId)
+Creates a new tracking session for a device. The device must already be registered to the caller's org and must not have an active session. Recording starts immediately and auto-termination is scheduled for ~3 days out at 8 PM PT. | (SessionClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -17015,7 +16997,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sessions.createSessionV1(request: .init(deviceMacAddress: "device_mac_address"))
+    _ = try await client.tracking.sessions.createSessionV1(
+        deviceId: "device_id",
+        terminationScheduledForTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        request: .init(schemaVersion: 1)
+    )
 }
 
 try await main()
@@ -17033,7 +17019,23 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.SessionCreateSessionRequest1` 
+**deviceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**terminationScheduledForTimestamp:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionClientCreate1` 
     
 </dd>
 </dl>
@@ -17053,7 +17055,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateV1</a>(request: Requests.SessionUpdateRequest1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateV1</a>(sessionId: String, terminationScheduledForTimestamp: Date?, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -17065,7 +17067,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a session's mutable fields (comments, public, off_chrt_order_id, flight_number, fa_flight_ids). | (SessionUpdateRequest1) -> (bool)
+Updates a session's metadata and/or termination_scheduled_for_timestamp. | (SessionClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -17086,78 +17088,11 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sessions.updateV1(request: .init(sessionId: "session_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.SessionUpdateRequest1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">startV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Starts location recording for a session by setting recording status to true. Sets the recording initiated timestamp on first start. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessions.startV1(sessionId: "session_id")
+    _ = try await client.tracking.sessions.updateV1(
+        sessionId: "session_id",
+        terminationScheduledForTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        request: .init()
+    )
 }
 
 try await main()
@@ -17183,6 +17118,22 @@ try await main()
 <dl>
 <dd>
 
+**terminationScheduledForTimestamp:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
     
 </dd>
@@ -17195,7 +17146,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">pauseRecordingV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateSharedOrgsV1</a>(request: Requests.SessionsUpdateSharedOrgsReq1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -17207,7 +17158,7 @@ try await main()
 <dl>
 <dd>
 
-Pauses location recording for a session by setting recording status to false. Device remains linked to the session. | () -> (bool)
+Adds and/or removes org_ids from a session's shared_with_org_ids list. Only the owning org may modify sharing. Removal overrides addition. | (SessionsUpdateSharedOrgsReq1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -17228,7 +17179,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sessions.pauseRecordingV1(sessionId: "session_id")
+    _ = try await client.tracking.sessions.updateSharedOrgsV1(request: .init(sessionId: "session_id"))
 }
 
 try await main()
@@ -17246,78 +17197,7 @@ try await main()
 <dl>
 <dd>
 
-**sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">resumeRecordingV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Resumes location recording for a session by setting recording status to true. | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.sessions.resumeRecordingV1(sessionId: "session_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sessionId:** `String` 
+**request:** `Requests.SessionsUpdateSharedOrgsReq1` 
     
 </dd>
 </dl>
@@ -17349,7 +17229,7 @@ try await main()
 <dl>
 <dd>
 
-Terminates a session by setting recording to false and marking it as terminated. Unlinks the device from the session. | () -> (bool)
+Terminates a session. Moves device.active_session_id to device.past_session_ids. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -17408,7 +17288,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">deleteV1</a>(sessionId: String, requestOptions: RequestOptions?) -> SessionDeleteResponse1</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">addFlightV1</a>(request: Requests.SessionAddFlightReq1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -17420,7 +17300,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a terminated session and all its associated timeseries data points. Only sessions marked as terminated can be deleted. | () -> (SessionDeleteResponse1)
+Adds a flight number and FA flight IDs to an existing session. Creates or reuses a FlightAware alert. | authz: min_org_role=operator | (SessionAddFlightReq1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -17441,7 +17321,161 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sessions.deleteV1(sessionId: "session_id")
+    _ = try await client.tracking.sessions.addFlightV1(request: .init(
+        sessionId: "session_id",
+        flightNumber: "flight_number",
+        faFlightIds: [
+            "fa_flight_ids"
+        ]
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionAddFlightReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">removeFlightV1</a>(request: Requests.SessionRemoveFlightReq1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a flight number and FA flight IDs from a session. Runs the shared-aware FlightAware unsubscribe cycle before removing. | authz: min_org_role=operator | (SessionRemoveFlightReq1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessions.removeFlightV1(request: .init(
+        sessionId: "session_id",
+        flightNumber: "flight_number",
+        faFlightIds: [
+            "fa_flight_ids"
+        ]
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionRemoveFlightReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">syncFlightStatusV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches current OOOI timestamps from FlightAware for each fa_flight_id on the session and updates flight_status_by_fa_flight_id. Use when the webhook may have left state out of sync. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessions.syncFlightStatusV1(sessionId: "session_id")
 }
 
 try await main()
