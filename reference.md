@@ -16976,7 +16976,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device. The device must already be registered to the caller's org and must not have an active session. Recording starts immediately and auto-termination is scheduled for ~3 days out at 8 PM PT. | (SessionClientCreate1) -> (PydanticObjectId)
+Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner always remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. | (SessionClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>

@@ -1,3 +1,13 @@
+## 1.431.1 - 2026-02-21
+* chore: update CLI version and improve session creation documentation
+* This commit updates the Fern CLI version from 3.47.1 to 3.76.0 and enhances the documentation for session creation functionality with more detailed clarifications about device ownership, organization permissions, and session ownership rules.
+* Key changes:
+* Update Fern CLI version from 3.47.1 to 3.76.0 in metadata.json
+* Enhance session creation documentation to clarify device ownership requirements
+* Add details about organization permissions and shared device access rules
+* Clarify session ownership inheritance from device owner
+* 🌿 Generated with Fern
+
 ## 1.421.1 - 2026-02-21
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
