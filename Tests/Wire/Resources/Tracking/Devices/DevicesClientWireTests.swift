@@ -574,6 +574,7 @@ import Chrt
             filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterArchived: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

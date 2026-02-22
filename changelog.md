@@ -1,3 +1,16 @@
+## 1.436.0 - 2026-02-22
+* feat: add filterArchived parameter to device list endpoint
+* Add support for filtering devices by archived status in the tracking devices
+* list endpoint. This new optional parameter allows clients to query devices
+* based on whether they are currently archived or not.
+* Key changes:
+* Add filterArchived: Bool? parameter to DevicesClient.listV1() method
+* Add corresponding query parameter mapping in request construction
+* Update function documentation to describe the new filter parameter
+* Add test coverage for the new parameter
+* Update reference documentation with parameter details
+* 🌿 Generated with Fern
+
 ## 1.433.0 - 2026-02-22
 * feat: add terminationScheduledForTimestamp field and update session API
 * This change adds support for specifying termination timestamps directly in session requests and updates the session creation/update API to be more flexible. The termination scheduling mechanism has been refactored to move from query parameters to request body fields.

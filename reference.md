@@ -16014,7 +16014,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterArchived: Bool?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
 <dl>
 <dd>
 
@@ -16060,7 +16060,8 @@ private func main() async throws {
         filterRegisteredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterArchived: true
     )
 }
 
@@ -16176,6 +16177,14 @@ try await main()
 <dd>
 
 **filterLastSeenAtTimestampLte:** `Date?` — Filter by last_seen_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — Filter by archived status
     
 </dd>
 </dl>

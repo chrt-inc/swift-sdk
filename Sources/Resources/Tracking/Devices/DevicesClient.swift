@@ -92,8 +92,9 @@ public final class DevicesClient: Sendable {
     /// - Parameter filterRegisteredAtTimestampLte: Filter by registered_at_timestamp <= value
     /// - Parameter filterLastSeenAtTimestampGte: Filter by last_seen_at_timestamp >= value
     /// - Parameter filterLastSeenAtTimestampLte: Filter by last_seen_at_timestamp <= value
+    /// - Parameter filterArchived: Filter by archived status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
+    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/list/v1",
@@ -110,7 +111,8 @@ public final class DevicesClient: Sendable {
                 "filter_registered_at_timestamp_gte": filterRegisteredAtTimestampGte.map { .date($0) }, 
                 "filter_registered_at_timestamp_lte": filterRegisteredAtTimestampLte.map { .date($0) }, 
                 "filter_last_seen_at_timestamp_gte": filterLastSeenAtTimestampGte.map { .date($0) }, 
-                "filter_last_seen_at_timestamp_lte": filterLastSeenAtTimestampLte.map { .date($0) }
+                "filter_last_seen_at_timestamp_lte": filterLastSeenAtTimestampLte.map { .date($0) }, 
+                "filter_archived": filterArchived.map { .bool($0) }
             ],
             requestOptions: requestOptions,
             responseType: DeviceListRes.self
