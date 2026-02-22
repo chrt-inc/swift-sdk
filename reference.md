@@ -16964,7 +16964,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">createSessionV1</a>(deviceId: String, terminationScheduledForTimestamp: Date?, request: Requests.SessionClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">createSessionV1</a>(deviceId: String, noAutoTermination: Bool?, request: Requests.SessionClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -16976,7 +16976,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner always remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. | (SessionClientCreate1) -> (PydanticObjectId)
+Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | (SessionClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -16999,7 +16999,7 @@ private func main() async throws {
 
     _ = try await client.tracking.sessions.createSessionV1(
         deviceId: "device_id",
-        terminationScheduledForTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        noAutoTermination: true,
         request: .init(schemaVersion: 1)
     )
 }
@@ -17027,7 +17027,7 @@ try await main()
 <dl>
 <dd>
 
-**terminationScheduledForTimestamp:** `Date?` 
+**noAutoTermination:** `Bool?` 
     
 </dd>
 </dl>
@@ -17055,7 +17055,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateV1</a>(sessionId: String, terminationScheduledForTimestamp: Date?, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateV1</a>(sessionId: String, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -17067,7 +17067,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a session's metadata and/or termination_scheduled_for_timestamp. | (SessionClientUpdate1) -> (bool)
+Updates a session's metadata. | (SessionClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -17090,7 +17090,6 @@ private func main() async throws {
 
     _ = try await client.tracking.sessions.updateV1(
         sessionId: "session_id",
-        terminationScheduledForTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         request: .init()
     )
 }
@@ -17111,14 +17110,6 @@ try await main()
 <dd>
 
 **sessionId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**terminationScheduledForTimestamp:** `Date?` 
     
 </dd>
 </dl>

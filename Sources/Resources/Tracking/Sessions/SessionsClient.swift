@@ -110,16 +110,16 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner always remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. | (SessionClientCreate1) -> (PydanticObjectId)
+    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | (SessionClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createSessionV1(deviceId: String, terminationScheduledForTimestamp: Date? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/tracking/sessions/create_session/v1",
             queryParams: [
                 "device_id": .string(deviceId), 
-                "termination_scheduled_for_timestamp": terminationScheduledForTimestamp.map { .date($0) }
+                "no_auto_termination": noAutoTermination.map { .bool($0) }
             ],
             body: request,
             requestOptions: requestOptions,
@@ -127,16 +127,15 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Updates a session's metadata and/or termination_scheduled_for_timestamp. | (SessionClientUpdate1) -> (bool)
+    /// Updates a session's metadata. | (SessionClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(sessionId: String, terminationScheduledForTimestamp: Date? = nil, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(sessionId: String, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/tracking/sessions/update/v1",
             queryParams: [
-                "session_id": .string(sessionId), 
-                "termination_scheduled_for_timestamp": terminationScheduledForTimestamp.map { .date($0) }
+                "session_id": .string(sessionId)
             ],
             body: request,
             requestOptions: requestOptions,

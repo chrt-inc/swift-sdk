@@ -6,6 +6,7 @@ public struct Session1: Codable, Hashable, Sendable {
     public let comments: String?
     public let `public`: Bool?
     public let offChrtShipperOrgId: String?
+    public let terminationScheduledForTimestamp: Date?
     public let flightNumbers: [String]?
     public let faFlightIds: [String]?
     public let deviceId: String
@@ -15,7 +16,6 @@ public struct Session1: Codable, Hashable, Sendable {
     public let sharedWithOrgIds: [String]?
     public let createdAtTimestamp: Date
     public let terminated: Bool?
-    public let terminationScheduledForTimestamp: Date?
     public let terminatedAtTimestamp: Date?
     public let faAlertIds: [Int]?
     public let flightLoadedStatuses: [String]?
@@ -32,6 +32,7 @@ public struct Session1: Codable, Hashable, Sendable {
         comments: String? = nil,
         public: Bool? = nil,
         offChrtShipperOrgId: String? = nil,
+        terminationScheduledForTimestamp: Date? = nil,
         flightNumbers: [String]? = nil,
         faFlightIds: [String]? = nil,
         deviceId: String,
@@ -40,7 +41,6 @@ public struct Session1: Codable, Hashable, Sendable {
         sharedWithOrgIds: [String]? = nil,
         createdAtTimestamp: Date,
         terminated: Bool? = nil,
-        terminationScheduledForTimestamp: Date? = nil,
         terminatedAtTimestamp: Date? = nil,
         faAlertIds: [Int]? = nil,
         flightLoadedStatuses: [String]? = nil,
@@ -55,6 +55,7 @@ public struct Session1: Codable, Hashable, Sendable {
         self.comments = comments
         self.public = `public`
         self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.terminationScheduledForTimestamp = terminationScheduledForTimestamp
         self.flightNumbers = flightNumbers
         self.faFlightIds = faFlightIds
         self.deviceId = deviceId
@@ -63,7 +64,6 @@ public struct Session1: Codable, Hashable, Sendable {
         self.sharedWithOrgIds = sharedWithOrgIds
         self.createdAtTimestamp = createdAtTimestamp
         self.terminated = terminated
-        self.terminationScheduledForTimestamp = terminationScheduledForTimestamp
         self.terminatedAtTimestamp = terminatedAtTimestamp
         self.faAlertIds = faAlertIds
         self.flightLoadedStatuses = flightLoadedStatuses
@@ -81,6 +81,7 @@ public struct Session1: Codable, Hashable, Sendable {
         self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.terminationScheduledForTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminationScheduledForTimestamp)
         self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
         self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
         self.deviceId = try container.decode(String.self, forKey: .deviceId)
@@ -89,7 +90,6 @@ public struct Session1: Codable, Hashable, Sendable {
         self.sharedWithOrgIds = try container.decodeIfPresent([String].self, forKey: .sharedWithOrgIds)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.terminated = try container.decodeIfPresent(Bool.self, forKey: .terminated)
-        self.terminationScheduledForTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminationScheduledForTimestamp)
         self.terminatedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminatedAtTimestamp)
         self.faAlertIds = try container.decodeIfPresent([Int].self, forKey: .faAlertIds)
         self.flightLoadedStatuses = try container.decodeIfPresent([String].self, forKey: .flightLoadedStatuses)
@@ -108,6 +108,7 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encodeIfPresent(self.public, forKey: .public)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.terminationScheduledForTimestamp, forKey: .terminationScheduledForTimestamp)
         try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
         try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
         try container.encode(self.deviceId, forKey: .deviceId)
@@ -116,7 +117,6 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.sharedWithOrgIds, forKey: .sharedWithOrgIds)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.terminated, forKey: .terminated)
-        try container.encodeIfPresent(self.terminationScheduledForTimestamp, forKey: .terminationScheduledForTimestamp)
         try container.encodeIfPresent(self.terminatedAtTimestamp, forKey: .terminatedAtTimestamp)
         try container.encodeIfPresent(self.faAlertIds, forKey: .faAlertIds)
         try container.encodeIfPresent(self.flightLoadedStatuses, forKey: .flightLoadedStatuses)
@@ -133,6 +133,7 @@ public struct Session1: Codable, Hashable, Sendable {
         case comments
         case `public`
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case terminationScheduledForTimestamp = "termination_scheduled_for_timestamp"
         case flightNumbers = "flight_numbers"
         case faFlightIds = "fa_flight_ids"
         case deviceId = "device_id"
@@ -141,7 +142,6 @@ public struct Session1: Codable, Hashable, Sendable {
         case sharedWithOrgIds = "shared_with_org_ids"
         case createdAtTimestamp = "created_at_timestamp"
         case terminated
-        case terminationScheduledForTimestamp = "termination_scheduled_for_timestamp"
         case terminatedAtTimestamp = "terminated_at_timestamp"
         case faAlertIds = "fa_alert_ids"
         case flightLoadedStatuses = "flight_loaded_statuses"

@@ -1,3 +1,15 @@
+## 1.433.0 - 2026-02-22
+* feat: add terminationScheduledForTimestamp field and update session API
+* This change adds support for specifying termination timestamps directly in session requests and updates the session creation/update API to be more flexible. The termination scheduling mechanism has been refactored to move from query parameters to request body fields.
+* Key changes:
+* Add terminationScheduledForTimestamp field to SessionClientCreate1 and SessionClientUpdate1 request models
+* Add terminationScheduledForTimestampSetToNone field to SessionClientUpdate1 for nullable updates
+* Replace terminationScheduledForTimestamp query parameter with noAutoTermination in createSessionV1
+* Remove terminationScheduledForTimestamp query parameter from updateV1 method
+* Reorder terminationScheduledForTimestamp field position in Session1 schema for consistency
+* Update API documentation to reflect new termination scheduling behavior
+* 🌿 Generated with Fern
+
 ## 1.431.1 - 2026-02-21
 * chore: update CLI version and improve session creation documentation
 * This commit updates the Fern CLI version from 3.47.1 to 3.76.0 and enhances the documentation for session creation functionality with more detailed clarifications about device ownership, organization permissions, and session ownership rules.

@@ -7,6 +7,7 @@ extension Requests {
         public let comments: String?
         public let `public`: Bool?
         public let offChrtShipperOrgId: String?
+        public let terminationScheduledForTimestamp: Date?
         public let flightNumbers: [String]?
         public let faFlightIds: [String]?
         /// Additional properties that are not explicitly defined in the schema
@@ -18,6 +19,7 @@ extension Requests {
             comments: String? = nil,
             public: Bool? = nil,
             offChrtShipperOrgId: String? = nil,
+            terminationScheduledForTimestamp: Date? = nil,
             flightNumbers: [String]? = nil,
             faFlightIds: [String]? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -27,6 +29,7 @@ extension Requests {
             self.comments = comments
             self.public = `public`
             self.offChrtShipperOrgId = offChrtShipperOrgId
+            self.terminationScheduledForTimestamp = terminationScheduledForTimestamp
             self.flightNumbers = flightNumbers
             self.faFlightIds = faFlightIds
             self.additionalProperties = additionalProperties
@@ -39,6 +42,7 @@ extension Requests {
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+            self.terminationScheduledForTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminationScheduledForTimestamp)
             self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
             self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -52,6 +56,7 @@ extension Requests {
             try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.public, forKey: .public)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+            try container.encodeIfPresent(self.terminationScheduledForTimestamp, forKey: .terminationScheduledForTimestamp)
             try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
             try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
         }
@@ -63,6 +68,7 @@ extension Requests {
             case comments
             case `public`
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+            case terminationScheduledForTimestamp = "termination_scheduled_for_timestamp"
             case flightNumbers = "flight_numbers"
             case faFlightIds = "fa_flight_ids"
         }

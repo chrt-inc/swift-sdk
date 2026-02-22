@@ -16,6 +16,7 @@ import Chrt
                       "comments": "comments",
                       "public": true,
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
                       "flight_numbers": [
                         "flight_numbers"
                       ],
@@ -30,7 +31,6 @@ import Chrt
                       ],
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "terminated": true,
-                      "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
                       "terminated_at_timestamp": "2024-01-15T09:30:00Z",
                       "fa_alert_ids": [
                         1
@@ -65,6 +65,7 @@ import Chrt
                     comments: Optional("comments"),
                     public: Optional(true),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     flightNumbers: Optional([
                         "flight_numbers"
                     ]),
@@ -79,7 +80,6 @@ import Chrt
                     ]),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     terminated: Optional(true),
-                    terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     terminatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     faAlertIds: Optional([
                         1
@@ -133,6 +133,7 @@ import Chrt
                   "comments": "comments",
                   "public": true,
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                  "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
                   "flight_numbers": [
                     "flight_numbers"
                   ],
@@ -147,7 +148,6 @@ import Chrt
                   ],
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "terminated": true,
-                  "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
                   "terminated_at_timestamp": "2024-01-15T09:30:00Z",
                   "fa_alert_ids": [
                     1
@@ -180,6 +180,7 @@ import Chrt
             comments: Optional("comments"),
             public: Optional(true),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+            terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             flightNumbers: Optional([
                 "flight_numbers"
             ]),
@@ -194,7 +195,6 @@ import Chrt
             ]),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             terminated: Optional(true),
-            terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             terminatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             faAlertIds: Optional([
                 1
@@ -271,6 +271,7 @@ import Chrt
                       "comments": "comments",
                       "public": true,
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
                       "flight_numbers": [
                         "flight_numbers"
                       ],
@@ -285,7 +286,6 @@ import Chrt
                       ],
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "terminated": true,
-                      "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
                       "terminated_at_timestamp": "2024-01-15T09:30:00Z",
                       "fa_alert_ids": [
                         1
@@ -320,6 +320,7 @@ import Chrt
                     comments: Optional("comments"),
                     public: Optional(true),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     flightNumbers: Optional([
                         "flight_numbers"
                     ]),
@@ -334,7 +335,6 @@ import Chrt
                     ]),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     terminated: Optional(true),
-                    terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     terminatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     faAlertIds: Optional([
                         1
@@ -380,7 +380,7 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.tracking.sessions.createSessionV1(
             deviceId: "device_id",
-            terminationScheduledForTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            noAutoTermination: true,
             request: .init(schemaVersion: 1),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -404,7 +404,6 @@ import Chrt
         let expectedResponse = true
         let response = try await client.tracking.sessions.updateV1(
             sessionId: "session_id",
-            terminationScheduledForTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
