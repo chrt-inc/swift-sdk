@@ -570,6 +570,8 @@ import Chrt
             filterType: .d15NTag,
             filterActiveCargoId: "filter_active_cargo_id",
             filterActiveSessionId: "filter_active_session_id",
+            filterHasActiveSession: true,
+            filterHasActiveCargo: true,
             filterRegisteredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

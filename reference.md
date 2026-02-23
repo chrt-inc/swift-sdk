@@ -16014,7 +16014,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterArchived: Bool?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, orgScope: TrackingOrgScopeEnum?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterHasActiveSession: Bool?, filterHasActiveCargo: Bool?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterArchived: Bool?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
 <dl>
 <dd>
 
@@ -16057,6 +16057,8 @@ private func main() async throws {
         filterType: .d15NTag,
         filterActiveCargoId: "filter_active_cargo_id",
         filterActiveSessionId: "filter_active_session_id",
+        filterHasActiveSession: true,
+        filterHasActiveCargo: true,
         filterRegisteredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -16145,6 +16147,22 @@ try await main()
 <dd>
 
 **filterActiveSessionId:** `String?` — Filter by active session ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterHasActiveSession:** `Bool?` — Filter by whether device has an active session (true = session_id is not null, false = session_id is null)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterHasActiveCargo:** `Bool?` — Filter by whether device has an active cargo (true = cargo_id is not null, false = cargo_id is null)
     
 </dd>
 </dl>

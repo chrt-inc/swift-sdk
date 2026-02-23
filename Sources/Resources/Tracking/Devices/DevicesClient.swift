@@ -88,13 +88,15 @@ public final class DevicesClient: Sendable {
     /// - Parameter filterType: Filter by device type
     /// - Parameter filterActiveCargoId: Filter by active cargo ID
     /// - Parameter filterActiveSessionId: Filter by active session ID
+    /// - Parameter filterHasActiveSession: Filter by whether device has an active session (true = session_id is not null, false = session_id is null)
+    /// - Parameter filterHasActiveCargo: Filter by whether device has an active cargo (true = cargo_id is not null, false = cargo_id is null)
     /// - Parameter filterRegisteredAtTimestampGte: Filter by registered_at_timestamp >= value
     /// - Parameter filterRegisteredAtTimestampLte: Filter by registered_at_timestamp <= value
     /// - Parameter filterLastSeenAtTimestampGte: Filter by last_seen_at_timestamp >= value
     /// - Parameter filterLastSeenAtTimestampLte: Filter by last_seen_at_timestamp <= value
     /// - Parameter filterArchived: Filter by archived status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
+    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterHasActiveSession: Bool? = nil, filterHasActiveCargo: Bool? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/list/v1",
@@ -108,6 +110,8 @@ public final class DevicesClient: Sendable {
                 "filter_type": filterType.map { .string($0.rawValue) }, 
                 "filter_active_cargo_id": filterActiveCargoId.map { .string($0) }, 
                 "filter_active_session_id": filterActiveSessionId.map { .string($0) }, 
+                "filter_has_active_session": filterHasActiveSession.map { .bool($0) }, 
+                "filter_has_active_cargo": filterHasActiveCargo.map { .bool($0) }, 
                 "filter_registered_at_timestamp_gte": filterRegisteredAtTimestampGte.map { .date($0) }, 
                 "filter_registered_at_timestamp_lte": filterRegisteredAtTimestampLte.map { .date($0) }, 
                 "filter_last_seen_at_timestamp_gte": filterLastSeenAtTimestampGte.map { .date($0) }, 

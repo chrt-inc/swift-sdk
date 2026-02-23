@@ -1,3 +1,13 @@
+## 1.438.0 - 2026-02-23
+* feat: add session and cargo filtering to devices list API
+* Enhance the devices list endpoint with two new boolean filter parameters that allow filtering devices based on their session and cargo status. These additions provide more granular control when querying devices.
+* Key changes:
+* Add `filterHasActiveSession` parameter to filter devices with/without active sessions
+* Add `filterHasActiveCargo` parameter to filter devices with/without active cargo
+* Update API documentation to include descriptions for the new filter parameters
+* Update test cases to verify the new filtering functionality
+* 🌿 Generated with Fern
+
 ## 1.436.0 - 2026-02-22
 * feat: add filterArchived parameter to device list endpoint
 * Add support for filtering devices by archived status in the tracking devices
