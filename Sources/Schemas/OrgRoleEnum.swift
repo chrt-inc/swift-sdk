@@ -9,7 +9,7 @@ import Foundation
 ///     {owner, administrator, operator}  → COURIER | SHIPPER | FORWARDER
 ///     {driver}                          → COURIER only
 /// 
-/// Note: Hierarchical enforcement depends on utils_oort_authz helper functions.
+/// Note: Hierarchical enforcement depends on utils_shipping_authz helper functions.
 /// 
 /// Clerk dashboard with roles settings:
 /// - prod: https://dashboard.clerk.com/apps/app_2rDeFYQ7SBioYoMhG38FgirTE4Q/instances/ins_2rDmMgzRGFXd6Ml6N8eV8pOXeyI/organizations-settings/roles

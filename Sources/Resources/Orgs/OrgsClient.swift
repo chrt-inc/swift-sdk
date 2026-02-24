@@ -1,9 +1,17 @@
 import Foundation
 
 public final class OrgsClient: Sendable {
+    public let connections: ConnectionsClient
+    public let offChrtShipperOrg: OffChrtShipperOrgClient
+    public let orgProfiles: OrgProfilesClient
+    public let orgInfoForConnections: OrgInfoForConnectionsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.connections = ConnectionsClient(config: config)
+        self.offChrtShipperOrg = OffChrtShipperOrgClient(config: config)
+        self.orgProfiles = OrgProfilesClient(config: config)
+        self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

@@ -1,3 +1,7 @@
+## 1.441.1 - 2026-02-24
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 1.439.1 - 2026-02-24
 * chore: update Fern CLI version
 * Update the Fern CLI version from 3.47.1 to 3.85.2 in the metadata configuration file. This change ensures the project uses the latest CLI tooling with improved features and bug fixes.

@@ -1,9 +1,11 @@
 import Foundation
 
 public final class UsersClient: Sendable {
+    public let directoryEntries: DirectoryEntriesClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.directoryEntries = DirectoryEntriesClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
