@@ -1,3 +1,12 @@
+## 1.439.1 - 2026-02-24
+* chore: update Fern CLI version
+* Update the Fern CLI version from 3.47.1 to 3.85.2 in the metadata configuration file. This change ensures the project uses the latest CLI tooling with improved features and bug fixes.
+* Key changes:
+* Update cliVersion from 3.47.1 to 3.85.2 in .fern/metadata.json
+* Maintain compatibility with existing generator configuration
+* Keep generator name and version unchanged
+* 🌿 Generated with Fern
+
 ## 1.438.0 - 2026-02-23
 * feat: add session and cargo filtering to devices list API
 * Enhance the devices list endpoint with two new boolean filter parameters that allow filtering devices based on their session and cargo status. These additions provide more granular control when querying devices.
