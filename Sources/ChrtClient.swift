@@ -3,13 +3,13 @@ import Foundation
 /// Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 public final class ChrtClient: Sendable {
     public let orgs: OrgsClient
-    public let users: UsersClient
     public let utils: UtilsClient
     public let analytics: AnalyticsClient
     public let billing: BillingClient
     public let notifications: NotificationsClient
     public let shipping: ShippingClient_
     public let tracking: TrackingClient
+    public let users: UsersClient
     private let httpClient: HTTPClient
 
     /// Initialize the client with the specified configuration and a static bearer token.
@@ -93,13 +93,13 @@ public final class ChrtClient: Sendable {
             urlSession: urlSession
         )
         self.orgs = OrgsClient(config: config)
-        self.users = UsersClient(config: config)
         self.utils = UtilsClient(config: config)
         self.analytics = AnalyticsClient(config: config)
         self.billing = BillingClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.shipping = ShippingClient_(config: config)
         self.tracking = TrackingClient(config: config)
+        self.users = UsersClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

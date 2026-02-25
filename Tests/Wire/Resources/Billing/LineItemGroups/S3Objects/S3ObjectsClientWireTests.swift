@@ -64,7 +64,7 @@ import Chrt
         let expectedResponse = true
         let response = try await client.billing.lineItemGroups.s3Objects.addV1(
             lineItemGroupId: "line_item_group_id",
-            request: .init(file: .init(data: Data("".utf8))),
+            request: .init(file: "file"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

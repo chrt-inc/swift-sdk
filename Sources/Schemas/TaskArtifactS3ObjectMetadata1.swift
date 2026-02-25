@@ -9,7 +9,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
     public let uploadedByUserId: String
     /// Must be a string starting with `org_`
     public let uploadedByOrgId: String
-    public let s3KeyPrefix: OortTaskArtifactS3ObjectMetadata?
+    public let s3KeyPrefix: ShippingTaskArtifactS3ObjectMetadata?
     public let blurhash: String?
     /// MIME type of the uploaded file (e.g., 'image/jpeg', 'application/pdf')
     public let contentType: String?
@@ -25,7 +25,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         uploadedAtTimestamp: Date,
         uploadedByUserId: String,
         uploadedByOrgId: String,
-        s3KeyPrefix: OortTaskArtifactS3ObjectMetadata? = nil,
+        s3KeyPrefix: ShippingTaskArtifactS3ObjectMetadata? = nil,
         blurhash: String? = nil,
         contentType: String? = nil,
         filename: String? = nil,
@@ -52,7 +52,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         self.uploadedAtTimestamp = try container.decode(Date.self, forKey: .uploadedAtTimestamp)
         self.uploadedByUserId = try container.decode(String.self, forKey: .uploadedByUserId)
         self.uploadedByOrgId = try container.decode(String.self, forKey: .uploadedByOrgId)
-        self.s3KeyPrefix = try container.decodeIfPresent(OortTaskArtifactS3ObjectMetadata.self, forKey: .s3KeyPrefix)
+        self.s3KeyPrefix = try container.decodeIfPresent(ShippingTaskArtifactS3ObjectMetadata.self, forKey: .s3KeyPrefix)
         self.blurhash = try container.decodeIfPresent(String.self, forKey: .blurhash)
         self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
         self.filename = try container.decodeIfPresent(String.self, forKey: .filename)
@@ -74,8 +74,8 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.filename, forKey: .filename)
     }
 
-    public enum OortTaskArtifactS3ObjectMetadata: String, Codable, Hashable, CaseIterable, Sendable {
-        case oortTaskArtifactS3ObjectMetadata = "oort/task_artifact_s3_object_metadata"
+    public enum ShippingTaskArtifactS3ObjectMetadata: String, Codable, Hashable, CaseIterable, Sendable {
+        case shippingTaskArtifactS3ObjectMetadata = "shipping/task_artifact_s3_object_metadata"
     }
 
     /// Keys for encoding/decoding struct properties.

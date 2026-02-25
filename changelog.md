@@ -1,3 +1,7 @@
+## 1.441.2 - 2026-02-25
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 1.441.1 - 2026-02-24
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
