@@ -20,19 +20,6 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Updates a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/tasks/update/v1/\(taskId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
     /// Marks a task as COMPLETED. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators] (depending on type) | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -40,6 +27,18 @@ public final class TasksClient: Sendable {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/complete/v1/\(taskId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Deletes a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/tasks/delete/v1/\(taskId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -57,15 +56,16 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Deletes a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | () -> (bool)
+    /// Updates a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/tasks/delete/v1/\(taskId)",
+            method: .patch,
+            path: "/shipping/tasks/update/v1/\(taskId)",
+            body: request,
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: String.self
         )
     }
 }

@@ -7,22 +7,6 @@ public final class CargoByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the last seen data point for cargo within a task group. Access granted to courier or shipper organization. | () -> (CargoByDeviceDataPoint1 | None)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceDataPoint1? {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/timeseries/cargo_by_device/last_seen/v1",
-            queryParams: [
-                "cargo_id": .string(cargoId), 
-                "task_group_id": .string(taskGroupId)
-            ],
-            requestOptions: requestOptions,
-            responseType: CargoByDeviceDataPoint1?.self
-        )
-    }
-
     /// Returns up to the specified number of data points for a cargo within a task group, intelligently sampled across the time range. Excludes outliers. | () -> (list[CargoByDeviceDataPoint1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -40,16 +24,36 @@ public final class CargoByDeviceClient: Sendable {
         )
     }
 
-    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | authz: allowed_org_types=[shipper, forwarder], min_org_role=operator | (CargoByDeviceMarkOutliersRequest1) -> (CargoByDeviceMarkOutliersResponse1)
+    /// Returns up to the specified number of data points for a cargo within a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (list[CargoByDeviceDataPoint1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func outlierV1(request: Requests.CargoByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceMarkOutliersResponse1 {
+    public func dataPointsPublicV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDeviceDataPoint1] {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/timeseries/cargo_by_device/outlier/v1",
-            body: request,
+            method: .get,
+            path: "/tracking/timeseries/cargo_by_device/data_points_public/v1",
+            queryParams: [
+                "cargo_id": .string(cargoId), 
+                "task_group_id": .string(taskGroupId), 
+                "limit": limit.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: CargoByDeviceMarkOutliersResponse1.self
+            responseType: [CargoByDeviceDataPoint1].self
+        )
+    }
+
+    /// Returns the last seen data point for cargo within a task group. Access granted to courier or shipper organization. | () -> (CargoByDeviceDataPoint1 | None)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceDataPoint1? {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/timeseries/cargo_by_device/last_seen/v1",
+            queryParams: [
+                "cargo_id": .string(cargoId), 
+                "task_group_id": .string(taskGroupId)
+            ],
+            requestOptions: requestOptions,
+            responseType: CargoByDeviceDataPoint1?.self
         )
     }
 
@@ -69,20 +73,16 @@ public final class CargoByDeviceClient: Sendable {
         )
     }
 
-    /// Returns up to the specified number of data points for a cargo within a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (list[CargoByDeviceDataPoint1])
+    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | authz: allowed_org_types=[shipper, forwarder], min_org_role=operator | (CargoByDeviceMarkOutliersRequest1) -> (CargoByDeviceMarkOutliersResponse1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsPublicV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDeviceDataPoint1] {
+    public func outlierV1(request: Requests.CargoByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceMarkOutliersResponse1 {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/timeseries/cargo_by_device/data_points_public/v1",
-            queryParams: [
-                "cargo_id": .string(cargoId), 
-                "task_group_id": .string(taskGroupId), 
-                "limit": limit.map { .int($0) }
-            ],
+            method: .post,
+            path: "/tracking/timeseries/cargo_by_device/outlier/v1",
+            body: request,
             requestOptions: requestOptions,
-            responseType: [CargoByDeviceDataPoint1].self
+            responseType: CargoByDeviceMarkOutliersResponse1.self
         )
     }
 }

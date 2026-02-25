@@ -20,30 +20,6 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getUserIdV1(requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/dev/user_id/v1",
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getUserIdV2(requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/dev/user_id/v2",
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
     /// Returns the complete decoded JWT token information for development purposes. | () -> (DecodedJWTWithOrgAndUserId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -65,6 +41,18 @@ public final class DevClient: Sendable {
             path: "/dev/email/v1",
             requestOptions: requestOptions,
             responseType: String.self
+        )
+    }
+
+    /// Returns the current GitHub PR number and commit hash for the deployment. | () -> (dict[str, str])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getGitInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/dev/git_info/v1",
+            requestOptions: requestOptions,
+            responseType: [String: String].self
         )
     }
 
@@ -93,15 +81,27 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Returns the current GitHub PR number and commit hash for the deployment. | () -> (dict[str, str])
+    /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getGitInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
+    public func getUserIdV1(requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/git_info/v1",
+            path: "/dev/user_id/v1",
             requestOptions: requestOptions,
-            responseType: [String: String].self
+            responseType: String.self
+        )
+    }
+
+    /// Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getUserIdV2(requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/dev/user_id/v2",
+            requestOptions: requestOptions,
+            responseType: String.self
         )
     }
 }

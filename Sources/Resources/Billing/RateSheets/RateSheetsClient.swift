@@ -7,28 +7,18 @@ public final class RateSheetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a rate sheet by ID. Only the owning org can fetch. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (RateSheet1)
+    /// Archives or unarchives a rate sheet. When archiving, automatically removes the rate sheet from all default assignments (OrgPrivateData, Connections, Drivers). | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(rateSheetId: String, requestOptions: RequestOptions? = nil) async throws -> RateSheet1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/billing/rate_sheets/v1/\(rateSheetId)",
-            requestOptions: requestOptions,
-            responseType: RateSheet1.self
-        )
-    }
-
-    /// Updates a rate sheet. Only name, comments, cargo_types, and vehicle_types can be changed. Use the archive endpoint for archiving. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | (RateSheetClientUpdate1) -> (RateSheet1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(rateSheetId: String, request: Requests.RateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> RateSheet1 {
+    public func archiveV1(rateSheetId: String, archive: Bool, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/billing/rate_sheets/v1/\(rateSheetId)",
-            body: request,
+            path: "/billing/rate_sheets/archive/v1/\(rateSheetId)",
+            queryParams: [
+                "archive": .bool(archive)
+            ],
             requestOptions: requestOptions,
-            responseType: RateSheet1.self
+            responseType: Bool.self
         )
     }
 
@@ -55,54 +45,6 @@ public final class RateSheetsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: RateSheetListResponse.self
-        )
-    }
-
-    /// Creates a rate sheet. Couriers and forwarders only. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | (RateSheetClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(paymentVectorType: PaymentVectorTypeEnum1, request: Requests.RateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/rate_sheets/v1",
-            queryParams: [
-                "payment_vector_type": .string(paymentVectorType.rawValue)
-            ],
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Archives or unarchives a rate sheet. When archiving, automatically removes the rate sheet from all default assignments (OrgPrivateData, Connections, Drivers). | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func archiveV1(rateSheetId: String, archive: Bool, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/rate_sheets/archive/v1/\(rateSheetId)",
-            queryParams: [
-                "archive": .bool(archive)
-            ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Sets or clears the org's default rate sheet for a payment vector type and service type. Pass rate_sheet_id to set a default, or omit it to clear the default. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateOrgDefaultForServiceTypeV1(paymentVectorType: PaymentVectorTypeEnum1, serviceType: ServiceTypeEnum1, rateSheetId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/rate_sheets/update_org_default_for_service_type/v1",
-            queryParams: [
-                "payment_vector_type": .string(paymentVectorType.rawValue), 
-                "service_type": .string(serviceType.rawValue), 
-                "rate_sheet_id": rateSheetId.map { .string($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
         )
     }
 
@@ -154,6 +96,64 @@ public final class RateSheetsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Sets or clears the org's default rate sheet for a payment vector type and service type. Pass rate_sheet_id to set a default, or omit it to clear the default. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateOrgDefaultForServiceTypeV1(paymentVectorType: PaymentVectorTypeEnum1, serviceType: ServiceTypeEnum1, rateSheetId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/rate_sheets/update_org_default_for_service_type/v1",
+            queryParams: [
+                "payment_vector_type": .string(paymentVectorType.rawValue), 
+                "service_type": .string(serviceType.rawValue), 
+                "rate_sheet_id": rateSheetId.map { .string($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Creates a rate sheet. Couriers and forwarders only. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | (RateSheetClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(paymentVectorType: PaymentVectorTypeEnum1, request: Requests.RateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/rate_sheets/v1",
+            queryParams: [
+                "payment_vector_type": .string(paymentVectorType.rawValue)
+            ],
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Retrieves a rate sheet by ID. Only the owning org can fetch. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (RateSheet1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(rateSheetId: String, requestOptions: RequestOptions? = nil) async throws -> RateSheet1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing/rate_sheets/v1/\(rateSheetId)",
+            requestOptions: requestOptions,
+            responseType: RateSheet1.self
+        )
+    }
+
+    /// Updates a rate sheet. Only name, comments, cargo_types, and vehicle_types can be changed. Use the archive endpoint for archiving. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | (RateSheetClientUpdate1) -> (RateSheet1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(rateSheetId: String, request: Requests.RateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> RateSheet1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/rate_sheets/v1/\(rateSheetId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: RateSheet1.self
         )
     }
 }

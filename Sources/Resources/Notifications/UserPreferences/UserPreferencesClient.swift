@@ -7,18 +7,6 @@ public final class UserPreferencesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the caller's notification preferences. | () -> (NotificationUserPreferences1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> NotificationUserPreferences1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/notifications/user_preferences/get/v1",
-            requestOptions: requestOptions,
-            responseType: NotificationUserPreferences1.self
-        )
-    }
-
     /// Creates a new notification preferences record for the caller. Returns existing preferences if already created. | () -> (NotificationUserPreferences1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -26,6 +14,18 @@ public final class UserPreferencesClient: Sendable {
         return try await httpClient.performRequest(
             method: .post,
             path: "/notifications/user_preferences/create/v1",
+            requestOptions: requestOptions,
+            responseType: NotificationUserPreferences1.self
+        )
+    }
+
+    /// Retrieves the caller's notification preferences. | () -> (NotificationUserPreferences1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> NotificationUserPreferences1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/notifications/user_preferences/get/v1",
             requestOptions: requestOptions,
             responseType: NotificationUserPreferences1.self
         )

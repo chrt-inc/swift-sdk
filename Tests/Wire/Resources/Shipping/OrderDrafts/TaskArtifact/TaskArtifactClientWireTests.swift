@@ -20,8 +20,8 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.shipping.orderDrafts.taskArtifact.addV1(
             request: .init(
-                taskId: "task_id",
-                taskArtifactType: .image
+                taskArtifactType: .image,
+                taskId: "task_id"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

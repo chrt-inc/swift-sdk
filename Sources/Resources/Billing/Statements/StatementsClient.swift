@@ -7,18 +7,6 @@ public final class StatementsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Gets a statement by ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/billing/v1/\(statementId)",
-            requestOptions: requestOptions,
-            responseType: Statement1.self
-        )
-    }
-
     /// Gets a statement by its associated LineItemGroup ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -28,6 +16,31 @@ public final class StatementsClient: Sendable {
             path: "/billing/by_lig_id/v1/\(lineItemGroupId)",
             requestOptions: requestOptions,
             responseType: Statement1.self
+        )
+    }
+
+    /// Creates a new statement without LIG IDs, starting in STAGED status. Requires payment vector, origin, and destination. | authz: org_type=[courier, forwarder], min_org_role=operator | (CreateStatementReq) -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.CreateStatementReq, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Deletes a statement. Only allowed if statement has no LineItemGroup IDs. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/billing/delete/v1/\(statementId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -86,57 +99,6 @@ public final class StatementsClient: Sendable {
         )
     }
 
-    /// Creates a new statement without LIG IDs, starting in STAGED status. Requires payment vector, origin, and destination. | authz: org_type=[courier, forwarder], min_org_role=operator | (CreateStatementReq) -> (Statement1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.CreateStatementReq, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Statement1.self
-        )
-    }
-
-    /// Deletes a statement. Only allowed if statement has no LineItemGroup IDs. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/billing/delete/v1/\(statementId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Updates the settlement type of a statement. Statement must be in STAGED status. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED | (SettlementTypeEnum1) -> (Statement1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateSettlementTypeV1(statementId: String, request: Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingUpdateSettlementTypeV1StatementIdPatch, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/update_settlement_type/v1/\(statementId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Statement1.self
-        )
-    }
-
-    /// Updates the status of an off-CHRT settlement statement. Used to manually transition OFF_CHRT statements between STAGED, OPEN, PAID, and VOID. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | (StatementStatusEnum1) -> (Statement1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateOffChrtSettlementStateV1(statementId: String, request: Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingUpdateOffChrtSettlementStateV1StatementIdPatch, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/update_off_chrt_settlement_state/v1/\(statementId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Statement1.self
-        )
-    }
-
     /// Opens a Stripe Connect invoice for a statement and attempt to send via email. Org must have a Stripe Connect account. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED, line_item_groups_status=FINALIZED | (OpenInvoiceReq) -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -157,6 +119,44 @@ public final class StatementsClient: Sendable {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/sync_invoice/v1/\(statementId)",
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Updates the status of an off-CHRT settlement statement. Used to manually transition OFF_CHRT statements between STAGED, OPEN, PAID, and VOID. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | (StatementStatusEnum1) -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateOffChrtSettlementStateV1(statementId: String, request: Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingUpdateOffChrtSettlementStateV1StatementIdPatch, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/update_off_chrt_settlement_state/v1/\(statementId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Updates the settlement type of a statement. Statement must be in STAGED status. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED | (SettlementTypeEnum1) -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateSettlementTypeV1(statementId: String, request: Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingUpdateSettlementTypeV1StatementIdPatch, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/update_settlement_type/v1/\(statementId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Gets a statement by ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing/v1/\(statementId)",
             requestOptions: requestOptions,
             responseType: Statement1.self
         )

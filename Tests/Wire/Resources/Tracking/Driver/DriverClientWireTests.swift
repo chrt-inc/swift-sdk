@@ -9,9 +9,9 @@ import Chrt
             body: Data(
                 """
                 {
+                  "cargo_tracking_count": 1,
                   "driver_updated": true,
-                  "task_group_tracking_count": 1,
-                  "cargo_tracking_count": 1
+                  "task_group_tracking_count": 1
                 }
                 """.utf8
             )
@@ -22,13 +22,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = DriverUpdateRes(
+            cargoTrackingCount: 1,
             driverUpdated: true,
-            taskGroupTrackingCount: 1,
-            cargoTrackingCount: 1
+            taskGroupTrackingCount: 1
         )
         let response = try await client.tracking.driver.updateV1(
             request: LocationFeature(
-                type: .feature,
                 geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
@@ -43,7 +42,8 @@ import Chrt
                             )
                         ]
                     )
-                )
+                ),
+                type: .feature
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

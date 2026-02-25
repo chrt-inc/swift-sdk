@@ -7,29 +7,15 @@ public final class SharingSettingsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Updates the sharing settings for a task group by driver tracking dataset. | authz_personas=[forwarder_org_operators, shipper_org_operators, courier_org_operators, courier_driver] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
+    /// Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. | () -> (list[TrackingSharingSettingsRes])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func taskGroupByDriverSharingSettingsV1(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverSharingSettings1 {
+    public func getSettingsV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> [TrackingSharingSettingsRes] {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sharing_settings/task_group_by_driver/v1",
-            body: request,
+            method: .get,
+            path: "/tracking/sharing_settings/by_order/v1/\(orderIdOrShortId)",
             requestOptions: requestOptions,
-            responseType: TaskGroupByDriverSharingSettings1.self
-        )
-    }
-
-    /// Updates the sharing settings for a cargo by driver tracking dataset. | authz_personas=[forwarder_org_operators, shipper_org_operators, courier_org_operators, courier_driver] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func cargoByDriverSettingsV1(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverSharingSettings1 {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sharing_settings/cargo_by_driver/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: CargoByDriverSharingSettings1.self
+            responseType: [TrackingSharingSettingsRes].self
         )
     }
 
@@ -46,15 +32,29 @@ public final class SharingSettingsClient: Sendable {
         )
     }
 
-    /// Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. | () -> (list[TrackingSharingSettingsRes])
+    /// Updates the sharing settings for a cargo by driver tracking dataset. | authz_personas=[forwarder_org_operators, shipper_org_operators, courier_org_operators, courier_driver] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getSettingsV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> [TrackingSharingSettingsRes] {
+    public func cargoByDriverSettingsV1(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverSharingSettings1 {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/sharing_settings/by_order/v1/\(orderIdOrShortId)",
+            method: .post,
+            path: "/tracking/sharing_settings/cargo_by_driver/v1",
+            body: request,
             requestOptions: requestOptions,
-            responseType: [TrackingSharingSettingsRes].self
+            responseType: CargoByDriverSharingSettings1.self
+        )
+    }
+
+    /// Updates the sharing settings for a task group by driver tracking dataset. | authz_personas=[forwarder_org_operators, shipper_org_operators, courier_org_operators, courier_driver] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func taskGroupByDriverSharingSettingsV1(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverSharingSettings1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/sharing_settings/task_group_by_driver/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: TaskGroupByDriverSharingSettings1.self
         )
     }
 }

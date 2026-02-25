@@ -7,18 +7,6 @@ public final class ShipperClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves shipper organization connection information for the caller's organization. | () -> (ShipperOrgInfoForConnections1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ShipperOrgInfoForConnections1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/org_info_for_connections/shipper/v1",
-            requestOptions: requestOptions,
-            responseType: ShipperOrgInfoForConnections1.self
-        )
-    }
-
     /// Creates shipper organization connection information. Fails if already exists. | (ShipperOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -42,6 +30,18 @@ public final class ShipperClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves shipper organization connection information for the caller's organization. | () -> (ShipperOrgInfoForConnections1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ShipperOrgInfoForConnections1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_info_for_connections/shipper/v1",
+            requestOptions: requestOptions,
+            responseType: ShipperOrgInfoForConnections1.self
         )
     }
 }

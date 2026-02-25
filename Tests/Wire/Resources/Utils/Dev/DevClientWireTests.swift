@@ -9,8 +9,8 @@ import Chrt
             body: Data(
                 """
                 {
-                  "response": "response",
                   "logistics_fact": "logistics_fact",
+                  "response": "response",
                   "topics_used": [
                     "topics_used"
                   ]
@@ -24,8 +24,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = AgentRes(
-            response: "response",
             logisticsFact: "logistics_fact",
+            response: "response",
             topicsUsed: [
                 "topics_used"
             ]
@@ -34,44 +34,6 @@ import Chrt
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func getUserIdV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.utils.dev.getUserIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
-        try #require(response == expectedResponse)
-    }
-
-    @Test func getUserIdV21() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.utils.dev.getUserIdV2(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -90,21 +52,21 @@ import Chrt
                   "iss": "iss",
                   "jti": "jti",
                   "nbf": 1,
-                  "sid": "sid",
-                  "sub": "sub",
-                  "sts": "sts",
-                  "v": 1,
                   "o": {
                     "id": "id",
                     "rol": "owner",
                     "slg": "slg"
                   },
+                  "org_id": "org_id",
                   "org_public_metadata": {
                     "key": "value"
                   },
                   "primary_email_address": "primary_email_address",
+                  "sid": "sid",
+                  "sts": "sts",
+                  "sub": "sub",
                   "user_id": "user_id",
-                  "org_id": "org_id"
+                  "v": 1
                 }
                 """.utf8
             )
@@ -124,21 +86,21 @@ import Chrt
             iss: Optional("iss"),
             jti: Optional("jti"),
             nbf: Optional(1),
-            sid: Optional("sid"),
-            sub: Optional("sub"),
-            sts: Optional("sts"),
-            v: Optional(1),
             o: Optional(ClerkOrgData(
                 id: Optional("id"),
                 rol: Optional(.owner),
                 slg: Optional("slg")
             )),
+            orgId: "org_id",
             orgPublicMetadata: Optional([
                 "key": JSONValue.string("value")
             ]),
             primaryEmailAddress: Optional("primary_email_address"),
+            sid: Optional("sid"),
+            sts: Optional("sts"),
+            sub: Optional("sub"),
             userId: "user_id",
-            orgId: "org_id"
+            v: Optional(1)
         )
         let response = try await client.utils.dev.getDecodedJwtV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -160,6 +122,29 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.utils.dev.getEmailV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getGitInfoV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "key": "value"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "key": "value"
+        ]
+        let response = try await client.utils.dev.getGitInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -216,14 +201,12 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func getGitInfoV11() async throws -> Void {
+    @Test func getUserIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                {
-                  "key": "value"
-                }
+                string
                 """.utf8
             )
         )
@@ -232,10 +215,27 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            "key": "value"
-        ]
-        let response = try await client.utils.dev.getGitInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = "string"
+        let response = try await client.utils.dev.getUserIdV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getUserIdV21() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.utils.dev.getUserIdV2(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

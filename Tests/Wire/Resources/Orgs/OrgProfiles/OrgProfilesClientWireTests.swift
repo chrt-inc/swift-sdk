@@ -3,29 +3,12 @@ import Testing
 import Chrt
 
 @Suite("OrgProfilesClient Wire Tests") struct OrgProfilesClientWireTests {
-    @Test func getV11() async throws -> Void {
+    @Test func getAvatarV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                {
-                  "courier_org_profile": {
-                    "schema_version": 1,
-                    "description": "description",
-                    "email_address_primary": "email_address_primary",
-                    "phone_number_primary": "phone_number_primary",
-                    "org_id": "org_id",
-                    "_id": "_id"
-                  },
-                  "forwarder_org_profile": {
-                    "schema_version": 1,
-                    "description": "description",
-                    "email_address_primary": "email_address_primary",
-                    "phone_number_primary": "phone_number_primary",
-                    "org_id": "org_id",
-                    "_id": "_id"
-                  }
-                }
+                string
                 """.utf8
             )
         )
@@ -34,25 +17,11 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OrgProfileRes1(
-            courierOrgProfile: Optional(CourierOrgProfile1(
-                schemaVersion: 1,
-                description: "description",
-                emailAddressPrimary: "email_address_primary",
-                phoneNumberPrimary: "phone_number_primary",
-                orgId: "org_id",
-                id: "_id"
-            )),
-            forwarderOrgProfile: Optional(ForwarderOrgProfile1(
-                schemaVersion: 1,
-                description: "description",
-                emailAddressPrimary: "email_address_primary",
-                phoneNumberPrimary: "phone_number_primary",
-                orgId: "org_id",
-                id: "_id"
-            ))
+        let expectedResponse = "string"
+        let response = try await client.orgs.orgProfiles.getAvatarV1(
+            handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
-        let response = try await client.orgs.orgProfiles.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -73,37 +42,10 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.orgs.orgProfiles.createCourierV1(
             request: .init(
-                schemaVersion: 1,
                 description: "description",
                 emailAddressPrimary: "email_address_primary",
-                phoneNumberPrimary: "phone_number_primary"
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func createForwarderV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.orgs.orgProfiles.createForwarderV1(
-            request: .init(
-                schemaVersion: 1,
-                description: "description",
-                emailAddressPrimary: "email_address_primary",
-                phoneNumberPrimary: "phone_number_primary"
+                phoneNumberPrimary: "phone_number_primary",
+                schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -132,6 +74,33 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func createForwarderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.orgs.orgProfiles.createForwarderV1(
+            request: .init(
+                description: "description",
+                emailAddressPrimary: "email_address_primary",
+                phoneNumberPrimary: "phone_number_primary",
+                schemaVersion: 1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateForwarderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -154,27 +123,27 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func getByHandleV11() async throws -> Void {
+    @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
                 {
                   "courier_org_profile": {
-                    "schema_version": 1,
+                    "_id": "_id",
                     "description": "description",
                     "email_address_primary": "email_address_primary",
-                    "phone_number_primary": "phone_number_primary",
                     "org_id": "org_id",
-                    "_id": "_id"
+                    "phone_number_primary": "phone_number_primary",
+                    "schema_version": 1
                   },
                   "forwarder_org_profile": {
-                    "schema_version": 1,
+                    "_id": "_id",
                     "description": "description",
                     "email_address_primary": "email_address_primary",
-                    "phone_number_primary": "phone_number_primary",
                     "org_id": "org_id",
-                    "_id": "_id"
+                    "phone_number_primary": "phone_number_primary",
+                    "schema_version": 1
                   }
                 }
                 """.utf8
@@ -187,35 +156,49 @@ import Chrt
         )
         let expectedResponse = OrgProfileRes1(
             courierOrgProfile: Optional(CourierOrgProfile1(
-                schemaVersion: 1,
+                id: "_id",
                 description: "description",
                 emailAddressPrimary: "email_address_primary",
-                phoneNumberPrimary: "phone_number_primary",
                 orgId: "org_id",
-                id: "_id"
+                phoneNumberPrimary: "phone_number_primary",
+                schemaVersion: 1
             )),
             forwarderOrgProfile: Optional(ForwarderOrgProfile1(
-                schemaVersion: 1,
+                id: "_id",
                 description: "description",
                 emailAddressPrimary: "email_address_primary",
-                phoneNumberPrimary: "phone_number_primary",
                 orgId: "org_id",
-                id: "_id"
+                phoneNumberPrimary: "phone_number_primary",
+                schemaVersion: 1
             ))
         )
-        let response = try await client.orgs.orgProfiles.getByHandleV1(
-            handle: "handle",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
+        let response = try await client.orgs.orgProfiles.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
-    @Test func getAvatarV11() async throws -> Void {
+    @Test func getByHandleV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                string
+                {
+                  "courier_org_profile": {
+                    "_id": "_id",
+                    "description": "description",
+                    "email_address_primary": "email_address_primary",
+                    "org_id": "org_id",
+                    "phone_number_primary": "phone_number_primary",
+                    "schema_version": 1
+                  },
+                  "forwarder_org_profile": {
+                    "_id": "_id",
+                    "description": "description",
+                    "email_address_primary": "email_address_primary",
+                    "org_id": "org_id",
+                    "phone_number_primary": "phone_number_primary",
+                    "schema_version": 1
+                  }
+                }
                 """.utf8
             )
         )
@@ -224,8 +207,25 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
-        let response = try await client.orgs.orgProfiles.getAvatarV1(
+        let expectedResponse = OrgProfileRes1(
+            courierOrgProfile: Optional(CourierOrgProfile1(
+                id: "_id",
+                description: "description",
+                emailAddressPrimary: "email_address_primary",
+                orgId: "org_id",
+                phoneNumberPrimary: "phone_number_primary",
+                schemaVersion: 1
+            )),
+            forwarderOrgProfile: Optional(ForwarderOrgProfile1(
+                id: "_id",
+                description: "description",
+                emailAddressPrimary: "email_address_primary",
+                orgId: "org_id",
+                phoneNumberPrimary: "phone_number_primary",
+                schemaVersion: 1
+            ))
+        )
+        let response = try await client.orgs.orgProfiles.getByHandleV1(
             handle: "handle",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

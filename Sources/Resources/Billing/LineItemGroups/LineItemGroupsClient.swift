@@ -13,13 +13,53 @@ public final class LineItemGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Gets a line item group by ID. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroup1)
+    /// Adjusts a line item within a line item group. LIG must be ADJUSTABLE. Adjustment can be negative beyond item.amount to serve as a credit. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (AdjustLineItemReq) -> (LineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+    public func adjustLineItemV1(lineItemGroupId: String, request: Requests.AdjustLineItemReq, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/billing/line_item_groups/v1/\(lineItemGroupId)",
+            method: .patch,
+            path: "/billing/line_item_groups/adjust_line_item/v1/\(lineItemGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: LineItemGroup1.self
+        )
+    }
+
+    /// Associates a line item group with a statement. LIG must be PENDING_RATES, PENDING_CALCULATION, ADJUSTABLE, or FINALIZED (before OPEN). Statement must be STAGED. LIG payment info must match Statement. Also removes from previous statement if any. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators, statement_owner_operators] | (PydanticObjectId) -> (LineItemGroup1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func associateWithStatementV1(lineItemGroupId: String, statementId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/line_item_groups/associate_with_statement/v1/\(lineItemGroupId)",
+            queryParams: [
+                "statement_id": .string(statementId)
+            ],
+            requestOptions: requestOptions,
+            responseType: LineItemGroup1.self
+        )
+    }
+
+    /// (Re)calculates line items for a line item group. LIG must be PENDING_CALCULATION or ADJUSTABLE and must be associated with a TaskGroup. Note: Line item calculation normally happens automatically; this route is primarily for PENDING_CALCULATION LIGs where automatic calculation failed (e.g., due to third-party service failure). | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func calculateLineItemsV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/line_item_groups/calculate_line_items/v1/\(lineItemGroupId)",
+            requestOptions: requestOptions,
+            responseType: LineItemGroup1.self
+        )
+    }
+
+    /// Finalizes a line item group. LIG must be in ADJUSTABLE status. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func finalizeV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/line_item_groups/finalize/v1/\(lineItemGroupId)",
             requestOptions: requestOptions,
             responseType: LineItemGroup1.self
         )
@@ -67,53 +107,13 @@ public final class LineItemGroupsClient: Sendable {
         )
     }
 
-    /// Finalizes a line item group. LIG must be in ADJUSTABLE status. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
+    /// Gets a line item group by ID. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func finalizeV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+    public func getV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/line_item_groups/finalize/v1/\(lineItemGroupId)",
-            requestOptions: requestOptions,
-            responseType: LineItemGroup1.self
-        )
-    }
-
-    /// (Re)calculates line items for a line item group. LIG must be PENDING_CALCULATION or ADJUSTABLE and must be associated with a TaskGroup. Note: Line item calculation normally happens automatically; this route is primarily for PENDING_CALCULATION LIGs where automatic calculation failed (e.g., due to third-party service failure). | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func calculateLineItemsV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/line_item_groups/calculate_line_items/v1/\(lineItemGroupId)",
-            requestOptions: requestOptions,
-            responseType: LineItemGroup1.self
-        )
-    }
-
-    /// Associates a line item group with a statement. LIG must be PENDING_RATES, PENDING_CALCULATION, ADJUSTABLE, or FINALIZED (before OPEN). Statement must be STAGED. LIG payment info must match Statement. Also removes from previous statement if any. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators, statement_owner_operators] | (PydanticObjectId) -> (LineItemGroup1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func associateWithStatementV1(lineItemGroupId: String, statementId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/line_item_groups/associate_with_statement/v1/\(lineItemGroupId)",
-            queryParams: [
-                "statement_id": .string(statementId)
-            ],
-            requestOptions: requestOptions,
-            responseType: LineItemGroup1.self
-        )
-    }
-
-    /// Adjusts a line item within a line item group. LIG must be ADJUSTABLE. Adjustment can be negative beyond item.amount to serve as a credit. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (AdjustLineItemReq) -> (LineItemGroup1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func adjustLineItemV1(lineItemGroupId: String, request: Requests.AdjustLineItemReq, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/line_item_groups/adjust_line_item/v1/\(lineItemGroupId)",
-            body: request,
+            method: .get,
+            path: "/billing/line_item_groups/v1/\(lineItemGroupId)",
             requestOptions: requestOptions,
             responseType: LineItemGroup1.self
         )

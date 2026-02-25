@@ -1,20 +1,32 @@
 import Foundation
 
 public final class OrderDraftsClient: Sendable {
-    public let taskGroup: TaskGroupClient
-    public let task: TaskClient
-    public let taskArtifact: TaskArtifactClient
     public let cargo: CargoClient
     public let expanded: ExpandedClient
+    public let task: TaskClient
+    public let taskArtifact: TaskArtifactClient
+    public let taskGroup: TaskGroupClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.taskGroup = TaskGroupClient(config: config)
-        self.task = TaskClient(config: config)
-        self.taskArtifact = TaskArtifactClient(config: config)
         self.cargo = CargoClient(config: config)
         self.expanded = ExpandedClient(config: config)
+        self.task = TaskClient(config: config)
+        self.taskArtifact = TaskArtifactClient(config: config)
+        self.taskGroup = TaskGroupClient(config: config)
         self.httpClient = HTTPClient(config: config)
+    }
+
+    /// Deletes a draft order and all associated entities. | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/order_drafts/delete/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
     }
 
     /// Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
@@ -40,18 +52,6 @@ public final class OrderDraftsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OrdersDraftUpdateRes.self
-        )
-    }
-
-    /// Deletes a draft order and all associated entities. | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/order_drafts/delete/v1/\(orderId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
         )
     }
 
