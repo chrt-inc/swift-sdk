@@ -1,3 +1,12 @@
+## 1.455.1 - 2026-02-26
+* chore: update CLI version to 3.90.3
+* Updates the Fern CLI version from 3.88.3 to 3.90.3 in the metadata configuration. This change maintains compatibility with the latest CLI features and improvements while keeping all other generator settings unchanged.
+* Key changes:
+* Update cliVersion from 3.88.3 to 3.90.3 in metadata.json
+* Maintain existing generator configuration and version
+* Ensure compatibility with latest CLI tooling
+* 🌿 Generated with Fern
+
 ## 1.449.3 - 2026-02-26
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
