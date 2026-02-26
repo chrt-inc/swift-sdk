@@ -1,3 +1,11 @@
+## 1.455.2 - 2026-02-26
+* chore: update CLI version to 3.90.3
+* Update the Fern CLI version from 3.88.4 to 3.90.3 in metadata configuration. This version bump may include improvements to code generation, bug fixes, or new CLI features that enhance the development workflow.
+* Key changes:
+* Update cliVersion from 3.88.4 to 3.90.3 in .fern/metadata.json
+* Maintain existing generator configuration unchanged
+* 🌿 Generated with Fern
+
 ## 1.455.1 - 2026-02-26
 * chore: update CLI version to 3.90.3
 * Updates the Fern CLI version from 3.88.3 to 3.90.3 in the metadata configuration. This change maintains compatibility with the latest CLI features and improvements while keeping all other generator settings unchanged.
