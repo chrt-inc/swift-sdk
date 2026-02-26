@@ -9,10 +9,10 @@ import Chrt
             body: Data(
                 """
                 {
+                  "flight_number": "flight_number",
                   "fa_flight_ids": [
                     "fa_flight_ids"
-                  ],
-                  "flight_number": "flight_number"
+                  ]
                 }
                 """.utf8
             )
@@ -23,10 +23,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = FlightInfoForTaskRes(
+            flightNumber: Optional("flight_number"),
             faFlightIds: Optional([
                 "fa_flight_ids"
-            ]),
-            flightNumber: Optional("flight_number")
+            ])
         )
         let response = try await client.shipping.flights.getFlightInfoForTaskV1(
             taskId: "task_id",

@@ -9,18 +9,6 @@ public final class OrdersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Cancels an order and all related task groups and tasks in a transaction. | authz_personas=[lig_owner_operators] | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func cancelV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .put,
-            path: "/shipping/orders/cancel/v1/\(orderId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Validates a draft order and stages all related entities in a transaction. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -28,6 +16,18 @@ public final class OrdersClient: Sendable {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/shipping/orders/stage/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Cancels an order and all related task groups and tasks in a transaction. | authz_personas=[lig_owner_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func cancelV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/orders/cancel/v1/\(orderId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

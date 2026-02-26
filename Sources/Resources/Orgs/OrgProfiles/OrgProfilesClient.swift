@@ -7,15 +7,15 @@ public final class OrgProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the organization avatar image URL from Clerk or a placeholder if not found. | () -> (str)
+    /// Retrieves the courier or forwarder organization profile for the caller's organization. | () -> (OrgProfileRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/org_profiles/avatar/v1/\(handle)",
+            path: "/orgs/org_profiles/v1",
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: OrgProfileRes1.self
         )
     }
 
@@ -26,6 +26,19 @@ public final class OrgProfilesClient: Sendable {
         return try await httpClient.performRequest(
             method: .post,
             path: "/orgs/org_profiles/courier/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Creates a new forwarder organization profile. Fails if a profile already exists for the organization. | (ForwarderOrgProfileClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createForwarderV1(request: Requests.ForwarderOrgProfileClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/orgs/org_profiles/forwarder/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
@@ -45,19 +58,6 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Creates a new forwarder organization profile. Fails if a profile already exists for the organization. | (ForwarderOrgProfileClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createForwarderV1(request: Requests.ForwarderOrgProfileClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/orgs/org_profiles/forwarder/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
     /// Updates an existing forwarder organization profile. Can update one or more fields. | (ForwarderOrgProfileClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -71,18 +71,6 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Retrieves the courier or forwarder organization profile for the caller's organization. | () -> (OrgProfileRes1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> OrgProfileRes1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/org_profiles/v1",
-            requestOptions: requestOptions,
-            responseType: OrgProfileRes1.self
-        )
-    }
-
     /// Retrieves a courier or forwarder organization profile using the organization's handle for public profile viewing. | () -> (OrgProfileRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -92,6 +80,18 @@ public final class OrgProfilesClient: Sendable {
             path: "/orgs/org_profiles/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: OrgProfileRes1.self
+        )
+    }
+
+    /// Returns the organization avatar image URL from Clerk or a placeholder if not found. | () -> (str)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_profiles/avatar/v1/\(handle)",
+            requestOptions: requestOptions,
+            responseType: String.self
         )
     }
 }

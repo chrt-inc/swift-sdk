@@ -1,3 +1,7 @@
+## 1.449.3 - 2026-02-26
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 1.449.2 - 2026-02-25
 * chore: update Fern CLI version
 * Update the CLI version in metadata configuration to leverage latest tooling capabilities and improvements.

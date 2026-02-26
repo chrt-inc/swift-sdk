@@ -36,8 +36,8 @@ import Chrt
         )
         let response = try await client.analytics.shipping.retrieveOrdersCountV1(
             request: .init(
-                end: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                start: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                start: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                end: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

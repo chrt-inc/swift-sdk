@@ -3,6 +3,50 @@ import Testing
 import Chrt
 
 @Suite("S3ObjectClient Wire Tests") struct S3ObjectClientWireTests {
+    @Test func getS3ObjectMetadataV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "_id": "_id",
+                  "task_artifact_id": "task_artifact_id",
+                  "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
+                  "uploaded_by_user_id": "uploaded_by_user_id",
+                  "uploaded_by_org_id": "uploaded_by_org_id",
+                  "s3_key_prefix": "shipping/task_artifact_s3_object_metadata",
+                  "blurhash": "blurhash",
+                  "content_type": "content_type",
+                  "filename": "filename"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = TaskArtifactS3ObjectMetadata1(
+            schemaVersion: 1,
+            id: "_id",
+            taskArtifactId: "task_artifact_id",
+            uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            uploadedByUserId: "uploaded_by_user_id",
+            uploadedByOrgId: "uploaded_by_org_id",
+            s3KeyPrefix: Optional(.shippingTaskArtifactS3ObjectMetadata),
+            blurhash: Optional("blurhash"),
+            contentType: Optional("content_type"),
+            filename: Optional("filename")
+        )
+        let response = try await client.shipping.taskArtifacts.s3Object.getS3ObjectMetadataV1(
+            taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func addV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -42,50 +86,6 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.shipping.taskArtifacts.s3Object.deleteV1(
-            taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func getS3ObjectMetadataV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "_id": "_id",
-                  "blurhash": "blurhash",
-                  "content_type": "content_type",
-                  "filename": "filename",
-                  "s3_key_prefix": "shipping/task_artifact_s3_object_metadata",
-                  "schema_version": 1,
-                  "task_artifact_id": "task_artifact_id",
-                  "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
-                  "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = TaskArtifactS3ObjectMetadata1(
-            id: "_id",
-            blurhash: Optional("blurhash"),
-            contentType: Optional("content_type"),
-            filename: Optional("filename"),
-            s3KeyPrefix: Optional(.shippingTaskArtifactS3ObjectMetadata),
-            schemaVersion: 1,
-            taskArtifactId: "task_artifact_id",
-            uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id"
-        )
-        let response = try await client.shipping.taskArtifacts.s3Object.getS3ObjectMetadataV1(
             taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

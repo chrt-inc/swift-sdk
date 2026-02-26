@@ -9,10 +9,10 @@ import Chrt
             body: Data(
                 """
                 {
-                  "_id": "_id",
-                  "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "schema_version": 1,
-                  "user_id": "user_id"
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "user_id": "user_id",
+                  "_id": "_id"
                 }
                 """.utf8
             )
@@ -23,10 +23,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = UserPublicData1(
-            id: "_id",
-            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            userId: "user_id"
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            userId: "user_id",
+            id: "_id"
         )
         let response = try await client.users.publicData.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)

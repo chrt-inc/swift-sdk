@@ -7,36 +7,36 @@ import Foundation
 /// To ensure geometry is always present, validate it at runtime or make it required.
 public struct LocationFeature: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
-    public let geometry: Geometry
-    public let id: Id?
-    public let properties: LocationProperties?
     public let type: Feature
+    public let geometry: Geometry
+    public let properties: LocationProperties?
+    public let id: Id?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         bbox: [JSONValue]? = nil,
-        geometry: Geometry,
-        id: Id? = nil,
-        properties: LocationProperties? = nil,
         type: Feature,
+        geometry: Geometry,
+        properties: LocationProperties? = nil,
+        id: Id? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.bbox = bbox
-        self.geometry = geometry
-        self.id = id
-        self.properties = properties
         self.type = type
+        self.geometry = geometry
+        self.properties = properties
+        self.id = id
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-        self.geometry = try container.decode(Geometry.self, forKey: .geometry)
-        self.id = try container.decodeIfPresent(Id.self, forKey: .id)
-        self.properties = try container.decodeIfPresent(LocationProperties.self, forKey: .properties)
         self.type = try container.decode(Feature.self, forKey: .type)
+        self.geometry = try container.decode(Geometry.self, forKey: .geometry)
+        self.properties = try container.decodeIfPresent(LocationProperties.self, forKey: .properties)
+        self.id = try container.decodeIfPresent(Id.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -44,10 +44,10 @@ public struct LocationFeature: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.bbox, forKey: .bbox)
-        try container.encode(self.geometry, forKey: .geometry)
-        try container.encodeIfPresent(self.id, forKey: .id)
-        try container.encodeIfPresent(self.properties, forKey: .properties)
         try container.encode(self.type, forKey: .type)
+        try container.encode(self.geometry, forKey: .geometry)
+        try container.encodeIfPresent(self.properties, forKey: .properties)
+        try container.encodeIfPresent(self.id, forKey: .id)
     }
 
     public enum Feature: String, Codable, Hashable, CaseIterable, Sendable {
@@ -57,9 +57,9 @@ public struct LocationFeature: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case bbox
-        case geometry
-        case id
-        case properties
         case type
+        case geometry
+        case properties
+        case id
     }
 }

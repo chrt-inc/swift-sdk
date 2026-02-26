@@ -7,6 +7,21 @@ public final class SessionByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDataPoint1? {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/timeseries/session_by_device/last_seen/v1",
+            queryParams: [
+                "session_id": .string(sessionId)
+            ],
+            requestOptions: requestOptions,
+            responseType: SessionByDeviceDataPoint1?.self
+        )
+    }
+
     /// Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[SessionByDeviceDataPoint1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -23,34 +38,16 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[SessionByDeviceDataPoint1])
+    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | (SessionByDeviceMarkOutliersRequest1) -> (SessionByDeviceMarkOutliersResponse1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsPublicV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionByDeviceDataPoint1] {
+    public func outlierV1(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceMarkOutliersResponse1 {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/timeseries/session_by_device/data_points_public/v1",
-            queryParams: [
-                "session_id": .string(sessionId), 
-                "limit": limit.map { .int($0) }
-            ],
+            method: .post,
+            path: "/tracking/timeseries/session_by_device/outlier/v1",
+            body: request,
             requestOptions: requestOptions,
-            responseType: [SessionByDeviceDataPoint1].self
-        )
-    }
-
-    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDataPoint1? {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/timeseries/session_by_device/last_seen/v1",
-            queryParams: [
-                "session_id": .string(sessionId)
-            ],
-            requestOptions: requestOptions,
-            responseType: SessionByDeviceDataPoint1?.self
+            responseType: SessionByDeviceMarkOutliersResponse1.self
         )
     }
 
@@ -69,16 +66,19 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | (SessionByDeviceMarkOutliersRequest1) -> (SessionByDeviceMarkOutliersResponse1)
+    /// Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[SessionByDeviceDataPoint1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func outlierV1(request: Requests.SessionByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceMarkOutliersResponse1 {
+    public func dataPointsPublicV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionByDeviceDataPoint1] {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/timeseries/session_by_device/outlier/v1",
-            body: request,
+            method: .get,
+            path: "/tracking/timeseries/session_by_device/data_points_public/v1",
+            queryParams: [
+                "session_id": .string(sessionId), 
+                "limit": limit.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: SessionByDeviceMarkOutliersResponse1.self
+            responseType: [SessionByDeviceDataPoint1].self
         )
     }
 }

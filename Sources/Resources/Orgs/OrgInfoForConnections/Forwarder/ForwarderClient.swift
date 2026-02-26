@@ -7,6 +7,18 @@ public final class ForwarderClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves forwarder organization connection information for the caller's organization. | () -> (ForwarderOrgInfoForConnections1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ForwarderOrgInfoForConnections1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_info_for_connections/forwarder/v1",
+            requestOptions: requestOptions,
+            responseType: ForwarderOrgInfoForConnections1.self
+        )
+    }
+
     /// Creates forwarder organization connection information. Fails if already exists. | (ForwarderOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -30,18 +42,6 @@ public final class ForwarderClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
-        )
-    }
-
-    /// Retrieves forwarder organization connection information for the caller's organization. | () -> (ForwarderOrgInfoForConnections1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ForwarderOrgInfoForConnections1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/org_info_for_connections/forwarder/v1",
-            requestOptions: requestOptions,
-            responseType: ForwarderOrgInfoForConnections1.self
         )
     }
 }

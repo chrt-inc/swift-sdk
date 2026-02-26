@@ -20,13 +20,27 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order. | () -> (bool)
+    /// Sets the flight number and/or fa_flight_ids on a draft task group. | (SetFlightInfoReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setFlightInfoV1(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/order_drafts/task_group/delete/v1/\(taskGroupId)",
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/set_flight_info/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates the courier organization assigned to a draft task group. | (UpdateCourierOrgDraftReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCourierOrgV1(taskGroupId: String, request: Requests.UpdateCourierOrgDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/update_courier_org/v1/\(taskGroupId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -44,13 +58,13 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the flight number and/or fa_flight_ids on a draft task group. | (SetFlightInfoReq) -> (bool)
+    /// Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setFlightInfoV1(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setTaskOrderingV1(taskGroupId: String, request: Requests.SetTaskOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/set_flight_info/v1/\(taskGroupId)",
+            method: .put,
+            path: "/shipping/order_drafts/task_group/set_task_ordering/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -83,27 +97,13 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
+    /// Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setTaskOrderingV1(taskGroupId: String, request: Requests.SetTaskOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .put,
-            path: "/shipping/order_drafts/task_group/set_task_ordering/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Updates the courier organization assigned to a draft task group. | (UpdateCourierOrgDraftReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateCourierOrgV1(taskGroupId: String, request: Requests.UpdateCourierOrgDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/update_courier_org/v1/\(taskGroupId)",
-            body: request,
+            method: .delete,
+            path: "/shipping/order_drafts/task_group/delete/v1/\(taskGroupId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

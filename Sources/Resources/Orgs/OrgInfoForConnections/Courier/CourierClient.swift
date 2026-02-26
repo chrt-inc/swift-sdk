@@ -7,16 +7,15 @@ public final class CourierClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates courier organization connection information. Fails if already exists. | (CourierOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
+    /// Retrieves courier organization connection information for the caller's organization. | () -> (CourierOrgInfoForConnections1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.CourierOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> CourierOrgInfoForConnections1 {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/orgs/org_info_for_connections/courier/create/v1",
-            body: request,
+            method: .get,
+            path: "/orgs/org_info_for_connections/courier/v1",
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: CourierOrgInfoForConnections1.self
         )
     }
 
@@ -32,6 +31,19 @@ public final class CourierClient: Sendable {
         )
     }
 
+    /// Creates courier organization connection information. Fails if already exists. | (CourierOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.CourierOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/orgs/org_info_for_connections/courier/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Updates existing courier organization connection information. | (CourierOrgInfoForConnectionsClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -42,18 +54,6 @@ public final class CourierClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
-        )
-    }
-
-    /// Retrieves courier organization connection information for the caller's organization. | () -> (CourierOrgInfoForConnections1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> CourierOrgInfoForConnections1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/org_info_for_connections/courier/v1",
-            requestOptions: requestOptions,
-            responseType: CourierOrgInfoForConnections1.self
         )
     }
 }

@@ -2,117 +2,117 @@ import Foundation
 
 extension Requests {
     public struct OffChrtShipperOrgClientCreate1: Codable, Hashable, Sendable {
+        public let schemaVersion: Int
         public let companyName: String?
+        public let industry: String?
+        public let streetAddress: LocationFeature?
         public let contactFirstName: String?
         public let contactLastName: String?
-        public let defaultRateSheetOnDemand: String?
-        public let defaultRateSheetRouted: String?
-        public let emailAddressPrimary: String
-        public let emailAddressSecondary: String?
-        public let industry: String?
-        public let jobTitle: String?
-        public let notes: String?
         public let phoneNumberPrimary: String?
         public let phoneNumberSecondary: String?
-        public let schemaVersion: Int
+        public let emailAddressPrimary: String
+        public let emailAddressSecondary: String?
+        public let jobTitle: String?
+        public let notes: String?
         public let shipperCustomerIdForStripeConnectAccount: String?
-        public let streetAddress: LocationFeature?
+        public let defaultRateSheetRouted: String?
+        public let defaultRateSheetOnDemand: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            schemaVersion: Int,
             companyName: String? = nil,
+            industry: String? = nil,
+            streetAddress: LocationFeature? = nil,
             contactFirstName: String? = nil,
             contactLastName: String? = nil,
-            defaultRateSheetOnDemand: String? = nil,
-            defaultRateSheetRouted: String? = nil,
-            emailAddressPrimary: String,
-            emailAddressSecondary: String? = nil,
-            industry: String? = nil,
-            jobTitle: String? = nil,
-            notes: String? = nil,
             phoneNumberPrimary: String? = nil,
             phoneNumberSecondary: String? = nil,
-            schemaVersion: Int,
+            emailAddressPrimary: String,
+            emailAddressSecondary: String? = nil,
+            jobTitle: String? = nil,
+            notes: String? = nil,
             shipperCustomerIdForStripeConnectAccount: String? = nil,
-            streetAddress: LocationFeature? = nil,
+            defaultRateSheetRouted: String? = nil,
+            defaultRateSheetOnDemand: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.schemaVersion = schemaVersion
             self.companyName = companyName
+            self.industry = industry
+            self.streetAddress = streetAddress
             self.contactFirstName = contactFirstName
             self.contactLastName = contactLastName
-            self.defaultRateSheetOnDemand = defaultRateSheetOnDemand
-            self.defaultRateSheetRouted = defaultRateSheetRouted
-            self.emailAddressPrimary = emailAddressPrimary
-            self.emailAddressSecondary = emailAddressSecondary
-            self.industry = industry
-            self.jobTitle = jobTitle
-            self.notes = notes
             self.phoneNumberPrimary = phoneNumberPrimary
             self.phoneNumberSecondary = phoneNumberSecondary
-            self.schemaVersion = schemaVersion
+            self.emailAddressPrimary = emailAddressPrimary
+            self.emailAddressSecondary = emailAddressSecondary
+            self.jobTitle = jobTitle
+            self.notes = notes
             self.shipperCustomerIdForStripeConnectAccount = shipperCustomerIdForStripeConnectAccount
-            self.streetAddress = streetAddress
+            self.defaultRateSheetRouted = defaultRateSheetRouted
+            self.defaultRateSheetOnDemand = defaultRateSheetOnDemand
             self.additionalProperties = additionalProperties
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
             self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
+            self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
+            self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
             self.contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
             self.contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
-            self.defaultRateSheetOnDemand = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemand)
-            self.defaultRateSheetRouted = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRouted)
-            self.emailAddressPrimary = try container.decode(String.self, forKey: .emailAddressPrimary)
-            self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
-            self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
-            self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
-            self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
             self.phoneNumberPrimary = try container.decodeIfPresent(String.self, forKey: .phoneNumberPrimary)
             self.phoneNumberSecondary = try container.decodeIfPresent(String.self, forKey: .phoneNumberSecondary)
-            self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.emailAddressPrimary = try container.decode(String.self, forKey: .emailAddressPrimary)
+            self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
+            self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
+            self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
             self.shipperCustomerIdForStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForStripeConnectAccount)
-            self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
+            self.defaultRateSheetRouted = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRouted)
+            self.defaultRateSheetOnDemand = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemand)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encode(self.schemaVersion, forKey: .schemaVersion)
             try container.encodeIfPresent(self.companyName, forKey: .companyName)
+            try container.encodeIfPresent(self.industry, forKey: .industry)
+            try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
             try container.encodeIfPresent(self.contactFirstName, forKey: .contactFirstName)
             try container.encodeIfPresent(self.contactLastName, forKey: .contactLastName)
-            try container.encodeIfPresent(self.defaultRateSheetOnDemand, forKey: .defaultRateSheetOnDemand)
-            try container.encodeIfPresent(self.defaultRateSheetRouted, forKey: .defaultRateSheetRouted)
-            try container.encode(self.emailAddressPrimary, forKey: .emailAddressPrimary)
-            try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
-            try container.encodeIfPresent(self.industry, forKey: .industry)
-            try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
-            try container.encodeIfPresent(self.notes, forKey: .notes)
             try container.encodeIfPresent(self.phoneNumberPrimary, forKey: .phoneNumberPrimary)
             try container.encodeIfPresent(self.phoneNumberSecondary, forKey: .phoneNumberSecondary)
-            try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encode(self.emailAddressPrimary, forKey: .emailAddressPrimary)
+            try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
+            try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
+            try container.encodeIfPresent(self.notes, forKey: .notes)
             try container.encodeIfPresent(self.shipperCustomerIdForStripeConnectAccount, forKey: .shipperCustomerIdForStripeConnectAccount)
-            try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
+            try container.encodeIfPresent(self.defaultRateSheetRouted, forKey: .defaultRateSheetRouted)
+            try container.encodeIfPresent(self.defaultRateSheetOnDemand, forKey: .defaultRateSheetOnDemand)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case schemaVersion = "schema_version"
             case companyName = "company_name"
+            case industry
+            case streetAddress = "street_address"
             case contactFirstName = "contact_first_name"
             case contactLastName = "contact_last_name"
-            case defaultRateSheetOnDemand = "default_rate_sheet__on_demand"
-            case defaultRateSheetRouted = "default_rate_sheet__routed"
-            case emailAddressPrimary = "email_address_primary"
-            case emailAddressSecondary = "email_address_secondary"
-            case industry
-            case jobTitle = "job_title"
-            case notes
             case phoneNumberPrimary = "phone_number_primary"
             case phoneNumberSecondary = "phone_number_secondary"
-            case schemaVersion = "schema_version"
+            case emailAddressPrimary = "email_address_primary"
+            case emailAddressSecondary = "email_address_secondary"
+            case jobTitle = "job_title"
+            case notes
             case shipperCustomerIdForStripeConnectAccount = "shipper_customer_id_for_stripe_connect_account"
-            case streetAddress = "street_address"
+            case defaultRateSheetRouted = "default_rate_sheet__routed"
+            case defaultRateSheetOnDemand = "default_rate_sheet__on_demand"
         }
     }
 }

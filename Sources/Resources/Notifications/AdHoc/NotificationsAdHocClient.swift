@@ -7,6 +7,18 @@ public final class NotificationsAdHocClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Lists all ad-hoc notification intents for an order. | authz: min_org_role=operator | () -> (list[NotificationIntentAdHoc1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listByOrderIdV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> [NotificationIntentAdHoc1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/notifications/ad_hoc/list_by_order_id/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: [NotificationIntentAdHoc1].self
+        )
+    }
+
     /// Creates a new ad-hoc notification intent for an order. | authz: min_org_role=operator | (NotificationIntentAdHocClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -29,18 +41,6 @@ public final class NotificationsAdHocClient: Sendable {
             path: "/notifications/ad_hoc/delete/v1/\(adHocId)",
             requestOptions: requestOptions,
             responseType: Bool.self
-        )
-    }
-
-    /// Lists all ad-hoc notification intents for an order. | authz: min_org_role=operator | () -> (list[NotificationIntentAdHoc1])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByOrderIdV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> [NotificationIntentAdHoc1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/notifications/ad_hoc/list_by_order_id/v1/\(orderId)",
-            requestOptions: requestOptions,
-            responseType: [NotificationIntentAdHoc1].self
         )
     }
 }

@@ -8,18 +8,18 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
     public let iss: String?
     public let jti: String?
     public let nbf: Int?
-    public let o: ClerkOrgData?
-    /// Must be a string starting with `org_`
-    public let orgId: String
-    public let orgPublicMetadata: [String: JSONValue]?
-    public let primaryEmailAddress: String?
     public let sid: String?
-    public let sts: String?
     /// Must be a string starting with `user_`
     public let sub: String?
+    public let sts: String?
+    public let v: Int?
+    public let o: ClerkOrgData?
+    public let orgPublicMetadata: [String: JSONValue]?
+    public let primaryEmailAddress: String?
     /// Must be a string starting with `user_`
     public let userId: String
-    public let v: Int?
+    /// Must be a string starting with `org_`
+    public let orgId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -31,15 +31,15 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         iss: String? = nil,
         jti: String? = nil,
         nbf: Int? = nil,
+        sid: String? = nil,
+        sub: String? = nil,
+        sts: String? = nil,
+        v: Int? = nil,
         o: ClerkOrgData? = nil,
-        orgId: String,
         orgPublicMetadata: [String: JSONValue]? = nil,
         primaryEmailAddress: String? = nil,
-        sid: String? = nil,
-        sts: String? = nil,
-        sub: String? = nil,
         userId: String,
-        v: Int? = nil,
+        orgId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.azp = azp
@@ -49,15 +49,15 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         self.iss = iss
         self.jti = jti
         self.nbf = nbf
+        self.sid = sid
+        self.sub = sub
+        self.sts = sts
+        self.v = v
         self.o = o
-        self.orgId = orgId
         self.orgPublicMetadata = orgPublicMetadata
         self.primaryEmailAddress = primaryEmailAddress
-        self.sid = sid
-        self.sts = sts
-        self.sub = sub
         self.userId = userId
-        self.v = v
+        self.orgId = orgId
         self.additionalProperties = additionalProperties
     }
 
@@ -70,15 +70,15 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         self.iss = try container.decodeIfPresent(String.self, forKey: .iss)
         self.jti = try container.decodeIfPresent(String.self, forKey: .jti)
         self.nbf = try container.decodeIfPresent(Int.self, forKey: .nbf)
+        self.sid = try container.decodeIfPresent(String.self, forKey: .sid)
+        self.sub = try container.decodeIfPresent(String.self, forKey: .sub)
+        self.sts = try container.decodeIfPresent(String.self, forKey: .sts)
+        self.v = try container.decodeIfPresent(Int.self, forKey: .v)
         self.o = try container.decodeIfPresent(ClerkOrgData.self, forKey: .o)
-        self.orgId = try container.decode(String.self, forKey: .orgId)
         self.orgPublicMetadata = try container.decodeIfPresent([String: JSONValue].self, forKey: .orgPublicMetadata)
         self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
-        self.sid = try container.decodeIfPresent(String.self, forKey: .sid)
-        self.sts = try container.decodeIfPresent(String.self, forKey: .sts)
-        self.sub = try container.decodeIfPresent(String.self, forKey: .sub)
         self.userId = try container.decode(String.self, forKey: .userId)
-        self.v = try container.decodeIfPresent(Int.self, forKey: .v)
+        self.orgId = try container.decode(String.self, forKey: .orgId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -92,15 +92,15 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.iss, forKey: .iss)
         try container.encodeIfPresent(self.jti, forKey: .jti)
         try container.encodeIfPresent(self.nbf, forKey: .nbf)
+        try container.encodeIfPresent(self.sid, forKey: .sid)
+        try container.encodeIfPresent(self.sub, forKey: .sub)
+        try container.encodeIfPresent(self.sts, forKey: .sts)
+        try container.encodeIfPresent(self.v, forKey: .v)
         try container.encodeIfPresent(self.o, forKey: .o)
-        try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.orgPublicMetadata, forKey: .orgPublicMetadata)
         try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
-        try container.encodeIfPresent(self.sid, forKey: .sid)
-        try container.encodeIfPresent(self.sts, forKey: .sts)
-        try container.encodeIfPresent(self.sub, forKey: .sub)
         try container.encode(self.userId, forKey: .userId)
-        try container.encodeIfPresent(self.v, forKey: .v)
+        try container.encode(self.orgId, forKey: .orgId)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -112,14 +112,14 @@ public struct DecodedJwtWithOrgAndUserId: Codable, Hashable, Sendable {
         case iss
         case jti
         case nbf
+        case sid
+        case sub
+        case sts
+        case v
         case o
-        case orgId = "org_id"
         case orgPublicMetadata = "org_public_metadata"
         case primaryEmailAddress = "primary_email_address"
-        case sid
-        case sts
-        case sub
         case userId = "user_id"
-        case v
+        case orgId = "org_id"
     }
 }

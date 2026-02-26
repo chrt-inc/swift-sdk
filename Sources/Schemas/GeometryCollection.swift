@@ -3,13 +3,13 @@ import Foundation
 /// GeometryCollection Model
 public struct GeometryCollection: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
-    public let geometries: [GeometryCollectionOutputGeometriesItem]
+    public let geometries: [GeometryCollectionGeometriesItem]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         bbox: [JSONValue]? = nil,
-        geometries: [GeometryCollectionOutputGeometriesItem],
+        geometries: [GeometryCollectionGeometriesItem],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.bbox = bbox
@@ -20,7 +20,7 @@ public struct GeometryCollection: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-        self.geometries = try container.decode([GeometryCollectionOutputGeometriesItem].self, forKey: .geometries)
+        self.geometries = try container.decode([GeometryCollectionGeometriesItem].self, forKey: .geometries)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

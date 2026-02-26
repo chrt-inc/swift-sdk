@@ -21,11 +21,36 @@ import Chrt
         let response = try await client.shipping.tasks.addToTaskGroupV1(
             taskGroupId: "task_group_id",
             request: .init(
-                index: 1,
-                status: .draft,
                 task: TaskClientCreate1(
                     schemaVersion: 1
-                )
+                ),
+                status: .draft,
+                index: 1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.tasks.updateV1(
+            taskId: "task_id",
+            request: TaskClientUpdate1(
+
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -54,28 +79,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func deleteV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.tasks.deleteV1(
-            taskId: "task_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func skipV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -98,12 +101,12 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateV11() async throws -> Void {
+    @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                string
+                true
                 """.utf8
             )
         )
@@ -112,12 +115,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
-        let response = try await client.shipping.tasks.updateV1(
+        let expectedResponse = true
+        let response = try await client.shipping.tasks.deleteV1(
             taskId: "task_id",
-            request: TaskClientUpdate1(
-
-            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

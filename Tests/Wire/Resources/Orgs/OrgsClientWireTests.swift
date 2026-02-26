@@ -9,18 +9,18 @@ import Chrt
             body: Data(
                 """
                 {
-                  "admin_delete_enabled": true,
-                  "created_at": 1,
-                  "has_image": true,
                   "id": "id",
-                  "image_url": "image_url",
-                  "max_allowed_memberships": 1,
-                  "members_count": 1,
                   "name": "name",
+                  "slug": "slug",
+                  "image_url": "image_url",
+                  "has_image": true,
+                  "members_count": 1,
+                  "max_allowed_memberships": 1,
+                  "admin_delete_enabled": true,
                   "public_metadata": {
                     "key": "value"
                   },
-                  "slug": "slug",
+                  "created_at": 1,
                   "updated_at": 1
                 }
                 """.utf8
@@ -32,18 +32,18 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrgInfoResponse(
-            adminDeleteEnabled: true,
-            createdAt: 1,
-            hasImage: true,
             id: "id",
-            imageUrl: Optional("image_url"),
-            maxAllowedMemberships: 1,
-            membersCount: Optional(1),
             name: "name",
+            slug: Optional("slug"),
+            imageUrl: Optional("image_url"),
+            hasImage: true,
+            membersCount: Optional(1),
+            maxAllowedMemberships: 1,
+            adminDeleteEnabled: true,
             publicMetadata: [
                 "key": JSONValue.string("value")
             ],
-            slug: Optional("slug"),
+            createdAt: 1,
             updatedAt: 1
         )
         let response = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -57,10 +57,10 @@ import Chrt
                 """
                 [
                   {
-                    "first_name": "first_name",
-                    "last_name": "last_name",
                     "role": "owner",
-                    "user_id": "user_id"
+                    "user_id": "user_id",
+                    "first_name": "first_name",
+                    "last_name": "last_name"
                   }
                 ]
                 """.utf8
@@ -73,10 +73,10 @@ import Chrt
         )
         let expectedResponse = [
             OrgMemberDetails(
-                firstName: Optional("first_name"),
-                lastName: Optional("last_name"),
                 role: .owner,
-                userId: "user_id"
+                userId: "user_id",
+                firstName: Optional("first_name"),
+                lastName: Optional("last_name")
             )
         ]
         let response = try await client.orgs.listMembersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))

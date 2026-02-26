@@ -1,13 +1,13 @@
 import Foundation
 
 public final class UtilsClient: Sendable {
-    public let root: RootClient
     public let dev: DevClient
+    public let root: RootClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.root = RootClient(config: config)
         self.dev = DevClient(config: config)
+        self.root = RootClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
