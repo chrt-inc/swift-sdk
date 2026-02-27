@@ -3,6 +3,7 @@ import Foundation
 public struct SessionByDeviceDataPoint1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let timestamp: Date
+    public let receivedAtTimestamp: Date?
     public let metadata: SessionByDeviceDataPointMetadata1
     public let location: LocationFeature
     public let temperature: Double?
@@ -13,6 +14,7 @@ public struct SessionByDeviceDataPoint1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         timestamp: Date,
+        receivedAtTimestamp: Date? = nil,
         metadata: SessionByDeviceDataPointMetadata1,
         location: LocationFeature,
         temperature: Double? = nil,
@@ -21,6 +23,7 @@ public struct SessionByDeviceDataPoint1: Codable, Hashable, Sendable {
     ) {
         self.schemaVersion = schemaVersion
         self.timestamp = timestamp
+        self.receivedAtTimestamp = receivedAtTimestamp
         self.metadata = metadata
         self.location = location
         self.temperature = temperature
@@ -32,6 +35,7 @@ public struct SessionByDeviceDataPoint1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)
+        self.receivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .receivedAtTimestamp)
         self.metadata = try container.decode(SessionByDeviceDataPointMetadata1.self, forKey: .metadata)
         self.location = try container.decode(LocationFeature.self, forKey: .location)
         self.temperature = try container.decodeIfPresent(Double.self, forKey: .temperature)
@@ -44,6 +48,7 @@ public struct SessionByDeviceDataPoint1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.timestamp, forKey: .timestamp)
+        try container.encodeIfPresent(self.receivedAtTimestamp, forKey: .receivedAtTimestamp)
         try container.encode(self.metadata, forKey: .metadata)
         try container.encode(self.location, forKey: .location)
         try container.encodeIfPresent(self.temperature, forKey: .temperature)
@@ -54,6 +59,7 @@ public struct SessionByDeviceDataPoint1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
         case timestamp
+        case receivedAtTimestamp = "received_at_timestamp"
         case metadata
         case location
         case temperature

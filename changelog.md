@@ -1,3 +1,17 @@
+## 2.0.0 - 2026-02-27
+* feat: enhance session by device API with time-bucketed data and stationary clusters
+* Updates session tracking endpoints to support time-based queries with bucketed data points
+* and stationary cluster detection. Changes from limit-based to time-range-based queries for
+* better temporal analysis and adds clustering capabilities for location data.
+* Key changes:
+* Replace limit parameter with startTimestamp and endTimestamp for precise time ranges
+* Add optional bucketSeconds parameter for data aggregation control
+* Introduce SessionByDeviceHistoryRes1 response type with dataPoints and stationaryClusters arrays
+* Add StationaryCluster schema with centroid location, radius, and temporal boundaries
+* Enhance SessionByDeviceDataPoint1 with receivedAtTimestamp field
+* Update API documentation to reflect new time-based query capabilities
+* 🌿 Generated with Fern
+
 ## 1.455.2 - 2026-02-26
 * chore: update CLI version to 3.90.3
 * Update the Fern CLI version from 3.88.4 to 3.90.3 in metadata configuration. This version bump may include improvements to code generation, bug fixes, or new CLI features that enhance the development workflow.

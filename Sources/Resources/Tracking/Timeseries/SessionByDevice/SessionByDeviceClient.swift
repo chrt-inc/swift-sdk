@@ -22,19 +22,21 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[SessionByDeviceDataPoint1])
+    /// Returns time-bucketed data points and stationary clusters for a session within the given time range. start_timestamp and end_timestamp are required. | authz: min_org_role=operator | () -> SessionByDeviceHistoryRes1
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionByDeviceDataPoint1] {
+    public func dataPointsV1(sessionId: String, startTimestamp: Date, endTimestamp: Date, bucketSeconds: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceHistoryRes1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/timeseries/session_by_device/data_points/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "limit": limit.map { .int($0) }
+                "start_timestamp": .date(startTimestamp), 
+                "end_timestamp": .date(endTimestamp), 
+                "bucket_seconds": bucketSeconds.map { .int($0) }
             ],
             requestOptions: requestOptions,
-            responseType: [SessionByDeviceDataPoint1].self
+            responseType: SessionByDeviceHistoryRes1.self
         )
     }
 
@@ -66,19 +68,21 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[SessionByDeviceDataPoint1])
+    /// Returns time-bucketed data points and stationary clusters for a public session within the given time range. start_timestamp and end_timestamp are required. No authentication required if session has public visibility enabled. | () -> SessionByDeviceHistoryRes1
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dataPointsPublicV1(sessionId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionByDeviceDataPoint1] {
+    public func dataPointsPublicV1(sessionId: String, startTimestamp: Date, endTimestamp: Date, bucketSeconds: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceHistoryRes1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/timeseries/session_by_device/data_points_public/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "limit": limit.map { .int($0) }
+                "start_timestamp": .date(startTimestamp), 
+                "end_timestamp": .date(endTimestamp), 
+                "bucket_seconds": bucketSeconds.map { .int($0) }
             ],
             requestOptions: requestOptions,
-            responseType: [SessionByDeviceDataPoint1].self
+            responseType: SessionByDeviceHistoryRes1.self
         )
     }
 }

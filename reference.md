@@ -17131,7 +17131,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.sessionByDevice.<a href="/Sources/Resources/Tracking/Timeseries/SessionByDevice/SessionByDeviceClient.swift">dataPointsV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [SessionByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.timeseries.sessionByDevice.<a href="/Sources/Resources/Tracking/Timeseries/SessionByDevice/SessionByDeviceClient.swift">dataPointsV1</a>(sessionId: String, startTimestamp: Date, endTimestamp: Date, bucketSeconds: Int?, requestOptions: RequestOptions?) -> SessionByDeviceHistoryRes1</code></summary>
 <dl>
 <dd>
 
@@ -17143,7 +17143,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a session, intelligently sampled across the time range. Excludes outliers. | () -> (list[SessionByDeviceDataPoint1])
+Returns time-bucketed data points and stationary clusters for a session within the given time range. start_timestamp and end_timestamp are required. | authz: min_org_role=operator | () -> SessionByDeviceHistoryRes1
 </dd>
 </dl>
 </dd>
@@ -17166,7 +17166,9 @@ private func main() async throws {
 
     _ = try await client.tracking.timeseries.sessionByDevice.dataPointsV1(
         sessionId: "session_id",
-        limit: 1
+        startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        bucketSeconds: 1
     )
 }
 
@@ -17193,7 +17195,23 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Int?` 
+**startTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bucketSeconds:** `Int?` 
     
 </dd>
 </dl>
@@ -17360,7 +17378,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.sessionByDevice.<a href="/Sources/Resources/Tracking/Timeseries/SessionByDevice/SessionByDeviceClient.swift">dataPointsPublicV1</a>(sessionId: String, limit: Int?, requestOptions: RequestOptions?) -> [SessionByDeviceDataPoint1]</code></summary>
+<details><summary><code>client.tracking.timeseries.sessionByDevice.<a href="/Sources/Resources/Tracking/Timeseries/SessionByDevice/SessionByDeviceClient.swift">dataPointsPublicV1</a>(sessionId: String, startTimestamp: Date, endTimestamp: Date, bucketSeconds: Int?, requestOptions: RequestOptions?) -> SessionByDeviceHistoryRes1</code></summary>
 <dl>
 <dd>
 
@@ -17372,7 +17390,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a public session, intelligently sampled across the time range. Excludes outliers. No authentication required if session has public visibility enabled. | () -> (list[SessionByDeviceDataPoint1])
+Returns time-bucketed data points and stationary clusters for a public session within the given time range. start_timestamp and end_timestamp are required. No authentication required if session has public visibility enabled. | () -> SessionByDeviceHistoryRes1
 </dd>
 </dl>
 </dd>
@@ -17395,7 +17413,9 @@ private func main() async throws {
 
     _ = try await client.tracking.timeseries.sessionByDevice.dataPointsPublicV1(
         sessionId: "session_id",
-        limit: 1
+        startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        bucketSeconds: 1
     )
 }
 
@@ -17422,7 +17442,23 @@ try await main()
 <dl>
 <dd>
 
-**limit:** `Int?` 
+**startTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bucketSeconds:** `Int?` 
     
 </dd>
 </dl>

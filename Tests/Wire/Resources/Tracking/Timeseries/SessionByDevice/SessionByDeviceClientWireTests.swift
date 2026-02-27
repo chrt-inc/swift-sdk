@@ -11,6 +11,7 @@ import Chrt
                 {
                   "schema_version": 1,
                   "timestamp": "2024-01-15T09:30:00Z",
+                  "received_at_timestamp": "2024-01-15T09:30:00Z",
                   "metadata": {
                     "session_id": "session_id",
                     "outlier": true,
@@ -55,6 +56,7 @@ import Chrt
         let expectedResponse = Optional(SessionByDeviceDataPoint1(
             schemaVersion: 1,
             timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             metadata: SessionByDeviceDataPointMetadata1(
                 sessionId: "session_id",
                 outlier: Optional(true),
@@ -108,35 +110,56 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "schema_version": 1,
-                    "timestamp": "2024-01-15T09:30:00Z",
-                    "metadata": {
-                      "session_id": "session_id",
-                      "outlier": true,
-                      "outlier_labeller": "movingpandas",
-                      "pytest": true
-                    },
-                    "location": {
-                      "type": "Feature",
-                      "geometry": {
-                        "geometries": [
-                          {
-                            "coordinates": [
-                              []
-                            ],
-                            "type": "LineString"
-                          }
-                        ],
-                        "type": "GeometryCollection"
+                {
+                  "data_points": [
+                    {
+                      "schema_version": 1,
+                      "timestamp": "2024-01-15T09:30:00Z",
+                      "received_at_timestamp": "2024-01-15T09:30:00Z",
+                      "metadata": {
+                        "session_id": "session_id"
                       },
-                      "id": 1
-                    },
-                    "temperature": 1.1,
-                    "_id": "_id"
-                  }
-                ]
+                      "location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "temperature": 1.1,
+                      "_id": "_id"
+                    }
+                  ],
+                  "stationary_clusters": [
+                    {
+                      "start_timestamp": "2024-01-15T09:30:00Z",
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "centroid_location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "radius_miles": 1.1,
+                      "point_count": 1
+                    }
+                  ]
+                }
                 """.utf8
             )
         )
@@ -145,44 +168,69 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            SessionByDeviceDataPoint1(
-                schemaVersion: 1,
-                timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                metadata: SessionByDeviceDataPointMetadata1(
-                    sessionId: "session_id",
-                    outlier: Optional(true),
-                    outlierLabeller: Optional(.movingpandas),
-                    pytest: Optional(true)
-                ),
-                location: LocationFeature(
-                    type: .feature,
-                    geometry: .geometryCollection(
-                        .init(
-                            geometries: [
-                                .lineString(
-                                    .init(
-                                        coordinates: [
-                                            LineStringCoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ]
+        let expectedResponse = SessionByDeviceHistoryRes1(
+            dataPoints: [
+                SessionByDeviceDataPoint1(
+                    schemaVersion: 1,
+                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    metadata: SessionByDeviceDataPointMetadata1(
+                        sessionId: "session_id"
+                    ),
+                    location: LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
                                     )
-                                )
-                            ]
+                                ]
+                            )
                         )
                     ),
-                    id: Optional(Id.int(
-                        1
-                    ))
-                ),
-                temperature: Optional(1.1),
-                id: "_id"
-            )
-        ]
+                    temperature: Optional(1.1),
+                    id: "_id"
+                )
+            ],
+            stationaryClusters: [
+                StationaryCluster(
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    centroidLocation: LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    ),
+                    radiusMiles: 1.1,
+                    pointCount: 1
+                )
+            ]
+        )
         let response = try await client.tracking.timeseries.sessionByDevice.dataPointsV1(
             sessionId: "session_id",
-            limit: 1,
+            startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            bucketSeconds: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -229,6 +277,7 @@ import Chrt
                 {
                   "schema_version": 1,
                   "timestamp": "2024-01-15T09:30:00Z",
+                  "received_at_timestamp": "2024-01-15T09:30:00Z",
                   "metadata": {
                     "session_id": "session_id",
                     "outlier": true,
@@ -273,6 +322,7 @@ import Chrt
         let expectedResponse = Optional(SessionByDeviceDataPoint1(
             schemaVersion: 1,
             timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             metadata: SessionByDeviceDataPointMetadata1(
                 sessionId: "session_id",
                 outlier: Optional(true),
@@ -326,35 +376,56 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "schema_version": 1,
-                    "timestamp": "2024-01-15T09:30:00Z",
-                    "metadata": {
-                      "session_id": "session_id",
-                      "outlier": true,
-                      "outlier_labeller": "movingpandas",
-                      "pytest": true
-                    },
-                    "location": {
-                      "type": "Feature",
-                      "geometry": {
-                        "geometries": [
-                          {
-                            "coordinates": [
-                              []
-                            ],
-                            "type": "LineString"
-                          }
-                        ],
-                        "type": "GeometryCollection"
+                {
+                  "data_points": [
+                    {
+                      "schema_version": 1,
+                      "timestamp": "2024-01-15T09:30:00Z",
+                      "received_at_timestamp": "2024-01-15T09:30:00Z",
+                      "metadata": {
+                        "session_id": "session_id"
                       },
-                      "id": 1
-                    },
-                    "temperature": 1.1,
-                    "_id": "_id"
-                  }
-                ]
+                      "location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "temperature": 1.1,
+                      "_id": "_id"
+                    }
+                  ],
+                  "stationary_clusters": [
+                    {
+                      "start_timestamp": "2024-01-15T09:30:00Z",
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "centroid_location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "radius_miles": 1.1,
+                      "point_count": 1
+                    }
+                  ]
+                }
                 """.utf8
             )
         )
@@ -363,44 +434,69 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            SessionByDeviceDataPoint1(
-                schemaVersion: 1,
-                timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                metadata: SessionByDeviceDataPointMetadata1(
-                    sessionId: "session_id",
-                    outlier: Optional(true),
-                    outlierLabeller: Optional(.movingpandas),
-                    pytest: Optional(true)
-                ),
-                location: LocationFeature(
-                    type: .feature,
-                    geometry: .geometryCollection(
-                        .init(
-                            geometries: [
-                                .lineString(
-                                    .init(
-                                        coordinates: [
-                                            LineStringCoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ]
+        let expectedResponse = SessionByDeviceHistoryRes1(
+            dataPoints: [
+                SessionByDeviceDataPoint1(
+                    schemaVersion: 1,
+                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    metadata: SessionByDeviceDataPointMetadata1(
+                        sessionId: "session_id"
+                    ),
+                    location: LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
                                     )
-                                )
-                            ]
+                                ]
+                            )
                         )
                     ),
-                    id: Optional(Id.int(
-                        1
-                    ))
-                ),
-                temperature: Optional(1.1),
-                id: "_id"
-            )
-        ]
+                    temperature: Optional(1.1),
+                    id: "_id"
+                )
+            ],
+            stationaryClusters: [
+                StationaryCluster(
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    centroidLocation: LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    ),
+                    radiusMiles: 1.1,
+                    pointCount: 1
+                )
+            ]
+        )
         let response = try await client.tracking.timeseries.sessionByDevice.dataPointsPublicV1(
             sessionId: "session_id",
-            limit: 1,
+            startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            bucketSeconds: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
