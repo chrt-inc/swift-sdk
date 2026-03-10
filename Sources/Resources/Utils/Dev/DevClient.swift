@@ -20,6 +20,32 @@ public final class DevClient: Sendable {
         )
     }
 
+    /// Fetches expanded order data and returns an AI-generated natural-language summary. | (ReadOrderAgentReq) -> (ReadOrderAgentRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postAgentOrderV1(request: Requests.ReadOrderAgentReq, requestOptions: RequestOptions? = nil) async throws -> ReadOrderAgentRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/dev/agent/order/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ReadOrderAgentRes.self
+        )
+    }
+
+    /// Populates an existing order draft with cargo, task groups, and tasks parsed from natural language. The frontend must create the draft first via /shipping/order_drafts/new/v1. | (OrderBuilderReq) -> (OrderBuilderRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postAgentOrderBuilderV1(request: Requests.OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderBuilderRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/dev/agent/order-builder/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderBuilderRes.self
+        )
+    }
+
     /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -96,12 +122,12 @@ public final class DevClient: Sendable {
     /// Returns the current GitHub PR number and commit hash for the deployment. | () -> (dict[str, str])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getGitInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
+    public func getGitInfoV1(requestOptions: RequestOptions? = nil) async throws -> [String: String?] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/dev/git_info/v1",
             requestOptions: requestOptions,
-            responseType: [String: String].self
+            responseType: [String: String?].self
         )
     }
 }

@@ -37,6 +37,71 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func postAgentOrderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "order_id": "order_id",
+                  "status": "status",
+                  "summary": "summary"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ReadOrderAgentRes(
+            orderId: "order_id",
+            status: "status",
+            summary: "summary"
+        )
+        let response = try await client.utils.dev.postAgentOrderV1(
+            request: .init(orderId: "order_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func postAgentOrderBuilderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
+                  "summary": "summary",
+                  "validation_passed": true
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrderBuilderRes(
+            orderId: "order_id",
+            orderShortId: "order_short_id",
+            summary: "summary",
+            validationPassed: Optional(true)
+        )
+        let response = try await client.utils.dev.postAgentOrderBuilderV1(
+            request: .init(
+                orderShortId: "order_short_id",
+                text: "text"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func getUserIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -233,7 +298,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            "key": "value"
+            "key": Optional("value")
         ]
         let response = try await client.utils.dev.getGitInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
