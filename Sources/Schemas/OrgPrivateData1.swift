@@ -16,6 +16,9 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     public let defaultRateSheetOnDemandShipperPayForwarder: String?
     public let defaultRateSheetRoutedForwarderPayCourier: String?
     public let defaultRateSheetOnDemandForwarderPayCourier: String?
+    public let webcargoApiKey: String?
+    public let webcargoEmail: String?
+    public let webcargoCountries: [String]?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -35,6 +38,9 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         defaultRateSheetOnDemandShipperPayForwarder: String? = nil,
         defaultRateSheetRoutedForwarderPayCourier: String? = nil,
         defaultRateSheetOnDemandForwarderPayCourier: String? = nil,
+        webcargoApiKey: String? = nil,
+        webcargoEmail: String? = nil,
+        webcargoCountries: [String]? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -52,6 +58,9 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.defaultRateSheetOnDemandShipperPayForwarder = defaultRateSheetOnDemandShipperPayForwarder
         self.defaultRateSheetRoutedForwarderPayCourier = defaultRateSheetRoutedForwarderPayCourier
         self.defaultRateSheetOnDemandForwarderPayCourier = defaultRateSheetOnDemandForwarderPayCourier
+        self.webcargoApiKey = webcargoApiKey
+        self.webcargoEmail = webcargoEmail
+        self.webcargoCountries = webcargoCountries
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -72,6 +81,9 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.defaultRateSheetOnDemandShipperPayForwarder = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandShipperPayForwarder)
         self.defaultRateSheetRoutedForwarderPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedForwarderPayCourier)
         self.defaultRateSheetOnDemandForwarderPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandForwarderPayCourier)
+        self.webcargoApiKey = try container.decodeIfPresent(String.self, forKey: .webcargoApiKey)
+        self.webcargoEmail = try container.decodeIfPresent(String.self, forKey: .webcargoEmail)
+        self.webcargoCountries = try container.decodeIfPresent([String].self, forKey: .webcargoCountries)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -93,6 +105,9 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.defaultRateSheetOnDemandShipperPayForwarder, forKey: .defaultRateSheetOnDemandShipperPayForwarder)
         try container.encodeIfPresent(self.defaultRateSheetRoutedForwarderPayCourier, forKey: .defaultRateSheetRoutedForwarderPayCourier)
         try container.encodeIfPresent(self.defaultRateSheetOnDemandForwarderPayCourier, forKey: .defaultRateSheetOnDemandForwarderPayCourier)
+        try container.encodeIfPresent(self.webcargoApiKey, forKey: .webcargoApiKey)
+        try container.encodeIfPresent(self.webcargoEmail, forKey: .webcargoEmail)
+        try container.encodeIfPresent(self.webcargoCountries, forKey: .webcargoCountries)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -112,6 +127,9 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         case defaultRateSheetOnDemandShipperPayForwarder = "default_rate_sheet__on_demand__shipper_pay_forwarder"
         case defaultRateSheetRoutedForwarderPayCourier = "default_rate_sheet__routed__forwarder_pay_courier"
         case defaultRateSheetOnDemandForwarderPayCourier = "default_rate_sheet__on_demand__forwarder_pay_courier"
+        case webcargoApiKey = "webcargo_api_key"
+        case webcargoEmail = "webcargo_email"
+        case webcargoCountries = "webcargo_countries"
         case id = "_id"
     }
 }

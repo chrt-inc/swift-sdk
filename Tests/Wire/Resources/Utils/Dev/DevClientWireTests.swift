@@ -140,36 +140,30 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func getDecodedJwtV11() async throws -> Void {
+    @Test func getCredentialInfoV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
                 {
-                  "azp": "azp",
-                  "exp": 1,
-                  "fva": [
-                    1
-                  ],
-                  "iat": 1,
-                  "iss": "iss",
-                  "jti": "jti",
-                  "nbf": 1,
-                  "sid": "sid",
-                  "sub": "sub",
-                  "sts": "sts",
-                  "v": 1,
-                  "o": {
-                    "id": "id",
-                    "rol": "owner",
-                    "slg": "slg"
+                  "credential_type": "session",
+                  "caller": {
+                    "credential_type": "session_jwt",
+                    "o": {
+                      "id": "id",
+                      "rol": "owner",
+                      "slg": "slg"
+                    },
+                    "user_id": "user_id",
+                    "org_id": "org_id",
+                    "org_public_metadata": {
+                      "key": "value"
+                    },
+                    "primary_email_address": "primary_email_address"
                   },
-                  "org_public_metadata": {
+                  "raw_claims": {
                     "key": "value"
-                  },
-                  "primary_email_address": "primary_email_address",
-                  "user_id": "user_id",
-                  "org_id": "org_id"
+                  }
                 }
                 """.utf8
             )
@@ -179,33 +173,27 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = DecodedJwtWithOrgAndUserId(
-            azp: Optional("azp"),
-            exp: Optional(1),
-            fva: Optional([
-                1
-            ]),
-            iat: Optional(1),
-            iss: Optional("iss"),
-            jti: Optional("jti"),
-            nbf: Optional(1),
-            sid: Optional("sid"),
-            sub: Optional("sub"),
-            sts: Optional("sts"),
-            v: Optional(1),
-            o: Optional(ClerkOrgData(
-                id: Optional("id"),
-                rol: Optional(.owner),
-                slg: Optional("slg")
-            )),
-            orgPublicMetadata: Optional([
+        let expectedResponse = CredentialInfoResponse(
+            credentialType: .session,
+            caller: Caller(
+                credentialType: .sessionJwt,
+                o: ClerkOrgData(
+                    id: Optional("id"),
+                    rol: Optional(.owner),
+                    slg: Optional("slg")
+                ),
+                userId: "user_id",
+                orgId: "org_id",
+                orgPublicMetadata: Optional([
+                    "key": JSONValue.string("value")
+                ]),
+                primaryEmailAddress: Optional("primary_email_address")
+            ),
+            rawClaims: [
                 "key": JSONValue.string("value")
-            ]),
-            primaryEmailAddress: Optional("primary_email_address"),
-            userId: "user_id",
-            orgId: "org_id"
+            ]
         )
-        let response = try await client.utils.dev.getDecodedJwtV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.utils.dev.getCredentialInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 

@@ -1,0 +1,31 @@
+import Foundation
+
+/// https://github.com/champ-cargosystems-gmbh/cargojson.champ.aero/blob/master/src/main/java/aero/champ/cargojson/common/ServiceCode.java
+public enum CargojsonServiceCode: String, Codable, Hashable, CaseIterable, Sendable {
+    case airportToAirport = "AIRPORT_TO_AIRPORT"
+    case serviceShipment = "SERVICE_SHIPMENT"
+    case companyMaterial = "COMPANY_MATERIAL"
+    case doorToDoorService = "DOOR_TO_DOOR_SERVICE"
+    case airportToDoor = "AIRPORT_TO_DOOR"
+    case flightSpecific = "FLIGHT_SPECIFIC"
+    case doorToAirport = "DOOR_TO_AIRPORT"
+    case companyMail = "COMPANY_MAIL"
+    case diplomaticMail = "DIPLOMATIC_MAIL"
+    case priorityService = "PRIORITY_SERVICE"
+    case undocumentedK = "UNDOCUMENTED_K"
+    case undocumentedL = "UNDOCUMENTED_L"
+    case undocumentedM = "UNDOCUMENTED_M"
+    case undocumentedN = "UNDOCUMENTED_N"
+    case undocumentedO = "UNDOCUMENTED_O"
+    case smallPackageService = "SMALL_PACKAGE_SERVICE"
+    case undocumentedQ = "UNDOCUMENTED_Q"
+    case undocumentedR = "UNDOCUMENTED_R"
+    case substituteTruck = "SUBSTITUTE_TRUCK"
+    case charter = "CHARTER"
+    case undocumentedU = "UNDOCUMENTED_U"
+    case undocumentedV = "UNDOCUMENTED_V"
+    case undocumentedW = "UNDOCUMENTED_W"
+    case expressShipments = "EXPRESS_SHIPMENTS"
+    case undocumentedY = "UNDOCUMENTED_Y"
+    case undocumentedZ = "UNDOCUMENTED_Z"
+}

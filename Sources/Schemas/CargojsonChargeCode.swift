@@ -1,0 +1,30 @@
+import Foundation
+
+/// https://github.com/champ-cargosystems-gmbh/cargojson.champ.aero/blob/master/src/main/java/aero/champ/cargojson/common/ChargeCode.java
+public enum CargojsonChargeCode: String, Codable, Hashable, CaseIterable, Sendable {
+    case allChargesCollect = "ALL_CHARGES_COLLECT"
+    case allChargesCollectByCreditCard = "ALL_CHARGES_COLLECT_BY_CREDIT_CARD"
+    case allChargesCollectByGbl = "ALL_CHARGES_COLLECT_BY_GBL"
+    case allChargesPrepaidCash = "ALL_CHARGES_PREPAID_CASH"
+    case allChargesPrepaidCredit = "ALL_CHARGES_PREPAID_CREDIT"
+    case allChargesPrepaidByCreditCard = "ALL_CHARGES_PREPAID_BY_CREDIT_CARD"
+    case allChargesPrepaidByGbl = "ALL_CHARGES_PREPAID_BY_GBL"
+    case destinationCollectCash = "DESTINATION_COLLECT_CASH"
+    case destinationCollectCredit = "DESTINATION_COLLECT_CREDIT"
+    case destinationCollectByMco = "DESTINATION_COLLECT_BY_MCO"
+    case noCharge = "NO_CHARGE"
+    case noWeightChargeOtherChargesCollect = "NO_WEIGHT_CHARGE_OTHER_CHARGES_COLLECT"
+    case noWeightChargeOtherChargesPrepaidByCreditCard = "NO_WEIGHT_CHARGE_OTHER_CHARGES_PREPAID_BY_CREDIT_CARD"
+    case noWeightChargeOtherChargesPrepaidByGbl = "NO_WEIGHT_CHARGE_OTHER_CHARGES_PREPAID_BY_GBL"
+    case noWeightChargeOtherChargesPrepaidCash = "NO_WEIGHT_CHARGE_OTHER_CHARGES_PREPAID_CASH"
+    case noWeightChargeOtherChargesPrepaidCredit = "NO_WEIGHT_CHARGE_OTHER_CHARGES_PREPAID_CREDIT"
+    case partialCollectCreditPartialPrepaidCash = "PARTIAL_COLLECT_CREDIT_PARTIAL_PREPAID_CASH"
+    case partialCollectCreditPartialPrepaidCredit = "PARTIAL_COLLECT_CREDIT_PARTIAL_PREPAID_CREDIT"
+    case partialCollectCreditCardPartialPrepaidCash = "PARTIAL_COLLECT_CREDIT_CARD_PARTIAL_PREPAID_CASH"
+    case partialCollectCreditCardPartialPrepaidCredit = "PARTIAL_COLLECT_CREDIT_CARD_PARTIAL_PREPAID_CREDIT"
+    case partialPrepaidCashPartialCollectCash = "PARTIAL_PREPAID_CASH_PARTIAL_COLLECT_CASH"
+    case partialPrepaidCreditPartialCollectCash = "PARTIAL_PREPAID_CREDIT_PARTIAL_COLLECT_CASH"
+    case partialPrepaidCreditCardPartialCollectCash = "PARTIAL_PREPAID_CREDIT_CARD_PARTIAL_COLLECT_CASH"
+    case partialPrepaidCreditCardPartialCollectCredit = "PARTIAL_PREPAID_CREDIT_CARD_PARTIAL_COLLECT_CREDIT"
+    case partialPrepaidCreditCardPartialCollectCreditCard = "PARTIAL_PREPAID_CREDIT_CARD_PARTIAL_COLLECT_CREDIT_CARD"
+}

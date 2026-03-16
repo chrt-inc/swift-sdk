@@ -70,15 +70,15 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Returns the complete decoded JWT token information for development purposes. | () -> (DecodedJWTWithOrgAndUserId)
+    /// Returns the verified caller identity and raw credential claims for development purposes. | () -> (CredentialInfoResponse)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getDecodedJwtV1(requestOptions: RequestOptions? = nil) async throws -> DecodedJwtWithOrgAndUserId {
+    public func getCredentialInfoV1(requestOptions: RequestOptions? = nil) async throws -> CredentialInfoResponse {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/dev/decoded_jwt/v1",
+            path: "/dev/credential_info/v1",
             requestOptions: requestOptions,
-            responseType: DecodedJwtWithOrgAndUserId.self
+            responseType: CredentialInfoResponse.self
         )
     }
 

@@ -23,6 +23,11 @@ import Chrt
                   "default_rate_sheet__on_demand__shipper_pay_forwarder": "default_rate_sheet__on_demand__shipper_pay_forwarder",
                   "default_rate_sheet__routed__forwarder_pay_courier": "default_rate_sheet__routed__forwarder_pay_courier",
                   "default_rate_sheet__on_demand__forwarder_pay_courier": "default_rate_sheet__on_demand__forwarder_pay_courier",
+                  "webcargo_api_key": "webcargo_api_key",
+                  "webcargo_email": "webcargo_email",
+                  "webcargo_countries": [
+                    "webcargo_countries"
+                  ],
                   "_id": "_id"
                 }
                 """.utf8
@@ -48,6 +53,11 @@ import Chrt
             defaultRateSheetOnDemandShipperPayForwarder: Optional("default_rate_sheet__on_demand__shipper_pay_forwarder"),
             defaultRateSheetRoutedForwarderPayCourier: Optional("default_rate_sheet__routed__forwarder_pay_courier"),
             defaultRateSheetOnDemandForwarderPayCourier: Optional("default_rate_sheet__on_demand__forwarder_pay_courier"),
+            webcargoApiKey: Optional("webcargo_api_key"),
+            webcargoEmail: Optional("webcargo_email"),
+            webcargoCountries: Optional([
+                "webcargo_countries"
+            ]),
             id: "_id"
         )
         let response = try await client.orgs.privateData.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
