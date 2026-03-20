@@ -6,6 +6,7 @@ public struct CargoByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
     public let deviceId: String
     public let outlier: Bool?
     public let outlierLabeller: OutlierLabellerEnum?
+    public let paused: Bool?
     public let pytest: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -16,6 +17,7 @@ public struct CargoByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         deviceId: String,
         outlier: Bool? = nil,
         outlierLabeller: OutlierLabellerEnum? = nil,
+        paused: Bool? = nil,
         pytest: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -24,6 +26,7 @@ public struct CargoByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         self.deviceId = deviceId
         self.outlier = outlier
         self.outlierLabeller = outlierLabeller
+        self.paused = paused
         self.pytest = pytest
         self.additionalProperties = additionalProperties
     }
@@ -35,6 +38,7 @@ public struct CargoByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         self.deviceId = try container.decode(String.self, forKey: .deviceId)
         self.outlier = try container.decodeIfPresent(Bool.self, forKey: .outlier)
         self.outlierLabeller = try container.decodeIfPresent(OutlierLabellerEnum.self, forKey: .outlierLabeller)
+        self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
         self.pytest = try container.decodeIfPresent(Bool.self, forKey: .pytest)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -47,6 +51,7 @@ public struct CargoByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         try container.encode(self.deviceId, forKey: .deviceId)
         try container.encodeIfPresent(self.outlier, forKey: .outlier)
         try container.encodeIfPresent(self.outlierLabeller, forKey: .outlierLabeller)
+        try container.encodeIfPresent(self.paused, forKey: .paused)
         try container.encodeIfPresent(self.pytest, forKey: .pytest)
     }
 
@@ -57,6 +62,7 @@ public struct CargoByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         case deviceId = "device_id"
         case outlier
         case outlierLabeller = "outlier_labeller"
+        case paused
         case pytest
     }
 }

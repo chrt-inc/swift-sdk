@@ -17,6 +17,7 @@ import Chrt
                     "device_id": "device_id",
                     "outlier": true,
                     "outlier_labeller": "movingpandas",
+                    "paused": true,
                     "pytest": true
                   },
                   "location": {
@@ -63,6 +64,7 @@ import Chrt
                 deviceId: "device_id",
                 outlier: Optional(true),
                 outlierLabeller: Optional(.movingpandas),
+                paused: Optional(true),
                 pytest: Optional(true)
             ),
             location: LocationFeature(
@@ -123,6 +125,7 @@ import Chrt
                       "device_id": "device_id",
                       "outlier": true,
                       "outlier_labeller": "movingpandas",
+                      "paused": true,
                       "pytest": true
                     },
                     "location": {
@@ -162,6 +165,7 @@ import Chrt
                     deviceId: "device_id",
                     outlier: Optional(true),
                     outlierLabeller: Optional(.movingpandas),
+                    paused: Optional(true),
                     pytest: Optional(true)
                 ),
                 location: LocationFeature(
@@ -245,6 +249,7 @@ import Chrt
                     "device_id": "device_id",
                     "outlier": true,
                     "outlier_labeller": "movingpandas",
+                    "paused": true,
                     "pytest": true
                   },
                   "location": {
@@ -291,6 +296,7 @@ import Chrt
                 deviceId: "device_id",
                 outlier: Optional(true),
                 outlierLabeller: Optional(.movingpandas),
+                paused: Optional(true),
                 pytest: Optional(true)
             ),
             location: LocationFeature(
@@ -351,6 +357,7 @@ import Chrt
                       "device_id": "device_id",
                       "outlier": true,
                       "outlier_labeller": "movingpandas",
+                      "paused": true,
                       "pytest": true
                     },
                     "location": {
@@ -390,6 +397,7 @@ import Chrt
                     deviceId: "device_id",
                     outlier: Optional(true),
                     outlierLabeller: Optional(.movingpandas),
+                    paused: Optional(true),
                     pytest: Optional(true)
                 ),
                 location: LocationFeature(

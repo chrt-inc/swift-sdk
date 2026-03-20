@@ -73,6 +73,50 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func pauseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.tracking.devices.pauseV1(
+            deviceId: "device_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unpauseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.tracking.devices.unpauseV1(
+            deviceId: "device_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateSharedOrgsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -130,6 +174,7 @@ import Chrt
                     "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_seen_battery_level": "last_seen_battery_level",
                     "archived": true,
+                    "paused": true,
                     "shared_with_org_ids": [
                       "shared_with_org_ids"
                     ],
@@ -315,6 +360,7 @@ import Chrt
                 lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                 archived: Optional(true),
+                paused: Optional(true),
                 sharedWithOrgIds: Optional([
                     "shared_with_org_ids"
                 ]),
@@ -498,6 +544,7 @@ import Chrt
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_seen_battery_level": "last_seen_battery_level",
                       "archived": true,
+                      "paused": true,
                       "shared_with_org_ids": [
                         "shared_with_org_ids"
                       ],
@@ -550,6 +597,7 @@ import Chrt
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                     archived: Optional(true),
+                    paused: Optional(true),
                     sharedWithOrgIds: Optional([
                         "shared_with_org_ids"
                     ]),
@@ -655,6 +703,7 @@ import Chrt
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_seen_battery_level": "last_seen_battery_level",
                       "archived": true,
+                      "paused": true,
                       "shared_with_org_ids": [
                         "shared_with_org_ids"
                       ],
@@ -707,6 +756,7 @@ import Chrt
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                     archived: Optional(true),
+                    paused: Optional(true),
                     sharedWithOrgIds: Optional([
                         "shared_with_org_ids"
                     ]),

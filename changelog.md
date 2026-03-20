@@ -1,3 +1,6 @@
+## 1.512.0 - 2026-03-20
+* New device pause/unpause functionality available through `pauseV1()` and `unpauseV1()` methods on `DevicesClient`. Paused devices have their data points excluded from queries while preserving historical data. Enhanced credential information with additional metadata fields in the `Caller` struct.
+
 ## 2.0.0 - 2026-02-27
 * feat: enhance session by device API with time-bucketed data and stationary clusters
 * Updates session tracking endpoints to support time-based queries with bucketed data points

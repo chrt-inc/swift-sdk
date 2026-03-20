@@ -16,6 +16,7 @@ import Chrt
                     "session_id": "session_id",
                     "outlier": true,
                     "outlier_labeller": "movingpandas",
+                    "paused": true,
                     "pytest": true
                   },
                   "location": {
@@ -61,6 +62,7 @@ import Chrt
                 sessionId: "session_id",
                 outlier: Optional(true),
                 outlierLabeller: Optional(.movingpandas),
+                paused: Optional(true),
                 pytest: Optional(true)
             ),
             location: LocationFeature(
@@ -282,6 +284,7 @@ import Chrt
                     "session_id": "session_id",
                     "outlier": true,
                     "outlier_labeller": "movingpandas",
+                    "paused": true,
                     "pytest": true
                   },
                   "location": {
@@ -327,6 +330,7 @@ import Chrt
                 sessionId: "session_id",
                 outlier: Optional(true),
                 outlierLabeller: Optional(.movingpandas),
+                paused: Optional(true),
                 pytest: Optional(true)
             ),
             location: LocationFeature(

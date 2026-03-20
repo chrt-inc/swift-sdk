@@ -51,6 +51,36 @@ public final class DevicesClient: Sendable {
         )
     }
 
+    /// Pauses a device. Cargo-by-device and session-by-device data points are marked as paused and excluded from data point queries. | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func pauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/pause/v1",
+            queryParams: [
+                "device_id": .string(deviceId)
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Unpauses a device. | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unpauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/unpause/v1",
+            queryParams: [
+                "device_id": .string(deviceId)
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | (DevicesUpdateSharedOrgsReq1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

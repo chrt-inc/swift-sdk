@@ -70,15 +70,15 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Returns the verified caller identity and raw credential claims for development purposes. | () -> (CredentialInfoResponse)
+    /// Returns the verified caller identity and raw credential claims for development purposes. | () -> (CredentialInfoRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getCredentialInfoV1(requestOptions: RequestOptions? = nil) async throws -> CredentialInfoResponse {
+    public func getCredentialInfoV1(requestOptions: RequestOptions? = nil) async throws -> CredentialInfoRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/dev/credential_info/v1",
             requestOptions: requestOptions,
-            responseType: CredentialInfoResponse.self
+            responseType: CredentialInfoRes.self
         )
     }
 

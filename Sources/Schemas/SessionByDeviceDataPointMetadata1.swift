@@ -4,6 +4,7 @@ public struct SessionByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
     public let sessionId: String
     public let outlier: Bool?
     public let outlierLabeller: OutlierLabellerEnum?
+    public let paused: Bool?
     public let pytest: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -12,12 +13,14 @@ public struct SessionByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         sessionId: String,
         outlier: Bool? = nil,
         outlierLabeller: OutlierLabellerEnum? = nil,
+        paused: Bool? = nil,
         pytest: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.sessionId = sessionId
         self.outlier = outlier
         self.outlierLabeller = outlierLabeller
+        self.paused = paused
         self.pytest = pytest
         self.additionalProperties = additionalProperties
     }
@@ -27,6 +30,7 @@ public struct SessionByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         self.sessionId = try container.decode(String.self, forKey: .sessionId)
         self.outlier = try container.decodeIfPresent(Bool.self, forKey: .outlier)
         self.outlierLabeller = try container.decodeIfPresent(OutlierLabellerEnum.self, forKey: .outlierLabeller)
+        self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
         self.pytest = try container.decodeIfPresent(Bool.self, forKey: .pytest)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -37,6 +41,7 @@ public struct SessionByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         try container.encode(self.sessionId, forKey: .sessionId)
         try container.encodeIfPresent(self.outlier, forKey: .outlier)
         try container.encodeIfPresent(self.outlierLabeller, forKey: .outlierLabeller)
+        try container.encodeIfPresent(self.paused, forKey: .paused)
         try container.encodeIfPresent(self.pytest, forKey: .pytest)
     }
 
@@ -45,6 +50,7 @@ public struct SessionByDeviceDataPointMetadata1: Codable, Hashable, Sendable {
         case sessionId = "session_id"
         case outlier
         case outlierLabeller = "outlier_labeller"
+        case paused
         case pytest
     }
 }

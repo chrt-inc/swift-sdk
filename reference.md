@@ -15071,6 +15071,148 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">pauseV1</a>(deviceId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pauses a device. Cargo-by-device and session-by-device data points are marked as paused and excluded from data point queries. | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.devices.pauseV1(deviceId: "device_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**deviceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">unpauseV1</a>(deviceId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unpauses a device. | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.devices.unpauseV1(deviceId: "device_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**deviceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">updateSharedOrgsV1</a>(request: Requests.DevicesUpdateSharedOrgsReq1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -19568,7 +19710,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">getCredentialInfoV1</a>(requestOptions: RequestOptions?) -> CredentialInfoResponse</code></summary>
+<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">getCredentialInfoV1</a>(requestOptions: RequestOptions?) -> CredentialInfoRes</code></summary>
 <dl>
 <dd>
 
@@ -19580,7 +19722,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the verified caller identity and raw credential claims for development purposes. | () -> (CredentialInfoResponse)
+Returns the verified caller identity and raw credential claims for development purposes. | () -> (CredentialInfoRes)
 </dd>
 </dl>
 </dd>
@@ -20085,69 +20227,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.utils.root.<a href="/Sources/Resources/Utils/Root/RootClient.swift">health</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a health status message used for monitoring system availability and uptime. | () -> (dict)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.utils.root.health()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.utils.root.<a href="/Sources/Resources/Utils/Root/RootClient.swift">failure</a>(requestOptions: RequestOptions?) -> JSONValue</code></summary>
 <dl>
 <dd>
@@ -20182,6 +20261,69 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.utils.root.failure()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.utils.root.<a href="/Sources/Resources/Utils/Root/RootClient.swift">health</a>(requestOptions: RequestOptions?) -> [String: JSONValue]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a health status message used for monitoring system availability and uptime. | () -> (dict)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.utils.root.health()
 }
 
 try await main()

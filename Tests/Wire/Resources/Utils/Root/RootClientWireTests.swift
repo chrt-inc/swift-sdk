@@ -72,29 +72,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func health1() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "key": "value"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            "key": JSONValue.string("value")
-        ]
-        let response = try await client.utils.root.health(requestOptions: RequestOptions(additionalHeaders: stub.headers))
-        try #require(response == expectedResponse)
-    }
-
     @Test func failure1() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -117,6 +94,29 @@ import Chrt
             ]
         )
         let response = try await client.utils.root.failure(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
+    @Test func health1() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "key": "value"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "key": JSONValue.string("value")
+        ]
+        let response = try await client.utils.root.health(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

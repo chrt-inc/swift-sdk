@@ -43,18 +43,6 @@ public final class RootClient: Sendable {
         )
     }
 
-    /// Returns a health status message used for monitoring system availability and uptime. | () -> (dict)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func health(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/health",
-            requestOptions: requestOptions,
-            responseType: [String: JSONValue].self
-        )
-    }
-
     /// Test endpoint that intentionally fails for error handling validation and monitoring purposes. | () -> (None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -64,6 +52,18 @@ public final class RootClient: Sendable {
             path: "/failure",
             requestOptions: requestOptions,
             responseType: JSONValue.self
+        )
+    }
+
+    /// Returns a health status message used for monitoring system availability and uptime. | () -> (dict)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func health(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/health",
+            requestOptions: requestOptions,
+            responseType: [String: JSONValue].self
         )
     }
 }

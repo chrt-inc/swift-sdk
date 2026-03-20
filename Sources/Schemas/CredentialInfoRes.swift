@@ -1,14 +1,14 @@
 import Foundation
 
-public struct CredentialInfoResponse: Codable, Hashable, Sendable {
-    public let credentialType: CredentialInfoResponseCredentialType
+public struct CredentialInfoRes: Codable, Hashable, Sendable {
+    public let credentialType: CallerCredentialTypeEnum
     public let caller: Caller
     public let rawClaims: [String: JSONValue]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        credentialType: CredentialInfoResponseCredentialType,
+        credentialType: CallerCredentialTypeEnum,
         caller: Caller,
         rawClaims: [String: JSONValue],
         additionalProperties: [String: JSONValue] = .init()
@@ -21,7 +21,7 @@ public struct CredentialInfoResponse: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.credentialType = try container.decode(CredentialInfoResponseCredentialType.self, forKey: .credentialType)
+        self.credentialType = try container.decode(CallerCredentialTypeEnum.self, forKey: .credentialType)
         self.caller = try container.decode(Caller.self, forKey: .caller)
         self.rawClaims = try container.decode([String: JSONValue].self, forKey: .rawClaims)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)

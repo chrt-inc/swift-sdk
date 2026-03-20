@@ -146,9 +146,10 @@ import Chrt
             body: Data(
                 """
                 {
-                  "credential_type": "session",
+                  "credential_type": "session_jwt",
                   "caller": {
                     "credential_type": "session_jwt",
+                    "credential": "credential",
                     "o": {
                       "id": "id",
                       "rol": "owner",
@@ -173,10 +174,11 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CredentialInfoResponse(
-            credentialType: .session,
+        let expectedResponse = CredentialInfoRes(
+            credentialType: .sessionJwt,
             caller: Caller(
                 credentialType: .sessionJwt,
+                credential: Optional("credential"),
                 o: ClerkOrgData(
                     id: Optional("id"),
                     rol: Optional(.owner),
