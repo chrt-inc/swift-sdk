@@ -30,9 +30,10 @@ public final class LineItemGroupsClient: Sendable {
     /// - Parameter filterDriverId: Filter by driver ID (payment_destination_driver_id)
     /// - Parameter filterStatus: Filter by line item group status(es)
     /// - Parameter filterAttachedToStatement: Filter by whether line item group is attached to a statement
+    /// - Parameter filterOrderId: Filter by order ID
     /// - Parameter filterPaymentRole: Filter by payment role: origin (courier pays) or destination (courier receives). Returns both if not specified.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForCourierOrgV1(filterDriverId: String? = nil, filterStatus: LineItemGroupStatusEnum1? = nil, filterAttachedToStatement: Bool? = nil, filterPaymentRole: PaymentRoleFilterEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> LineItemGroupListRes {
+    public func listForCourierOrgV1(filterDriverId: String? = nil, filterStatus: LineItemGroupStatusEnum1? = nil, filterAttachedToStatement: Bool? = nil, filterOrderId: String? = nil, filterPaymentRole: PaymentRoleFilterEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> LineItemGroupListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing/line_item_groups/list/for_courier_org/v1",
@@ -40,6 +41,7 @@ public final class LineItemGroupsClient: Sendable {
                 "filter_driver_id": filterDriverId.map { .string($0) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_attached_to_statement": filterAttachedToStatement.map { .bool($0) }, 
+                "filter_order_id": filterOrderId.map { .string($0) }, 
                 "filter_payment_role": filterPaymentRole.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }

@@ -1,3 +1,10 @@
+## 1.527.0 - 2026-03-21
+* ### Added
+* **Order tracking** for billing statements and line item groups with new optional fields `isAdHoc`, `orderId`, and `orderShortId` on line item groups, plus `orderIds` and `orderShortIds` arrays on statements.
+* **Order-based filtering** capabilities for querying statements and line item groups by order ID.
+* **Ad-hoc line item group association** with task groups for improved order management.
+* **expandedListV1 method** for retrieving comprehensive statement data with full line item group and task group details.
+
 ## 1.512.0 - 2026-03-20
 * New device pause/unpause functionality available through `pauseV1()` and `unpauseV1()` methods on `DevicesClient`. Paused devices have their data points excluded from queries while preserving historical data. Enhanced credential information with additional metadata fields in the `Caller` struct.
 

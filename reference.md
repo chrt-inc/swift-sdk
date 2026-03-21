@@ -490,7 +490,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">listForCourierOrgV1</a>(filterDriverId: String?, filterStatus: LineItemGroupStatusEnum1?, filterAttachedToStatement: Bool?, filterPaymentRole: PaymentRoleFilterEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> LineItemGroupListRes</code></summary>
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">listForCourierOrgV1</a>(filterDriverId: String?, filterStatus: LineItemGroupStatusEnum1?, filterAttachedToStatement: Bool?, filterOrderId: String?, filterPaymentRole: PaymentRoleFilterEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> LineItemGroupListRes</code></summary>
 <dl>
 <dd>
 
@@ -526,6 +526,7 @@ private func main() async throws {
     _ = try await client.billing.lineItemGroups.listForCourierOrgV1(
         filterDriverId: "filter_driver_id",
         filterAttachedToStatement: true,
+        filterOrderId: "filter_order_id",
         filterPaymentRole: .origin,
         page: 1,
         pageSize: 1
@@ -564,6 +565,14 @@ try await main()
 <dd>
 
 **filterAttachedToStatement:** `Bool?` — Filter by whether line item group is attached to a statement
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderId:** `String?` — Filter by order ID
     
 </dd>
 </dl>
@@ -2051,7 +2060,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">listV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsListRes</code></summary>
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">listV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsListRes</code></summary>
 <dl>
 <dd>
 
@@ -2090,6 +2099,7 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         filterSettlementType: .stripeConnect,
+        filterOrderId: "filter_order_id",
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
@@ -2158,6 +2168,221 @@ try await main()
 <dd>
 
 **filterSettlementType:** `SettlementTypeEnum1?` — Filter by settlement type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderId:** `String?` — Filter by order ID (returns statements whose order_ids list contains this value)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaymentOriginOrgId:** `String?` — Filter by payment origin org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaymentDestinationOrgId:** `String?` — Filter by payment destination org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOwnedByOrgId:** `String?` — Filter by owned by org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStagedAtTimestampGte:** `Date?` — Filter by staged_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStagedAtTimestampLte:** `Date?` — Filter by staged_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOpenedAtTimestampGte:** `Date?` — Filter by opened_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOpenedAtTimestampLte:** `Date?` — Filter by opened_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaidAtTimestampGte:** `Date?` — Filter by paid_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPaidAtTimestampLte:** `Date?` — Filter by paid_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">expandedListV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists statements with expanded LIGs and task groups, using filtering, sorting, and pagination. | authz_personas=[statement_org_operators, statement_driver] | () -> (StatementsExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.statements.expandedListV1(
+        sortBy: .amount,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterSettlementType: .stripeConnect,
+        filterOrderId: "filter_order_id",
+        filterPaymentOriginOrgId: "filter_payment_origin_org_id",
+        filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
+        filterOwnedByOrgId: "filter_owned_by_org_id",
+        filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOpenedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `StatementSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (ascending or descending)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `StatementStatusEnum1?` — Filter by statement status(es)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterSettlementType:** `SettlementTypeEnum1?` — Filter by settlement type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderId:** `String?` — Filter by order ID (returns statements whose order_ids list contains this value)
     
 </dd>
 </dl>
@@ -2394,7 +2619,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateSettlementTypeV1</a>(statementId: String, request: Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingUpdateSettlementTypeV1StatementIdPatch, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateSettlementTypeV1</a>(statementId: String, request: Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingStatementsUpdateSettlementTypeV1StatementIdPatch, requestOptions: RequestOptions?) -> Statement1</code></summary>
 <dl>
 <dd>
 
@@ -2456,7 +2681,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingUpdateSettlementTypeV1StatementIdPatch` 
+**request:** `Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingStatementsUpdateSettlementTypeV1StatementIdPatch` 
     
 </dd>
 </dl>
@@ -2476,7 +2701,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateOffChrtSettlementStateV1</a>(statementId: String, request: Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingUpdateOffChrtSettlementStateV1StatementIdPatch, requestOptions: RequestOptions?) -> Statement1</code></summary>
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateOffChrtSettlementStateV1</a>(statementId: String, request: Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingStatementsUpdateOffChrtSettlementStateV1StatementIdPatch, requestOptions: RequestOptions?) -> Statement1</code></summary>
 <dl>
 <dd>
 
@@ -2538,7 +2763,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingUpdateOffChrtSettlementStateV1StatementIdPatch` 
+**request:** `Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingStatementsUpdateOffChrtSettlementStateV1StatementIdPatch` 
     
 </dd>
 </dl>
@@ -3057,7 +3282,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an ad-hoc line item group (not associated with a TaskGroup). Starts as ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator | (CreateAdHocLineItemGroupReq) -> (LineItemGroup1)
+Creates an ad-hoc line item group. Optionally associates with a TaskGroup. Starts as ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator | (CreateAdHocLineItemGroupReq) -> (LineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -3131,7 +3356,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a line item to an ad-hoc line item group. LIG must be ad-hoc (task_group_id is None) and ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (LineItemClientCreate1) -> (LineItemGroup1)
+Adds a line item to an ad-hoc line item group. LIG must be ad-hoc (is_ad_hoc=True) and ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (LineItemClientCreate1) -> (LineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -3217,7 +3442,7 @@ try await main()
 <dl>
 <dd>
 
-Removes a line item from an ad-hoc line item group. LIG must be ad-hoc (task_group_id is None) and ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (line_item_uuid_str) -> (LineItemGroup1)
+Removes a line item from an ad-hoc line item group. LIG must be ad-hoc (is_ad_hoc=True) and ADJUSTABLE. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | (line_item_uuid_str) -> (LineItemGroup1)
 </dd>
 </dl>
 </dd>
@@ -3299,7 +3524,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes an ad-hoc line item group. LIG must be ad-hoc (task_group_id is None) and ADJUSTABLE or FINALIZED. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (bool)
+Deletes an ad-hoc line item group. LIG must be ad-hoc (is_ad_hoc=True) and ADJUSTABLE or FINALIZED. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -3339,6 +3564,88 @@ try await main()
 <dd>
 
 **lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.adHoc.<a href="/Sources/Resources/Billing/LineItemGroups/AdHoc/AdHocClient.swift">setTaskGroupV1</a>(lineItemGroupId: String, request: Requests.SetAdHocTaskGroupReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or updates the task_group_id on an existing ad-hoc LIG, deriving order_id and order_short_id from the task group. If the LIG is on a statement, recalculates the statement's order refs. | org_type=[courier, forwarder], min_org_role=operator, authz_personas=[lig_owner_operators, courier_org_operators, forwarder_org_operators] | (SetAdHocTaskGroupReq) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.adHoc.setTaskGroupV1(
+        lineItemGroupId: "line_item_group_id",
+        request: .init(taskGroupId: "task_group_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SetAdHocTaskGroupReq` 
     
 </dd>
 </dl>

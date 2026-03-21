@@ -2,6 +2,8 @@ import Foundation
 
 extension Requests {
     public struct CreateAdHocLineItemGroupReq: Codable, Hashable, Sendable {
+        /// Optional task group ID to associate this ad-hoc LIG with (e.g. for adding extra charges to a flight TG)
+        public let taskGroupId: String?
         /// Payment vector type
         public let paymentVectorType: PaymentVectorTypeEnum1
         /// Settlement type for this line item group
@@ -18,6 +20,7 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            taskGroupId: String? = nil,
             paymentVectorType: PaymentVectorTypeEnum1,
             settlementType: SettlementTypeEnum1,
             paymentOriginOrgId: String? = nil,
@@ -26,6 +29,7 @@ extension Requests {
             paymentDestinationDriverId: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.taskGroupId = taskGroupId
             self.paymentVectorType = paymentVectorType
             self.settlementType = settlementType
             self.paymentOriginOrgId = paymentOriginOrgId
@@ -37,6 +41,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.taskGroupId = try container.decodeIfPresent(String.self, forKey: .taskGroupId)
             self.paymentVectorType = try container.decode(PaymentVectorTypeEnum1.self, forKey: .paymentVectorType)
             self.settlementType = try container.decode(SettlementTypeEnum1.self, forKey: .settlementType)
             self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
@@ -49,6 +54,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encodeIfPresent(self.taskGroupId, forKey: .taskGroupId)
             try container.encode(self.paymentVectorType, forKey: .paymentVectorType)
             try container.encode(self.settlementType, forKey: .settlementType)
             try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
@@ -59,6 +65,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case taskGroupId = "task_group_id"
             case paymentVectorType = "payment_vector_type"
             case settlementType = "settlement_type"
             case paymentOriginOrgId = "payment_origin_org_id"

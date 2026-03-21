@@ -14,6 +14,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -50,6 +56,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -92,6 +104,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -128,6 +146,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -171,6 +195,12 @@ import Chrt
                     "line_item_group_ids": [
                       "line_item_group_ids"
                     ],
+                    "order_ids": [
+                      "order_ids"
+                    ],
+                    "order_short_ids": [
+                      "order_short_ids"
+                    ],
                     "amount": 1,
                     "units": "usd",
                     "staged_by_user_id": "staged_by_user_id",
@@ -198,7 +228,10 @@ import Chrt
                     {
                       "schema_version": 1,
                       "_id": "_id",
+                      "is_ad_hoc": true,
                       "task_group_id": "task_group_id",
+                      "order_id": "order_id",
+                      "order_short_id": "order_short_id",
                       "rate_sheet_id": "rate_sheet_id",
                       "line_items": [
                         {
@@ -246,6 +279,12 @@ import Chrt
                 lineItemGroupIds: Optional([
                     "line_item_group_ids"
                 ]),
+                orderIds: Optional([
+                    "order_ids"
+                ]),
+                orderShortIds: Optional([
+                    "order_short_ids"
+                ]),
                 amount: Optional(1),
                 units: Optional(.usd),
                 stagedByUserId: Optional("staged_by_user_id"),
@@ -273,7 +312,10 @@ import Chrt
                 LineItemGroup1(
                     schemaVersion: 1,
                     id: "_id",
+                    isAdHoc: Optional(true),
                     taskGroupId: Optional("task_group_id"),
+                    orderId: Optional("order_id"),
+                    orderShortId: Optional("order_short_id"),
                     rateSheetId: Optional("rate_sheet_id"),
                     lineItems: [
                         LineItem1(
@@ -326,6 +368,12 @@ import Chrt
                       "line_item_group_ids": [
                         "line_item_group_ids"
                       ],
+                      "order_ids": [
+                        "order_ids"
+                      ],
+                      "order_short_ids": [
+                        "order_short_ids"
+                      ],
                       "amount": 1,
                       "units": "usd",
                       "staged_by_user_id": "staged_by_user_id",
@@ -368,6 +416,12 @@ import Chrt
                     lineItemGroupIds: Optional([
                         "line_item_group_ids"
                     ]),
+                    orderIds: Optional([
+                        "order_ids"
+                    ]),
+                    orderShortIds: Optional([
+                        "order_short_ids"
+                    ]),
                     amount: Optional(1),
                     units: Optional(.usd),
                     stagedByUserId: Optional("staged_by_user_id"),
@@ -400,6 +454,127 @@ import Chrt
             page: 1,
             pageSize: 1,
             filterSettlementType: .stripeConnect,
+            filterOrderId: "filter_order_id",
+            filterPaymentOriginOrgId: "filter_payment_origin_org_id",
+            filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
+            filterOwnedByOrgId: "filter_owned_by_org_id",
+            filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterOpenedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func expandedListV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "statements": [
+                    {
+                      "statement": {
+                        "schema_version": 1,
+                        "_id": "_id",
+                        "settlement_type": "stripe_connect",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "payment_vector_type": "shipper_pay_forwarder"
+                      },
+                      "line_item_groups": [
+                        {
+                          "schema_version": 1,
+                          "_id": "_id",
+                          "line_items": [
+                            {
+                              "item": "base_rate",
+                              "quantity": 1.1,
+                              "rate": 1.1,
+                              "amount": 1.1
+                            }
+                          ],
+                          "owned_by_org_id": "owned_by_org_id",
+                          "payment_vector_type": "shipper_pay_forwarder",
+                          "settlement_type": "stripe_connect"
+                        }
+                      ],
+                      "task_groups": [
+                        {
+                          "schema_version": 1,
+                          "_id": "_id",
+                          "order_id": "order_id",
+                          "order_short_id": "order_short_id",
+                          "created_by_org_id": "created_by_org_id",
+                          "created_by_user_id": "created_by_user_id",
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                          "task_group_type": "chrt_ground_courier"
+                        }
+                      ]
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = StatementsExpandedListRes(
+            statements: [
+                StatementExpandedListItem(
+                    statement: Statement1(
+                        schemaVersion: 1,
+                        id: "_id",
+                        settlementType: .stripeConnect,
+                        ownedByOrgId: "owned_by_org_id",
+                        paymentVectorType: .shipperPayForwarder
+                    ),
+                    lineItemGroups: [
+                        LineItemGroup1(
+                            schemaVersion: 1,
+                            id: "_id",
+                            lineItems: [
+                                LineItem1(
+                                    item: .baseRate,
+                                    quantity: 1.1,
+                                    rate: 1.1,
+                                    amount: 1.1
+                                )
+                            ],
+                            ownedByOrgId: "owned_by_org_id",
+                            paymentVectorType: .shipperPayForwarder,
+                            settlementType: .stripeConnect
+                        )
+                    ],
+                    taskGroups: [
+                        TaskGroup1(
+                            schemaVersion: 1,
+                            id: "_id",
+                            orderId: "order_id",
+                            orderShortId: "order_short_id",
+                            createdByOrgId: "created_by_org_id",
+                            createdByUserId: "created_by_user_id",
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            taskGroupType: .chrtGroundCourier
+                        )
+                    ]
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.billing.statements.expandedListV1(
+            sortBy: .amount,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            filterSettlementType: .stripeConnect,
+            filterOrderId: "filter_order_id",
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
             filterOwnedByOrgId: "filter_owned_by_org_id",
@@ -424,6 +599,12 @@ import Chrt
                   "_id": "_id",
                   "line_item_group_ids": [
                     "line_item_group_ids"
+                  ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
                   ],
                   "amount": 1,
                   "units": "usd",
@@ -461,6 +642,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -528,6 +715,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -564,6 +757,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -607,6 +806,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -643,6 +848,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -686,6 +897,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -722,6 +939,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -765,6 +988,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -801,6 +1030,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -843,6 +1078,12 @@ import Chrt
                   "line_item_group_ids": [
                     "line_item_group_ids"
                   ],
+                  "order_ids": [
+                    "order_ids"
+                  ],
+                  "order_short_ids": [
+                    "order_short_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -879,6 +1120,12 @@ import Chrt
             id: "_id",
             lineItemGroupIds: Optional([
                 "line_item_group_ids"
+            ]),
+            orderIds: Optional([
+                "order_ids"
+            ]),
+            orderShortIds: Optional([
+                "order_short_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),

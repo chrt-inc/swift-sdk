@@ -11,7 +11,10 @@ import Chrt
                 {
                   "schema_version": 1,
                   "_id": "_id",
+                  "is_ad_hoc": true,
                   "task_group_id": "task_group_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -60,7 +63,10 @@ import Chrt
         let expectedResponse = LineItemGroup1(
             schemaVersion: 1,
             id: "_id",
+            isAdHoc: Optional(true),
             taskGroupId: Optional("task_group_id"),
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -115,7 +121,10 @@ import Chrt
                     {
                       "schema_version": 1,
                       "_id": "_id",
+                      "is_ad_hoc": true,
                       "task_group_id": "task_group_id",
+                      "order_id": "order_id",
+                      "order_short_id": "order_short_id",
                       "rate_sheet_id": "rate_sheet_id",
                       "line_items": [
                         {
@@ -162,7 +171,10 @@ import Chrt
                 LineItemGroup1(
                     schemaVersion: 1,
                     id: "_id",
+                    isAdHoc: Optional(true),
                     taskGroupId: Optional("task_group_id"),
+                    orderId: Optional("order_id"),
+                    orderShortId: Optional("order_short_id"),
                     rateSheetId: Optional("rate_sheet_id"),
                     lineItems: [
                         LineItem1(
@@ -199,6 +211,7 @@ import Chrt
         let response = try await client.billing.lineItemGroups.listForCourierOrgV1(
             filterDriverId: "filter_driver_id",
             filterAttachedToStatement: true,
+            filterOrderId: "filter_order_id",
             filterPaymentRole: .origin,
             page: 1,
             pageSize: 1,
@@ -275,7 +288,10 @@ import Chrt
                 {
                   "schema_version": 1,
                   "_id": "_id",
+                  "is_ad_hoc": true,
                   "task_group_id": "task_group_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -324,7 +340,10 @@ import Chrt
         let expectedResponse = LineItemGroup1(
             schemaVersion: 1,
             id: "_id",
+            isAdHoc: Optional(true),
             taskGroupId: Optional("task_group_id"),
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -377,7 +396,10 @@ import Chrt
                 {
                   "schema_version": 1,
                   "_id": "_id",
+                  "is_ad_hoc": true,
                   "task_group_id": "task_group_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -426,7 +448,10 @@ import Chrt
         let expectedResponse = LineItemGroup1(
             schemaVersion: 1,
             id: "_id",
+            isAdHoc: Optional(true),
             taskGroupId: Optional("task_group_id"),
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -479,7 +504,10 @@ import Chrt
                 {
                   "schema_version": 1,
                   "_id": "_id",
+                  "is_ad_hoc": true,
                   "task_group_id": "task_group_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -528,7 +556,10 @@ import Chrt
         let expectedResponse = LineItemGroup1(
             schemaVersion: 1,
             id: "_id",
+            isAdHoc: Optional(true),
             taskGroupId: Optional("task_group_id"),
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -582,7 +613,10 @@ import Chrt
                 {
                   "schema_version": 1,
                   "_id": "_id",
+                  "is_ad_hoc": true,
                   "task_group_id": "task_group_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -631,7 +665,10 @@ import Chrt
         let expectedResponse = LineItemGroup1(
             schemaVersion: 1,
             id: "_id",
+            isAdHoc: Optional(true),
             taskGroupId: Optional("task_group_id"),
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
