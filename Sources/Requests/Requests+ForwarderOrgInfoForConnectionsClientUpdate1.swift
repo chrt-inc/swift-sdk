@@ -12,6 +12,15 @@ extension Requests {
         public let emailAddressSecondary: String?
         public let jobTitle: String?
         public let notes: String?
+        public let industrySetToNone: Bool?
+        public let streetAddressSetToNone: Bool?
+        public let contactFirstNameSetToNone: Bool?
+        public let contactLastNameSetToNone: Bool?
+        public let phoneNumberPrimarySetToNone: Bool?
+        public let phoneNumberSecondarySetToNone: Bool?
+        public let emailAddressSecondarySetToNone: Bool?
+        public let jobTitleSetToNone: Bool?
+        public let notesSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -26,6 +35,15 @@ extension Requests {
             emailAddressSecondary: String? = nil,
             jobTitle: String? = nil,
             notes: String? = nil,
+            industrySetToNone: Bool? = nil,
+            streetAddressSetToNone: Bool? = nil,
+            contactFirstNameSetToNone: Bool? = nil,
+            contactLastNameSetToNone: Bool? = nil,
+            phoneNumberPrimarySetToNone: Bool? = nil,
+            phoneNumberSecondarySetToNone: Bool? = nil,
+            emailAddressSecondarySetToNone: Bool? = nil,
+            jobTitleSetToNone: Bool? = nil,
+            notesSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.industry = industry
@@ -38,6 +56,15 @@ extension Requests {
             self.emailAddressSecondary = emailAddressSecondary
             self.jobTitle = jobTitle
             self.notes = notes
+            self.industrySetToNone = industrySetToNone
+            self.streetAddressSetToNone = streetAddressSetToNone
+            self.contactFirstNameSetToNone = contactFirstNameSetToNone
+            self.contactLastNameSetToNone = contactLastNameSetToNone
+            self.phoneNumberPrimarySetToNone = phoneNumberPrimarySetToNone
+            self.phoneNumberSecondarySetToNone = phoneNumberSecondarySetToNone
+            self.emailAddressSecondarySetToNone = emailAddressSecondarySetToNone
+            self.jobTitleSetToNone = jobTitleSetToNone
+            self.notesSetToNone = notesSetToNone
             self.additionalProperties = additionalProperties
         }
 
@@ -53,6 +80,15 @@ extension Requests {
             self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
             self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
             self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
+            self.industrySetToNone = try container.decodeIfPresent(Bool.self, forKey: .industrySetToNone)
+            self.streetAddressSetToNone = try container.decodeIfPresent(Bool.self, forKey: .streetAddressSetToNone)
+            self.contactFirstNameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .contactFirstNameSetToNone)
+            self.contactLastNameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .contactLastNameSetToNone)
+            self.phoneNumberPrimarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .phoneNumberPrimarySetToNone)
+            self.phoneNumberSecondarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .phoneNumberSecondarySetToNone)
+            self.emailAddressSecondarySetToNone = try container.decodeIfPresent(Bool.self, forKey: .emailAddressSecondarySetToNone)
+            self.jobTitleSetToNone = try container.decodeIfPresent(Bool.self, forKey: .jobTitleSetToNone)
+            self.notesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .notesSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -69,6 +105,15 @@ extension Requests {
             try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
             try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
             try container.encodeIfPresent(self.notes, forKey: .notes)
+            try container.encodeIfPresent(self.industrySetToNone, forKey: .industrySetToNone)
+            try container.encodeIfPresent(self.streetAddressSetToNone, forKey: .streetAddressSetToNone)
+            try container.encodeIfPresent(self.contactFirstNameSetToNone, forKey: .contactFirstNameSetToNone)
+            try container.encodeIfPresent(self.contactLastNameSetToNone, forKey: .contactLastNameSetToNone)
+            try container.encodeIfPresent(self.phoneNumberPrimarySetToNone, forKey: .phoneNumberPrimarySetToNone)
+            try container.encodeIfPresent(self.phoneNumberSecondarySetToNone, forKey: .phoneNumberSecondarySetToNone)
+            try container.encodeIfPresent(self.emailAddressSecondarySetToNone, forKey: .emailAddressSecondarySetToNone)
+            try container.encodeIfPresent(self.jobTitleSetToNone, forKey: .jobTitleSetToNone)
+            try container.encodeIfPresent(self.notesSetToNone, forKey: .notesSetToNone)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -83,6 +128,15 @@ extension Requests {
             case emailAddressSecondary = "email_address_secondary"
             case jobTitle = "job_title"
             case notes
+            case industrySetToNone = "industry__set_to_None"
+            case streetAddressSetToNone = "street_address__set_to_None"
+            case contactFirstNameSetToNone = "contact_first_name__set_to_None"
+            case contactLastNameSetToNone = "contact_last_name__set_to_None"
+            case phoneNumberPrimarySetToNone = "phone_number_primary__set_to_None"
+            case phoneNumberSecondarySetToNone = "phone_number_secondary__set_to_None"
+            case emailAddressSecondarySetToNone = "email_address_secondary__set_to_None"
+            case jobTitleSetToNone = "job_title__set_to_None"
+            case notesSetToNone = "notes__set_to_None"
         }
     }
 }

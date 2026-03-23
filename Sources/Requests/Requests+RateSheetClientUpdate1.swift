@@ -6,6 +6,8 @@ extension Requests {
         public let comments: String?
         public let cargoTypes: [CargoTypeEnum1]?
         public let vehicleTypes: [VehicleTypeEnum]?
+        public let nameSetToNone: Bool?
+        public let commentsSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -14,12 +16,16 @@ extension Requests {
             comments: String? = nil,
             cargoTypes: [CargoTypeEnum1]? = nil,
             vehicleTypes: [VehicleTypeEnum]? = nil,
+            nameSetToNone: Bool? = nil,
+            commentsSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.name = name
             self.comments = comments
             self.cargoTypes = cargoTypes
             self.vehicleTypes = vehicleTypes
+            self.nameSetToNone = nameSetToNone
+            self.commentsSetToNone = commentsSetToNone
             self.additionalProperties = additionalProperties
         }
 
@@ -29,6 +35,8 @@ extension Requests {
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.cargoTypes = try container.decodeIfPresent([CargoTypeEnum1].self, forKey: .cargoTypes)
             self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
+            self.nameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .nameSetToNone)
+            self.commentsSetToNone = try container.decodeIfPresent(Bool.self, forKey: .commentsSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -39,6 +47,8 @@ extension Requests {
             try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.cargoTypes, forKey: .cargoTypes)
             try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
+            try container.encodeIfPresent(self.nameSetToNone, forKey: .nameSetToNone)
+            try container.encodeIfPresent(self.commentsSetToNone, forKey: .commentsSetToNone)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -47,6 +57,8 @@ extension Requests {
             case comments
             case cargoTypes = "cargo_types"
             case vehicleTypes = "vehicle_types"
+            case nameSetToNone = "name__set_to_None"
+            case commentsSetToNone = "comments__set_to_None"
         }
     }
 }

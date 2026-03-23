@@ -10474,7 +10474,7 @@ try await main()
 <dl>
 <dd>
 
-Starts a task group by transitioning it from STAGED to IN_PROGRESS and syncing related order state. | authz_personas=[courier_driver, lig_owner_operators] | () -> (bool)
+Starts a task group by transitioning it from STAGED to IN_PROGRESS and syncing related order state. | authz_personas=[courier_driver, courier_org_operators, forwarder_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>

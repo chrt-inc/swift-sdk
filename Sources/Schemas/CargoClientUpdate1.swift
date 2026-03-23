@@ -10,6 +10,14 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
     public let turnable: Bool?
     public let stackable: Bool?
     public let description: String?
+    public let quantitySetToNone: Bool?
+    public let weightPoundsSetToNone: Bool?
+    public let lengthInchesSetToNone: Bool?
+    public let widthInchesSetToNone: Bool?
+    public let heightInchesSetToNone: Bool?
+    public let turnableSetToNone: Bool?
+    public let stackableSetToNone: Bool?
+    public let descriptionSetToNone: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -23,6 +31,14 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         turnable: Bool? = nil,
         stackable: Bool? = nil,
         description: String? = nil,
+        quantitySetToNone: Bool? = nil,
+        weightPoundsSetToNone: Bool? = nil,
+        lengthInchesSetToNone: Bool? = nil,
+        widthInchesSetToNone: Bool? = nil,
+        heightInchesSetToNone: Bool? = nil,
+        turnableSetToNone: Bool? = nil,
+        stackableSetToNone: Bool? = nil,
+        descriptionSetToNone: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.cargoType = cargoType
@@ -34,6 +50,14 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         self.turnable = turnable
         self.stackable = stackable
         self.description = description
+        self.quantitySetToNone = quantitySetToNone
+        self.weightPoundsSetToNone = weightPoundsSetToNone
+        self.lengthInchesSetToNone = lengthInchesSetToNone
+        self.widthInchesSetToNone = widthInchesSetToNone
+        self.heightInchesSetToNone = heightInchesSetToNone
+        self.turnableSetToNone = turnableSetToNone
+        self.stackableSetToNone = stackableSetToNone
+        self.descriptionSetToNone = descriptionSetToNone
         self.additionalProperties = additionalProperties
     }
 
@@ -48,6 +72,14 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.quantitySetToNone = try container.decodeIfPresent(Bool.self, forKey: .quantitySetToNone)
+        self.weightPoundsSetToNone = try container.decodeIfPresent(Bool.self, forKey: .weightPoundsSetToNone)
+        self.lengthInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .lengthInchesSetToNone)
+        self.widthInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .widthInchesSetToNone)
+        self.heightInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .heightInchesSetToNone)
+        self.turnableSetToNone = try container.decodeIfPresent(Bool.self, forKey: .turnableSetToNone)
+        self.stackableSetToNone = try container.decodeIfPresent(Bool.self, forKey: .stackableSetToNone)
+        self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -63,6 +95,14 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
         try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encodeIfPresent(self.quantitySetToNone, forKey: .quantitySetToNone)
+        try container.encodeIfPresent(self.weightPoundsSetToNone, forKey: .weightPoundsSetToNone)
+        try container.encodeIfPresent(self.lengthInchesSetToNone, forKey: .lengthInchesSetToNone)
+        try container.encodeIfPresent(self.widthInchesSetToNone, forKey: .widthInchesSetToNone)
+        try container.encodeIfPresent(self.heightInchesSetToNone, forKey: .heightInchesSetToNone)
+        try container.encodeIfPresent(self.turnableSetToNone, forKey: .turnableSetToNone)
+        try container.encodeIfPresent(self.stackableSetToNone, forKey: .stackableSetToNone)
+        try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -76,5 +116,13 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         case turnable
         case stackable
         case description
+        case quantitySetToNone = "quantity__set_to_None"
+        case weightPoundsSetToNone = "weight_pounds__set_to_None"
+        case lengthInchesSetToNone = "length_inches__set_to_None"
+        case widthInchesSetToNone = "width_inches__set_to_None"
+        case heightInchesSetToNone = "height_inches__set_to_None"
+        case turnableSetToNone = "turnable__set_to_None"
+        case stackableSetToNone = "stackable__set_to_None"
+        case descriptionSetToNone = "description__set_to_None"
     }
 }

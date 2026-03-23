@@ -1,3 +1,7 @@
+## 1.530.0 - 2026-03-23
+* ### Added
+* **SetToNone fields** added to update request structs, allowing explicit null value assignment to clear field values rather than leaving them unchanged across multiple client types.
+
 ## 1.527.0 - 2026-03-21
 * ### Added
 * **Order tracking** for billing statements and line item groups with new optional fields `isAdHoc`, `orderId`, and `orderShortId` on line item groups, plus `orderIds` and `orderShortIds` arrays on statements.
