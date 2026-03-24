@@ -10,7 +10,8 @@ public final class SessionsClient: Sendable {
     /// Lists sessions with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (SessionListRes)
     ///
     /// - Parameter sortBy: Field to sort by
-    /// - Parameter sortOrder: Sort order (ascending or descending)
+    /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Full-text search query
     /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
     /// - Parameter filterTerminated: Filter by terminated status
     /// - Parameter filterPublic: Filter by public visibility
@@ -26,7 +27,7 @@ public final class SessionsClient: Sendable {
     /// - Parameter filterTerminatedAtTimestampGte: Filter by terminated_at_timestamp >= value
     /// - Parameter filterTerminatedAtTimestampLte: Filter by terminated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFaFlightId: String? = nil, filterFlightLoadedStatus: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
+    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFaFlightId: String? = nil, filterFlightLoadedStatus: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/list/v1",
@@ -35,6 +36,7 @@ public final class SessionsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "org_scope": orgScope.map { .string($0.rawValue) }, 
                 "filter_terminated": filterTerminated.map { .bool($0) }, 
                 "filter_public": filterPublic.map { .bool($0) }, 
@@ -87,26 +89,6 @@ public final class SessionsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: [TrackingTypeaheadResult].self
-        )
-    }
-
-    /// Search across session comments, device_mac_address, flight_numbers, and off_chrt_reference_id. Handles both partial and full matches. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (SessionSearchRes)
-    ///
-    /// - Parameter query: Search query
-    /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func searchV1(query: String, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionSearchRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/sessions/search/v1",
-            queryParams: [
-                "query": .string(query), 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }, 
-                "org_scope": orgScope.map { .string($0.rawValue) }
-            ],
-            requestOptions: requestOptions,
-            responseType: SessionSearchRes.self
         )
     }
 

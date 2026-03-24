@@ -7,39 +7,51 @@ public final class ConnectionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists shipper organizations based on the caller's organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (list[ShipperConnectionRes])
+    /// Lists shipper organizations based on the caller's organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (ShipperConnectionListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listShippersV1(requestOptions: RequestOptions? = nil) async throws -> [ShipperConnectionRes] {
+    public func listShippersV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/shippers/list/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [ShipperConnectionRes].self
+            responseType: ShipperConnectionListRes.self
         )
     }
 
-    /// Lists courier organizations based on the caller's organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (list[CourierConnectionRes])
+    /// Lists courier organizations based on the caller's organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (CourierConnectionListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCouriersV1(requestOptions: RequestOptions? = nil) async throws -> [CourierConnectionRes] {
+    public func listCouriersV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> CourierConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/couriers/list/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [CourierConnectionRes].self
+            responseType: CourierConnectionListRes.self
         )
     }
 
-    /// Lists forwarder organizations based on the caller's organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (list[ForwarderConnectionRes])
+    /// Lists forwarder organizations based on the caller's organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (ForwarderConnectionListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForwardersV1(requestOptions: RequestOptions? = nil) async throws -> [ForwarderConnectionRes] {
+    public func listForwardersV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ForwarderConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/forwarders/list/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [ForwarderConnectionRes].self
+            responseType: ForwarderConnectionListRes.self
         )
     }
 

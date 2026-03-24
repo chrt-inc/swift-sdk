@@ -8,40 +8,20 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "shipper_org_info_for_connections": {
-                      "schema_version": 1,
-                      "industry": "industry",
-                      "street_address": {
-                        "type": "Feature",
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        }
+                {
+                  "items": [
+                    {
+                      "shipper_org_info_for_connections": {
+                        "schema_version": 1,
+                        "email_address_primary": "email_address_primary",
+                        "shipper_org_id": "shipper_org_id",
+                        "_id": "_id"
                       },
-                      "contact_first_name": "contact_first_name",
-                      "contact_last_name": "contact_last_name",
-                      "phone_number_primary": "phone_number_primary",
-                      "phone_number_secondary": "phone_number_secondary",
-                      "email_address_primary": "email_address_primary",
-                      "email_address_secondary": "email_address_secondary",
-                      "job_title": "job_title",
-                      "notes": "notes",
-                      "shipper_org_id": "shipper_org_id",
-                      "shipper_user_id": "shipper_user_id",
-                      "_id": "_id"
-                    },
-                    "connected": true
-                  }
-                ]
+                      "connected": true
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -50,45 +30,25 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            ShipperConnectionRes(
-                shipperOrgInfoForConnections: ShipperOrgInfoForConnections1(
-                    schemaVersion: 1,
-                    industry: Optional("industry"),
-                    streetAddress: Optional(LocationFeature(
-                        type: .feature,
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                LineStringCoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        )
-                    )),
-                    contactFirstName: Optional("contact_first_name"),
-                    contactLastName: Optional("contact_last_name"),
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
-                    emailAddressPrimary: "email_address_primary",
-                    emailAddressSecondary: Optional("email_address_secondary"),
-                    jobTitle: Optional("job_title"),
-                    notes: Optional("notes"),
-                    shipperOrgId: "shipper_org_id",
-                    shipperUserId: Optional("shipper_user_id"),
-                    id: "_id"
-                ),
-                connected: true
-            )
-        ]
-        let response = try await client.orgs.connections.listShippersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = ShipperConnectionListRes(
+            items: [
+                ShipperConnectionRes(
+                    shipperOrgInfoForConnections: ShipperOrgInfoForConnections1(
+                        schemaVersion: 1,
+                        emailAddressPrimary: "email_address_primary",
+                        shipperOrgId: "shipper_org_id",
+                        id: "_id"
+                    ),
+                    connected: true
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.connections.listShippersV1(
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -97,40 +57,20 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "courier_org_info_for_connections": {
-                      "schema_version": 1,
-                      "industry": "industry",
-                      "street_address": {
-                        "type": "Feature",
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        }
+                {
+                  "items": [
+                    {
+                      "courier_org_info_for_connections": {
+                        "schema_version": 1,
+                        "email_address_primary": "email_address_primary",
+                        "courier_org_id": "courier_org_id",
+                        "_id": "_id"
                       },
-                      "contact_first_name": "contact_first_name",
-                      "contact_last_name": "contact_last_name",
-                      "phone_number_primary": "phone_number_primary",
-                      "phone_number_secondary": "phone_number_secondary",
-                      "email_address_primary": "email_address_primary",
-                      "email_address_secondary": "email_address_secondary",
-                      "job_title": "job_title",
-                      "notes": "notes",
-                      "courier_org_id": "courier_org_id",
-                      "courier_user_id": "courier_user_id",
-                      "_id": "_id"
-                    },
-                    "connected": true
-                  }
-                ]
+                      "connected": true
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -139,45 +79,25 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            CourierConnectionRes(
-                courierOrgInfoForConnections: CourierOrgInfoForConnections1(
-                    schemaVersion: 1,
-                    industry: Optional("industry"),
-                    streetAddress: Optional(LocationFeature(
-                        type: .feature,
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                LineStringCoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        )
-                    )),
-                    contactFirstName: Optional("contact_first_name"),
-                    contactLastName: Optional("contact_last_name"),
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
-                    emailAddressPrimary: "email_address_primary",
-                    emailAddressSecondary: Optional("email_address_secondary"),
-                    jobTitle: Optional("job_title"),
-                    notes: Optional("notes"),
-                    courierOrgId: "courier_org_id",
-                    courierUserId: Optional("courier_user_id"),
-                    id: "_id"
-                ),
-                connected: true
-            )
-        ]
-        let response = try await client.orgs.connections.listCouriersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = CourierConnectionListRes(
+            items: [
+                CourierConnectionRes(
+                    courierOrgInfoForConnections: CourierOrgInfoForConnections1(
+                        schemaVersion: 1,
+                        emailAddressPrimary: "email_address_primary",
+                        courierOrgId: "courier_org_id",
+                        id: "_id"
+                    ),
+                    connected: true
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.connections.listCouriersV1(
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -186,40 +106,20 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "forwarder_org_info_for_connections": {
-                      "schema_version": 1,
-                      "industry": "industry",
-                      "street_address": {
-                        "type": "Feature",
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        }
+                {
+                  "items": [
+                    {
+                      "forwarder_org_info_for_connections": {
+                        "schema_version": 1,
+                        "email_address_primary": "email_address_primary",
+                        "forwarder_org_id": "forwarder_org_id",
+                        "_id": "_id"
                       },
-                      "contact_first_name": "contact_first_name",
-                      "contact_last_name": "contact_last_name",
-                      "phone_number_primary": "phone_number_primary",
-                      "phone_number_secondary": "phone_number_secondary",
-                      "email_address_primary": "email_address_primary",
-                      "email_address_secondary": "email_address_secondary",
-                      "job_title": "job_title",
-                      "notes": "notes",
-                      "forwarder_org_id": "forwarder_org_id",
-                      "forwarder_user_id": "forwarder_user_id",
-                      "_id": "_id"
-                    },
-                    "connected": true
-                  }
-                ]
+                      "connected": true
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -228,45 +128,25 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            ForwarderConnectionRes(
-                forwarderOrgInfoForConnections: ForwarderOrgInfoForConnections1(
-                    schemaVersion: 1,
-                    industry: Optional("industry"),
-                    streetAddress: Optional(LocationFeature(
-                        type: .feature,
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                LineStringCoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        )
-                    )),
-                    contactFirstName: Optional("contact_first_name"),
-                    contactLastName: Optional("contact_last_name"),
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
-                    emailAddressPrimary: "email_address_primary",
-                    emailAddressSecondary: Optional("email_address_secondary"),
-                    jobTitle: Optional("job_title"),
-                    notes: Optional("notes"),
-                    forwarderOrgId: "forwarder_org_id",
-                    forwarderUserId: Optional("forwarder_user_id"),
-                    id: "_id"
-                ),
-                connected: true
-            )
-        ]
-        let response = try await client.orgs.connections.listForwardersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = ForwarderConnectionListRes(
+            items: [
+                ForwarderConnectionRes(
+                    forwarderOrgInfoForConnections: ForwarderOrgInfoForConnections1(
+                        schemaVersion: 1,
+                        emailAddressPrimary: "email_address_primary",
+                        forwarderOrgId: "forwarder_org_id",
+                        id: "_id"
+                    ),
+                    connected: true
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.connections.listForwardersV1(
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 

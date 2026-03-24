@@ -32,13 +32,15 @@ public final class RateSheetsClient: Sendable {
         )
     }
 
-    /// Lists rate sheets for the caller's organization with filtering, sorting, and pagination. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (RateSheetListResponse)
+    /// Lists rate sheets for the caller's organization with filtering, sorting, pagination, and optional full-text search. | authz: allowed_org_types=[courier, forwarder], min_org_role=operator | () -> (RateSheetListResponse)
     ///
+    /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Full-text search query
     /// - Parameter filterServiceType: Filter by service type (exact match)
     /// - Parameter filterCargoType: Filter by cargo type (checks if value is in cargo_types array)
     /// - Parameter filterVehicleType: Filter by vehicle type (checks if value is in vehicle_types array)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByOrgV1(sortBy: RateSheetSortByEnum? = nil, sortOrder: RateSheetsListByOrgV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, filterPaymentVectorType: PaymentVectorTypeEnum1? = nil, filterServiceType: ServiceTypeEnum1? = nil, filterCargoType: CargoTypeEnum1? = nil, filterVehicleType: VehicleTypeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> RateSheetListResponse {
+    public func listByOrgV1(sortBy: RateSheetSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterPaymentVectorType: PaymentVectorTypeEnum1? = nil, filterServiceType: ServiceTypeEnum1? = nil, filterCargoType: CargoTypeEnum1? = nil, filterVehicleType: VehicleTypeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> RateSheetListResponse {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing/rate_sheets/list_by_org/v1",
@@ -47,6 +49,7 @@ public final class RateSheetsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_payment_vector_type": filterPaymentVectorType.map { .string($0.rawValue) }, 
                 "filter_service_type": filterServiceType.map { .string($0.rawValue) }, 

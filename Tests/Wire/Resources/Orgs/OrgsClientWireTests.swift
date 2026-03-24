@@ -55,14 +55,17 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "role": "owner",
-                    "user_id": "user_id",
-                    "first_name": "first_name",
-                    "last_name": "last_name"
-                  }
-                ]
+                {
+                  "items": [
+                    {
+                      "role": "owner",
+                      "user_id": "user_id",
+                      "first_name": "first_name",
+                      "last_name": "last_name"
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -71,15 +74,24 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            OrgMemberDetails(
-                role: .owner,
-                userId: "user_id",
-                firstName: Optional("first_name"),
-                lastName: Optional("last_name")
-            )
-        ]
-        let response = try await client.orgs.listMembersV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = OrgMemberListRes(
+            items: [
+                OrgMemberDetails(
+                    role: .owner,
+                    userId: "user_id",
+                    firstName: Optional("first_name"),
+                    lastName: Optional("last_name")
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.listMembersV1(
+            sortBy: .firstName,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 

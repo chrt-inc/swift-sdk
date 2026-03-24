@@ -1,3 +1,18 @@
+## 2.0.0 - 2026-03-24
+* Enhanced API filtering and pagination capabilities with new optional parameters for payment origin filtering on statements, full-text search for rate sheets and drivers, and pagination support across notification groups, organization connections, and member listings. All existing method calls remain compatible.
+* Enhanced search capabilities across shipping and tracking modules with optional search parameters on list methods and new typeahead endpoints for autocomplete functionality. Directory entries now support pagination and full-text search. Removed standalone search methods in favor of unified search parameters on list endpoints.
+* List response field names standardized to "items" across multiple endpoints. Existing code accessing specific field names like `orderDraftsExpanded`, `ordersExpanded`, `rateSheets`, `sessions`, `statements`, or `taskGroupsExpanded` must be updated to use the new `items` field name.
+* New pagination support for connections, organization members, and drivers list endpoints. Methods now accept page and pageSize parameters and return structured responses with items arrays and total counts. Enhanced filtering and sorting capabilities available for improved data management.
+* **Breaking Changes:**
+* Response structures have been standardized across multiple endpoints. List responses now use a generic "items" field instead of resource-specific array names (e.g., "ordersExpanded" is now "items"). The searchV1 methods for devices and sessions have been removed - use the enhanced list methods with search parameters instead.
+**New Features:**
+* Typeahead functionality for orders and task groups with dedicated endpoints returning string arrays
+* Enhanced search capabilities with new search parameters across multiple list endpoints
+* Pause window tracking for devices with detailed timestamp information
+* SetToNone fields for order draft updates to explicitly clear field values
+* Improved directory entry sorting with additional sort options
+* New list response structures added for drivers, forwarder connections, notifications, organizations, and shipper connections, enabling paginated API responses with consistent items arrays and total count tracking. The SDK now includes OrgMemberSortByEnum for organization member sorting capabilities.
+
 ## 1.530.0 - 2026-03-23
 * ### Added
 * **SetToNone fields** added to update request structs, allowing explicit null value assignment to clear field values rather than leaving them unchanged across multiple client types.

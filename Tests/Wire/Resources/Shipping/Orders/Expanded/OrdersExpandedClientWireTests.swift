@@ -407,7 +407,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "orders_expanded": [
+                  "items": [
                     {
                       "order": {
                         "schema_version": 1,
@@ -460,7 +460,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrdersExpandedListRes(
-            ordersExpanded: [
+            items: [
                 OrderExpanded(
                     order: Order1(
                         schemaVersion: 1,
@@ -506,9 +506,10 @@ import Chrt
         )
         let response = try await client.shipping.orders.expanded.listForForwarderOperatorsV1(
             sortBy: .draftStartedAtTimestamp,
-            sortOrder: .ascending,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -535,7 +536,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "orders_expanded": [
+                  "items": [
                     {
                       "order": {
                         "schema_version": 1,
@@ -588,7 +589,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrdersExpandedListRes(
-            ordersExpanded: [
+            items: [
                 OrderExpanded(
                     order: Order1(
                         schemaVersion: 1,
@@ -634,9 +635,10 @@ import Chrt
         )
         let response = try await client.shipping.orders.expanded.listForShipperOperatorsV1(
             sortBy: .draftStartedAtTimestamp,
-            sortOrder: .ascending,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -652,6 +654,33 @@ import Chrt
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  "string"
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "string"
+        ]
+        let response = try await client.shipping.orders.expanded.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -1,13 +1,13 @@
 import Foundation
 
-public struct DeviceListRes: Codable, Hashable, Sendable {
-    public let items: [DeviceLimitedForList1]
+public struct NotificationGroupUserListRes: Codable, Hashable, Sendable {
+    public let items: [NotificationGroupLimitedForDriver1]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        items: [DeviceLimitedForList1],
+        items: [NotificationGroupLimitedForDriver1],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct DeviceListRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.items = try container.decode([DeviceLimitedForList1].self, forKey: .items)
+        self.items = try container.decode([NotificationGroupLimitedForDriver1].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

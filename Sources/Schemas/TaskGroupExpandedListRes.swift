@@ -1,24 +1,24 @@
 import Foundation
 
 public struct TaskGroupExpandedListRes: Codable, Hashable, Sendable {
-    public let taskGroupsExpanded: [TaskGroupExpanded]
+    public let items: [TaskGroupExpanded]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        taskGroupsExpanded: [TaskGroupExpanded],
+        items: [TaskGroupExpanded],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.taskGroupsExpanded = taskGroupsExpanded
+        self.items = items
         self.totalCount = totalCount
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.taskGroupsExpanded = try container.decode([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
+        self.items = try container.decode([TaskGroupExpanded].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -26,13 +26,13 @@ public struct TaskGroupExpandedListRes: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
+        try container.encode(self.items, forKey: .items)
         try container.encode(self.totalCount, forKey: .totalCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case taskGroupsExpanded = "task_groups_expanded"
+        case items
         case totalCount = "total_count"
     }
 }

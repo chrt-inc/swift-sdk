@@ -22,6 +22,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
     public let lastSeenBatteryLevel: String?
     public let archived: Bool?
     public let paused: Bool?
+    public let pauseWindows: [DevicePausedTimeWindow1]?
     public let sharedWithOrgIds: [String]?
     public let offChrtShipperOrgId: String?
     public let activeSessionId: String?
@@ -45,6 +46,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         lastSeenBatteryLevel: String? = nil,
         archived: Bool? = nil,
         paused: Bool? = nil,
+        pauseWindows: [DevicePausedTimeWindow1]? = nil,
         sharedWithOrgIds: [String]? = nil,
         offChrtShipperOrgId: String? = nil,
         activeSessionId: String? = nil,
@@ -66,6 +68,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         self.lastSeenBatteryLevel = lastSeenBatteryLevel
         self.archived = archived
         self.paused = paused
+        self.pauseWindows = pauseWindows
         self.sharedWithOrgIds = sharedWithOrgIds
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.activeSessionId = activeSessionId
@@ -90,6 +93,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         self.lastSeenBatteryLevel = try container.decodeIfPresent(String.self, forKey: .lastSeenBatteryLevel)
         self.archived = try container.decodeIfPresent(Bool.self, forKey: .archived)
         self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
+        self.pauseWindows = try container.decodeIfPresent([DevicePausedTimeWindow1].self, forKey: .pauseWindows)
         self.sharedWithOrgIds = try container.decodeIfPresent([String].self, forKey: .sharedWithOrgIds)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.activeSessionId = try container.decodeIfPresent(String.self, forKey: .activeSessionId)
@@ -115,6 +119,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lastSeenBatteryLevel, forKey: .lastSeenBatteryLevel)
         try container.encodeIfPresent(self.archived, forKey: .archived)
         try container.encodeIfPresent(self.paused, forKey: .paused)
+        try container.encodeIfPresent(self.pauseWindows, forKey: .pauseWindows)
         try container.encodeIfPresent(self.sharedWithOrgIds, forKey: .sharedWithOrgIds)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.activeSessionId, forKey: .activeSessionId)
@@ -138,6 +143,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         case lastSeenBatteryLevel = "last_seen_battery_level"
         case archived
         case paused
+        case pauseWindows = "pause_windows"
         case sharedWithOrgIds = "shared_with_org_ids"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case activeSessionId = "active_session_id"

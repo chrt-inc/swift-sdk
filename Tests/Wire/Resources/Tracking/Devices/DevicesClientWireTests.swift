@@ -175,6 +175,11 @@ import Chrt
                     "last_seen_battery_level": "last_seen_battery_level",
                     "archived": true,
                     "paused": true,
+                    "pause_windows": [
+                      {
+                        "start_timestamp": "2024-01-15T09:30:00Z"
+                      }
+                    ],
                     "shared_with_org_ids": [
                       "shared_with_org_ids"
                     ],
@@ -361,6 +366,11 @@ import Chrt
                 lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                 archived: Optional(true),
                 paused: Optional(true),
+                pauseWindows: Optional([
+                    DevicePausedTimeWindow1(
+                        startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    )
+                ]),
                 sharedWithOrgIds: Optional([
                     "shared_with_org_ids"
                 ]),
@@ -515,7 +525,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "devices": [
+                  "items": [
                     {
                       "_id": "_id",
                       "schema_version": 1,
@@ -545,6 +555,11 @@ import Chrt
                       "last_seen_battery_level": "last_seen_battery_level",
                       "archived": true,
                       "paused": true,
+                      "pause_windows": [
+                        {
+                          "start_timestamp": "2024-01-15T09:30:00Z"
+                        }
+                      ],
                       "shared_with_org_ids": [
                         "shared_with_org_ids"
                       ],
@@ -564,7 +579,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = DeviceListRes(
-            devices: [
+            items: [
                 DeviceLimitedForList1(
                     id: "_id",
                     schemaVersion: 1,
@@ -598,6 +613,11 @@ import Chrt
                     lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                     archived: Optional(true),
                     paused: Optional(true),
+                    pauseWindows: Optional([
+                        DevicePausedTimeWindow1(
+                            startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                        )
+                    ]),
                     sharedWithOrgIds: Optional([
                         "shared_with_org_ids"
                     ]),
@@ -613,6 +633,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             orgScope: .owned,
             filterOffChrtReferenceId: "filter_off_chrt_reference_id",
             filterType: .d15NTag,
@@ -624,6 +645,8 @@ import Chrt
             filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterFirstSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterFirstSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterArchived: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -662,115 +685,6 @@ import Chrt
         let response = try await client.tracking.devices.typeaheadV1(
             query: "query",
             limit: 1,
-            orgScope: .owned,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func searchV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "devices": [
-                    {
-                      "_id": "_id",
-                      "schema_version": 1,
-                      "org_id": "org_id",
-                      "device_mac_address": "device_mac_address",
-                      "device_token": "device_token",
-                      "type": "D15N-tag",
-                      "comments": "comments",
-                      "off_chrt_reference_id": "off_chrt_reference_id",
-                      "registered_at_timestamp": "2024-01-15T09:30:00Z",
-                      "first_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                      "last_seen_at_location": {
-                        "type": "Feature",
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        }
-                      },
-                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                      "last_seen_battery_level": "last_seen_battery_level",
-                      "archived": true,
-                      "paused": true,
-                      "shared_with_org_ids": [
-                        "shared_with_org_ids"
-                      ],
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                      "active_session_id": "active_session_id",
-                      "active_cargo_id": "active_cargo_id"
-                    }
-                  ],
-                  "total_count": 1
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = DeviceSearchRes(
-            devices: [
-                DeviceLimitedForList1(
-                    id: "_id",
-                    schemaVersion: 1,
-                    orgId: "org_id",
-                    deviceMacAddress: "device_mac_address",
-                    deviceToken: Optional("device_token"),
-                    type: Optional(.d15NTag),
-                    comments: Optional("comments"),
-                    offChrtReferenceId: Optional("off_chrt_reference_id"),
-                    registeredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    firstSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    lastSeenAtLocation: Optional(LocationFeature(
-                        type: .feature,
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                LineStringCoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        )
-                    )),
-                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    lastSeenBatteryLevel: Optional("last_seen_battery_level"),
-                    archived: Optional(true),
-                    paused: Optional(true),
-                    sharedWithOrgIds: Optional([
-                        "shared_with_org_ids"
-                    ]),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                    activeSessionId: Optional("active_session_id"),
-                    activeCargoId: Optional("active_cargo_id")
-                )
-            ],
-            totalCount: 1
-        )
-        let response = try await client.tracking.devices.searchV1(
-            query: "query",
-            page: 1,
-            pageSize: 1,
             orgScope: .owned,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

@@ -52,6 +52,7 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterSettlementType: Filter by settlement type
     /// - Parameter filterOrderId: Filter by order ID (returns statements whose order_ids list contains this value)
     /// - Parameter filterPaymentOriginOrgId: Filter by payment origin org ID
+    /// - Parameter filterPaymentOriginOffChrtShipperOrgId: Filter by payment origin off-chrt shipper org ID
     /// - Parameter filterPaymentDestinationOrgId: Filter by payment destination org ID
     /// - Parameter filterOwnedByOrgId: Filter by owned by org ID
     /// - Parameter filterStagedAtTimestampGte: Filter by staged_at_timestamp >= value
@@ -60,8 +61,10 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterOpenedAtTimestampLte: Filter by opened_at_timestamp <= value
     /// - Parameter filterPaidAtTimestampGte: Filter by paid_at_timestamp >= value
     /// - Parameter filterPaidAtTimestampLte: Filter by paid_at_timestamp <= value
+    /// - Parameter filterUncollectibleAtTimestampGte: Filter by uncollectible_at_timestamp >= value
+    /// - Parameter filterUncollectibleAtTimestampLte: Filter by uncollectible_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsListRes {
+    public func listV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentOriginOffChrtShipperOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterUncollectibleAtTimestampGte: Date? = nil, filterUncollectibleAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing/statements/list/v1",
@@ -74,6 +77,7 @@ public final class StatementsClient: Sendable {
                 "filter_settlement_type": filterSettlementType.map { .string($0.rawValue) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
                 "filter_payment_origin_org_id": filterPaymentOriginOrgId.map { .string($0) }, 
+                "filter_payment_origin_off_chrt_shipper_org_id": filterPaymentOriginOffChrtShipperOrgId.map { .string($0) }, 
                 "filter_payment_destination_org_id": filterPaymentDestinationOrgId.map { .string($0) }, 
                 "filter_owned_by_org_id": filterOwnedByOrgId.map { .string($0) }, 
                 "filter_staged_at_timestamp_gte": filterStagedAtTimestampGte.map { .date($0) }, 
@@ -81,7 +85,9 @@ public final class StatementsClient: Sendable {
                 "filter_opened_at_timestamp_gte": filterOpenedAtTimestampGte.map { .date($0) }, 
                 "filter_opened_at_timestamp_lte": filterOpenedAtTimestampLte.map { .date($0) }, 
                 "filter_paid_at_timestamp_gte": filterPaidAtTimestampGte.map { .date($0) }, 
-                "filter_paid_at_timestamp_lte": filterPaidAtTimestampLte.map { .date($0) }
+                "filter_paid_at_timestamp_lte": filterPaidAtTimestampLte.map { .date($0) }, 
+                "filter_uncollectible_at_timestamp_gte": filterUncollectibleAtTimestampGte.map { .date($0) }, 
+                "filter_uncollectible_at_timestamp_lte": filterUncollectibleAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: StatementsListRes.self
@@ -96,6 +102,7 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterSettlementType: Filter by settlement type
     /// - Parameter filterOrderId: Filter by order ID (returns statements whose order_ids list contains this value)
     /// - Parameter filterPaymentOriginOrgId: Filter by payment origin org ID
+    /// - Parameter filterPaymentOriginOffChrtShipperOrgId: Filter by payment origin off-chrt shipper org ID
     /// - Parameter filterPaymentDestinationOrgId: Filter by payment destination org ID
     /// - Parameter filterOwnedByOrgId: Filter by owned by org ID
     /// - Parameter filterStagedAtTimestampGte: Filter by staged_at_timestamp >= value
@@ -104,8 +111,10 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterOpenedAtTimestampLte: Filter by opened_at_timestamp <= value
     /// - Parameter filterPaidAtTimestampGte: Filter by paid_at_timestamp >= value
     /// - Parameter filterPaidAtTimestampLte: Filter by paid_at_timestamp <= value
+    /// - Parameter filterUncollectibleAtTimestampGte: Filter by uncollectible_at_timestamp >= value
+    /// - Parameter filterUncollectibleAtTimestampLte: Filter by uncollectible_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedListV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsExpandedListRes {
+    public func expandedListV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentOriginOffChrtShipperOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterUncollectibleAtTimestampGte: Date? = nil, filterUncollectibleAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/statements/expanded/list/v1",
@@ -118,6 +127,7 @@ public final class StatementsClient: Sendable {
                 "filter_settlement_type": filterSettlementType.map { .string($0.rawValue) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
                 "filter_payment_origin_org_id": filterPaymentOriginOrgId.map { .string($0) }, 
+                "filter_payment_origin_off_chrt_shipper_org_id": filterPaymentOriginOffChrtShipperOrgId.map { .string($0) }, 
                 "filter_payment_destination_org_id": filterPaymentDestinationOrgId.map { .string($0) }, 
                 "filter_owned_by_org_id": filterOwnedByOrgId.map { .string($0) }, 
                 "filter_staged_at_timestamp_gte": filterStagedAtTimestampGte.map { .date($0) }, 
@@ -125,7 +135,9 @@ public final class StatementsClient: Sendable {
                 "filter_opened_at_timestamp_gte": filterOpenedAtTimestampGte.map { .date($0) }, 
                 "filter_opened_at_timestamp_lte": filterOpenedAtTimestampLte.map { .date($0) }, 
                 "filter_paid_at_timestamp_gte": filterPaidAtTimestampGte.map { .date($0) }, 
-                "filter_paid_at_timestamp_lte": filterPaidAtTimestampLte.map { .date($0) }
+                "filter_paid_at_timestamp_lte": filterPaidAtTimestampLte.map { .date($0) }, 
+                "filter_uncollectible_at_timestamp_gte": filterUncollectibleAtTimestampGte.map { .date($0) }, 
+                "filter_uncollectible_at_timestamp_lte": filterUncollectibleAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: StatementsExpandedListRes.self

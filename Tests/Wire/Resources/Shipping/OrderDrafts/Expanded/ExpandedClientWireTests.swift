@@ -266,7 +266,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "order_drafts_expanded": [
+                  "items": [
                     {
                       "order": {
                         "schema_version": 1,
@@ -331,7 +331,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderDraftExpandedListRes(
-            orderDraftsExpanded: [
+            items: [
                 OrderDraftExpanded(
                     order: Order1(
                         schemaVersion: 1,
@@ -389,7 +389,7 @@ import Chrt
         )
         let response = try await client.shipping.orderDrafts.expanded.listV1(
             sortBy: .draftStartedAtTimestamp,
-            sortOrder: .ascending,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

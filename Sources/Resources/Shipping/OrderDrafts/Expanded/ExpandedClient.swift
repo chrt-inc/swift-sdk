@@ -22,8 +22,9 @@ public final class ExpandedClient: Sendable {
 
     /// Lists expanded draft orders for the organization with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
     ///
+    /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: ExpandedListV1RequestSortOrder? = nil, page: Int? = nil, pageSize: Int? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
+    public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/order_drafts/expanded/list/v1",

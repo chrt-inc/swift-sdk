@@ -8,31 +8,34 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "schema_version": 1,
-                    "group_name": "group_name",
-                    "org_id": "org_id",
-                    "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                    "user_ids": [
-                      "user_ids"
-                    ],
-                    "user_ids_opted_out": [
-                      "user_ids_opted_out"
-                    ],
-                    "email_events": [
-                      "shipping.order.staged"
-                    ],
-                    "push_events": [
-                      "shipping.order.staged"
-                    ],
-                    "sms_events": [
-                      "shipping.order.staged"
-                    ],
-                    "_id": "_id"
-                  }
-                ]
+                {
+                  "items": [
+                    {
+                      "schema_version": 1,
+                      "group_name": "group_name",
+                      "org_id": "org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "user_ids": [
+                        "user_ids"
+                      ],
+                      "user_ids_opted_out": [
+                        "user_ids_opted_out"
+                      ],
+                      "email_events": [
+                        "shipping.order.staged"
+                      ],
+                      "push_events": [
+                        "shipping.order.staged"
+                      ],
+                      "sms_events": [
+                        "shipping.order.staged"
+                      ],
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -41,32 +44,39 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            NotificationGroup1(
-                schemaVersion: 1,
-                groupName: "group_name",
-                orgId: "org_id",
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                userIds: Optional([
-                    "user_ids"
-                ]),
-                userIdsOptedOut: Optional([
-                    "user_ids_opted_out"
-                ]),
-                emailEvents: Optional([
-                    .shippingOrderStaged
-                ]),
-                pushEvents: Optional([
-                    .shippingOrderStaged
-                ]),
-                smsEvents: Optional([
-                    .shippingOrderStaged
-                ]),
-                id: "_id"
-            )
-        ]
-        let response = try await client.notifications.groups.listByOrgV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = NotificationGroupListRes(
+            items: [
+                NotificationGroup1(
+                    schemaVersion: 1,
+                    groupName: "group_name",
+                    orgId: "org_id",
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    userIds: Optional([
+                        "user_ids"
+                    ]),
+                    userIdsOptedOut: Optional([
+                        "user_ids_opted_out"
+                    ]),
+                    emailEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    pushEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    smsEvents: Optional([
+                        .shippingOrderStaged
+                    ]),
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.notifications.groups.listByOrgV1(
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 
@@ -141,25 +151,28 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "_id": "_id",
-                    "schema_version": 1,
-                    "org_id": "org_id",
-                    "group_name": "group_name",
-                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                    "email_events": [
-                      "shipping.order.staged"
-                    ],
-                    "push_events": [
-                      "shipping.order.staged"
-                    ],
-                    "sms_events": [
-                      "shipping.order.staged"
-                    ],
-                    "is_opted_out": true
-                  }
-                ]
+                {
+                  "items": [
+                    {
+                      "_id": "_id",
+                      "schema_version": 1,
+                      "org_id": "org_id",
+                      "group_name": "group_name",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "email_events": [
+                        "shipping.order.staged"
+                      ],
+                      "push_events": [
+                        "shipping.order.staged"
+                      ],
+                      "sms_events": [
+                        "shipping.order.staged"
+                      ],
+                      "is_opted_out": true
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -168,26 +181,33 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            NotificationGroupLimitedForDriver1(
-                id: "_id",
-                schemaVersion: 1,
-                orgId: "org_id",
-                groupName: "group_name",
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                emailEvents: [
-                    .shippingOrderStaged
-                ],
-                pushEvents: [
-                    .shippingOrderStaged
-                ],
-                smsEvents: [
-                    .shippingOrderStaged
-                ],
-                isOptedOut: true
-            )
-        ]
-        let response = try await client.notifications.groups.listByUserV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = NotificationGroupUserListRes(
+            items: [
+                NotificationGroupLimitedForDriver1(
+                    id: "_id",
+                    schemaVersion: 1,
+                    orgId: "org_id",
+                    groupName: "group_name",
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    emailEvents: [
+                        .shippingOrderStaged
+                    ],
+                    pushEvents: [
+                        .shippingOrderStaged
+                    ],
+                    smsEvents: [
+                        .shippingOrderStaged
+                    ],
+                    isOptedOut: true
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.notifications.groups.listByUserV1(
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 

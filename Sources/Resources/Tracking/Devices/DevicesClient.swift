@@ -51,7 +51,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Pauses a device. Cargo-by-device and session-by-device data points are marked as paused and excluded from data point queries. | () -> (bool)
+    /// Pauses a device and opens a new pause time window. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func pauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -66,7 +66,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Unpauses a device. | () -> (bool)
+    /// Unpauses a device. Closes the open pause time window. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func unpauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -112,7 +112,8 @@ public final class DevicesClient: Sendable {
     /// Lists devices with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (DeviceListRes)
     ///
     /// - Parameter sortBy: Field to sort by
-    /// - Parameter sortOrder: Sort order (ascending or descending)
+    /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Full-text search query
     /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
     /// - Parameter filterOffChrtReferenceId: Filter by off-CHRT reference ID (exact match)
     /// - Parameter filterType: Filter by device type
@@ -124,9 +125,11 @@ public final class DevicesClient: Sendable {
     /// - Parameter filterRegisteredAtTimestampLte: Filter by registered_at_timestamp <= value
     /// - Parameter filterLastSeenAtTimestampGte: Filter by last_seen_at_timestamp >= value
     /// - Parameter filterLastSeenAtTimestampLte: Filter by last_seen_at_timestamp <= value
+    /// - Parameter filterFirstSeenAtTimestampGte: Filter by first_seen_at_timestamp >= value
+    /// - Parameter filterFirstSeenAtTimestampLte: Filter by first_seen_at_timestamp <= value
     /// - Parameter filterArchived: Filter by archived status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterHasActiveSession: Bool? = nil, filterHasActiveCargo: Bool? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
+    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterHasActiveSession: Bool? = nil, filterHasActiveCargo: Bool? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterFirstSeenAtTimestampGte: Date? = nil, filterFirstSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/list/v1",
@@ -135,6 +138,7 @@ public final class DevicesClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "org_scope": orgScope.map { .string($0.rawValue) }, 
                 "filter_off_chrt_reference_id": filterOffChrtReferenceId.map { .string($0) }, 
                 "filter_type": filterType.map { .string($0.rawValue) }, 
@@ -146,6 +150,8 @@ public final class DevicesClient: Sendable {
                 "filter_registered_at_timestamp_lte": filterRegisteredAtTimestampLte.map { .date($0) }, 
                 "filter_last_seen_at_timestamp_gte": filterLastSeenAtTimestampGte.map { .date($0) }, 
                 "filter_last_seen_at_timestamp_lte": filterLastSeenAtTimestampLte.map { .date($0) }, 
+                "filter_first_seen_at_timestamp_gte": filterFirstSeenAtTimestampGte.map { .date($0) }, 
+                "filter_first_seen_at_timestamp_lte": filterFirstSeenAtTimestampLte.map { .date($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }
             ],
             requestOptions: requestOptions,
@@ -170,26 +176,6 @@ public final class DevicesClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: [TrackingTypeaheadResult].self
-        )
-    }
-
-    /// Search across device device_mac_address, comments, and off_chrt_reference_id. Handles both partial (typing) and full query submission. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (DeviceSearchRes)
-    ///
-    /// - Parameter query: Search query
-    /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func searchV1(query: String, page: Int? = nil, pageSize: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceSearchRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/devices/search/v1",
-            queryParams: [
-                "query": .string(query), 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }, 
-                "org_scope": orgScope.map { .string($0.rawValue) }
-            ],
-            requestOptions: requestOptions,
-            responseType: DeviceSearchRes.self
         )
     }
 }

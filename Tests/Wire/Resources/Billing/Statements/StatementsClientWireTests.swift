@@ -361,7 +361,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "statements": [
+                  "items": [
                     {
                       "schema_version": 1,
                       "_id": "_id",
@@ -409,7 +409,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = StatementsListRes(
-            statements: [
+            items: [
                 Statement1(
                     schemaVersion: 1,
                     id: "_id",
@@ -456,6 +456,7 @@ import Chrt
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
+            filterPaymentOriginOffChrtShipperOrgId: "filter_payment_origin_off_chrt_shipper_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
             filterOwnedByOrgId: "filter_owned_by_org_id",
             filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -464,6 +465,8 @@ import Chrt
             filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterUncollectibleAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterUncollectibleAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -475,7 +478,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "statements": [
+                  "items": [
                     {
                       "statement": {
                         "schema_version": 1,
@@ -526,7 +529,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = StatementsExpandedListRes(
-            statements: [
+            items: [
                 StatementExpandedListItem(
                     statement: Statement1(
                         schemaVersion: 1,
@@ -576,6 +579,7 @@ import Chrt
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
+            filterPaymentOriginOffChrtShipperOrgId: "filter_payment_origin_off_chrt_shipper_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
             filterOwnedByOrgId: "filter_owned_by_org_id",
             filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -584,6 +588,8 @@ import Chrt
             filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterUncollectibleAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterUncollectibleAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -120,41 +120,43 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                [
-                  {
-                    "schema_version": 1,
-                    "entry_org_id": "entry_org_id",
-                    "entry_off_chrt_shipper_org_id": "entry_off_chrt_shipper_org_id",
-                    "company_name": "company_name",
-                    "industry": "industry",
-                    "location": {
-                      "type": "Feature",
-                      "geometry": {
-                        "geometries": [
-                          {
-                            "coordinates": [
-                              []
-                            ],
-                            "type": "LineString"
-                          }
-                        ],
-                        "type": "GeometryCollection"
+                {
+                  "items": [
+                    {
+                      "schema_version": 1,
+                      "entry_org_id": "entry_org_id",
+                      "entry_off_chrt_shipper_org_id": "entry_off_chrt_shipper_org_id",
+                      "company_name": "company_name",
+                      "industry": "industry",
+                      "location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
                       },
-                      "id": 1
-                    },
-                    "contact_first_name": "contact_first_name",
-                    "contact_last_name": "contact_last_name",
-                    "phone_number_primary": "phone_number_primary",
-                    "phone_number_secondary": "phone_number_secondary",
-                    "email_address_primary": "email_address_primary",
-                    "email_address_secondary": "email_address_secondary",
-                    "job_title": "job_title",
-                    "notes": "notes",
-                    "created_by_org_id": "created_by_org_id",
-                    "created_by_user_id": "created_by_user_id",
-                    "_id": "_id"
-                  }
-                ]
+                      "contact_first_name": "contact_first_name",
+                      "contact_last_name": "contact_last_name",
+                      "phone_number_primary": "phone_number_primary",
+                      "phone_number_secondary": "phone_number_secondary",
+                      "email_address_primary": "email_address_primary",
+                      "email_address_secondary": "email_address_secondary",
+                      "job_title": "job_title",
+                      "notes": "notes",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
                 """.utf8
             )
         )
@@ -163,48 +165,55 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = [
-            DirectoryEntry1(
-                schemaVersion: 1,
-                entryOrgId: Optional("entry_org_id"),
-                entryOffChrtShipperOrgId: Optional("entry_off_chrt_shipper_org_id"),
-                companyName: Optional("company_name"),
-                industry: Optional("industry"),
-                location: Optional(LocationFeature(
-                    type: .feature,
-                    geometry: .geometryCollection(
-                        .init(
-                            geometries: [
-                                .lineString(
-                                    .init(
-                                        coordinates: [
-                                            LineStringCoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ]
+        let expectedResponse = DirectoryEntryListRes(
+            items: [
+                DirectoryEntry1(
+                    schemaVersion: 1,
+                    entryOrgId: Optional("entry_org_id"),
+                    entryOffChrtShipperOrgId: Optional("entry_off_chrt_shipper_org_id"),
+                    companyName: Optional("company_name"),
+                    industry: Optional("industry"),
+                    location: Optional(LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
                                     )
-                                )
-                            ]
+                                ]
+                            )
                         )
-                    ),
-                    id: Optional(Id.int(
-                        1
-                    ))
-                )),
-                contactFirstName: Optional("contact_first_name"),
-                contactLastName: Optional("contact_last_name"),
-                phoneNumberPrimary: Optional("phone_number_primary"),
-                phoneNumberSecondary: Optional("phone_number_secondary"),
-                emailAddressPrimary: Optional("email_address_primary"),
-                emailAddressSecondary: Optional("email_address_secondary"),
-                jobTitle: Optional("job_title"),
-                notes: Optional("notes"),
-                createdByOrgId: "created_by_org_id",
-                createdByUserId: "created_by_user_id",
-                id: "_id"
-            )
-        ]
-        let response = try await client.users.directoryEntries.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+                    )),
+                    contactFirstName: Optional("contact_first_name"),
+                    contactLastName: Optional("contact_last_name"),
+                    phoneNumberPrimary: Optional("phone_number_primary"),
+                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    emailAddressPrimary: Optional("email_address_primary"),
+                    emailAddressSecondary: Optional("email_address_secondary"),
+                    jobTitle: Optional("job_title"),
+                    notes: Optional("notes"),
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.users.directoryEntries.listV1(
+            search: "search",
+            sortBy: .companyName,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
         try #require(response == expectedResponse)
     }
 

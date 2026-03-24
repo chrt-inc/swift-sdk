@@ -20,15 +20,19 @@ public final class OffChrtShipperOrgClient: Sendable {
         )
     }
 
-    /// Lists all off-platform shipper organizations created by the caller's organization. | () -> (list[OffChrtShipperOrg1])
+    /// Lists all off-platform shipper organizations created by the caller's organization. | () -> (OffChrtShipperOrgListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(requestOptions: RequestOptions? = nil) async throws -> [OffChrtShipperOrg1] {
+    public func listV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OffChrtShipperOrgListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/off_chrt_shipper_org/list/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [OffChrtShipperOrg1].self
+            responseType: OffChrtShipperOrgListRes.self
         )
     }
 

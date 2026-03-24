@@ -170,7 +170,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "rate_sheets": [
+                  "items": [
                     {
                       "schema_version": 1,
                       "archived": true,
@@ -213,7 +213,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = RateSheetListResponse(
-            rateSheets: [
+            items: [
                 RateSheet1(
                     schemaVersion: 1,
                     archived: Optional(true),
@@ -249,9 +249,10 @@ import Chrt
         )
         let response = try await client.billing.rateSheets.listByOrgV1(
             sortBy: .id,
-            sortOrder: .ascending,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterArchived: true,
             filterPaymentVectorType: .shipperPayForwarder,
             filterServiceType: .onDemand,

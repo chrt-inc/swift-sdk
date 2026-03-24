@@ -117,7 +117,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "line_item_groups": [
+                  "items": [
                     {
                       "schema_version": 1,
                       "_id": "_id",
@@ -167,7 +167,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = LineItemGroupListRes(
-            lineItemGroups: [
+            items: [
                 LineItemGroup1(
                     schemaVersion: 1,
                     id: "_id",
@@ -213,6 +213,7 @@ import Chrt
             filterAttachedToStatement: true,
             filterOrderId: "filter_order_id",
             filterPaymentRole: .origin,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

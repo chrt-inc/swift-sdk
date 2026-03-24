@@ -7,15 +7,19 @@ public final class GroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all notification groups for the caller's organization. | authz: min_org_role=operator | () -> (list[NotificationGroup1])
+    /// Lists all notification groups for the caller's organization. | authz: min_org_role=operator | () -> (NotificationGroupListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByOrgV1(requestOptions: RequestOptions? = nil) async throws -> [NotificationGroup1] {
+    public func listByOrgV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationGroupListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/notifications/groups/list_by_org/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [NotificationGroup1].self
+            responseType: NotificationGroupListRes.self
         )
     }
 
@@ -31,15 +35,19 @@ public final class GroupsClient: Sendable {
         )
     }
 
-    /// Lists notification groups the caller is a member of. | () -> (list[NotificationGroupLimitedForDriver1])
+    /// Lists notification groups the caller is a member of. | () -> (NotificationGroupUserListRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByUserV1(requestOptions: RequestOptions? = nil) async throws -> [NotificationGroupLimitedForDriver1] {
+    public func listByUserV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationGroupUserListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/notifications/groups/list_by_user/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: [NotificationGroupLimitedForDriver1].self
+            responseType: NotificationGroupUserListRes.self
         )
     }
 

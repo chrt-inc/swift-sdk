@@ -1,24 +1,24 @@
 import Foundation
 
-public struct DeviceSearchRes: Codable, Hashable, Sendable {
-    public let devices: [DeviceLimitedForList1]
+public struct OrgMembersAndDriversListRes: Codable, Hashable, Sendable {
+    public let items: [OrgMembersAndDrivers]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        devices: [DeviceLimitedForList1],
+        items: [OrgMembersAndDrivers],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.devices = devices
+        self.items = items
         self.totalCount = totalCount
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.devices = try container.decode([DeviceLimitedForList1].self, forKey: .devices)
+        self.items = try container.decode([OrgMembersAndDrivers].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -26,13 +26,13 @@ public struct DeviceSearchRes: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.devices, forKey: .devices)
+        try container.encode(self.items, forKey: .items)
         try container.encode(self.totalCount, forKey: .totalCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case devices
+        case items
         case totalCount = "total_count"
     }
 }

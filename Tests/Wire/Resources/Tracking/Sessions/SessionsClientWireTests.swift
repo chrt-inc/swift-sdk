@@ -9,7 +9,7 @@ import Chrt
             body: Data(
                 """
                 {
-                  "sessions": [
+                  "items": [
                     {
                       "schema_version": 1,
                       "off_chrt_reference_id": "off_chrt_reference_id",
@@ -58,7 +58,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = SessionListRes(
-            sessions: [
+            items: [
                 Session1(
                     schemaVersion: 1,
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
@@ -103,6 +103,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             orgScope: .owned,
             filterTerminated: true,
             filterPublic: true,
@@ -252,111 +253,6 @@ import Chrt
         let response = try await client.tracking.sessions.typeaheadV1(
             query: "query",
             limit: 1,
-            orgScope: .owned,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func searchV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "sessions": [
-                    {
-                      "schema_version": 1,
-                      "off_chrt_reference_id": "off_chrt_reference_id",
-                      "comments": "comments",
-                      "public": true,
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                      "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
-                      "flight_numbers": [
-                        "flight_numbers"
-                      ],
-                      "fa_flight_ids": [
-                        "fa_flight_ids"
-                      ],
-                      "device_id": "device_id",
-                      "device_mac_address": "device_mac_address",
-                      "org_id": "org_id",
-                      "shared_with_org_ids": [
-                        "shared_with_org_ids"
-                      ],
-                      "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "terminated": true,
-                      "terminated_at_timestamp": "2024-01-15T09:30:00Z",
-                      "fa_alert_ids": [
-                        1
-                      ],
-                      "flight_loaded_statuses": [
-                        "flight_loaded_statuses"
-                      ],
-                      "fa_alert_id_by_flight_number": {
-                        "key": 1
-                      },
-                      "flight_status_by_fa_flight_id": {
-                        "key": "unknown"
-                      },
-                      "_id": "_id"
-                    }
-                  ],
-                  "total_count": 1
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = SessionSearchRes(
-            sessions: [
-                Session1(
-                    schemaVersion: 1,
-                    offChrtReferenceId: Optional("off_chrt_reference_id"),
-                    comments: Optional("comments"),
-                    public: Optional(true),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                    terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    flightNumbers: Optional([
-                        "flight_numbers"
-                    ]),
-                    faFlightIds: Optional([
-                        "fa_flight_ids"
-                    ]),
-                    deviceId: "device_id",
-                    deviceMacAddress: "device_mac_address",
-                    orgId: "org_id",
-                    sharedWithOrgIds: Optional([
-                        "shared_with_org_ids"
-                    ]),
-                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    terminated: Optional(true),
-                    terminatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    faAlertIds: Optional([
-                        1
-                    ]),
-                    flightLoadedStatuses: Optional([
-                        "flight_loaded_statuses"
-                    ]),
-                    faAlertIdByFlightNumber: Optional([
-                        "key": 1
-                    ]),
-                    flightStatusByFaFlightId: Optional([
-                        "key": .unknown
-                    ]),
-                    id: "_id"
-                )
-            ],
-            totalCount: 1
-        )
-        let response = try await client.tracking.sessions.searchV1(
-            query: "query",
-            page: 1,
-            pageSize: 1,
             orgScope: .owned,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

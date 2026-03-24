@@ -1,24 +1,24 @@
 import Foundation
 
-public struct SessionSearchRes: Codable, Hashable, Sendable {
-    public let sessions: [Session1]
+public struct NotificationAdHocListRes: Codable, Hashable, Sendable {
+    public let items: [NotificationIntentAdHoc1]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        sessions: [Session1],
+        items: [NotificationIntentAdHoc1],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.sessions = sessions
+        self.items = items
         self.totalCount = totalCount
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sessions = try container.decode([Session1].self, forKey: .sessions)
+        self.items = try container.decode([NotificationIntentAdHoc1].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -26,13 +26,13 @@ public struct SessionSearchRes: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.sessions, forKey: .sessions)
+        try container.encode(self.items, forKey: .items)
         try container.encode(self.totalCount, forKey: .totalCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case sessions
+        case items
         case totalCount = "total_count"
     }
 }
