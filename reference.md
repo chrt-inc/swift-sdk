@@ -16603,7 +16603,7 @@ try await main()
 <dl>
 <dd>
 
-Lists sessions with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (SessionListRes)
+Lists sessions with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (SessionListRes)
 </dd>
 </dl>
 </dd>
@@ -16838,7 +16838,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | authz: min_org_role=operator | () -> (Session1)
+Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session1)
 </dd>
 </dl>
 </dd>
@@ -16909,7 +16909,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -18610,7 +18610,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
+Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -18681,7 +18681,7 @@ try await main()
 <dl>
 <dd>
 
-Returns time-bucketed data points and stationary clusters for a session within the given time range. start_timestamp and end_timestamp are required. | authz: min_org_role=operator | () -> SessionByDeviceHistoryRes1
+Returns time-bucketed data points and stationary clusters for a session within the given time range. start_timestamp and end_timestamp are required. | auth: api_key | authz: min_org_role=operator | () -> SessionByDeviceHistoryRes1
 </dd>
 </dl>
 </dd>

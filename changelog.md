@@ -1,3 +1,12 @@
+## 1.539.1 - 2026-03-24
+* docs: update API documentation comments with authentication details
+* Updated method documentation comments to include authentication requirements alongside existing authorization details. The changes clarify that API key authentication is required for accessing these session tracking endpoints.
+* Key changes:
+* Added "auth: api_key" specification to method documentation
+* Updated comments across SessionsClient and SessionByDeviceClient
+* Maintained existing authorization requirements (min_org_role=operator)
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-03-24
 * Enhanced API filtering and pagination capabilities with new optional parameters for payment origin filtering on statements, full-text search for rate sheets and drivers, and pagination support across notification groups, organization connections, and member listings. All existing method calls remain compatible.
 * Enhanced search capabilities across shipping and tracking modules with optional search parameters on list methods and new typeahead endpoints for autocomplete functionality. Directory entries now support pagination and full-text search. Removed standalone search methods in favor of unified search parameters on list endpoints.

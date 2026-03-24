@@ -7,7 +7,7 @@ public final class SessionByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
+    /// Returns the most recent data point for a session, excluding outliers. Access restricted to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (SessionByDeviceDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceDataPoint1? {
@@ -22,7 +22,7 @@ public final class SessionByDeviceClient: Sendable {
         )
     }
 
-    /// Returns time-bucketed data points and stationary clusters for a session within the given time range. start_timestamp and end_timestamp are required. | authz: min_org_role=operator | () -> SessionByDeviceHistoryRes1
+    /// Returns time-bucketed data points and stationary clusters for a session within the given time range. start_timestamp and end_timestamp are required. | auth: api_key | authz: min_org_role=operator | () -> SessionByDeviceHistoryRes1
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsV1(sessionId: String, startTimestamp: Date, endTimestamp: Date, bucketSeconds: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionByDeviceHistoryRes1 {
