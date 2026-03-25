@@ -7,7 +7,7 @@ public final class DevicesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | (DeviceClientCreate1) -> (PydanticObjectId)
+    /// Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | auth: api_key | (DeviceClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func registerToOrgV1(request: Requests.DeviceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {

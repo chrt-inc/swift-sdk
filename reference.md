@@ -10703,7 +10703,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">validateV1</a>(orderId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">validateV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderDraftValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -10715,7 +10715,7 @@ try await main()
 <dl>
 <dd>
 
-Checks whether the draft order satisfies all requirements to move into staging. | () -> (bool)
+Validates the draft order for staging and returns all issues found. | () -> (OrderDraftValidationResult)
 </dd>
 </dl>
 </dd>
@@ -15676,7 +15676,7 @@ try await main()
 <dl>
 <dd>
 
-Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | (DeviceClientCreate1) -> (PydanticObjectId)
+Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | auth: api_key | (DeviceClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -17000,7 +17000,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | (SessionClientCreate1) -> (PydanticObjectId)
+Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>

@@ -92,7 +92,19 @@ import Chrt
         stub.setResponse(
             body: Data(
                 """
-                true
+                {
+                  "is_valid": true,
+                  "issues": [
+                    {
+                      "issue_key": "issue_key",
+                      "category": "status",
+                      "message": "message",
+                      "entity_type": "entity_type",
+                      "entity_id": "entity_id",
+                      "task_group_id": "task_group_id"
+                    }
+                  ]
+                }
                 """.utf8
             )
         )
@@ -101,7 +113,19 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = true
+        let expectedResponse = OrderDraftValidationResult(
+            isValid: true,
+            issues: Optional([
+                OrderDraftValidationIssue(
+                    issueKey: "issue_key",
+                    category: .status,
+                    message: "message",
+                    entityType: Optional("entity_type"),
+                    entityId: Optional("entity_id"),
+                    taskGroupId: Optional("task_group_id")
+                )
+            ])
+        )
         let response = try await client.shipping.orderDrafts.validateV1(
             orderId: "order_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

@@ -1,3 +1,6 @@
+## 2.0.0 - 2026-03-25
+* The `validateV1` method in `OrderDraftsClient` now returns detailed validation results with issue categories and descriptions instead of just a boolean. Existing code must be updated to handle the new `OrderDraftValidationResult` return type instead of `Bool`.
+
 ## 1.539.1 - 2026-03-24
 * docs: update API documentation comments with authentication details
 * Updated method documentation comments to include authentication requirements alongside existing authorization details. The changes clarify that API key authentication is required for accessing these session tracking endpoints.

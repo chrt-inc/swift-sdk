@@ -55,15 +55,15 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Checks whether the draft order satisfies all requirements to move into staging. | () -> (bool)
+    /// Validates the draft order for staging and returns all issues found. | () -> (OrderDraftValidationResult)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func validateV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func validateV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderDraftValidationResult {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_drafts/validate/v1/\(orderId)",
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: OrderDraftValidationResult.self
         )
     }
 }
