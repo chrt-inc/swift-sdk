@@ -49,13 +49,12 @@ public final class DevClient: Sendable {
     /// Same as /agent/order-builder/v1 but streams progress events via SSE as each workflow step completes. | (OrderBuilderReq) -> SSE stream of OrderBuilderProgressEvent, final OrderBuilderRes
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentOrderBuilderStreamV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func postAgentOrderBuilderStreamV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> Void {
         return try await httpClient.performRequest(
             method: .post,
             path: "/dev/agent/order-builder/stream/v1",
             body: request,
-            requestOptions: requestOptions,
-            responseType: JSONValue.self
+            requestOptions: requestOptions
         )
     }
 
