@@ -1,3 +1,6 @@
+## 2.0.0 - 2026-03-27
+* The `postAgentOrderBuilderStreamV1` method in `DevClient` now returns a `JSONValue` response instead of `Void`, allowing access to response data from the order builder streaming endpoint.
+
 ## 2.1.0 - 2026-03-27
 * ### Added
 * **DocsClient** introduced with PDF generation capabilities for bills of lading and proof of delivery documents.
