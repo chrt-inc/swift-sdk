@@ -64,7 +64,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id, flight_number)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForCourierOperatorsV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForCourierOperatorsV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelled: Bool? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/expanded/list/for_courier_operators/v1",
@@ -86,7 +86,8 @@ public final class TaskGroupsExpandedClient: Sendable {
                 "filter_skipped_at_timestamp_lte": filterSkippedAtTimestampLte.map { .date($0) }, 
                 "filter_skipped_at_timestamp_gte": filterSkippedAtTimestampGte.map { .date($0) }, 
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 
-                "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }
+                "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }, 
+                "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }
             ],
             body: request,
             requestOptions: requestOptions,
@@ -99,7 +100,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id, flight_number)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForCourierDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForCourierDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelled: Bool? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/expanded/list/for_courier_driver/v1",
@@ -121,7 +122,8 @@ public final class TaskGroupsExpandedClient: Sendable {
                 "filter_skipped_at_timestamp_lte": filterSkippedAtTimestampLte.map { .date($0) }, 
                 "filter_skipped_at_timestamp_gte": filterSkippedAtTimestampGte.map { .date($0) }, 
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 
-                "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }
+                "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }, 
+                "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }
             ],
             body: request,
             requestOptions: requestOptions,

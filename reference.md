@@ -9161,7 +9161,7 @@ try await main()
 </details>
 
 ## Shipping Docs
-<details><summary><code>client.shipping.docs.<a href="/Sources/Resources/Shipping/Docs/DocsClient.swift">postGenerateV1</a>(request: Requests.GenerateShippingDocReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<details><summary><code>client.shipping.docs.<a href="/Sources/Resources/Shipping/Docs/DocsClient.swift">postGenerateV1</a>(request: Requests.GenerateShippingDocReq, requestOptions: RequestOptions?) -> Data</code></summary>
 <dl>
 <dd>
 
@@ -11700,7 +11700,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
+Updates a task. Operational fields require STAGED status (lig_owner_operators). order_placer_comments can be edited on any non-DRAFT task (order_creator_org_operators). | (TaskClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -13669,7 +13669,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">listForForwarderOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterOrderCancelledAtTimestampLte: Date?, filterOrderCancelledAtTimestampGte: Date?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">listForForwarderOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterOrderCancelledAtTimestampLte: Date?, filterOrderCancelledAtTimestampGte: Date?, filterOrderCancelled: Bool?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -13720,6 +13720,7 @@ private func main() async throws {
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderCancelled: true,
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
         ))
@@ -13885,6 +13886,14 @@ try await main()
 <dl>
 <dd>
 
+**filterOrderCancelled:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `OrderAndTaskGroupExpandedReq` 
     
 </dd>
@@ -13905,7 +13914,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">listForShipperOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterOrderCancelledAtTimestampLte: Date?, filterOrderCancelledAtTimestampGte: Date?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">listForShipperOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterOrderCancelledAtTimestampLte: Date?, filterOrderCancelledAtTimestampGte: Date?, filterOrderCancelled: Bool?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -13956,6 +13965,7 @@ private func main() async throws {
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderCancelled: true,
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
         ))
@@ -14114,6 +14124,14 @@ try await main()
 <dd>
 
 **filterOrderCancelledAtTimestampGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderCancelled:** `Bool?` 
     
 </dd>
 </dl>
@@ -15295,7 +15313,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForCourierOperatorsV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForCourierOperatorsV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterOrderCancelled: Bool?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -15346,6 +15364,7 @@ private func main() async throws {
         filterSkippedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderCancelled: true,
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
         ))
@@ -15511,6 +15530,14 @@ try await main()
 <dl>
 <dd>
 
+**filterOrderCancelled:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `OrderAndTaskGroupExpandedReq` 
     
 </dd>
@@ -15531,7 +15558,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForCourierDriverV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForCourierDriverV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterOrderCancelled: Bool?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -15582,6 +15609,7 @@ private func main() async throws {
         filterSkippedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderCancelled: true,
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
         ))
@@ -15740,6 +15768,14 @@ try await main()
 <dd>
 
 **filterExceptionAtTimestampGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderCancelled:** `Bool?` 
     
 </dd>
 </dl>
@@ -20472,7 +20508,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderStreamV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> Void</code></summary>
+<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderStreamV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
 <dl>
 <dd>
 
@@ -20484,7 +20520,7 @@ try await main()
 <dl>
 <dd>
 
-Same as /agent/order-builder/v1 but streams progress events via SSE as each workflow step completes. | (OrderBuilderReq) -> SSE stream of OrderBuilderProgressEvent, final OrderBuilderRes
+Same as /agent/order-builder/v1 but streams progress events via SSE as each workflow step completes. | (OrderBuilderReq) -> SSE stream of OrderBuilderStreamEvent
 </dd>
 </dl>
 </dd>

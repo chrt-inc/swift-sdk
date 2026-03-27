@@ -526,6 +526,7 @@ import Chrt
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterOrderCancelled: true,
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -655,6 +656,7 @@ import Chrt
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterOrderCancelled: true,
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),

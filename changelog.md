@@ -1,3 +1,11 @@
+## 1.563.0 - 2026-03-27
+**Enhanced filtering and document generation capabilities**
+* **Order and task group filtering** now supports filtering by cancellation status across all expanded list methods for forwarder operators, shipper operators, courier operators, and courier drivers.
+* **PDF document generation** improved with proper binary data handling in `DocsClient.postGenerateV1` method.
+* **Task updates** expanded to allow order creators to edit comments on non-draft tasks, in addition to existing operational field updates by logistics owners.
+* **Order builder streaming** now returns structured response data instead of void, enabling access to streaming event information.
+* **New streaming event types** added with `OrderBuilderStreamEvent` and `Event` schemas for better streaming API integration.
+
 ## 2.0.0 - 2026-03-27
 * The `postAgentOrderBuilderStreamV1` method in `DevClient` now returns a `JSONValue` response instead of `Void`, allowing access to response data from the order builder streaming endpoint.
 

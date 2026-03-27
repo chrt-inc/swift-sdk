@@ -20,7 +20,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Updates a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
+    /// Updates a task. Operational fields require STAGED status (lig_owner_operators). order_placer_comments can be edited on any non-DRAFT task (order_creator_org_operators). | (TaskClientUpdate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {
