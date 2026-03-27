@@ -20,6 +20,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -62,6 +65,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -110,6 +116,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -152,6 +161,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -201,6 +213,9 @@ import Chrt
                     "order_short_ids": [
                       "order_short_ids"
                     ],
+                    "order_off_chrt_reference_ids": [
+                      "order_off_chrt_reference_ids"
+                    ],
                     "amount": 1,
                     "units": "usd",
                     "staged_by_user_id": "staged_by_user_id",
@@ -232,6 +247,7 @@ import Chrt
                       "task_group_id": "task_group_id",
                       "order_id": "order_id",
                       "order_short_id": "order_short_id",
+                      "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                       "rate_sheet_id": "rate_sheet_id",
                       "line_items": [
                         {
@@ -285,6 +301,9 @@ import Chrt
                 orderShortIds: Optional([
                     "order_short_ids"
                 ]),
+                orderOffChrtReferenceIds: Optional([
+                    "order_off_chrt_reference_ids"
+                ]),
                 amount: Optional(1),
                 units: Optional(.usd),
                 stagedByUserId: Optional("staged_by_user_id"),
@@ -316,6 +335,7 @@ import Chrt
                     taskGroupId: Optional("task_group_id"),
                     orderId: Optional("order_id"),
                     orderShortId: Optional("order_short_id"),
+                    orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                     rateSheetId: Optional("rate_sheet_id"),
                     lineItems: [
                         LineItem1(
@@ -374,6 +394,9 @@ import Chrt
                       "order_short_ids": [
                         "order_short_ids"
                       ],
+                      "order_off_chrt_reference_ids": [
+                        "order_off_chrt_reference_ids"
+                      ],
                       "amount": 1,
                       "units": "usd",
                       "staged_by_user_id": "staged_by_user_id",
@@ -422,6 +445,9 @@ import Chrt
                     orderShortIds: Optional([
                         "order_short_ids"
                     ]),
+                    orderOffChrtReferenceIds: Optional([
+                        "order_off_chrt_reference_ids"
+                    ]),
                     amount: Optional(1),
                     units: Optional(.usd),
                     stagedByUserId: Optional("staged_by_user_id"),
@@ -455,6 +481,7 @@ import Chrt
             pageSize: 1,
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
+            filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
             filterPaymentOriginOffChrtShipperOrgId: "filter_payment_origin_off_chrt_shipper_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
@@ -578,6 +605,7 @@ import Chrt
             pageSize: 1,
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
+            filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
             filterPaymentOriginOffChrtShipperOrgId: "filter_payment_origin_off_chrt_shipper_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
@@ -611,6 +639,9 @@ import Chrt
                   ],
                   "order_short_ids": [
                     "order_short_ids"
+                  ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
                   ],
                   "amount": 1,
                   "units": "usd",
@@ -654,6 +685,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -727,6 +761,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -769,6 +806,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -818,6 +858,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -860,6 +903,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -909,6 +955,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -951,6 +1000,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -1000,6 +1052,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1042,6 +1097,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),
@@ -1090,6 +1148,9 @@ import Chrt
                   "order_short_ids": [
                     "order_short_ids"
                   ],
+                  "order_off_chrt_reference_ids": [
+                    "order_off_chrt_reference_ids"
+                  ],
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1132,6 +1193,9 @@ import Chrt
             ]),
             orderShortIds: Optional([
                 "order_short_ids"
+            ]),
+            orderOffChrtReferenceIds: Optional([
+                "order_off_chrt_reference_ids"
             ]),
             amount: Optional(1),
             units: Optional(.usd),

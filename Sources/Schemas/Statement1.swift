@@ -6,6 +6,7 @@ public struct Statement1: Codable, Hashable, Sendable {
     public let lineItemGroupIds: [String]?
     public let orderIds: [String]?
     public let orderShortIds: [String]?
+    public let orderOffChrtReferenceIds: [String]?
     public let amount: Int?
     public let units: UnitsEnum?
     /// Must be a string starting with `user_`
@@ -45,6 +46,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         lineItemGroupIds: [String]? = nil,
         orderIds: [String]? = nil,
         orderShortIds: [String]? = nil,
+        orderOffChrtReferenceIds: [String]? = nil,
         amount: Int? = nil,
         units: UnitsEnum? = nil,
         stagedByUserId: String? = nil,
@@ -74,6 +76,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.lineItemGroupIds = lineItemGroupIds
         self.orderIds = orderIds
         self.orderShortIds = orderShortIds
+        self.orderOffChrtReferenceIds = orderOffChrtReferenceIds
         self.amount = amount
         self.units = units
         self.stagedByUserId = stagedByUserId
@@ -106,6 +109,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.lineItemGroupIds = try container.decodeIfPresent([String].self, forKey: .lineItemGroupIds)
         self.orderIds = try container.decodeIfPresent([String].self, forKey: .orderIds)
         self.orderShortIds = try container.decodeIfPresent([String].self, forKey: .orderShortIds)
+        self.orderOffChrtReferenceIds = try container.decodeIfPresent([String].self, forKey: .orderOffChrtReferenceIds)
         self.amount = try container.decodeIfPresent(Int.self, forKey: .amount)
         self.units = try container.decodeIfPresent(UnitsEnum.self, forKey: .units)
         self.stagedByUserId = try container.decodeIfPresent(String.self, forKey: .stagedByUserId)
@@ -139,6 +143,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lineItemGroupIds, forKey: .lineItemGroupIds)
         try container.encodeIfPresent(self.orderIds, forKey: .orderIds)
         try container.encodeIfPresent(self.orderShortIds, forKey: .orderShortIds)
+        try container.encodeIfPresent(self.orderOffChrtReferenceIds, forKey: .orderOffChrtReferenceIds)
         try container.encodeIfPresent(self.amount, forKey: .amount)
         try container.encodeIfPresent(self.units, forKey: .units)
         try container.encodeIfPresent(self.stagedByUserId, forKey: .stagedByUserId)
@@ -170,6 +175,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         case lineItemGroupIds = "line_item_group_ids"
         case orderIds = "order_ids"
         case orderShortIds = "order_short_ids"
+        case orderOffChrtReferenceIds = "order_off_chrt_reference_ids"
         case amount
         case units
         case stagedByUserId = "staged_by_user_id"

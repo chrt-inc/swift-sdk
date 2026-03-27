@@ -62,7 +62,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// Lists expanded task groups for courier operators with filtering, sorting, pagination, and optional full-text search. | authz_personas=[courier_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter search: Full-text search query (searches order_short_id, flight_number)
+    /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id, flight_number)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listForCourierOperatorsV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
@@ -97,7 +97,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// Lists expanded task groups for courier driver with filtering, sorting, pagination, and optional full-text search. | authz_personas=[courier_driver] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter search: Full-text search query (searches order_short_id, flight_number)
+    /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id, flight_number)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listForCourierDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(

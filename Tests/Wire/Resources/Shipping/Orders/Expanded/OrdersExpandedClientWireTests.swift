@@ -16,6 +16,7 @@ import Chrt
                     "task_group_ids": [
                       "task_group_ids"
                     ],
+                    "off_chrt_reference_id": "off_chrt_reference_id",
                     "created_by_org_type": "courier",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
@@ -112,6 +113,7 @@ import Chrt
                 taskGroupIds: Optional([
                     "task_group_ids"
                 ]),
+                offChrtReferenceId: Optional("off_chrt_reference_id"),
                 createdByOrgType: .courier,
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
@@ -215,6 +217,7 @@ import Chrt
                     "task_group_ids": [
                       "task_group_ids"
                     ],
+                    "off_chrt_reference_id": "off_chrt_reference_id",
                     "created_by_org_type": "courier",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
@@ -311,6 +314,7 @@ import Chrt
                 taskGroupIds: Optional([
                     "task_group_ids"
                 ]),
+                offChrtReferenceId: Optional("off_chrt_reference_id"),
                 createdByOrgType: .courier,
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",

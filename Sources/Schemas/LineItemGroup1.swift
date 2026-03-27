@@ -7,6 +7,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
     public let taskGroupId: String?
     public let orderId: String?
     public let orderShortId: String?
+    public let orderOffChrtReferenceId: String?
     public let rateSheetId: String?
     public let lineItems: [LineItem1]
     public let lineItemGroupS3ObjectMetadataIds: [String]?
@@ -33,6 +34,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         taskGroupId: String? = nil,
         orderId: String? = nil,
         orderShortId: String? = nil,
+        orderOffChrtReferenceId: String? = nil,
         rateSheetId: String? = nil,
         lineItems: [LineItem1],
         lineItemGroupS3ObjectMetadataIds: [String]? = nil,
@@ -54,6 +56,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.taskGroupId = taskGroupId
         self.orderId = orderId
         self.orderShortId = orderShortId
+        self.orderOffChrtReferenceId = orderOffChrtReferenceId
         self.rateSheetId = rateSheetId
         self.lineItems = lineItems
         self.lineItemGroupS3ObjectMetadataIds = lineItemGroupS3ObjectMetadataIds
@@ -78,6 +81,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.taskGroupId = try container.decodeIfPresent(String.self, forKey: .taskGroupId)
         self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
         self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
+        self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
         self.rateSheetId = try container.decodeIfPresent(String.self, forKey: .rateSheetId)
         self.lineItems = try container.decode([LineItem1].self, forKey: .lineItems)
         self.lineItemGroupS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .lineItemGroupS3ObjectMetadataIds)
@@ -103,6 +107,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.taskGroupId, forKey: .taskGroupId)
         try container.encodeIfPresent(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
+        try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
         try container.encodeIfPresent(self.rateSheetId, forKey: .rateSheetId)
         try container.encode(self.lineItems, forKey: .lineItems)
         try container.encodeIfPresent(self.lineItemGroupS3ObjectMetadataIds, forKey: .lineItemGroupS3ObjectMetadataIds)
@@ -126,6 +131,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         case taskGroupId = "task_group_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
+        case orderOffChrtReferenceId = "order_off_chrt_reference_id"
         case rateSheetId = "rate_sheet_id"
         case lineItems = "line_items"
         case lineItemGroupS3ObjectMetadataIds = "line_item_group_s3_object_metadata_ids"

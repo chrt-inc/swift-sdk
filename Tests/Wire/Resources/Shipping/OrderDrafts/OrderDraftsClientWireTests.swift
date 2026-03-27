@@ -41,7 +41,8 @@ import Chrt
                   "order_short_id": "order_short_id",
                   "forwarder_org_id": "forwarder_org_id",
                   "shipper_org_id": "shipper_org_id",
-                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id"
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                  "off_chrt_reference_id": "off_chrt_reference_id"
                 }
                 """.utf8
             )
@@ -56,10 +57,12 @@ import Chrt
             orderShortId: "order_short_id",
             forwarderOrgId: Optional("forwarder_org_id"),
             shipperOrgId: Optional("shipper_org_id"),
-            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id")
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+            offChrtReferenceId: Optional("off_chrt_reference_id")
         )
         let response = try await client.shipping.orderDrafts.updateV1(
-            request: .init(orderId: "order_id"),
+            orderId: "order_id",
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

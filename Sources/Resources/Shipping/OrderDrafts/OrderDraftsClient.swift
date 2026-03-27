@@ -33,10 +33,10 @@ public final class OrderDraftsClient: Sendable {
     /// Updates forwarder and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftUpdateRes {
+    public func updateV1(orderId: String, request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftUpdateRes {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/shipping/order_drafts/update/v1",
+            path: "/shipping/order_drafts/update/v1/\(orderId)",
             body: request,
             requestOptions: requestOptions,
             responseType: OrdersDraftUpdateRes.self

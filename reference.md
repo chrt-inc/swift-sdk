@@ -2123,7 +2123,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">listV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterPaymentOriginOrgId: String?, filterPaymentOriginOffChrtShipperOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterUncollectibleAtTimestampGte: Date?, filterUncollectibleAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsListRes</code></summary>
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">listV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterOrderOffChrtReferenceId: String?, filterPaymentOriginOrgId: String?, filterPaymentOriginOffChrtShipperOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterUncollectibleAtTimestampGte: Date?, filterUncollectibleAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsListRes</code></summary>
 <dl>
 <dd>
 
@@ -2163,6 +2163,7 @@ private func main() async throws {
         pageSize: 1,
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
+        filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentOriginOffChrtShipperOrgId: "filter_payment_origin_off_chrt_shipper_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
@@ -2242,6 +2243,14 @@ try await main()
 <dd>
 
 **filterOrderId:** `String?` — Filter by order ID (returns statements whose order_ids list contains this value)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderOffChrtReferenceId:** `String?` — Filter by order off-chrt reference ID (returns statements whose order_off_chrt_reference_ids list contains this value)
     
 </dd>
 </dl>
@@ -2357,7 +2366,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">expandedListV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterPaymentOriginOrgId: String?, filterPaymentOriginOffChrtShipperOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterUncollectibleAtTimestampGte: Date?, filterUncollectibleAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsExpandedListRes</code></summary>
+<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">expandedListV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterOrderOffChrtReferenceId: String?, filterPaymentOriginOrgId: String?, filterPaymentOriginOffChrtShipperOrgId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterUncollectibleAtTimestampGte: Date?, filterUncollectibleAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -2397,6 +2406,7 @@ private func main() async throws {
         pageSize: 1,
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
+        filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentOriginOffChrtShipperOrgId: "filter_payment_origin_off_chrt_shipper_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
@@ -2476,6 +2486,14 @@ try await main()
 <dd>
 
 **filterOrderId:** `String?` — Filter by order ID (returns statements whose order_ids list contains this value)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderOffChrtReferenceId:** `String?` — Filter by order off-chrt reference ID (returns statements whose order_off_chrt_reference_ids list contains this value)
     
 </dd>
 </dl>
@@ -9142,6 +9160,81 @@ try await main()
 </dl>
 </details>
 
+## Shipping Docs
+<details><summary><code>client.shipping.docs.<a href="/Sources/Resources/Shipping/Docs/DocsClient.swift">postGenerateV1</a>(request: Requests.GenerateShippingDocReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generates a shipping document (BOL or POD) as a PDF for the given order. | authz_personas=[order_creator_org_operators] | (GenerateShippingDocReq) -> (PDF binary)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.docs.postGenerateV1(request: .init(
+        orderIdOrShortId: "order_id_or_short_id",
+        template: .pod
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.GenerateShippingDocReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping Drivers
 <details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">getForCallerV1</a>(requestOptions: RequestOptions?) -> Driver1</code></summary>
 <dl>
@@ -10418,6 +10511,88 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/OrdersClient.swift">updateOffChrtReferenceIdV1</a>(orderId: String, request: Requests.OrdersUpdateOffChrtReferenceIdReq, requestOptions: RequestOptions?) -> OrdersUpdateOffChrtReferenceIdRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates off_chrt_reference_id on a non-draft order. | authz_personas=[order_creator_org_operators] | (OrdersUpdateOffChrtReferenceIdReq) -> (OrdersUpdateOffChrtReferenceIdRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.updateOffChrtReferenceIdV1(
+        orderId: "order_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrdersUpdateOffChrtReferenceIdReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/OrdersClient.swift">cancelV1</a>(orderId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -10561,7 +10736,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">updateV1</a>(request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions?) -> OrdersDraftUpdateRes</code></summary>
+<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">updateV1</a>(orderId: String, request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions?) -> OrdersDraftUpdateRes</code></summary>
 <dl>
 <dd>
 
@@ -10594,7 +10769,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orderDrafts.updateV1(request: .init(orderId: "order_id"))
+    _ = try await client.shipping.orderDrafts.updateV1(
+        orderId: "order_id",
+        request: .init()
+    )
 }
 
 try await main()
@@ -10608,6 +10786,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -13587,7 +13773,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text search query (searches order short_id)
+**search:** `String?` — Full-text search query (searches order short_id and off_chrt_reference_id)
     
 </dd>
 </dl>
@@ -13823,7 +14009,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text search query (searches order short_id)
+**search:** `String?` — Full-text search query (searches order short_id and off_chrt_reference_id)
     
 </dd>
 </dl>
@@ -15213,7 +15399,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text search query (searches order_short_id, flight_number)
+**search:** `String?` — Full-text search query (searches order_short_id, order_off_chrt_reference_id, flight_number)
     
 </dd>
 </dl>
@@ -15449,7 +15635,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text search query (searches order_short_id, flight_number)
+**search:** `String?` — Full-text search query (searches order_short_id, order_off_chrt_reference_id, flight_number)
     
 </dd>
 </dl>
@@ -20212,7 +20398,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderV1</a>(request: Requests.OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderRes</code></summary>
+<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderRes</code></summary>
 <dl>
 <dd>
 
@@ -20245,7 +20431,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.utils.dev.postAgentOrderBuilderV1(request: .init(
+    _ = try await client.utils.dev.postAgentOrderBuilderV1(request: OrderBuilderReq(
         orderShortId: "order_short_id",
         text: "text"
     ))
@@ -20266,7 +20452,81 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OrderBuilderReq` 
+**request:** `OrderBuilderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderStreamV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Same as /agent/order-builder/v1 but streams progress events via SSE as each workflow step completes. | (OrderBuilderReq) -> SSE stream of OrderBuilderProgressEvent, final OrderBuilderRes
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.utils.dev.postAgentOrderBuilderStreamV1(request: OrderBuilderReq(
+        orderShortId: "order_short_id",
+        text: "text"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrderBuilderReq` 
     
 </dd>
 </dl>

@@ -25,6 +25,33 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func updateOffChrtReferenceIdV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "off_chrt_reference_id": "off_chrt_reference_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrdersUpdateOffChrtReferenceIdRes(
+            offChrtReferenceId: Optional("off_chrt_reference_id")
+        )
+        let response = try await client.shipping.orders.updateOffChrtReferenceIdV1(
+            orderId: "order_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func cancelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

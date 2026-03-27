@@ -1,3 +1,11 @@
+## 2.1.0 - 2026-03-27
+* ### Added
+* **DocsClient** introduced with PDF generation capabilities for bills of lading and proof of delivery documents.
+* **Off-chart reference ID management** added across Order, TaskGroup, LineItemGroup, and Statement models with new update methods on OrdersClient.
+* **Enhanced search functionality** expanded to include off-chart reference IDs across orders and task groups.
+* **Order draft creation and updates** now support off-chart reference ID assignment.
+* **Order builder request/response types** added with validation details and shipping document template enumeration.
+
 ## 2.0.0 - 2026-03-25
 * The `validateV1` method in `OrderDraftsClient` now returns detailed validation results with issue categories and descriptions instead of just a boolean. Existing code must be updated to handle the new `OrderDraftValidationResult` return type instead of `Bool`.
 

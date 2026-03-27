@@ -15,6 +15,7 @@ import Chrt
                   "task_group_id": "task_group_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
+                  "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -67,6 +68,7 @@ import Chrt
             taskGroupId: Optional("task_group_id"),
             orderId: Optional("order_id"),
             orderShortId: Optional("order_short_id"),
+            orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -126,6 +128,7 @@ import Chrt
                   "task_group_id": "task_group_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
+                  "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -178,6 +181,7 @@ import Chrt
             taskGroupId: Optional("task_group_id"),
             orderId: Optional("order_id"),
             orderShortId: Optional("order_short_id"),
+            orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -239,6 +243,7 @@ import Chrt
                   "task_group_id": "task_group_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
+                  "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -291,6 +296,7 @@ import Chrt
             taskGroupId: Optional("task_group_id"),
             orderId: Optional("order_id"),
             orderShortId: Optional("order_short_id"),
+            orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(
@@ -370,6 +376,7 @@ import Chrt
                   "task_group_id": "task_group_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
+                  "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                   "rate_sheet_id": "rate_sheet_id",
                   "line_items": [
                     {
@@ -422,6 +429,7 @@ import Chrt
             taskGroupId: Optional("task_group_id"),
             orderId: Optional("order_id"),
             orderShortId: Optional("order_short_id"),
+            orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
             rateSheetId: Optional("rate_sheet_id"),
             lineItems: [
                 LineItem1(

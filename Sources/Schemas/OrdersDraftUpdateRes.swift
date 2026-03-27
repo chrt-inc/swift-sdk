@@ -8,6 +8,7 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let offChrtShipperOrgId: String?
+    public let offChrtReferenceId: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -17,6 +18,7 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         forwarderOrgId: String? = nil,
         shipperOrgId: String? = nil,
         offChrtShipperOrgId: String? = nil,
+        offChrtReferenceId: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.orderId = orderId
@@ -24,6 +26,7 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         self.forwarderOrgId = forwarderOrgId
         self.shipperOrgId = shipperOrgId
         self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.offChrtReferenceId = offChrtReferenceId
         self.additionalProperties = additionalProperties
     }
 
@@ -34,6 +37,7 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -45,6 +49,7 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -54,5 +59,6 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         case forwarderOrgId = "forwarder_org_id"
         case shipperOrgId = "shipper_org_id"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case offChrtReferenceId = "off_chrt_reference_id"
     }
 }

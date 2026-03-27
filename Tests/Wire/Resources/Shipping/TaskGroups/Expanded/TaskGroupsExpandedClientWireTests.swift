@@ -14,6 +14,7 @@ import Chrt
                     "_id": "_id",
                     "order_id": "order_id",
                     "order_short_id": "order_short_id",
+                    "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                     "task_ids": [
                       "task_ids"
                     ],
@@ -164,6 +165,7 @@ import Chrt
                 id: "_id",
                 orderId: "order_id",
                 orderShortId: "order_short_id",
+                orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                 taskIds: Optional([
                     "task_ids"
                 ]),
@@ -327,6 +329,7 @@ import Chrt
                     "_id": "_id",
                     "order_id": "order_id",
                     "order_short_id": "order_short_id",
+                    "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                     "task_ids": [
                       "task_ids"
                     ],
@@ -477,6 +480,7 @@ import Chrt
                 id: "_id",
                 orderId: "order_id",
                 orderShortId: "order_short_id",
+                orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                 taskIds: Optional([
                     "task_ids"
                 ]),
@@ -640,6 +644,7 @@ import Chrt
                     "_id": "_id",
                     "order_id": "order_id",
                     "order_short_id": "order_short_id",
+                    "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                     "task_ids": [
                       "task_ids"
                     ],
@@ -790,6 +795,7 @@ import Chrt
                 id: "_id",
                 orderId: "order_id",
                 orderShortId: "order_short_id",
+                orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                 taskIds: Optional([
                     "task_ids"
                 ]),
@@ -953,6 +959,7 @@ import Chrt
                     "_id": "_id",
                     "order_id": "order_id",
                     "order_short_id": "order_short_id",
+                    "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                     "task_ids": [
                       "task_ids"
                     ],
@@ -1103,6 +1110,7 @@ import Chrt
                 id: "_id",
                 orderId: "order_id",
                 orderShortId: "order_short_id",
+                orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                 taskIds: Optional([
                     "task_ids"
                 ]),

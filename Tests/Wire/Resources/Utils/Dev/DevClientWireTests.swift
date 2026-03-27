@@ -76,7 +76,13 @@ import Chrt
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
                   "summary": "summary",
-                  "validation_passed": true
+                  "validation_passed": true,
+                  "validation_issues": [
+                    "validation_issues"
+                  ],
+                  "notes": [
+                    "notes"
+                  ]
                 }
                 """.utf8
             )
@@ -90,10 +96,16 @@ import Chrt
             orderId: "order_id",
             orderShortId: "order_short_id",
             summary: "summary",
-            validationPassed: Optional(true)
+            validationPassed: Optional(true),
+            validationIssues: Optional([
+                "validation_issues"
+            ]),
+            notes: Optional([
+                "notes"
+            ])
         )
         let response = try await client.utils.dev.postAgentOrderBuilderV1(
-            request: .init(
+            request: OrderBuilderReq(
                 orderShortId: "order_short_id",
                 text: "text"
             ),

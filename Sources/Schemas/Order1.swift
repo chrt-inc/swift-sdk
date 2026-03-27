@@ -5,6 +5,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let id: String
     public let shortId: String
     public let taskGroupIds: [String]?
+    public let offChrtReferenceId: String?
     public let createdByOrgType: OrgTypeEnum
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
@@ -31,6 +32,7 @@ public struct Order1: Codable, Hashable, Sendable {
         id: String,
         shortId: String,
         taskGroupIds: [String]? = nil,
+        offChrtReferenceId: String? = nil,
         createdByOrgType: OrgTypeEnum,
         createdByOrgId: String,
         createdByUserId: String,
@@ -51,6 +53,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.id = id
         self.shortId = shortId
         self.taskGroupIds = taskGroupIds
+        self.offChrtReferenceId = offChrtReferenceId
         self.createdByOrgType = createdByOrgType
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
@@ -74,6 +77,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.shortId = try container.decode(String.self, forKey: .shortId)
         self.taskGroupIds = try container.decodeIfPresent([String].self, forKey: .taskGroupIds)
+        self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.createdByOrgType = try container.decode(OrgTypeEnum.self, forKey: .createdByOrgType)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
@@ -98,6 +102,7 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
+        try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encode(self.createdByOrgType, forKey: .createdByOrgType)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
@@ -120,6 +125,7 @@ public struct Order1: Codable, Hashable, Sendable {
         case id = "_id"
         case shortId = "short_id"
         case taskGroupIds = "task_group_ids"
+        case offChrtReferenceId = "off_chrt_reference_id"
         case createdByOrgType = "created_by_org_type"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
