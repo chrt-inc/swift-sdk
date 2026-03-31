@@ -46,13 +46,14 @@ public final class SharingSettingsClient: Sendable {
         )
     }
 
-    /// Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. | () -> (list[TrackingSharingSettingsRes])
+    /// Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. Note: looking up by off_chrt_reference_id requires authentication because it is only org-level unique and needs the caller's org_id to resolve unambiguously. | () -> (list[TrackingSharingSettingsRes])
     ///
+    /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getSettingsV1(orderIdOrShortId: String, requestOptions: RequestOptions? = nil) async throws -> [TrackingSharingSettingsRes] {
+    public func getSettingsV1(orderRef: String, requestOptions: RequestOptions? = nil) async throws -> [TrackingSharingSettingsRes] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking/sharing_settings/by_order/v1/\(orderIdOrShortId)",
+            path: "/tracking/sharing_settings/by_order/v1/\(orderRef)",
             requestOptions: requestOptions,
             responseType: [TrackingSharingSettingsRes].self
         )

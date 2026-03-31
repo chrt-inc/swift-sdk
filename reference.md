@@ -9195,7 +9195,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.docs.postGenerateV1(request: .init(
-        orderIdOrShortId: "order_id_or_short_id",
+        orderRef: "order_ref",
         template: .pod
     ))
 }
@@ -13287,7 +13287,7 @@ try await main()
 </details>
 
 ## Shipping OrderDrafts Expanded
-<details><summary><code>client.shipping.orderDrafts.expanded.<a href="/Sources/Resources/Shipping/OrderDrafts/Expanded/ExpandedClient.swift">retrieveV1</a>(orderIdOrShortId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderDraftExpanded</code></summary>
+<details><summary><code>client.shipping.orderDrafts.expanded.<a href="/Sources/Resources/Shipping/OrderDrafts/Expanded/ExpandedClient.swift">retrieveV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderDraftExpanded</code></summary>
 <dl>
 <dd>
 
@@ -13321,7 +13321,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.orderDrafts.expanded.retrieveV1(
-        orderIdOrShortId: "order_id_or_short_id",
+        orderRef: "order_ref",
         request: OrderAndTaskGroupExpandedReq(
 
         )
@@ -13343,7 +13343,7 @@ try await main()
 <dl>
 <dd>
 
-**orderIdOrShortId:** `String` 
+**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
     
 </dd>
 </dl>
@@ -13501,7 +13501,7 @@ try await main()
 </details>
 
 ## Shipping Orders Expanded
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">forShipperOperatorsV1</a>(orderIdOrShortId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">forShipperOperatorsV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
 <dl>
 <dd>
 
@@ -13535,7 +13535,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.orders.expanded.forShipperOperatorsV1(
-        orderIdOrShortId: "order_id_or_short_id",
+        orderRef: "order_ref",
         request: OrderAndTaskGroupExpandedReq(
 
         )
@@ -13557,7 +13557,7 @@ try await main()
 <dl>
 <dd>
 
-**orderIdOrShortId:** `String` 
+**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
     
 </dd>
 </dl>
@@ -13585,7 +13585,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">forForwarderOperatorsV1</a>(orderIdOrShortId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">forForwarderOperatorsV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
 <dl>
 <dd>
 
@@ -13619,7 +13619,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.orders.expanded.forForwarderOperatorsV1(
-        orderIdOrShortId: "order_id_or_short_id",
+        orderRef: "order_ref",
         request: OrderAndTaskGroupExpandedReq(
 
         )
@@ -13641,7 +13641,7 @@ try await main()
 <dl>
 <dd>
 
-**orderIdOrShortId:** `String` 
+**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
     
 </dd>
 </dl>
@@ -14538,7 +14538,7 @@ try await main()
 </details>
 
 ## Shipping TaskGroups TaskGroupId
-<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierOperatorsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierOperatorsV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -14571,7 +14571,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.taskGroupId.forCourierOperatorsV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.shipping.taskGroups.taskGroupId.forCourierOperatorsV1(orderRef: "order_ref")
 }
 
 try await main()
@@ -14589,7 +14589,7 @@ try await main()
 <dl>
 <dd>
 
-**orderIdOrShortId:** `String` 
+**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
     
 </dd>
 </dl>
@@ -14609,7 +14609,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierDriverV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forCourierDriverV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -14642,7 +14642,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.taskGroupId.forCourierDriverV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.shipping.taskGroups.taskGroupId.forCourierDriverV1(orderRef: "order_ref")
 }
 
 try await main()
@@ -14660,7 +14660,7 @@ try await main()
 <dl>
 <dd>
 
-**orderIdOrShortId:** `String` 
+**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
     
 </dd>
 </dl>
@@ -17978,7 +17978,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">getSettingsV1</a>(orderIdOrShortId: String, requestOptions: RequestOptions?) -> [TrackingSharingSettingsRes]</code></summary>
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">getSettingsV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [TrackingSharingSettingsRes]</code></summary>
 <dl>
 <dd>
 
@@ -17990,7 +17990,7 @@ try await main()
 <dl>
 <dd>
 
-Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. | () -> (list[TrackingSharingSettingsRes])
+Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. Note: looking up by off_chrt_reference_id requires authentication because it is only org-level unique and needs the caller's org_id to resolve unambiguously. | () -> (list[TrackingSharingSettingsRes])
 </dd>
 </dl>
 </dd>
@@ -18011,7 +18011,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.sharingSettings.getSettingsV1(orderIdOrShortId: "order_id_or_short_id")
+    _ = try await client.tracking.sharingSettings.getSettingsV1(orderRef: "order_ref")
 }
 
 try await main()
@@ -18029,7 +18029,7 @@ try await main()
 <dl>
 <dd>
 
-**orderIdOrShortId:** `String` 
+**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
     
 </dd>
 </dl>

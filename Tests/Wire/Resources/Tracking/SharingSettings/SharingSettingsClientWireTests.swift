@@ -187,7 +187,7 @@ import Chrt
             )
         ]
         let response = try await client.tracking.sharingSettings.getSettingsV1(
-            orderIdOrShortId: "order_id_or_short_id",
+            orderRef: "order_ref",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

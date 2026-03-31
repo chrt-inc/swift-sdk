@@ -195,7 +195,7 @@ import Chrt
             ])
         )
         let response = try await client.shipping.orders.expanded.forShipperOperatorsV1(
-            orderIdOrShortId: "order_id_or_short_id",
+            orderRef: "order_ref",
             request: OrderAndTaskGroupExpandedReq(
 
             ),
@@ -396,7 +396,7 @@ import Chrt
             ])
         )
         let response = try await client.shipping.orders.expanded.forForwarderOperatorsV1(
-            orderIdOrShortId: "order_id_or_short_id",
+            orderRef: "order_ref",
             request: OrderAndTaskGroupExpandedReq(
 
             ),

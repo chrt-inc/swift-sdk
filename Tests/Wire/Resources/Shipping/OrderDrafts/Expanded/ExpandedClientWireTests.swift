@@ -253,7 +253,7 @@ import Chrt
             ])
         )
         let response = try await client.shipping.orderDrafts.expanded.retrieveV1(
-            orderIdOrShortId: "order_id_or_short_id",
+            orderRef: "order_ref",
             request: OrderAndTaskGroupExpandedReq(
 
             ),

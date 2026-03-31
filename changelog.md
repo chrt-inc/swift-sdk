@@ -1,3 +1,6 @@
+## 2.0.0 - 2026-03-31
+* The `orderIdOrShortId` parameter has been renamed to `orderRef` across multiple API methods to better reflect its support for order IDs, short IDs, and off-chart reference IDs. Update method calls to use the new parameter name: `orderRef` instead of `orderIdOrShortId`.
+
 ## 1.563.0 - 2026-03-27
 **Enhanced filtering and document generation capabilities**
 * **Order and task group filtering** now supports filtering by cancellation status across all expanded list methods for forwarder operators, shipper operators, courier operators, and courier drivers.

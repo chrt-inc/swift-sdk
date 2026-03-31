@@ -23,7 +23,7 @@ import Chrt
             "string"
         ]
         let response = try await client.shipping.taskGroups.taskGroupId.forCourierOperatorsV1(
-            orderIdOrShortId: "order_id_or_short_id",
+            orderRef: "order_ref",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -49,7 +49,7 @@ import Chrt
             "string"
         ]
         let response = try await client.shipping.taskGroups.taskGroupId.forCourierDriverV1(
-            orderIdOrShortId: "order_id_or_short_id",
+            orderRef: "order_ref",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
