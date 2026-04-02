@@ -300,8 +300,11 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
+            search: "search",
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
+            sortBy: .firstName,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

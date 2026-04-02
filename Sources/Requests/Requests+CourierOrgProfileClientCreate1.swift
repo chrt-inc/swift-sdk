@@ -5,6 +5,7 @@ extension Requests {
         public let schemaVersion: Int
         public let description: String
         public let emailAddressPrimary: String
+        /// E.164 formatted phone number (e.g. +16505551234). Assumes US country code if none provided.
         public let phoneNumberPrimary: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

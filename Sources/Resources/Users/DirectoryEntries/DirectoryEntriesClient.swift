@@ -19,18 +19,20 @@ public final class DirectoryEntriesClient: Sendable {
         )
     }
 
-    /// Lists directory entries with pagination and optional full-text search. | authz: min_org_role=operator | () -> (DirectoryEntryListRes)
+    /// Lists directory entries with pagination, optional filtering by entry_org_id, and optional full-text search. | authz: min_org_role=operator | () -> (DirectoryEntryListRes)
     ///
     /// - Parameter search: Full-text search query
+    /// - Parameter filterEntryOrgId: Filter by the org this entry belongs to
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, sortBy: DirectoryEntrySortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> DirectoryEntryListRes {
+    public func listV1(search: String? = nil, filterEntryOrgId: String? = nil, sortBy: DirectoryEntrySortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> DirectoryEntryListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/users/directory_entries/list/v1",
             queryParams: [
                 "search": search.map { .string($0) }, 
+                "filter_entry_org_id": filterEntryOrgId.map { .string($0) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 

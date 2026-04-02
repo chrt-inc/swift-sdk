@@ -122,6 +122,7 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.offChrtShipperOrg.listV1(
+            search: "search",
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

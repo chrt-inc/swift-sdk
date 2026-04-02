@@ -5,6 +5,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let id: String
     public let shortId: String
     public let taskGroupIds: [String]?
+    /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
     public let createdByOrgType: OrgTypeEnum
     /// Must be a string starting with `org_`

@@ -7,14 +7,16 @@ public final class ConnectionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists shipper organizations based on the caller's organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (ShipperConnectionListRes)
+    /// Lists shipper organizations based on the caller's organization type with optional search by company name or handle. | () -> (ShipperConnectionListRes)
     ///
+    /// - Parameter search: Search by company name or handle
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listShippersV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperConnectionListRes {
+    public func listShippersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/shippers/list/v1",
             queryParams: [
+                "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }
             ],
@@ -23,14 +25,16 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Lists courier organizations based on the caller's organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (CourierConnectionListRes)
+    /// Lists courier organizations based on the caller's organization type with optional search by company name or handle. | () -> (CourierConnectionListRes)
     ///
+    /// - Parameter search: Search by company name or handle
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCouriersV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> CourierConnectionListRes {
+    public func listCouriersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> CourierConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/couriers/list/v1",
             queryParams: [
+                "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }
             ],
@@ -39,14 +43,16 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Lists forwarder organizations based on the caller's organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (ForwarderConnectionListRes)
+    /// Lists forwarder organizations based on the caller's organization type with optional search by company name or handle. | () -> (ForwarderConnectionListRes)
     ///
+    /// - Parameter search: Search by company name or handle
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForwardersV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ForwarderConnectionListRes {
+    public func listForwardersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ForwarderConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/forwarders/list/v1",
             queryParams: [
+                "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }
             ],

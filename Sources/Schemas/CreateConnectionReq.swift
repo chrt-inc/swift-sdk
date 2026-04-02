@@ -1,6 +1,7 @@
 import Foundation
 
 public struct CreateConnectionReq: Codable, Hashable, Sendable {
+    /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     public let handle: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

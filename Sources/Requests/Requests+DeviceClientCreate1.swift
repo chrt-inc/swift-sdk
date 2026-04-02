@@ -6,6 +6,7 @@ extension Requests {
         public let deviceMacAddress: String
         public let type: TrackingDeviceTypeEnum1?
         public let comments: String?
+        /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

@@ -2,6 +2,7 @@ import Foundation
 
 extension Requests {
     public struct SessionClientUpdate1: Codable, Hashable, Sendable {
+        /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let comments: String?
         public let `public`: Bool?

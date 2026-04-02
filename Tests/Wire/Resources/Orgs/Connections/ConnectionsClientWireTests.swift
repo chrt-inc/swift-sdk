@@ -45,6 +45,7 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.connections.listShippersV1(
+            search: "search",
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -94,6 +95,7 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.connections.listCouriersV1(
+            search: "search",
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -143,6 +145,7 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.connections.listForwardersV1(
+            search: "search",
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

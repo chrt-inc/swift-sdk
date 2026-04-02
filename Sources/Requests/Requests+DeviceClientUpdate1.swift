@@ -4,6 +4,7 @@ extension Requests {
     public struct DeviceClientUpdate1: Codable, Hashable, Sendable {
         public let type: TrackingDeviceTypeEnum1?
         public let comments: String?
+        /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let typeSetToNone: Bool?
         public let commentsSetToNone: Bool?

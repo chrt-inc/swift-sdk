@@ -208,6 +208,7 @@ import Chrt
         )
         let response = try await client.users.directoryEntries.listV1(
             search: "search",
+            filterEntryOrgId: "filter_entry_org_id",
             sortBy: .companyName,
             sortOrder: .asc,
             page: 1,

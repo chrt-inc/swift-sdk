@@ -31,13 +31,14 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Lists all members of the caller's organization with their roles and details. | () -> (OrgMemberListRes)
+    /// Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role, sorting, and pagination. | () -> (OrgMemberListRes)
     ///
     /// - Parameter filterRole: Filter by organization role(s)
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Search by first or last name
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listMembersV1(filterRole: OrgRoleEnum? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMemberListRes {
+    public func listMembersV1(filterRole: OrgRoleEnum? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMemberListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/members/list/v1",
@@ -46,7 +47,8 @@ public final class OrgsClient: Sendable {
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
+                "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: OrgMemberListRes.self

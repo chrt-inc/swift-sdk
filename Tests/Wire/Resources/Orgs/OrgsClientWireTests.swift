@@ -90,6 +90,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

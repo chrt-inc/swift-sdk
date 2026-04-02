@@ -31,20 +31,26 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Lists all organization members paired with their driver information if they are drivers. Filter by availability. | () -> (OrgMembersAndDriversListRes)
+    /// Lists all organization members paired with their driver information if they are drivers. Supports search by name, filtering, sorting, and pagination. | () -> (OrgMembersAndDriversListRes)
     ///
+    /// - Parameter search: Search by first or last name
     /// - Parameter filterRole: Filter by organization role(s)
     /// - Parameter filterAvailableAccordingToDriver: Filter by driver's self-reported availability.
     /// - Parameter filterAvailableAccordingToOperators: Filter by operator-set availability.
+    /// - Parameter sortBy: Field to sort by
+    /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listOrgMembersAndDriversV1(filterRole: OrgRoleEnum? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMembersAndDriversListRes {
+    public func listOrgMembersAndDriversV1(search: String? = nil, filterRole: OrgRoleEnum? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMembersAndDriversListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/org_members_and_drivers/list/v1",
             queryParams: [
+                "search": search.map { .string($0) }, 
                 "filter_role": filterRole.map { .string($0.rawValue) }, 
                 "filter_available_according_to_driver": filterAvailableAccordingToDriver.map { .bool($0) }, 
                 "filter_available_according_to_operators": filterAvailableAccordingToOperators.map { .bool($0) }, 
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }
             ],

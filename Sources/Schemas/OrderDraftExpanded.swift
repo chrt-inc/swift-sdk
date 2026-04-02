@@ -3,6 +3,7 @@ import Foundation
 public struct OrderDraftExpanded: Codable, Hashable, Sendable {
     public let order: Order1
     public let forwarderOrgCompanyName: String?
+    /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     public let forwarderOrgHandle: String?
     public let shipperOrgCompanyName: String?
     public let offChrtShipperOrgCompanyName: String?

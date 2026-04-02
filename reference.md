@@ -63,7 +63,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">listMembersV1</a>(filterRole: OrgRoleEnum?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMemberListRes</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">listMembersV1</a>(filterRole: OrgRoleEnum?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, requestOptions: RequestOptions?) -> OrgMemberListRes</code></summary>
 <dl>
 <dd>
 
@@ -75,7 +75,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all members of the caller's organization with their roles and details. | () -> (OrgMemberListRes)
+Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role, sorting, and pagination. | () -> (OrgMemberListRes)
 </dd>
 </dl>
 </dd>
@@ -100,7 +100,8 @@ private func main() async throws {
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        search: "search"
     )
 }
 
@@ -152,6 +153,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search by first or last name
     
 </dd>
 </dl>
@@ -6641,7 +6650,7 @@ try await main()
 </details>
 
 ## Orgs Connections
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listShippersV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ShipperConnectionListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listShippersV1</a>(search: String?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ShipperConnectionListRes</code></summary>
 <dl>
 <dd>
 
@@ -6653,7 +6662,7 @@ try await main()
 <dl>
 <dd>
 
-Lists shipper organizations based on the caller's organization type. Couriers see connected shippers, forwarders see connected shippers. | () -> (ShipperConnectionListRes)
+Lists shipper organizations based on the caller's organization type with optional search by company name or handle. | () -> (ShipperConnectionListRes)
 </dd>
 </dl>
 </dd>
@@ -6675,6 +6684,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.connections.listShippersV1(
+        search: "search",
         page: 1,
         pageSize: 1
     )
@@ -6691,6 +6701,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search by company name or handle
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -6723,7 +6741,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listCouriersV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CourierConnectionListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listCouriersV1</a>(search: String?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CourierConnectionListRes</code></summary>
 <dl>
 <dd>
 
@@ -6735,7 +6753,7 @@ try await main()
 <dl>
 <dd>
 
-Lists courier organizations based on the caller's organization type. Shippers see connected couriers, forwarders see connected couriers. | () -> (CourierConnectionListRes)
+Lists courier organizations based on the caller's organization type with optional search by company name or handle. | () -> (CourierConnectionListRes)
 </dd>
 </dl>
 </dd>
@@ -6757,6 +6775,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.connections.listCouriersV1(
+        search: "search",
         page: 1,
         pageSize: 1
     )
@@ -6773,6 +6792,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search by company name or handle
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -6805,7 +6832,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listForwardersV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ForwarderConnectionListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listForwardersV1</a>(search: String?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ForwarderConnectionListRes</code></summary>
 <dl>
 <dd>
 
@@ -6817,7 +6844,7 @@ try await main()
 <dl>
 <dd>
 
-Lists forwarder organizations based on the caller's organization type. Shippers see connected forwarders, couriers see connected forwarders. | () -> (ForwarderConnectionListRes)
+Lists forwarder organizations based on the caller's organization type with optional search by company name or handle. | () -> (ForwarderConnectionListRes)
 </dd>
 </dl>
 </dd>
@@ -6839,6 +6866,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.connections.listForwardersV1(
+        search: "search",
         page: 1,
         pageSize: 1
     )
@@ -6855,6 +6883,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search by company name or handle
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -7252,7 +7288,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.offChrtShipperOrg.<a href="/Sources/Resources/Orgs/OffChrtShipperOrg/OffChrtShipperOrgClient.swift">listV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OffChrtShipperOrgListRes</code></summary>
+<details><summary><code>client.orgs.offChrtShipperOrg.<a href="/Sources/Resources/Orgs/OffChrtShipperOrg/OffChrtShipperOrgClient.swift">listV1</a>(search: String?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OffChrtShipperOrgListRes</code></summary>
 <dl>
 <dd>
 
@@ -7264,7 +7300,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all off-platform shipper organizations created by the caller's organization. | () -> (OffChrtShipperOrgListRes)
+Lists all off-platform shipper organizations created by the caller's organization with optional search by company name. | () -> (OffChrtShipperOrgListRes)
 </dd>
 </dl>
 </dd>
@@ -7286,6 +7322,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.offChrtShipperOrg.listV1(
+        search: "search",
         page: 1,
         pageSize: 1
     )
@@ -7302,6 +7339,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search by company name
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -9370,7 +9415,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(filterRole: OrgRoleEnum?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMembersAndDriversListRes</code></summary>
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(search: String?, filterRole: OrgRoleEnum?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMembersAndDriversListRes</code></summary>
 <dl>
 <dd>
 
@@ -9382,7 +9427,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all organization members paired with their driver information if they are drivers. Filter by availability. | () -> (OrgMembersAndDriversListRes)
+Lists all organization members paired with their driver information if they are drivers. Supports search by name, filtering, sorting, and pagination. | () -> (OrgMembersAndDriversListRes)
 </dd>
 </dl>
 </dd>
@@ -9404,8 +9449,11 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
+        search: "search",
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
+        sortBy: .firstName,
+        sortOrder: .asc,
         page: 1,
         pageSize: 1
     )
@@ -9422,6 +9470,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search by first or last name
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -9443,6 +9499,22 @@ try await main()
 <dd>
 
 **filterAvailableAccordingToOperators:** `Bool?` — Filter by operator-set availability.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `OrgMemberSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
     
 </dd>
 </dl>
@@ -19958,7 +20030,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.users.directoryEntries.<a href="/Sources/Resources/Users/DirectoryEntries/DirectoryEntriesClient.swift">listV1</a>(search: String?, sortBy: DirectoryEntrySortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> DirectoryEntryListRes</code></summary>
+<details><summary><code>client.users.directoryEntries.<a href="/Sources/Resources/Users/DirectoryEntries/DirectoryEntriesClient.swift">listV1</a>(search: String?, filterEntryOrgId: String?, sortBy: DirectoryEntrySortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> DirectoryEntryListRes</code></summary>
 <dl>
 <dd>
 
@@ -19970,7 +20042,7 @@ try await main()
 <dl>
 <dd>
 
-Lists directory entries with pagination and optional full-text search. | authz: min_org_role=operator | () -> (DirectoryEntryListRes)
+Lists directory entries with pagination, optional filtering by entry_org_id, and optional full-text search. | authz: min_org_role=operator | () -> (DirectoryEntryListRes)
 </dd>
 </dl>
 </dd>
@@ -19993,6 +20065,7 @@ private func main() async throws {
 
     _ = try await client.users.directoryEntries.listV1(
         search: "search",
+        filterEntryOrgId: "filter_entry_org_id",
         sortBy: .companyName,
         sortOrder: .asc,
         page: 1,
@@ -20016,6 +20089,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Full-text search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterEntryOrgId:** `String?` — Filter by the org this entry belongs to
     
 </dd>
 </dl>

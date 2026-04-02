@@ -1,3 +1,11 @@
+## 1.576.0 - 2026-04-02
+**Expanded search and filtering across list endpoints**
+* `listShippersV1`, `listCouriersV1`, and `listForwardersV1` on `ConnectionsClient` now accept an optional `search` parameter to filter results by company name or handle.
+* `OffChrtShipperOrgClient.listV1` now accepts an optional `search` parameter to filter off-platform shipper organizations by company name.
+* `OrgsClient.listMembersV1` now accepts an optional `search` parameter to filter members by first or last name.
+* `DriversClient.listOrgMembersAndDriversV1` now accepts optional `search`, `sortBy`, and `sortOrder` parameters for name-based search and result ordering.
+* `DirectoryEntriesClient.listV1` now accepts an optional `filterEntryOrgId` parameter to scope results to a specific organization.
+
 ## 2.0.0 - 2026-03-31
 * The `orderIdOrShortId` parameter has been renamed to `orderRef` across multiple API methods to better reflect its support for order IDs, short IDs, and off-chart reference IDs. Update method calls to use the new parameter name: `orderRef` instead of `orderIdOrShortId`.
 

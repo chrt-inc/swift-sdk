@@ -6,6 +6,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let companyName: String?
+    /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     public let handle: String?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
