@@ -29,7 +29,7 @@ import Chrt
         let expectedResponse = TaskGroupByDriverSharingSettings1(
             schemaVersion: 1,
             taskGroupId: "task_group_id",
-            driverId: "driver_id",
+            driverId: Optional("driver_id"),
             public: Optional(true),
             lastChangedByUserId: Optional("last_changed_by_user_id"),
             lastChangedByOrgId: Optional("last_changed_by_org_id"),
@@ -39,7 +39,6 @@ import Chrt
         let response = try await client.tracking.sharingSettings.taskGroupByDriverSharingSettingsV1(
             request: .init(
                 taskGroupId: "task_group_id",
-                driverId: "driver_id",
                 public: true
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -75,7 +74,7 @@ import Chrt
             schemaVersion: 1,
             taskGroupId: "task_group_id",
             cargoId: "cargo_id",
-            driverId: "driver_id",
+            driverId: Optional("driver_id"),
             public: Optional(true),
             lastChangedByUserId: Optional("last_changed_by_user_id"),
             lastChangedByOrgId: Optional("last_changed_by_org_id"),
@@ -86,7 +85,6 @@ import Chrt
             request: .init(
                 taskGroupId: "task_group_id",
                 cargoId: "cargo_id",
-                driverId: "driver_id",
                 public: true
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -176,7 +174,7 @@ import Chrt
                     TaskGroupByDriverSharingSettings1(
                         schemaVersion: 1,
                         taskGroupId: "task_group_id",
-                        driverId: "driver_id",
+                        driverId: Optional("driver_id"),
                         public: Optional(true),
                         lastChangedByUserId: Optional("last_changed_by_user_id"),
                         lastChangedByOrgId: Optional("last_changed_by_org_id"),

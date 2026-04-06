@@ -1,3 +1,9 @@
+## 2.0.0 - 2026-04-06
+**Breaking changes to driver sharing settings**
+* `CargoByDriverSharingSettings1.driverId` is now `String?` (previously `String`) — callers must unwrap this value with `if let` or `guard let`.
+* `TaskGroupByDriverSharingSettings1.driverId` is now `String?` (previously `String`) — callers must unwrap this value with `if let` or `guard let`.
+* The `driverId` parameter has been removed from `CargoByDriverSharingSettingsUpdateReq` and `TaskGroupByDriverSharingSettingsUpdateReq` — remove any `driverId:` argument from calls to these initializers.
+
 ## 1.576.0 - 2026-04-02
 **Expanded search and filtering across list endpoints**
 * `listShippersV1`, `listCouriersV1`, and `listForwardersV1` on `ConnectionsClient` now accept an optional `search` parameter to filter results by company name or handle.

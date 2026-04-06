@@ -3,7 +3,7 @@ import Foundation
 public struct TaskGroupByDriverSharingSettings1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let taskGroupId: String
-    public let driverId: String
+    public let driverId: String?
     public let `public`: Bool?
     /// Must be a string starting with `user_`
     public let lastChangedByUserId: String?
@@ -17,7 +17,7 @@ public struct TaskGroupByDriverSharingSettings1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         taskGroupId: String,
-        driverId: String,
+        driverId: String? = nil,
         public: Bool? = nil,
         lastChangedByUserId: String? = nil,
         lastChangedByOrgId: String? = nil,
@@ -40,7 +40,7 @@ public struct TaskGroupByDriverSharingSettings1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.driverId = try container.decode(String.self, forKey: .driverId)
+        self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
         self.lastChangedByUserId = try container.decodeIfPresent(String.self, forKey: .lastChangedByUserId)
         self.lastChangedByOrgId = try container.decodeIfPresent(String.self, forKey: .lastChangedByOrgId)
@@ -54,7 +54,7 @@ public struct TaskGroupByDriverSharingSettings1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encode(self.driverId, forKey: .driverId)
+        try container.encodeIfPresent(self.driverId, forKey: .driverId)
         try container.encodeIfPresent(self.public, forKey: .public)
         try container.encodeIfPresent(self.lastChangedByUserId, forKey: .lastChangedByUserId)
         try container.encodeIfPresent(self.lastChangedByOrgId, forKey: .lastChangedByOrgId)

@@ -17858,7 +17858,6 @@ private func main() async throws {
 
     _ = try await client.tracking.sharingSettings.taskGroupByDriverSharingSettingsV1(request: .init(
         taskGroupId: "task_group_id",
-        driverId: "driver_id",
         public: true
     ))
 }
@@ -17934,7 +17933,6 @@ private func main() async throws {
     _ = try await client.tracking.sharingSettings.cargoByDriverSettingsV1(request: .init(
         taskGroupId: "task_group_id",
         cargoId: "cargo_id",
-        driverId: "driver_id",
         public: true
     ))
 }
