@@ -107,12 +107,12 @@ public final class OrdersExpandedClient: Sendable {
         )
     }
 
-    /// Returns distinct order short_id values matching the query via case-insensitive regex. Searches non-draft orders visible to the caller's org. | authz: allowed_org_types=[forwarder, shipper], min_org_role=operator | () -> (list[str])
+    /// Returns distinct short_id and off_chrt_reference_id values matching the query via case-insensitive regex. Searches non-draft orders visible to the caller's org. | authz: allowed_org_types=[forwarder, shipper], min_org_role=operator | () -> (list[OrderTypeaheadResult])
     ///
     /// - Parameter query: Typeahead search query
-    /// - Parameter limit: Max results
+    /// - Parameter limit: Max results per field
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrderTypeaheadResult] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/orders/expanded/typeahead/v1",
@@ -121,7 +121,7 @@ public final class OrdersExpandedClient: Sendable {
                 "limit": limit.map { .int($0) }
             ],
             requestOptions: requestOptions,
-            responseType: [String].self
+            responseType: [OrderTypeaheadResult].self
         )
     }
 }

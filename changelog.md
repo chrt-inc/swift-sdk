@@ -1,3 +1,10 @@
+## 2.0.0 - 2026-04-07
+**Breaking change to order typeahead response type**
+* `OrdersExpandedClient.typeaheadV1` now returns `[OrderTypeaheadResult]` instead of `[String]`. Each `OrderTypeaheadResult` contains a `type` field (`OrderTypeaheadFieldEnum`: `.shortId` or `.offChrtReferenceId`) and a `values` array of matching strings. Update all call sites to use the new structured type.
+**New capabilities**
+* A new `typeaheadV1(query:limit:)` method is now available on `shipping.orderDrafts.expanded`, enabling typeahead search over draft orders by `short_id` and `off_chrt_reference_id`.
+* `shipping.orderDrafts.expanded.listV1` now accepts an optional `search` parameter for full-text filtering of draft orders.
+
 ## 2.0.0 - 2026-04-06
 **Breaking changes to driver sharing settings**
 * `CargoByDriverSharingSettings1.driverId` is now `String?` (previously `String`) — callers must unwrap this value with `if let` or `guard let`.

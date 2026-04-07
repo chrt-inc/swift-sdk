@@ -21,11 +21,12 @@ public final class ExpandedClient: Sendable {
         )
     }
 
-    /// Lists expanded draft orders for the organization with filtering, sorting, and pagination. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
+    /// Lists expanded draft orders for the organization with filtering, sorting, pagination, and optional search. | (OrderAndTaskGroupExpandedReq) -> (OrderDraftExpandedListRes)
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Full-text search query (searches order short_id and off_chrt_reference_id)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
+    public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/order_drafts/expanded/list/v1",
@@ -34,12 +35,31 @@ public final class ExpandedClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }
             ],
             body: request,
             requestOptions: requestOptions,
             responseType: OrderDraftExpandedListRes.self
+        )
+    }
+
+    /// Returns distinct short_id and off_chrt_reference_id values matching the query via case-insensitive regex. Searches draft orders created by the caller's org. | authz: min_org_role=operator | () -> (list[OrderTypeaheadResult])
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/order_drafts/expanded/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OrderTypeaheadResult].self
         )
     }
 }

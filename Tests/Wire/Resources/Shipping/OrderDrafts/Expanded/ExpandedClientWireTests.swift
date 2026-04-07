@@ -394,11 +394,49 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "type": "off_chrt_reference_id",
+                    "values": [
+                      "values"
+                    ]
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            OrderTypeaheadResult(
+                type: .offChrtReferenceId,
+                values: [
+                    "values"
+                ]
+            )
+        ]
+        let response = try await client.shipping.orderDrafts.expanded.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -671,7 +671,12 @@ import Chrt
             body: Data(
                 """
                 [
-                  "string"
+                  {
+                    "type": "off_chrt_reference_id",
+                    "values": [
+                      "values"
+                    ]
+                  }
                 ]
                 """.utf8
             )
@@ -682,7 +687,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            "string"
+            OrderTypeaheadResult(
+                type: .offChrtReferenceId,
+                values: [
+                    "values"
+                ]
+            )
         ]
         let response = try await client.shipping.orders.expanded.typeaheadV1(
             query: "query",
