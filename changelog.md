@@ -1,3 +1,10 @@
+## 1.596.0 - 2026-04-08
+**Tive tracking integration support**
+* A new `trackingIntegrations` property is now available on `ChrtClient`, exposing a `TiveClient` with three sub-clients: `devices`, `shipments`, and `timeseries`.
+* `trackingIntegrations.tive.devices` supports listing and retrieving Tive IoT tracker devices with filtering and sorting.
+* `trackingIntegrations.tive.shipments` supports listing and retrieving Tive shipments with filtering and sorting.
+* `trackingIntegrations.tive.timeseries` supports fetching the last-seen data point, querying raw sensor data over a time range, and syncing new data points from the Tive API.
+
 ## 2.0.0 - 2026-04-07
 **Breaking change to order typeahead response type**
 * `OrdersExpandedClient.typeaheadV1` now returns `[OrderTypeaheadResult]` instead of `[String]`. Each `OrderTypeaheadResult` contains a `type` field (`OrderTypeaheadFieldEnum`: `.shortId` or `.offChrtReferenceId`) and a `values` array of matching strings. Update all call sites to use the new structured type.

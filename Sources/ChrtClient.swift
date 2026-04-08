@@ -10,6 +10,7 @@ public final class ChrtClient: Sendable {
     public let notifications: NotificationsClient
     public let shipping: ShippingClient_
     public let tracking: TrackingClient
+    public let trackingIntegrations: TrackingIntegrationsClient
     public let users: UsersClient
     private let httpClient: HTTPClient
 
@@ -101,6 +102,7 @@ public final class ChrtClient: Sendable {
         self.notifications = NotificationsClient(config: config)
         self.shipping = ShippingClient_(config: config)
         self.tracking = TrackingClient(config: config)
+        self.trackingIntegrations = TrackingIntegrationsClient(config: config)
         self.users = UsersClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
