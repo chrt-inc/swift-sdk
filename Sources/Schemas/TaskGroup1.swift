@@ -14,6 +14,11 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let createdByUserId: String
     /// Must be a string starting with `org_`
     public let courierOrgId: String?
+    /// Must be a string starting with `org_`
+    public let forwarderOrgId: String?
+    /// Must be a string starting with `org_`
+    public let shipperOrgId: String?
+    public let offChrtShipperOrgId: String?
     public let driverId: String?
     public let serviceType: ServiceTypeEnum1?
     public let taskGroupS3ObjectMetadataIds: [String]?
@@ -51,6 +56,9 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         createdByOrgId: String,
         createdByUserId: String,
         courierOrgId: String? = nil,
+        forwarderOrgId: String? = nil,
+        shipperOrgId: String? = nil,
+        offChrtShipperOrgId: String? = nil,
         driverId: String? = nil,
         serviceType: ServiceTypeEnum1? = nil,
         taskGroupS3ObjectMetadataIds: [String]? = nil,
@@ -86,6 +94,9 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.courierOrgId = courierOrgId
+        self.forwarderOrgId = forwarderOrgId
+        self.shipperOrgId = shipperOrgId
+        self.offChrtShipperOrgId = offChrtShipperOrgId
         self.driverId = driverId
         self.serviceType = serviceType
         self.taskGroupS3ObjectMetadataIds = taskGroupS3ObjectMetadataIds
@@ -124,6 +135,9 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.courierOrgId = try container.decodeIfPresent(String.self, forKey: .courierOrgId)
+        self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
+        self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
+        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
         self.serviceType = try container.decodeIfPresent(ServiceTypeEnum1.self, forKey: .serviceType)
         self.taskGroupS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .taskGroupS3ObjectMetadataIds)
@@ -163,6 +177,9 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.courierOrgId, forKey: .courierOrgId)
+        try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
+        try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.driverId, forKey: .driverId)
         try container.encodeIfPresent(self.serviceType, forKey: .serviceType)
         try container.encodeIfPresent(self.taskGroupS3ObjectMetadataIds, forKey: .taskGroupS3ObjectMetadataIds)
@@ -200,6 +217,9 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case courierOrgId = "courier_org_id"
+        case forwarderOrgId = "forwarder_org_id"
+        case shipperOrgId = "shipper_org_id"
+        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case driverId = "driver_id"
         case serviceType = "service_type"
         case taskGroupS3ObjectMetadataIds = "task_group_s3_object_metadata_ids"

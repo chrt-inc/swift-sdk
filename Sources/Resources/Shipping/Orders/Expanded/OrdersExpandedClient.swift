@@ -40,7 +40,7 @@ public final class OrdersExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short_id and off_chrt_reference_id)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForForwarderOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelledAtTimestampLte: Date? = nil, filterOrderCancelledAtTimestampGte: Date? = nil, filterOrderCancelled: Bool? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListRes {
+    public func listForForwarderOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelledAtTimestampLte: Date? = nil, filterOrderCancelledAtTimestampGte: Date? = nil, filterOrderCancelled: Bool? = nil, filterCourierOrgId: String? = nil, filterShipperOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_forwarder_operators/v1",
@@ -63,7 +63,9 @@ public final class OrdersExpandedClient: Sendable {
                 "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }, 
                 "filter_order_cancelled_at_timestamp_lte": filterOrderCancelledAtTimestampLte.map { .date($0) }, 
                 "filter_order_cancelled_at_timestamp_gte": filterOrderCancelledAtTimestampGte.map { .date($0) }, 
-                "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }
+                "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }, 
+                "filter_courier_org_id": filterCourierOrgId.map { .string($0) }, 
+                "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }
             ],
             body: request,
             requestOptions: requestOptions,
@@ -76,7 +78,7 @@ public final class OrdersExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short_id and off_chrt_reference_id)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelledAtTimestampLte: Date? = nil, filterOrderCancelledAtTimestampGte: Date? = nil, filterOrderCancelled: Bool? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListRes {
+    public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterOrderCancelledAtTimestampLte: Date? = nil, filterOrderCancelledAtTimestampGte: Date? = nil, filterOrderCancelled: Bool? = nil, filterCourierOrgId: String? = nil, filterForwarderOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_shipper_operators/v1",
@@ -99,7 +101,9 @@ public final class OrdersExpandedClient: Sendable {
                 "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }, 
                 "filter_order_cancelled_at_timestamp_lte": filterOrderCancelledAtTimestampLte.map { .date($0) }, 
                 "filter_order_cancelled_at_timestamp_gte": filterOrderCancelledAtTimestampGte.map { .date($0) }, 
-                "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }
+                "filter_order_cancelled": filterOrderCancelled.map { .bool($0) }, 
+                "filter_courier_org_id": filterCourierOrgId.map { .string($0) }, 
+                "filter_forwarder_org_id": filterForwarderOrgId.map { .string($0) }
             ],
             body: request,
             requestOptions: requestOptions,

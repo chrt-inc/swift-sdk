@@ -23,6 +23,9 @@ import Chrt
                     "forwarder_org_id": "forwarder_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "courier_org_ids": [
+                      "courier_org_ids"
+                    ],
                     "status": "draft",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
@@ -124,6 +127,9 @@ import Chrt
                 forwarderOrgId: Optional("forwarder_org_id"),
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                courierOrgIds: Optional([
+                    "courier_org_ids"
+                ]),
                 status: Optional(.draft),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -232,6 +238,9 @@ import Chrt
                     "forwarder_org_id": "forwarder_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "courier_org_ids": [
+                      "courier_org_ids"
+                    ],
                     "status": "draft",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
@@ -333,6 +342,9 @@ import Chrt
                 forwarderOrgId: Optional("forwarder_org_id"),
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                courierOrgIds: Optional([
+                    "courier_org_ids"
+                ]),
                 status: Optional(.draft),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -543,6 +555,8 @@ import Chrt
             filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
+            filterCourierOrgId: "filter_courier_org_id",
+            filterShipperOrgId: "filter_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -673,6 +687,8 @@ import Chrt
             filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
+            filterCourierOrgId: "filter_courier_org_id",
+            filterForwarderOrgId: "filter_forwarder_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),

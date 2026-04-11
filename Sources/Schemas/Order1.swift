@@ -17,6 +17,7 @@ public struct Order1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let offChrtShipperOrgId: String?
+    public let courierOrgIds: [String]?
     public let status: OrderStatusEnum1?
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
@@ -40,6 +41,7 @@ public struct Order1: Codable, Hashable, Sendable {
         forwarderOrgId: String? = nil,
         shipperOrgId: String? = nil,
         offChrtShipperOrgId: String? = nil,
+        courierOrgIds: [String]? = nil,
         status: OrderStatusEnum1? = nil,
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
@@ -61,6 +63,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.forwarderOrgId = forwarderOrgId
         self.shipperOrgId = shipperOrgId
         self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.courierOrgIds = courierOrgIds
         self.status = status
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
@@ -85,6 +88,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.courierOrgIds = try container.decodeIfPresent([String].self, forKey: .courierOrgIds)
         self.status = try container.decodeIfPresent(OrderStatusEnum1.self, forKey: .status)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
@@ -110,6 +114,7 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.courierOrgIds, forKey: .courierOrgIds)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
@@ -133,6 +138,7 @@ public struct Order1: Codable, Hashable, Sendable {
         case forwarderOrgId = "forwarder_org_id"
         case shipperOrgId = "shipper_org_id"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case courierOrgIds = "courier_org_ids"
         case status
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"

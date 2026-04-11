@@ -1,3 +1,15 @@
+## 2.0.0 - 2026-04-11
+**Breaking change to task group typeahead response type**
+* `TaskGroupsExpandedClient.typeaheadV1` now returns `[TaskGroupTypeaheadResult]` instead of `[String]`. Each `TaskGroupTypeaheadResult` contains a `type` field (`TaskGroupTypeaheadFieldEnum`: `.orderShortId` or `.orderOffChrtReferenceId`) and a `values` array of matching strings. Update all call sites to use the new structured type.
+**New capabilities**
+* `shipping.orderDrafts.expanded.listV1` now accepts optional `filterCourierOrgId`, `filterForwarderOrgId`, and `filterShipperOrgId` parameters.
+* `shipping.orders.expanded.listForForwarderOperatorsV1` now accepts optional `filterCourierOrgId` and `filterShipperOrgId` parameters.
+* `shipping.orders.expanded.listForShipperOperatorsV1` now accepts optional `filterCourierOrgId` and `filterForwarderOrgId` parameters.
+* `shipping.taskGroups.expanded.listForCourierOperatorsV1` now accepts optional `filterDriverId`, `filterForwarderOrgId`, and `filterShipperOrgId` parameters.
+* `shipping.taskGroups.expanded.listForCourierDriverV1` now accepts optional `filterForwarderOrgId` and `filterShipperOrgId` parameters.
+* `Order1` now exposes an optional `courierOrgIds: [String]?` field.
+* `TaskGroup1` now exposes optional `forwarderOrgId`, `shipperOrgId`, and `offChrtShipperOrgId` fields.
+
 ## 1.602.0 - 2026-04-11
 * `TaskGroupExpanded` now exposes four new optional organization ID fields: `courierOrgId`, `forwarderOrgId`, `shipperOrgId`, and `offChrtShipperOrgId`. These complement the existing company name and handle fields, giving callers direct access to the raw org ID strings (e.g. `"org_…"`) for each party on a task group.
 

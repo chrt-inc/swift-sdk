@@ -21,6 +21,9 @@ import Chrt
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
+                    "forwarder_org_id": "forwarder_org_id",
+                    "shipper_org_id": "shipper_org_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "driver_id": "driver_id",
                     "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
@@ -176,6 +179,9 @@ import Chrt
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
+                forwarderOrgId: Optional("forwarder_org_id"),
+                shipperOrgId: Optional("shipper_org_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 driverId: Optional("driver_id"),
                 serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
@@ -344,6 +350,9 @@ import Chrt
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
+                    "forwarder_org_id": "forwarder_org_id",
+                    "shipper_org_id": "shipper_org_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "driver_id": "driver_id",
                     "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
@@ -499,6 +508,9 @@ import Chrt
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
+                forwarderOrgId: Optional("forwarder_org_id"),
+                shipperOrgId: Optional("shipper_org_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 driverId: Optional("driver_id"),
                 serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
@@ -667,6 +679,9 @@ import Chrt
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
+                    "forwarder_org_id": "forwarder_org_id",
+                    "shipper_org_id": "shipper_org_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "driver_id": "driver_id",
                     "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
@@ -822,6 +837,9 @@ import Chrt
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
+                forwarderOrgId: Optional("forwarder_org_id"),
+                shipperOrgId: Optional("shipper_org_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 driverId: Optional("driver_id"),
                 serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
@@ -990,6 +1008,9 @@ import Chrt
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "courier_org_id": "courier_org_id",
+                    "forwarder_org_id": "forwarder_org_id",
+                    "shipper_org_id": "shipper_org_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "driver_id": "driver_id",
                     "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
@@ -1145,6 +1166,9 @@ import Chrt
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
                 courierOrgId: Optional("courier_org_id"),
+                forwarderOrgId: Optional("forwarder_org_id"),
+                shipperOrgId: Optional("shipper_org_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 driverId: Optional("driver_id"),
                 serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
@@ -1421,6 +1445,9 @@ import Chrt
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
+            filterDriverId: "filter_driver_id",
+            filterForwarderOrgId: "filter_forwarder_org_id",
+            filterShipperOrgId: "filter_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -1555,6 +1582,8 @@ import Chrt
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
+            filterForwarderOrgId: "filter_forwarder_org_id",
+            filterShipperOrgId: "filter_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -1569,7 +1598,12 @@ import Chrt
             body: Data(
                 """
                 [
-                  "string"
+                  {
+                    "type": "order_short_id",
+                    "values": [
+                      "values"
+                    ]
+                  }
                 ]
                 """.utf8
             )
@@ -1580,7 +1614,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            "string"
+            TaskGroupTypeaheadResult(
+                type: .orderShortId,
+                values: [
+                    "values"
+                ]
+            )
         ]
         let response = try await client.shipping.taskGroups.expanded.typeaheadV1(
             query: "query",
