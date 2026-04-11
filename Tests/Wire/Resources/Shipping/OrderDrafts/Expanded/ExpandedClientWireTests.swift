@@ -88,11 +88,15 @@ import Chrt
                         "org_id": "org_id",
                         "user_id": "user_id"
                       },
+                      "courier_org_id": "courier_org_id",
                       "courier_org_company_name": "courier_org_company_name",
                       "courier_org_handle": "courier_org_handle",
+                      "forwarder_org_id": "forwarder_org_id",
                       "forwarder_org_company_name": "forwarder_org_company_name",
                       "forwarder_org_handle": "forwarder_org_handle",
+                      "shipper_org_id": "shipper_org_id",
                       "shipper_org_company_name": "shipper_org_company_name",
+                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name"
                     }
                   ],
@@ -214,11 +218,15 @@ import Chrt
                         orgId: "org_id",
                         userId: "user_id"
                     )),
+                    courierOrgId: Optional("courier_org_id"),
                     courierOrgCompanyName: Optional("courier_org_company_name"),
                     courierOrgHandle: Optional("courier_org_handle"),
+                    forwarderOrgId: Optional("forwarder_org_id"),
                     forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
                     forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    shipperOrgId: Optional("shipper_org_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
+                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name")
                 )
             ]),

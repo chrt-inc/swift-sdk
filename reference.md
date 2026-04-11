@@ -11772,7 +11772,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a task. Operational fields require STAGED status (lig_owner_operators). order_placer_comments can be edited on any non-DRAFT task (order_creator_org_operators). | (TaskClientUpdate1) -> (PydanticObjectId)
+Updates a task. Operational fields (location, action, time_windows) require STAGED status (lig_owner_operators). order_placer_comments can be edited on any non-DRAFT task (order_creator_org_operators). directory_entry_ids can be edited on STAGED/IN_PROGRESS orders for tasks still in STAGED status (order_creator_org_operators OR lig_owner_operators). | (TaskClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>

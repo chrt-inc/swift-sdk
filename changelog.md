@@ -1,3 +1,6 @@
+## 1.602.0 - 2026-04-11
+* `TaskGroupExpanded` now exposes four new optional organization ID fields: `courierOrgId`, `forwarderOrgId`, `shipperOrgId`, and `offChrtShipperOrgId`. These complement the existing company name and handle fields, giving callers direct access to the raw org ID strings (e.g. `"org_…"`) for each party on a task group.
+
 ## 1.596.0 - 2026-04-08
 **Tive tracking integration support**
 * A new `trackingIntegrations` property is now available on `ChrtClient`, exposing a `TiveClient` with three sub-clients: `devices`, `shipments`, and `timeseries`.
