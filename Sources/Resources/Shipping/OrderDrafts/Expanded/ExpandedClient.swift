@@ -26,7 +26,7 @@ public final class ExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short_id and off_chrt_reference_id)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterCourierOrgId: String? = nil, filterForwarderOrgId: String? = nil, filterShipperOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
+    public func listV1(sortBy: OrderDraftSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterCourierOrgId: String? = nil, filterForwarderOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderDraftExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/order_drafts/expanded/list/v1",
@@ -40,7 +40,8 @@ public final class ExpandedClient: Sendable {
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_courier_org_id": filterCourierOrgId.map { .string($0) }, 
                 "filter_forwarder_org_id": filterForwarderOrgId.map { .string($0) }, 
-                "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }
+                "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 
+                "filter_off_chrt_shipper_org_id": filterOffChrtShipperOrgId.map { .string($0) }
             ],
             body: request,
             requestOptions: requestOptions,

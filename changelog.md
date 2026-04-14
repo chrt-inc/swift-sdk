@@ -1,3 +1,7 @@
+## 1.609.0 - 2026-04-14
+* [ADDED] `billing.statements.listV1` and `expandedListV1` now accept an optional `filterOrderShortId: String?` parameter for filtering statements by order short ID. The existing `filterOrderId` parameter is deprecated — prefer `filterOrderShortId` going forward.
+* [ADDED] `shipping.orderDrafts.expanded.listV1`, `shipping.orders.expanded.listForForwarderOperatorsV1`, `shipping.taskGroups.expanded.listForCourierOperatorsV1`, and `shipping.taskGroups.expanded.listForCourierDriverV1` now accept an optional `filterOffChrtShipperOrgId: String?` parameter for filtering by off-charter shipper org ID.
+
 ## 2.0.0 - 2026-04-11
 **Breaking change to task group typeahead response type**
 * `TaskGroupsExpandedClient.typeaheadV1` now returns `[TaskGroupTypeaheadResult]` instead of `[String]`. Each `TaskGroupTypeaheadResult` contains a `type` field (`TaskGroupTypeaheadFieldEnum`: `.orderShortId` or `.orderOffChrtReferenceId`) and a `values` array of matching strings. Update all call sites to use the new structured type.

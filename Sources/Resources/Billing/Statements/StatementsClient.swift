@@ -50,7 +50,8 @@ public final class StatementsClient: Sendable {
     /// - Parameter sortOrder: Sort order (ascending or descending)
     /// - Parameter filterStatus: Filter by statement status(es)
     /// - Parameter filterSettlementType: Filter by settlement type
-    /// - Parameter filterOrderId: Filter by order ID (returns statements whose order_ids list contains this value)
+    /// - Parameter filterOrderId: [DEPRECATED — use filter_order_short_id] Filter by order ID (returns statements whose order_ids list contains this value)
+    /// - Parameter filterOrderShortId: Filter by order short ID (returns statements whose order_short_ids list contains this value)
     /// - Parameter filterOrderOffChrtReferenceId: Filter by order off-chrt reference ID (returns statements whose order_off_chrt_reference_ids list contains this value)
     /// - Parameter filterPaymentOriginOrgId: Filter by payment origin org ID
     /// - Parameter filterPaymentOriginOffChrtShipperOrgId: Filter by payment origin off-chrt shipper org ID
@@ -65,7 +66,7 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterUncollectibleAtTimestampGte: Filter by uncollectible_at_timestamp >= value
     /// - Parameter filterUncollectibleAtTimestampLte: Filter by uncollectible_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentOriginOffChrtShipperOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterUncollectibleAtTimestampGte: Date? = nil, filterUncollectibleAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsListRes {
+    public func listV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentOriginOffChrtShipperOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterUncollectibleAtTimestampGte: Date? = nil, filterUncollectibleAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing/statements/list/v1",
@@ -77,6 +78,7 @@ public final class StatementsClient: Sendable {
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_settlement_type": filterSettlementType.map { .string($0.rawValue) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
+                "filter_order_short_id": filterOrderShortId.map { .string($0) }, 
                 "filter_order_off_chrt_reference_id": filterOrderOffChrtReferenceId.map { .string($0) }, 
                 "filter_payment_origin_org_id": filterPaymentOriginOrgId.map { .string($0) }, 
                 "filter_payment_origin_off_chrt_shipper_org_id": filterPaymentOriginOffChrtShipperOrgId.map { .string($0) }, 
@@ -102,7 +104,8 @@ public final class StatementsClient: Sendable {
     /// - Parameter sortOrder: Sort order (ascending or descending)
     /// - Parameter filterStatus: Filter by statement status(es)
     /// - Parameter filterSettlementType: Filter by settlement type
-    /// - Parameter filterOrderId: Filter by order ID (returns statements whose order_ids list contains this value)
+    /// - Parameter filterOrderId: [DEPRECATED — use filter_order_short_id] Filter by order ID (returns statements whose order_ids list contains this value)
+    /// - Parameter filterOrderShortId: Filter by order short ID (returns statements whose order_short_ids list contains this value)
     /// - Parameter filterOrderOffChrtReferenceId: Filter by order off-chrt reference ID (returns statements whose order_off_chrt_reference_ids list contains this value)
     /// - Parameter filterPaymentOriginOrgId: Filter by payment origin org ID
     /// - Parameter filterPaymentOriginOffChrtShipperOrgId: Filter by payment origin off-chrt shipper org ID
@@ -117,7 +120,7 @@ public final class StatementsClient: Sendable {
     /// - Parameter filterUncollectibleAtTimestampGte: Filter by uncollectible_at_timestamp >= value
     /// - Parameter filterUncollectibleAtTimestampLte: Filter by uncollectible_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedListV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentOriginOffChrtShipperOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterUncollectibleAtTimestampGte: Date? = nil, filterUncollectibleAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsExpandedListRes {
+    public func expandedListV1(sortBy: StatementSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: StatementStatusEnum1? = nil, filterSettlementType: SettlementTypeEnum1? = nil, filterOrderId: String? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterPaymentOriginOrgId: String? = nil, filterPaymentOriginOffChrtShipperOrgId: String? = nil, filterPaymentDestinationOrgId: String? = nil, filterOwnedByOrgId: String? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterOpenedAtTimestampGte: Date? = nil, filterOpenedAtTimestampLte: Date? = nil, filterPaidAtTimestampGte: Date? = nil, filterPaidAtTimestampLte: Date? = nil, filterUncollectibleAtTimestampGte: Date? = nil, filterUncollectibleAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> StatementsExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/statements/expanded/list/v1",
@@ -129,6 +132,7 @@ public final class StatementsClient: Sendable {
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_settlement_type": filterSettlementType.map { .string($0.rawValue) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
+                "filter_order_short_id": filterOrderShortId.map { .string($0) }, 
                 "filter_order_off_chrt_reference_id": filterOrderOffChrtReferenceId.map { .string($0) }, 
                 "filter_payment_origin_org_id": filterPaymentOriginOrgId.map { .string($0) }, 
                 "filter_payment_origin_off_chrt_shipper_org_id": filterPaymentOriginOffChrtShipperOrgId.map { .string($0) }, 

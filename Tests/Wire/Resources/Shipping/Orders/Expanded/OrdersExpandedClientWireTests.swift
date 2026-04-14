@@ -557,6 +557,7 @@ import Chrt
             filterOrderCancelled: true,
             filterCourierOrgId: "filter_courier_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
+            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),

@@ -1448,6 +1448,7 @@ import Chrt
             filterDriverId: "filter_driver_id",
             filterForwarderOrgId: "filter_forwarder_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
+            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -1584,6 +1585,7 @@ import Chrt
             filterOrderCancelled: true,
             filterForwarderOrgId: "filter_forwarder_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
+            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
