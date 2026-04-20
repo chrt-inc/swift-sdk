@@ -1,3 +1,16 @@
+## 1.612.1 - 2026-04-20
+* chore: update wire tests with new optional filter parameters
+* Add new optional filter parameters to wire test fixtures across
+* multiple client test files. These test-only changes reflect the
+* addition of filterStatus and filterRole parameters to several
+* list endpoints.
+* Key changes:
+* Add `filterStatus: [.staged]` to `billing.lineItemGroups.listForCourierOrgV1` wire test
+* Add `filterStatus: [.staged]` to `billing.statements` list wire tests
+* Add `filterRole: [.owner]` to `orgs.listMembersV1` and `shipping.drivers.listOrgMembersAndDriversV1` wire tests
+* Add `filterStatus: [.draft]` to `shipping.orders.expanded` and `shipping.taskGroups.expanded` list wire tests
+* 🌿 Generated with Fern
+
 ## 1.609.0 - 2026-04-14
 * [ADDED] `billing.statements.listV1` and `expandedListV1` now accept an optional `filterOrderShortId: String?` parameter for filtering statements by order short ID. The existing `filterOrderId` parameter is deprecated — prefer `filterOrderShortId` going forward.
 * [ADDED] `shipping.orderDrafts.expanded.listV1`, `shipping.orders.expanded.listForForwarderOperatorsV1`, `shipping.taskGroups.expanded.listForCourierOperatorsV1`, and `shipping.taskGroups.expanded.listForCourierDriverV1` now accept an optional `filterOffChrtShipperOrgId: String?` parameter for filtering by off-charter shipper org ID.
