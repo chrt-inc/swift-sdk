@@ -1,3 +1,16 @@
+## 1.615.1 - 2026-04-23
+* chore: update wire tests with new optional filter parameters
+* Add new optional filter parameters to wire test fixtures across
+* multiple client test files. These test-only changes reflect the
+* addition of filterStatus and filterRole parameters to several
+* list endpoints.
+* Key changes:
+* Add `filterStatus: [.staged]` to `billing.lineItemGroups.listForCourierOrgV1` wire test
+* Add `filterStatus: [.staged]` to `billing.statements` list wire tests
+* Add `filterRole: [.owner]` to `orgs.listMembersV1` and `shipping.drivers.listOrgMembersAndDriversV1` wire tests
+* Add `filterStatus: [.draft]` to `shipping.orders.expanded` and `shipping.taskGroups.expanded` list wire tests
+* 🌿 Generated with Fern
+
 ## 1.612.1 - 2026-04-20
 * chore: update wire tests with new optional filter parameters
 * Add new optional filter parameters to wire test fixtures across
