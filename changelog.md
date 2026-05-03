@@ -1,3 +1,10 @@
+## 2.0.0 - 2026-05-03
+### Breaking Changes
+* **`ShippingClient_.docs`** — the `docs` property has been removed from `ShippingClient_`; calls to `shipping.docs.postGenerateV1(...)` will no longer compile. Remove all usages of this property and contact support for an alternative.
+* **`DocsClient`** — the entire `DocsClient` class (including `postGenerateV1`) has been deleted. Update any direct references to this type.
+* **`Requests.GenerateShippingDocReq`** — this request struct has been removed. Remove any construction or decoding of this type.
+* **`ShippingDocTemplateEnum`** — the `pod`/`bol` enum has been deleted. Remove any references to this type or its cases.
+
 ## 1.615.1 - 2026-04-23
 * chore: update wire tests with new optional filter parameters
 * Add new optional filter parameters to wire test fixtures across
