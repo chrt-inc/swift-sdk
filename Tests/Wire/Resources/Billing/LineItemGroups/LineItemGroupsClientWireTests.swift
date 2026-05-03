@@ -214,9 +214,6 @@ import Chrt
         )
         let response = try await client.billing.lineItemGroups.listForCourierOrgV1(
             filterDriverId: "filter_driver_id",
-            filterStatus: [
-                .staged
-            ],
             filterAttachedToStatement: true,
             filterOrderId: "filter_order_id",
             filterPaymentRole: .origin,
