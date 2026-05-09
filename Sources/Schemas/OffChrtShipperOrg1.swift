@@ -4,6 +4,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let companyName: String?
     public let industry: String?
+    public let departmentId: String?
     public let streetAddress: LocationFeature?
     public let contactFirstName: String?
     public let contactLastName: String?
@@ -14,8 +15,6 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
     public let jobTitle: String?
     public let notes: String?
     public let shipperCustomerIdForStripeConnectAccount: String?
-    public let defaultRateSheetRouted: String?
-    public let defaultRateSheetOnDemand: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
@@ -28,6 +27,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         companyName: String? = nil,
         industry: String? = nil,
+        departmentId: String? = nil,
         streetAddress: LocationFeature? = nil,
         contactFirstName: String? = nil,
         contactLastName: String? = nil,
@@ -38,8 +38,6 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         jobTitle: String? = nil,
         notes: String? = nil,
         shipperCustomerIdForStripeConnectAccount: String? = nil,
-        defaultRateSheetRouted: String? = nil,
-        defaultRateSheetOnDemand: String? = nil,
         createdByOrgId: String,
         createdByUserId: String,
         id: String,
@@ -48,6 +46,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.companyName = companyName
         self.industry = industry
+        self.departmentId = departmentId
         self.streetAddress = streetAddress
         self.contactFirstName = contactFirstName
         self.contactLastName = contactLastName
@@ -58,8 +57,6 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         self.jobTitle = jobTitle
         self.notes = notes
         self.shipperCustomerIdForStripeConnectAccount = shipperCustomerIdForStripeConnectAccount
-        self.defaultRateSheetRouted = defaultRateSheetRouted
-        self.defaultRateSheetOnDemand = defaultRateSheetOnDemand
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.id = id
@@ -71,6 +68,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
         self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
+        self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
         self.contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
         self.contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
@@ -81,8 +79,6 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
         self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
         self.shipperCustomerIdForStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .shipperCustomerIdForStripeConnectAccount)
-        self.defaultRateSheetRouted = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRouted)
-        self.defaultRateSheetOnDemand = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemand)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.id = try container.decode(String.self, forKey: .id)
@@ -95,6 +91,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.companyName, forKey: .companyName)
         try container.encodeIfPresent(self.industry, forKey: .industry)
+        try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
         try container.encodeIfPresent(self.contactFirstName, forKey: .contactFirstName)
         try container.encodeIfPresent(self.contactLastName, forKey: .contactLastName)
@@ -105,8 +102,6 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
         try container.encodeIfPresent(self.notes, forKey: .notes)
         try container.encodeIfPresent(self.shipperCustomerIdForStripeConnectAccount, forKey: .shipperCustomerIdForStripeConnectAccount)
-        try container.encodeIfPresent(self.defaultRateSheetRouted, forKey: .defaultRateSheetRouted)
-        try container.encodeIfPresent(self.defaultRateSheetOnDemand, forKey: .defaultRateSheetOnDemand)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.id, forKey: .id)
@@ -117,6 +112,7 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case companyName = "company_name"
         case industry
+        case departmentId = "department_id"
         case streetAddress = "street_address"
         case contactFirstName = "contact_first_name"
         case contactLastName = "contact_last_name"
@@ -127,8 +123,6 @@ public struct OffChrtShipperOrg1: Codable, Hashable, Sendable {
         case jobTitle = "job_title"
         case notes
         case shipperCustomerIdForStripeConnectAccount = "shipper_customer_id_for_stripe_connect_account"
-        case defaultRateSheetRouted = "default_rate_sheet__routed"
-        case defaultRateSheetOnDemand = "default_rate_sheet__on_demand"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case id = "_id"

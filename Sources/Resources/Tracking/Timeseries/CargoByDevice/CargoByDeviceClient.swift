@@ -7,7 +7,7 @@ public final class CargoByDeviceClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the last seen data point for cargo within a task group. Access granted to courier or shipper organization. | () -> (CargoByDeviceDataPoint1 | None)
+    /// Returns the last seen data point for cargo within a task group. Access granted to the order's coordinator/shipper/executor org or the assigned driver, or via public sharing. | () -> (CargoByDeviceDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceDataPoint1? {
@@ -40,7 +40,7 @@ public final class CargoByDeviceClient: Sendable {
         )
     }
 
-    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | authz: allowed_org_types=[shipper, forwarder], min_org_role=operator | (CargoByDeviceMarkOutliersRequest1) -> (CargoByDeviceMarkOutliersResponse1)
+    /// Marks data points as outliers or non-outliers. Uses atomic delete and reinsert strategy for time-series collection updates. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (CargoByDeviceMarkOutliersRequest1) -> (CargoByDeviceMarkOutliersResponse1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func outlierV1(request: Requests.CargoByDeviceMarkOutliersRequest1, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceMarkOutliersResponse1 {

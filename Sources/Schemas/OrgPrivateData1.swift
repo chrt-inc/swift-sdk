@@ -8,14 +8,6 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     public let stripeConnectAccountId: String?
     public let webhookEnabled: Bool?
     public let svixAppId: String?
-    public let defaultRateSheetRoutedShipperPayCourier: String?
-    public let defaultRateSheetOnDemandShipperPayCourier: String?
-    public let defaultRateSheetRoutedCourierPayDriver: String?
-    public let defaultRateSheetOnDemandCourierPayDriver: String?
-    public let defaultRateSheetRoutedShipperPayForwarder: String?
-    public let defaultRateSheetOnDemandShipperPayForwarder: String?
-    public let defaultRateSheetRoutedForwarderPayCourier: String?
-    public let defaultRateSheetOnDemandForwarderPayCourier: String?
     public let webcargoApiKey: String?
     public let webcargoEmail: String?
     public let webcargoCountries: [String]?
@@ -30,14 +22,6 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         stripeConnectAccountId: String? = nil,
         webhookEnabled: Bool? = nil,
         svixAppId: String? = nil,
-        defaultRateSheetRoutedShipperPayCourier: String? = nil,
-        defaultRateSheetOnDemandShipperPayCourier: String? = nil,
-        defaultRateSheetRoutedCourierPayDriver: String? = nil,
-        defaultRateSheetOnDemandCourierPayDriver: String? = nil,
-        defaultRateSheetRoutedShipperPayForwarder: String? = nil,
-        defaultRateSheetOnDemandShipperPayForwarder: String? = nil,
-        defaultRateSheetRoutedForwarderPayCourier: String? = nil,
-        defaultRateSheetOnDemandForwarderPayCourier: String? = nil,
         webcargoApiKey: String? = nil,
         webcargoEmail: String? = nil,
         webcargoCountries: [String]? = nil,
@@ -50,14 +34,6 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.stripeConnectAccountId = stripeConnectAccountId
         self.webhookEnabled = webhookEnabled
         self.svixAppId = svixAppId
-        self.defaultRateSheetRoutedShipperPayCourier = defaultRateSheetRoutedShipperPayCourier
-        self.defaultRateSheetOnDemandShipperPayCourier = defaultRateSheetOnDemandShipperPayCourier
-        self.defaultRateSheetRoutedCourierPayDriver = defaultRateSheetRoutedCourierPayDriver
-        self.defaultRateSheetOnDemandCourierPayDriver = defaultRateSheetOnDemandCourierPayDriver
-        self.defaultRateSheetRoutedShipperPayForwarder = defaultRateSheetRoutedShipperPayForwarder
-        self.defaultRateSheetOnDemandShipperPayForwarder = defaultRateSheetOnDemandShipperPayForwarder
-        self.defaultRateSheetRoutedForwarderPayCourier = defaultRateSheetRoutedForwarderPayCourier
-        self.defaultRateSheetOnDemandForwarderPayCourier = defaultRateSheetOnDemandForwarderPayCourier
         self.webcargoApiKey = webcargoApiKey
         self.webcargoEmail = webcargoEmail
         self.webcargoCountries = webcargoCountries
@@ -73,14 +49,6 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.stripeConnectAccountId = try container.decodeIfPresent(String.self, forKey: .stripeConnectAccountId)
         self.webhookEnabled = try container.decodeIfPresent(Bool.self, forKey: .webhookEnabled)
         self.svixAppId = try container.decodeIfPresent(String.self, forKey: .svixAppId)
-        self.defaultRateSheetRoutedShipperPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedShipperPayCourier)
-        self.defaultRateSheetOnDemandShipperPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandShipperPayCourier)
-        self.defaultRateSheetRoutedCourierPayDriver = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedCourierPayDriver)
-        self.defaultRateSheetOnDemandCourierPayDriver = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandCourierPayDriver)
-        self.defaultRateSheetRoutedShipperPayForwarder = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedShipperPayForwarder)
-        self.defaultRateSheetOnDemandShipperPayForwarder = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandShipperPayForwarder)
-        self.defaultRateSheetRoutedForwarderPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetRoutedForwarderPayCourier)
-        self.defaultRateSheetOnDemandForwarderPayCourier = try container.decodeIfPresent(String.self, forKey: .defaultRateSheetOnDemandForwarderPayCourier)
         self.webcargoApiKey = try container.decodeIfPresent(String.self, forKey: .webcargoApiKey)
         self.webcargoEmail = try container.decodeIfPresent(String.self, forKey: .webcargoEmail)
         self.webcargoCountries = try container.decodeIfPresent([String].self, forKey: .webcargoCountries)
@@ -97,14 +65,6 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stripeConnectAccountId, forKey: .stripeConnectAccountId)
         try container.encodeIfPresent(self.webhookEnabled, forKey: .webhookEnabled)
         try container.encodeIfPresent(self.svixAppId, forKey: .svixAppId)
-        try container.encodeIfPresent(self.defaultRateSheetRoutedShipperPayCourier, forKey: .defaultRateSheetRoutedShipperPayCourier)
-        try container.encodeIfPresent(self.defaultRateSheetOnDemandShipperPayCourier, forKey: .defaultRateSheetOnDemandShipperPayCourier)
-        try container.encodeIfPresent(self.defaultRateSheetRoutedCourierPayDriver, forKey: .defaultRateSheetRoutedCourierPayDriver)
-        try container.encodeIfPresent(self.defaultRateSheetOnDemandCourierPayDriver, forKey: .defaultRateSheetOnDemandCourierPayDriver)
-        try container.encodeIfPresent(self.defaultRateSheetRoutedShipperPayForwarder, forKey: .defaultRateSheetRoutedShipperPayForwarder)
-        try container.encodeIfPresent(self.defaultRateSheetOnDemandShipperPayForwarder, forKey: .defaultRateSheetOnDemandShipperPayForwarder)
-        try container.encodeIfPresent(self.defaultRateSheetRoutedForwarderPayCourier, forKey: .defaultRateSheetRoutedForwarderPayCourier)
-        try container.encodeIfPresent(self.defaultRateSheetOnDemandForwarderPayCourier, forKey: .defaultRateSheetOnDemandForwarderPayCourier)
         try container.encodeIfPresent(self.webcargoApiKey, forKey: .webcargoApiKey)
         try container.encodeIfPresent(self.webcargoEmail, forKey: .webcargoEmail)
         try container.encodeIfPresent(self.webcargoCountries, forKey: .webcargoCountries)
@@ -119,14 +79,6 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         case stripeConnectAccountId = "stripe_connect_account_id"
         case webhookEnabled = "webhook_enabled"
         case svixAppId = "svix_app_id"
-        case defaultRateSheetRoutedShipperPayCourier = "default_rate_sheet__routed__shipper_pay_courier"
-        case defaultRateSheetOnDemandShipperPayCourier = "default_rate_sheet__on_demand__shipper_pay_courier"
-        case defaultRateSheetRoutedCourierPayDriver = "default_rate_sheet__routed__courier_pay_driver"
-        case defaultRateSheetOnDemandCourierPayDriver = "default_rate_sheet__on_demand__courier_pay_driver"
-        case defaultRateSheetRoutedShipperPayForwarder = "default_rate_sheet__routed__shipper_pay_forwarder"
-        case defaultRateSheetOnDemandShipperPayForwarder = "default_rate_sheet__on_demand__shipper_pay_forwarder"
-        case defaultRateSheetRoutedForwarderPayCourier = "default_rate_sheet__routed__forwarder_pay_courier"
-        case defaultRateSheetOnDemandForwarderPayCourier = "default_rate_sheet__on_demand__forwarder_pay_courier"
         case webcargoApiKey = "webcargo_api_key"
         case webcargoEmail = "webcargo_email"
         case webcargoCountries = "webcargo_countries"

@@ -152,10 +152,10 @@ public final class StatementsClient: Sendable {
         )
     }
 
-    /// Creates a new statement without LIG IDs, starting in STAGED status. Requires payment vector, origin, and destination. | authz: org_type=[courier, forwarder], min_org_role=operator | (CreateStatementReq) -> (Statement1)
+    /// Creates an empty STAGED Statement carrying payment parties + settlement_type. Items are attached via the attach_* routes. | authz: allowed_org_types=[provider], min_org_role=operator | (StatementCreateClientReq) -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.CreateStatementReq, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+    public func createV1(request: Requests.StatementCreateClientReq, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/statements/create/v1",
@@ -165,58 +165,103 @@ public final class StatementsClient: Sendable {
         )
     }
 
-    /// Deletes a statement. Only allowed if statement has no LineItemGroup IDs. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (bool)
+    /// Attaches a FINALIZED, unbundled LineItemGroup to a STAGED Statement. Parties must match; the Statement's settlement_type is written onto the LIG (or matched if previously stamped). | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func attachLineItemGroupV1(statementId: String, lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/statements/attach_line_item_group/v1/\(statementId)/\(lineItemGroupId)",
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Detaches a LineItemGroup from a STAGED Statement and recomputes order denormalization. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func detachLineItemGroupV1(statementId: String, lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/billing/statements/delete/v1/\(statementId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Updates the settlement type of a statement. Statement must be in STAGED status. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED | (SettlementTypeEnum1) -> (Statement1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateSettlementTypeV1(statementId: String, request: Requests.BodyStatementsPatchUpdateSettlementTypeV1BillingStatementsUpdateSettlementTypeV1StatementIdPatch, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/statements/update_settlement_type/v1/\(statementId)",
-            body: request,
+            path: "/billing/statements/detach_line_item_group/v1/\(statementId)/\(lineItemGroupId)",
             requestOptions: requestOptions,
             responseType: Statement1.self
         )
     }
 
-    /// Updates the status of an off-CHRT settlement statement. Used to manually transition OFF_CHRT statements between STAGED, OPEN, PAID, and VOID. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators] | (StatementStatusEnum1) -> (Statement1)
+    /// Attaches a CLOSED, unbundled BillingLedgerPeriod to a STAGED Statement. Parties must match. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateOffChrtSettlementStateV1(statementId: String, request: Requests.BodyStatementsPatchUpdateOffChrtSettlementStateV1BillingStatementsUpdateOffChrtSettlementStateV1StatementIdPatch, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+    public func attachBillingLedgerPeriodV1(statementId: String, billingLedgerPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/statements/update_off_chrt_settlement_state/v1/\(statementId)",
-            body: request,
+            method: .post,
+            path: "/billing/statements/attach_billing_ledger_period/v1/\(statementId)/\(billingLedgerPeriodId)",
             requestOptions: requestOptions,
             responseType: Statement1.self
         )
     }
 
-    /// Opens a Stripe Connect invoice for a statement and attempt to send via email. Org must have a Stripe Connect account. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=STAGED, line_item_groups_status=FINALIZED | (OpenInvoiceReq) -> (Statement1)
+    /// Detaches a BillingLedgerPeriod from a STAGED Statement, freeing it for re-bundling. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func openInvoiceV1(statementId: String, request: Requests.OpenInvoiceReq, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+    public func detachBillingLedgerPeriodV1(statementId: String, billingLedgerPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/billing/statements/detach_billing_ledger_period/v1/\(statementId)/\(billingLedgerPeriodId)",
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Off-chrt manual transition: STAGED → OPEN. Cascades attached LineItemGroups FINALIZED → OPEN. Stripe-Connect statements take a separate Stripe-invoice path. Requires settlement_type=OFF_CHRT and at least one bundled LIG or period. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func openOffChrtV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/statements/open_off_chrt/v1/\(statementId)",
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Off-chrt manual transition: OPEN → PAID. Cascades attached LineItemGroups OPEN → PAID. Stripe-Connect statements transition via Stripe webhook + sync, not this route. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func markPaidOffChrtV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/statements/mark_paid_off_chrt/v1/\(statementId)",
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Off-chrt manual write-off: OPEN → UNCOLLECTIBLE. Cascades attached LineItemGroups OPEN → UNCOLLECTIBLE. Stripe-Connect statements transition via Stripe webhook + sync_invoice/v1, not this route. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func markUncollectibleOffChrtV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/statements/mark_uncollectible_off_chrt/v1/\(statementId)",
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Stripe-Connect transition: STAGED → OPEN. Creates and finalizes a Stripe invoice for the Statement; cascades attached LineItemGroups FINALIZED → OPEN. Requires settlement_type=STRIPE_CONNECT and at least one bundled FINALIZED LIG. Off-chrt statements take open_off_chrt/v1 instead. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func openInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/statements/open_invoice/v1/\(statementId)",
-            body: request,
             requestOptions: requestOptions,
             responseType: Statement1.self
         )
     }
 
-    /// Syncs invoice state from Stripe Connect to the Statement and LineItemGroups. The webhook usually keeps invoices up to date, but users can manually trigger a sync. | authz: org_type=[courier, forwarder, shipper], min_org_role=operator, authz_personas=[statement_org_operators] | () -> (Statement1)
+    /// Stripe-Connect manual reconciliation: pulls the live Stripe invoice status and updates the Statement (and cascaded LIG statuses) accordingly. Same backend as the Stripe webhook handler — idempotent, no-op when already in sync. Handles PAID, UNCOLLECTIBLE, and VOID/DELETED transitions. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func syncInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
@@ -228,7 +273,7 @@ public final class StatementsClient: Sendable {
         )
     }
 
-    /// Voids a Stripe Connect invoice. Statement reverts to STAGED and LIGs revert to FINALIZED. | authz: org_type=[courier, forwarder], min_org_role=operator, authz_personas=[statement_owner_operators], statement_status=OPEN | () -> (Statement1)
+    /// Stripe-Connect transition: OPEN → STAGED. Voids the Stripe invoice, clears stripe_* fields on the Statement, and cascades attached LineItemGroups OPEN → FINALIZED so they remain re-bundleable into a new Statement. Reversible — the Statement can be re-opened with a fresh open_invoice/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func voidInvoiceV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
@@ -237,6 +282,31 @@ public final class StatementsClient: Sendable {
             path: "/billing/statements/void_invoice/v1/\(statementId)",
             requestOptions: requestOptions,
             responseType: Statement1.self
+        )
+    }
+
+    /// Flips a STAGED Statement's settlement_type between STRIPE_CONNECT and OFF_CHRT and cascades the new value onto every attached LineItemGroup. Rejects if the new value matches the current value. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | (StatementUpdateSettlementTypeReq) -> (Statement1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateSettlementTypeV1(statementId: String, request: Requests.StatementUpdateSettlementTypeReq, requestOptions: RequestOptions? = nil) async throws -> Statement1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/statements/update_settlement_type/v1/\(statementId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Statement1.self
+        )
+    }
+
+    /// Deletes a STAGED Statement that has no attached LineItemGroups or BillingLedgerPeriods. Detach all children first via the detach_* routes. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(statementId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/billing/statements/delete/v1/\(statementId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 }

@@ -8,41 +8,44 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
     public let taskIds: [String]?
-    /// Must be a string starting with `org_`
-    public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     /// Must be a string starting with `org_`
-    public let courierOrgId: String?
-    /// Must be a string starting with `org_`
-    public let forwarderOrgId: String?
+    public let createdByOrgId: String
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let offChrtShipperOrgId: String?
+    /// Must be a string starting with `org_`
+    public let coordinatorOrgId: String?
+    /// Must be a string starting with `org_`
+    public let executorOrgId: String?
+    public let offChrtExecutorOrgId: String?
     public let driverId: String?
-    public let serviceType: ServiceTypeEnum1?
     public let taskGroupS3ObjectMetadataIds: [String]?
     public let status: TaskGroupStatusEnum1?
+    public let orderCancelled: Bool?
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
     public let inProgressAtTimestamp: Date?
     public let completedAtTimestamp: Date?
     public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
-    public let orderCancelled: Bool?
     public let taskGroupType: TaskGroupTypeEnum1
-    public let tasksMileage: Double?
+    public let mileageEstimated: Double?
+    public let mileageObserved: Double?
+    public let mileageAsserted: Bool?
     public let flightNumber: String?
     public let faFlightIds: [String]?
     public let messages: [TaskGroupMessage1]?
-    public let shipperPayForwarderRateSheetId: String?
-    public let shipperPayForwarderLineItemGroupId: String?
-    public let forwarderPayCourierRateSheetId: String?
-    public let forwarderPayCourierLineItemGroupId: String?
-    public let shipperPayCourierRateSheetId: String?
-    public let shipperPayCourierLineItemGroupId: String?
-    public let courierPayDriverRateSheetId: String?
-    public let courierPayDriverLineItemGroupId: String?
+    public let shipperPayProviderRateSheetId: String?
+    public let shipperPayProviderLineItemGroupId: String?
+    public let shipperPayProviderBillingLedgerPeriodId: String?
+    public let providerPayProviderRateSheetId: String?
+    public let providerPayProviderLineItemGroupId: String?
+    public let providerPayProviderBillingLedgerPeriodId: String?
+    public let providerPayDriverRateSheetId: String?
+    public let providerPayDriverLineItemGroupId: String?
+    public let providerPayDriverBillingLedgerPeriodId: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -53,36 +56,39 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         orderShortId: String,
         orderOffChrtReferenceId: String? = nil,
         taskIds: [String]? = nil,
-        createdByOrgId: String,
         createdByUserId: String,
-        courierOrgId: String? = nil,
-        forwarderOrgId: String? = nil,
+        createdByOrgId: String,
         shipperOrgId: String? = nil,
         offChrtShipperOrgId: String? = nil,
+        coordinatorOrgId: String? = nil,
+        executorOrgId: String? = nil,
+        offChrtExecutorOrgId: String? = nil,
         driverId: String? = nil,
-        serviceType: ServiceTypeEnum1? = nil,
         taskGroupS3ObjectMetadataIds: [String]? = nil,
         status: TaskGroupStatusEnum1? = nil,
+        orderCancelled: Bool? = nil,
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
         inProgressAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
         skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
-        orderCancelled: Bool? = nil,
         taskGroupType: TaskGroupTypeEnum1,
-        tasksMileage: Double? = nil,
+        mileageEstimated: Double? = nil,
+        mileageObserved: Double? = nil,
+        mileageAsserted: Bool? = nil,
         flightNumber: String? = nil,
         faFlightIds: [String]? = nil,
         messages: [TaskGroupMessage1]? = nil,
-        shipperPayForwarderRateSheetId: String? = nil,
-        shipperPayForwarderLineItemGroupId: String? = nil,
-        forwarderPayCourierRateSheetId: String? = nil,
-        forwarderPayCourierLineItemGroupId: String? = nil,
-        shipperPayCourierRateSheetId: String? = nil,
-        shipperPayCourierLineItemGroupId: String? = nil,
-        courierPayDriverRateSheetId: String? = nil,
-        courierPayDriverLineItemGroupId: String? = nil,
+        shipperPayProviderRateSheetId: String? = nil,
+        shipperPayProviderLineItemGroupId: String? = nil,
+        shipperPayProviderBillingLedgerPeriodId: String? = nil,
+        providerPayProviderRateSheetId: String? = nil,
+        providerPayProviderLineItemGroupId: String? = nil,
+        providerPayProviderBillingLedgerPeriodId: String? = nil,
+        providerPayDriverRateSheetId: String? = nil,
+        providerPayDriverLineItemGroupId: String? = nil,
+        providerPayDriverBillingLedgerPeriodId: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -91,36 +97,39 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderShortId = orderShortId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
         self.taskIds = taskIds
-        self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
-        self.courierOrgId = courierOrgId
-        self.forwarderOrgId = forwarderOrgId
+        self.createdByOrgId = createdByOrgId
         self.shipperOrgId = shipperOrgId
         self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.coordinatorOrgId = coordinatorOrgId
+        self.executorOrgId = executorOrgId
+        self.offChrtExecutorOrgId = offChrtExecutorOrgId
         self.driverId = driverId
-        self.serviceType = serviceType
         self.taskGroupS3ObjectMetadataIds = taskGroupS3ObjectMetadataIds
         self.status = status
+        self.orderCancelled = orderCancelled
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
         self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
-        self.orderCancelled = orderCancelled
         self.taskGroupType = taskGroupType
-        self.tasksMileage = tasksMileage
+        self.mileageEstimated = mileageEstimated
+        self.mileageObserved = mileageObserved
+        self.mileageAsserted = mileageAsserted
         self.flightNumber = flightNumber
         self.faFlightIds = faFlightIds
         self.messages = messages
-        self.shipperPayForwarderRateSheetId = shipperPayForwarderRateSheetId
-        self.shipperPayForwarderLineItemGroupId = shipperPayForwarderLineItemGroupId
-        self.forwarderPayCourierRateSheetId = forwarderPayCourierRateSheetId
-        self.forwarderPayCourierLineItemGroupId = forwarderPayCourierLineItemGroupId
-        self.shipperPayCourierRateSheetId = shipperPayCourierRateSheetId
-        self.shipperPayCourierLineItemGroupId = shipperPayCourierLineItemGroupId
-        self.courierPayDriverRateSheetId = courierPayDriverRateSheetId
-        self.courierPayDriverLineItemGroupId = courierPayDriverLineItemGroupId
+        self.shipperPayProviderRateSheetId = shipperPayProviderRateSheetId
+        self.shipperPayProviderLineItemGroupId = shipperPayProviderLineItemGroupId
+        self.shipperPayProviderBillingLedgerPeriodId = shipperPayProviderBillingLedgerPeriodId
+        self.providerPayProviderRateSheetId = providerPayProviderRateSheetId
+        self.providerPayProviderLineItemGroupId = providerPayProviderLineItemGroupId
+        self.providerPayProviderBillingLedgerPeriodId = providerPayProviderBillingLedgerPeriodId
+        self.providerPayDriverRateSheetId = providerPayDriverRateSheetId
+        self.providerPayDriverLineItemGroupId = providerPayDriverLineItemGroupId
+        self.providerPayDriverBillingLedgerPeriodId = providerPayDriverBillingLedgerPeriodId
         self.additionalProperties = additionalProperties
     }
 
@@ -132,36 +141,39 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
         self.taskIds = try container.decodeIfPresent([String].self, forKey: .taskIds)
-        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
-        self.courierOrgId = try container.decodeIfPresent(String.self, forKey: .courierOrgId)
-        self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
+        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
+        self.offChrtExecutorOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgId)
         self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
-        self.serviceType = try container.decodeIfPresent(ServiceTypeEnum1.self, forKey: .serviceType)
         self.taskGroupS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .taskGroupS3ObjectMetadataIds)
         self.status = try container.decodeIfPresent(TaskGroupStatusEnum1.self, forKey: .status)
+        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
-        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
-        self.tasksMileage = try container.decodeIfPresent(Double.self, forKey: .tasksMileage)
+        self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
+        self.mileageObserved = try container.decodeIfPresent(Double.self, forKey: .mileageObserved)
+        self.mileageAsserted = try container.decodeIfPresent(Bool.self, forKey: .mileageAsserted)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
         self.messages = try container.decodeIfPresent([TaskGroupMessage1].self, forKey: .messages)
-        self.shipperPayForwarderRateSheetId = try container.decodeIfPresent(String.self, forKey: .shipperPayForwarderRateSheetId)
-        self.shipperPayForwarderLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .shipperPayForwarderLineItemGroupId)
-        self.forwarderPayCourierRateSheetId = try container.decodeIfPresent(String.self, forKey: .forwarderPayCourierRateSheetId)
-        self.forwarderPayCourierLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .forwarderPayCourierLineItemGroupId)
-        self.shipperPayCourierRateSheetId = try container.decodeIfPresent(String.self, forKey: .shipperPayCourierRateSheetId)
-        self.shipperPayCourierLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .shipperPayCourierLineItemGroupId)
-        self.courierPayDriverRateSheetId = try container.decodeIfPresent(String.self, forKey: .courierPayDriverRateSheetId)
-        self.courierPayDriverLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .courierPayDriverLineItemGroupId)
+        self.shipperPayProviderRateSheetId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderRateSheetId)
+        self.shipperPayProviderLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderLineItemGroupId)
+        self.shipperPayProviderBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderBillingLedgerPeriodId)
+        self.providerPayProviderRateSheetId = try container.decodeIfPresent(String.self, forKey: .providerPayProviderRateSheetId)
+        self.providerPayProviderLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .providerPayProviderLineItemGroupId)
+        self.providerPayProviderBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .providerPayProviderBillingLedgerPeriodId)
+        self.providerPayDriverRateSheetId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverRateSheetId)
+        self.providerPayDriverLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverLineItemGroupId)
+        self.providerPayDriverBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverBillingLedgerPeriodId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -174,36 +186,39 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
         try container.encodeIfPresent(self.taskIds, forKey: .taskIds)
-        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
-        try container.encodeIfPresent(self.courierOrgId, forKey: .courierOrgId)
-        try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
+        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
+        try container.encodeIfPresent(self.offChrtExecutorOrgId, forKey: .offChrtExecutorOrgId)
         try container.encodeIfPresent(self.driverId, forKey: .driverId)
-        try container.encodeIfPresent(self.serviceType, forKey: .serviceType)
         try container.encodeIfPresent(self.taskGroupS3ObjectMetadataIds, forKey: .taskGroupS3ObjectMetadataIds)
         try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
-        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
-        try container.encodeIfPresent(self.tasksMileage, forKey: .tasksMileage)
+        try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
+        try container.encodeIfPresent(self.mileageObserved, forKey: .mileageObserved)
+        try container.encodeIfPresent(self.mileageAsserted, forKey: .mileageAsserted)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
         try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
         try container.encodeIfPresent(self.messages, forKey: .messages)
-        try container.encodeIfPresent(self.shipperPayForwarderRateSheetId, forKey: .shipperPayForwarderRateSheetId)
-        try container.encodeIfPresent(self.shipperPayForwarderLineItemGroupId, forKey: .shipperPayForwarderLineItemGroupId)
-        try container.encodeIfPresent(self.forwarderPayCourierRateSheetId, forKey: .forwarderPayCourierRateSheetId)
-        try container.encodeIfPresent(self.forwarderPayCourierLineItemGroupId, forKey: .forwarderPayCourierLineItemGroupId)
-        try container.encodeIfPresent(self.shipperPayCourierRateSheetId, forKey: .shipperPayCourierRateSheetId)
-        try container.encodeIfPresent(self.shipperPayCourierLineItemGroupId, forKey: .shipperPayCourierLineItemGroupId)
-        try container.encodeIfPresent(self.courierPayDriverRateSheetId, forKey: .courierPayDriverRateSheetId)
-        try container.encodeIfPresent(self.courierPayDriverLineItemGroupId, forKey: .courierPayDriverLineItemGroupId)
+        try container.encodeIfPresent(self.shipperPayProviderRateSheetId, forKey: .shipperPayProviderRateSheetId)
+        try container.encodeIfPresent(self.shipperPayProviderLineItemGroupId, forKey: .shipperPayProviderLineItemGroupId)
+        try container.encodeIfPresent(self.shipperPayProviderBillingLedgerPeriodId, forKey: .shipperPayProviderBillingLedgerPeriodId)
+        try container.encodeIfPresent(self.providerPayProviderRateSheetId, forKey: .providerPayProviderRateSheetId)
+        try container.encodeIfPresent(self.providerPayProviderLineItemGroupId, forKey: .providerPayProviderLineItemGroupId)
+        try container.encodeIfPresent(self.providerPayProviderBillingLedgerPeriodId, forKey: .providerPayProviderBillingLedgerPeriodId)
+        try container.encodeIfPresent(self.providerPayDriverRateSheetId, forKey: .providerPayDriverRateSheetId)
+        try container.encodeIfPresent(self.providerPayDriverLineItemGroupId, forKey: .providerPayDriverLineItemGroupId)
+        try container.encodeIfPresent(self.providerPayDriverBillingLedgerPeriodId, forKey: .providerPayDriverBillingLedgerPeriodId)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -214,35 +229,38 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case orderShortId = "order_short_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
         case taskIds = "task_ids"
-        case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
-        case courierOrgId = "courier_org_id"
-        case forwarderOrgId = "forwarder_org_id"
+        case createdByOrgId = "created_by_org_id"
         case shipperOrgId = "shipper_org_id"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case coordinatorOrgId = "coordinator_org_id"
+        case executorOrgId = "executor_org_id"
+        case offChrtExecutorOrgId = "off_chrt_executor_org_id"
         case driverId = "driver_id"
-        case serviceType = "service_type"
         case taskGroupS3ObjectMetadataIds = "task_group_s3_object_metadata_ids"
         case status
+        case orderCancelled = "order_cancelled"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
         case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
-        case orderCancelled = "order_cancelled"
         case taskGroupType = "task_group_type"
-        case tasksMileage = "tasks_mileage"
+        case mileageEstimated = "mileage_estimated"
+        case mileageObserved = "mileage_observed"
+        case mileageAsserted = "mileage_asserted"
         case flightNumber = "flight_number"
         case faFlightIds = "fa_flight_ids"
         case messages
-        case shipperPayForwarderRateSheetId = "shipper_pay_forwarder_rate_sheet_id"
-        case shipperPayForwarderLineItemGroupId = "shipper_pay_forwarder_line_item_group_id"
-        case forwarderPayCourierRateSheetId = "forwarder_pay_courier_rate_sheet_id"
-        case forwarderPayCourierLineItemGroupId = "forwarder_pay_courier_line_item_group_id"
-        case shipperPayCourierRateSheetId = "shipper_pay_courier_rate_sheet_id"
-        case shipperPayCourierLineItemGroupId = "shipper_pay_courier_line_item_group_id"
-        case courierPayDriverRateSheetId = "courier_pay_driver_rate_sheet_id"
-        case courierPayDriverLineItemGroupId = "courier_pay_driver_line_item_group_id"
+        case shipperPayProviderRateSheetId = "shipper_pay_provider_rate_sheet_id"
+        case shipperPayProviderLineItemGroupId = "shipper_pay_provider_line_item_group_id"
+        case shipperPayProviderBillingLedgerPeriodId = "shipper_pay_provider_billing_ledger_period_id"
+        case providerPayProviderRateSheetId = "provider_pay_provider_rate_sheet_id"
+        case providerPayProviderLineItemGroupId = "provider_pay_provider_line_item_group_id"
+        case providerPayProviderBillingLedgerPeriodId = "provider_pay_provider_billing_ledger_period_id"
+        case providerPayDriverRateSheetId = "provider_pay_driver_rate_sheet_id"
+        case providerPayDriverLineItemGroupId = "provider_pay_driver_line_item_group_id"
+        case providerPayDriverBillingLedgerPeriodId = "provider_pay_driver_billing_ledger_period_id"
     }
 }

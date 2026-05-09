@@ -25,6 +25,7 @@ import Chrt
                   "status": "unassigned",
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
+                  "auto_assign_enabled": true,
                   "active_task_group_ids": [
                     "active_task_group_ids"
                   ],
@@ -52,9 +53,7 @@ import Chrt
                     },
                     "id": 1
                   },
-                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                  "default_rate_sheet__routed": "default_rate_sheet__routed",
-                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """.utf8
             )
@@ -81,6 +80,7 @@ import Chrt
             status: Optional(.unassigned),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
+            autoAssignEnabled: Optional(true),
             activeTaskGroupIds: Optional([
                 "active_task_group_ids"
             ]),
@@ -116,9 +116,7 @@ import Chrt
                     1
                 ))
             )),
-            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-            defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.shipping.drivers.getForCallerV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -146,6 +144,7 @@ import Chrt
                   "status": "unassigned",
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
+                  "auto_assign_enabled": true,
                   "active_task_group_ids": [
                     "active_task_group_ids"
                   ],
@@ -173,9 +172,7 @@ import Chrt
                     },
                     "id": 1
                   },
-                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                  "default_rate_sheet__routed": "default_rate_sheet__routed",
-                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """.utf8
             )
@@ -202,6 +199,7 @@ import Chrt
             status: Optional(.unassigned),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
+            autoAssignEnabled: Optional(true),
             activeTaskGroupIds: Optional([
                 "active_task_group_ids"
             ]),
@@ -237,9 +235,7 @@ import Chrt
                     1
                 ))
             )),
-            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-            defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.shipping.drivers.getByDriverIdV1(
             driverId: "driver_id",
@@ -301,6 +297,9 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
+            filterRole: [
+                .owner
+            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,
@@ -336,6 +335,7 @@ import Chrt
                       "status": "unassigned",
                       "available_according_to_driver": true,
                       "available_according_to_operators": true,
+                      "auto_assign_enabled": true,
                       "active_task_group_ids": [
                         "active_task_group_ids"
                       ],
@@ -353,9 +353,7 @@ import Chrt
                           "type": "GeometryCollection"
                         }
                       },
-                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                      "default_rate_sheet__routed": "default_rate_sheet__routed",
-                      "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ],
                   "total_count": 1
@@ -387,6 +385,7 @@ import Chrt
                     status: Optional(.unassigned),
                     availableAccordingToDriver: Optional(true),
                     availableAccordingToOperators: Optional(true),
+                    autoAssignEnabled: Optional(true),
                     activeTaskGroupIds: Optional([
                         "active_task_group_ids"
                     ]),
@@ -408,9 +407,7 @@ import Chrt
                             )
                         )
                     )),
-                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                    defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ],
             totalCount: 1
@@ -536,6 +533,29 @@ import Chrt
             request: DriverUpdateAvailabilityReq(
                 available: true
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateAutoAssignV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.drivers.updateAutoAssignV1(
+            driverId: "driver_id",
+            request: .init(autoAssignEnabled: true),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -3,7 +3,7 @@ import Testing
 import Chrt
 
 @Suite("TaskGroupIdClient Wire Tests") struct TaskGroupIdClientWireTests {
-    @Test func forCourierOperatorsV11() async throws -> Void {
+    @Test func forExecutorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -22,14 +22,14 @@ import Chrt
         let expectedResponse = [
             "string"
         ]
-        let response = try await client.shipping.taskGroups.taskGroupId.forCourierOperatorsV1(
+        let response = try await client.shipping.taskGroups.taskGroupId.forExecutorOperatorsV1(
             orderRef: "order_ref",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func forCourierDriverV11() async throws -> Void {
+    @Test func forDriverForExecutorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -48,7 +48,7 @@ import Chrt
         let expectedResponse = [
             "string"
         ]
-        let response = try await client.shipping.taskGroups.taskGroupId.forCourierDriverV1(
+        let response = try await client.shipping.taskGroups.taskGroupId.forDriverForExecutorV1(
             orderRef: "order_ref",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

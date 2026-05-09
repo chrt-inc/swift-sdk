@@ -7,7 +7,9 @@ public final class ChrtClient: Sendable {
     public let analytics: AnalyticsClient
     public let billing: BillingClient
     public let integrations: IntegrationsClient
+    public let listing: ListingClient
     public let notifications: NotificationsClient
+    public let operations: OperationsClient
     public let shipping: ShippingClient_
     public let tracking: TrackingClient
     public let trackingIntegrations: TrackingIntegrationsClient
@@ -99,7 +101,9 @@ public final class ChrtClient: Sendable {
         self.analytics = AnalyticsClient(config: config)
         self.billing = BillingClient(config: config)
         self.integrations = IntegrationsClient(config: config)
+        self.listing = ListingClient(config: config)
         self.notifications = NotificationsClient(config: config)
+        self.operations = OperationsClient(config: config)
         self.shipping = ShippingClient_(config: config)
         self.tracking = TrackingClient(config: config)
         self.trackingIntegrations = TrackingIntegrationsClient(config: config)

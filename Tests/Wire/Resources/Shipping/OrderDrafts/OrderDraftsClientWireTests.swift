@@ -39,7 +39,7 @@ import Chrt
                 {
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
-                  "forwarder_org_id": "forwarder_org_id",
+                  "coordinator_org_id": "coordinator_org_id",
                   "shipper_org_id": "shipper_org_id",
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "off_chrt_reference_id": "off_chrt_reference_id"
@@ -55,7 +55,7 @@ import Chrt
         let expectedResponse = OrdersDraftUpdateRes(
             orderId: "order_id",
             orderShortId: "order_short_id",
-            forwarderOrgId: Optional("forwarder_org_id"),
+            coordinatorOrgId: Optional("coordinator_org_id"),
             shipperOrgId: Optional("shipper_org_id"),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             offChrtReferenceId: Optional("off_chrt_reference_id")

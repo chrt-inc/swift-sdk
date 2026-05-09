@@ -20,7 +20,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.625.0"),
+    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.625.1"),
 ]
 ```
 
@@ -39,7 +39,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgs.setOrgTypeV1(request: .init(orgType: .courier))
+    _ = try await client.orgs.setOrgTypeV1(request: .init(orgType: .provider))
 }
 
 try await main()

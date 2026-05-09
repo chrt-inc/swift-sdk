@@ -53,7 +53,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listCouriersV11() async throws -> Void {
+    @Test func listProvidersV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -61,10 +61,10 @@ import Chrt
                 {
                   "items": [
                     {
-                      "courier_org_info_for_connections": {
+                      "provider_org_info_for_connections": {
                         "schema_version": 1,
                         "email_address_primary": "email_address_primary",
-                        "courier_org_id": "courier_org_id",
+                        "provider_org_id": "provider_org_id",
                         "_id": "_id"
                       },
                       "connected": true
@@ -80,13 +80,13 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = CourierConnectionListRes(
+        let expectedResponse = ProviderConnectionListRes(
             items: [
-                CourierConnectionRes(
-                    courierOrgInfoForConnections: CourierOrgInfoForConnections1(
+                ProviderConnectionRes(
+                    providerOrgInfoForConnections: ProviderOrgInfoForConnections1(
                         schemaVersion: 1,
                         emailAddressPrimary: "email_address_primary",
-                        courierOrgId: "courier_org_id",
+                        providerOrgId: "provider_org_id",
                         id: "_id"
                     ),
                     connected: true
@@ -94,57 +94,7 @@ import Chrt
             ],
             totalCount: 1
         )
-        let response = try await client.orgs.connections.listCouriersV1(
-            search: "search",
-            page: 1,
-            pageSize: 1,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func listForwardersV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "items": [
-                    {
-                      "forwarder_org_info_for_connections": {
-                        "schema_version": 1,
-                        "email_address_primary": "email_address_primary",
-                        "forwarder_org_id": "forwarder_org_id",
-                        "_id": "_id"
-                      },
-                      "connected": true
-                    }
-                  ],
-                  "total_count": 1
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = ForwarderConnectionListRes(
-            items: [
-                ForwarderConnectionRes(
-                    forwarderOrgInfoForConnections: ForwarderOrgInfoForConnections1(
-                        schemaVersion: 1,
-                        emailAddressPrimary: "email_address_primary",
-                        forwarderOrgId: "forwarder_org_id",
-                        id: "_id"
-                    ),
-                    connected: true
-                )
-            ],
-            totalCount: 1
-        )
-        let response = try await client.orgs.connections.listForwardersV1(
+        let response = try await client.orgs.connections.listProvidersV1(
             search: "search",
             page: 1,
             pageSize: 1,
@@ -160,12 +110,11 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
+                  "department_id": "department_id",
                   "shipper_org_id": "shipper_org_id",
-                  "courier_org_id": "courier_org_id",
+                  "coordinator_org_id": "coordinator_org_id",
                   "connected": true,
-                  "shipper_customer_id_for_courier_stripe_connect_account": "shipper_customer_id_for_courier_stripe_connect_account",
-                  "default_rate_sheet__routed": "default_rate_sheet__routed",
-                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand",
+                  "shipper_customer_id_for_coordinator_stripe_connect_account": "shipper_customer_id_for_coordinator_stripe_connect_account",
                   "_id": "_id"
                 }
                 """.utf8
@@ -176,15 +125,14 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Optional(ConnectionsGetByHandleV1Response.shipperCourierConnection1(
-            ShipperCourierConnection1(
+        let expectedResponse = Optional(ConnectionsGetByHandleV1Response.shipperProviderConnection1(
+            ShipperProviderConnection1(
                 schemaVersion: 1,
+                departmentId: Optional("department_id"),
                 shipperOrgId: "shipper_org_id",
-                courierOrgId: "courier_org_id",
+                coordinatorOrgId: "coordinator_org_id",
                 connected: Optional(true),
-                shipperCustomerIdForCourierStripeConnectAccount: Optional("shipper_customer_id_for_courier_stripe_connect_account"),
-                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand"),
+                shipperCustomerIdForCoordinatorStripeConnectAccount: Optional("shipper_customer_id_for_coordinator_stripe_connect_account"),
                 id: "_id"
             )
         ))
@@ -195,7 +143,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func createConnectionToCourierV11() async throws -> Void {
+    @Test func createConnectionToProviderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -210,7 +158,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgs.connections.createConnectionToCourierV1(
+        let response = try await client.orgs.connections.createConnectionToProviderV1(
             request: CreateConnectionReq(
                 handle: "handle"
             ),
@@ -243,12 +191,12 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func createConnectionToForwarderV11() async throws -> Void {
+    @Test func setDepartmentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                string
+                true
                 """.utf8
             )
         )
@@ -257,11 +205,33 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = "string"
-        let response = try await client.orgs.connections.createConnectionToForwarderV1(
-            request: CreateConnectionReq(
-                handle: "handle"
-            ),
+        let expectedResponse = true
+        let response = try await client.orgs.connections.setDepartmentV1(
+            connectionId: "connection_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setProviderProviderAutoAssignV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.connections.setProviderProviderAutoAssignV1(
+            connectionId: "connection_id",
+            request: .init(autoAssignEnabled: true),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

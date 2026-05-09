@@ -3,7 +3,7 @@ import Testing
 import Chrt
 
 @Suite("TaskGroupsExpandedClient Wire Tests") struct TaskGroupsExpandedClientWireTests {
-    @Test func forCourierOperatorsV11() async throws -> Void {
+    @Test func forExecutorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -18,27 +18,29 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "courier_org_id": "courier_org_id",
-                    "forwarder_org_id": "forwarder_org_id",
+                    "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "coordinator_org_id": "coordinator_org_id",
+                    "executor_org_id": "executor_org_id",
+                    "off_chrt_executor_org_id": "off_chrt_executor_org_id",
                     "driver_id": "driver_id",
-                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
                     "status": "draft",
+                    "order_cancelled": true,
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "skipped_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "task_group_type": "chrt_ground_courier",
-                    "tasks_mileage": 1.1,
+                    "task_group_type": "chrt_ground_provider",
+                    "mileage_estimated": 1.1,
+                    "mileage_observed": 1.1,
+                    "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -51,14 +53,15 @@ import Chrt
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
                     ],
-                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
-                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
-                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
-                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
-                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
-                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
-                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
-                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
+                    "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
+                    "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
+                    "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
+                    "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
+                    "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
+                    "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
+                    "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
+                    "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
+                    "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
                   },
                   "tasks_expanded": [
                     {
@@ -125,6 +128,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
                     ],
@@ -143,16 +147,14 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                    "default_rate_sheet__routed": "default_rate_sheet__routed",
-                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                   },
-                  "courier_org_id": "courier_org_id",
-                  "courier_org_company_name": "courier_org_company_name",
-                  "courier_org_handle": "courier_org_handle",
-                  "forwarder_org_id": "forwarder_org_id",
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle",
+                  "executor_org_id": "executor_org_id",
+                  "executor_org_company_name": "executor_org_company_name",
+                  "executor_org_handle": "executor_org_handle",
+                  "coordinator_org_id": "coordinator_org_id",
+                  "coordinator_org_company_name": "coordinator_org_company_name",
+                  "coordinator_org_handle": "coordinator_org_handle",
                   "shipper_org_id": "shipper_org_id",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -176,27 +178,29 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                courierOrgId: Optional("courier_org_id"),
-                forwarderOrgId: Optional("forwarder_org_id"),
+                createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                executorOrgId: Optional("executor_org_id"),
+                offChrtExecutorOrgId: Optional("off_chrt_executor_org_id"),
                 driverId: Optional("driver_id"),
-                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
                 status: Optional(.draft),
+                orderCancelled: Optional(true),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                taskGroupType: .chrtGroundCourier,
-                tasksMileage: Optional(1.1),
+                taskGroupType: .chrtGroundProvider,
+                mileageEstimated: Optional(1.1),
+                mileageObserved: Optional(1.1),
+                mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -209,14 +213,15 @@ import Chrt
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
                 ]),
-                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
-                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
-                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
-                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
-                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
-                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
-                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
-                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
+                shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
+                shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
+                shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
+                providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
+                providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
+                providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
+                providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
+                providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
+                providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -283,6 +288,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
                 ]),
@@ -307,22 +313,20 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
-            courierOrgId: Optional("courier_org_id"),
-            courierOrgCompanyName: Optional("courier_org_company_name"),
-            courierOrgHandle: Optional("courier_org_handle"),
-            forwarderOrgId: Optional("forwarder_org_id"),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            executorOrgId: Optional("executor_org_id"),
+            executorOrgCompanyName: Optional("executor_org_company_name"),
+            executorOrgHandle: Optional("executor_org_handle"),
+            coordinatorOrgId: Optional("coordinator_org_id"),
+            coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+            coordinatorOrgHandle: Optional("coordinator_org_handle"),
             shipperOrgId: Optional("shipper_org_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name")
         )
-        let response = try await client.shipping.taskGroups.expanded.forCourierOperatorsV1(
+        let response = try await client.shipping.taskGroups.expanded.forExecutorOperatorsV1(
             taskGroupId: "task_group_id",
             request: OrderAndTaskGroupExpandedReq(
 
@@ -332,7 +336,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func forCourierDriverV11() async throws -> Void {
+    @Test func forDriverForExecutorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -347,27 +351,29 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "courier_org_id": "courier_org_id",
-                    "forwarder_org_id": "forwarder_org_id",
+                    "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "coordinator_org_id": "coordinator_org_id",
+                    "executor_org_id": "executor_org_id",
+                    "off_chrt_executor_org_id": "off_chrt_executor_org_id",
                     "driver_id": "driver_id",
-                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
                     "status": "draft",
+                    "order_cancelled": true,
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "skipped_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "task_group_type": "chrt_ground_courier",
-                    "tasks_mileage": 1.1,
+                    "task_group_type": "chrt_ground_provider",
+                    "mileage_estimated": 1.1,
+                    "mileage_observed": 1.1,
+                    "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -380,14 +386,15 @@ import Chrt
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
                     ],
-                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
-                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
-                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
-                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
-                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
-                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
-                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
-                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
+                    "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
+                    "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
+                    "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
+                    "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
+                    "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
+                    "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
+                    "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
+                    "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
+                    "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
                   },
                   "tasks_expanded": [
                     {
@@ -454,6 +461,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
                     ],
@@ -472,16 +480,14 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                    "default_rate_sheet__routed": "default_rate_sheet__routed",
-                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                   },
-                  "courier_org_id": "courier_org_id",
-                  "courier_org_company_name": "courier_org_company_name",
-                  "courier_org_handle": "courier_org_handle",
-                  "forwarder_org_id": "forwarder_org_id",
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle",
+                  "executor_org_id": "executor_org_id",
+                  "executor_org_company_name": "executor_org_company_name",
+                  "executor_org_handle": "executor_org_handle",
+                  "coordinator_org_id": "coordinator_org_id",
+                  "coordinator_org_company_name": "coordinator_org_company_name",
+                  "coordinator_org_handle": "coordinator_org_handle",
                   "shipper_org_id": "shipper_org_id",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -505,27 +511,29 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                courierOrgId: Optional("courier_org_id"),
-                forwarderOrgId: Optional("forwarder_org_id"),
+                createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                executorOrgId: Optional("executor_org_id"),
+                offChrtExecutorOrgId: Optional("off_chrt_executor_org_id"),
                 driverId: Optional("driver_id"),
-                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
                 status: Optional(.draft),
+                orderCancelled: Optional(true),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                taskGroupType: .chrtGroundCourier,
-                tasksMileage: Optional(1.1),
+                taskGroupType: .chrtGroundProvider,
+                mileageEstimated: Optional(1.1),
+                mileageObserved: Optional(1.1),
+                mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -538,14 +546,15 @@ import Chrt
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
                 ]),
-                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
-                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
-                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
-                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
-                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
-                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
-                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
-                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
+                shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
+                shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
+                shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
+                providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
+                providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
+                providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
+                providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
+                providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
+                providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -612,6 +621,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
                 ]),
@@ -636,22 +646,20 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
-            courierOrgId: Optional("courier_org_id"),
-            courierOrgCompanyName: Optional("courier_org_company_name"),
-            courierOrgHandle: Optional("courier_org_handle"),
-            forwarderOrgId: Optional("forwarder_org_id"),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            executorOrgId: Optional("executor_org_id"),
+            executorOrgCompanyName: Optional("executor_org_company_name"),
+            executorOrgHandle: Optional("executor_org_handle"),
+            coordinatorOrgId: Optional("coordinator_org_id"),
+            coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+            coordinatorOrgHandle: Optional("coordinator_org_handle"),
             shipperOrgId: Optional("shipper_org_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name")
         )
-        let response = try await client.shipping.taskGroups.expanded.forCourierDriverV1(
+        let response = try await client.shipping.taskGroups.expanded.forDriverForExecutorV1(
             taskGroupId: "task_group_id",
             request: OrderAndTaskGroupExpandedReq(
 
@@ -676,27 +684,29 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "courier_org_id": "courier_org_id",
-                    "forwarder_org_id": "forwarder_org_id",
+                    "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "coordinator_org_id": "coordinator_org_id",
+                    "executor_org_id": "executor_org_id",
+                    "off_chrt_executor_org_id": "off_chrt_executor_org_id",
                     "driver_id": "driver_id",
-                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
                     "status": "draft",
+                    "order_cancelled": true,
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "skipped_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "task_group_type": "chrt_ground_courier",
-                    "tasks_mileage": 1.1,
+                    "task_group_type": "chrt_ground_provider",
+                    "mileage_estimated": 1.1,
+                    "mileage_observed": 1.1,
+                    "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -709,14 +719,15 @@ import Chrt
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
                     ],
-                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
-                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
-                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
-                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
-                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
-                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
-                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
-                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
+                    "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
+                    "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
+                    "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
+                    "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
+                    "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
+                    "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
+                    "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
+                    "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
+                    "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
                   },
                   "tasks_expanded": [
                     {
@@ -783,6 +794,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
                     ],
@@ -801,16 +813,14 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                    "default_rate_sheet__routed": "default_rate_sheet__routed",
-                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                   },
-                  "courier_org_id": "courier_org_id",
-                  "courier_org_company_name": "courier_org_company_name",
-                  "courier_org_handle": "courier_org_handle",
-                  "forwarder_org_id": "forwarder_org_id",
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle",
+                  "executor_org_id": "executor_org_id",
+                  "executor_org_company_name": "executor_org_company_name",
+                  "executor_org_handle": "executor_org_handle",
+                  "coordinator_org_id": "coordinator_org_id",
+                  "coordinator_org_company_name": "coordinator_org_company_name",
+                  "coordinator_org_handle": "coordinator_org_handle",
                   "shipper_org_id": "shipper_org_id",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -834,27 +844,29 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                courierOrgId: Optional("courier_org_id"),
-                forwarderOrgId: Optional("forwarder_org_id"),
+                createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                executorOrgId: Optional("executor_org_id"),
+                offChrtExecutorOrgId: Optional("off_chrt_executor_org_id"),
                 driverId: Optional("driver_id"),
-                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
                 status: Optional(.draft),
+                orderCancelled: Optional(true),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                taskGroupType: .chrtGroundCourier,
-                tasksMileage: Optional(1.1),
+                taskGroupType: .chrtGroundProvider,
+                mileageEstimated: Optional(1.1),
+                mileageObserved: Optional(1.1),
+                mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -867,14 +879,15 @@ import Chrt
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
                 ]),
-                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
-                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
-                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
-                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
-                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
-                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
-                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
-                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
+                shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
+                shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
+                shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
+                providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
+                providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
+                providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
+                providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
+                providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
+                providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -941,6 +954,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
                 ]),
@@ -965,16 +979,14 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
-            courierOrgId: Optional("courier_org_id"),
-            courierOrgCompanyName: Optional("courier_org_company_name"),
-            courierOrgHandle: Optional("courier_org_handle"),
-            forwarderOrgId: Optional("forwarder_org_id"),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            executorOrgId: Optional("executor_org_id"),
+            executorOrgCompanyName: Optional("executor_org_company_name"),
+            executorOrgHandle: Optional("executor_org_handle"),
+            coordinatorOrgId: Optional("coordinator_org_id"),
+            coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+            coordinatorOrgHandle: Optional("coordinator_org_handle"),
             shipperOrgId: Optional("shipper_org_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -990,7 +1002,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func forForwarderOperatorsV11() async throws -> Void {
+    @Test func forCoordinatorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -1005,27 +1017,29 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "courier_org_id": "courier_org_id",
-                    "forwarder_org_id": "forwarder_org_id",
+                    "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "coordinator_org_id": "coordinator_org_id",
+                    "executor_org_id": "executor_org_id",
+                    "off_chrt_executor_org_id": "off_chrt_executor_org_id",
                     "driver_id": "driver_id",
-                    "service_type": "on_demand",
                     "task_group_s3_object_metadata_ids": [
                       "task_group_s3_object_metadata_ids"
                     ],
                     "status": "draft",
+                    "order_cancelled": true,
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "skipped_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "task_group_type": "chrt_ground_courier",
-                    "tasks_mileage": 1.1,
+                    "task_group_type": "chrt_ground_provider",
+                    "mileage_estimated": 1.1,
+                    "mileage_observed": 1.1,
+                    "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
                       "fa_flight_ids"
@@ -1038,14 +1052,15 @@ import Chrt
                         "timestamp": "2024-01-15T09:30:00Z"
                       }
                     ],
-                    "shipper_pay_forwarder_rate_sheet_id": "shipper_pay_forwarder_rate_sheet_id",
-                    "shipper_pay_forwarder_line_item_group_id": "shipper_pay_forwarder_line_item_group_id",
-                    "forwarder_pay_courier_rate_sheet_id": "forwarder_pay_courier_rate_sheet_id",
-                    "forwarder_pay_courier_line_item_group_id": "forwarder_pay_courier_line_item_group_id",
-                    "shipper_pay_courier_rate_sheet_id": "shipper_pay_courier_rate_sheet_id",
-                    "shipper_pay_courier_line_item_group_id": "shipper_pay_courier_line_item_group_id",
-                    "courier_pay_driver_rate_sheet_id": "courier_pay_driver_rate_sheet_id",
-                    "courier_pay_driver_line_item_group_id": "courier_pay_driver_line_item_group_id"
+                    "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
+                    "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
+                    "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
+                    "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
+                    "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
+                    "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
+                    "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
+                    "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
+                    "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
                   },
                   "tasks_expanded": [
                     {
@@ -1112,6 +1127,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
                     ],
@@ -1130,16 +1146,14 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
-                    "default_rate_sheet__routed": "default_rate_sheet__routed",
-                    "default_rate_sheet__on_demand": "default_rate_sheet__on_demand"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
                   },
-                  "courier_org_id": "courier_org_id",
-                  "courier_org_company_name": "courier_org_company_name",
-                  "courier_org_handle": "courier_org_handle",
-                  "forwarder_org_id": "forwarder_org_id",
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle",
+                  "executor_org_id": "executor_org_id",
+                  "executor_org_company_name": "executor_org_company_name",
+                  "executor_org_handle": "executor_org_handle",
+                  "coordinator_org_id": "coordinator_org_id",
+                  "coordinator_org_company_name": "coordinator_org_company_name",
+                  "coordinator_org_handle": "coordinator_org_handle",
                   "shipper_org_id": "shipper_org_id",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -1163,27 +1177,29 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                courierOrgId: Optional("courier_org_id"),
-                forwarderOrgId: Optional("forwarder_org_id"),
+                createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                executorOrgId: Optional("executor_org_id"),
+                offChrtExecutorOrgId: Optional("off_chrt_executor_org_id"),
                 driverId: Optional("driver_id"),
-                serviceType: Optional(.onDemand),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
                 status: Optional(.draft),
+                orderCancelled: Optional(true),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                taskGroupType: .chrtGroundCourier,
-                tasksMileage: Optional(1.1),
+                taskGroupType: .chrtGroundProvider,
+                mileageEstimated: Optional(1.1),
+                mileageObserved: Optional(1.1),
+                mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
                     "fa_flight_ids"
@@ -1196,14 +1212,15 @@ import Chrt
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
                 ]),
-                shipperPayForwarderRateSheetId: Optional("shipper_pay_forwarder_rate_sheet_id"),
-                shipperPayForwarderLineItemGroupId: Optional("shipper_pay_forwarder_line_item_group_id"),
-                forwarderPayCourierRateSheetId: Optional("forwarder_pay_courier_rate_sheet_id"),
-                forwarderPayCourierLineItemGroupId: Optional("forwarder_pay_courier_line_item_group_id"),
-                shipperPayCourierRateSheetId: Optional("shipper_pay_courier_rate_sheet_id"),
-                shipperPayCourierLineItemGroupId: Optional("shipper_pay_courier_line_item_group_id"),
-                courierPayDriverRateSheetId: Optional("courier_pay_driver_rate_sheet_id"),
-                courierPayDriverLineItemGroupId: Optional("courier_pay_driver_line_item_group_id")
+                shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
+                shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
+                shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
+                providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
+                providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
+                providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
+                providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
+                providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
+                providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
             ),
             tasksExpanded: Optional([
                 TaskExpanded(
@@ -1270,6 +1287,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
                 ]),
@@ -1294,22 +1312,20 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand")
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
-            courierOrgId: Optional("courier_org_id"),
-            courierOrgCompanyName: Optional("courier_org_company_name"),
-            courierOrgHandle: Optional("courier_org_handle"),
-            forwarderOrgId: Optional("forwarder_org_id"),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            executorOrgId: Optional("executor_org_id"),
+            executorOrgCompanyName: Optional("executor_org_company_name"),
+            executorOrgHandle: Optional("executor_org_handle"),
+            coordinatorOrgId: Optional("coordinator_org_id"),
+            coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+            coordinatorOrgHandle: Optional("coordinator_org_handle"),
             shipperOrgId: Optional("shipper_org_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name")
         )
-        let response = try await client.shipping.taskGroups.expanded.forForwarderOperatorsV1(
+        let response = try await client.shipping.taskGroups.expanded.forCoordinatorOperatorsV1(
             taskGroupId: "task_group_id",
             request: OrderAndTaskGroupExpandedReq(
 
@@ -1319,7 +1335,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listForCourierOperatorsV11() async throws -> Void {
+    @Test func listForExecutorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -1332,10 +1348,10 @@ import Chrt
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
-                        "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
+                        "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "task_group_type": "chrt_ground_courier"
+                        "task_group_type": "chrt_ground_provider"
                       },
                       "tasks_expanded": [
                         {
@@ -1357,12 +1373,12 @@ import Chrt
                         "org_id": "org_id",
                         "user_id": "user_id"
                       },
-                      "courier_org_id": "courier_org_id",
-                      "courier_org_company_name": "courier_org_company_name",
-                      "courier_org_handle": "courier_org_handle",
-                      "forwarder_org_id": "forwarder_org_id",
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle",
+                      "executor_org_id": "executor_org_id",
+                      "executor_org_company_name": "executor_org_company_name",
+                      "executor_org_handle": "executor_org_handle",
+                      "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_org_company_name": "coordinator_org_company_name",
+                      "coordinator_org_handle": "coordinator_org_handle",
                       "shipper_org_id": "shipper_org_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -1387,10 +1403,10 @@ import Chrt
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
+                        createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        taskGroupType: .chrtGroundCourier
+                        taskGroupType: .chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -1412,12 +1428,12 @@ import Chrt
                         orgId: "org_id",
                         userId: "user_id"
                     )),
-                    courierOrgId: Optional("courier_org_id"),
-                    courierOrgCompanyName: Optional("courier_org_company_name"),
-                    courierOrgHandle: Optional("courier_org_handle"),
-                    forwarderOrgId: Optional("forwarder_org_id"),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    executorOrgId: Optional("executor_org_id"),
+                    executorOrgCompanyName: Optional("executor_org_company_name"),
+                    executorOrgHandle: Optional("executor_org_handle"),
+                    coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+                    coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     shipperOrgId: Optional("shipper_org_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -1426,12 +1442,15 @@ import Chrt
             ],
             totalCount: 1
         )
-        let response = try await client.shipping.taskGroups.expanded.listForCourierOperatorsV1(
+        let response = try await client.shipping.taskGroups.expanded.listForExecutorOperatorsV1(
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
             search: "search",
+            filterStatus: [
+                .draft
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1446,7 +1465,7 @@ import Chrt
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
             filterDriverId: "filter_driver_id",
-            filterForwarderOrgId: "filter_forwarder_org_id",
+            filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
@@ -1457,7 +1476,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listForCourierDriverV11() async throws -> Void {
+    @Test func listForDriverForExecutorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -1470,10 +1489,10 @@ import Chrt
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
-                        "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
+                        "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "task_group_type": "chrt_ground_courier"
+                        "task_group_type": "chrt_ground_provider"
                       },
                       "tasks_expanded": [
                         {
@@ -1495,12 +1514,12 @@ import Chrt
                         "org_id": "org_id",
                         "user_id": "user_id"
                       },
-                      "courier_org_id": "courier_org_id",
-                      "courier_org_company_name": "courier_org_company_name",
-                      "courier_org_handle": "courier_org_handle",
-                      "forwarder_org_id": "forwarder_org_id",
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle",
+                      "executor_org_id": "executor_org_id",
+                      "executor_org_company_name": "executor_org_company_name",
+                      "executor_org_handle": "executor_org_handle",
+                      "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_org_company_name": "coordinator_org_company_name",
+                      "coordinator_org_handle": "coordinator_org_handle",
                       "shipper_org_id": "shipper_org_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -1525,10 +1544,10 @@ import Chrt
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
+                        createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        taskGroupType: .chrtGroundCourier
+                        taskGroupType: .chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -1550,12 +1569,12 @@ import Chrt
                         orgId: "org_id",
                         userId: "user_id"
                     )),
-                    courierOrgId: Optional("courier_org_id"),
-                    courierOrgCompanyName: Optional("courier_org_company_name"),
-                    courierOrgHandle: Optional("courier_org_handle"),
-                    forwarderOrgId: Optional("forwarder_org_id"),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    executorOrgId: Optional("executor_org_id"),
+                    executorOrgCompanyName: Optional("executor_org_company_name"),
+                    executorOrgHandle: Optional("executor_org_handle"),
+                    coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+                    coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     shipperOrgId: Optional("shipper_org_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -1564,12 +1583,15 @@ import Chrt
             ],
             totalCount: 1
         )
-        let response = try await client.shipping.taskGroups.expanded.listForCourierDriverV1(
+        let response = try await client.shipping.taskGroups.expanded.listForDriverForExecutorV1(
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
             search: "search",
+            filterStatus: [
+                .draft
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1583,7 +1605,7 @@ import Chrt
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
-            filterForwarderOrgId: "filter_forwarder_org_id",
+            filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(

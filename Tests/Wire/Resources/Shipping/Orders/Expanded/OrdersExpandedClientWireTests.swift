@@ -17,14 +17,16 @@ import Chrt
                       "task_group_ids"
                     ],
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "created_by_org_type": "courier",
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "forwarder_org_id": "forwarder_org_id",
+                    "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                    "courier_org_ids": [
-                      "courier_org_ids"
+                    "coordinator_org_id": "coordinator_org_id",
+                    "executor_org_ids": [
+                      "executor_org_ids"
+                    ],
+                    "off_chrt_executor_org_ids": [
+                      "off_chrt_executor_org_ids"
                     ],
                     "status": "draft",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
@@ -35,8 +37,8 @@ import Chrt
                     "order_cancelled": true,
                     "order_cancelled_at_timestamp": "2024-01-15T09:30:00Z"
                   },
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle",
+                  "coordinator_org_company_name": "coordinator_org_company_name",
+                  "coordinator_org_handle": "coordinator_org_handle",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "notification_intents_ad_hoc": [
@@ -66,10 +68,10 @@ import Chrt
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
-                        "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
+                        "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "task_group_type": "chrt_ground_courier"
+                        "task_group_type": "chrt_ground_provider"
                       },
                       "tasks_expanded": [
                         {
@@ -91,12 +93,12 @@ import Chrt
                         "org_id": "org_id",
                         "user_id": "user_id"
                       },
-                      "courier_org_id": "courier_org_id",
-                      "courier_org_company_name": "courier_org_company_name",
-                      "courier_org_handle": "courier_org_handle",
-                      "forwarder_org_id": "forwarder_org_id",
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle",
+                      "executor_org_id": "executor_org_id",
+                      "executor_org_company_name": "executor_org_company_name",
+                      "executor_org_handle": "executor_org_handle",
+                      "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_org_company_name": "coordinator_org_company_name",
+                      "coordinator_org_handle": "coordinator_org_handle",
                       "shipper_org_id": "shipper_org_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -121,14 +123,16 @@ import Chrt
                     "task_group_ids"
                 ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                createdByOrgType: .courier,
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                forwarderOrgId: Optional("forwarder_org_id"),
+                createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                courierOrgIds: Optional([
-                    "courier_org_ids"
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                executorOrgIds: Optional([
+                    "executor_org_ids"
+                ]),
+                offChrtExecutorOrgIds: Optional([
+                    "off_chrt_executor_org_ids"
                 ]),
                 status: Optional(.draft),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -139,8 +143,8 @@ import Chrt
                 orderCancelled: Optional(true),
                 orderCancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             ),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+            coordinatorOrgHandle: Optional("coordinator_org_handle"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             notificationIntentsAdHoc: Optional([
@@ -170,10 +174,10 @@ import Chrt
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
+                        createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        taskGroupType: .chrtGroundCourier
+                        taskGroupType: .chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -195,12 +199,12 @@ import Chrt
                         orgId: "org_id",
                         userId: "user_id"
                     )),
-                    courierOrgId: Optional("courier_org_id"),
-                    courierOrgCompanyName: Optional("courier_org_company_name"),
-                    courierOrgHandle: Optional("courier_org_handle"),
-                    forwarderOrgId: Optional("forwarder_org_id"),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    executorOrgId: Optional("executor_org_id"),
+                    executorOrgCompanyName: Optional("executor_org_company_name"),
+                    executorOrgHandle: Optional("executor_org_handle"),
+                    coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+                    coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     shipperOrgId: Optional("shipper_org_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -218,7 +222,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func forForwarderOperatorsV11() async throws -> Void {
+    @Test func forCoordinatorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -232,14 +236,16 @@ import Chrt
                       "task_group_ids"
                     ],
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "created_by_org_type": "courier",
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "forwarder_org_id": "forwarder_org_id",
+                    "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                    "courier_org_ids": [
-                      "courier_org_ids"
+                    "coordinator_org_id": "coordinator_org_id",
+                    "executor_org_ids": [
+                      "executor_org_ids"
+                    ],
+                    "off_chrt_executor_org_ids": [
+                      "off_chrt_executor_org_ids"
                     ],
                     "status": "draft",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
@@ -250,8 +256,8 @@ import Chrt
                     "order_cancelled": true,
                     "order_cancelled_at_timestamp": "2024-01-15T09:30:00Z"
                   },
-                  "forwarder_org_company_name": "forwarder_org_company_name",
-                  "forwarder_org_handle": "forwarder_org_handle",
+                  "coordinator_org_company_name": "coordinator_org_company_name",
+                  "coordinator_org_handle": "coordinator_org_handle",
                   "shipper_org_company_name": "shipper_org_company_name",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "notification_intents_ad_hoc": [
@@ -281,10 +287,10 @@ import Chrt
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
-                        "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
+                        "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                        "task_group_type": "chrt_ground_courier"
+                        "task_group_type": "chrt_ground_provider"
                       },
                       "tasks_expanded": [
                         {
@@ -306,12 +312,12 @@ import Chrt
                         "org_id": "org_id",
                         "user_id": "user_id"
                       },
-                      "courier_org_id": "courier_org_id",
-                      "courier_org_company_name": "courier_org_company_name",
-                      "courier_org_handle": "courier_org_handle",
-                      "forwarder_org_id": "forwarder_org_id",
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle",
+                      "executor_org_id": "executor_org_id",
+                      "executor_org_company_name": "executor_org_company_name",
+                      "executor_org_handle": "executor_org_handle",
+                      "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_org_company_name": "coordinator_org_company_name",
+                      "coordinator_org_handle": "coordinator_org_handle",
                       "shipper_org_id": "shipper_org_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
@@ -336,14 +342,16 @@ import Chrt
                     "task_group_ids"
                 ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                createdByOrgType: .courier,
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                forwarderOrgId: Optional("forwarder_org_id"),
+                createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                courierOrgIds: Optional([
-                    "courier_org_ids"
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                executorOrgIds: Optional([
+                    "executor_org_ids"
+                ]),
+                offChrtExecutorOrgIds: Optional([
+                    "off_chrt_executor_org_ids"
                 ]),
                 status: Optional(.draft),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -354,8 +362,8 @@ import Chrt
                 orderCancelled: Optional(true),
                 orderCancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             ),
-            forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-            forwarderOrgHandle: Optional("forwarder_org_handle"),
+            coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+            coordinatorOrgHandle: Optional("coordinator_org_handle"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             notificationIntentsAdHoc: Optional([
@@ -385,10 +393,10 @@ import Chrt
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
+                        createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        taskGroupType: .chrtGroundCourier
+                        taskGroupType: .chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -410,12 +418,12 @@ import Chrt
                         orgId: "org_id",
                         userId: "user_id"
                     )),
-                    courierOrgId: Optional("courier_org_id"),
-                    courierOrgCompanyName: Optional("courier_org_company_name"),
-                    courierOrgHandle: Optional("courier_org_handle"),
-                    forwarderOrgId: Optional("forwarder_org_id"),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    executorOrgId: Optional("executor_org_id"),
+                    executorOrgCompanyName: Optional("executor_org_company_name"),
+                    executorOrgHandle: Optional("executor_org_handle"),
+                    coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+                    coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     shipperOrgId: Optional("shipper_org_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -423,7 +431,7 @@ import Chrt
                 )
             ])
         )
-        let response = try await client.shipping.orders.expanded.forForwarderOperatorsV1(
+        let response = try await client.shipping.orders.expanded.forCoordinatorOperatorsV1(
             orderRef: "order_ref",
             request: OrderAndTaskGroupExpandedReq(
 
@@ -433,7 +441,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listForForwarderOperatorsV11() async throws -> Void {
+    @Test func listForCoordinatorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -445,13 +453,12 @@ import Chrt
                         "schema_version": 1,
                         "_id": "_id",
                         "short_id": "short_id",
-                        "created_by_org_type": "courier",
-                        "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
+                        "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle",
+                      "coordinator_org_company_name": "coordinator_org_company_name",
+                      "coordinator_org_handle": "coordinator_org_handle",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                       "notification_intents_ad_hoc": [
@@ -472,10 +479,10 @@ import Chrt
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
-                            "created_by_org_id": "created_by_org_id",
                             "created_by_user_id": "created_by_user_id",
+                            "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                            "task_group_type": "chrt_ground_courier"
+                            "task_group_type": "chrt_ground_provider"
                           }
                         }
                       ]
@@ -498,13 +505,12 @@ import Chrt
                         schemaVersion: 1,
                         id: "_id",
                         shortId: "short_id",
-                        createdByOrgType: .courier,
-                        createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
+                        createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+                    coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
                     notificationIntentsAdHoc: Optional([
@@ -525,10 +531,10 @@ import Chrt
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
-                                createdByOrgId: "created_by_org_id",
                                 createdByUserId: "created_by_user_id",
+                                createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                                taskGroupType: .chrtGroundCourier
+                                taskGroupType: .chrtGroundProvider
                             )
                         )
                     ])
@@ -536,12 +542,15 @@ import Chrt
             ],
             totalCount: 1
         )
-        let response = try await client.shipping.orders.expanded.listForForwarderOperatorsV1(
+        let response = try await client.shipping.orders.expanded.listForCoordinatorOperatorsV1(
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
             search: "search",
+            filterStatus: [
+                .draft
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -555,7 +564,7 @@ import Chrt
             filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
-            filterCourierOrgId: "filter_courier_org_id",
+            filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
@@ -578,13 +587,12 @@ import Chrt
                         "schema_version": 1,
                         "_id": "_id",
                         "short_id": "short_id",
-                        "created_by_org_type": "courier",
-                        "created_by_org_id": "created_by_org_id",
                         "created_by_user_id": "created_by_user_id",
+                        "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
-                      "forwarder_org_company_name": "forwarder_org_company_name",
-                      "forwarder_org_handle": "forwarder_org_handle",
+                      "coordinator_org_company_name": "coordinator_org_company_name",
+                      "coordinator_org_handle": "coordinator_org_handle",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                       "notification_intents_ad_hoc": [
@@ -605,10 +613,10 @@ import Chrt
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
-                            "created_by_org_id": "created_by_org_id",
                             "created_by_user_id": "created_by_user_id",
+                            "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                            "task_group_type": "chrt_ground_courier"
+                            "task_group_type": "chrt_ground_provider"
                           }
                         }
                       ]
@@ -631,13 +639,12 @@ import Chrt
                         schemaVersion: 1,
                         id: "_id",
                         shortId: "short_id",
-                        createdByOrgType: .courier,
-                        createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
+                        createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
-                    forwarderOrgCompanyName: Optional("forwarder_org_company_name"),
-                    forwarderOrgHandle: Optional("forwarder_org_handle"),
+                    coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
+                    coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
                     notificationIntentsAdHoc: Optional([
@@ -658,10 +665,10 @@ import Chrt
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
-                                createdByOrgId: "created_by_org_id",
                                 createdByUserId: "created_by_user_id",
+                                createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                                taskGroupType: .chrtGroundCourier
+                                taskGroupType: .chrtGroundProvider
                             )
                         )
                     ])
@@ -675,6 +682,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterStatus: [
+                .draft
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -688,8 +698,8 @@ import Chrt
             filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderCancelled: true,
-            filterCourierOrgId: "filter_courier_org_id",
-            filterForwarderOrgId: "filter_forwarder_org_id",
+            filterExecutorOrgId: "filter_executor_org_id",
+            filterCoordinatorOrgId: "filter_coordinator_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),

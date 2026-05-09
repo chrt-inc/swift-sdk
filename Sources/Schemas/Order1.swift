@@ -7,17 +7,17 @@ public struct Order1: Codable, Hashable, Sendable {
     public let taskGroupIds: [String]?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
-    public let createdByOrgType: OrgTypeEnum
-    /// Must be a string starting with `org_`
-    public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     /// Must be a string starting with `org_`
-    public let forwarderOrgId: String?
+    public let createdByOrgId: String
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let offChrtShipperOrgId: String?
-    public let courierOrgIds: [String]?
+    /// Must be a string starting with `org_`
+    public let coordinatorOrgId: String?
+    public let executorOrgIds: [String]?
+    public let offChrtExecutorOrgIds: [String]?
     public let status: OrderStatusEnum1?
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
@@ -35,13 +35,13 @@ public struct Order1: Codable, Hashable, Sendable {
         shortId: String,
         taskGroupIds: [String]? = nil,
         offChrtReferenceId: String? = nil,
-        createdByOrgType: OrgTypeEnum,
-        createdByOrgId: String,
         createdByUserId: String,
-        forwarderOrgId: String? = nil,
+        createdByOrgId: String,
         shipperOrgId: String? = nil,
         offChrtShipperOrgId: String? = nil,
-        courierOrgIds: [String]? = nil,
+        coordinatorOrgId: String? = nil,
+        executorOrgIds: [String]? = nil,
+        offChrtExecutorOrgIds: [String]? = nil,
         status: OrderStatusEnum1? = nil,
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
@@ -57,13 +57,13 @@ public struct Order1: Codable, Hashable, Sendable {
         self.shortId = shortId
         self.taskGroupIds = taskGroupIds
         self.offChrtReferenceId = offChrtReferenceId
-        self.createdByOrgType = createdByOrgType
-        self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
-        self.forwarderOrgId = forwarderOrgId
+        self.createdByOrgId = createdByOrgId
         self.shipperOrgId = shipperOrgId
         self.offChrtShipperOrgId = offChrtShipperOrgId
-        self.courierOrgIds = courierOrgIds
+        self.coordinatorOrgId = coordinatorOrgId
+        self.executorOrgIds = executorOrgIds
+        self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
         self.status = status
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
@@ -82,13 +82,13 @@ public struct Order1: Codable, Hashable, Sendable {
         self.shortId = try container.decode(String.self, forKey: .shortId)
         self.taskGroupIds = try container.decodeIfPresent([String].self, forKey: .taskGroupIds)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-        self.createdByOrgType = try container.decode(OrgTypeEnum.self, forKey: .createdByOrgType)
-        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
-        self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
+        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
-        self.courierOrgIds = try container.decodeIfPresent([String].self, forKey: .courierOrgIds)
+        self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
+        self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
         self.status = try container.decodeIfPresent(OrderStatusEnum1.self, forKey: .status)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
@@ -108,13 +108,13 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-        try container.encode(self.createdByOrgType, forKey: .createdByOrgType)
-        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
-        try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
+        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
-        try container.encodeIfPresent(self.courierOrgIds, forKey: .courierOrgIds)
+        try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
+        try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
@@ -132,13 +132,13 @@ public struct Order1: Codable, Hashable, Sendable {
         case shortId = "short_id"
         case taskGroupIds = "task_group_ids"
         case offChrtReferenceId = "off_chrt_reference_id"
-        case createdByOrgType = "created_by_org_type"
-        case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
-        case forwarderOrgId = "forwarder_org_id"
+        case createdByOrgId = "created_by_org_id"
         case shipperOrgId = "shipper_org_id"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
-        case courierOrgIds = "courier_org_ids"
+        case coordinatorOrgId = "coordinator_org_id"
+        case executorOrgIds = "executor_org_ids"
+        case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
         case status
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"

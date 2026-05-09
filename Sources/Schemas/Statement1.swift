@@ -4,6 +4,7 @@ public struct Statement1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let id: String
     public let lineItemGroupIds: [String]?
+    public let billingLedgerPeriodIds: [String]?
     public let orderIds: [String]?
     public let orderShortIds: [String]?
     public let orderOffChrtReferenceIds: [String]?
@@ -14,12 +15,12 @@ public struct Statement1: Codable, Hashable, Sendable {
     public let settlementType: SettlementTypeEnum1
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
-    public let paymentVectorType: PaymentVectorTypeEnum1
     /// Must be a string starting with `org_`
     public let paymentOriginOrgId: String?
     public let paymentOriginOffChrtShipperOrgId: String?
     /// Must be a string starting with `org_`
     public let paymentDestinationOrgId: String?
+    public let paymentDestinationOffChrtProviderOrgId: String?
     public let paymentDestinationDriverId: String?
     public let status: StatementStatusEnum1?
     public let stripeInvoiceId: String?
@@ -44,6 +45,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         id: String,
         lineItemGroupIds: [String]? = nil,
+        billingLedgerPeriodIds: [String]? = nil,
         orderIds: [String]? = nil,
         orderShortIds: [String]? = nil,
         orderOffChrtReferenceIds: [String]? = nil,
@@ -52,10 +54,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         stagedByUserId: String? = nil,
         settlementType: SettlementTypeEnum1,
         ownedByOrgId: String,
-        paymentVectorType: PaymentVectorTypeEnum1,
         paymentOriginOrgId: String? = nil,
         paymentOriginOffChrtShipperOrgId: String? = nil,
         paymentDestinationOrgId: String? = nil,
+        paymentDestinationOffChrtProviderOrgId: String? = nil,
         paymentDestinationDriverId: String? = nil,
         status: StatementStatusEnum1? = nil,
         stripeInvoiceId: String? = nil,
@@ -74,6 +76,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.id = id
         self.lineItemGroupIds = lineItemGroupIds
+        self.billingLedgerPeriodIds = billingLedgerPeriodIds
         self.orderIds = orderIds
         self.orderShortIds = orderShortIds
         self.orderOffChrtReferenceIds = orderOffChrtReferenceIds
@@ -82,10 +85,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.stagedByUserId = stagedByUserId
         self.settlementType = settlementType
         self.ownedByOrgId = ownedByOrgId
-        self.paymentVectorType = paymentVectorType
         self.paymentOriginOrgId = paymentOriginOrgId
         self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
         self.paymentDestinationOrgId = paymentDestinationOrgId
+        self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
         self.paymentDestinationDriverId = paymentDestinationDriverId
         self.status = status
         self.stripeInvoiceId = stripeInvoiceId
@@ -107,6 +110,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.id = try container.decode(String.self, forKey: .id)
         self.lineItemGroupIds = try container.decodeIfPresent([String].self, forKey: .lineItemGroupIds)
+        self.billingLedgerPeriodIds = try container.decodeIfPresent([String].self, forKey: .billingLedgerPeriodIds)
         self.orderIds = try container.decodeIfPresent([String].self, forKey: .orderIds)
         self.orderShortIds = try container.decodeIfPresent([String].self, forKey: .orderShortIds)
         self.orderOffChrtReferenceIds = try container.decodeIfPresent([String].self, forKey: .orderOffChrtReferenceIds)
@@ -115,10 +119,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.stagedByUserId = try container.decodeIfPresent(String.self, forKey: .stagedByUserId)
         self.settlementType = try container.decode(SettlementTypeEnum1.self, forKey: .settlementType)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
-        self.paymentVectorType = try container.decode(PaymentVectorTypeEnum1.self, forKey: .paymentVectorType)
         self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
         self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
         self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
+        self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
         self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
         self.status = try container.decodeIfPresent(StatementStatusEnum1.self, forKey: .status)
         self.stripeInvoiceId = try container.decodeIfPresent(String.self, forKey: .stripeInvoiceId)
@@ -141,6 +145,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.lineItemGroupIds, forKey: .lineItemGroupIds)
+        try container.encodeIfPresent(self.billingLedgerPeriodIds, forKey: .billingLedgerPeriodIds)
         try container.encodeIfPresent(self.orderIds, forKey: .orderIds)
         try container.encodeIfPresent(self.orderShortIds, forKey: .orderShortIds)
         try container.encodeIfPresent(self.orderOffChrtReferenceIds, forKey: .orderOffChrtReferenceIds)
@@ -149,10 +154,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedByUserId, forKey: .stagedByUserId)
         try container.encode(self.settlementType, forKey: .settlementType)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
-        try container.encode(self.paymentVectorType, forKey: .paymentVectorType)
         try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
         try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
         try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
+        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
         try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.stripeInvoiceId, forKey: .stripeInvoiceId)
@@ -173,6 +178,7 @@ public struct Statement1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case id = "_id"
         case lineItemGroupIds = "line_item_group_ids"
+        case billingLedgerPeriodIds = "billing_ledger_period_ids"
         case orderIds = "order_ids"
         case orderShortIds = "order_short_ids"
         case orderOffChrtReferenceIds = "order_off_chrt_reference_ids"
@@ -181,10 +187,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         case stagedByUserId = "staged_by_user_id"
         case settlementType = "settlement_type"
         case ownedByOrgId = "owned_by_org_id"
-        case paymentVectorType = "payment_vector_type"
         case paymentOriginOrgId = "payment_origin_org_id"
         case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
         case paymentDestinationOrgId = "payment_destination_org_id"
+        case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
         case paymentDestinationDriverId = "payment_destination_driver_id"
         case status
         case stripeInvoiceId = "stripe_invoice_id"

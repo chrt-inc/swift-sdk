@@ -3,8 +3,8 @@ import Foundation
 extension Requests {
     public struct OrdersDraftUpdateReq: Codable, Hashable, Sendable {
         /// Must be a string starting with `org_`
-        public let forwarderOrgId: String?
-        public let forwarderOrgIdSetToNone: Bool?
+        public let coordinatorOrgId: String?
+        public let coordinatorOrgIdSetToNone: Bool?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let shipperOrgIdSetToNone: Bool?
@@ -17,8 +17,8 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            forwarderOrgId: String? = nil,
-            forwarderOrgIdSetToNone: Bool? = nil,
+            coordinatorOrgId: String? = nil,
+            coordinatorOrgIdSetToNone: Bool? = nil,
             shipperOrgId: String? = nil,
             shipperOrgIdSetToNone: Bool? = nil,
             offChrtShipperOrgId: String? = nil,
@@ -27,8 +27,8 @@ extension Requests {
             offChrtReferenceIdSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.forwarderOrgId = forwarderOrgId
-            self.forwarderOrgIdSetToNone = forwarderOrgIdSetToNone
+            self.coordinatorOrgId = coordinatorOrgId
+            self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
             self.shipperOrgId = shipperOrgId
             self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
             self.offChrtShipperOrgId = offChrtShipperOrgId
@@ -40,8 +40,8 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
-            self.forwarderOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .forwarderOrgIdSetToNone)
+            self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+            self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
@@ -54,8 +54,8 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
-            try container.encodeIfPresent(self.forwarderOrgIdSetToNone, forKey: .forwarderOrgIdSetToNone)
+            try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+            try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
@@ -66,8 +66,8 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case forwarderOrgId = "forwarder_org_id"
-            case forwarderOrgIdSetToNone = "forwarder_org_id__set_to_None"
+            case coordinatorOrgId = "coordinator_org_id"
+            case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
             case shipperOrgId = "shipper_org_id"
             case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"

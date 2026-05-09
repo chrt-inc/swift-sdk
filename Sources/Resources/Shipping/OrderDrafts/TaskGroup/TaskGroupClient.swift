@@ -7,7 +7,7 @@ public final class TaskGroupClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a task group to an existing order draft. Validates order is in DRAFT status and owned by caller. | (OrderDraftAddTaskGroupReq) -> (PydanticObjectId)
+    /// Adds a task group to an existing order draft. Validates order is in DRAFT status and owned by caller. The task group is created with no executor — TG-level party assignments happen post-stage via /shipping/task_groups/add_executor/v1. | (OrderDraftAddTaskGroupReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(request: Requests.OrderDraftAddTaskGroupReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -33,31 +33,6 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Updates the courier organization assigned to a draft task group. | (UpdateCourierOrgDraftReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateCourierOrgV1(taskGroupId: String, request: Requests.UpdateCourierOrgDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/update_courier_org/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes the courier organization from a draft task group (sets courier_org_id to null). | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeCourierOrgV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/remove_courier_org/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -78,19 +53,6 @@ public final class TaskGroupClient: Sendable {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/shipping/order_drafts/task_group/set_rate_sheets/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Sets the service type on a draft task group. Can only be set when task group is in DRAFT status. | (SetServiceTypeReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setServiceTypeV1(taskGroupId: String, request: Requests.SetServiceTypeReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/set_service_type/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

@@ -7,7 +7,7 @@ public final class TaskGroupsS3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the metadata for a task group S3 object, including blurhash for placeholder loading. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (TaskGroupS3ObjectMetadata1)
+    /// Retrieves the metadata for a task group S3 object, including blurhash for placeholder loading. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | () -> (TaskGroupS3ObjectMetadata1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getS3ObjectMetadataV1(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupS3ObjectMetadata1 {
@@ -19,7 +19,7 @@ public final class TaskGroupsS3ObjectClient: Sendable {
         )
     }
 
-    /// Streams a task group S3 object file from storage. | authz_personas=[courier_driver, courier_org_operators, shipper_org_operators, forwarder_org_operators] | () -> (binary)
+    /// Streams a task group S3 object file from storage. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | () -> (binary)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(taskGroupS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {

@@ -83,7 +83,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Courier orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
+    /// Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Provider orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(targetUserId: String? = nil, request: Requests.DriverClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -99,7 +99,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates driver contact details and vehicle type assignments. Courier orgs only; caller must be the driver (self) or an operator+. | (DriverClientUpdate1) -> (bool)
+    /// Updates driver contact details and vehicle type assignments. Provider orgs only; caller must be the driver (self) or an operator+. | (DriverClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(driverId: String, request: Requests.DriverClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -124,7 +124,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates the caller's driver availability status. Must have status UNASSIGNED to set availability to False; always allows setting to True. Courier orgs only. | (DriverUpdateAvailabilityReq) -> (bool)
+    /// Updates the caller's driver availability status. Must have status UNASSIGNED to set availability to False; always allows setting to True. Provider orgs only. | (DriverUpdateAvailabilityReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateAvailabilityAccordingToDriverV1(request: DriverUpdateAvailabilityReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -137,13 +137,26 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Updates a driver's availability status. Must have status UNASSIGNED to set availability to False; always allows setting to True. Courier orgs only, min role: operator. | (DriverUpdateAvailabilityReq) -> (bool)
+    /// Updates a driver's availability status. Must have status UNASSIGNED to set availability to False; always allows setting to True. Provider orgs only, min role: operator. | (DriverUpdateAvailabilityReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateAvailabilityAccordingToOperatorsV1(driverId: String, request: DriverUpdateAvailabilityReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/shipping/drivers/update_availability/according_to_operators/v1/\(driverId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Toggles a driver's `auto_assign_enabled` flag — opt-in for direct (non-bidding) task-group assignment. Authorized: the driver themselves OR an operator+ in the driver's org (operators may override the driver's setting). Provider orgs only. | (DriverUpdateAutoAssignReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateAutoAssignV1(driverId: String, request: Requests.DriverUpdateAutoAssignReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/drivers/update_auto_assign/v1/\(driverId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

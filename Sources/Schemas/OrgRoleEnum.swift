@@ -6,8 +6,8 @@ import Foundation
 ///     owner > administrator > operator > driver
 /// 
 /// Role availability by org type:
-///     {owner, administrator, operator}  → COURIER | SHIPPER | FORWARDER
-///     {driver}                          → COURIER only
+///     {owner, administrator, operator}  → PROVIDER | SHIPPER
+///     {driver}                          → PROVIDER only
 /// 
 /// Note: Hierarchical enforcement depends on utils_shipping_authz helper functions.
 /// 

@@ -10,7 +10,7 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
-                  "org_type": "courier",
+                  "org_type": "provider",
                   "org_id": "org_id",
                   "company_name": "company_name",
                   "handle": "handle",
@@ -26,7 +26,7 @@ import Chrt
         )
         let expectedResponse = OrgPublicData1(
             schemaVersion: 1,
-            orgType: .courier,
+            orgType: .provider,
             orgId: "org_id",
             companyName: Optional("company_name"),
             handle: Optional("handle"),
@@ -93,7 +93,7 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
-                  "org_type": "courier",
+                  "org_type": "provider",
                   "org_id": "org_id",
                   "company_name": "company_name",
                   "handle": "handle",
@@ -109,7 +109,7 @@ import Chrt
         )
         let expectedResponse = OrgPublicData1(
             schemaVersion: 1,
-            orgType: .courier,
+            orgType: .provider,
             orgId: "org_id",
             companyName: Optional("company_name"),
             handle: Optional("handle"),

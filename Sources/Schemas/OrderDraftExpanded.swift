@@ -2,9 +2,9 @@ import Foundation
 
 public struct OrderDraftExpanded: Codable, Hashable, Sendable {
     public let order: Order1
-    public let forwarderOrgCompanyName: String?
+    public let coordinatorOrgCompanyName: String?
     /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
-    public let forwarderOrgHandle: String?
+    public let coordinatorOrgHandle: String?
     public let shipperOrgCompanyName: String?
     public let offChrtShipperOrgCompanyName: String?
     public let notificationIntentsAdHoc: [NotificationIntentAdHoc1]?
@@ -15,8 +15,8 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
 
     public init(
         order: Order1,
-        forwarderOrgCompanyName: String? = nil,
-        forwarderOrgHandle: String? = nil,
+        coordinatorOrgCompanyName: String? = nil,
+        coordinatorOrgHandle: String? = nil,
         shipperOrgCompanyName: String? = nil,
         offChrtShipperOrgCompanyName: String? = nil,
         notificationIntentsAdHoc: [NotificationIntentAdHoc1]? = nil,
@@ -25,8 +25,8 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.order = order
-        self.forwarderOrgCompanyName = forwarderOrgCompanyName
-        self.forwarderOrgHandle = forwarderOrgHandle
+        self.coordinatorOrgCompanyName = coordinatorOrgCompanyName
+        self.coordinatorOrgHandle = coordinatorOrgHandle
         self.shipperOrgCompanyName = shipperOrgCompanyName
         self.offChrtShipperOrgCompanyName = offChrtShipperOrgCompanyName
         self.notificationIntentsAdHoc = notificationIntentsAdHoc
@@ -38,8 +38,8 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.order = try container.decode(Order1.self, forKey: .order)
-        self.forwarderOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .forwarderOrgCompanyName)
-        self.forwarderOrgHandle = try container.decodeIfPresent(String.self, forKey: .forwarderOrgHandle)
+        self.coordinatorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgCompanyName)
+        self.coordinatorOrgHandle = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgHandle)
         self.shipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .shipperOrgCompanyName)
         self.offChrtShipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgCompanyName)
         self.notificationIntentsAdHoc = try container.decodeIfPresent([NotificationIntentAdHoc1].self, forKey: .notificationIntentsAdHoc)
@@ -52,8 +52,8 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.order, forKey: .order)
-        try container.encodeIfPresent(self.forwarderOrgCompanyName, forKey: .forwarderOrgCompanyName)
-        try container.encodeIfPresent(self.forwarderOrgHandle, forKey: .forwarderOrgHandle)
+        try container.encodeIfPresent(self.coordinatorOrgCompanyName, forKey: .coordinatorOrgCompanyName)
+        try container.encodeIfPresent(self.coordinatorOrgHandle, forKey: .coordinatorOrgHandle)
         try container.encodeIfPresent(self.shipperOrgCompanyName, forKey: .shipperOrgCompanyName)
         try container.encodeIfPresent(self.offChrtShipperOrgCompanyName, forKey: .offChrtShipperOrgCompanyName)
         try container.encodeIfPresent(self.notificationIntentsAdHoc, forKey: .notificationIntentsAdHoc)
@@ -64,8 +64,8 @@ public struct OrderDraftExpanded: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case order
-        case forwarderOrgCompanyName = "forwarder_org_company_name"
-        case forwarderOrgHandle = "forwarder_org_handle"
+        case coordinatorOrgCompanyName = "coordinator_org_company_name"
+        case coordinatorOrgHandle = "coordinator_org_handle"
         case shipperOrgCompanyName = "shipper_org_company_name"
         case offChrtShipperOrgCompanyName = "off_chrt_shipper_org_company_name"
         case notificationIntentsAdHoc = "notification_intents_ad_hoc"

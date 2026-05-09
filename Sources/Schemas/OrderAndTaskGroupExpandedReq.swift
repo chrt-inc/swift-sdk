@@ -1,8 +1,8 @@
 import Foundation
 
 public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
-    public let expandForwarderOrgCompanyName: Bool?
-    public let expandForwarderOrgHandle: Bool?
+    public let expandCoordinatorOrgCompanyName: Bool?
+    public let expandCoordinatorOrgHandle: Bool?
     public let expandShipperOrgCompanyName: Bool?
     public let expandOffChrtShipperOrgCompanyName: Bool?
     public let expandNotificationIntentsAdHoc: Bool?
@@ -11,14 +11,14 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public let expandTaskArtifacts: Bool?
     public let expandDirectoryEntries: Bool?
     public let expandDriver: Bool?
-    public let expandCourierOrgCompanyName: Bool?
-    public let expandCourierOrgHandle: Bool?
+    public let expandExecutorOrgCompanyName: Bool?
+    public let expandExecutorOrgHandle: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        expandForwarderOrgCompanyName: Bool? = nil,
-        expandForwarderOrgHandle: Bool? = nil,
+        expandCoordinatorOrgCompanyName: Bool? = nil,
+        expandCoordinatorOrgHandle: Bool? = nil,
         expandShipperOrgCompanyName: Bool? = nil,
         expandOffChrtShipperOrgCompanyName: Bool? = nil,
         expandNotificationIntentsAdHoc: Bool? = nil,
@@ -27,12 +27,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         expandTaskArtifacts: Bool? = nil,
         expandDirectoryEntries: Bool? = nil,
         expandDriver: Bool? = nil,
-        expandCourierOrgCompanyName: Bool? = nil,
-        expandCourierOrgHandle: Bool? = nil,
+        expandExecutorOrgCompanyName: Bool? = nil,
+        expandExecutorOrgHandle: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.expandForwarderOrgCompanyName = expandForwarderOrgCompanyName
-        self.expandForwarderOrgHandle = expandForwarderOrgHandle
+        self.expandCoordinatorOrgCompanyName = expandCoordinatorOrgCompanyName
+        self.expandCoordinatorOrgHandle = expandCoordinatorOrgHandle
         self.expandShipperOrgCompanyName = expandShipperOrgCompanyName
         self.expandOffChrtShipperOrgCompanyName = expandOffChrtShipperOrgCompanyName
         self.expandNotificationIntentsAdHoc = expandNotificationIntentsAdHoc
@@ -41,15 +41,15 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandTaskArtifacts = expandTaskArtifacts
         self.expandDirectoryEntries = expandDirectoryEntries
         self.expandDriver = expandDriver
-        self.expandCourierOrgCompanyName = expandCourierOrgCompanyName
-        self.expandCourierOrgHandle = expandCourierOrgHandle
+        self.expandExecutorOrgCompanyName = expandExecutorOrgCompanyName
+        self.expandExecutorOrgHandle = expandExecutorOrgHandle
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.expandForwarderOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandForwarderOrgCompanyName)
-        self.expandForwarderOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandForwarderOrgHandle)
+        self.expandCoordinatorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgCompanyName)
+        self.expandCoordinatorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgHandle)
         self.expandShipperOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandShipperOrgCompanyName)
         self.expandOffChrtShipperOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandOffChrtShipperOrgCompanyName)
         self.expandNotificationIntentsAdHoc = try container.decodeIfPresent(Bool.self, forKey: .expandNotificationIntentsAdHoc)
@@ -58,16 +58,16 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandTaskArtifacts = try container.decodeIfPresent(Bool.self, forKey: .expandTaskArtifacts)
         self.expandDirectoryEntries = try container.decodeIfPresent(Bool.self, forKey: .expandDirectoryEntries)
         self.expandDriver = try container.decodeIfPresent(Bool.self, forKey: .expandDriver)
-        self.expandCourierOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCourierOrgCompanyName)
-        self.expandCourierOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCourierOrgHandle)
+        self.expandExecutorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgCompanyName)
+        self.expandExecutorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgHandle)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.expandForwarderOrgCompanyName, forKey: .expandForwarderOrgCompanyName)
-        try container.encodeIfPresent(self.expandForwarderOrgHandle, forKey: .expandForwarderOrgHandle)
+        try container.encodeIfPresent(self.expandCoordinatorOrgCompanyName, forKey: .expandCoordinatorOrgCompanyName)
+        try container.encodeIfPresent(self.expandCoordinatorOrgHandle, forKey: .expandCoordinatorOrgHandle)
         try container.encodeIfPresent(self.expandShipperOrgCompanyName, forKey: .expandShipperOrgCompanyName)
         try container.encodeIfPresent(self.expandOffChrtShipperOrgCompanyName, forKey: .expandOffChrtShipperOrgCompanyName)
         try container.encodeIfPresent(self.expandNotificationIntentsAdHoc, forKey: .expandNotificationIntentsAdHoc)
@@ -76,14 +76,14 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.expandTaskArtifacts, forKey: .expandTaskArtifacts)
         try container.encodeIfPresent(self.expandDirectoryEntries, forKey: .expandDirectoryEntries)
         try container.encodeIfPresent(self.expandDriver, forKey: .expandDriver)
-        try container.encodeIfPresent(self.expandCourierOrgCompanyName, forKey: .expandCourierOrgCompanyName)
-        try container.encodeIfPresent(self.expandCourierOrgHandle, forKey: .expandCourierOrgHandle)
+        try container.encodeIfPresent(self.expandExecutorOrgCompanyName, forKey: .expandExecutorOrgCompanyName)
+        try container.encodeIfPresent(self.expandExecutorOrgHandle, forKey: .expandExecutorOrgHandle)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case expandForwarderOrgCompanyName = "expand_forwarder_org_company_name"
-        case expandForwarderOrgHandle = "expand_forwarder_org_handle"
+        case expandCoordinatorOrgCompanyName = "expand_coordinator_org_company_name"
+        case expandCoordinatorOrgHandle = "expand_coordinator_org_handle"
         case expandShipperOrgCompanyName = "expand_shipper_org_company_name"
         case expandOffChrtShipperOrgCompanyName = "expand_off_chrt_shipper_org_company_name"
         case expandNotificationIntentsAdHoc = "expand_notification_intents_ad_hoc"
@@ -92,7 +92,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         case expandTaskArtifacts = "expand_task_artifacts"
         case expandDirectoryEntries = "expand_directory_entries"
         case expandDriver = "expand_driver"
-        case expandCourierOrgCompanyName = "expand_courier_org_company_name"
-        case expandCourierOrgHandle = "expand_courier_org_handle"
+        case expandExecutorOrgCompanyName = "expand_executor_org_company_name"
+        case expandExecutorOrgHandle = "expand_executor_org_handle"
     }
 }

@@ -39,6 +39,7 @@ import Chrt
                       "schema_version": 1,
                       "company_name": "company_name",
                       "industry": "industry",
+                      "department_id": "department_id",
                       "street_address": {
                         "type": "Feature",
                         "geometry": {
@@ -62,8 +63,6 @@ import Chrt
                       "job_title": "job_title",
                       "notes": "notes",
                       "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
-                      "default_rate_sheet__routed": "default_rate_sheet__routed",
-                      "default_rate_sheet__on_demand": "default_rate_sheet__on_demand",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
                       "_id": "_id"
@@ -85,6 +84,7 @@ import Chrt
                     schemaVersion: 1,
                     companyName: Optional("company_name"),
                     industry: Optional("industry"),
+                    departmentId: Optional("department_id"),
                     streetAddress: Optional(LocationFeature(
                         type: .feature,
                         geometry: .geometryCollection(
@@ -112,8 +112,6 @@ import Chrt
                     jobTitle: Optional("job_title"),
                     notes: Optional("notes"),
                     shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
-                    defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-                    defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand"),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     id: "_id"
@@ -139,6 +137,7 @@ import Chrt
                   "schema_version": 1,
                   "company_name": "company_name",
                   "industry": "industry",
+                  "department_id": "department_id",
                   "street_address": {
                     "bbox": [
                       {
@@ -172,8 +171,6 @@ import Chrt
                   "job_title": "job_title",
                   "notes": "notes",
                   "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
-                  "default_rate_sheet__routed": "default_rate_sheet__routed",
-                  "default_rate_sheet__on_demand": "default_rate_sheet__on_demand",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
                   "_id": "_id"
@@ -190,6 +187,7 @@ import Chrt
             schemaVersion: 1,
             companyName: Optional("company_name"),
             industry: Optional("industry"),
+            departmentId: Optional("department_id"),
             streetAddress: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -231,8 +229,6 @@ import Chrt
             jobTitle: Optional("job_title"),
             notes: Optional("notes"),
             shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
-            defaultRateSheetRouted: Optional("default_rate_sheet__routed"),
-            defaultRateSheetOnDemand: Optional("default_rate_sheet__on_demand"),
             createdByOrgId: "created_by_org_id",
             createdByUserId: "created_by_user_id",
             id: "_id"

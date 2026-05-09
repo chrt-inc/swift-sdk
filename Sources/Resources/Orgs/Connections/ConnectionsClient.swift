@@ -7,7 +7,7 @@ public final class ConnectionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists shipper organizations based on the caller's organization type with optional search by company name or handle. | () -> (ShipperConnectionListRes)
+    /// Lists shipper organizations connected to the caller (caller must be a provider) with optional search by company name or handle. | () -> (ShipperConnectionListRes)
     ///
     /// - Parameter search: Search by company name or handle
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -25,43 +25,25 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Lists courier organizations based on the caller's organization type with optional search by company name or handle. | () -> (CourierConnectionListRes)
+    /// Lists provider organizations connected to the caller. Shippers see providers from shipper_provider_connections; providers see other providers from provider_provider_connections (in either direction). | () -> (ProviderConnectionListRes)
     ///
     /// - Parameter search: Search by company name or handle
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCouriersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> CourierConnectionListRes {
+    public func listProvidersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ProviderConnectionListRes {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/connections/couriers/list/v1",
+            path: "/orgs/connections/providers/list/v1",
             queryParams: [
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }
             ],
             requestOptions: requestOptions,
-            responseType: CourierConnectionListRes.self
+            responseType: ProviderConnectionListRes.self
         )
     }
 
-    /// Lists forwarder organizations based on the caller's organization type with optional search by company name or handle. | () -> (ForwarderConnectionListRes)
-    ///
-    /// - Parameter search: Search by company name or handle
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForwardersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ForwarderConnectionListRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/connections/forwarders/list/v1",
-            queryParams: [
-                "search": search.map { .string($0) }, 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: ForwarderConnectionListRes.self
-        )
-    }
-
-    /// Gets connection between caller's org and org with specified handle. | () -> (ShipperCourierConnection1 | ShipperForwarderConnection1 | ForwarderCourierConnection1 | None)
+    /// Gets the connection between caller's org and the org with the specified handle. | () -> (ShipperProviderConnection1 | ProviderProviderConnection1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> ConnectionsGetByHandleV1Response? {
@@ -73,20 +55,20 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Creates a new connection to a courier organization. Shippers and forwarders can initiate connections to couriers. | (CreateConnectionReq) -> (PydanticObjectId)
+    /// Creates a new connection to a provider organization. Shippers create a shipper-provider connection. Providers create a provider-provider connection where the initiator is the coordinator (payer) and the target is the executor (payee). | (CreateConnectionReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectionToCourierV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createConnectionToProviderV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/orgs/connections/create_connection_to_courier/v1",
+            path: "/orgs/connections/create_connection_to_provider/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
         )
     }
 
-    /// Creates a new connection to a shipper organization. Only forwarders can initiate connections to shippers. | (CreateConnectionReq) -> (PydanticObjectId)
+    /// Creates a new connection to a shipper organization. Only providers can initiate connections to shippers. | (CreateConnectionReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createConnectionToShipperV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -99,16 +81,29 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Creates a new connection to a forwarder organization. Only shippers can initiate connections to forwarders. | (CreateConnectionReq) -> (PydanticObjectId)
+    /// Sets or clears the department on a connection. Send null to clear. | authz: min_org_role=administrator | (SetDepartmentReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createConnectionToForwarderV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func setDepartmentV1(connectionId: String, request: Requests.SetDepartmentReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/orgs/connections/create_connection_to_forwarder/v1",
+            method: .patch,
+            path: "/orgs/connections/set_department/v1/\(connectionId)",
             body: request,
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: Bool.self
+        )
+    }
+
+    /// Toggles `auto_assign_enabled` on a provider-provider connection — the executor org's opt-in for receiving direct (non-bidding) task-group assignments. Executor org only, min role: administrator. | (ProviderProviderUpdateAutoAssignReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setProviderProviderAutoAssignV1(connectionId: String, request: Requests.ProviderProviderUpdateAutoAssignReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/orgs/connections/set_provider_provider_auto_assign/v1/\(connectionId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 }

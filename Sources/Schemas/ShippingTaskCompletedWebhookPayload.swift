@@ -8,7 +8,7 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
     public let orderId: String
     /// The task group containing the task
     public let taskGroupId: String
-    /// The type of task group (CHRT_GROUND_COURIER, FLIGHT, ONBOARD_COURIER)
+    /// The type of task group (CHRT_GROUND_PROVIDER, FLIGHT, ONBOARD_COURIER)
     public let taskGroupType: TaskGroupTypeEnum1
     /// The task that was completed
     public let taskId: String

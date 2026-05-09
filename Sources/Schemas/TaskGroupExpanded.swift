@@ -5,15 +5,15 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let tasksExpanded: [TaskExpanded]?
     public let driver: Driver1?
     /// Must be a string starting with `org_`
-    public let courierOrgId: String?
-    public let courierOrgCompanyName: String?
+    public let executorOrgId: String?
+    public let executorOrgCompanyName: String?
     /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
-    public let courierOrgHandle: String?
+    public let executorOrgHandle: String?
     /// Must be a string starting with `org_`
-    public let forwarderOrgId: String?
-    public let forwarderOrgCompanyName: String?
+    public let coordinatorOrgId: String?
+    public let coordinatorOrgCompanyName: String?
     /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
-    public let forwarderOrgHandle: String?
+    public let coordinatorOrgHandle: String?
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let shipperOrgCompanyName: String?
@@ -26,12 +26,12 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         taskGroup: TaskGroup1,
         tasksExpanded: [TaskExpanded]? = nil,
         driver: Driver1? = nil,
-        courierOrgId: String? = nil,
-        courierOrgCompanyName: String? = nil,
-        courierOrgHandle: String? = nil,
-        forwarderOrgId: String? = nil,
-        forwarderOrgCompanyName: String? = nil,
-        forwarderOrgHandle: String? = nil,
+        executorOrgId: String? = nil,
+        executorOrgCompanyName: String? = nil,
+        executorOrgHandle: String? = nil,
+        coordinatorOrgId: String? = nil,
+        coordinatorOrgCompanyName: String? = nil,
+        coordinatorOrgHandle: String? = nil,
         shipperOrgId: String? = nil,
         shipperOrgCompanyName: String? = nil,
         offChrtShipperOrgId: String? = nil,
@@ -41,12 +41,12 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         self.taskGroup = taskGroup
         self.tasksExpanded = tasksExpanded
         self.driver = driver
-        self.courierOrgId = courierOrgId
-        self.courierOrgCompanyName = courierOrgCompanyName
-        self.courierOrgHandle = courierOrgHandle
-        self.forwarderOrgId = forwarderOrgId
-        self.forwarderOrgCompanyName = forwarderOrgCompanyName
-        self.forwarderOrgHandle = forwarderOrgHandle
+        self.executorOrgId = executorOrgId
+        self.executorOrgCompanyName = executorOrgCompanyName
+        self.executorOrgHandle = executorOrgHandle
+        self.coordinatorOrgId = coordinatorOrgId
+        self.coordinatorOrgCompanyName = coordinatorOrgCompanyName
+        self.coordinatorOrgHandle = coordinatorOrgHandle
         self.shipperOrgId = shipperOrgId
         self.shipperOrgCompanyName = shipperOrgCompanyName
         self.offChrtShipperOrgId = offChrtShipperOrgId
@@ -59,12 +59,12 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         self.taskGroup = try container.decode(TaskGroup1.self, forKey: .taskGroup)
         self.tasksExpanded = try container.decodeIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
         self.driver = try container.decodeIfPresent(Driver1.self, forKey: .driver)
-        self.courierOrgId = try container.decodeIfPresent(String.self, forKey: .courierOrgId)
-        self.courierOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .courierOrgCompanyName)
-        self.courierOrgHandle = try container.decodeIfPresent(String.self, forKey: .courierOrgHandle)
-        self.forwarderOrgId = try container.decodeIfPresent(String.self, forKey: .forwarderOrgId)
-        self.forwarderOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .forwarderOrgCompanyName)
-        self.forwarderOrgHandle = try container.decodeIfPresent(String.self, forKey: .forwarderOrgHandle)
+        self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
+        self.executorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .executorOrgCompanyName)
+        self.executorOrgHandle = try container.decodeIfPresent(String.self, forKey: .executorOrgHandle)
+        self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.coordinatorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgCompanyName)
+        self.coordinatorOrgHandle = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgHandle)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.shipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .shipperOrgCompanyName)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
@@ -78,12 +78,12 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         try container.encode(self.taskGroup, forKey: .taskGroup)
         try container.encodeIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
         try container.encodeIfPresent(self.driver, forKey: .driver)
-        try container.encodeIfPresent(self.courierOrgId, forKey: .courierOrgId)
-        try container.encodeIfPresent(self.courierOrgCompanyName, forKey: .courierOrgCompanyName)
-        try container.encodeIfPresent(self.courierOrgHandle, forKey: .courierOrgHandle)
-        try container.encodeIfPresent(self.forwarderOrgId, forKey: .forwarderOrgId)
-        try container.encodeIfPresent(self.forwarderOrgCompanyName, forKey: .forwarderOrgCompanyName)
-        try container.encodeIfPresent(self.forwarderOrgHandle, forKey: .forwarderOrgHandle)
+        try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
+        try container.encodeIfPresent(self.executorOrgCompanyName, forKey: .executorOrgCompanyName)
+        try container.encodeIfPresent(self.executorOrgHandle, forKey: .executorOrgHandle)
+        try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.coordinatorOrgCompanyName, forKey: .coordinatorOrgCompanyName)
+        try container.encodeIfPresent(self.coordinatorOrgHandle, forKey: .coordinatorOrgHandle)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.shipperOrgCompanyName, forKey: .shipperOrgCompanyName)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
@@ -95,12 +95,12 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         case taskGroup = "task_group"
         case tasksExpanded = "tasks_expanded"
         case driver
-        case courierOrgId = "courier_org_id"
-        case courierOrgCompanyName = "courier_org_company_name"
-        case courierOrgHandle = "courier_org_handle"
-        case forwarderOrgId = "forwarder_org_id"
-        case forwarderOrgCompanyName = "forwarder_org_company_name"
-        case forwarderOrgHandle = "forwarder_org_handle"
+        case executorOrgId = "executor_org_id"
+        case executorOrgCompanyName = "executor_org_company_name"
+        case executorOrgHandle = "executor_org_handle"
+        case coordinatorOrgId = "coordinator_org_id"
+        case coordinatorOrgCompanyName = "coordinator_org_company_name"
+        case coordinatorOrgHandle = "coordinator_org_handle"
         case shipperOrgId = "shipper_org_id"
         case shipperOrgCompanyName = "shipper_org_company_name"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
