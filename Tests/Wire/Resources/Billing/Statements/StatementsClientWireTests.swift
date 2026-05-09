@@ -521,6 +521,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .staged
+            ],
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
@@ -624,6 +627,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .staged
+            ],
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",

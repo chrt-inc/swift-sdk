@@ -3,6 +3,96 @@ import Testing
 import Chrt
 
 @Suite("DevClient Wire Tests") struct DevClientWireTests {
+    @Test func postAgentScheduledHelloPocV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schedule_id": "schedule_id",
+                  "order_id": "order_id",
+                  "driver_name": "driver_name",
+                  "workflow_name": "workflow_name",
+                  "workflow_id": "workflow_id",
+                  "task_queue": "task_queue",
+                  "schedule_spec": {
+                    "calendars": [
+                      {}
+                    ],
+                    "intervals": [
+                      {
+                        "every": "every"
+                      }
+                    ],
+                    "cron_expressions": [
+                      "cron_expressions"
+                    ],
+                    "skip": [
+                      {}
+                    ],
+                    "start_at": "2024-01-15T09:30:00Z",
+                    "end_at": "2024-01-15T09:30:00Z",
+                    "jitter": "jitter",
+                    "time_zone_name": "time_zone_name"
+                  },
+                  "catchup_window_seconds": 1,
+                  "created": true,
+                  "next_action_times": [
+                    "2024-01-15T09:30:00Z"
+                  ]
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ScheduledHelloPocRes(
+            scheduleId: "schedule_id",
+            orderId: "order_id",
+            driverName: "driver_name",
+            workflowName: "workflow_name",
+            workflowId: "workflow_id",
+            taskQueue: "task_queue",
+            scheduleSpec: ScheduleSpec(
+                calendars: Optional([
+                    ScheduleCalendarSpec(
+
+                    )
+                ]),
+                intervals: Optional([
+                    ScheduleIntervalSpec(
+                        every: "every"
+                    )
+                ]),
+                cronExpressions: Optional([
+                    "cron_expressions"
+                ]),
+                skip: Optional([
+                    ScheduleCalendarSpec(
+
+                    )
+                ]),
+                startAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                endAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                jitter: Optional("jitter"),
+                timeZoneName: Optional("time_zone_name")
+            ),
+            catchupWindowSeconds: 1,
+            created: true,
+            nextActionTimes: [
+                try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            ]
+        )
+        let response = try await client.utils.dev.postAgentScheduledHelloPocV1(
+            request: .init(driverName: "driver_name"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func postAgentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -31,6 +121,38 @@ import Chrt
             ]
         )
         let response = try await client.utils.dev.postAgentV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func postAgentPingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "response": "response",
+                  "nonce": "nonce",
+                  "workflow_timestamp": "workflow_timestamp",
+                  "activity_timestamp": "activity_timestamp"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = PingRes(
+            response: "response",
+            nonce: "nonce",
+            workflowTimestamp: "workflow_timestamp",
+            activityTimestamp: "activity_timestamp"
+        )
+        let response = try await client.utils.dev.postAgentPingV1(
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

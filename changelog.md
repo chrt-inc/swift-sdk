@@ -1,3 +1,11 @@
+## 1.639.0 - 2026-05-09
+### Added
+* **`DevClient.postAgentPingV1(request:requestOptions:)`** — runs a lightweight Temporal workflow and activity round trip for developer diagnostics, returning a `PingRes` with timestamps.
+* **`DevClient.postAgentScheduledHelloPocV1(request:requestOptions:)`** — creates or updates a Temporal Schedule that runs the scheduled hello workflow for a driver, returning a `ScheduledHelloPocRes`.
+* **`PingReq` / `PingRes`** — new request and response types for the agent ping endpoint.
+* **`ScheduledHelloPocReq` / `ScheduledHelloPocRes`** — new request and response types for the scheduled hello POC endpoint.
+* **`ScheduleSpec`, `ScheduleCalendarSpec`, `ScheduleIntervalSpec`, `ScheduleRange`** — new schema types for expressing Temporal schedule specifications.
+
 ## 1.625.1 - 2026-05-09
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

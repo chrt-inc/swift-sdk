@@ -7,6 +7,19 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Creates or updates a Temporal Schedule that runs the scheduled hello workflow for a driver. | authz: min_org_role=administrator | (ScheduledHelloPocReq) -> (ScheduledHelloPocRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postAgentScheduledHelloPocV1(request: Requests.ScheduledHelloPocReq, requestOptions: RequestOptions? = nil) async throws -> ScheduledHelloPocRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/dev/agent/scheduled-hello-poc/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ScheduledHelloPocRes.self
+        )
+    }
+
     /// Runs a customer service agent that responds with logistics fun facts (real order data not yet available). | (AgentReq) -> (AgentRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -17,6 +30,19 @@ public final class DevClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: AgentRes.self
+        )
+    }
+
+    /// Runs a lightweight Temporal workflow and activity round trip for developer diagnostics. | (PingReq) -> (PingRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postAgentPingV1(request: Requests.PingReq, requestOptions: RequestOptions? = nil) async throws -> PingRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/dev/agent/ping/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: PingRes.self
         )
     }
 
