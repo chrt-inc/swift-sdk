@@ -1,9 +1,9 @@
 import Foundation
 
-public struct ScheduledHelloPocRes: Codable, Hashable, Sendable {
+public struct ScheduledPingRes: Codable, Hashable, Sendable {
     public let scheduleId: String
-    public let orderId: String
-    public let driverName: String
+    public let pingId: String
+    public let message: String
     public let workflowName: String
     public let workflowId: String
     public let taskQueue: String
@@ -16,8 +16,8 @@ public struct ScheduledHelloPocRes: Codable, Hashable, Sendable {
 
     public init(
         scheduleId: String,
-        orderId: String,
-        driverName: String,
+        pingId: String,
+        message: String,
         workflowName: String,
         workflowId: String,
         taskQueue: String,
@@ -28,8 +28,8 @@ public struct ScheduledHelloPocRes: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.scheduleId = scheduleId
-        self.orderId = orderId
-        self.driverName = driverName
+        self.pingId = pingId
+        self.message = message
         self.workflowName = workflowName
         self.workflowId = workflowId
         self.taskQueue = taskQueue
@@ -43,8 +43,8 @@ public struct ScheduledHelloPocRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.scheduleId = try container.decode(String.self, forKey: .scheduleId)
-        self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.driverName = try container.decode(String.self, forKey: .driverName)
+        self.pingId = try container.decode(String.self, forKey: .pingId)
+        self.message = try container.decode(String.self, forKey: .message)
         self.workflowName = try container.decode(String.self, forKey: .workflowName)
         self.workflowId = try container.decode(String.self, forKey: .workflowId)
         self.taskQueue = try container.decode(String.self, forKey: .taskQueue)
@@ -59,8 +59,8 @@ public struct ScheduledHelloPocRes: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.scheduleId, forKey: .scheduleId)
-        try container.encode(self.orderId, forKey: .orderId)
-        try container.encode(self.driverName, forKey: .driverName)
+        try container.encode(self.pingId, forKey: .pingId)
+        try container.encode(self.message, forKey: .message)
         try container.encode(self.workflowName, forKey: .workflowName)
         try container.encode(self.workflowId, forKey: .workflowId)
         try container.encode(self.taskQueue, forKey: .taskQueue)
@@ -73,8 +73,8 @@ public struct ScheduledHelloPocRes: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case scheduleId = "schedule_id"
-        case orderId = "order_id"
-        case driverName = "driver_name"
+        case pingId = "ping_id"
+        case message
         case workflowName = "workflow_name"
         case workflowId = "workflow_id"
         case taskQueue = "task_queue"

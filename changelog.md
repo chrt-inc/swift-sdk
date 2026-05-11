@@ -1,3 +1,13 @@
+## 2.0.0 - 2026-05-11
+### Breaking Changes
+* **`DevClient.postAgentV1`** — renamed to `postAgentOpenaiPingV1`; update all call sites and replace `Requests.AgentReq` with `Requests.PingOpenAiReq` (now requires a `prompt: String` parameter).
+* **`AgentReq` / `AgentRes`** — both types have been removed; replace with `PingOpenAiReq` / `PingOpenAiRes`. `PingOpenAiRes` no longer includes `logisticsFact` or `topicsUsed` fields — remove any references to those properties.
+* **`DevClient.postAgentScheduledHelloPocV1`** — renamed to `postAgentPingScheduleV1`; update all call sites and replace `Requests.ScheduledHelloPocReq` (which required `driverName`) with `Requests.ScheduledPingReq` (all fields optional).
+* **`ScheduledHelloPocReq` / `ScheduledHelloPocRes`** — both types have been removed; replace with `ScheduledPingReq` / `ScheduledPingRes`. `ScheduledPingRes` replaces `orderId`/`driverName` with `pingId`/`message` — update any decoding or construction of these fields.
+### Added
+* **`ShippingClient_.orderSchedules`** — new `OrderSchedulesClient` exposing `getByIdV1`, `listV1`, `createV1`, `roundTripModelTestV1`, `updateV1`, and `deleteV1` for managing order schedules.
+* **`OrderScheduleStub`, `OrderScheduleCreateReq`, `OrderScheduleUpdateReq`, `OrderScheduleRoundTripModelTestReq`, `OrderScheduleRoundTripModelTestRes`** — new schema types supporting the order schedules resource.
+
 ## 1.639.0 - 2026-05-09
 ### Added
 * **`DevClient.postAgentPingV1(request:requestOptions:)`** — runs a lightweight Temporal workflow and activity round trip for developer diagnostics, returning a `PingRes` with timestamps.

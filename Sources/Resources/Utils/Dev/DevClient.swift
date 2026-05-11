@@ -7,29 +7,29 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates or updates a Temporal Schedule that runs the scheduled hello workflow for a driver. | authz: min_org_role=administrator | (ScheduledHelloPocReq) -> (ScheduledHelloPocRes)
+    /// Creates or updates a Temporal Schedule that runs the scheduled ping workflow for developer diagnostics. | authz: min_org_role=administrator | (ScheduledPingReq) -> (ScheduledPingRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentScheduledHelloPocV1(request: Requests.ScheduledHelloPocReq, requestOptions: RequestOptions? = nil) async throws -> ScheduledHelloPocRes {
+    public func postAgentPingScheduleV1(request: Requests.ScheduledPingReq, requestOptions: RequestOptions? = nil) async throws -> ScheduledPingRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/dev/agent/scheduled-hello-poc/v1",
+            path: "/dev/agent/ping-schedule/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: ScheduledHelloPocRes.self
+            responseType: ScheduledPingRes.self
         )
     }
 
-    /// Runs a customer service agent that responds with logistics fun facts (real order data not yet available). | (AgentReq) -> (AgentRes)
+    /// Runs a minimal Temporal workflow that sends a prompt to OpenAI and returns the response. | (PingOpenAIReq) -> (PingOpenAIRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentV1(request: Requests.AgentReq, requestOptions: RequestOptions? = nil) async throws -> AgentRes {
+    public func postAgentOpenaiPingV1(request: Requests.PingOpenAiReq, requestOptions: RequestOptions? = nil) async throws -> PingOpenAiRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/dev/agent/v1",
+            path: "/dev/agent/openai/ping/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: AgentRes.self
+            responseType: PingOpenAiRes.self
         )
     }
 

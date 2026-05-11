@@ -3,15 +3,15 @@ import Testing
 import Chrt
 
 @Suite("DevClient Wire Tests") struct DevClientWireTests {
-    @Test func postAgentScheduledHelloPocV11() async throws -> Void {
+    @Test func postAgentPingScheduleV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
                 {
                   "schedule_id": "schedule_id",
-                  "order_id": "order_id",
-                  "driver_name": "driver_name",
+                  "ping_id": "ping_id",
+                  "message": "message",
                   "workflow_name": "workflow_name",
                   "workflow_id": "workflow_id",
                   "task_queue": "task_queue",
@@ -49,10 +49,10 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ScheduledHelloPocRes(
+        let expectedResponse = ScheduledPingRes(
             scheduleId: "schedule_id",
-            orderId: "order_id",
-            driverName: "driver_name",
+            pingId: "ping_id",
+            message: "message",
             workflowName: "workflow_name",
             workflowId: "workflow_id",
             taskQueue: "task_queue",
@@ -86,24 +86,20 @@ import Chrt
                 try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
             ]
         )
-        let response = try await client.utils.dev.postAgentScheduledHelloPocV1(
-            request: .init(driverName: "driver_name"),
+        let response = try await client.utils.dev.postAgentPingScheduleV1(
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func postAgentV11() async throws -> Void {
+    @Test func postAgentOpenaiPingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
                 {
-                  "response": "response",
-                  "logistics_fact": "logistics_fact",
-                  "topics_used": [
-                    "topics_used"
-                  ]
+                  "response": "response"
                 }
                 """.utf8
             )
@@ -113,15 +109,11 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = AgentRes(
-            response: "response",
-            logisticsFact: "logistics_fact",
-            topicsUsed: [
-                "topics_used"
-            ]
+        let expectedResponse = PingOpenAiRes(
+            response: "response"
         )
-        let response = try await client.utils.dev.postAgentV1(
-            request: .init(),
+        let response = try await client.utils.dev.postAgentOpenaiPingV1(
+            request: .init(prompt: "prompt"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
