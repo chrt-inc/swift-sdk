@@ -1,3 +1,17 @@
+## 2.0.0 - 2026-05-12
+### Breaking Changes
+* **`createdByUserId`** — changed from `String` to `String?` on `Order1`, `Task1`, `TaskArtifact1`, `TaskGroup1`, and related models; add `if-let`/`guard-let` unwrapping at all call sites that read this property directly.
+* **`OrderSchedulesClient.createV1`** — renamed to `newV1` with a new required request shape (`schemaVersion`, `orderManifest`, `scheduleSpec`); update all call sites to use the new method and request type.
+* **`OrderSchedulesClient.roundTripModelTestV1`** — removed with no replacement; delete any calls to this method.
+* **`OrderSchedulesClient.listV1`** — now returns `OrderScheduleListRes` (paginated) instead of `[OrderScheduleStub]`; update response-handling code accordingly.
+* **`ReadOrderAgentRes`** and **`OrderScheduleStub`** — both types removed; replace with `OrderManifestValidationResult` and `OrderScheduleListRes`/`OrderSchedule1` respectively.
+### Added
+* **`OrderSchedulesClient`** lifecycle methods — `takeOwnershipV1`, `activateV1`, `unpauseV1`, `pauseV1`, `archiveV1`, `triggerV1`, and `aboutV1(orderScheduleId:)` added for full order-schedule lifecycle management.
+* **`AgenticClient`** — new client exposing `newV1` and `newWithStreamingV1` for populating an order draft from natural language input, with optional SSE progress streaming.
+* **`OrderManifestClient`** — new client exposing `validateV1` for validating an `OrderManifest1` before scheduled order creation.
+* **`orderScheduleId`, `orderScheduleRunIdempotencyKey`, `orderScheduleTemplatePath`** — new optional fields added to order, task, task-group, and cargo models linking records to their originating order schedule.
+* **`filterStatus`, `filterType`, `filterDepartment`, `filterRole`, `filterDepartmentId`** — new filter parameters added to list endpoints across billing, listings, bid-threads, departments, orgs, and drivers clients.
+
 ## 2.0.0 - 2026-05-11
 ### Breaking Changes
 * **`DevClient.postAgentV1`** — renamed to `postAgentOpenaiPingV1`; update all call sites and replace `Requests.AgentReq` with `Requests.PingOpenAiReq` (now requires a `prompt: String` parameter).

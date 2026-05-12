@@ -7,8 +7,10 @@ public struct Order1: Codable, Hashable, Sendable {
     public let taskGroupIds: [String]?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
+    public let orderScheduleId: String?
+    public let orderScheduleRunIdempotencyKey: String?
     /// Must be a string starting with `user_`
-    public let createdByUserId: String
+    public let createdByUserId: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `org_`
@@ -35,7 +37,9 @@ public struct Order1: Codable, Hashable, Sendable {
         shortId: String,
         taskGroupIds: [String]? = nil,
         offChrtReferenceId: String? = nil,
-        createdByUserId: String,
+        orderScheduleId: String? = nil,
+        orderScheduleRunIdempotencyKey: String? = nil,
+        createdByUserId: String? = nil,
         createdByOrgId: String,
         shipperOrgId: String? = nil,
         offChrtShipperOrgId: String? = nil,
@@ -57,6 +61,8 @@ public struct Order1: Codable, Hashable, Sendable {
         self.shortId = shortId
         self.taskGroupIds = taskGroupIds
         self.offChrtReferenceId = offChrtReferenceId
+        self.orderScheduleId = orderScheduleId
+        self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
         self.createdByUserId = createdByUserId
         self.createdByOrgId = createdByOrgId
         self.shipperOrgId = shipperOrgId
@@ -82,7 +88,9 @@ public struct Order1: Codable, Hashable, Sendable {
         self.shortId = try container.decode(String.self, forKey: .shortId)
         self.taskGroupIds = try container.decodeIfPresent([String].self, forKey: .taskGroupIds)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
+        self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
+        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
@@ -108,7 +116,9 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
+        try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
+        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
@@ -132,6 +142,8 @@ public struct Order1: Codable, Hashable, Sendable {
         case shortId = "short_id"
         case taskGroupIds = "task_group_ids"
         case offChrtReferenceId = "off_chrt_reference_id"
+        case orderScheduleId = "order_schedule_id"
+        case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
         case createdByUserId = "created_by_user_id"
         case createdByOrgId = "created_by_org_id"
         case shipperOrgId = "shipper_org_id"

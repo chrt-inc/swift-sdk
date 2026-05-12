@@ -46,45 +46,6 @@ public final class DevClient: Sendable {
         )
     }
 
-    /// Fetches expanded order data and returns an AI-generated natural-language summary. | (ReadOrderAgentReq) -> (ReadOrderAgentRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentOrderV1(request: Requests.ReadOrderAgentReq, requestOptions: RequestOptions? = nil) async throws -> ReadOrderAgentRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/dev/agent/order/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: ReadOrderAgentRes.self
-        )
-    }
-
-    /// Populates an existing order draft with cargo, task groups, and tasks parsed from natural language. The frontend must create the draft first via /shipping/order_drafts/new/v1. | (OrderBuilderReq) -> (OrderBuilderRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentOrderBuilderV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderBuilderRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/dev/agent/order-builder/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrderBuilderRes.self
-        )
-    }
-
-    /// Same as /agent/order-builder/v1 but streams progress events via SSE as each workflow step completes. | (OrderBuilderReq) -> SSE stream of OrderBuilderStreamEvent
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentOrderBuilderStreamV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/dev/agent/order-builder/stream/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: JSONValue.self
-        )
-    }
-
     /// (DEPRECATED) Extracts and returns the user ID from the authenticated request's JWT token. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

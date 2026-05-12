@@ -240,6 +240,9 @@ import Chrt
                     "_id": "_id",
                     "order_id": "order_id",
                     "order_short_id": "order_short_id",
+                    "order_schedule_id": "order_schedule_id",
+                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
+                    "order_schedule_template_path": "order_schedule_template_path",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "device_ids": [
@@ -306,6 +309,9 @@ import Chrt
                       "_id": "_id",
                       "order_id": "order_id",
                       "order_short_id": "order_short_id",
+                      "order_schedule_id": "order_schedule_id",
+                      "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
+                      "order_schedule_template_path": "order_schedule_template_path",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
                       "device_ids": [
@@ -431,8 +437,11 @@ import Chrt
                 id: "_id",
                 orderId: "order_id",
                 orderShortId: "order_short_id",
+                orderScheduleId: Optional("order_schedule_id"),
+                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
+                orderScheduleTemplatePath: Optional("order_schedule_template_path"),
                 createdByOrgId: "created_by_org_id",
-                createdByUserId: "created_by_user_id",
+                createdByUserId: Optional("created_by_user_id"),
                 deviceIds: Optional([
                     "device_ids"
                 ]),
@@ -497,8 +506,11 @@ import Chrt
                     id: "_id",
                     orderId: "order_id",
                     orderShortId: "order_short_id",
+                    orderScheduleId: Optional("order_schedule_id"),
+                    orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
+                    orderScheduleTemplatePath: Optional("order_schedule_template_path"),
                     createdByOrgId: "created_by_org_id",
-                    createdByUserId: "created_by_user_id",
+                    createdByUserId: Optional("created_by_user_id"),
                     deviceIds: Optional([
                         "device_ids"
                     ]),

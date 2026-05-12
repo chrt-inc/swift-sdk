@@ -1,8 +1,6 @@
 import Foundation
 
-/// Unified SSE data schema for Fern SDK generation. The SSE `event:` frame
-/// carries the discriminator (progress | complete | error); only relevant
-/// fields are serialized per event type via exclude_none.
+/// Unified SSE schema for Fern SDK generation.
 public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
     public let event: Event
     public let message: String?

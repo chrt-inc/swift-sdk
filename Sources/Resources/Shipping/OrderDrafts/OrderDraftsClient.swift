@@ -1,6 +1,7 @@
 import Foundation
 
 public final class OrderDraftsClient: Sendable {
+    public let agentic: AgenticClient
     public let taskGroup: TaskGroupClient
     public let task: TaskClient
     public let taskArtifact: TaskArtifactClient
@@ -9,6 +10,7 @@ public final class OrderDraftsClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.agentic = AgenticClient(config: config)
         self.taskGroup = TaskGroupClient(config: config)
         self.task = TaskClient(config: config)
         self.taskArtifact = TaskArtifactClient(config: config)
@@ -55,7 +57,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Validates the draft order for staging and returns all issues found. | () -> (OrderDraftValidationResult)
+    /// Validates the draft order for staging and returns requirement results. | () -> (OrderDraftValidationResult)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func validateV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderDraftValidationResult {

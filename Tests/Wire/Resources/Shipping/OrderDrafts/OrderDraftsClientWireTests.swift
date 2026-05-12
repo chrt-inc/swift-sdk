@@ -97,16 +97,16 @@ import Chrt
                 """
                 {
                   "is_valid": true,
-                  "issues": [
-                    {
-                      "issue_key": "issue_key",
-                      "category": "status",
-                      "message": "message",
-                      "entity_type": "entity_type",
-                      "entity_id": "entity_id",
-                      "task_group_id": "task_group_id"
-                    }
-                  ]
+                  "requirements": {
+                    "all_entities_are_draft": true,
+                    "order_has_task_groups": true,
+                    "task_groups_have_valid_tasks": true,
+                    "tasks_have_valid_actions": true,
+                    "task_groups_have_valid_task_sequence": true,
+                    "tasks_have_valid_cargo": true,
+                    "cargos_have_valid_lifecycle": true,
+                    "order_has_coordinator": true
+                  }
                 }
                 """.utf8
             )
@@ -118,16 +118,16 @@ import Chrt
         )
         let expectedResponse = OrderDraftValidationResult(
             isValid: true,
-            issues: Optional([
-                OrderDraftValidationIssue(
-                    issueKey: "issue_key",
-                    category: .status,
-                    message: "message",
-                    entityType: Optional("entity_type"),
-                    entityId: Optional("entity_id"),
-                    taskGroupId: Optional("task_group_id")
-                )
-            ])
+            requirements: OrderDraftValidationRequirements(
+                allEntitiesAreDraft: Optional(true),
+                orderHasTaskGroups: Optional(true),
+                taskGroupsHaveValidTasks: Optional(true),
+                tasksHaveValidActions: Optional(true),
+                taskGroupsHaveValidTaskSequence: Optional(true),
+                tasksHaveValidCargo: Optional(true),
+                cargosHaveValidLifecycle: Optional(true),
+                orderHasCoordinator: Optional(true)
+            )
         )
         let response = try await client.shipping.orderDrafts.validateV1(
             orderId: "order_id",

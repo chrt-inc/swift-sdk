@@ -17,6 +17,8 @@ import Chrt
                       "task_group_ids"
                     ],
                     "off_chrt_reference_id": "off_chrt_reference_id",
+                    "order_schedule_id": "order_schedule_id",
+                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -68,7 +70,6 @@ import Chrt
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
-                        "created_by_user_id": "created_by_user_id",
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "task_group_type": "chrt_ground_provider"
@@ -82,7 +83,6 @@ import Chrt
                             "order_short_id": "order_short_id",
                             "task_group_id": "task_group_id",
                             "created_by_org_id": "created_by_org_id",
-                            "created_by_user_id": "created_by_user_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                           }
                         }
@@ -123,7 +123,9 @@ import Chrt
                     "task_group_ids"
                 ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                createdByUserId: "created_by_user_id",
+                orderScheduleId: Optional("order_schedule_id"),
+                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
+                createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -174,7 +176,6 @@ import Chrt
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        createdByUserId: "created_by_user_id",
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         taskGroupType: .chrtGroundProvider
@@ -188,7 +189,6 @@ import Chrt
                                 orderShortId: "order_short_id",
                                 taskGroupId: "task_group_id",
                                 createdByOrgId: "created_by_org_id",
-                                createdByUserId: "created_by_user_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                             )
                         )
@@ -236,6 +236,8 @@ import Chrt
                       "task_group_ids"
                     ],
                     "off_chrt_reference_id": "off_chrt_reference_id",
+                    "order_schedule_id": "order_schedule_id",
+                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -287,7 +289,6 @@ import Chrt
                         "_id": "_id",
                         "order_id": "order_id",
                         "order_short_id": "order_short_id",
-                        "created_by_user_id": "created_by_user_id",
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "task_group_type": "chrt_ground_provider"
@@ -301,7 +302,6 @@ import Chrt
                             "order_short_id": "order_short_id",
                             "task_group_id": "task_group_id",
                             "created_by_org_id": "created_by_org_id",
-                            "created_by_user_id": "created_by_user_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                           }
                         }
@@ -342,7 +342,9 @@ import Chrt
                     "task_group_ids"
                 ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                createdByUserId: "created_by_user_id",
+                orderScheduleId: Optional("order_schedule_id"),
+                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
+                createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
@@ -393,7 +395,6 @@ import Chrt
                         id: "_id",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        createdByUserId: "created_by_user_id",
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         taskGroupType: .chrtGroundProvider
@@ -407,7 +408,6 @@ import Chrt
                                 orderShortId: "order_short_id",
                                 taskGroupId: "task_group_id",
                                 createdByOrgId: "created_by_org_id",
-                                createdByUserId: "created_by_user_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                             )
                         )
@@ -453,7 +453,6 @@ import Chrt
                         "schema_version": 1,
                         "_id": "_id",
                         "short_id": "short_id",
-                        "created_by_user_id": "created_by_user_id",
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
@@ -479,7 +478,6 @@ import Chrt
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
-                            "created_by_user_id": "created_by_user_id",
                             "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "task_group_type": "chrt_ground_provider"
@@ -505,7 +503,6 @@ import Chrt
                         schemaVersion: 1,
                         id: "_id",
                         shortId: "short_id",
-                        createdByUserId: "created_by_user_id",
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
@@ -531,7 +528,6 @@ import Chrt
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
-                                createdByUserId: "created_by_user_id",
                                 createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 taskGroupType: .chrtGroundProvider
@@ -548,6 +544,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterStatus: [
+                .draft
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -584,7 +583,6 @@ import Chrt
                         "schema_version": 1,
                         "_id": "_id",
                         "short_id": "short_id",
-                        "created_by_user_id": "created_by_user_id",
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
                       },
@@ -610,7 +608,6 @@ import Chrt
                             "_id": "_id",
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
-                            "created_by_user_id": "created_by_user_id",
                             "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "task_group_type": "chrt_ground_provider"
@@ -636,7 +633,6 @@ import Chrt
                         schemaVersion: 1,
                         id: "_id",
                         shortId: "short_id",
-                        createdByUserId: "created_by_user_id",
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     ),
@@ -662,7 +658,6 @@ import Chrt
                                 id: "_id",
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
-                                createdByUserId: "created_by_user_id",
                                 createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 taskGroupType: .chrtGroundProvider
@@ -679,6 +674,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterStatus: [
+                .draft
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

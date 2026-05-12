@@ -11,10 +11,13 @@ public struct Task1: Codable, Hashable, Sendable {
     public let orderId: String
     public let orderShortId: String
     public let taskGroupId: String
+    public let orderScheduleId: String?
+    public let orderScheduleRunIdempotencyKey: String?
+    public let orderScheduleTemplatePath: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
-    public let createdByUserId: String
+    public let createdByUserId: String?
     /// Must be a string starting with `org_`
     public let completedByOrgId: String?
     /// Must be a string starting with `user_`
@@ -42,8 +45,11 @@ public struct Task1: Codable, Hashable, Sendable {
         orderId: String,
         orderShortId: String,
         taskGroupId: String,
+        orderScheduleId: String? = nil,
+        orderScheduleRunIdempotencyKey: String? = nil,
+        orderScheduleTemplatePath: String? = nil,
         createdByOrgId: String,
-        createdByUserId: String,
+        createdByUserId: String? = nil,
         completedByOrgId: String? = nil,
         completedByUserId: String? = nil,
         cargoIds: [String]? = nil,
@@ -67,6 +73,9 @@ public struct Task1: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.orderShortId = orderShortId
         self.taskGroupId = taskGroupId
+        self.orderScheduleId = orderScheduleId
+        self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
+        self.orderScheduleTemplatePath = orderScheduleTemplatePath
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.completedByOrgId = completedByOrgId
@@ -95,8 +104,11 @@ public struct Task1: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
+        self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
+        self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
+        self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
-        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
         self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
         self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)
@@ -124,8 +136,11 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
+        try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
+        try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
+        try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
-        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
         try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
         try container.encodeIfPresent(self.cargoIds, forKey: .cargoIds)
@@ -151,6 +166,9 @@ public struct Task1: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case orderShortId = "order_short_id"
         case taskGroupId = "task_group_id"
+        case orderScheduleId = "order_schedule_id"
+        case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
+        case orderScheduleTemplatePath = "order_schedule_template_path"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case completedByOrgId = "completed_by_org_id"

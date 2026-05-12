@@ -97,6 +97,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
+        filterRole: [
+            .owner
+        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -582,6 +585,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .active
+        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -1015,6 +1021,9 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
+        filterStatus: [
+            .open
+        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1484,6 +1493,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -4985,6 +4997,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5237,6 +5252,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -8063,6 +8081,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8259,6 +8283,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8447,6 +8477,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -10499,6 +10535,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -10678,6 +10717,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13052,6 +13094,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterDepartmentId: [
+            "filter_department_id"
+        ],
         filterAssignedOperatorUserId: "filter_assigned_operator_user_id",
         filterNeedsAction: true,
         filterUnassigned: true
@@ -13669,7 +13717,10 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        filterDepartment: [
+            .automotive
+        ]
     )
 }
 
@@ -16954,6 +17005,9 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
+        filterRole: [
+            .owner
+        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -18559,7 +18613,7 @@ try await main()
 <dl>
 <dd>
 
-Validates the draft order for staging and returns all issues found. | () -> (OrderDraftValidationResult)
+Validates the draft order for staging and returns requirement results. | () -> (OrderDraftValidationResult)
 </dd>
 </dl>
 </dd>
@@ -18619,7 +18673,7 @@ try await main()
 </details>
 
 ## Shipping OrderSchedules
-<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">getByIdV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> OrderScheduleStub</code></summary>
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">listV1</a>(sortBy: OrderScheduleSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: OrderScheduleStatusEnum1?, filterOrchestratorScheduleStatus: OrderScheduleOrchestratorScheduleStatusEnum1?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderScheduleListRes</code></summary>
 <dl>
 <dd>
 
@@ -18631,7 +18685,174 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an order schedule by ID. | () -> (OrderScheduleStub)
+Lists order schedules for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OrderScheduleListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.listV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterStatus: [
+            .draft
+        ],
+        filterOrchestratorScheduleStatus: [
+            .notCreated
+        ],
+        filterOwnedByUserId: "filter_owned_by_user_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `OrderScheduleSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `OrderScheduleStatusEnum1?` — Filter by order schedule status(es).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrchestratorScheduleStatus:** `OrderScheduleOrchestratorScheduleStatusEnum1?` — Filter by orchestrator schedule status(es).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOwnedByUserId:** `String?` — Filter by the user who owns the order schedule.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastEditedAtTimestampGte:** `Date?` — Filter last_edited_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastEditedAtTimestampLte:** `Date?` — Filter last_edited_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">getByIdV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> OrderSchedule1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an order schedule by ID. | authz: min_org_role=operator | () -> (OrderSchedule1)
 </dd>
 </dl>
 </dd>
@@ -18690,7 +18911,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [OrderScheduleStub]</code></summary>
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">aboutV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> OrderScheduleAboutRes</code></summary>
 <dl>
 <dd>
 
@@ -18702,7 +18923,7 @@ try await main()
 <dl>
 <dd>
 
-Lists order schedules for the caller's organization. | () -> (list[OrderScheduleStub])
+Retrieves schedule metadata, generated order count, and live orchestrator status. | authz: min_org_role=operator | () -> (OrderScheduleAboutRes)
 </dd>
 </dl>
 </dd>
@@ -18723,7 +18944,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orderSchedules.listV1()
+    _ = try await client.shipping.orderSchedules.aboutV1(orderScheduleId: "order_schedule_id")
 }
 
 try await main()
@@ -18741,6 +18962,14 @@ try await main()
 <dl>
 <dd>
 
+**orderScheduleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
     
 </dd>
@@ -18753,7 +18982,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">createV1</a>(request: Requests.OrderScheduleCreateReq, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">newV1</a>(request: Requests.OrderScheduleClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -18765,7 +18994,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an order schedule. | (OrderScheduleCreateReq) -> (PydanticObjectId)
+Creates a new draft order schedule. | authz: min_org_role=operator | (OrderScheduleClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -18786,7 +19015,16 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orderSchedules.createV1(request: .init(name: "name"))
+    _ = try await client.shipping.orderSchedules.newV1(request: .init(
+        schemaVersion: 1,
+        name: "name",
+        orderManifest: OrderManifest1(
+
+        ),
+        scheduleSpec: ScheduleSpec(
+
+        )
+    ))
 }
 
 try await main()
@@ -18804,7 +19042,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OrderScheduleCreateReq` 
+**request:** `Requests.OrderScheduleClientCreate1` 
     
 </dd>
 </dl>
@@ -18824,7 +19062,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">roundTripModelTestV1</a>(request: Requests.OrderScheduleRoundTripModelTestReq, requestOptions: RequestOptions?) -> OrderScheduleRoundTripModelTestRes</code></summary>
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">updateV1</a>(orderScheduleId: String, request: Requests.OrderScheduleClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -18836,78 +19074,7 @@ try await main()
 <dl>
 <dd>
 
-Echoes Temporal schedule specs to test SDK round trips. | (OrderScheduleRoundTripModelTestReq) -> (OrderScheduleRoundTripModelTestRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderSchedules.roundTripModelTestV1(request: .init())
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderScheduleRoundTripModelTestReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">updateV1</a>(orderScheduleId: String, request: Requests.OrderScheduleUpdateReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an order schedule. | (OrderScheduleUpdateReq) -> (bool)
+Updates an order schedule. | authz: min_org_role=operator | (OrderScheduleClientUpdate1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -18957,7 +19124,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OrderScheduleUpdateReq` 
+**request:** `Requests.OrderScheduleClientUpdate1` 
     
 </dd>
 </dl>
@@ -18977,7 +19144,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">deleteV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">takeOwnershipV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -18989,7 +19156,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes an order schedule. | () -> (bool)
+Transfers order schedule workflow ownership to the caller. | authz: min_org_role=operator | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -19010,7 +19177,362 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orderSchedules.deleteV1(orderScheduleId: "order_schedule_id")
+    _ = try await client.shipping.orderSchedules.takeOwnershipV1(orderScheduleId: "order_schedule_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderScheduleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">activateV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Validates a draft order schedule, creates its Temporal orchestrator schedule, and activates it. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.activateV1(orderScheduleId: "order_schedule_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderScheduleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">unpauseV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unpauses a paused order schedule. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.unpauseV1(orderScheduleId: "order_schedule_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderScheduleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">pauseV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pauses an active order schedule. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.pauseV1(orderScheduleId: "order_schedule_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderScheduleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">archiveV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives an order schedule and prevents future runs. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.archiveV1(orderScheduleId: "order_schedule_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderScheduleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">triggerV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Triggers an order schedule immediately. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.triggerV1(orderScheduleId: "order_schedule_id")
 }
 
 try await main()
@@ -21244,6 +21766,155 @@ try await main()
 </dl>
 </details>
 
+## Shipping OrderDrafts Agentic
+<details><summary><code>client.shipping.orderDrafts.agentic.<a href="/Sources/Resources/Shipping/OrderDrafts/Agentic/AgenticClient.swift">newV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Populates an existing draft order with cargo, task groups, and tasks parsed from natural language. | (OrderBuilderReq) -> (OrderBuilderRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderDrafts.agentic.newV1(request: OrderBuilderReq(
+        orderShortId: "order_short_id",
+        text: "text"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrderBuilderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderDrafts.agentic.<a href="/Sources/Resources/Shipping/OrderDrafts/Agentic/AgenticClient.swift">newWithStreamingV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Populates an existing draft order from natural language and streams progress events via SSE. | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderDrafts.agentic.newWithStreamingV1(request: OrderBuilderReq(
+        orderShortId: "order_short_id",
+        text: "text"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrderBuilderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping OrderDrafts TaskGroup
 <details><summary><code>client.shipping.orderDrafts.taskGroup.<a href="/Sources/Resources/Shipping/OrderDrafts/TaskGroup/TaskGroupClient.swift">addV1</a>(request: Requests.OrderDraftAddTaskGroupReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
@@ -22651,6 +23322,80 @@ try await main()
 </dl>
 </details>
 
+## Shipping OrderSchedules OrderManifest
+<details><summary><code>client.shipping.orderSchedules.orderManifest.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderManifest/OrderManifestClient.swift">validateV1</a>(request: OrderManifest1, requestOptions: RequestOptions?) -> OrderManifestValidationResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Validates an order manifest for scheduled order creation. | authz: min_org_role=operator | (OrderManifest1) -> (OrderManifestValidationResult)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderSchedules.orderManifest.validateV1(request: OrderManifest1(
+
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrderManifest1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping Orders Expanded
 <details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/OrdersExpandedClient.swift">forShipperOperatorsV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpanded</code></summary>
 <dl>
@@ -22859,6 +23604,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -23131,6 +23879,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -24548,6 +25299,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -24829,6 +25583,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -30402,225 +31159,6 @@ try await main()
 <dd>
 
 **request:** `Requests.PingReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderV1</a>(request: Requests.ReadOrderAgentReq, requestOptions: RequestOptions?) -> ReadOrderAgentRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetches expanded order data and returns an AI-generated natural-language summary. | (ReadOrderAgentReq) -> (ReadOrderAgentRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.utils.dev.postAgentOrderV1(request: .init(orderId: "order_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ReadOrderAgentReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Populates an existing order draft with cargo, task groups, and tasks parsed from natural language. The frontend must create the draft first via /shipping/order_drafts/new/v1. | (OrderBuilderReq) -> (OrderBuilderRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.utils.dev.postAgentOrderBuilderV1(request: OrderBuilderReq(
-        orderShortId: "order_short_id",
-        text: "text"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `OrderBuilderReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOrderBuilderStreamV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Same as /agent/order-builder/v1 but streams progress events via SSE as each workflow step completes. | (OrderBuilderReq) -> SSE stream of OrderBuilderStreamEvent
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.utils.dev.postAgentOrderBuilderStreamV1(request: OrderBuilderReq(
-        orderShortId: "order_short_id",
-        text: "text"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `OrderBuilderReq` 
     
 </dd>
 </dl>

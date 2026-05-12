@@ -4,16 +4,19 @@ extension Requests {
     public struct OrderDraftAddCargoReq: Codable, Hashable, Sendable {
         public let orderId: String
         public let cargo: CargoClientCreate1
+        public let orderScheduleTemplatePath: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             orderId: String,
             cargo: CargoClientCreate1,
+            orderScheduleTemplatePath: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.orderId = orderId
             self.cargo = cargo
+            self.orderScheduleTemplatePath = orderScheduleTemplatePath
             self.additionalProperties = additionalProperties
         }
 
@@ -21,6 +24,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.orderId = try container.decode(String.self, forKey: .orderId)
             self.cargo = try container.decode(CargoClientCreate1.self, forKey: .cargo)
+            self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -29,12 +33,14 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.orderId, forKey: .orderId)
             try container.encode(self.cargo, forKey: .cargo)
+            try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case orderId = "order_id"
             case cargo
+            case orderScheduleTemplatePath = "order_schedule_template_path"
         }
     }
 }

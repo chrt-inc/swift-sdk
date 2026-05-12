@@ -521,6 +521,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .staged
+            ],
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
@@ -569,7 +572,6 @@ import Chrt
                           "_id": "_id",
                           "order_id": "order_id",
                           "order_short_id": "order_short_id",
-                          "created_by_user_id": "created_by_user_id",
                           "created_by_org_id": "created_by_org_id",
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                           "task_group_type": "chrt_ground_provider"
@@ -609,7 +611,6 @@ import Chrt
                             id: "_id",
                             orderId: "order_id",
                             orderShortId: "order_short_id",
-                            createdByUserId: "created_by_user_id",
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             taskGroupType: .chrtGroundProvider
@@ -624,6 +625,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .staged
+            ],
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",

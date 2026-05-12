@@ -4,16 +4,19 @@ extension Requests {
     public struct OrderDraftAddTaskArtifactReq: Codable, Hashable, Sendable {
         public let taskId: String
         public let taskArtifactType: TaskArtifactTypeEnum1
+        public let orderScheduleTemplatePath: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             taskId: String,
             taskArtifactType: TaskArtifactTypeEnum1,
+            orderScheduleTemplatePath: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.taskId = taskId
             self.taskArtifactType = taskArtifactType
+            self.orderScheduleTemplatePath = orderScheduleTemplatePath
             self.additionalProperties = additionalProperties
         }
 
@@ -21,6 +24,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.taskId = try container.decode(String.self, forKey: .taskId)
             self.taskArtifactType = try container.decode(TaskArtifactTypeEnum1.self, forKey: .taskArtifactType)
+            self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -29,12 +33,14 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.taskId, forKey: .taskId)
             try container.encode(self.taskArtifactType, forKey: .taskArtifactType)
+            try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case taskId = "task_id"
             case taskArtifactType = "task_artifact_type"
+            case orderScheduleTemplatePath = "order_schedule_template_path"
         }
     }
 }
