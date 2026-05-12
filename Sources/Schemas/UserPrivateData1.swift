@@ -4,7 +4,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let createdAtTimestamp: Date
     public let userId: String
-    public let stripeCustomerId: String?
     public let primaryEmailAddress: String?
     public let phoneNumber: String?
     public let firebaseCloudMessagingTokenData: [FirebaseCloudMessagingTokenData1]?
@@ -16,7 +15,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         createdAtTimestamp: Date,
         userId: String,
-        stripeCustomerId: String? = nil,
         primaryEmailAddress: String? = nil,
         phoneNumber: String? = nil,
         firebaseCloudMessagingTokenData: [FirebaseCloudMessagingTokenData1]? = nil,
@@ -26,7 +24,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.createdAtTimestamp = createdAtTimestamp
         self.userId = userId
-        self.stripeCustomerId = stripeCustomerId
         self.primaryEmailAddress = primaryEmailAddress
         self.phoneNumber = phoneNumber
         self.firebaseCloudMessagingTokenData = firebaseCloudMessagingTokenData
@@ -39,7 +36,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.userId = try container.decode(String.self, forKey: .userId)
-        self.stripeCustomerId = try container.decodeIfPresent(String.self, forKey: .stripeCustomerId)
         self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
         self.firebaseCloudMessagingTokenData = try container.decodeIfPresent([FirebaseCloudMessagingTokenData1].self, forKey: .firebaseCloudMessagingTokenData)
@@ -53,7 +49,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.userId, forKey: .userId)
-        try container.encodeIfPresent(self.stripeCustomerId, forKey: .stripeCustomerId)
         try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(self.firebaseCloudMessagingTokenData, forKey: .firebaseCloudMessagingTokenData)
@@ -65,7 +60,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case createdAtTimestamp = "created_at_timestamp"
         case userId = "user_id"
-        case stripeCustomerId = "stripe_customer_id"
         case primaryEmailAddress = "primary_email_address"
         case phoneNumber = "phone_number"
         case firebaseCloudMessagingTokenData = "firebase_cloud_messaging_token_data"

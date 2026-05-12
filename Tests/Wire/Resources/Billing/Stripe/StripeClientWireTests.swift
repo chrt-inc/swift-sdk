@@ -23,18 +23,23 @@ import Chrt
             url: "url"
         )
         let response = try await client.billing.stripe.createCheckoutSessionV1(
-            request: .init(priceName: .courierOps100UsdPerMonth),
+            request: .init(
+                productId: "product_id",
+                priceId: "price_id"
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func syncStripeToClerkV11() async throws -> Void {
+    @Test func createCustomerPortalSessionV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                true
+                {
+                  "url": "url"
+                }
                 """.utf8
             )
         )
@@ -43,8 +48,10 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = true
-        let response = try await client.billing.stripe.syncStripeToClerkV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let expectedResponse = CreateCustomerPortalSessionRes(
+            url: "url"
+        )
+        let response = try await client.billing.stripe.createCustomerPortalSessionV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 }

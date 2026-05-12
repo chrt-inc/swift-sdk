@@ -36,34 +36,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func createV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "org_public_data_inserted_id": "org_public_data_inserted_id",
-                  "org_private_data_inserted_id": "org_private_data_inserted_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = CreateOrgPublicDataRes(
-            orgPublicDataInsertedId: "org_public_data_inserted_id",
-            orgPrivateDataInsertedId: Optional("org_private_data_inserted_id")
-        )
-        let response = try await client.orgs.publicData.createV1(
-            request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

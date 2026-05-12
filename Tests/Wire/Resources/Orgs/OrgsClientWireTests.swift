@@ -86,6 +86,9 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.listMembersV1(
+            filterRole: [
+                .owner
+            ],
             sortBy: .firstName,
             sortOrder: .asc,
             page: 1,
@@ -96,7 +99,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func setOrgTypeV11() async throws -> Void {
+    @Test func setupOrgV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -111,7 +114,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.setOrgTypeV1(
+        let response = try await client.orgs.setupOrgV1(
             request: .init(orgType: .provider),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

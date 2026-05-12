@@ -97,6 +97,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
+        filterRole: [
+            .owner
+        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -180,7 +183,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">setOrgTypeV1</a>(request: Requests.SetOrgTypeReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">setupOrgV1</a>(request: Requests.SetupOrgReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -192,7 +195,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the org_type in Clerk's JWT public metadata. Returns True if already set and matching, sets it if not present, or raises exception if conflicting. | (SetOrgTypeReq) -> (bool)
+Single onboarding entry point. Sets `org_type` in Clerk's JWT public metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Optional `handle` and `company_name` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -213,7 +216,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.orgs.setOrgTypeV1(request: .init(orgType: .provider))
+    _ = try await client.orgs.setupOrgV1(request: .init(orgType: .provider))
 }
 
 try await main()
@@ -231,7 +234,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.SetOrgTypeReq` 
+**request:** `Requests.SetupOrgReq` 
     
 </dd>
 </dl>
@@ -582,6 +585,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .active
+        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -1015,6 +1021,9 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
+        filterStatus: [
+            .open
+        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1484,6 +1493,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -4318,6 +4330,115 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">listRateSheetIdsByCounterpartyV1</a>(tgType: String, counterpartyOrgId: String?, counterpartyDriverId: String?, counterpartyOffChrtProviderOrgId: String?, counterpartyOffChrtShipperOrgId: String?, requestOptions: RequestOptions?) -> [String]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists rate sheet IDs mapped to a counterparty for the requested task group type. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[PydanticObjectId])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.rateSheetMappings.listRateSheetIdsByCounterpartyV1(
+        tgType: .chrtGroundProvider,
+        counterpartyOrgId: "counterparty_org_id",
+        counterpartyDriverId: "counterparty_driver_id",
+        counterpartyOffChrtProviderOrgId: "counterparty_off_chrt_provider_org_id",
+        counterpartyOffChrtShipperOrgId: "counterparty_off_chrt_shipper_org_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**tgType:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**counterpartyOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**counterpartyDriverId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**counterpartyOffChrtProviderOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**counterpartyOffChrtShipperOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">createV1</a>(request: Requests.RateSheetMappingClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
@@ -4985,6 +5106,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5237,6 +5361,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -6442,7 +6569,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a Stripe checkout session for a subscription with pricing based on the selected plan. | (CreateCheckoutSessionReq) -> (CreateCheckoutSessionRes)
+Creates a Stripe checkout session for a subscription against the Stripe product+price chosen by the frontend. Stripe rejects unknown/archived/mode-mismatched price IDs. Returns 409 `use_create_customer_portal_session` if the org already has an active subscription in Stripe (source of truth -- bypasses any JWT staleness). FE should route those users to POST /billing/create-customer-portal-session/v1 to manage. authz: allowed_org_types=[provider] (shippers cannot subscribe -- they are never gated, paying would be a no-op), min_org_role=administrator (committing the company to recurring charges is a finance decision, not an operator one). | (CreateCheckoutSessionReq) -> (CreateCheckoutSessionRes)
 </dd>
 </dl>
 </dd>
@@ -6463,7 +6590,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billing.stripe.createCheckoutSessionV1(request: .init(priceName: .courierOps100UsdPerMonth))
+    _ = try await client.billing.stripe.createCheckoutSessionV1(request: .init(
+        productId: "product_id",
+        priceId: "price_id"
+    ))
 }
 
 try await main()
@@ -6501,7 +6631,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.stripe.<a href="/Sources/Resources/Billing/Stripe/StripeClient.swift">syncStripeToClerkV1</a>(requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billing.stripe.<a href="/Sources/Resources/Billing/Stripe/StripeClient.swift">createCustomerPortalSessionV1</a>(requestOptions: RequestOptions?) -> CreateCustomerPortalSessionRes</code></summary>
 <dl>
 <dd>
 
@@ -6513,7 +6643,7 @@ try await main()
 <dl>
 <dd>
 
-Synchronizes subscription data from Stripe to the authentication service for the current user. | () -> (bool)
+Creates a Stripe customer-portal session so the org's admin can self-serve update card / view invoices / cancel subscription. authz: allowed_org_types=[provider], min_org_role=administrator (same gate as create-checkout-session — cancelling/updating-card has the same financial weight as subscribing). Returns 404 `use_create_checkout_session` if the org has no Stripe customer. POST /billing/create-checkout-session/v1 first. | (no body) -> (CreateCustomerPortalSessionRes)
 </dd>
 </dl>
 </dd>
@@ -6534,7 +6664,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billing.stripe.syncStripeToClerkV1()
+    _ = try await client.billing.stripe.createCustomerPortalSessionV1()
 }
 
 try await main()
@@ -8063,6 +8193,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8259,6 +8395,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8447,6 +8589,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -10499,6 +10647,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -10678,6 +10829,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13052,6 +13206,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterDepartmentId: [
+            "filter_department_id"
+        ],
         filterAssignedOperatorUserId: "filter_assigned_operator_user_id",
         filterNeedsAction: true,
         filterUnassigned: true
@@ -13669,7 +13829,10 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        filterDepartment: [
+            .automotive
+        ]
     )
 }
 
@@ -16019,77 +16182,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.publicData.<a href="/Sources/Resources/Orgs/PublicData/PublicDataClient.swift">createV1</a>(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions?) -> CreateOrgPublicDataRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates org_public_data and org_private_data documents for the caller's organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.orgs.publicData.createV1(request: .init())
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CreateOrgPublicDataReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.orgs.publicData.<a href="/Sources/Resources/Orgs/PublicData/PublicDataClient.swift">updateV1</a>(request: Requests.UpdateOrgPublicDataReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -16954,6 +17046,9 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
+        filterRole: [
+            .owner
+        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -18657,6 +18752,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .draft
+        ],
+        filterOrchestratorScheduleStatus: [
+            .notCreated
+        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -23544,6 +23645,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -23816,6 +23920,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25233,6 +25340,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25514,6 +25624,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

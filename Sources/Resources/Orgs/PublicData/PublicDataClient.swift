@@ -19,19 +19,6 @@ public final class PublicDataClient: Sendable {
         )
     }
 
-    /// Creates org_public_data and org_private_data documents for the caller's organization using org_type from JWT. | (CreateOrgPublicDataReq) -> (CreateOrgPublicDataRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.CreateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> CreateOrgPublicDataRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/orgs/org_public_data/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: CreateOrgPublicDataRes.self
-        )
-    }
-
     /// Updates the handle and/or company_name for the caller's organization. | (UpdateOrgPublicDataReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

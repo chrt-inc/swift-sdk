@@ -57,13 +57,13 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Sets the org_type in Clerk's JWT public metadata. Returns True if already set and matching, sets it if not present, or raises exception if conflicting. | (SetOrgTypeReq) -> (bool)
+    /// Single onboarding entry point. Sets `org_type` in Clerk's JWT public metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Optional `handle` and `company_name` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setOrgTypeV1(request: Requests.SetOrgTypeReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setupOrgV1(request: Requests.SetupOrgReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/orgs/set_org_type/v1",
+            path: "/orgs/setup_org/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

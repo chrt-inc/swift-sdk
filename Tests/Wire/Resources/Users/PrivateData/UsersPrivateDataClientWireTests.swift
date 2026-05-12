@@ -12,7 +12,6 @@ import Chrt
                   "schema_version": 1,
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "user_id": "user_id",
-                  "stripe_customer_id": "stripe_customer_id",
                   "primary_email_address": "primary_email_address",
                   "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
@@ -36,7 +35,6 @@ import Chrt
             schemaVersion: 1,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             userId: "user_id",
-            stripeCustomerId: Optional("stripe_customer_id"),
             primaryEmailAddress: Optional("primary_email_address"),
             phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([
@@ -61,7 +59,6 @@ import Chrt
                   "schema_version": 1,
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "user_id": "user_id",
-                  "stripe_customer_id": "stripe_customer_id",
                   "primary_email_address": "primary_email_address",
                   "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
@@ -85,7 +82,6 @@ import Chrt
             schemaVersion: 1,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             userId: "user_id",
-            stripeCustomerId: Optional("stripe_customer_id"),
             primaryEmailAddress: Optional("primary_email_address"),
             phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([
@@ -113,7 +109,6 @@ import Chrt
                   "schema_version": 1,
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "user_id": "user_id",
-                  "stripe_customer_id": "stripe_customer_id",
                   "primary_email_address": "primary_email_address",
                   "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
@@ -137,7 +132,6 @@ import Chrt
             schemaVersion: 1,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             userId: "user_id",
-            stripeCustomerId: Optional("stripe_customer_id"),
             primaryEmailAddress: Optional("primary_email_address"),
             phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([
@@ -165,7 +159,6 @@ import Chrt
                   "schema_version": 1,
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "user_id": "user_id",
-                  "stripe_customer_id": "stripe_customer_id",
                   "primary_email_address": "primary_email_address",
                   "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
@@ -189,7 +182,6 @@ import Chrt
             schemaVersion: 1,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             userId: "user_id",
-            stripeCustomerId: Optional("stripe_customer_id"),
             primaryEmailAddress: Optional("primary_email_address"),
             phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([

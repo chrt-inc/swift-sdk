@@ -1,5 +1,17 @@
 ## 2.0.0 - 2026-05-12
 ### Breaking Changes
+* **`OrgsClient.setOrgTypeV1`** — renamed to `setupOrgV1`; replace `Requests.SetOrgTypeReq` with `Requests.SetupOrgReq`, which now requires `orgType` and accepts optional `handle`/`companyName` for a unified onboarding call.
+* **`StripeClient.syncStripeToClerkV1`** — removed; replace with `createCustomerPortalSessionV1()`, which returns `CreateCustomerPortalSessionRes` (with a `url` field) instead of `Bool`.
+* **`PublicDataClient.createV1`** — removed with no replacement; delete all call sites and remove references to `CreateOrgPublicDataRes` and `Requests.CreateOrgPublicDataReq`, which have also been deleted.
+* **`Requests.CreateCheckoutSessionReq`** — `priceName: PriceNameEnum` replaced by `productId: String` and `priceId: String`; update all initializers and remove any use of `PriceNameEnum`, which has been deleted.
+* **`UserPrivateData1.stripeCustomerId`** — field removed from `UserPrivateData1`; the field now lives on `OrgPrivateData1` — update any code reading `stripeCustomerId` from user private data to read from the org model instead.
+### Added
+* **`RateSheetMappingsClient.listRateSheetIdsByCounterpartyV1`** — lists rate sheet IDs mapped to a counterparty for a given task group type, with optional counterparty filters.
+* **`CreateCustomerPortalSessionRes`** — new response schema returned by `createCustomerPortalSessionV1`, containing a Stripe customer-portal `url`.
+* **`OrgPrivateData1.stripeCustomerId`** — new optional field on `OrgPrivateData1` carrying the Stripe customer ID at the org level.
+
+## 2.0.0 - 2026-05-12
+### Breaking Changes
 * **`createdByUserId`** — changed from `String` to `String?` on `Order1`, `Task1`, `TaskArtifact1`, `TaskGroup1`, and related models; add `if-let`/`guard-let` unwrapping at all call sites that read this property directly.
 * **`OrderSchedulesClient.createV1`** — renamed to `newV1` with a new required request shape (`schemaVersion`, `orderManifest`, `scheduleSpec`); update all call sites to use the new method and request type.
 * **`OrderSchedulesClient.roundTripModelTestV1`** — removed with no replacement; delete any calls to this method.

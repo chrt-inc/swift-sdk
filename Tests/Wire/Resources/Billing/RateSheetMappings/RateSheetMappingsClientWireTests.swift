@@ -126,6 +126,36 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func listRateSheetIdsByCounterpartyV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  "string"
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "string"
+        ]
+        let response = try await client.billing.rateSheetMappings.listRateSheetIdsByCounterpartyV1(
+            tgType: .chrtGroundProvider,
+            counterpartyOrgId: "counterparty_org_id",
+            counterpartyDriverId: "counterparty_driver_id",
+            counterpartyOffChrtProviderOrgId: "counterparty_off_chrt_provider_org_id",
+            counterpartyOffChrtShipperOrgId: "counterparty_off_chrt_shipper_org_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
