@@ -71,6 +71,12 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .draft
+            ],
+            filterOrchestratorScheduleStatus: [
+                .notCreated
+            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

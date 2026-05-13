@@ -1,3 +1,17 @@
+## 1.651.1 - 2026-05-13
+* chore: add filterStatus, filterType, filterRole, filterDepartment, and filterOrchestratorScheduleStatus to wire tests
+* Update wire test fixtures across billing, listing, operations, orgs, and
+* shipping clients to include newly added optional filter parameters. These
+* test-only changes exercise the new filter parameters that were previously
+* added to the public API surface.
+* Key changes:
+* Add `filterStatus` to BillingLedgerPeriods, BillingLedgers, LineItemGroups, Statements, BidThreads, Listings, OrderSchedules, Orders (Expanded), and TaskGroups (Expanded) wire tests
+* Add `filterType` to Listings wire tests
+* Add `filterRole` to Orgs and Drivers wire tests
+* Add `filterDepartment` and `filterDepartmentId` to Departments and Cases wire tests
+* Add `filterOrchestratorScheduleStatus` to OrderSchedules wire tests
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-05-12
 ### Breaking Changes
 * **`OrgsClient.setOrgTypeV1`** — renamed to `setupOrgV1`; replace `Requests.SetOrgTypeReq` with `Requests.SetupOrgReq`, which now requires `orgType` and accepts optional `handle`/`companyName` for a unified onboarding call.
