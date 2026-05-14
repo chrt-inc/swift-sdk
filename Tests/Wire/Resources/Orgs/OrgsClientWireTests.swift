@@ -86,9 +86,6 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.listMembersV1(
-            filterRole: [
-                .owner
-            ],
             sortBy: .firstName,
             sortOrder: .asc,
             page: 1,
