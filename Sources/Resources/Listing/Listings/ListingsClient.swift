@@ -7,15 +7,15 @@ public final class ListingsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Fetches a listing by id in the bidder-facing shape (no `internal_notes`). Visible to the lister and to snapshot participants (as bidder — provider org or driver). Listers wanting the full record call `by_id_for_lister/v1`. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingLimitedForBidder1)
+    /// Fetches a listing by id in the bidder-facing shape with tasks and mileage. Visible to the lister and to snapshot participants (as bidder — provider org or driver). Listers wanting the full record call `by_id_for_lister/v1`. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidder1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func byIdV1(listingId: String, requestOptions: RequestOptions? = nil) async throws -> ListingLimitedForBidder1 {
+    public func byIdV1(listingId: String, requestOptions: RequestOptions? = nil) async throws -> ListingForBidder1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/listings/by_id/v1/\(listingId)",
             requestOptions: requestOptions,
-            responseType: ListingLimitedForBidder1.self
+            responseType: ListingForBidder1.self
         )
     }
 
@@ -85,7 +85,7 @@ public final class ListingsClient: Sendable {
         )
     }
 
-    /// Lists PROVIDERS-audience listings where the caller's org is a snapshot participant. Provider-side bidder view with filtering, sorting, and pagination. Returns the bidder shape (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ListingForBidderListRes)
+    /// Lists PROVIDERS-audience listings where the caller's org is a snapshot participant. Provider-side bidder view with filtering, sorting, and pagination. Returns the bidder shape with tasks and mileage (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ListingForBidderListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
@@ -125,7 +125,7 @@ public final class ListingsClient: Sendable {
         )
     }
 
-    /// Lists DRIVERS-audience listings where the caller (resolved to a Driver of their org) is a snapshot participant. Driver-side bidder view with filtering, sorting, and pagination. Returns the bidder shape (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidderListRes)
+    /// Lists DRIVERS-audience listings where the caller (resolved to a Driver of their org) is a snapshot participant. Driver-side bidder view with filtering, sorting, and pagination. Returns the bidder shape with tasks and mileage (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidderListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).

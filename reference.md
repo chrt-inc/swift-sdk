@@ -97,6 +97,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
+        filterRole: [
+            .owner
+        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -582,6 +585,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .active
+        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -1015,6 +1021,9 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
+        filterStatus: [
+            .open
+        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1484,6 +1493,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5094,6 +5106,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5346,6 +5361,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -7923,7 +7941,7 @@ try await main()
 </details>
 
 ## Listing Listings
-<details><summary><code>client.listing.listings.<a href="/Sources/Resources/Listing/Listings/ListingsClient.swift">byIdV1</a>(listingId: String, requestOptions: RequestOptions?) -> ListingLimitedForBidder1</code></summary>
+<details><summary><code>client.listing.listings.<a href="/Sources/Resources/Listing/Listings/ListingsClient.swift">byIdV1</a>(listingId: String, requestOptions: RequestOptions?) -> ListingForBidder1</code></summary>
 <dl>
 <dd>
 
@@ -7935,7 +7953,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches a listing by id in the bidder-facing shape (no `internal_notes`). Visible to the lister and to snapshot participants (as bidder — provider org or driver). Listers wanting the full record call `by_id_for_lister/v1`. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingLimitedForBidder1)
+Fetches a listing by id in the bidder-facing shape with tasks and mileage. Visible to the lister and to snapshot participants (as bidder — provider org or driver). Listers wanting the full record call `by_id_for_lister/v1`. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidder1)
 </dd>
 </dl>
 </dd>
@@ -8175,6 +8193,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8345,7 +8369,7 @@ try await main()
 <dl>
 <dd>
 
-Lists PROVIDERS-audience listings where the caller's org is a snapshot participant. Provider-side bidder view with filtering, sorting, and pagination. Returns the bidder shape (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ListingForBidderListRes)
+Lists PROVIDERS-audience listings where the caller's org is a snapshot participant. Provider-side bidder view with filtering, sorting, and pagination. Returns the bidder shape with tasks and mileage (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ListingForBidderListRes)
 </dd>
 </dl>
 </dd>
@@ -8371,6 +8395,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8533,7 +8563,7 @@ try await main()
 <dl>
 <dd>
 
-Lists DRIVERS-audience listings where the caller (resolved to a Driver of their org) is a snapshot participant. Driver-side bidder view with filtering, sorting, and pagination. Returns the bidder shape (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidderListRes)
+Lists DRIVERS-audience listings where the caller (resolved to a Driver of their org) is a snapshot participant. Driver-side bidder view with filtering, sorting, and pagination. Returns the bidder shape with tasks and mileage (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidderListRes)
 </dd>
 </dl>
 </dd>
@@ -8559,6 +8589,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -10611,6 +10647,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -10790,6 +10829,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13164,6 +13206,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterDepartmentId: [
+            "filter_department_id"
+        ],
         filterAssignedOperatorUserId: "filter_assigned_operator_user_id",
         filterNeedsAction: true,
         filterUnassigned: true
@@ -13781,7 +13829,10 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        filterDepartment: [
+            .automotive
+        ]
     )
 }
 
@@ -16995,6 +17046,9 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
+        filterRole: [
+            .owner
+        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -18698,6 +18752,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .draft
+        ],
+        filterOrchestratorScheduleStatus: [
+            .notCreated
+        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -21109,7 +21169,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForShipperPayProviderV1</a>(taskGroupId: String, request: TaskGroupQuoteClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
+<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForShipperPayProviderV1</a>(taskGroupId: String, request: Requests.TaskGroupQuoteForShipperPayProviderClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
 <dl>
 <dd>
 
@@ -21121,7 +21181,7 @@ try await main()
 <dl>
 <dd>
 
-Preview the LineItem materialization that would result from applying a rate sheet to the SPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the derived parties (shipper -> coordinator). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_shipper_pay_provider/v1 then attach_lig_to_shipper_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteClientReq) -> (TaskGroupQuoteResp)
+Preview the LineItem materialization that would result from applying a rate sheet to the SPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (shipper -> coordinator). Auto-resolves the rate sheet via RateSheetMapping1 for the requested shipper unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_shipper_pay_provider/v1 then attach_lig_to_shipper_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteForShipperPayProviderClientReq) -> (TaskGroupQuoteResp)
 </dd>
 </dl>
 </dd>
@@ -21144,9 +21204,7 @@ private func main() async throws {
 
     _ = try await client.shipping.taskGroups.quoteForShipperPayProviderV1(
         taskGroupId: "task_group_id",
-        request: TaskGroupQuoteClientReq(
-
-        )
+        request: .init()
     )
 }
 
@@ -21173,7 +21231,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `TaskGroupQuoteClientReq` 
+**request:** `Requests.TaskGroupQuoteForShipperPayProviderClientReq` 
     
 </dd>
 </dl>
@@ -21193,7 +21251,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForProviderPayProviderV1</a>(taskGroupId: String, request: TaskGroupQuoteClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
+<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForProviderPayProviderV1</a>(taskGroupId: String, request: Requests.TaskGroupQuoteForProviderPayProviderClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
 <dl>
 <dd>
 
@@ -21205,7 +21263,7 @@ try await main()
 <dl>
 <dd>
 
-Preview the LineItem materialization that would result from applying a rate sheet to the PPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the derived parties (coordinator -> executor). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_provider/v1 then attach_lig_to_provider_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteClientReq) -> (TaskGroupQuoteResp)
+Preview the LineItem materialization that would result from applying a rate sheet to the PPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (coordinator -> executor). Auto-resolves the rate sheet via RateSheetMapping1 for the requested executor unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_provider/v1 then attach_lig_to_provider_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteForProviderPayProviderClientReq) -> (TaskGroupQuoteResp)
 </dd>
 </dl>
 </dd>
@@ -21228,9 +21286,7 @@ private func main() async throws {
 
     _ = try await client.shipping.taskGroups.quoteForProviderPayProviderV1(
         taskGroupId: "task_group_id",
-        request: TaskGroupQuoteClientReq(
-
-        )
+        request: .init()
     )
 }
 
@@ -21257,7 +21313,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `TaskGroupQuoteClientReq` 
+**request:** `Requests.TaskGroupQuoteForProviderPayProviderClientReq` 
     
 </dd>
 </dl>
@@ -21277,7 +21333,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForProviderPayDriverV1</a>(taskGroupId: String, request: TaskGroupQuoteClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
+<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForProviderPayDriverV1</a>(taskGroupId: String, request: Requests.TaskGroupQuoteForProviderPayDriverClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
 <dl>
 <dd>
 
@@ -21289,7 +21345,7 @@ try await main()
 <dl>
 <dd>
 
-Preview the LineItem materialization that would result from applying a rate sheet to the PPD vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the derived parties (executor -> driver). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. PPD is on-chrt-executor only — TGs with an off-chrt executor are 400'd. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_driver/v1 then attach_lig_to_provider_pay_driver/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (TaskGroupQuoteClientReq) -> (TaskGroupQuoteResp)
+Preview the LineItem materialization that would result from applying a rate sheet to the PPD vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (executor -> driver). Auto-resolves the rate sheet via RateSheetMapping1 for the requested driver unless body.rate_sheet_id is provided. PPD is on-chrt-executor only — TGs with an off-chrt executor are 400'd. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_driver/v1 then attach_lig_to_provider_pay_driver/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (TaskGroupQuoteForProviderPayDriverClientReq) -> (TaskGroupQuoteResp)
 </dd>
 </dl>
 </dd>
@@ -21312,9 +21368,7 @@ private func main() async throws {
 
     _ = try await client.shipping.taskGroups.quoteForProviderPayDriverV1(
         taskGroupId: "task_group_id",
-        request: TaskGroupQuoteClientReq(
-
-        )
+        request: .init(driverId: "driver_id")
     )
 }
 
@@ -21341,7 +21395,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `TaskGroupQuoteClientReq` 
+**request:** `Requests.TaskGroupQuoteForProviderPayDriverClientReq` 
     
 </dd>
 </dl>
@@ -23585,6 +23639,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -23857,6 +23914,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25274,6 +25334,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25555,6 +25618,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

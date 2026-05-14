@@ -705,9 +705,7 @@ import Chrt
         )
         let response = try await client.shipping.taskGroups.quoteForShipperPayProviderV1(
             taskGroupId: "task_group_id",
-            request: TaskGroupQuoteClientReq(
-
-            ),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -798,9 +796,7 @@ import Chrt
         )
         let response = try await client.shipping.taskGroups.quoteForProviderPayProviderV1(
             taskGroupId: "task_group_id",
-            request: TaskGroupQuoteClientReq(
-
-            ),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -891,9 +887,7 @@ import Chrt
         )
         let response = try await client.shipping.taskGroups.quoteForProviderPayDriverV1(
             taskGroupId: "task_group_id",
-            request: TaskGroupQuoteClientReq(
-
-            ),
+            request: .init(driverId: "driver_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

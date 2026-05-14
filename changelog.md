@@ -1,3 +1,12 @@
+## 2.0.0 - 2026-05-14
+### Breaking Changes
+* **`ListingsClient.byIdV1`** — now returns `ListingForBidder1` (an envelope with `.listing` and `.taskGroup`) instead of `ListingLimitedForBidder1`; update all call sites to access `.listing` and `.taskGroup` on the response.
+* **`ListingForBidderListRes.items`** — element type changed from `[ListingLimitedForBidder1]` to `[ListingForBidder1]`; update any code iterating over items to unwrap the new envelope type.
+* **`TaskGroupQuoteClientReq`** — removed; replace with the new per-payer request types (`TaskGroupQuoteForShipperPayProviderClientReq`, `TaskGroupQuoteForProviderPayProviderClientReq`, or `TaskGroupQuoteForProviderPayDriverClientReq`) depending on the payment flow.
+### Added
+* **`Requests.TaskGroupQuoteForShipperPayProviderClientReq`**, **`Requests.TaskGroupQuoteForProviderPayProviderClientReq`**, and **`Requests.TaskGroupQuoteForProviderPayDriverClientReq`** — new per-payer request types replacing `TaskGroupQuoteClientReq`, each carrying the fields relevant to their respective payment flow.
+* **`ListingTaskForBidder1`** and **`ListingTaskGroupForBidder1`** — new schema types exposing task and task-group data (including `action`, `location`, and `mileageEstimated`) to bidders on a listing.
+
 ## 1.651.1 - 2026-05-13
 * chore: add filterStatus, filterType, filterRole, filterDepartment, and filterOrchestratorScheduleStatus to wire tests
 * Update wire test fixtures across billing, listing, operations, orgs, and

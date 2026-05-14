@@ -264,10 +264,10 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Preview the LineItem materialization that would result from applying a rate sheet to the SPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the derived parties (shipper -> coordinator). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_shipper_pay_provider/v1 then attach_lig_to_shipper_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteClientReq) -> (TaskGroupQuoteResp)
+    /// Preview the LineItem materialization that would result from applying a rate sheet to the SPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (shipper -> coordinator). Auto-resolves the rate sheet via RateSheetMapping1 for the requested shipper unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_shipper_pay_provider/v1 then attach_lig_to_shipper_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteForShipperPayProviderClientReq) -> (TaskGroupQuoteResp)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func quoteForShipperPayProviderV1(taskGroupId: String, request: TaskGroupQuoteClientReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupQuoteResp {
+    public func quoteForShipperPayProviderV1(taskGroupId: String, request: Requests.TaskGroupQuoteForShipperPayProviderClientReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupQuoteResp {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/quote_for_shipper_pay_provider/v1/\(taskGroupId)",
@@ -277,10 +277,10 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Preview the LineItem materialization that would result from applying a rate sheet to the PPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the derived parties (coordinator -> executor). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_provider/v1 then attach_lig_to_provider_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteClientReq) -> (TaskGroupQuoteResp)
+    /// Preview the LineItem materialization that would result from applying a rate sheet to the PPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (coordinator -> executor). Auto-resolves the rate sheet via RateSheetMapping1 for the requested executor unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_provider/v1 then attach_lig_to_provider_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteForProviderPayProviderClientReq) -> (TaskGroupQuoteResp)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func quoteForProviderPayProviderV1(taskGroupId: String, request: TaskGroupQuoteClientReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupQuoteResp {
+    public func quoteForProviderPayProviderV1(taskGroupId: String, request: Requests.TaskGroupQuoteForProviderPayProviderClientReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupQuoteResp {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/quote_for_provider_pay_provider/v1/\(taskGroupId)",
@@ -290,10 +290,10 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Preview the LineItem materialization that would result from applying a rate sheet to the PPD vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the derived parties (executor -> driver). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. PPD is on-chrt-executor only — TGs with an off-chrt executor are 400'd. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_driver/v1 then attach_lig_to_provider_pay_driver/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (TaskGroupQuoteClientReq) -> (TaskGroupQuoteResp)
+    /// Preview the LineItem materialization that would result from applying a rate sheet to the PPD vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (executor -> driver). Auto-resolves the rate sheet via RateSheetMapping1 for the requested driver unless body.rate_sheet_id is provided. PPD is on-chrt-executor only — TGs with an off-chrt executor are 400'd. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_driver/v1 then attach_lig_to_provider_pay_driver/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (TaskGroupQuoteForProviderPayDriverClientReq) -> (TaskGroupQuoteResp)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func quoteForProviderPayDriverV1(taskGroupId: String, request: TaskGroupQuoteClientReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupQuoteResp {
+    public func quoteForProviderPayDriverV1(taskGroupId: String, request: Requests.TaskGroupQuoteForProviderPayDriverClientReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupQuoteResp {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/quote_for_provider_pay_driver/v1/\(taskGroupId)",
