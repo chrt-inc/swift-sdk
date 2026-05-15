@@ -1,25 +1,19 @@
 import Foundation
 
-/// Organization roles used by Clerk in `jwt.o.rol` field
+/// Organization roles used in authenticated caller claims.
 /// 
 /// Hierarchy (highest to lowest):
-///     owner > administrator > operator > driver
+///     owner > admin > operator > member
 /// 
 /// Role availability by org type:
-///     {owner, administrator, operator}  → PROVIDER | SHIPPER
-///     {driver}                          → PROVIDER only
+///     {owner, admin, operator, member}  → PROVIDER | SHIPPER
 /// 
 /// Note: Hierarchical enforcement depends on utils_shipping_authz helper functions.
 /// 
-/// Clerk dashboard with roles settings:
-/// - prod: https://dashboard.clerk.com/apps/app_2rDeFYQ7SBioYoMhG38FgirTE4Q/instances/ins_2rDmMgzRGFXd6Ml6N8eV8pOXeyI/organizations-settings/roles
-/// - dev: https://dashboard.clerk.com/apps/app_2rDeFYQ7SBioYoMhG38FgirTE4Q/instances/ins_2rDeFZFEZ3nIC9VQt3zYfvzL14Z/organizations-settings/roles
-/// 
-/// Clerk requires the "org:" prefix when calling its API, but we store without it.
-/// When sending to Clerk, prepend "org:" to the enum value.
+/// WorkOS role slugs match these enum values.
 public enum OrgRoleEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case owner
-    case administrator
+    case admin
     case `operator`
-    case driver
+    case member
 }

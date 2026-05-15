@@ -6,13 +6,13 @@ public struct OrgInfoResponse: Codable, Hashable, Sendable {
     public let name: String
     public let slug: String?
     public let imageUrl: String?
-    public let hasImage: Bool
+    public let hasImage: Bool?
     public let membersCount: Int?
-    public let maxAllowedMemberships: Int
-    public let adminDeleteEnabled: Bool
+    public let maxAllowedMemberships: Int?
+    public let adminDeleteEnabled: Bool?
     public let publicMetadata: [String: JSONValue]
-    public let createdAt: Int
-    public let updatedAt: Int
+    public let createdAt: Int?
+    public let updatedAt: Int?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -21,13 +21,13 @@ public struct OrgInfoResponse: Codable, Hashable, Sendable {
         name: String,
         slug: String? = nil,
         imageUrl: String? = nil,
-        hasImage: Bool,
+        hasImage: Bool? = nil,
         membersCount: Int? = nil,
-        maxAllowedMemberships: Int,
-        adminDeleteEnabled: Bool,
+        maxAllowedMemberships: Int? = nil,
+        adminDeleteEnabled: Bool? = nil,
         publicMetadata: [String: JSONValue],
-        createdAt: Int,
-        updatedAt: Int,
+        createdAt: Int? = nil,
+        updatedAt: Int? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
@@ -50,13 +50,13 @@ public struct OrgInfoResponse: Codable, Hashable, Sendable {
         self.name = try container.decode(String.self, forKey: .name)
         self.slug = try container.decodeIfPresent(String.self, forKey: .slug)
         self.imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
-        self.hasImage = try container.decode(Bool.self, forKey: .hasImage)
+        self.hasImage = try container.decodeIfPresent(Bool.self, forKey: .hasImage)
         self.membersCount = try container.decodeIfPresent(Int.self, forKey: .membersCount)
-        self.maxAllowedMemberships = try container.decode(Int.self, forKey: .maxAllowedMemberships)
-        self.adminDeleteEnabled = try container.decode(Bool.self, forKey: .adminDeleteEnabled)
+        self.maxAllowedMemberships = try container.decodeIfPresent(Int.self, forKey: .maxAllowedMemberships)
+        self.adminDeleteEnabled = try container.decodeIfPresent(Bool.self, forKey: .adminDeleteEnabled)
         self.publicMetadata = try container.decode([String: JSONValue].self, forKey: .publicMetadata)
-        self.createdAt = try container.decode(Int.self, forKey: .createdAt)
-        self.updatedAt = try container.decode(Int.self, forKey: .updatedAt)
+        self.createdAt = try container.decodeIfPresent(Int.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Int.self, forKey: .updatedAt)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -67,13 +67,13 @@ public struct OrgInfoResponse: Codable, Hashable, Sendable {
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.slug, forKey: .slug)
         try container.encodeIfPresent(self.imageUrl, forKey: .imageUrl)
-        try container.encode(self.hasImage, forKey: .hasImage)
+        try container.encodeIfPresent(self.hasImage, forKey: .hasImage)
         try container.encodeIfPresent(self.membersCount, forKey: .membersCount)
-        try container.encode(self.maxAllowedMemberships, forKey: .maxAllowedMemberships)
-        try container.encode(self.adminDeleteEnabled, forKey: .adminDeleteEnabled)
+        try container.encodeIfPresent(self.maxAllowedMemberships, forKey: .maxAllowedMemberships)
+        try container.encodeIfPresent(self.adminDeleteEnabled, forKey: .adminDeleteEnabled)
         try container.encode(self.publicMetadata, forKey: .publicMetadata)
-        try container.encode(self.createdAt, forKey: .createdAt)
-        try container.encode(self.updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(self.createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(self.updatedAt, forKey: .updatedAt)
     }
 
     /// Keys for encoding/decoding struct properties.

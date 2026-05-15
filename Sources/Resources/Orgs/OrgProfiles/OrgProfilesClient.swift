@@ -57,7 +57,7 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
-    /// Returns the organization avatar image URL from Clerk or a placeholder if not found. | () -> (str)
+    /// Returns the organization avatar image URL from WorkOS or a placeholder if not found. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {

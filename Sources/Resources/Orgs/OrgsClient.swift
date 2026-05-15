@@ -57,7 +57,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Single onboarding entry point. Sets `org_type` in Clerk's JWT public metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Optional `handle` and `company_name` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
+    /// Single onboarding entry point. Sets `org_type` in WorkOS JWT metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Optional `handle` and `company_name` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setupOrgV1(request: Requests.SetupOrgReq, requestOptions: RequestOptions? = nil) async throws -> Bool {

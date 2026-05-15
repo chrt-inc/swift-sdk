@@ -36,15 +36,15 @@ import Chrt
             name: "name",
             slug: Optional("slug"),
             imageUrl: Optional("image_url"),
-            hasImage: true,
+            hasImage: Optional(true),
             membersCount: Optional(1),
-            maxAllowedMemberships: 1,
-            adminDeleteEnabled: true,
+            maxAllowedMemberships: Optional(1),
+            adminDeleteEnabled: Optional(true),
             publicMetadata: [
                 "key": JSONValue.string("value")
             ],
-            createdAt: 1,
-            updatedAt: 1
+            createdAt: Optional(1),
+            updatedAt: Optional(1)
         )
         let response = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -86,6 +86,9 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.listMembersV1(
+            filterRole: [
+                .owner
+            ],
             sortBy: .firstName,
             sortOrder: .asc,
             page: 1,

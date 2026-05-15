@@ -1,3 +1,14 @@
+## 2.0.0 - 2026-05-15
+### Breaking Changes
+* **`Caller`** — required property `o: ClerkOrgData` removed and Clerk-specific optionals `orgPublicMetadata` and `primaryEmailAddress` replaced with `orgRole`, `orgType`, `orgSubscription`, and `userEmail`; update all `Caller` construction and access sites.
+* **`ClerkOrgData`** — type removed entirely; the file has been replaced by `InternalDelegationTokenRes`; remove any references to `ClerkOrgData`.
+* **`OrgRoleEnum`** — cases `administrator` and `driver` renamed to `admin` and `member` respectively; update all switch statements and comparisons that reference the old case names.
+* **`OrgInfoResponse`** — fields `hasImage`, `maxAllowedMemberships`, `adminDeleteEnabled`, `createdAt`, and `updatedAt` changed from required (`Bool`/`Int`) to optional (`Bool?`/`Int?`); add nil-handling at all access sites.
+### Added
+* **`InternalDelegationTokenReq`** and **`InternalDelegationTokenRes`** — new schema types supporting internal delegation token request/response flows.
+* **`WorkflowActorContext`** — new schema type carrying actor identity (`userId`, `orgId`, `orgType`, and optional role/subscription/email) for workflow delegation.
+* **`CallerCredentialTypeEnum.internalDelegationJwt`** — new credential type case for internal delegation JWTs.
+
 ## 1.659.0 - 2026-05-15
 ### Added
 * **`BillingClient.lineItems`** — new `LineItemsClient` sub-client with a nested `s3Objects` (`LineItemsS3ObjectsClient`) for managing S3 objects attached to line items.

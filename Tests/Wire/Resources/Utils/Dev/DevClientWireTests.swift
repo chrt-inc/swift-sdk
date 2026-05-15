@@ -199,17 +199,12 @@ import Chrt
                   "caller": {
                     "credential_type": "session_jwt",
                     "credential": "credential",
-                    "o": {
-                      "id": "id",
-                      "rol": "owner",
-                      "slg": "slg"
-                    },
                     "user_id": "user_id",
                     "org_id": "org_id",
-                    "org_public_metadata": {
-                      "key": "value"
-                    },
-                    "primary_email_address": "primary_email_address"
+                    "org_role": "owner",
+                    "org_type": "provider",
+                    "org_subscription": true,
+                    "user_email": "user_email"
                   },
                   "raw_claims": {
                     "key": "value"
@@ -228,17 +223,12 @@ import Chrt
             caller: Caller(
                 credentialType: .sessionJwt,
                 credential: Optional("credential"),
-                o: ClerkOrgData(
-                    id: Optional("id"),
-                    rol: Optional(.owner),
-                    slg: Optional("slg")
-                ),
                 userId: "user_id",
                 orgId: "org_id",
-                orgPublicMetadata: Optional([
-                    "key": JSONValue.string("value")
-                ]),
-                primaryEmailAddress: Optional("primary_email_address")
+                orgRole: Optional(.owner),
+                orgType: Optional(.provider),
+                orgSubscription: Optional(true),
+                userEmail: Optional("user_email")
             ),
             rawClaims: [
                 "key": JSONValue.string("value")

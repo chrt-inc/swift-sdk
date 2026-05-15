@@ -3,6 +3,7 @@ import Foundation
 public struct UserPrivateData1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let createdAtTimestamp: Date
+    /// Must be a string starting with `user_`
     public let userId: String
     public let primaryEmailAddress: String?
     public let phoneNumber: String?
