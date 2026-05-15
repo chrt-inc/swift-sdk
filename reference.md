@@ -97,6 +97,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
+        filterRole: [
+            .owner
+        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -582,6 +585,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .active
+        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -1015,6 +1021,9 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
+        filterStatus: [
+            .open
+        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1447,6 +1456,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">getLineItemsV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> LineItemGroupLineItemsRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves all LineItems referenced by a LineItemGroup the caller can access. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupLineItemsRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.getLineItemsV1(lineItemGroupId: "line_item_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">listV1</a>(sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: LineItemGroupStatusEnum1?, filterTaskGroupId: String?, filterOrderId: String?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterOwnedByOrgId: String?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, filterPaymentDestinationDriverId: String?, filterRateSheetId: String?, filterStatementId: String?, filterAttachedToStatement: Bool?, requestOptions: RequestOptions?) -> LineItemGroupListRes</code></summary>
 <dl>
 <dd>
@@ -1484,6 +1564,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5094,6 +5177,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5346,6 +5432,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .staged
+        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -7182,6 +7271,302 @@ try await main()
 </dl>
 </details>
 
+## Billing LineItems S3Objects
+<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">getS3ObjectMetadataV1</a>(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> LineItemS3ObjectMetadata1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves metadata for a line item S3 object. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemS3ObjectMetadata1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItems.s3Objects.getS3ObjectMetadataV1(lineItemS3ObjectMetadataId: "line_item_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">getV1</a>(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams a line item S3 object file from storage. | authz_personas=[lig_org_operators, lig_driver] | () -> (binary)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItems.s3Objects.getV1(lineItemS3ObjectMetadataId: "line_item_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">addV1</a>(lineItemId: String, request: Requests.BodyLineItemsS3ObjectPostAddV1BillingLineItemsS3ObjectsAddV1LineItemIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads a file to a line item. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItems.s3Objects.addV1(
+        lineItemId: "line_item_id",
+        request: .init(file: .init(data: Data("".utf8)))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.BodyLineItemsS3ObjectPostAddV1BillingLineItemsS3ObjectsAddV1LineItemIdPost` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">deleteV1</a>(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an S3 object metadata and the associated S3 object from a line item. | authz_personas=[lig_org_operators, lig_driver] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItems.s3Objects.deleteV1(lineItemS3ObjectMetadataId: "line_item_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lineItemS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Integrations AirWaybills
 <details><summary><code>client.integrations.airWaybills.<a href="/Sources/Resources/Integrations/AirWaybills/AirWaybillsClient.swift">createV1</a>(request: Requests.AirWaybillCreateReq, requestOptions: RequestOptions?) -> ChampAirWaybill1</code></summary>
 <dl>
@@ -8175,6 +8560,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8371,6 +8762,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8559,6 +8956,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -10611,6 +11014,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -10790,6 +11196,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13164,6 +13573,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterDepartmentId: [
+            "filter_department_id"
+        ],
         filterAssignedOperatorUserId: "filter_assigned_operator_user_id",
         filterNeedsAction: true,
         filterUnassigned: true
@@ -13781,7 +14196,10 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        filterDepartment: [
+            .automotive
+        ]
     )
 }
 
@@ -16995,6 +17413,9 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
+        filterRole: [
+            .owner
+        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -18698,6 +19119,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .draft
+        ],
+        filterOrchestratorScheduleStatus: [
+            .notCreated
+        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -23579,6 +24006,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -23851,6 +24281,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25268,6 +25701,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25549,6 +25985,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

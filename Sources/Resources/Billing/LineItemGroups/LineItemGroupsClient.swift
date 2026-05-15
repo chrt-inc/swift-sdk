@@ -23,6 +23,18 @@ public final class LineItemGroupsClient: Sendable {
         )
     }
 
+    /// Retrieves all LineItems referenced by a LineItemGroup the caller can access. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupLineItemsRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getLineItemsV1(lineItemGroupId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemGroupLineItemsRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing/line_item_groups/line_items/v1/\(lineItemGroupId)",
+            requestOptions: requestOptions,
+            responseType: LineItemGroupLineItemsRes.self
+        )
+    }
+
     /// Lists LineItemGroups the caller owns, is a payment counterparty on, or is the destination driver for. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupListRes)
     ///
     /// - Parameter sortOrder: Sort order on `_id` (proxy for creation order; LIGs have no user-facing timestamps to sort by).

@@ -11,6 +11,7 @@ public final class BillingClient: Sendable {
     public let statements: StatementsClient
     public let stripe: StripeClient
     public let stripeConnect: StripeConnectClient
+    public let lineItems: LineItemsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
@@ -24,6 +25,7 @@ public final class BillingClient: Sendable {
         self.statements = StatementsClient(config: config)
         self.stripe = StripeClient(config: config)
         self.stripeConnect = StripeConnectClient(config: config)
+        self.lineItems = LineItemsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

@@ -1,3 +1,11 @@
+## 1.659.0 - 2026-05-15
+### Added
+* **`BillingClient.lineItems`** — new `LineItemsClient` sub-client with a nested `s3Objects` (`LineItemsS3ObjectsClient`) for managing S3 objects attached to line items.
+* **`LineItemsS3ObjectsClient`** — exposes `getS3ObjectMetadataV1`, `getV1` (binary stream), `addV1` (multipart file upload), and `deleteV1` for line item S3 object lifecycle management.
+* **`LineItemGroupsClient.getLineItemsV1`** — retrieves all `LineItem1` records for a given line item group, categorized into `items`, `agreementLineItems`, `amendmentLineItems`, `pendingLineItems`, and `deniedLineItems`.
+* **`LineItemGroupLineItemsRes`** — new response schema returned by `getLineItemsV1` containing categorized line item arrays.
+* **`LineItemS3ObjectMetadata1`** — new schema type representing S3 object metadata for a line item, including upload timestamp, uploader IDs, content type, filename, and optional blurhash.
+
 ## 2.0.0 - 2026-05-14
 ### Breaking Changes
 * **`ListingsClient.byIdV1`** — now returns `ListingForBidder1` (an envelope with `.listing` and `.taskGroup`) instead of `ListingLimitedForBidder1`; update all call sites to access `.listing` and `.taskGroup` on the response.

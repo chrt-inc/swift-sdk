@@ -117,6 +117,260 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func getLineItemsV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "schema_version": 1,
+                      "comments": "comments",
+                      "item": "base_rate",
+                      "units": "usd",
+                      "rate": 1.1,
+                      "quantity": 1.1,
+                      "adjustment": 1.1,
+                      "adjustment_comments": "adjustment_comments",
+                      "_id": "_id",
+                      "provenance": "rate_sheet",
+                      "ad_hoc__submitted_by_user_id": "ad_hoc__submitted_by_user_id",
+                      "ad_hoc__submitted_by_org_id": "ad_hoc__submitted_by_org_id",
+                      "ad_hoc__status": "pending",
+                      "rate_sheet_id": "rate_sheet_id",
+                      "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "line_item_s3_object_metadata_ids": [
+                        "line_item_s3_object_metadata_ids"
+                      ]
+                    }
+                  ],
+                  "agreement_line_items": [
+                    {
+                      "schema_version": 1,
+                      "comments": "comments",
+                      "item": "base_rate",
+                      "units": "usd",
+                      "rate": 1.1,
+                      "quantity": 1.1,
+                      "adjustment": 1.1,
+                      "adjustment_comments": "adjustment_comments",
+                      "_id": "_id",
+                      "provenance": "rate_sheet",
+                      "ad_hoc__submitted_by_user_id": "ad_hoc__submitted_by_user_id",
+                      "ad_hoc__submitted_by_org_id": "ad_hoc__submitted_by_org_id",
+                      "ad_hoc__status": "pending",
+                      "rate_sheet_id": "rate_sheet_id",
+                      "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "line_item_s3_object_metadata_ids": [
+                        "line_item_s3_object_metadata_ids"
+                      ]
+                    }
+                  ],
+                  "amendment_line_items": [
+                    {
+                      "schema_version": 1,
+                      "comments": "comments",
+                      "item": "base_rate",
+                      "units": "usd",
+                      "rate": 1.1,
+                      "quantity": 1.1,
+                      "adjustment": 1.1,
+                      "adjustment_comments": "adjustment_comments",
+                      "_id": "_id",
+                      "provenance": "rate_sheet",
+                      "ad_hoc__submitted_by_user_id": "ad_hoc__submitted_by_user_id",
+                      "ad_hoc__submitted_by_org_id": "ad_hoc__submitted_by_org_id",
+                      "ad_hoc__status": "pending",
+                      "rate_sheet_id": "rate_sheet_id",
+                      "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "line_item_s3_object_metadata_ids": [
+                        "line_item_s3_object_metadata_ids"
+                      ]
+                    }
+                  ],
+                  "pending_line_items": [
+                    {
+                      "schema_version": 1,
+                      "comments": "comments",
+                      "item": "base_rate",
+                      "units": "usd",
+                      "rate": 1.1,
+                      "quantity": 1.1,
+                      "adjustment": 1.1,
+                      "adjustment_comments": "adjustment_comments",
+                      "_id": "_id",
+                      "provenance": "rate_sheet",
+                      "ad_hoc__submitted_by_user_id": "ad_hoc__submitted_by_user_id",
+                      "ad_hoc__submitted_by_org_id": "ad_hoc__submitted_by_org_id",
+                      "ad_hoc__status": "pending",
+                      "rate_sheet_id": "rate_sheet_id",
+                      "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "line_item_s3_object_metadata_ids": [
+                        "line_item_s3_object_metadata_ids"
+                      ]
+                    }
+                  ],
+                  "denied_line_items": [
+                    {
+                      "schema_version": 1,
+                      "comments": "comments",
+                      "item": "base_rate",
+                      "units": "usd",
+                      "rate": 1.1,
+                      "quantity": 1.1,
+                      "adjustment": 1.1,
+                      "adjustment_comments": "adjustment_comments",
+                      "_id": "_id",
+                      "provenance": "rate_sheet",
+                      "ad_hoc__submitted_by_user_id": "ad_hoc__submitted_by_user_id",
+                      "ad_hoc__submitted_by_org_id": "ad_hoc__submitted_by_org_id",
+                      "ad_hoc__status": "pending",
+                      "rate_sheet_id": "rate_sheet_id",
+                      "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "line_item_s3_object_metadata_ids": [
+                        "line_item_s3_object_metadata_ids"
+                      ]
+                    }
+                  ]
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = LineItemGroupLineItemsRes(
+            items: [
+                LineItem1(
+                    schemaVersion: Optional(1),
+                    comments: Optional("comments"),
+                    item: .baseRate,
+                    units: Optional(.usd),
+                    rate: 1.1,
+                    quantity: 1.1,
+                    adjustment: Optional(1.1),
+                    adjustmentComments: Optional("adjustment_comments"),
+                    id: "_id",
+                    provenance: .rateSheet,
+                    adHocSubmittedByUserId: Optional("ad_hoc__submitted_by_user_id"),
+                    adHocSubmittedByOrgId: Optional("ad_hoc__submitted_by_org_id"),
+                    adHocStatus: Optional(.pending),
+                    rateSheetId: Optional("rate_sheet_id"),
+                    proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lineItemS3ObjectMetadataIds: Optional([
+                        "line_item_s3_object_metadata_ids"
+                    ])
+                )
+            ],
+            agreementLineItems: [
+                LineItem1(
+                    schemaVersion: Optional(1),
+                    comments: Optional("comments"),
+                    item: .baseRate,
+                    units: Optional(.usd),
+                    rate: 1.1,
+                    quantity: 1.1,
+                    adjustment: Optional(1.1),
+                    adjustmentComments: Optional("adjustment_comments"),
+                    id: "_id",
+                    provenance: .rateSheet,
+                    adHocSubmittedByUserId: Optional("ad_hoc__submitted_by_user_id"),
+                    adHocSubmittedByOrgId: Optional("ad_hoc__submitted_by_org_id"),
+                    adHocStatus: Optional(.pending),
+                    rateSheetId: Optional("rate_sheet_id"),
+                    proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lineItemS3ObjectMetadataIds: Optional([
+                        "line_item_s3_object_metadata_ids"
+                    ])
+                )
+            ],
+            amendmentLineItems: [
+                LineItem1(
+                    schemaVersion: Optional(1),
+                    comments: Optional("comments"),
+                    item: .baseRate,
+                    units: Optional(.usd),
+                    rate: 1.1,
+                    quantity: 1.1,
+                    adjustment: Optional(1.1),
+                    adjustmentComments: Optional("adjustment_comments"),
+                    id: "_id",
+                    provenance: .rateSheet,
+                    adHocSubmittedByUserId: Optional("ad_hoc__submitted_by_user_id"),
+                    adHocSubmittedByOrgId: Optional("ad_hoc__submitted_by_org_id"),
+                    adHocStatus: Optional(.pending),
+                    rateSheetId: Optional("rate_sheet_id"),
+                    proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lineItemS3ObjectMetadataIds: Optional([
+                        "line_item_s3_object_metadata_ids"
+                    ])
+                )
+            ],
+            pendingLineItems: [
+                LineItem1(
+                    schemaVersion: Optional(1),
+                    comments: Optional("comments"),
+                    item: .baseRate,
+                    units: Optional(.usd),
+                    rate: 1.1,
+                    quantity: 1.1,
+                    adjustment: Optional(1.1),
+                    adjustmentComments: Optional("adjustment_comments"),
+                    id: "_id",
+                    provenance: .rateSheet,
+                    adHocSubmittedByUserId: Optional("ad_hoc__submitted_by_user_id"),
+                    adHocSubmittedByOrgId: Optional("ad_hoc__submitted_by_org_id"),
+                    adHocStatus: Optional(.pending),
+                    rateSheetId: Optional("rate_sheet_id"),
+                    proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lineItemS3ObjectMetadataIds: Optional([
+                        "line_item_s3_object_metadata_ids"
+                    ])
+                )
+            ],
+            deniedLineItems: [
+                LineItem1(
+                    schemaVersion: Optional(1),
+                    comments: Optional("comments"),
+                    item: .baseRate,
+                    units: Optional(.usd),
+                    rate: 1.1,
+                    quantity: 1.1,
+                    adjustment: Optional(1.1),
+                    adjustmentComments: Optional("adjustment_comments"),
+                    id: "_id",
+                    provenance: .rateSheet,
+                    adHocSubmittedByUserId: Optional("ad_hoc__submitted_by_user_id"),
+                    adHocSubmittedByOrgId: Optional("ad_hoc__submitted_by_org_id"),
+                    adHocStatus: Optional(.pending),
+                    rateSheetId: Optional("rate_sheet_id"),
+                    proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lineItemS3ObjectMetadataIds: Optional([
+                        "line_item_s3_object_metadata_ids"
+                    ])
+                )
+            ]
+        )
+        let response = try await client.billing.lineItemGroups.getLineItemsV1(
+            lineItemGroupId: "line_item_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -238,6 +492,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .staged
+            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
