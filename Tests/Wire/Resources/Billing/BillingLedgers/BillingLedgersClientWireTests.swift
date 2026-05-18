@@ -10,6 +10,7 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
+                  "name": "name",
                   "task_group_type": "chrt_ground_provider",
                   "comments": "comments",
                   "payment_origin_org_id": "payment_origin_org_id",
@@ -35,6 +36,7 @@ import Chrt
         )
         let expectedResponse = BillingLedger1(
             schemaVersion: 1,
+            name: Optional("name"),
             taskGroupType: Optional(.chrtGroundProvider),
             comments: Optional("comments"),
             paymentOriginOrgId: Optional("payment_origin_org_id"),
@@ -66,6 +68,7 @@ import Chrt
                   "items": [
                     {
                       "schema_version": 1,
+                      "name": "name",
                       "task_group_type": "chrt_ground_provider",
                       "comments": "comments",
                       "payment_origin_org_id": "payment_origin_org_id",
@@ -96,6 +99,7 @@ import Chrt
             items: [
                 BillingLedger1(
                     schemaVersion: 1,
+                    name: Optional("name"),
                     taskGroupType: Optional(.chrtGroundProvider),
                     comments: Optional("comments"),
                     paymentOriginOrgId: Optional("payment_origin_org_id"),
@@ -119,6 +123,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .active
+            ],
             filterTaskGroupType: .chrtGroundProvider,
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",

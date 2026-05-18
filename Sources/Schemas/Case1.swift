@@ -3,8 +3,12 @@ import Foundation
 public struct Case1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let orderId: String
+    /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
+    public let orderRef: String?
+    public let orderShortId: String?
     public let departmentId: String?
     public let assignedOperatorUserIds: [String]?
+    public let caseS3ObjectMetadataIds: [String]?
     public let id: String
     /// Must be a string starting with `org_`
     public let orgId: String
@@ -20,8 +24,11 @@ public struct Case1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         orderId: String,
+        orderRef: String? = nil,
+        orderShortId: String? = nil,
         departmentId: String? = nil,
         assignedOperatorUserIds: [String]? = nil,
+        caseS3ObjectMetadataIds: [String]? = nil,
         id: String,
         orgId: String,
         status: CaseStatusEnum? = nil,
@@ -33,8 +40,11 @@ public struct Case1: Codable, Hashable, Sendable {
     ) {
         self.schemaVersion = schemaVersion
         self.orderId = orderId
+        self.orderRef = orderRef
+        self.orderShortId = orderShortId
         self.departmentId = departmentId
         self.assignedOperatorUserIds = assignedOperatorUserIds
+        self.caseS3ObjectMetadataIds = caseS3ObjectMetadataIds
         self.id = id
         self.orgId = orgId
         self.status = status
@@ -49,8 +59,11 @@ public struct Case1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.orderId = try container.decode(String.self, forKey: .orderId)
+        self.orderRef = try container.decodeIfPresent(String.self, forKey: .orderRef)
+        self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.assignedOperatorUserIds = try container.decodeIfPresent([String].self, forKey: .assignedOperatorUserIds)
+        self.caseS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .caseS3ObjectMetadataIds)
         self.id = try container.decode(String.self, forKey: .id)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.status = try container.decodeIfPresent(CaseStatusEnum.self, forKey: .status)
@@ -66,8 +79,11 @@ public struct Case1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.orderId, forKey: .orderId)
+        try container.encodeIfPresent(self.orderRef, forKey: .orderRef)
+        try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encodeIfPresent(self.assignedOperatorUserIds, forKey: .assignedOperatorUserIds)
+        try container.encodeIfPresent(self.caseS3ObjectMetadataIds, forKey: .caseS3ObjectMetadataIds)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.status, forKey: .status)
@@ -81,8 +97,11 @@ public struct Case1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
         case orderId = "order_id"
+        case orderRef = "order_ref"
+        case orderShortId = "order_short_id"
         case departmentId = "department_id"
         case assignedOperatorUserIds = "assigned_operator_user_ids"
+        case caseS3ObjectMetadataIds = "case_s3_object_metadata_ids"
         case id = "_id"
         case orgId = "org_id"
         case status

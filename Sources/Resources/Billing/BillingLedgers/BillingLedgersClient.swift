@@ -60,7 +60,7 @@ public final class BillingLedgersClient: Sendable {
         )
     }
 
-    /// Updates a billing ledger's `comments`. Cycle and rate are per-period values supplied at `billing_ledger_periods/open/v1` time; the ledger does not carry them. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | (BillingLedgerClientUpdate1) -> (bool)
+    /// Updates a billing ledger's `name` and `comments`. Cycle and rate are per-period values supplied at `billing_ledger_periods/open/v1` time; the ledger does not carry them. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | (BillingLedgerClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(id: String, request: Requests.BillingLedgerClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

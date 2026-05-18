@@ -5,6 +5,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     public let orgType: OrgTypeEnum
     /// Must be a string starting with `org_`
     public let orgId: String
+    public let orgSubscription: Bool?
     public let stripeCustomerId: String?
     public let stripeConnectAccountId: String?
     public let webhookEnabled: Bool?
@@ -20,6 +21,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         orgType: OrgTypeEnum,
         orgId: String,
+        orgSubscription: Bool? = nil,
         stripeCustomerId: String? = nil,
         stripeConnectAccountId: String? = nil,
         webhookEnabled: Bool? = nil,
@@ -33,6 +35,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.orgType = orgType
         self.orgId = orgId
+        self.orgSubscription = orgSubscription
         self.stripeCustomerId = stripeCustomerId
         self.stripeConnectAccountId = stripeConnectAccountId
         self.webhookEnabled = webhookEnabled
@@ -49,6 +52,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.orgType = try container.decode(OrgTypeEnum.self, forKey: .orgType)
         self.orgId = try container.decode(String.self, forKey: .orgId)
+        self.orgSubscription = try container.decodeIfPresent(Bool.self, forKey: .orgSubscription)
         self.stripeCustomerId = try container.decodeIfPresent(String.self, forKey: .stripeCustomerId)
         self.stripeConnectAccountId = try container.decodeIfPresent(String.self, forKey: .stripeConnectAccountId)
         self.webhookEnabled = try container.decodeIfPresent(Bool.self, forKey: .webhookEnabled)
@@ -66,6 +70,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.orgType, forKey: .orgType)
         try container.encode(self.orgId, forKey: .orgId)
+        try container.encodeIfPresent(self.orgSubscription, forKey: .orgSubscription)
         try container.encodeIfPresent(self.stripeCustomerId, forKey: .stripeCustomerId)
         try container.encodeIfPresent(self.stripeConnectAccountId, forKey: .stripeConnectAccountId)
         try container.encodeIfPresent(self.webhookEnabled, forKey: .webhookEnabled)
@@ -81,6 +86,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case orgType = "org_type"
         case orgId = "org_id"
+        case orgSubscription = "org_subscription"
         case stripeCustomerId = "stripe_customer_id"
         case stripeConnectAccountId = "stripe_connect_account_id"
         case webhookEnabled = "webhook_enabled"

@@ -3,6 +3,7 @@ import Foundation
 extension Requests {
     public struct BillingLedgerClientCreate1: Codable, Hashable, Sendable {
         public let schemaVersion: Int
+        public let name: String?
         public let taskGroupType: TaskGroupTypeEnum1?
         public let comments: String?
         /// Must be a string starting with `org_`
@@ -17,6 +18,7 @@ extension Requests {
 
         public init(
             schemaVersion: Int,
+            name: String? = nil,
             taskGroupType: TaskGroupTypeEnum1? = nil,
             comments: String? = nil,
             paymentOriginOrgId: String? = nil,
@@ -27,6 +29,7 @@ extension Requests {
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
+            self.name = name
             self.taskGroupType = taskGroupType
             self.comments = comments
             self.paymentOriginOrgId = paymentOriginOrgId
@@ -40,6 +43,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.taskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
@@ -54,6 +58,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.taskGroupType, forKey: .taskGroupType)
             try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
@@ -66,6 +71,7 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case schemaVersion = "schema_version"
+            case name
             case taskGroupType = "task_group_type"
             case comments
             case paymentOriginOrgId = "payment_origin_org_id"

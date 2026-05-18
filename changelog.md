@@ -1,3 +1,7 @@
+## 1.662.1 - 2026-05-18
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 2.0.0 - 2026-05-15
 ### Breaking Changes
 * **`Caller`** — required property `o: ClerkOrgData` removed and Clerk-specific optionals `orgPublicMetadata` and `primaryEmailAddress` replaced with `orgRole`, `orgType`, `orgSubscription`, and `userEmail`; update all `Caller` construction and access sites.
