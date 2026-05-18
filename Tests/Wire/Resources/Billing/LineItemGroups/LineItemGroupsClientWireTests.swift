@@ -492,9 +492,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .staged
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
