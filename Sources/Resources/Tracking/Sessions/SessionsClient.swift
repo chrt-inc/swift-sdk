@@ -109,7 +109,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Updates a session's metadata. | (SessionClientUpdate1) -> (bool)
+    /// Updates a session's metadata. | auth: api_key | (SessionClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(sessionId: String, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -125,7 +125,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Adds and/or removes org_ids from a session's shared_with_org_ids list. Only the owning org may modify sharing. Removal overrides addition. | (SessionsUpdateSharedOrgsReq1) -> (bool)
+    /// Adds and/or removes org_ids from a session's shared_with_org_ids list. Only the owning org may modify sharing. Removal overrides addition. | auth: api_key | (SessionsUpdateSharedOrgsReq1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateSharedOrgsV1(request: Requests.SessionsUpdateSharedOrgsReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -138,7 +138,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Terminates a session. Moves device.active_session_id to device.past_session_ids. | () -> (bool)
+    /// Terminates a session. Moves device.active_session_id to device.past_session_ids. | auth: api_key | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func terminateV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -153,7 +153,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Adds a flight number and FA flight IDs to an existing session. Creates or reuses a FlightAware alert. | authz: min_org_role=operator | (SessionAddFlightReq1) -> (bool)
+    /// Adds a flight number and FA flight IDs to an existing session. Creates or reuses a FlightAware alert. | auth: api_key | authz: min_org_role=operator | (SessionAddFlightReq1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addFlightV1(request: Requests.SessionAddFlightReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -166,7 +166,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Removes a flight number and FA flight IDs from a session. Runs the shared-aware FlightAware unsubscribe cycle before removing. | authz: min_org_role=operator | (SessionRemoveFlightReq1) -> (bool)
+    /// Removes a flight number and FA flight IDs from a session. Runs the shared-aware FlightAware unsubscribe cycle before removing. | auth: api_key | authz: min_org_role=operator | (SessionRemoveFlightReq1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeFlightV1(request: Requests.SessionRemoveFlightReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -179,7 +179,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Fetches current OOOI timestamps from FlightAware for each fa_flight_id on the session and updates flight_status_by_fa_flight_id. Use when the webhook may have left state out of sync. | authz: min_org_role=operator | () -> (bool)
+    /// Fetches current OOOI timestamps from FlightAware for each fa_flight_id on the session and updates flight_status_by_fa_flight_id. Use when the webhook may have left state out of sync. | auth: api_key | authz: min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func syncFlightStatusV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

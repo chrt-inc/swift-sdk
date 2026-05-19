@@ -5,5 +5,6 @@ public enum TaskStatusEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case staged
     case completed
     case skipped
+    case attempt
     case exception
 }

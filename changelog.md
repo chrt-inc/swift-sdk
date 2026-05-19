@@ -1,3 +1,17 @@
+## 2.0.0 - 2026-05-19
+### Breaking Changes
+* **`NotificationEventsForOrgsEnum`** — four new cases added (`listingListingDriverInvitedToBid`, `listingListingProviderInvitedToBid`, `operationsCaseOperatorAssigned`, `operationsCaseGroupAssigned`); add these cases or a `default` clause to all exhaustive switch statements.
+* **`NotificationEventsForUsersEnum`** — three new cases added (`listingListingDriverInvitedToBid`, `operationsCaseOperatorAssigned`, `operationsCaseGroupAssigned`); add these cases or a `default` clause to all exhaustive switch statements.
+* **`TaskStatusEnum1`** — new `attempt` case added; add this case or a `default` clause to all exhaustive switch statements.
+### Added
+* **`TasksClient.executorOrgNotes`** — new `ExecutorOrgNotesClient` sub-client with `addV1` for posting executor-side notes to a task, backed by the new `Requests.AddExecutorOrgNoteReq` request type and `TaskExecutorOrgNote1` schema.
+* **`TasksClient.attemptV1`** — new method to mark a task as `ATTEMPT` status via `PUT /shipping/tasks/attempt/v1/{taskId}`.
+* **`Task1`** — new optional fields `executorOrgNotes` and `attemptedAtTimestamp` added to the task model.
+* **New webhook payload types** added for listing bid invitation and operations case assignment events (`ListingListingDriverInvitedToBidWebhookPayload`, `ListingListingProviderInvitedToBidWebhookPayload`, `OperationsCaseOperatorAssignedWebhookPayload`, `OperationsCaseGroupAssignedWebhookPayload`).
+### Changed
+* **Authorization persona labels** updated in doc comments across shipping and tracking clients: `courier_driver` → `driver_for_executor`, `forwarder_org_operators` → `coordinator_org_operators`, and `courier_org_operators` → `executor_org_operators`.
+* **`auth: api_key`** annotation added to doc comments for tracking endpoints across `DevicesClient`, `SessionsClient`, `DriverClient`, `SharingSettingsClient`, and timeseries clients.
+
 ## 1.662.1 - 2026-05-18
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

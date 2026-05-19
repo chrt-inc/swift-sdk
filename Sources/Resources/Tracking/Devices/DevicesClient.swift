@@ -20,7 +20,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Updates a device's type, comments, and/or off_chrt_reference_id. Use __set_to_None flags to explicitly clear Optional fields. | (DeviceClientUpdate1) -> (bool)
+    /// Updates a device's type, comments, and/or off_chrt_reference_id. Use __set_to_None flags to explicitly clear Optional fields. | auth: api_key | (DeviceClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(deviceId: String, request: Requests.DeviceClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -36,7 +36,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Archives a device by setting archived=True. Device must not have an active session — terminate it first. | () -> (bool)
+    /// Archives a device by setting archived=True. Device must not have an active session — terminate it first. | auth: api_key | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func archiveV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -51,7 +51,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Pauses a device and opens a new pause time window. | () -> (bool)
+    /// Pauses a device and opens a new pause time window. | auth: api_key | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func pauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -66,7 +66,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Unpauses a device. Closes the open pause time window. | () -> (bool)
+    /// Unpauses a device. Closes the open pause time window. | auth: api_key | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func unpauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -81,7 +81,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | (DevicesUpdateSharedOrgsReq1) -> (bool)
+    /// Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | auth: api_key | (DevicesUpdateSharedOrgsReq1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateSharedOrgsV1(request: Requests.DevicesUpdateSharedOrgsReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -94,7 +94,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Retrieves a single device by its ID with expanded sessions and cargos. Access restricted to the caller's organization or shared organizations. | authz: min_org_role=operator | () -> (DeviceExpandedRes)
+    /// Retrieves a single device by its ID with expanded sessions and cargos. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (DeviceExpandedRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> DeviceExpandedRes {
@@ -109,7 +109,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Lists devices with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (DeviceListRes)
+    /// Lists devices with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (DeviceListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
@@ -159,7 +159,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
     ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field

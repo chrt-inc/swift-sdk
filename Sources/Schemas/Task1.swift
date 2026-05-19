@@ -24,11 +24,13 @@ public struct Task1: Codable, Hashable, Sendable {
     public let completedByUserId: String?
     public let cargoIds: [String]?
     public let taskArtifactIds: [String]?
+    public let executorOrgNotes: [TaskExecutorOrgNote1]?
     public let status: TaskStatusEnum1?
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
     public let completedAtTimestamp: Date?
     public let skippedAtTimestamp: Date?
+    public let attemptedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let orderCancelled: Bool?
     /// Additional properties that are not explicitly defined in the schema
@@ -54,11 +56,13 @@ public struct Task1: Codable, Hashable, Sendable {
         completedByUserId: String? = nil,
         cargoIds: [String]? = nil,
         taskArtifactIds: [String]? = nil,
+        executorOrgNotes: [TaskExecutorOrgNote1]? = nil,
         status: TaskStatusEnum1? = nil,
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
         skippedAtTimestamp: Date? = nil,
+        attemptedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         orderCancelled: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -82,11 +86,13 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedByUserId = completedByUserId
         self.cargoIds = cargoIds
         self.taskArtifactIds = taskArtifactIds
+        self.executorOrgNotes = executorOrgNotes
         self.status = status
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
         self.skippedAtTimestamp = skippedAtTimestamp
+        self.attemptedAtTimestamp = attemptedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.orderCancelled = orderCancelled
         self.additionalProperties = additionalProperties
@@ -113,11 +119,13 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
         self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)
         self.taskArtifactIds = try container.decodeIfPresent([String].self, forKey: .taskArtifactIds)
+        self.executorOrgNotes = try container.decodeIfPresent([TaskExecutorOrgNote1].self, forKey: .executorOrgNotes)
         self.status = try container.decodeIfPresent(TaskStatusEnum1.self, forKey: .status)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
+        self.attemptedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .attemptedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -145,11 +153,13 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
         try container.encodeIfPresent(self.cargoIds, forKey: .cargoIds)
         try container.encodeIfPresent(self.taskArtifactIds, forKey: .taskArtifactIds)
+        try container.encodeIfPresent(self.executorOrgNotes, forKey: .executorOrgNotes)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
+        try container.encodeIfPresent(self.attemptedAtTimestamp, forKey: .attemptedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
     }
@@ -175,11 +185,13 @@ public struct Task1: Codable, Hashable, Sendable {
         case completedByUserId = "completed_by_user_id"
         case cargoIds = "cargo_ids"
         case taskArtifactIds = "task_artifact_ids"
+        case executorOrgNotes = "executor_org_notes"
         case status
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
         case skippedAtTimestamp = "skipped_at_timestamp"
+        case attemptedAtTimestamp = "attempted_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case orderCancelled = "order_cancelled"
     }

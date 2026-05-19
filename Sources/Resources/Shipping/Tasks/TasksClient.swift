@@ -1,9 +1,11 @@
 import Foundation
 
 public final class TasksClient: Sendable {
+    public let executorOrgNotes: ExecutorOrgNotesClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.executorOrgNotes = ExecutorOrgNotesClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -33,7 +35,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Marks a task as COMPLETED. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators] (depending on type) | () -> (bool)
+    /// Marks a task as COMPLETED. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func completeV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -45,13 +47,25 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Marks a task as SKIPPED. | authz_personas=[courier_driver, forwarder_org_operators, courier_org_operators] (depending on type) | () -> (bool)
+    /// Marks a task as SKIPPED. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func skipV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/skip/v1/\(taskId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Marks a task as ATTEMPT. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func attemptV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/tasks/attempt/v1/\(taskId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
