@@ -1,3 +1,19 @@
+## 2.0.0 - 2026-05-20
+* feat!: rename ShippingTaskGroupCourierOrgAssigned to ShippingTaskGroupProviderAssigned and add new webhook payload types
+* Rename the `ShippingTaskGroupCourierOrgAssignedWebhookPayload` struct and its
+* associated `courierOrgId` property to `ShippingTaskGroupProviderAssignedWebhookPayload`
+* and `providerOrgId` respectively, reflecting a terminology shift from "courier org"
+* to "provider". The corresponding `NotificationEventsForOrgsEnum` case is also renamed
+* from `shippingTaskGroupCourierOrgAssigned` to `shippingTaskGroupProviderAssigned`.
+* Several new webhook payload types and notification event enum cases are introduced
+* to support task attempted, executor org note added, bid thread action added,
+* operations case message/file, and billing line item file events.
+* Key changes:
+* BREAKING: `ShippingTaskGroupCourierOrgAssignedWebhookPayload` renamed to `ShippingTaskGroupProviderAssignedWebhookPayload`; `courierOrgId` property renamed to `providerOrgId`; `NotificationEventsForOrgsEnum.shippingTaskGroupCourierOrgAssigned` renamed to `shippingTaskGroupProviderAssigned`
+* New webhook payload types: `ShippingTaskAttemptedWebhookPayload`, `ShippingTaskExecutorOrgNoteAddedWebhookPayload`, `ListingBidThreadActionAddedWebhookPayload`, `OperationsCaseMessageWebhookPayload`, `OperationsCaseS3ObjectAddedWebhookPayload`, `BillingLineItemS3ObjectAddedWebhookPayload`
+* New enum cases added to `NotificationEventsForOrgsEnum` and `NotificationEventsForUsersEnum` for task attempted, executor org note, bid thread action, operations case message/file, and billing line item file events
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-05-19
 ### Breaking Changes
 * **`NotificationEventsForOrgsEnum`** — four new cases added (`listingListingDriverInvitedToBid`, `listingListingProviderInvitedToBid`, `operationsCaseOperatorAssigned`, `operationsCaseGroupAssigned`); add these cases or a `default` clause to all exhaustive switch statements.

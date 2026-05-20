@@ -13,7 +13,13 @@ public enum NotificationEventsForUsersEnum: String, Codable, Hashable, CaseItera
     case shippingTaskGroupMessage = "shipping.task_group.message"
     case shippingTaskGroupTasksOrderingUpdated = "shipping.task_group.tasks_ordering_updated"
     case shippingTaskGroupFlightInfoUpdated = "shipping.task_group.flight_info_updated"
+    case shippingTaskExecutorOrgNoteAdded = "shipping.task.executor_org_note_added"
     case listingListingDriverInvitedToBid = "listing.listing.driver_invited_to_bid"
+    case listingBidThreadActionAdded = "listing.bid_thread.action_added"
     case operationsCaseOperatorAssigned = "operations.case.operator_assigned"
     case operationsCaseGroupAssigned = "operations.case.group_assigned"
+    case operationsCaseMessage = "operations.case.message"
+    case operationsCaseFileAdded = "operations.case.file_added"
+    case billingLineItemGroupMessage = "billing.line_item_group.message"
+    case billingLineItemGroupFileAdded = "billing.line_item_group.file_added"
 }
