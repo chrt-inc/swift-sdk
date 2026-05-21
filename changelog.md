@@ -1,3 +1,11 @@
+## 3.0.0 - 2026-05-21
+### Added
+* **`DriversClient.complianceDocuments`** — new `DriversComplianceDocumentsClient` sub-client for managing driver compliance documents and their associated S3 objects.
+* **`ComplianceDocumentsS3ObjectClient`** — methods `getS3ObjectMetadataV1`, `getV1`, `addV1`, and `deleteV1` for retrieving, streaming, uploading, and deleting driver compliance document files.
+* **`DriverComplianceDocument1`** and **`DriverComplianceDocumentTypeEnum1`** — new schemas representing a driver compliance document and its type (`driversLicense`, `commercialDriversLicense`).
+* **`OrgComplianceDocument1`** and **`OrgComplianceDocumentTypeEnum1`** — new schemas representing an org compliance document and its type (`securityThreatAssessment`, `insurance`).
+* **`DriverComplianceDocumentS3ObjectMetadata1`**, **`OrgComplianceDocumentS3ObjectMetadata1`**, and **`DateTimeWindow1`** — new supporting schemas for compliance document file metadata and date-range windows.
+
 ## 2.0.0 - 2026-05-20
 * feat!: rename ShippingTaskGroupCourierOrgAssigned to ShippingTaskGroupProviderAssigned and add new webhook payload types
 * Rename the `ShippingTaskGroupCourierOrgAssignedWebhookPayload` struct and its

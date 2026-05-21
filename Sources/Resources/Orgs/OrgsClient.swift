@@ -4,6 +4,7 @@ public final class OrgsClient: Sendable {
     public let connections: ConnectionsClient
     public let offChrtProviderOrg: OffChrtProviderOrgClient
     public let offChrtShipperOrg: OffChrtShipperOrgClient
+    public let complianceDocuments: ComplianceDocumentsClient
     public let privateData: PrivateDataClient
     public let orgProfiles: OrgProfilesClient
     public let publicData: PublicDataClient
@@ -14,6 +15,7 @@ public final class OrgsClient: Sendable {
         self.connections = ConnectionsClient(config: config)
         self.offChrtProviderOrg = OffChrtProviderOrgClient(config: config)
         self.offChrtShipperOrg = OffChrtShipperOrgClient(config: config)
+        self.complianceDocuments = ComplianceDocumentsClient(config: config)
         self.privateData = PrivateDataClient(config: config)
         self.orgProfiles = OrgProfilesClient(config: config)
         self.publicData = PublicDataClient(config: config)

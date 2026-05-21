@@ -3,7 +3,7 @@ import Foundation
 public struct TaskClientUpdate1: Codable, Hashable, Sendable {
     public let location: LocationFeature?
     public let action: Action?
-    public let timeWindows: [TimeWindow1]?
+    public let datetimeWindows: [DateTimeWindow1]?
     public let orderPlacerComments: String?
     public let orderPlacerCommentsSetToNone: Bool?
     public let directoryEntryIds: [String]?
@@ -13,7 +13,7 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
     public init(
         location: LocationFeature? = nil,
         action: Action? = nil,
-        timeWindows: [TimeWindow1]? = nil,
+        datetimeWindows: [DateTimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
         orderPlacerCommentsSetToNone: Bool? = nil,
         directoryEntryIds: [String]? = nil,
@@ -21,7 +21,7 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
     ) {
         self.location = location
         self.action = action
-        self.timeWindows = timeWindows
+        self.datetimeWindows = datetimeWindows
         self.orderPlacerComments = orderPlacerComments
         self.orderPlacerCommentsSetToNone = orderPlacerCommentsSetToNone
         self.directoryEntryIds = directoryEntryIds
@@ -32,7 +32,7 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
-        self.timeWindows = try container.decodeIfPresent([TimeWindow1].self, forKey: .timeWindows)
+        self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.orderPlacerCommentsSetToNone = try container.decodeIfPresent(Bool.self, forKey: .orderPlacerCommentsSetToNone)
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
@@ -44,7 +44,7 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.action, forKey: .action)
-        try container.encodeIfPresent(self.timeWindows, forKey: .timeWindows)
+        try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.orderPlacerCommentsSetToNone, forKey: .orderPlacerCommentsSetToNone)
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
@@ -54,7 +54,7 @@ public struct TaskClientUpdate1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case location
         case action
-        case timeWindows = "time_windows"
+        case datetimeWindows = "datetime_windows"
         case orderPlacerComments = "order_placer_comments"
         case orderPlacerCommentsSetToNone = "order_placer_comments__set_to_None"
         case directoryEntryIds = "directory_entry_ids"

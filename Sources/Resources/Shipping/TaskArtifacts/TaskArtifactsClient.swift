@@ -1,11 +1,11 @@
 import Foundation
 
 public final class TaskArtifactsClient: Sendable {
-    public let s3Object: S3ObjectClient
+    public let s3Object: TaskArtifactsS3ObjectClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.s3Object = S3ObjectClient(config: config)
+        self.s3Object = TaskArtifactsS3ObjectClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

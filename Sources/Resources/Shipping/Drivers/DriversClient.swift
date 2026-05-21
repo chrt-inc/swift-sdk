@@ -1,9 +1,11 @@
 import Foundation
 
 public final class DriversClient: Sendable {
+    public let complianceDocuments: DriversComplianceDocumentsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.complianceDocuments = DriversComplianceDocumentsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

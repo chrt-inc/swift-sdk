@@ -1,6 +1,6 @@
 import Foundation
 
-public final class S3ObjectClient: Sendable {
+public final class TaskArtifactsS3ObjectClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
