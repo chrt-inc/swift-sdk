@@ -85,6 +85,12 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatus: [
+                .open
+            ],
+            filterDepartmentId: [
+                "filter_department_id"
+            ],
             filterAssignedOperatorUserId: "filter_assigned_operator_user_id",
             filterNeedsAction: true,
             filterUnassigned: true,

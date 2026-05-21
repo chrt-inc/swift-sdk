@@ -1,3 +1,18 @@
+## 1.685.1 - 2026-05-21
+* chore: add filterStatus, filterType, and other filter params to wire tests
+* Update wire test fixtures across billing, listing, operations, orgs,
+* and shipping clients to include newly supported optional filter
+* parameters. These changes exercise the new query parameters added to
+* list endpoints in the SDK.
+* Key changes:
+* Add `filterStatus` parameter to wire tests for BillingLedgerPeriods, BillingLedgers, LineItemGroups, Statements, BidThreads, Listings, Cases, OrderSchedules, Orders (expanded), and TaskGroups (expanded)
+* Add `filterType` parameter to Listings wire tests
+* Add `filterDepartmentId` parameter to Cases wire tests
+* Add `filterDepartment` parameter to Departments wire tests
+* Add `filterRole` parameter to Orgs and Drivers wire tests
+* Add `filterOrchestratorScheduleStatus` parameter to OrderSchedules wire tests
+* 🌿 Generated with Fern
+
 ## 3.0.0 - 2026-05-21
 ### Added
 * **`DriversClient.complianceDocuments`** — new `DriversComplianceDocumentsClient` sub-client for managing driver compliance documents and their associated S3 objects.
