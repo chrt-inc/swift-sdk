@@ -188,9 +188,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
             filterListingId: "filter_listing_id",
             filterBidderProviderOrgId: "filter_bidder_provider_org_id",
             filterBidderDriverId: "filter_bidder_driver_id",
@@ -283,9 +280,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
             filterListingId: "filter_listing_id",
             filterBidderProviderOrgId: "filter_bidder_provider_org_id",
             filterBidderDriverId: "filter_bidder_driver_id",
