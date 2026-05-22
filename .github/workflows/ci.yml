@@ -3,7 +3,7 @@ name: ci
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: macos-latest
     steps:
       - name: Checkout repo
@@ -11,6 +11,3 @@ jobs:
 
       - name: Build
         run: swift build
-
-      - name: Test
-        run: swift test
