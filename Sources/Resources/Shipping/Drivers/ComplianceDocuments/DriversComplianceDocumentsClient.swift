@@ -45,4 +45,17 @@ public final class DriversComplianceDocumentsClient: Sendable {
             responseType: DriverComplianceDocument1.self
         )
     }
+
+    /// Updates a driver compliance document in the caller's provider organization. | authz: allowed_org_types=[provider], min_org_role=administrator | (DriverComplianceDocumentClientUpdate1) -> (DriverComplianceDocument1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(driverComplianceDocumentId: String, request: Requests.DriverComplianceDocumentClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> DriverComplianceDocument1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/drivers/compliance_documents/update/v1/\(driverComplianceDocumentId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: DriverComplianceDocument1.self
+        )
+    }
 }

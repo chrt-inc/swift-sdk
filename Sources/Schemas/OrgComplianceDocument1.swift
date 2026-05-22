@@ -7,6 +7,7 @@ public struct OrgComplianceDocument1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let documentType: OrgComplianceDocumentTypeEnum1
+    public let description: String?
     public let orgComplianceDocumentS3ObjectMetadataIds: [String]?
     public let validFrom: Date?
     public let validUntil: Date?
@@ -19,6 +20,7 @@ public struct OrgComplianceDocument1: Codable, Hashable, Sendable {
         orgType: OrgTypeEnum,
         orgId: String,
         documentType: OrgComplianceDocumentTypeEnum1,
+        description: String? = nil,
         orgComplianceDocumentS3ObjectMetadataIds: [String]? = nil,
         validFrom: Date? = nil,
         validUntil: Date? = nil,
@@ -29,6 +31,7 @@ public struct OrgComplianceDocument1: Codable, Hashable, Sendable {
         self.orgType = orgType
         self.orgId = orgId
         self.documentType = documentType
+        self.description = description
         self.orgComplianceDocumentS3ObjectMetadataIds = orgComplianceDocumentS3ObjectMetadataIds
         self.validFrom = validFrom
         self.validUntil = validUntil
@@ -42,6 +45,7 @@ public struct OrgComplianceDocument1: Codable, Hashable, Sendable {
         self.orgType = try container.decode(OrgTypeEnum.self, forKey: .orgType)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.documentType = try container.decode(OrgComplianceDocumentTypeEnum1.self, forKey: .documentType)
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.orgComplianceDocumentS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .orgComplianceDocumentS3ObjectMetadataIds)
         self.validFrom = try container.decodeIfPresent(Date.self, forKey: .validFrom)
         self.validUntil = try container.decodeIfPresent(Date.self, forKey: .validUntil)
@@ -56,6 +60,7 @@ public struct OrgComplianceDocument1: Codable, Hashable, Sendable {
         try container.encode(self.orgType, forKey: .orgType)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encode(self.documentType, forKey: .documentType)
+        try container.encodeIfPresent(self.description, forKey: .description)
         try container.encodeIfPresent(self.orgComplianceDocumentS3ObjectMetadataIds, forKey: .orgComplianceDocumentS3ObjectMetadataIds)
         try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
         try container.encodeIfPresent(self.validUntil, forKey: .validUntil)
@@ -68,6 +73,7 @@ public struct OrgComplianceDocument1: Codable, Hashable, Sendable {
         case orgType = "org_type"
         case orgId = "org_id"
         case documentType = "document_type"
+        case description
         case orgComplianceDocumentS3ObjectMetadataIds = "org_compliance_document_s3_object_metadata_ids"
         case validFrom = "valid_from"
         case validUntil = "valid_until"

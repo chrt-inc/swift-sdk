@@ -4,6 +4,7 @@ extension Requests {
     public struct OrgComplianceDocumentClientCreate1: Codable, Hashable, Sendable {
         public let schemaVersion: Int
         public let documentType: OrgComplianceDocumentTypeEnum1
+        public let description: String?
         public let validFrom: Date?
         public let validUntil: Date?
         /// Additional properties that are not explicitly defined in the schema
@@ -12,12 +13,14 @@ extension Requests {
         public init(
             schemaVersion: Int,
             documentType: OrgComplianceDocumentTypeEnum1,
+            description: String? = nil,
             validFrom: Date? = nil,
             validUntil: Date? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
             self.documentType = documentType
+            self.description = description
             self.validFrom = validFrom
             self.validUntil = validUntil
             self.additionalProperties = additionalProperties
@@ -27,6 +30,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
             self.documentType = try container.decode(OrgComplianceDocumentTypeEnum1.self, forKey: .documentType)
+            self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.validFrom = try container.decodeIfPresent(Date.self, forKey: .validFrom)
             self.validUntil = try container.decodeIfPresent(Date.self, forKey: .validUntil)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -37,6 +41,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
             try container.encode(self.documentType, forKey: .documentType)
+            try container.encodeIfPresent(self.description, forKey: .description)
             try container.encodeIfPresent(self.validFrom, forKey: .validFrom)
             try container.encodeIfPresent(self.validUntil, forKey: .validUntil)
         }
@@ -45,6 +50,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case schemaVersion = "schema_version"
             case documentType = "document_type"
+            case description
             case validFrom = "valid_from"
             case validUntil = "valid_until"
         }

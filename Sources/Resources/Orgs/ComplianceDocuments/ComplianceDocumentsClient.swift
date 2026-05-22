@@ -45,4 +45,17 @@ public final class ComplianceDocumentsClient: Sendable {
             responseType: OrgComplianceDocument1.self
         )
     }
+
+    /// Updates an organization compliance document for the caller's provider organization. | authz: allowed_org_types=[provider], min_org_role=administrator | (OrgComplianceDocumentClientUpdate1) -> (OrgComplianceDocument1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(orgComplianceDocumentId: String, request: Requests.OrgComplianceDocumentClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> OrgComplianceDocument1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/orgs/compliance_documents/update/v1/\(orgComplianceDocumentId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrgComplianceDocument1.self
+        )
+    }
 }
