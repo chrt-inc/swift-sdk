@@ -1,3 +1,11 @@
+## 1.690.0 - 2026-05-22
+### Added
+* **`TasksClient.waitTimeGeofenceV1`**, **`waitTimeStartV1`**, **`waitTimeEndV1`**, **`waitTimeValidateV1`**, and **`waitTimeOverrideV1`** — new methods for managing driver wait-time sessions on shipping tasks, including geofence checks, session lifecycle, validation, and manual overrides.
+* **`TaskWaitTimeGeofenceRes`** — new response schema returned by `waitTimeGeofenceV1`, containing `inGeofence`, `driverLocationAvailable`, `distanceMiles`, and `geofenceDistanceMiles` fields.
+* **`Requests.WaitTimeOverrideReq`** — new request body struct for `waitTimeOverrideV1` with optional `geofenceDistanceMiles`, `waitTimeStartTimestamp`, and `waitTimeEndTimestamp` fields.
+* **`Task1`** and **`TaskClientCreate1`** — new optional fields `geofenceDistanceMiles`, `waitTimeStartTimestamp`, `waitTimeEndTimestamp`, `waitTimeStartedInGeofence`, `waitTimeValidated`, and `waitTimeValidatedByUserId` to surface wait-time state on tasks.
+* **`TaskGroup1.waitTimeTotalMinutes`** and **`Driver1.waiting`** — new optional fields exposing aggregated wait-time duration on task groups and current waiting status on drivers.
+
 ## 2.0.0 - 2026-05-22
 ### Breaking Changes
 * **`TasksClient.attemptV1`** now requires a `request: Requests.AttemptTaskReq` parameter. Update all call sites to pass `request: .init()` to preserve the previous no-body behavior, or supply an `AttemptTaskReq` with an optional `executorOrgNote`.
