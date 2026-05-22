@@ -1,12 +1,3 @@
-## 2.0.0 - 2026-05-22
-### Breaking Changes
-* **`DriverComplianceDocumentTypeEnum1`** and **`OrgComplianceDocumentTypeEnum1`** — 15 and 10 new enum cases added respectively (e.g. `tsaSta`, `dotHazmat`, `backgroundCheck`, `hipaa`, `gdp`). Exhaustive `switch` statements over these enums will fail to compile; add a `default` (or `@unknown default`) branch to fix.
-### Added
-* **`DriversComplianceDocumentsClient.updateV1`** — new method to patch a driver compliance document by ID, accepting a `Requests.DriverComplianceDocumentClientUpdate1` body.
-* **`ComplianceDocumentsClient.updateV1`** — new method to patch an organization compliance document by ID, accepting a `Requests.OrgComplianceDocumentClientUpdate1` body.
-* **`Requests.DriverComplianceDocumentClientUpdate1`** and **`Requests.OrgComplianceDocumentClientUpdate1`** — new request structs with optional `description` and `descriptionSetToNone` fields for update operations.
-* **`description: String?`** — new optional field on `DriverComplianceDocument1`, `OrgComplianceDocument1`, `DriverComplianceDocumentClientCreate1`, and `OrgComplianceDocumentClientCreate1`.
-
 ## 1.690.0 - 2026-05-22
 ### Added
 * **`TasksClient.waitTimeGeofenceV1`**, **`waitTimeStartV1`**, **`waitTimeEndV1`**, **`waitTimeValidateV1`**, and **`waitTimeOverrideV1`** — new methods for managing driver wait-time sessions on shipping tasks, including geofence checks, session lifecycle, validation, and manual overrides.
