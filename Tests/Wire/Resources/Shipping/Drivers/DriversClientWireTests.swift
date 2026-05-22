@@ -25,6 +25,7 @@ import Chrt
                   "status": "unassigned",
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
+                  "waiting": true,
                   "auto_assign_enabled": true,
                   "active_task_group_ids": [
                     "active_task_group_ids"
@@ -80,6 +81,7 @@ import Chrt
             status: Optional(.unassigned),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
+            waiting: Optional(true),
             autoAssignEnabled: Optional(true),
             activeTaskGroupIds: Optional([
                 "active_task_group_ids"
@@ -144,6 +146,7 @@ import Chrt
                   "status": "unassigned",
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
+                  "waiting": true,
                   "auto_assign_enabled": true,
                   "active_task_group_ids": [
                     "active_task_group_ids"
@@ -199,6 +202,7 @@ import Chrt
             status: Optional(.unassigned),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
+            waiting: Optional(true),
             autoAssignEnabled: Optional(true),
             activeTaskGroupIds: Optional([
                 "active_task_group_ids"
@@ -332,6 +336,7 @@ import Chrt
                       "status": "unassigned",
                       "available_according_to_driver": true,
                       "available_according_to_operators": true,
+                      "waiting": true,
                       "auto_assign_enabled": true,
                       "active_task_group_ids": [
                         "active_task_group_ids"
@@ -382,6 +387,7 @@ import Chrt
                     status: Optional(.unassigned),
                     availableAccordingToDriver: Optional(true),
                     availableAccordingToOperators: Optional(true),
+                    waiting: Optional(true),
                     autoAssignEnabled: Optional(true),
                     activeTaskGroupIds: Optional([
                         "active_task_group_ids"

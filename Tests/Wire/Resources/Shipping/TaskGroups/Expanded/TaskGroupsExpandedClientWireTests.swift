@@ -44,6 +44,7 @@ import Chrt
                     "vehicle_type": "sedan",
                     "mileage_estimated": 1.1,
                     "mileage_observed": 1.1,
+                    "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
@@ -129,6 +130,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "waiting": true,
                     "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
@@ -205,6 +207,7 @@ import Chrt
                 vehicleType: Optional(.sedan),
                 mileageEstimated: Optional(1.1),
                 mileageObserved: Optional(1.1),
+                waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
@@ -290,6 +293,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
@@ -379,6 +383,7 @@ import Chrt
                     "vehicle_type": "sedan",
                     "mileage_estimated": 1.1,
                     "mileage_observed": 1.1,
+                    "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
@@ -464,6 +469,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "waiting": true,
                     "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
@@ -540,6 +546,7 @@ import Chrt
                 vehicleType: Optional(.sedan),
                 mileageEstimated: Optional(1.1),
                 mileageObserved: Optional(1.1),
+                waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
@@ -625,6 +632,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
@@ -714,6 +722,7 @@ import Chrt
                     "vehicle_type": "sedan",
                     "mileage_estimated": 1.1,
                     "mileage_observed": 1.1,
+                    "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
@@ -799,6 +808,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "waiting": true,
                     "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
@@ -875,6 +885,7 @@ import Chrt
                 vehicleType: Optional(.sedan),
                 mileageEstimated: Optional(1.1),
                 mileageObserved: Optional(1.1),
+                waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
@@ -960,6 +971,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"
@@ -1049,6 +1061,7 @@ import Chrt
                     "vehicle_type": "sedan",
                     "mileage_estimated": 1.1,
                     "mileage_observed": 1.1,
+                    "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
                     "flight_number": "flight_number",
                     "fa_flight_ids": [
@@ -1134,6 +1147,7 @@ import Chrt
                     "status": "unassigned",
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
+                    "waiting": true,
                     "auto_assign_enabled": true,
                     "active_task_group_ids": [
                       "active_task_group_ids"
@@ -1210,6 +1224,7 @@ import Chrt
                 vehicleType: Optional(.sedan),
                 mileageEstimated: Optional(1.1),
                 mileageObserved: Optional(1.1),
+                waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
                 flightNumber: Optional("flight_number"),
                 faFlightIds: Optional([
@@ -1295,6 +1310,7 @@ import Chrt
                 status: Optional(.unassigned),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),
+                waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
                 activeTaskGroupIds: Optional([
                     "active_task_group_ids"

@@ -37,6 +37,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let vehicleType: VehicleTypeEnum?
     public let mileageEstimated: Double?
     public let mileageObserved: Double?
+    public let waitTimeTotalMinutes: Double?
     public let mileageAsserted: Bool?
     public let flightNumber: String?
     public let faFlightIds: [String]?
@@ -84,6 +85,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         vehicleType: VehicleTypeEnum? = nil,
         mileageEstimated: Double? = nil,
         mileageObserved: Double? = nil,
+        waitTimeTotalMinutes: Double? = nil,
         mileageAsserted: Bool? = nil,
         flightNumber: String? = nil,
         faFlightIds: [String]? = nil,
@@ -129,6 +131,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.vehicleType = vehicleType
         self.mileageEstimated = mileageEstimated
         self.mileageObserved = mileageObserved
+        self.waitTimeTotalMinutes = waitTimeTotalMinutes
         self.mileageAsserted = mileageAsserted
         self.flightNumber = flightNumber
         self.faFlightIds = faFlightIds
@@ -177,6 +180,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.vehicleType = try container.decodeIfPresent(VehicleTypeEnum.self, forKey: .vehicleType)
         self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
         self.mileageObserved = try container.decodeIfPresent(Double.self, forKey: .mileageObserved)
+        self.waitTimeTotalMinutes = try container.decodeIfPresent(Double.self, forKey: .waitTimeTotalMinutes)
         self.mileageAsserted = try container.decodeIfPresent(Bool.self, forKey: .mileageAsserted)
         self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
         self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
@@ -226,6 +230,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.vehicleType, forKey: .vehicleType)
         try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
         try container.encodeIfPresent(self.mileageObserved, forKey: .mileageObserved)
+        try container.encodeIfPresent(self.waitTimeTotalMinutes, forKey: .waitTimeTotalMinutes)
         try container.encodeIfPresent(self.mileageAsserted, forKey: .mileageAsserted)
         try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
         try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
@@ -273,6 +278,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case vehicleType = "vehicle_type"
         case mileageEstimated = "mileage_estimated"
         case mileageObserved = "mileage_observed"
+        case waitTimeTotalMinutes = "wait_time_total_minutes"
         case mileageAsserted = "mileage_asserted"
         case flightNumber = "flight_number"
         case faFlightIds = "fa_flight_ids"

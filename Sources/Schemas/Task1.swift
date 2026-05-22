@@ -3,6 +3,7 @@ import Foundation
 public struct Task1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let location: LocationFeature?
+    public let geofenceDistanceMiles: Double?
     public let action: Action?
     public let datetimeWindows: [DateTimeWindow1]?
     public let orderPlacerComments: String?
@@ -32,6 +33,12 @@ public struct Task1: Codable, Hashable, Sendable {
     public let skippedAtTimestamp: Date?
     public let attemptedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
+    public let waitTimeStartTimestamp: Date?
+    public let waitTimeEndTimestamp: Date?
+    public let waitTimeStartedInGeofence: Bool?
+    public let waitTimeValidated: Bool?
+    /// Must be a string starting with `user_`
+    public let waitTimeValidatedByUserId: String?
     public let orderCancelled: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -39,6 +46,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         location: LocationFeature? = nil,
+        geofenceDistanceMiles: Double? = nil,
         action: Action? = nil,
         datetimeWindows: [DateTimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
@@ -64,11 +72,17 @@ public struct Task1: Codable, Hashable, Sendable {
         skippedAtTimestamp: Date? = nil,
         attemptedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
+        waitTimeStartTimestamp: Date? = nil,
+        waitTimeEndTimestamp: Date? = nil,
+        waitTimeStartedInGeofence: Bool? = nil,
+        waitTimeValidated: Bool? = nil,
+        waitTimeValidatedByUserId: String? = nil,
         orderCancelled: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
         self.location = location
+        self.geofenceDistanceMiles = geofenceDistanceMiles
         self.action = action
         self.datetimeWindows = datetimeWindows
         self.orderPlacerComments = orderPlacerComments
@@ -94,6 +108,11 @@ public struct Task1: Codable, Hashable, Sendable {
         self.skippedAtTimestamp = skippedAtTimestamp
         self.attemptedAtTimestamp = attemptedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
+        self.waitTimeStartTimestamp = waitTimeStartTimestamp
+        self.waitTimeEndTimestamp = waitTimeEndTimestamp
+        self.waitTimeStartedInGeofence = waitTimeStartedInGeofence
+        self.waitTimeValidated = waitTimeValidated
+        self.waitTimeValidatedByUserId = waitTimeValidatedByUserId
         self.orderCancelled = orderCancelled
         self.additionalProperties = additionalProperties
     }
@@ -102,6 +121,7 @@ public struct Task1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
+        self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
         self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
@@ -127,6 +147,11 @@ public struct Task1: Codable, Hashable, Sendable {
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.attemptedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .attemptedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
+        self.waitTimeStartTimestamp = try container.decodeIfPresent(Date.self, forKey: .waitTimeStartTimestamp)
+        self.waitTimeEndTimestamp = try container.decodeIfPresent(Date.self, forKey: .waitTimeEndTimestamp)
+        self.waitTimeStartedInGeofence = try container.decodeIfPresent(Bool.self, forKey: .waitTimeStartedInGeofence)
+        self.waitTimeValidated = try container.decodeIfPresent(Bool.self, forKey: .waitTimeValidated)
+        self.waitTimeValidatedByUserId = try container.decodeIfPresent(String.self, forKey: .waitTimeValidatedByUserId)
         self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -136,6 +161,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
@@ -161,6 +187,11 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.attemptedAtTimestamp, forKey: .attemptedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
+        try container.encodeIfPresent(self.waitTimeStartTimestamp, forKey: .waitTimeStartTimestamp)
+        try container.encodeIfPresent(self.waitTimeEndTimestamp, forKey: .waitTimeEndTimestamp)
+        try container.encodeIfPresent(self.waitTimeStartedInGeofence, forKey: .waitTimeStartedInGeofence)
+        try container.encodeIfPresent(self.waitTimeValidated, forKey: .waitTimeValidated)
+        try container.encodeIfPresent(self.waitTimeValidatedByUserId, forKey: .waitTimeValidatedByUserId)
         try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
     }
 
@@ -168,6 +199,7 @@ public struct Task1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
         case location
+        case geofenceDistanceMiles = "geofence_distance_miles"
         case action
         case datetimeWindows = "datetime_windows"
         case orderPlacerComments = "order_placer_comments"
@@ -193,6 +225,11 @@ public struct Task1: Codable, Hashable, Sendable {
         case skippedAtTimestamp = "skipped_at_timestamp"
         case attemptedAtTimestamp = "attempted_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
+        case waitTimeStartTimestamp = "wait_time_start_timestamp"
+        case waitTimeEndTimestamp = "wait_time_end_timestamp"
+        case waitTimeStartedInGeofence = "wait_time_started_in_geofence"
+        case waitTimeValidated = "wait_time_validated"
+        case waitTimeValidatedByUserId = "wait_time_validated_by_user_id"
         case orderCancelled = "order_cancelled"
     }
 }

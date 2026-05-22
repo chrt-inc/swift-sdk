@@ -3,6 +3,7 @@ import Foundation
 public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let location: LocationFeature?
+    public let geofenceDistanceMiles: Double?
     public let action: Action?
     public let datetimeWindows: [DateTimeWindow1]?
     public let orderPlacerComments: String?
@@ -13,6 +14,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         location: LocationFeature? = nil,
+        geofenceDistanceMiles: Double? = nil,
         action: Action? = nil,
         datetimeWindows: [DateTimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
@@ -21,6 +23,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     ) {
         self.schemaVersion = schemaVersion
         self.location = location
+        self.geofenceDistanceMiles = geofenceDistanceMiles
         self.action = action
         self.datetimeWindows = datetimeWindows
         self.orderPlacerComments = orderPlacerComments
@@ -32,6 +35,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
+        self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
         self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
@@ -44,6 +48,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
@@ -54,6 +59,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
         case location
+        case geofenceDistanceMiles = "geofence_distance_miles"
         case action
         case datetimeWindows = "datetime_windows"
         case orderPlacerComments = "order_placer_comments"
