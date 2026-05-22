@@ -1,3 +1,11 @@
+## 2.0.0 - 2026-05-22
+### Breaking Changes
+* **`TasksClient.attemptV1`** now requires a `request: Requests.AttemptTaskReq` parameter. Update all call sites to pass `request: .init()` to preserve the previous no-body behavior, or supply an `AttemptTaskReq` with an optional `executorOrgNote`.
+### Added
+* **`Requests.AttemptTaskReq`** — new request body struct for `attemptV1` with an optional `executorOrgNote: String?` field for attaching an executor organization note to a task attempt.
+* **`TaskGroupClient.setVehicleTypeV1`** — new method to set or clear the vehicle type on a draft task group, backed by the new **`Requests.SetVehicleTypeReq`** struct.
+* **`vehicleType: VehicleTypeEnum?`** — optional vehicle type field added to `TaskGroup1`, `TaskGroupManifest1`, and `Requests.OrderDraftAddTaskGroupReq`.
+
 ## 1.685.1 - 2026-05-21
 * chore: add filterStatus, filterType, and other filter params to wire tests
 * Update wire test fixtures across billing, listing, operations, orgs,

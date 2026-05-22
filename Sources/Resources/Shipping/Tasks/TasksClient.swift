@@ -59,13 +59,14 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Marks a task as ATTEMPT. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
+    /// Marks a task as ATTEMPT with an optional executor organization note. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (AttemptTaskReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func attemptV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func attemptV1(taskId: String, request: Requests.AttemptTaskReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/attempt/v1/\(taskId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

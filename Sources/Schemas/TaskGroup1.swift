@@ -34,6 +34,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let skippedAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let taskGroupType: TaskGroupTypeEnum1
+    public let vehicleType: VehicleTypeEnum?
     public let mileageEstimated: Double?
     public let mileageObserved: Double?
     public let mileageAsserted: Bool?
@@ -80,6 +81,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         skippedAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         taskGroupType: TaskGroupTypeEnum1,
+        vehicleType: VehicleTypeEnum? = nil,
         mileageEstimated: Double? = nil,
         mileageObserved: Double? = nil,
         mileageAsserted: Bool? = nil,
@@ -124,6 +126,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.skippedAtTimestamp = skippedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.taskGroupType = taskGroupType
+        self.vehicleType = vehicleType
         self.mileageEstimated = mileageEstimated
         self.mileageObserved = mileageObserved
         self.mileageAsserted = mileageAsserted
@@ -171,6 +174,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
+        self.vehicleType = try container.decodeIfPresent(VehicleTypeEnum.self, forKey: .vehicleType)
         self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
         self.mileageObserved = try container.decodeIfPresent(Double.self, forKey: .mileageObserved)
         self.mileageAsserted = try container.decodeIfPresent(Bool.self, forKey: .mileageAsserted)
@@ -219,6 +223,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
+        try container.encodeIfPresent(self.vehicleType, forKey: .vehicleType)
         try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
         try container.encodeIfPresent(self.mileageObserved, forKey: .mileageObserved)
         try container.encodeIfPresent(self.mileageAsserted, forKey: .mileageAsserted)
@@ -265,6 +270,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case skippedAtTimestamp = "skipped_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case taskGroupType = "task_group_type"
+        case vehicleType = "vehicle_type"
         case mileageEstimated = "mileage_estimated"
         case mileageObserved = "mileage_observed"
         case mileageAsserted = "mileage_asserted"
