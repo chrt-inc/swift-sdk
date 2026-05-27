@@ -20,14 +20,17 @@ public final class SessionsClient: Sendable {
     /// - Parameter filterFlightNumber: Filter by flight number (exact match)
     /// - Parameter filterFaFlightId: Filter by FlightAware flight ID (exact match)
     /// - Parameter filterFlightLoadedStatus: Filter by flight loaded status (exact match)
+    /// - Parameter filterHasLastSeen: Filter by whether both last_seen_at_location and last_seen_at_timestamp are set
     /// - Parameter filterCreatedAtTimestampGte: Filter by created_at_timestamp >= value
     /// - Parameter filterCreatedAtTimestampLte: Filter by created_at_timestamp <= value
+    /// - Parameter filterLastSeenAtTimestampGte: Filter by last_seen_at_timestamp >= value
+    /// - Parameter filterLastSeenAtTimestampLte: Filter by last_seen_at_timestamp <= value
     /// - Parameter filterTerminationScheduledForTimestampGte: Filter by termination_scheduled_for_timestamp >= value
     /// - Parameter filterTerminationScheduledForTimestampLte: Filter by termination_scheduled_for_timestamp <= value
     /// - Parameter filterTerminatedAtTimestampGte: Filter by terminated_at_timestamp >= value
     /// - Parameter filterTerminatedAtTimestampLte: Filter by terminated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFaFlightId: String? = nil, filterFlightLoadedStatus: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
+    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFaFlightId: String? = nil, filterFlightLoadedStatus: String? = nil, filterHasLastSeen: Bool? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/list/v1",
@@ -45,8 +48,11 @@ public final class SessionsClient: Sendable {
                 "filter_flight_number": filterFlightNumber.map { .string($0) }, 
                 "filter_fa_flight_id": filterFaFlightId.map { .string($0) }, 
                 "filter_flight_loaded_status": filterFlightLoadedStatus.map { .string($0) }, 
+                "filter_has_last_seen": filterHasLastSeen.map { .bool($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
+                "filter_last_seen_at_timestamp_gte": filterLastSeenAtTimestampGte.map { .date($0) }, 
+                "filter_last_seen_at_timestamp_lte": filterLastSeenAtTimestampLte.map { .date($0) }, 
                 "filter_termination_scheduled_for_timestamp_gte": filterTerminationScheduledForTimestampGte.map { .date($0) }, 
                 "filter_termination_scheduled_for_timestamp_lte": filterTerminationScheduledForTimestampLte.map { .date($0) }, 
                 "filter_terminated_at_timestamp_gte": filterTerminatedAtTimestampGte.map { .date($0) }, 

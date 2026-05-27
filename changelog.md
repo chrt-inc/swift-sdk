@@ -1,3 +1,9 @@
+## 1.694.0 - 2026-05-27
+### Added
+* **`Session1.lastSeenAtLocation`** and **`Session1.lastSeenAtTimestamp`** — new optional fields exposing the last-seen geographic location and timestamp on tracking session objects.
+* **`SessionsClient.listV1`** — three new optional filter parameters: `filterHasLastSeen` (filters sessions where both last-seen fields are set), `filterLastSeenAtTimestampGte`, and `filterLastSeenAtTimestampLte` for timestamp-range filtering.
+* **`SessionSortByEnum.lastSeenAtTimestamp`** — new enum case allowing sessions to be sorted by last-seen timestamp.
+
 ## 1.693.0 - 2026-05-27
 ### Added
 * **`ChecklistsClient`** — new client on `OperationsClient.checklists` for creating, updating, listing, archiving, and managing checks on checklists.

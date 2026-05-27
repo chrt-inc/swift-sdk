@@ -31713,7 +31713,7 @@ try await main()
 </details>
 
 ## Tracking Sessions
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, orgScope: TrackingOrgScopeEnum?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtReferenceId: String?, filterFlightNumber: String?, filterFaFlightId: String?, filterFlightLoadedStatus: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterTerminationScheduledForTimestampGte: Date?, filterTerminationScheduledForTimestampLte: Date?, filterTerminatedAtTimestampGte: Date?, filterTerminatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, orgScope: TrackingOrgScopeEnum?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtReferenceId: String?, filterFlightNumber: String?, filterFaFlightId: String?, filterFlightLoadedStatus: String?, filterHasLastSeen: Bool?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterTerminationScheduledForTimestampGte: Date?, filterTerminationScheduledForTimestampLte: Date?, filterTerminatedAtTimestampGte: Date?, filterTerminatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
 <dl>
 <dd>
 
@@ -31760,8 +31760,11 @@ private func main() async throws {
         filterFlightNumber: "filter_flight_number",
         filterFaFlightId: "filter_fa_flight_id",
         filterFlightLoadedStatus: "filter_flight_loaded_status",
+        filterHasLastSeen: true,
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterTerminationScheduledForTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterTerminationScheduledForTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterTerminatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31888,6 +31891,14 @@ try await main()
 <dl>
 <dd>
 
+**filterHasLastSeen:** `Bool?` — Filter by whether both last_seen_at_location and last_seen_at_timestamp are set
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterCreatedAtTimestampGte:** `Date?` — Filter by created_at_timestamp >= value
     
 </dd>
@@ -31897,6 +31908,22 @@ try await main()
 <dd>
 
 **filterCreatedAtTimestampLte:** `Date?` — Filter by created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastSeenAtTimestampGte:** `Date?` — Filter by last_seen_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastSeenAtTimestampLte:** `Date?` — Filter by last_seen_at_timestamp <= value
     
 </dd>
 </dl>

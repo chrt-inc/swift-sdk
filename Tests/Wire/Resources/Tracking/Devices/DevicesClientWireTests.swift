@@ -209,6 +209,22 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "terminated": true,
                     "terminated_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location": {
+                      "type": "Feature",
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1
+                    },
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                     "fa_alert_ids": [
                       1
                     ],
@@ -279,6 +295,21 @@ import Chrt
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "terminated": true,
                       "terminated_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_seen_at_location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "fa_alert_ids": [
                         1
                       ],
@@ -406,6 +437,28 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 terminated: Optional(true),
                 terminatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocation: Optional(LocationFeature(
+                    type: .feature,
+                    geometry: .geometryCollection(
+                        .init(
+                            geometries: [
+                                .lineString(
+                                    .init(
+                                        coordinates: [
+                                            LineStringCoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ]
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    ))
+                )),
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 faAlertIds: Optional([
                     1
                 ]),
@@ -476,6 +529,25 @@ import Chrt
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     terminated: Optional(true),
                     terminatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lastSeenAtLocation: Optional(LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    )),
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     faAlertIds: Optional([
                         1
                     ]),
