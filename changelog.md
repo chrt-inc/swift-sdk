@@ -1,3 +1,11 @@
+## 1.693.0 - 2026-05-27
+### Added
+* **`ChecklistsClient`** — new client on `OperationsClient.checklists` for creating, updating, listing, archiving, and managing checks on checklists.
+* **`OperationsTasksClient`** — new client on `OperationsClient.operationsTasks` for full lifecycle management of operations tasks, including create, update, delete, complete, uncomplete, and comment workflows.
+* **`CasesClient`** — new methods `recordImageAnalysisResultsV1`, `applyChecklistV1`, `disableCheckV1`, `enableCheckV1`, `dismissCheckV1`, and `undismissCheckV1` for managing case-level check state and applying checklists.
+* **`TaskArtifactsS3ObjectClient.writeAiImageDescriptionV1`** — new method to write an LLM-generated `AiImageDescription` onto an existing task artifact S3 object metadata record.
+* **New schemas** — `AiImageDescription`, `ChecklistsClient`, `OperationsTask1`, `Check1`, `CaseChecksSummary1`, `LlmModelEnum`, and related supporting types added to support checklist, operations task, and AI image description features; `Case1` gains optional `enabledCheckKeys`, `disabledCheckKeys`, `checks`, and `checksSummary` fields; `TaskArtifactS3ObjectMetadata1` gains optional `aiImageDescription` field.
+
 ## 1.690.0 - 2026-05-22
 ### Added
 * **`TasksClient.waitTimeGeofenceV1`**, **`waitTimeStartV1`**, **`waitTimeEndV1`**, **`waitTimeValidateV1`**, and **`waitTimeOverrideV1`** — new methods for managing driver wait-time sessions on shipping tasks, including geofence checks, session lifecycle, validation, and manual overrides.
