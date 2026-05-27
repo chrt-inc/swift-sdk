@@ -15,6 +15,10 @@ public struct Case1: Codable, Hashable, Sendable {
     public let status: CaseStatusEnum?
     public let needsAction: Bool?
     public let messages: [CaseMessage1]?
+    public let enabledCheckKeys: [CheckEnum]?
+    public let disabledCheckKeys: [CheckEnum]?
+    public let checks: [Check1]?
+    public let checksSummary: CaseChecksSummary1?
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     public let createdAt: Date
@@ -34,6 +38,10 @@ public struct Case1: Codable, Hashable, Sendable {
         status: CaseStatusEnum? = nil,
         needsAction: Bool? = nil,
         messages: [CaseMessage1]? = nil,
+        enabledCheckKeys: [CheckEnum]? = nil,
+        disabledCheckKeys: [CheckEnum]? = nil,
+        checks: [Check1]? = nil,
+        checksSummary: CaseChecksSummary1? = nil,
         createdByUserId: String,
         createdAt: Date,
         additionalProperties: [String: JSONValue] = .init()
@@ -50,6 +58,10 @@ public struct Case1: Codable, Hashable, Sendable {
         self.status = status
         self.needsAction = needsAction
         self.messages = messages
+        self.enabledCheckKeys = enabledCheckKeys
+        self.disabledCheckKeys = disabledCheckKeys
+        self.checks = checks
+        self.checksSummary = checksSummary
         self.createdByUserId = createdByUserId
         self.createdAt = createdAt
         self.additionalProperties = additionalProperties
@@ -69,6 +81,10 @@ public struct Case1: Codable, Hashable, Sendable {
         self.status = try container.decodeIfPresent(CaseStatusEnum.self, forKey: .status)
         self.needsAction = try container.decodeIfPresent(Bool.self, forKey: .needsAction)
         self.messages = try container.decodeIfPresent([CaseMessage1].self, forKey: .messages)
+        self.enabledCheckKeys = try container.decodeIfPresent([CheckEnum].self, forKey: .enabledCheckKeys)
+        self.disabledCheckKeys = try container.decodeIfPresent([CheckEnum].self, forKey: .disabledCheckKeys)
+        self.checks = try container.decodeIfPresent([Check1].self, forKey: .checks)
+        self.checksSummary = try container.decodeIfPresent(CaseChecksSummary1.self, forKey: .checksSummary)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -89,6 +105,10 @@ public struct Case1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.needsAction, forKey: .needsAction)
         try container.encodeIfPresent(self.messages, forKey: .messages)
+        try container.encodeIfPresent(self.enabledCheckKeys, forKey: .enabledCheckKeys)
+        try container.encodeIfPresent(self.disabledCheckKeys, forKey: .disabledCheckKeys)
+        try container.encodeIfPresent(self.checks, forKey: .checks)
+        try container.encodeIfPresent(self.checksSummary, forKey: .checksSummary)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.createdAt, forKey: .createdAt)
     }
@@ -107,6 +127,10 @@ public struct Case1: Codable, Hashable, Sendable {
         case status
         case needsAction = "needs_action"
         case messages
+        case enabledCheckKeys = "enabled_check_keys"
+        case disabledCheckKeys = "disabled_check_keys"
+        case checks
+        case checksSummary = "checks_summary"
         case createdByUserId = "created_by_user_id"
         case createdAt = "created_at"
     }

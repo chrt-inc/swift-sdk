@@ -56,4 +56,17 @@ public final class TaskArtifactsS3ObjectClient: Sendable {
             responseType: Bool.self
         )
     }
+
+    /// Writes the AI-generated image description onto an existing TaskArtifactS3ObjectMetadata. Called by the shipping_task_image_analysis Temporal workflow via a delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (AIImageDescription) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func writeAiImageDescriptionV1(taskArtifactS3ObjectMetadataId: String, request: AiImageDescription, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/task_artifacts/s3_object/ai_image_description/v1/\(taskArtifactS3ObjectMetadataId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
 }

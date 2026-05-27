@@ -15,6 +15,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
     public let contentType: String?
     /// Original filename of the uploaded file
     public let filename: String?
+    public let aiImageDescription: AiImageDescription?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -29,6 +30,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         blurhash: String? = nil,
         contentType: String? = nil,
         filename: String? = nil,
+        aiImageDescription: AiImageDescription? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -41,6 +43,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         self.blurhash = blurhash
         self.contentType = contentType
         self.filename = filename
+        self.aiImageDescription = aiImageDescription
         self.additionalProperties = additionalProperties
     }
 
@@ -56,6 +59,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         self.blurhash = try container.decodeIfPresent(String.self, forKey: .blurhash)
         self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
         self.filename = try container.decodeIfPresent(String.self, forKey: .filename)
+        self.aiImageDescription = try container.decodeIfPresent(AiImageDescription.self, forKey: .aiImageDescription)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -72,6 +76,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.blurhash, forKey: .blurhash)
         try container.encodeIfPresent(self.contentType, forKey: .contentType)
         try container.encodeIfPresent(self.filename, forKey: .filename)
+        try container.encodeIfPresent(self.aiImageDescription, forKey: .aiImageDescription)
     }
 
     public enum ShippingTaskArtifactS3ObjectMetadata: String, Codable, Hashable, CaseIterable, Sendable {
@@ -90,5 +95,6 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         case blurhash
         case contentType = "content_type"
         case filename
+        case aiImageDescription = "ai_image_description"
     }
 }

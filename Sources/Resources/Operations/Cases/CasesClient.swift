@@ -9,6 +9,84 @@ public final class CasesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Records image-analysis workflow results onto every participating org's Case for the order. Walks task_artifact -> task -> order, authorizes the caller against the shipping graph, then fans out to all Cases keyed on `order_id` — upserting one Check1 per surviving result keyed by (check, task_artifact_id) on each Case whose effective check set (`enabled - disabled`) includes it. Silently drops results for checks not in the image-uploaded event family, results for checks not in a given Case's effective set, and results whose existing row on that Case is DISMISSED. Returns True if any Case was updated. Intended to be called by the shipping_task_image_analysis Temporal workflow via an internal delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (CaseChecksRecordImageAnalysisResultsReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func recordImageAnalysisResultsV1(taskArtifactId: String, request: Requests.CaseChecksRecordImageAnalysisResultsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/checks/record_image_analysis_results/v1/\(taskArtifactId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Adds the Checklist's checks to the Case's enabled_check_keys (deduped) and records the Checklist id. Does not touch existing check runs. Idempotent. | authz: min_org_role=operator | (CaseChecksApplyChecklistReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func applyChecklistV1(caseId: String, request: Requests.CaseChecksApplyChecklistReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/checks/apply_checklist/v1/\(caseId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Adds a CheckEnum to the Case's disabled_check_keys (operator override). The Checklist that enabled the check stays applied; the workflow's effective set becomes enabled - disabled. Requires the CheckEnum to currently be in enabled_check_keys; otherwise 400. Existing check runs are untouched — operators dismiss them individually if they also want them out of summary counts. | authz: min_org_role=operator | (CaseChecksDisableReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func disableCheckV1(caseId: String, request: CaseChecksDisableReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/checks/disable/v1/\(caseId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Removes a CheckEnum from the Case's disabled_check_keys, restoring it to the workflow's effective set. Inverse of disable. No-op if the CheckEnum isn't currently disabled. | authz: min_org_role=operator | (CaseChecksDisableReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func enableCheckV1(caseId: String, request: CaseChecksDisableReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/checks/enable/v1/\(caseId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Transitions one (check, entity_id) Check1 to status=DISMISSED. Does not affect other runs of the same check on different entity_ids. | authz: min_org_role=operator | (CaseChecksDismissReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func dismissCheckV1(caseId: String, request: CaseChecksDismissReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/checks/dismiss/v1/\(caseId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Transitions a DISMISSED (check, entity_id) Check1 back to NOT_STARTED so the next matching event re-evaluates it. No-op if not currently DISMISSED. | authz: min_org_role=operator | (CaseChecksDismissReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func undismissCheckV1(caseId: String, request: CaseChecksDismissReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/checks/undismiss/v1/\(caseId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Lists cases for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (CaseListRes)
     ///
     /// - Parameter sortBy: Field to sort by

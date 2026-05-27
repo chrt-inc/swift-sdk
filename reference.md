@@ -13493,6 +13493,510 @@ try await main()
 </details>
 
 ## Operations Cases
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">recordImageAnalysisResultsV1</a>(taskArtifactId: String, request: Requests.CaseChecksRecordImageAnalysisResultsReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records image-analysis workflow results onto every participating org's Case for the order. Walks task_artifact -> task -> order, authorizes the caller against the shipping graph, then fans out to all Cases keyed on `order_id` — upserting one Check1 per surviving result keyed by (check, task_artifact_id) on each Case whose effective check set (`enabled - disabled`) includes it. Silently drops results for checks not in the image-uploaded event family, results for checks not in a given Case's effective set, and results whose existing row on that Case is DISMISSED. Returns True if any Case was updated. Intended to be called by the shipping_task_image_analysis Temporal workflow via an internal delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (CaseChecksRecordImageAnalysisResultsReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.recordImageAnalysisResultsV1(
+        taskArtifactId: "task_artifact_id",
+        request: .init(results: [
+            "key": .notStarted
+        ])
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskArtifactId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CaseChecksRecordImageAnalysisResultsReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">applyChecklistV1</a>(caseId: String, request: Requests.CaseChecksApplyChecklistReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds the Checklist's checks to the Case's enabled_check_keys (deduped) and records the Checklist id. Does not touch existing check runs. Idempotent. | authz: min_org_role=operator | (CaseChecksApplyChecklistReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.applyChecklistV1(
+        caseId: "case_id",
+        request: .init(checklistId: "checklist_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CaseChecksApplyChecklistReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">disableCheckV1</a>(caseId: String, request: CaseChecksDisableReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a CheckEnum to the Case's disabled_check_keys (operator override). The Checklist that enabled the check stays applied; the workflow's effective set becomes enabled - disabled. Requires the CheckEnum to currently be in enabled_check_keys; otherwise 400. Existing check runs are untouched — operators dismiss them individually if they also want them out of summary counts. | authz: min_org_role=operator | (CaseChecksDisableReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.disableCheckV1(
+        caseId: "case_id",
+        request: CaseChecksDisableReq(
+            check: .shippingOrderPlacedOrderDetailsReviewed
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CaseChecksDisableReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">enableCheckV1</a>(caseId: String, request: CaseChecksDisableReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a CheckEnum from the Case's disabled_check_keys, restoring it to the workflow's effective set. Inverse of disable. No-op if the CheckEnum isn't currently disabled. | authz: min_org_role=operator | (CaseChecksDisableReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.enableCheckV1(
+        caseId: "case_id",
+        request: CaseChecksDisableReq(
+            check: .shippingOrderPlacedOrderDetailsReviewed
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CaseChecksDisableReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">dismissCheckV1</a>(caseId: String, request: CaseChecksDismissReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Transitions one (check, entity_id) Check1 to status=DISMISSED. Does not affect other runs of the same check on different entity_ids. | authz: min_org_role=operator | (CaseChecksDismissReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.dismissCheckV1(
+        caseId: "case_id",
+        request: CaseChecksDismissReq(
+            check: .shippingOrderPlacedOrderDetailsReviewed,
+            entityId: "entity_id"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CaseChecksDismissReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">undismissCheckV1</a>(caseId: String, request: CaseChecksDismissReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Transitions a DISMISSED (check, entity_id) Check1 back to NOT_STARTED so the next matching event re-evaluates it. No-op if not currently DISMISSED. | authz: min_org_role=operator | (CaseChecksDismissReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.undismissCheckV1(
+        caseId: "case_id",
+        request: CaseChecksDismissReq(
+            check: .shippingOrderPlacedOrderDetailsReviewed,
+            entityId: "entity_id"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CaseChecksDismissReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">listV1</a>(sortBy: CaseSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: CaseStatusEnum?, filterDepartmentId: String?, filterAssignedOperatorUserId: String?, filterNeedsAction: Bool?, filterUnassigned: Bool?, requestOptions: RequestOptions?) -> CaseListRes</code></summary>
 <dl>
 <dd>
@@ -14498,6 +15002,649 @@ try await main()
 </dl>
 </details>
 
+## Operations Checklists
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">listV1</a>(sortBy: ChecklistSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterArchived: Bool?, requestOptions: RequestOptions?) -> ChecklistListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists Checklists for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (ChecklistListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.listV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterArchived: true
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `ChecklistSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — Filter by archived flag. None=all, True=archived only, False=unarchived only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">getV1</a>(checklistId: String, requestOptions: RequestOptions?) -> Checklist1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single Checklist by id. | authz: min_org_role=operator | () -> (Checklist1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.getV1(checklistId: "checklist_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checklistId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">updateV1</a>(checklistId: String, request: Requests.ChecklistClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates scalar fields (name, description) on a Checklist. | authz: min_org_role=operator | (ChecklistClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.updateV1(
+        checklistId: "checklist_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checklistId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChecklistClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">createV1</a>(request: Requests.ChecklistClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new Checklist for the caller's organization. | authz: min_org_role=operator | (ChecklistClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.createV1(request: .init(
+        schemaVersion: 1,
+        name: "name"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChecklistClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">addChecksV1</a>(checklistId: String, request: Requests.ChecklistChecksAdd1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds checks to a Checklist. Idempotent for identical checks. | authz: min_org_role=operator | (ChecklistChecksAdd1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.addChecksV1(
+        checklistId: "checklist_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checklistId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChecklistChecksAdd1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">removeChecksV1</a>(checklistId: String, request: Requests.ChecklistChecksRemove1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes entries from a Checklist's `checks` list by CheckEnum. | authz: min_org_role=operator | (ChecklistChecksRemove1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.removeChecksV1(
+        checklistId: "checklist_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checklistId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChecklistChecksRemove1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">archiveV1</a>(checklistId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a Checklist by setting `archived=True`. Existing Cases that applied this Checklist are unaffected (copy-on-write). | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.archiveV1(checklistId: "checklist_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checklistId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.checklists.<a href="/Sources/Resources/Operations/Checklists/ChecklistsClient.swift">unarchiveV1</a>(checklistId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Restores an archived Checklist by setting `archived=False`. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.checklists.unarchiveV1(checklistId: "checklist_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checklistId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Operations Departments
 <details><summary><code>client.operations.departments.<a href="/Sources/Resources/Operations/Departments/DepartmentsClient.swift">listV1</a>(sortBy: DepartmentSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterDepartment: DepartmentEnum?, requestOptions: RequestOptions?) -> DepartmentListRes</code></summary>
 <dl>
@@ -15051,6 +16198,749 @@ try await main()
 <dd>
 
 **userId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Operations OperationsTasks
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterCaseId: String?, filterCompleted: Bool?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists incomplete OperationsTasks for the caller's organization by default, with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.listV1(
+        sortBy: .deadlineTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterCaseId: "filter_case_id",
+        filterCompleted: true,
+        filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `OperationsTaskSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCaseId:** `String?` — Filter by case id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompleted:** `Bool?` — Filter by completed flag. Defaults to False for incomplete tasks.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDeadlineGte:** `Date?` — Filter to tasks with deadline >= this timestamp
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDeadlineLte:** `Date?` — Filter to tasks with deadline <= this timestamp
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">getV1</a>(taskId: String, requestOptions: RequestOptions?) -> OperationsTask1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single OperationsTask by id. | authz: min_org_role=operator | () -> (OperationsTask1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.getV1(taskId: "task_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">deleteV1</a>(taskId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Hard-deletes an OperationsTask. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.deleteV1(taskId: "task_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">updateV1</a>(taskId: String, request: Requests.OperationsTaskClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates scalar fields (title, description, deadline_timestamp) on an OperationsTask. | authz: min_org_role=operator | (OperationsTaskClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.updateV1(
+        taskId: "task_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OperationsTaskClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">createV1</a>(request: Requests.OperationsTaskClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new OperationsTask on a Case owned by the caller's organization. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.createV1(request: .init(
+        schemaVersion: 1,
+        caseId: "case_id",
+        title: "title",
+        description: "description"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OperationsTaskClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">completeV1</a>(taskId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks an OperationsTask as completed. Idempotent — calling on an already-completed task is a no-op that returns False. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.completeV1(taskId: "task_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">uncompleteV1</a>(taskId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks a previously-completed OperationsTask as incomplete and clears its completion timestamps. Idempotent — calling on an already-incomplete task is a no-op that returns False. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.uncompleteV1(taskId: "task_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">addCommentV1</a>(taskId: String, request: Requests.OperationsTaskAddCommentReq1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Appends a comment to an OperationsTask's comment thread. Returns the new comment id. | authz: min_org_role=operator | (OperationsTaskAddCommentReq1) -> (str)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.addCommentV1(
+        taskId: "task_id",
+        request: .init(comment: "comment")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OperationsTaskAddCommentReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">deleteCommentV1</a>(taskId: String, commentId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a comment from an OperationsTask's comment thread. 404 if the comment isn't found. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.deleteCommentV1(
+        taskId: "task_id",
+        commentId: "comment_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**commentId:** `String` 
     
 </dd>
 </dl>
@@ -27208,6 +29098,108 @@ try await main()
 <dd>
 
 **taskArtifactS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.taskArtifacts.s3Object.<a href="/Sources/Resources/Shipping/TaskArtifacts/S3Object/TaskArtifactsS3ObjectClient.swift">writeAiImageDescriptionV1</a>(taskArtifactS3ObjectMetadataId: String, request: AiImageDescription, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Writes the AI-generated image description onto an existing TaskArtifactS3ObjectMetadata. Called by the shipping_task_image_analysis Temporal workflow via a delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (AIImageDescription) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskArtifacts.s3Object.writeAiImageDescriptionV1(
+        taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id",
+        request: AiImageDescription(
+            model: .gpt55,
+            summary: "summary",
+            packageTypes: [
+                "package_types"
+            ],
+            packageAppearance: "package_appearance",
+            readablePackageText: [
+                "readable_package_text"
+            ],
+            cargoIdentityAssessment: "cargo_identity_assessment",
+            locationDescription: "location_description",
+            locationIdentifiers: [
+                "location_identifiers"
+            ],
+            completionEvidence: "completion_evidence",
+            proofNotes: [
+                "proof_notes"
+            ],
+            disputeDefensibility: "dispute_defensibility"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskArtifactS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `AiImageDescription` 
     
 </dd>
 </dl>
