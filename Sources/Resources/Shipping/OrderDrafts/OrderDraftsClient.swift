@@ -57,6 +57,20 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
+    /// Converts an order screenshot into lightly structured text for the AI order builder. | (UploadFile) -> (str)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func imageToTextV1(request: Requests.BodyPostShippingOrderDraftsImageToTextV1ShippingOrderDraftsImageToTextV1Post, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_drafts/image_to_text/v1",
+            contentType: .multipartFormData,
+            body: request.asMultipartFormData(),
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Validates the draft order for staging and returns requirement results. | () -> (OrderDraftValidationResult)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

@@ -1,3 +1,10 @@
+## 1.706.0 - 2026-05-28
+### Added
+* **`AgenticClient.precheckV1`** — new method that predicts whether input is complete enough for the AI order builder, returning an `OrderBuilderPrecheckRes` with a `valid` flag and optional `feedback` string.
+* **`OrderDraftsClient.imageToTextV1`** — new method that accepts a multipart `FormFile` upload and converts an order screenshot into lightly structured text for the AI order builder.
+* **`OrderBuilderPrecheckRes`** — new response schema with a required `valid: Bool` field and an optional `feedback: String?` field.
+* **`Requests.BodyPostShippingOrderDraftsImageToTextV1ShippingOrderDraftsImageToTextV1Post`** — new multipart request body struct wrapping a `FormFile` for use with `imageToTextV1`.
+
 ## 1.705.0 - 2026-05-28
 ### Added
 * **`Session1.lastSeenAtLocationCity`** and **`Session1.lastSeenAtLocationLargeCity`** — new optional `String?` fields exposing city and large-city resolution of the session's last-seen location.

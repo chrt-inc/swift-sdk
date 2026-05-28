@@ -3,6 +3,37 @@ import Testing
 import Chrt
 
 @Suite("AgenticClient Wire Tests") struct AgenticClientWireTests {
+    @Test func precheckV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "valid": true,
+                  "feedback": "feedback"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrderBuilderPrecheckRes(
+            valid: true,
+            feedback: Optional("feedback")
+        )
+        let response = try await client.shipping.orderDrafts.agentic.precheckV1(
+            request: OrderBuilderReq(
+                orderShortId: "order_short_id",
+                text: "text"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func newV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
