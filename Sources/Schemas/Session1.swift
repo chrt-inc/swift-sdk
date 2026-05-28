@@ -20,6 +20,8 @@ public struct Session1: Codable, Hashable, Sendable {
     public let terminatedAtTimestamp: Date?
     public let lastSeenAtLocation: LocationFeature?
     public let lastSeenAtTimestamp: Date?
+    public let lastSeenAtLocationCity: String?
+    public let lastSeenAtLocationLargeCity: String?
     public let faAlertIds: [Int]?
     public let flightLoadedStatuses: [String]?
     public let faAlertIdByFlightNumber: [String: Int]?
@@ -47,6 +49,8 @@ public struct Session1: Codable, Hashable, Sendable {
         terminatedAtTimestamp: Date? = nil,
         lastSeenAtLocation: LocationFeature? = nil,
         lastSeenAtTimestamp: Date? = nil,
+        lastSeenAtLocationCity: String? = nil,
+        lastSeenAtLocationLargeCity: String? = nil,
         faAlertIds: [Int]? = nil,
         flightLoadedStatuses: [String]? = nil,
         faAlertIdByFlightNumber: [String: Int]? = nil,
@@ -72,6 +76,8 @@ public struct Session1: Codable, Hashable, Sendable {
         self.terminatedAtTimestamp = terminatedAtTimestamp
         self.lastSeenAtLocation = lastSeenAtLocation
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
+        self.lastSeenAtLocationCity = lastSeenAtLocationCity
+        self.lastSeenAtLocationLargeCity = lastSeenAtLocationLargeCity
         self.faAlertIds = faAlertIds
         self.flightLoadedStatuses = flightLoadedStatuses
         self.faAlertIdByFlightNumber = faAlertIdByFlightNumber
@@ -100,6 +106,8 @@ public struct Session1: Codable, Hashable, Sendable {
         self.terminatedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminatedAtTimestamp)
         self.lastSeenAtLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
+        self.lastSeenAtLocationCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationCity)
+        self.lastSeenAtLocationLargeCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationLargeCity)
         self.faAlertIds = try container.decodeIfPresent([Int].self, forKey: .faAlertIds)
         self.flightLoadedStatuses = try container.decodeIfPresent([String].self, forKey: .flightLoadedStatuses)
         self.faAlertIdByFlightNumber = try container.decodeIfPresent([String: Int].self, forKey: .faAlertIdByFlightNumber)
@@ -129,6 +137,8 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.terminatedAtTimestamp, forKey: .terminatedAtTimestamp)
         try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
+        try container.encodeIfPresent(self.lastSeenAtLocationCity, forKey: .lastSeenAtLocationCity)
+        try container.encodeIfPresent(self.lastSeenAtLocationLargeCity, forKey: .lastSeenAtLocationLargeCity)
         try container.encodeIfPresent(self.faAlertIds, forKey: .faAlertIds)
         try container.encodeIfPresent(self.flightLoadedStatuses, forKey: .flightLoadedStatuses)
         try container.encodeIfPresent(self.faAlertIdByFlightNumber, forKey: .faAlertIdByFlightNumber)
@@ -156,6 +166,8 @@ public struct Session1: Codable, Hashable, Sendable {
         case terminatedAtTimestamp = "terminated_at_timestamp"
         case lastSeenAtLocation = "last_seen_at_location"
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
+        case lastSeenAtLocationCity = "last_seen_at_location_city"
+        case lastSeenAtLocationLargeCity = "last_seen_at_location_large_city"
         case faAlertIds = "fa_alert_ids"
         case flightLoadedStatuses = "flight_loaded_statuses"
         case faAlertIdByFlightNumber = "fa_alert_id_by_flight_number"

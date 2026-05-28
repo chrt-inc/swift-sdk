@@ -225,6 +225,8 @@ import Chrt
                       "id": 1
                     },
                     "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location_city": "last_seen_at_location_city",
+                    "last_seen_at_location_large_city": "last_seen_at_location_large_city",
                     "fa_alert_ids": [
                       1
                     ],
@@ -310,6 +312,8 @@ import Chrt
                         }
                       },
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_seen_at_location_city": "last_seen_at_location_city",
+                      "last_seen_at_location_large_city": "last_seen_at_location_large_city",
                       "fa_alert_ids": [
                         1
                       ],
@@ -459,6 +463,8 @@ import Chrt
                     ))
                 )),
                 lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
                 faAlertIds: Optional([
                     1
                 ]),
@@ -548,6 +554,8 @@ import Chrt
                         )
                     )),
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
                     faAlertIds: Optional([
                         1
                     ]),

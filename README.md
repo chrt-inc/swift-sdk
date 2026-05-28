@@ -20,7 +20,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.704.0"),
+    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.708.0"),
 ]
 ```
 
