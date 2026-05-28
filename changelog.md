@@ -1,3 +1,7 @@
+## 1.705.0 - 2026-05-28
+### Added
+* **`Session1.lastSeenAtLocationCity`** and **`Session1.lastSeenAtLocationLargeCity`** — new optional `String?` fields exposing city and large-city resolution of the session's last-seen location.
+
 ## 1.693.0 - 2026-05-27
 ### Added
 * **`ChecklistsClient`** — new client on `OperationsClient.checklists` for creating, updating, listing, archiving, and managing checks on checklists.
