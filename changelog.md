@@ -1,3 +1,11 @@
+## 1.711.0 - 2026-05-29
+### Added
+* **`ScanClient`** — new client on `TaskArtifactsClient.scan` with `addV1` and `deleteV1` methods for appending and removing barcode/QR scan payloads on SCAN-type task artifacts.
+* **`ScanPayloadKindEnum`** and **`Requests.AddScanPayloadReq`** — new enum and request struct supporting the `expected` and `observed` scan payload kinds used by `ScanClient`.
+* **`TaskArtifactTypeEnum1.scan`** — new `scan` case added to the task artifact type enum; `TaskArtifact1` and `TaskArtifactClientCreate1` gain optional `expectedScanPayloads` and `observedScanPayloads` fields.
+* **`Driver1.lastSeenAtLocationCity`** and **`Driver1.lastSeenAtLocationLargeCity`** — new optional `String?` fields exposing city and large-city resolution of the driver's last-seen location.
+* **`DeviceLimitedForList1.lastSeenAtLocationCity`** and **`DeviceLimitedForList1.lastSeenAtLocationLargeCity`** — same city-level location fields added to the device list schema.
+
 ## 1.705.0 - 2026-05-28
 ### Added
 * **`Session1.lastSeenAtLocationCity`** and **`Session1.lastSeenAtLocationLargeCity`** — new optional `String?` fields exposing city and large-city resolution of the session's last-seen location.
