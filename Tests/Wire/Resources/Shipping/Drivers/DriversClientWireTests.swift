@@ -54,7 +54,9 @@ import Chrt
                     },
                     "id": 1
                   },
-                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                  "last_seen_at_location_city": "last_seen_at_location_city",
+                  "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                 }
                 """.utf8
             )
@@ -118,7 +120,9 @@ import Chrt
                     1
                 ))
             )),
-            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+            lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
         )
         let response = try await client.shipping.drivers.getForCallerV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -175,7 +179,9 @@ import Chrt
                     },
                     "id": 1
                   },
-                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                  "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                  "last_seen_at_location_city": "last_seen_at_location_city",
+                  "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                 }
                 """.utf8
             )
@@ -239,7 +245,9 @@ import Chrt
                     1
                 ))
             )),
-            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+            lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
         )
         let response = try await client.shipping.drivers.getByDriverIdV1(
             driverId: "driver_id",
@@ -355,7 +363,9 @@ import Chrt
                           "type": "GeometryCollection"
                         }
                       },
-                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                      "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_seen_at_location_city": "last_seen_at_location_city",
+                      "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                     }
                   ],
                   "total_count": 1
@@ -410,7 +420,9 @@ import Chrt
                             )
                         )
                     )),
-                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
                 )
             ],
             totalCount: 1

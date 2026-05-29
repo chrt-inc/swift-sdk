@@ -150,7 +150,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location_city": "last_seen_at_location_city",
+                    "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                   },
                   "executor_org_id": "executor_org_id",
                   "executor_org_company_name": "executor_org_company_name",
@@ -319,7 +321,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
             )),
             executorOrgId: Optional("executor_org_id"),
             executorOrgCompanyName: Optional("executor_org_company_name"),
@@ -489,7 +493,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location_city": "last_seen_at_location_city",
+                    "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                   },
                   "executor_org_id": "executor_org_id",
                   "executor_org_company_name": "executor_org_company_name",
@@ -658,7 +664,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
             )),
             executorOrgId: Optional("executor_org_id"),
             executorOrgCompanyName: Optional("executor_org_company_name"),
@@ -828,7 +836,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location_city": "last_seen_at_location_city",
+                    "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                   },
                   "executor_org_id": "executor_org_id",
                   "executor_org_company_name": "executor_org_company_name",
@@ -997,7 +1007,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
             )),
             executorOrgId: Optional("executor_org_id"),
             executorOrgCompanyName: Optional("executor_org_company_name"),
@@ -1167,7 +1179,9 @@ import Chrt
                       },
                       "id": 1
                     },
-                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z"
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location_city": "last_seen_at_location_city",
+                    "last_seen_at_location_large_city": "last_seen_at_location_large_city"
                   },
                   "executor_org_id": "executor_org_id",
                   "executor_org_company_name": "executor_org_company_name",
@@ -1336,7 +1350,9 @@ import Chrt
                         1
                     ))
                 )),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
             )),
             executorOrgId: Optional("executor_org_id"),
             executorOrgCompanyName: Optional("executor_org_company_name"),

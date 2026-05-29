@@ -29364,6 +29364,183 @@ try await main()
 </dl>
 </details>
 
+## Shipping TaskArtifacts Scan
+<details><summary><code>client.shipping.taskArtifacts.scan.<a href="/Sources/Resources/Shipping/TaskArtifacts/Scan/ScanClient.swift">addV1</a>(taskArtifactId: String, request: Requests.AddScanPayloadReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Appends a barcode/QR scan payload to a SCAN-type task artifact's expected or observed array (deduplicated). | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (AddScanPayloadReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskArtifacts.scan.addV1(
+        taskArtifactId: "task_artifact_id",
+        request: .init(
+            kind: .expected,
+            payload: "payload"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskArtifactId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AddScanPayloadReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.taskArtifacts.scan.<a href="/Sources/Resources/Shipping/TaskArtifacts/Scan/ScanClient.swift">deleteV1</a>(taskArtifactId: String, kind: ScanPayloadKindEnum, payload: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a barcode/QR scan payload (by value) from a SCAN-type task artifact's expected or observed array. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskArtifacts.scan.deleteV1(
+        taskArtifactId: "task_artifact_id",
+        kind: .expected,
+        payload: "payload"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskArtifactId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**kind:** `ScanPayloadKindEnum` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**payload:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping TaskGroups TaskGroupId
 <details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forExecutorOperatorsV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>

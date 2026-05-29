@@ -20,6 +20,8 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
     public let firstSeenAtTimestamp: Date?
     public let lastSeenAtLocation: LocationFeature?
     public let lastSeenAtTimestamp: Date?
+    public let lastSeenAtLocationCity: String?
+    public let lastSeenAtLocationLargeCity: String?
     public let lastSeenBatteryLevel: String?
     public let archived: Bool?
     public let paused: Bool?
@@ -44,6 +46,8 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         firstSeenAtTimestamp: Date? = nil,
         lastSeenAtLocation: LocationFeature? = nil,
         lastSeenAtTimestamp: Date? = nil,
+        lastSeenAtLocationCity: String? = nil,
+        lastSeenAtLocationLargeCity: String? = nil,
         lastSeenBatteryLevel: String? = nil,
         archived: Bool? = nil,
         paused: Bool? = nil,
@@ -66,6 +70,8 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         self.firstSeenAtTimestamp = firstSeenAtTimestamp
         self.lastSeenAtLocation = lastSeenAtLocation
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
+        self.lastSeenAtLocationCity = lastSeenAtLocationCity
+        self.lastSeenAtLocationLargeCity = lastSeenAtLocationLargeCity
         self.lastSeenBatteryLevel = lastSeenBatteryLevel
         self.archived = archived
         self.paused = paused
@@ -91,6 +97,8 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         self.firstSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .firstSeenAtTimestamp)
         self.lastSeenAtLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
+        self.lastSeenAtLocationCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationCity)
+        self.lastSeenAtLocationLargeCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationLargeCity)
         self.lastSeenBatteryLevel = try container.decodeIfPresent(String.self, forKey: .lastSeenBatteryLevel)
         self.archived = try container.decodeIfPresent(Bool.self, forKey: .archived)
         self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
@@ -117,6 +125,8 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.firstSeenAtTimestamp, forKey: .firstSeenAtTimestamp)
         try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
+        try container.encodeIfPresent(self.lastSeenAtLocationCity, forKey: .lastSeenAtLocationCity)
+        try container.encodeIfPresent(self.lastSeenAtLocationLargeCity, forKey: .lastSeenAtLocationLargeCity)
         try container.encodeIfPresent(self.lastSeenBatteryLevel, forKey: .lastSeenBatteryLevel)
         try container.encodeIfPresent(self.archived, forKey: .archived)
         try container.encodeIfPresent(self.paused, forKey: .paused)
@@ -141,6 +151,8 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         case firstSeenAtTimestamp = "first_seen_at_timestamp"
         case lastSeenAtLocation = "last_seen_at_location"
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
+        case lastSeenAtLocationCity = "last_seen_at_location_city"
+        case lastSeenAtLocationLargeCity = "last_seen_at_location_large_city"
         case lastSeenBatteryLevel = "last_seen_battery_level"
         case archived
         case paused

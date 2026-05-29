@@ -2,10 +2,12 @@ import Foundation
 
 public final class TaskArtifactsClient: Sendable {
     public let s3Object: TaskArtifactsS3ObjectClient
+    public let scan: ScanClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.s3Object = TaskArtifactsS3ObjectClient(config: config)
+        self.scan = ScanClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

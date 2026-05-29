@@ -3,6 +3,7 @@ import Foundation
 public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let type: TaskArtifactTypeEnum1
+    public let expectedScanPayloads: [String]?
     public let id: String
     public let orderId: String
     public let orderShortId: String
@@ -24,6 +25,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let completedByOrgId: String?
     /// Must be a string starting with `user_`
     public let completedByUserId: String?
+    public let observedScanPayloads: [String]?
     public let status: TaskArtifactStatusEnum1?
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
@@ -36,6 +38,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         type: TaskArtifactTypeEnum1,
+        expectedScanPayloads: [String]? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
@@ -51,6 +54,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         requestedByUserId: String? = nil,
         completedByOrgId: String? = nil,
         completedByUserId: String? = nil,
+        observedScanPayloads: [String]? = nil,
         status: TaskArtifactStatusEnum1? = nil,
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
@@ -61,6 +65,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     ) {
         self.schemaVersion = schemaVersion
         self.type = type
+        self.expectedScanPayloads = expectedScanPayloads
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
@@ -76,6 +81,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.requestedByUserId = requestedByUserId
         self.completedByOrgId = completedByOrgId
         self.completedByUserId = completedByUserId
+        self.observedScanPayloads = observedScanPayloads
         self.status = status
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
@@ -89,6 +95,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.type = try container.decode(TaskArtifactTypeEnum1.self, forKey: .type)
+        self.expectedScanPayloads = try container.decodeIfPresent([String].self, forKey: .expectedScanPayloads)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -104,6 +111,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.requestedByUserId = try container.decodeIfPresent(String.self, forKey: .requestedByUserId)
         self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
         self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
+        self.observedScanPayloads = try container.decodeIfPresent([String].self, forKey: .observedScanPayloads)
         self.status = try container.decodeIfPresent(TaskArtifactStatusEnum1.self, forKey: .status)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
@@ -118,6 +126,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.type, forKey: .type)
+        try container.encodeIfPresent(self.expectedScanPayloads, forKey: .expectedScanPayloads)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -133,6 +142,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.requestedByUserId, forKey: .requestedByUserId)
         try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
         try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
+        try container.encodeIfPresent(self.observedScanPayloads, forKey: .observedScanPayloads)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
@@ -145,6 +155,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
         case type
+        case expectedScanPayloads = "expected_scan_payloads"
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
@@ -160,6 +171,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         case requestedByUserId = "requested_by_user_id"
         case completedByOrgId = "completed_by_org_id"
         case completedByUserId = "completed_by_user_id"
+        case observedScanPayloads = "observed_scan_payloads"
         case status
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"

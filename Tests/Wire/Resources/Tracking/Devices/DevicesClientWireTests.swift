@@ -172,6 +172,8 @@ import Chrt
                       "id": 1
                     },
                     "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_at_location_city": "last_seen_at_location_city",
+                    "last_seen_at_location_large_city": "last_seen_at_location_large_city",
                     "last_seen_battery_level": "last_seen_battery_level",
                     "archived": true,
                     "paused": true,
@@ -404,6 +406,8 @@ import Chrt
                     ))
                 )),
                 lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
                 lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                 archived: Optional(true),
                 paused: Optional(true),
@@ -644,6 +648,8 @@ import Chrt
                         }
                       },
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_seen_at_location_city": "last_seen_at_location_city",
+                      "last_seen_at_location_large_city": "last_seen_at_location_large_city",
                       "last_seen_battery_level": "last_seen_battery_level",
                       "archived": true,
                       "paused": true,
@@ -702,6 +708,8 @@ import Chrt
                         )
                     )),
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
                     lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                     archived: Optional(true),
                     paused: Optional(true),
