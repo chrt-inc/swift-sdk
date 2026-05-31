@@ -1,3 +1,13 @@
+## 2.0.0 - 2026-05-31
+### Breaking Changes
+* **`DepartmentEnum`** has been renamed to `DepartmentTypeEnum`; update all type references from `DepartmentEnum` to `DepartmentTypeEnum`.
+* **`Department1.department`** has been renamed to `Department1.departmentType` (type `DepartmentTypeEnum`); update all property accesses and initializer call sites accordingly.
+* **`Requests.DepartmentClientCreate1`** — the `department: DepartmentEnum` parameter in the initializer is now `departmentType: DepartmentTypeEnum`; update all construction sites.
+* **`DepartmentsClient.listV1(filterDepartment:)`** — the `filterDepartment` parameter is renamed to `filterDepartmentType` and now accepts `DepartmentTypeEnum?`; update all call sites.
+* **`DepartmentSortByEnum.department`** — the enum case is renamed to `departmentType` (raw value `"department_type"`); update any exhaustive switch statements.
+### Added
+* **`DepartmentTypeEnum`** gains five new cases: `healthcare`, `industrials`, `liveAnimals`, `lifeSciences`, and `radiopharma`.
+
 ## 1.711.0 - 2026-05-29
 ### Added
 * **`ScanClient`** — new client on `TaskArtifactsClient.scan` with `addV1` and `deleteV1` methods for appending and removing barcode/QR scan payloads on SCAN-type task artifacts.

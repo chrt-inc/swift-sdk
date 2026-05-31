@@ -87,6 +87,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterDepartmentType: [
+                .automotive
+            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
