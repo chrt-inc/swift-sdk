@@ -11,9 +11,9 @@ public final class DepartmentsClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter filterDepartment: Filter by department(s)
+    /// - Parameter filterDepartmentType: Filter by department type(s)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DepartmentSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartment: DepartmentEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> DepartmentListRes {
+    public func listV1(sortBy: DepartmentSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentType: DepartmentTypeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> DepartmentListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/departments/list/v1",
@@ -22,7 +22,7 @@ public final class DepartmentsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_department": filterDepartment.map { .string($0.rawValue) }
+                "filter_department_type": filterDepartmentType.map { .string($0.rawValue) }
             ],
             requestOptions: requestOptions,
             responseType: DepartmentListRes.self

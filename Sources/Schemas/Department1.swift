@@ -3,7 +3,7 @@ import Foundation
 public struct Department1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let name: String
-    public let department: DepartmentEnum
+    public let departmentType: DepartmentTypeEnum
     public let location: LocationFeature?
     public let operatorUserIds: [String]?
     public let id: String
@@ -18,7 +18,7 @@ public struct Department1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         name: String,
-        department: DepartmentEnum,
+        departmentType: DepartmentTypeEnum,
         location: LocationFeature? = nil,
         operatorUserIds: [String]? = nil,
         id: String,
@@ -29,7 +29,7 @@ public struct Department1: Codable, Hashable, Sendable {
     ) {
         self.schemaVersion = schemaVersion
         self.name = name
-        self.department = department
+        self.departmentType = departmentType
         self.location = location
         self.operatorUserIds = operatorUserIds
         self.id = id
@@ -43,7 +43,7 @@ public struct Department1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.name = try container.decode(String.self, forKey: .name)
-        self.department = try container.decode(DepartmentEnum.self, forKey: .department)
+        self.departmentType = try container.decode(DepartmentTypeEnum.self, forKey: .departmentType)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.operatorUserIds = try container.decodeIfPresent([String].self, forKey: .operatorUserIds)
         self.id = try container.decode(String.self, forKey: .id)
@@ -58,7 +58,7 @@ public struct Department1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.name, forKey: .name)
-        try container.encode(self.department, forKey: .department)
+        try container.encode(self.departmentType, forKey: .departmentType)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.operatorUserIds, forKey: .operatorUserIds)
         try container.encode(self.id, forKey: .id)
@@ -71,7 +71,7 @@ public struct Department1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
         case name
-        case department
+        case departmentType = "department_type"
         case location
         case operatorUserIds = "operator_user_ids"
         case id = "_id"

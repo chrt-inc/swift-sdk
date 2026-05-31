@@ -13,7 +13,7 @@ import Chrt
                     {
                       "schema_version": 1,
                       "name": "name",
-                      "department": "automotive",
+                      "department_type": "automotive",
                       "location": {
                         "type": "Feature",
                         "geometry": {
@@ -52,7 +52,7 @@ import Chrt
                 Department1(
                     schemaVersion: 1,
                     name: "name",
-                    department: .automotive,
+                    departmentType: .automotive,
                     location: Optional(LocationFeature(
                         type: .feature,
                         geometry: .geometryCollection(
@@ -87,9 +87,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartment: [
-                .automotive
-            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -103,7 +100,7 @@ import Chrt
                 {
                   "schema_version": 1,
                   "name": "name",
-                  "department": "automotive",
+                  "department_type": "automotive",
                   "location": {
                     "bbox": [
                       {
@@ -147,7 +144,7 @@ import Chrt
         let expectedResponse = Department1(
             schemaVersion: 1,
             name: "name",
-            department: .automotive,
+            departmentType: .automotive,
             location: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -259,7 +256,7 @@ import Chrt
             request: .init(
                 schemaVersion: 1,
                 name: "name",
-                department: .automotive
+                departmentType: .automotive
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

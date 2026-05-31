@@ -2,5 +2,5 @@ import Foundation
 
 public enum DepartmentSortByEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case createdAt = "created_at"
-    case department
+    case departmentType = "department_type"
 }
