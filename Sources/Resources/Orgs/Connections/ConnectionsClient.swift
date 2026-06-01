@@ -81,19 +81,6 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Sets or clears the department on a connection. Send null to clear. | authz: min_org_role=administrator | (SetDepartmentReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setDepartmentV1(connectionId: String, request: Requests.SetDepartmentReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/orgs/connections/set_department/v1/\(connectionId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Toggles `auto_assign_enabled` on a provider-provider connection — the executor org's opt-in for receiving direct (non-bidding) task-group assignments. Executor org only, min role: administrator. | (ProviderProviderUpdateAutoAssignReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

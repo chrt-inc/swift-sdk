@@ -39,7 +39,6 @@ import Chrt
                       "schema_version": 1,
                       "company_name": "company_name",
                       "industry": "industry",
-                      "department_id": "department_id",
                       "street_address": {
                         "type": "Feature",
                         "geometry": {
@@ -84,7 +83,6 @@ import Chrt
                     schemaVersion: 1,
                     companyName: Optional("company_name"),
                     industry: Optional("industry"),
-                    departmentId: Optional("department_id"),
                     streetAddress: Optional(LocationFeature(
                         type: .feature,
                         geometry: .geometryCollection(
@@ -137,7 +135,6 @@ import Chrt
                   "schema_version": 1,
                   "company_name": "company_name",
                   "industry": "industry",
-                  "department_id": "department_id",
                   "street_address": {
                     "bbox": [
                       {
@@ -187,7 +184,6 @@ import Chrt
             schemaVersion: 1,
             companyName: Optional("company_name"),
             industry: Optional("industry"),
-            departmentId: Optional("department_id"),
             streetAddress: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(

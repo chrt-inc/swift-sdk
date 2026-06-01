@@ -12,8 +12,6 @@ extension Requests {
         public let emailAddressSecondary: String?
         public let jobTitle: String?
         public let notes: String?
-        public let departmentId: String?
-        public let departmentIdSetToNone: Bool?
         public let industrySetToNone: Bool?
         public let streetAddressSetToNone: Bool?
         public let contactFirstNameSetToNone: Bool?
@@ -37,8 +35,6 @@ extension Requests {
             emailAddressSecondary: String? = nil,
             jobTitle: String? = nil,
             notes: String? = nil,
-            departmentId: String? = nil,
-            departmentIdSetToNone: Bool? = nil,
             industrySetToNone: Bool? = nil,
             streetAddressSetToNone: Bool? = nil,
             contactFirstNameSetToNone: Bool? = nil,
@@ -60,8 +56,6 @@ extension Requests {
             self.emailAddressSecondary = emailAddressSecondary
             self.jobTitle = jobTitle
             self.notes = notes
-            self.departmentId = departmentId
-            self.departmentIdSetToNone = departmentIdSetToNone
             self.industrySetToNone = industrySetToNone
             self.streetAddressSetToNone = streetAddressSetToNone
             self.contactFirstNameSetToNone = contactFirstNameSetToNone
@@ -86,8 +80,6 @@ extension Requests {
             self.emailAddressSecondary = try container.decodeIfPresent(String.self, forKey: .emailAddressSecondary)
             self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
             self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
-            self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
-            self.departmentIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .departmentIdSetToNone)
             self.industrySetToNone = try container.decodeIfPresent(Bool.self, forKey: .industrySetToNone)
             self.streetAddressSetToNone = try container.decodeIfPresent(Bool.self, forKey: .streetAddressSetToNone)
             self.contactFirstNameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .contactFirstNameSetToNone)
@@ -113,8 +105,6 @@ extension Requests {
             try container.encodeIfPresent(self.emailAddressSecondary, forKey: .emailAddressSecondary)
             try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
             try container.encodeIfPresent(self.notes, forKey: .notes)
-            try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
-            try container.encodeIfPresent(self.departmentIdSetToNone, forKey: .departmentIdSetToNone)
             try container.encodeIfPresent(self.industrySetToNone, forKey: .industrySetToNone)
             try container.encodeIfPresent(self.streetAddressSetToNone, forKey: .streetAddressSetToNone)
             try container.encodeIfPresent(self.contactFirstNameSetToNone, forKey: .contactFirstNameSetToNone)
@@ -138,8 +128,6 @@ extension Requests {
             case emailAddressSecondary = "email_address_secondary"
             case jobTitle = "job_title"
             case notes
-            case departmentId = "department_id"
-            case departmentIdSetToNone = "department_id__set_to_None"
             case industrySetToNone = "industry__set_to_None"
             case streetAddressSetToNone = "street_address__set_to_None"
             case contactFirstNameSetToNone = "contact_first_name__set_to_None"

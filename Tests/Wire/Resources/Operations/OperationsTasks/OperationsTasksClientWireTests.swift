@@ -12,13 +12,22 @@ import Chrt
                   "items": [
                     {
                       "schema_version": 1,
-                      "case_id": "case_id",
+                      "order_id": "order_id",
+                      "task_type": "review_order_details",
                       "title": "title",
                       "description": "description",
                       "deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "tags": [
+                        "tags"
+                      ],
+                      "assigned_user_ids": [
+                        "assigned_user_ids"
+                      ],
                       "_id": "_id",
                       "org_id": "org_id",
-                      "completed": true,
+                      "department_id": "department_id",
+                      "source_task_list_id": "source_task_list_id",
+                      "status": "not_started",
                       "completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "completed_by_user_id": "completed_by_user_id",
                       "comments": [
@@ -44,13 +53,22 @@ import Chrt
             items: [
                 OperationsTask1(
                     schemaVersion: 1,
-                    caseId: "case_id",
+                    orderId: "order_id",
+                    taskType: .reviewOrderDetails,
                     title: "title",
                     description: "description",
                     deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    tags: Optional([
+                        "tags"
+                    ]),
+                    assignedUserIds: Optional([
+                        "assigned_user_ids"
+                    ]),
                     id: "_id",
                     orgId: "org_id",
-                    completed: Optional(true),
+                    departmentId: Optional("department_id"),
+                    sourceTaskListId: Optional("source_task_list_id"),
+                    status: Optional(.notStarted),
                     completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     completedByUserId: Optional("completed_by_user_id"),
                     comments: Optional([
@@ -69,8 +87,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterCaseId: "filter_case_id",
-            filterCompleted: true,
+            filterOrderId: "filter_order_id",
+            filterDepartmentId: "filter_department_id",
+            filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -85,13 +104,22 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
-                  "case_id": "case_id",
+                  "order_id": "order_id",
+                  "task_type": "review_order_details",
                   "title": "title",
                   "description": "description",
                   "deadline_timestamp": "2024-01-15T09:30:00Z",
+                  "tags": [
+                    "tags"
+                  ],
+                  "assigned_user_ids": [
+                    "assigned_user_ids"
+                  ],
                   "_id": "_id",
                   "org_id": "org_id",
-                  "completed": true,
+                  "department_id": "department_id",
+                  "source_task_list_id": "source_task_list_id",
+                  "status": "not_started",
                   "completed_at_timestamp": "2024-01-15T09:30:00Z",
                   "completed_by_user_id": "completed_by_user_id",
                   "comments": [
@@ -113,13 +141,22 @@ import Chrt
         )
         let expectedResponse = OperationsTask1(
             schemaVersion: 1,
-            caseId: "case_id",
+            orderId: "order_id",
+            taskType: .reviewOrderDetails,
             title: "title",
             description: "description",
             deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            tags: Optional([
+                "tags"
+            ]),
+            assignedUserIds: Optional([
+                "assigned_user_ids"
+            ]),
             id: "_id",
             orgId: "org_id",
-            completed: Optional(true),
+            departmentId: Optional("department_id"),
+            sourceTaskListId: Optional("source_task_list_id"),
+            status: Optional(.notStarted),
             completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             completedByUserId: Optional("completed_by_user_id"),
             comments: Optional([
@@ -201,7 +238,8 @@ import Chrt
         let response = try await client.operations.operationsTasks.createV1(
             request: .init(
                 schemaVersion: 1,
-                caseId: "case_id",
+                orderId: "order_id",
+                taskType: .reviewOrderDetails,
                 title: "title",
                 description: "description"
             ),
@@ -249,6 +287,29 @@ import Chrt
         let expectedResponse = true
         let response = try await client.operations.operationsTasks.uncompleteV1(
             taskId: "task_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateStatusV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.operationsTasks.updateStatusV1(
+            taskId: "task_id",
+            request: .init(status: .notStarted),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

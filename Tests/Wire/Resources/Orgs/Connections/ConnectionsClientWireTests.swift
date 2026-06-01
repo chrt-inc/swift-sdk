@@ -110,7 +110,6 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
-                  "department_id": "department_id",
                   "shipper_org_id": "shipper_org_id",
                   "coordinator_org_id": "coordinator_org_id",
                   "connected": true,
@@ -128,7 +127,6 @@ import Chrt
         let expectedResponse = Optional(ConnectionsGetByHandleV1Response.shipperProviderConnection1(
             ShipperProviderConnection1(
                 schemaVersion: 1,
-                departmentId: Optional("department_id"),
                 shipperOrgId: "shipper_org_id",
                 coordinatorOrgId: "coordinator_org_id",
                 connected: Optional(true),
@@ -186,29 +184,6 @@ import Chrt
             request: CreateConnectionReq(
                 handle: "handle"
             ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func setDepartmentV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.orgs.connections.setDepartmentV1(
-            connectionId: "connection_id",
-            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -1,10 +1,11 @@
 import Foundation
 
-public struct Checklist1: Codable, Hashable, Sendable {
+public struct OperationsTaskList1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let name: String
     public let description: String?
-    public let checks: [ChecklistCheck1]?
+    public let tags: [String]?
+    public let entries: [OperationsTaskListEntry1]?
     public let id: String
     /// Must be a string starting with `org_`
     public let orgId: String
@@ -20,7 +21,8 @@ public struct Checklist1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         name: String,
         description: String? = nil,
-        checks: [ChecklistCheck1]? = nil,
+        tags: [String]? = nil,
+        entries: [OperationsTaskListEntry1]? = nil,
         id: String,
         orgId: String,
         archived: Bool? = nil,
@@ -32,7 +34,8 @@ public struct Checklist1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.name = name
         self.description = description
-        self.checks = checks
+        self.tags = tags
+        self.entries = entries
         self.id = id
         self.orgId = orgId
         self.archived = archived
@@ -47,7 +50,8 @@ public struct Checklist1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.name = try container.decode(String.self, forKey: .name)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
-        self.checks = try container.decodeIfPresent([ChecklistCheck1].self, forKey: .checks)
+        self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
+        self.entries = try container.decodeIfPresent([OperationsTaskListEntry1].self, forKey: .entries)
         self.id = try container.decode(String.self, forKey: .id)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.archived = try container.decodeIfPresent(Bool.self, forKey: .archived)
@@ -63,7 +67,8 @@ public struct Checklist1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.description, forKey: .description)
-        try container.encodeIfPresent(self.checks, forKey: .checks)
+        try container.encodeIfPresent(self.tags, forKey: .tags)
+        try container.encodeIfPresent(self.entries, forKey: .entries)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.archived, forKey: .archived)
@@ -77,7 +82,8 @@ public struct Checklist1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case name
         case description
-        case checks
+        case tags
+        case entries
         case id = "_id"
         case orgId = "org_id"
         case archived

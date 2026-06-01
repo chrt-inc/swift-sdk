@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("ChecklistsClient Wire Tests") struct ChecklistsClientWireTests {
+@Suite("OperationsTaskListsClient Wire Tests") struct OperationsTaskListsClientWireTests {
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -14,9 +14,14 @@ import Chrt
                       "schema_version": 1,
                       "name": "name",
                       "description": "description",
-                      "checks": [
+                      "tags": [
+                        "tags"
+                      ],
+                      "entries": [
                         {
-                          "check": "shipping.order.placed.order_details_reviewed"
+                          "task_type": "review_order_details",
+                          "title": "title",
+                          "description": "description"
                         }
                       ],
                       "_id": "_id",
@@ -37,15 +42,20 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ChecklistListRes(
+        let expectedResponse = OperationsTaskListListRes(
             items: [
-                Checklist1(
+                OperationsTaskList1(
                     schemaVersion: 1,
                     name: "name",
                     description: Optional("description"),
-                    checks: Optional([
-                        ChecklistCheck1(
-                            check: .shippingOrderPlacedOrderDetailsReviewed
+                    tags: Optional([
+                        "tags"
+                    ]),
+                    entries: Optional([
+                        OperationsTaskListEntry1(
+                            taskType: .reviewOrderDetails,
+                            title: "title",
+                            description: "description"
                         )
                     ]),
                     id: "_id",
@@ -58,7 +68,7 @@ import Chrt
             ],
             totalCount: 1
         )
-        let response = try await client.operations.checklists.listV1(
+        let response = try await client.operations.operationsTaskLists.listV1(
             sortBy: .createdAtTimestamp,
             sortOrder: .asc,
             page: 1,
@@ -78,9 +88,16 @@ import Chrt
                   "schema_version": 1,
                   "name": "name",
                   "description": "description",
-                  "checks": [
+                  "tags": [
+                    "tags"
+                  ],
+                  "entries": [
                     {
-                      "check": "shipping.order.placed.order_details_reviewed"
+                      "id": "id",
+                      "task_type": "review_order_details",
+                      "title": "title",
+                      "description": "description",
+                      "deadline_offset_seconds": 1
                     }
                   ],
                   "_id": "_id",
@@ -98,13 +115,20 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Checklist1(
+        let expectedResponse = OperationsTaskList1(
             schemaVersion: 1,
             name: "name",
             description: Optional("description"),
-            checks: Optional([
-                ChecklistCheck1(
-                    check: .shippingOrderPlacedOrderDetailsReviewed
+            tags: Optional([
+                "tags"
+            ]),
+            entries: Optional([
+                OperationsTaskListEntry1(
+                    id: Optional("id"),
+                    taskType: .reviewOrderDetails,
+                    title: "title",
+                    description: "description",
+                    deadlineOffsetSeconds: Optional(1)
                 )
             ]),
             id: "_id",
@@ -114,8 +138,8 @@ import Chrt
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
-        let response = try await client.operations.checklists.getV1(
-            checklistId: "checklist_id",
+        let response = try await client.operations.operationsTaskLists.getV1(
+            taskListId: "task_list_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -136,8 +160,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.checklists.updateV1(
-            checklistId: "checklist_id",
+        let response = try await client.operations.operationsTaskLists.updateV1(
+            taskListId: "task_list_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -159,7 +183,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.operations.checklists.createV1(
+        let response = try await client.operations.operationsTaskLists.createV1(
             request: .init(
                 schemaVersion: 1,
                 name: "name"
@@ -169,7 +193,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func addChecksV11() async throws -> Void {
+    @Test func addEntriesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -184,15 +208,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.checklists.addChecksV1(
-            checklistId: "checklist_id",
+        let response = try await client.operations.operationsTaskLists.addEntriesV1(
+            taskListId: "task_list_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func removeChecksV11() async throws -> Void {
+    @Test func removeEntriesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -207,8 +231,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.checklists.removeChecksV1(
-            checklistId: "checklist_id",
+        let response = try await client.operations.operationsTaskLists.removeEntriesV1(
+            taskListId: "task_list_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -230,8 +254,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.checklists.archiveV1(
-            checklistId: "checklist_id",
+        let response = try await client.operations.operationsTaskLists.archiveV1(
+            taskListId: "task_list_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -252,8 +276,65 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.checklists.unarchiveV1(
-            checklistId: "checklist_id",
+        let response = try await client.operations.operationsTaskLists.unarchiveV1(
+            taskListId: "task_list_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func applyToCaseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  "string"
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            "string"
+        ]
+        let response = try await client.operations.operationsTaskLists.applyToCaseV1(
+            taskListId: "task_list_id",
+            caseId: "case_id",
+            overallDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeFromCaseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "deleted_count": 1,
+                  "kept_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OperationsTaskListRemoveFromCaseRes1(
+            deletedCount: 1,
+            keptCount: 1
+        )
+        let response = try await client.operations.operationsTaskLists.removeFromCaseV1(
+            taskListId: "task_list_id",
+            caseId: "case_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

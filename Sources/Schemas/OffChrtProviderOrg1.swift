@@ -4,7 +4,6 @@ public struct OffChrtProviderOrg1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let companyName: String?
     public let industry: String?
-    public let departmentId: String?
     public let streetAddress: LocationFeature?
     public let contactFirstName: String?
     public let contactLastName: String?
@@ -26,7 +25,6 @@ public struct OffChrtProviderOrg1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         companyName: String? = nil,
         industry: String? = nil,
-        departmentId: String? = nil,
         streetAddress: LocationFeature? = nil,
         contactFirstName: String? = nil,
         contactLastName: String? = nil,
@@ -44,7 +42,6 @@ public struct OffChrtProviderOrg1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.companyName = companyName
         self.industry = industry
-        self.departmentId = departmentId
         self.streetAddress = streetAddress
         self.contactFirstName = contactFirstName
         self.contactLastName = contactLastName
@@ -65,7 +62,6 @@ public struct OffChrtProviderOrg1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
         self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
-        self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.streetAddress = try container.decodeIfPresent(LocationFeature.self, forKey: .streetAddress)
         self.contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
         self.contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
@@ -87,7 +83,6 @@ public struct OffChrtProviderOrg1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.companyName, forKey: .companyName)
         try container.encodeIfPresent(self.industry, forKey: .industry)
-        try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encodeIfPresent(self.streetAddress, forKey: .streetAddress)
         try container.encodeIfPresent(self.contactFirstName, forKey: .contactFirstName)
         try container.encodeIfPresent(self.contactLastName, forKey: .contactLastName)
@@ -107,7 +102,6 @@ public struct OffChrtProviderOrg1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case companyName = "company_name"
         case industry
-        case departmentId = "department_id"
         case streetAddress = "street_address"
         case contactFirstName = "contact_first_name"
         case contactLastName = "contact_last_name"

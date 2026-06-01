@@ -2,7 +2,6 @@ import Foundation
 
 public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
-    public let departmentId: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String
     /// Must be a string starting with `org_`
@@ -16,7 +15,6 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
 
     public init(
         schemaVersion: Int,
-        departmentId: String? = nil,
         coordinatorOrgId: String,
         executorOrgId: String,
         connected: Bool? = nil,
@@ -26,7 +24,6 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
-        self.departmentId = departmentId
         self.coordinatorOrgId = coordinatorOrgId
         self.executorOrgId = executorOrgId
         self.connected = connected
@@ -39,7 +36,6 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.coordinatorOrgId = try container.decode(String.self, forKey: .coordinatorOrgId)
         self.executorOrgId = try container.decode(String.self, forKey: .executorOrgId)
         self.connected = try container.decodeIfPresent(Bool.self, forKey: .connected)
@@ -53,7 +49,6 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encode(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encode(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.connected, forKey: .connected)
@@ -65,7 +60,6 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
-        case departmentId = "department_id"
         case coordinatorOrgId = "coordinator_org_id"
         case executorOrgId = "executor_org_id"
         case connected

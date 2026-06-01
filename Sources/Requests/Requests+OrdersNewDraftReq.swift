@@ -9,6 +9,7 @@ extension Requests {
         public let offChrtShipperOrgId: String?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
+        public let departmentId: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -17,12 +18,14 @@ extension Requests {
             shipperOrgId: String? = nil,
             offChrtShipperOrgId: String? = nil,
             offChrtReferenceId: String? = nil,
+            departmentId: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.coordinatorOrgId = coordinatorOrgId
             self.shipperOrgId = shipperOrgId
             self.offChrtShipperOrgId = offChrtShipperOrgId
             self.offChrtReferenceId = offChrtReferenceId
+            self.departmentId = departmentId
             self.additionalProperties = additionalProperties
         }
 
@@ -32,6 +35,7 @@ extension Requests {
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
+            self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -42,6 +46,7 @@ extension Requests {
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
+            try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -50,6 +55,7 @@ extension Requests {
             case shipperOrgId = "shipper_org_id"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"
             case offChrtReferenceId = "off_chrt_reference_id"
+            case departmentId = "department_id"
         }
     }
 }

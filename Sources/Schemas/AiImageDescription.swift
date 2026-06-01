@@ -3,7 +3,7 @@ import Foundation
 /// Structured, factual description of a task-artifact image produced by an LLM.
 /// 
 /// Stored on `TaskArtifactS3ObjectMetadata1.ai_image_description` so downstream
-/// consumers (Q&A, search, audit, case checks) can answer questions about the
+/// consumers (Q&A, search, audit) can answer questions about the
 /// artifact without re-sending the image. `model` records which LLM produced
 /// the description; `provider` is derived from `model` so the two can never
 /// disagree.

@@ -13,7 +13,7 @@ import Chrt
                     {
                       "schema_version": 1,
                       "name": "name",
-                      "department_type": "automotive",
+                      "department_type": "aerospace",
                       "location": {
                         "type": "Feature",
                         "geometry": {
@@ -33,6 +33,7 @@ import Chrt
                       ],
                       "_id": "_id",
                       "org_id": "org_id",
+                      "short_id": "short_id",
                       "created_by_user_id": "created_by_user_id",
                       "created_at": "2024-01-15T09:30:00Z"
                     }
@@ -52,7 +53,7 @@ import Chrt
                 Department1(
                     schemaVersion: 1,
                     name: "name",
-                    departmentType: .automotive,
+                    departmentType: .aerospace,
                     location: Optional(LocationFeature(
                         type: .feature,
                         geometry: .geometryCollection(
@@ -76,6 +77,7 @@ import Chrt
                     ]),
                     id: "_id",
                     orgId: "org_id",
+                    shortId: "short_id",
                     createdByUserId: "created_by_user_id",
                     createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                 )
@@ -87,9 +89,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartmentType: [
-                .automotive
-            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -103,7 +102,7 @@ import Chrt
                 {
                   "schema_version": 1,
                   "name": "name",
-                  "department_type": "automotive",
+                  "department_type": "aerospace",
                   "location": {
                     "bbox": [
                       {
@@ -133,6 +132,7 @@ import Chrt
                   ],
                   "_id": "_id",
                   "org_id": "org_id",
+                  "short_id": "short_id",
                   "created_by_user_id": "created_by_user_id",
                   "created_at": "2024-01-15T09:30:00Z"
                 }
@@ -147,7 +147,7 @@ import Chrt
         let expectedResponse = Department1(
             schemaVersion: 1,
             name: "name",
-            departmentType: .automotive,
+            departmentType: .aerospace,
             location: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -185,6 +185,7 @@ import Chrt
             ]),
             id: "_id",
             orgId: "org_id",
+            shortId: "short_id",
             createdByUserId: "created_by_user_id",
             createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
@@ -259,7 +260,7 @@ import Chrt
             request: .init(
                 schemaVersion: 1,
                 name: "name",
-                departmentType: .automotive
+                departmentType: .aerospace
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

@@ -9,95 +9,15 @@ public final class CasesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Records image-analysis workflow results onto every participating org's Case for the order. Walks task_artifact -> task -> order, authorizes the caller against the shipping graph, then fans out to all Cases keyed on `order_id` — upserting one Check1 per surviving result keyed by (check, task_artifact_id) on each Case whose effective check set (`enabled - disabled`) includes it. Silently drops results for checks not in the image-uploaded event family, results for checks not in a given Case's effective set, and results whose existing row on that Case is DISMISSED. Returns True if any Case was updated. Intended to be called by the shipping_task_image_analysis Temporal workflow via an internal delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (CaseChecksRecordImageAnalysisResultsReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func recordImageAnalysisResultsV1(taskArtifactId: String, request: Requests.CaseChecksRecordImageAnalysisResultsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/checks/record_image_analysis_results/v1/\(taskArtifactId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Adds the Checklist's checks to the Case's enabled_check_keys (deduped) and records the Checklist id. Does not touch existing check runs. Idempotent. | authz: min_org_role=operator | (CaseChecksApplyChecklistReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func applyChecklistV1(caseId: String, request: Requests.CaseChecksApplyChecklistReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/checks/apply_checklist/v1/\(caseId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Adds a CheckEnum to the Case's disabled_check_keys (operator override). The Checklist that enabled the check stays applied; the workflow's effective set becomes enabled - disabled. Requires the CheckEnum to currently be in enabled_check_keys; otherwise 400. Existing check runs are untouched — operators dismiss them individually if they also want them out of summary counts. | authz: min_org_role=operator | (CaseChecksDisableReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func disableCheckV1(caseId: String, request: CaseChecksDisableReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/checks/disable/v1/\(caseId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes a CheckEnum from the Case's disabled_check_keys, restoring it to the workflow's effective set. Inverse of disable. No-op if the CheckEnum isn't currently disabled. | authz: min_org_role=operator | (CaseChecksDisableReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func enableCheckV1(caseId: String, request: CaseChecksDisableReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/checks/enable/v1/\(caseId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Transitions one (check, entity_id) Check1 to status=DISMISSED. Does not affect other runs of the same check on different entity_ids. | authz: min_org_role=operator | (CaseChecksDismissReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func dismissCheckV1(caseId: String, request: CaseChecksDismissReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/checks/dismiss/v1/\(caseId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Transitions a DISMISSED (check, entity_id) Check1 back to NOT_STARTED so the next matching event re-evaluates it. No-op if not currently DISMISSED. | authz: min_org_role=operator | (CaseChecksDismissReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func undismissCheckV1(caseId: String, request: CaseChecksDismissReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/checks/undismiss/v1/\(caseId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Lists cases for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (CaseListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter filterStatus: Filter by status(es)
     /// - Parameter filterDepartmentId: Filter by department ID(s)
-    /// - Parameter filterAssignedOperatorUserId: Filter by assigned operator user ID (matches any case that includes this user)
-    /// - Parameter filterNeedsAction: Filter by needs_action flag
+    /// - Parameter filterAssignedUserId: Filter by assigned user ID (matches any case that includes this user)
     /// - Parameter filterUnassigned: Filter for unassigned cases
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: CaseSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: CaseStatusEnum? = nil, filterDepartmentId: String? = nil, filterAssignedOperatorUserId: String? = nil, filterNeedsAction: Bool? = nil, filterUnassigned: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CaseListRes {
+    public func listV1(sortBy: CaseSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentId: String? = nil, filterAssignedUserId: String? = nil, filterUnassigned: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CaseListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/cases/list/v1",
@@ -106,10 +26,8 @@ public final class CasesClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_department_id": filterDepartmentId.map { .string($0) }, 
-                "filter_assigned_operator_user_id": filterAssignedOperatorUserId.map { .string($0) }, 
-                "filter_needs_action": filterNeedsAction.map { .bool($0) }, 
+                "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
                 "filter_unassigned": filterUnassigned.map { .bool($0) }
             ],
             requestOptions: requestOptions,
@@ -179,29 +97,15 @@ public final class CasesClient: Sendable {
         )
     }
 
-    /// Updates whether a case needs action. | authz: min_org_role=operator | (CaseNeedsActionReq) -> (bool)
+    /// Returns the department this case's order would map to from the shipper connection — a non-binding default for the UI. Department is never auto-applied; the frontend applies it explicitly via the update route. | authz: min_org_role=operator | () -> (PydanticObjectId | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateNeedsActionV1(caseId: String, request: Requests.CaseNeedsActionReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func getSuggestedDepartmentV1(caseId: String, requestOptions: RequestOptions? = nil) async throws -> String? {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/operations/cases/needs_action/v1/\(caseId)",
-            body: request,
+            method: .get,
+            path: "/operations/cases/suggested_department/v1/\(caseId)",
             requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Updates a case's status. Closing a case also clears needs_action. | authz: min_org_role=operator | (CaseStatusReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateStatusV1(caseId: String, request: Requests.CaseStatusReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/operations/cases/status/v1/\(caseId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: String?.self
         )
     }
 

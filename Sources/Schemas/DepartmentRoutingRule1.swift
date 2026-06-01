@@ -1,15 +1,13 @@
 import Foundation
 
-public struct Department1: Codable, Hashable, Sendable {
+public struct DepartmentRoutingRule1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
-    public let name: String
-    public let departmentType: DepartmentTypeEnum
-    public let location: LocationFeature?
-    public let operatorUserIds: [String]?
+    public let counterpartyType: RoutingCounterpartyTypeEnum
+    public let counterpartyId: String
+    public let departmentId: String
     public let id: String
     /// Must be a string starting with `org_`
-    public let orgId: String
-    public let shortId: String
+    public let ownerOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     public let createdAt: Date
@@ -18,25 +16,21 @@ public struct Department1: Codable, Hashable, Sendable {
 
     public init(
         schemaVersion: Int,
-        name: String,
-        departmentType: DepartmentTypeEnum,
-        location: LocationFeature? = nil,
-        operatorUserIds: [String]? = nil,
+        counterpartyType: RoutingCounterpartyTypeEnum,
+        counterpartyId: String,
+        departmentId: String,
         id: String,
-        orgId: String,
-        shortId: String,
+        ownerOrgId: String,
         createdByUserId: String,
         createdAt: Date,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
-        self.name = name
-        self.departmentType = departmentType
-        self.location = location
-        self.operatorUserIds = operatorUserIds
+        self.counterpartyType = counterpartyType
+        self.counterpartyId = counterpartyId
+        self.departmentId = departmentId
         self.id = id
-        self.orgId = orgId
-        self.shortId = shortId
+        self.ownerOrgId = ownerOrgId
         self.createdByUserId = createdByUserId
         self.createdAt = createdAt
         self.additionalProperties = additionalProperties
@@ -45,13 +39,11 @@ public struct Department1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.departmentType = try container.decode(DepartmentTypeEnum.self, forKey: .departmentType)
-        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
-        self.operatorUserIds = try container.decodeIfPresent([String].self, forKey: .operatorUserIds)
+        self.counterpartyType = try container.decode(RoutingCounterpartyTypeEnum.self, forKey: .counterpartyType)
+        self.counterpartyId = try container.decode(String.self, forKey: .counterpartyId)
+        self.departmentId = try container.decode(String.self, forKey: .departmentId)
         self.id = try container.decode(String.self, forKey: .id)
-        self.orgId = try container.decode(String.self, forKey: .orgId)
-        self.shortId = try container.decode(String.self, forKey: .shortId)
+        self.ownerOrgId = try container.decode(String.self, forKey: .ownerOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -61,13 +53,11 @@ public struct Department1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encode(self.name, forKey: .name)
-        try container.encode(self.departmentType, forKey: .departmentType)
-        try container.encodeIfPresent(self.location, forKey: .location)
-        try container.encodeIfPresent(self.operatorUserIds, forKey: .operatorUserIds)
+        try container.encode(self.counterpartyType, forKey: .counterpartyType)
+        try container.encode(self.counterpartyId, forKey: .counterpartyId)
+        try container.encode(self.departmentId, forKey: .departmentId)
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.orgId, forKey: .orgId)
-        try container.encode(self.shortId, forKey: .shortId)
+        try container.encode(self.ownerOrgId, forKey: .ownerOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.createdAt, forKey: .createdAt)
     }
@@ -75,13 +65,11 @@ public struct Department1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case schemaVersion = "schema_version"
-        case name
-        case departmentType = "department_type"
-        case location
-        case operatorUserIds = "operator_user_ids"
+        case counterpartyType = "counterparty_type"
+        case counterpartyId = "counterparty_id"
+        case departmentId = "department_id"
         case id = "_id"
-        case orgId = "org_id"
-        case shortId = "short_id"
+        case ownerOrgId = "owner_org_id"
         case createdByUserId = "created_by_user_id"
         case createdAt = "created_at"
     }

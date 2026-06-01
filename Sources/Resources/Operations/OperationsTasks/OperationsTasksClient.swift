@@ -7,16 +7,20 @@ public final class OperationsTasksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists incomplete OperationsTasks for the caller's organization by default, with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
+    /// Lists OperationsTasks for the caller's organization, with order/department/type/status/tag/assignee/deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter filterCaseId: Filter by case id
-    /// - Parameter filterCompleted: Filter by completed flag. Defaults to False for incomplete tasks.
+    /// - Parameter filterOrderId: Filter by order id
+    /// - Parameter filterDepartmentId: Filter to tasks routed to this department (desk queue)
+    /// - Parameter filterTaskType: Filter by task type(s). Defaults to all types.
+    /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
+    /// - Parameter filterTag: Filter to tasks carrying ANY of these tags
+    /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterCaseId: String? = nil, filterCompleted: Bool? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
+    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterOrderId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: OperationsTaskTypeEnum? = nil, filterStatus: OperationsTaskStatusEnum? = nil, filterTag: String? = nil, filterAssignedUserId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/list/v1",
@@ -25,8 +29,12 @@ public final class OperationsTasksClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_case_id": filterCaseId.map { .string($0) }, 
-                "filter_completed": filterCompleted.map { .bool($0) }, 
+                "filter_order_id": filterOrderId.map { .string($0) }, 
+                "filter_department_id": filterDepartmentId.map { .string($0) }, 
+                "filter_task_type": filterTaskType.map { .string($0.rawValue) }, 
+                "filter_status": filterStatus.map { .string($0.rawValue) }, 
+                "filter_tag": filterTag.map { .string($0) }, 
+                "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
                 "filter_deadline_gte": filterDeadlineGte.map { .date($0) }, 
                 "filter_deadline_lte": filterDeadlineLte.map { .date($0) }
             ],
@@ -72,7 +80,7 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Creates a new OperationsTask on a Case owned by the caller's organization. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
+    /// Creates a new OperationsTask on an Order the caller's organization has a Case for. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.OperationsTaskClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -104,6 +112,19 @@ public final class OperationsTasksClient: Sendable {
         return try await httpClient.performRequest(
             method: .post,
             path: "/operations/operations_tasks/uncomplete/v1/\(taskId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Sets an OperationsTask's status (not_started / in_progress / completed / skipped). Setting COMPLETED stamps completed_at/by; any other status clears them. | authz: min_org_role=operator | (OperationsTaskStatusReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateStatusV1(taskId: String, request: Requests.OperationsTaskStatusReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_tasks/status/v1/\(taskId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
