@@ -1,3 +1,15 @@
+## 3.0.0 - 2026-06-02
+### Breaking Changes
+* **`TaskGroup1.orderCancelled`** — the `Bool?` property has been removed; replace any access with the new `cancelledAtTimestamp: Date?` property.
+* **`OrderSortByEnum.orderCancelledAtTimestamp`** — renamed to `cancelledAtTimestamp` (raw value `"cancelled_at_timestamp"`); update all exhaustive `switch` statements and sort-by call sites.
+* **`CargoStatusEnum1`, `OrderStatusEnum1`, `TaskArtifactStatusEnum1`, `TaskGroupStatusEnum1`, `TaskStatusEnum1`** — each gains a new `cancelled` case; exhaustive `switch` statements over these enums will fail to compile until a `cancelled` branch or `default` is added.
+### Added
+* **`DriversClient.getStatsV1(driverId:request:)`** — new method that retrieves overlap-corrected driver stats (hours worked and observed mileage) for a given driver, returning a `DriverStatsRes`.
+* **`OrderDraftsClient.deleteManyV1(request:)`** — new method for bulk-deleting multiple draft orders and their associated entities in a single call.
+* **`cancelledAtTimestamp: Date?`** — new optional timestamp field on `Cargo1`, `TaskArtifact1`, and `TaskGroup1`, and a new `cancelledAtTimestamp` sort case on `TaskGroupSortByEnum`.
+* **`orderHasShipper: Bool?`** — new optional field on `OrderDraftValidationRequirements` and `OrderManifestValidationRequirements` indicating whether the order has an assigned shipper.
+* **New request/response structs** — `Requests.DriverStatsReq`, `Requests.OrderDraftAddExecutorReq`, `Requests.OrderDraftUpdateDriverReq`, `Requests.OrdersCancelManyReq`, `Requests.OrdersDraftDeleteManyReq`, and `DriverStatsRes` added to support new client methods.
+
 ## 2.0.1 - 2026-06-01
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
