@@ -7,7 +7,7 @@ public final class TaskGroupClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a task group to an existing order draft. Validates order is in DRAFT status and owned by caller. The task group is created with no executor — TG-level party assignments happen post-stage via /shipping/task_groups/add_executor/v1. | (OrderDraftAddTaskGroupReq) -> (PydanticObjectId)
+    /// Adds a task group to an existing order draft. The task group is created without an executor; use draft assignment routes to assign executor or driver before staging. | (OrderDraftAddTaskGroupReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(request: Requests.OrderDraftAddTaskGroupReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -41,6 +41,56 @@ public final class TaskGroupClient: Sendable {
             method: .patch,
             path: "/shipping/order_drafts/task_group/set_vehicle_type/v1/\(taskGroupId)",
             body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Assigns an executor organization to a draft task group. Coordinator-only; provider-provider direct assignments require auto-assign consent. | authz_personas=[task_group_coordinator_operators] | (OrderDraftAddExecutorReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addExecutorV1(taskGroupId: String, request: Requests.OrderDraftAddExecutorReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/add_executor/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Clears the executor, driver, and PPP/PPD billing attachments from a draft task group. Coordinator-only; executor Cases are preserved. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeExecutorV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/remove_executor/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Assigns or swaps the driver on a draft task group. Only the executor org may assign drivers. | authz_personas=[executor_org_operators] | (OrderDraftUpdateDriverReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDriverV1(taskGroupId: String, request: Requests.OrderDraftUpdateDriverReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/update_driver/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Clears the driver on a draft task group. Only the executor org may remove drivers. | authz_personas=[executor_org_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeDriverV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/remove_driver/v1/\(taskGroupId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

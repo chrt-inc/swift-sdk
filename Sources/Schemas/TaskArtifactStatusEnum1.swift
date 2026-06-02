@@ -5,5 +5,6 @@ public enum TaskArtifactStatusEnum1: String, Codable, Hashable, CaseIterable, Se
     case staged
     case completed
     case skipped
+    case cancelled
     case exception
 }

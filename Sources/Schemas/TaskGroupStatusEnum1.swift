@@ -6,5 +6,6 @@ public enum TaskGroupStatusEnum1: String, Codable, Hashable, CaseIterable, Senda
     case inProgress = "in_progress"
     case completed
     case skipped
+    case cancelled
     case exception
 }

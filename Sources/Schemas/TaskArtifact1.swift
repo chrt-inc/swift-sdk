@@ -31,6 +31,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let stagedAtTimestamp: Date?
     public let completedAtTimestamp: Date?
     public let skippedAtTimestamp: Date?
+    public let cancelledAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -60,6 +61,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         stagedAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
         skippedAtTimestamp: Date? = nil,
+        cancelledAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -87,6 +89,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = stagedAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
         self.skippedAtTimestamp = skippedAtTimestamp
+        self.cancelledAtTimestamp = cancelledAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.additionalProperties = additionalProperties
     }
@@ -117,6 +120,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
+        self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -148,6 +152,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
+        try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
     }
 
@@ -177,6 +182,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         case stagedAtTimestamp = "staged_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
         case skippedAtTimestamp = "skipped_at_timestamp"
+        case cancelledAtTimestamp = "cancelled_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AnalyticsTimeBucketResponse: Codable, Hashable, Sendable {
+public struct AnalyticsTimeBucketRes: Codable, Hashable, Sendable {
     public let buckets: [TimeBucket]
     public let total: Double
     /// Additional properties that are not explicitly defined in the schema

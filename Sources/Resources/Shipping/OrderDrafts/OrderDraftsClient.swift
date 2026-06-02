@@ -57,6 +57,19 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
+    /// Deletes multiple draft orders and associated entities. | (OrdersDraftDeleteManyReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteManyV1(request: Requests.OrdersDraftDeleteManyReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/order_drafts/delete_many/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Converts an order screenshot into lightly structured text for the AI order builder. | (UploadFile) -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

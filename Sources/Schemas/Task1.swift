@@ -32,6 +32,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public let completedAtTimestamp: Date?
     public let skippedAtTimestamp: Date?
     public let attemptedAtTimestamp: Date?
+    public let cancelledAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let waitTimeStartTimestamp: Date?
     public let waitTimeEndTimestamp: Date?
@@ -39,7 +40,6 @@ public struct Task1: Codable, Hashable, Sendable {
     public let waitTimeValidated: Bool?
     /// Must be a string starting with `user_`
     public let waitTimeValidatedByUserId: String?
-    public let orderCancelled: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -71,13 +71,13 @@ public struct Task1: Codable, Hashable, Sendable {
         completedAtTimestamp: Date? = nil,
         skippedAtTimestamp: Date? = nil,
         attemptedAtTimestamp: Date? = nil,
+        cancelledAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         waitTimeStartTimestamp: Date? = nil,
         waitTimeEndTimestamp: Date? = nil,
         waitTimeStartedInGeofence: Bool? = nil,
         waitTimeValidated: Bool? = nil,
         waitTimeValidatedByUserId: String? = nil,
-        orderCancelled: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -107,13 +107,13 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = completedAtTimestamp
         self.skippedAtTimestamp = skippedAtTimestamp
         self.attemptedAtTimestamp = attemptedAtTimestamp
+        self.cancelledAtTimestamp = cancelledAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.waitTimeStartTimestamp = waitTimeStartTimestamp
         self.waitTimeEndTimestamp = waitTimeEndTimestamp
         self.waitTimeStartedInGeofence = waitTimeStartedInGeofence
         self.waitTimeValidated = waitTimeValidated
         self.waitTimeValidatedByUserId = waitTimeValidatedByUserId
-        self.orderCancelled = orderCancelled
         self.additionalProperties = additionalProperties
     }
 
@@ -146,13 +146,13 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.attemptedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .attemptedAtTimestamp)
+        self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.waitTimeStartTimestamp = try container.decodeIfPresent(Date.self, forKey: .waitTimeStartTimestamp)
         self.waitTimeEndTimestamp = try container.decodeIfPresent(Date.self, forKey: .waitTimeEndTimestamp)
         self.waitTimeStartedInGeofence = try container.decodeIfPresent(Bool.self, forKey: .waitTimeStartedInGeofence)
         self.waitTimeValidated = try container.decodeIfPresent(Bool.self, forKey: .waitTimeValidated)
         self.waitTimeValidatedByUserId = try container.decodeIfPresent(String.self, forKey: .waitTimeValidatedByUserId)
-        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -186,13 +186,13 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.attemptedAtTimestamp, forKey: .attemptedAtTimestamp)
+        try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.waitTimeStartTimestamp, forKey: .waitTimeStartTimestamp)
         try container.encodeIfPresent(self.waitTimeEndTimestamp, forKey: .waitTimeEndTimestamp)
         try container.encodeIfPresent(self.waitTimeStartedInGeofence, forKey: .waitTimeStartedInGeofence)
         try container.encodeIfPresent(self.waitTimeValidated, forKey: .waitTimeValidated)
         try container.encodeIfPresent(self.waitTimeValidatedByUserId, forKey: .waitTimeValidatedByUserId)
-        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -224,12 +224,12 @@ public struct Task1: Codable, Hashable, Sendable {
         case completedAtTimestamp = "completed_at_timestamp"
         case skippedAtTimestamp = "skipped_at_timestamp"
         case attemptedAtTimestamp = "attempted_at_timestamp"
+        case cancelledAtTimestamp = "cancelled_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case waitTimeStartTimestamp = "wait_time_start_timestamp"
         case waitTimeEndTimestamp = "wait_time_end_timestamp"
         case waitTimeStartedInGeofence = "wait_time_started_in_geofence"
         case waitTimeValidated = "wait_time_validated"
         case waitTimeValidatedByUserId = "wait_time_validated_by_user_id"
-        case orderCancelled = "order_cancelled"
     }
 }

@@ -25,9 +25,8 @@ public struct Order1: Codable, Hashable, Sendable {
     public let stagedAtTimestamp: Date?
     public let inProgressAtTimestamp: Date?
     public let completedAtTimestamp: Date?
+    public let cancelledAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
-    public let orderCancelled: Bool?
-    public let orderCancelledAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -51,9 +50,8 @@ public struct Order1: Codable, Hashable, Sendable {
         stagedAtTimestamp: Date? = nil,
         inProgressAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
+        cancelledAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
-        orderCancelled: Bool? = nil,
-        orderCancelledAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -75,9 +73,8 @@ public struct Order1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = stagedAtTimestamp
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
+        self.cancelledAtTimestamp = cancelledAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
-        self.orderCancelled = orderCancelled
-        self.orderCancelledAtTimestamp = orderCancelledAtTimestamp
         self.additionalProperties = additionalProperties
     }
 
@@ -102,9 +99,8 @@ public struct Order1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
-        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
-        self.orderCancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderCancelledAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -130,9 +126,8 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
-        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
-        try container.encodeIfPresent(self.orderCancelledAtTimestamp, forKey: .orderCancelledAtTimestamp)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -156,8 +151,7 @@ public struct Order1: Codable, Hashable, Sendable {
         case stagedAtTimestamp = "staged_at_timestamp"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
+        case cancelledAtTimestamp = "cancelled_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
-        case orderCancelled = "order_cancelled"
-        case orderCancelledAtTimestamp = "order_cancelled_at_timestamp"
     }
 }

@@ -35,9 +35,8 @@ import Chrt
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                    "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "order_cancelled_at_timestamp": "2024-01-15T09:30:00Z"
+                    "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
+                    "exception_at_timestamp": "2024-01-15T09:30:00Z"
                   },
                   "coordinator_org_company_name": "coordinator_org_company_name",
                   "coordinator_org_handle": "coordinator_org_handle",
@@ -134,6 +133,7 @@ import Chrt
                       "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                       "delivered_at_timestamp": "2024-01-15T09:30:00Z",
                       "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                       "exception_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ]
@@ -173,9 +173,8 @@ import Chrt
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                orderCancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             ),
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
             coordinatorOrgHandle: Optional("coordinator_org_handle"),
@@ -272,6 +271,7 @@ import Chrt
                     inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ])

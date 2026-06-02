@@ -9,6 +9,19 @@ public final class DriversClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves driver stats (hours worked + observed mileage) with overlap-corrected duration. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getStatsV1(driverId: String, request: Requests.DriverStatsReq, requestOptions: RequestOptions? = nil) async throws -> DriverStatsRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/stats/v1/\(driverId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: DriverStatsRes.self
+        )
+    }
+
     /// Retrieves driver information for the caller within their organization. | () -> (Driver1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

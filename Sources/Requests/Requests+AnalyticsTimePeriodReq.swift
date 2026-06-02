@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct AnalyticsTimePeriodRequest: Codable, Hashable, Sendable {
+    public struct AnalyticsTimePeriodReq: Codable, Hashable, Sendable {
         public let start: Date
         public let end: Date
         public let granularity: TimeGranularity?

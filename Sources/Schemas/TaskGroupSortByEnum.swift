@@ -6,5 +6,6 @@ public enum TaskGroupSortByEnum: String, Codable, Hashable, CaseIterable, Sendab
     case inProgressAtTimestamp = "in_progress_at_timestamp"
     case completedAtTimestamp = "completed_at_timestamp"
     case skippedAtTimestamp = "skipped_at_timestamp"
+    case cancelledAtTimestamp = "cancelled_at_timestamp"
     case exceptionAtTimestamp = "exception_at_timestamp"
 }

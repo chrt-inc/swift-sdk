@@ -274,6 +274,7 @@ import Chrt
                     "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                     "delivered_at_timestamp": "2024-01-15T09:30:00Z",
                     "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                    "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z"
                   },
                   "past_sessions": [
@@ -360,6 +361,7 @@ import Chrt
                       "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                       "delivered_at_timestamp": "2024-01-15T09:30:00Z",
                       "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                       "exception_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ]
@@ -514,6 +516,7 @@ import Chrt
                 inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
             pastSessions: Optional([
@@ -604,6 +607,7 @@ import Chrt
                     inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ])

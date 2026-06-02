@@ -26,12 +26,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let driverId: String?
     public let taskGroupS3ObjectMetadataIds: [String]?
     public let status: TaskGroupStatusEnum1?
-    public let orderCancelled: Bool?
     public let draftStartedAtTimestamp: Date
     public let stagedAtTimestamp: Date?
     public let inProgressAtTimestamp: Date?
     public let completedAtTimestamp: Date?
     public let skippedAtTimestamp: Date?
+    public let cancelledAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
     public let taskGroupType: TaskGroupTypeEnum1
     public let vehicleType: VehicleTypeEnum?
@@ -74,12 +74,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         driverId: String? = nil,
         taskGroupS3ObjectMetadataIds: [String]? = nil,
         status: TaskGroupStatusEnum1? = nil,
-        orderCancelled: Bool? = nil,
         draftStartedAtTimestamp: Date,
         stagedAtTimestamp: Date? = nil,
         inProgressAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
         skippedAtTimestamp: Date? = nil,
+        cancelledAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
         taskGroupType: TaskGroupTypeEnum1,
         vehicleType: VehicleTypeEnum? = nil,
@@ -120,12 +120,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.driverId = driverId
         self.taskGroupS3ObjectMetadataIds = taskGroupS3ObjectMetadataIds
         self.status = status
-        self.orderCancelled = orderCancelled
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
         self.skippedAtTimestamp = skippedAtTimestamp
+        self.cancelledAtTimestamp = cancelledAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.taskGroupType = taskGroupType
         self.vehicleType = vehicleType
@@ -169,12 +169,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
         self.taskGroupS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .taskGroupS3ObjectMetadataIds)
         self.status = try container.decodeIfPresent(TaskGroupStatusEnum1.self, forKey: .status)
-        self.orderCancelled = try container.decodeIfPresent(Bool.self, forKey: .orderCancelled)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
+        self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.vehicleType = try container.decodeIfPresent(VehicleTypeEnum.self, forKey: .vehicleType)
@@ -219,12 +219,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.driverId, forKey: .driverId)
         try container.encodeIfPresent(self.taskGroupS3ObjectMetadataIds, forKey: .taskGroupS3ObjectMetadataIds)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encodeIfPresent(self.orderCancelled, forKey: .orderCancelled)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
+        try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
         try container.encodeIfPresent(self.vehicleType, forKey: .vehicleType)
@@ -267,12 +267,12 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case driverId = "driver_id"
         case taskGroupS3ObjectMetadataIds = "task_group_s3_object_metadata_ids"
         case status
-        case orderCancelled = "order_cancelled"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
         case skippedAtTimestamp = "skipped_at_timestamp"
+        case cancelledAtTimestamp = "cancelled_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case taskGroupType = "task_group_type"
         case vehicleType = "vehicle_type"

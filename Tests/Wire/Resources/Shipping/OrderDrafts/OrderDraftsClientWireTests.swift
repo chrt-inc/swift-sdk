@@ -90,6 +90,30 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func deleteManyV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.deleteManyV1(
+            request: .init(orderIds: [
+                "order_ids"
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func imageToTextV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -127,6 +151,7 @@ import Chrt
                     "task_groups_have_valid_task_sequence": true,
                     "tasks_have_valid_cargo": true,
                     "cargos_have_valid_lifecycle": true,
+                    "order_has_shipper": true,
                     "order_has_coordinator": true
                   }
                 }
@@ -148,6 +173,7 @@ import Chrt
                 taskGroupsHaveValidTaskSequence: Optional(true),
                 tasksHaveValidCargo: Optional(true),
                 cargosHaveValidLifecycle: Optional(true),
+                orderHasShipper: Optional(true),
                 orderHasCoordinator: Optional(true)
             )
         )

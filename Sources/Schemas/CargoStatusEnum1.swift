@@ -6,5 +6,6 @@ public enum CargoStatusEnum1: String, Codable, Hashable, CaseIterable, Sendable 
     case inTransit = "in_transit"
     case delivered
     case skipped
+    case cancelled
     case exception
 }

@@ -35,9 +35,8 @@ import Chrt
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                    "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "order_cancelled_at_timestamp": "2024-01-15T09:30:00Z"
+                    "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
+                    "exception_at_timestamp": "2024-01-15T09:30:00Z"
                   },
                   "coordinator_org_company_name": "coordinator_org_company_name",
                   "coordinator_org_handle": "coordinator_org_handle",
@@ -141,9 +140,8 @@ import Chrt
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                orderCancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             ),
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
             coordinatorOrgHandle: Optional("coordinator_org_handle"),
@@ -254,9 +252,8 @@ import Chrt
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                    "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "order_cancelled": true,
-                    "order_cancelled_at_timestamp": "2024-01-15T09:30:00Z"
+                    "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
+                    "exception_at_timestamp": "2024-01-15T09:30:00Z"
                   },
                   "coordinator_org_company_name": "coordinator_org_company_name",
                   "coordinator_org_handle": "coordinator_org_handle",
@@ -360,9 +357,8 @@ import Chrt
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orderCancelled: Optional(true),
-                orderCancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             ),
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
             coordinatorOrgHandle: Optional("coordinator_org_handle"),
@@ -544,9 +540,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -555,11 +548,10 @@ import Chrt
             filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterOrderCancelled: true,
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
@@ -674,9 +666,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -685,11 +674,10 @@ import Chrt
             filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterOrderCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterOrderCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterOrderCancelled: true,
             filterExecutorOrgId: "filter_executor_org_id",
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
