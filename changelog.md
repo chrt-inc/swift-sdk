@@ -1,3 +1,19 @@
+## 4.0.0 - 2026-06-03
+* feat!: rename/replace counterparty fields, task list methods, and task type enum cases
+* Multiple breaking API surface changes across routing rules, task lists,
+* and operations task types. Existing callers must update all affected
+* call sites before upgrading.
+* Key changes:
+* `RoutingCounterpartyTypeEnum` deleted; `DepartmentRoutingRule1` and `Requests.DepartmentRoutingRuleClientCreate1` replace `counterpartyType`/`counterpartyId` with `shipperOrgId: String?` and `offChrtShipperOrgId: String?`
+* `DepartmentRoutingRulesClient.deleteV1(counterpartyType:counterpartyId:)` replaced by `deleteV1(shipperOrgId:offChrtShipperOrgId:)` with new query-param-based URL
+* `OperationsTaskListsClient.addEntriesV1` renamed to `setEntriesV1` (new request type `OperationsTaskListSetEntries1`); `removeEntriesV1` renamed to `reorderEntriesV1` (new request type `OperationsTaskListReorderEntries1`)
+* `applyToCaseV1` parameter `overallDeadlineTimestamp` renamed to `initialDeadlineTimestamp`
+* `OperationsTaskTypeEnum` cases `dispatchDriver`, `verifyDriverReadiness`, `shareInstructions`, `monitorTransit`, `monitorSla`, `callDriver`, `verifyTaskArtifacts` removed; new cases `precheck`, `trackAndVerify`, `contactCustomer`, `contactAgent`, `contactAirline`, `contactOther` added
+* New `DeadlineAnchorEnum` type and `deadlineAnchor: DeadlineAnchorEnum?` field on `OperationsTaskListEntry1`
+* New `CargoClient.unassociateWithTaskV1` and `OrderDraftsClient.setTaskGroupOrderingV1` methods
+* New request structs `Requests.OrderDraftUnassociateCargoWithTaskReq` and `Requests.SetTaskGroupOrderingDraftReq`
+* 🌿 Generated with Fern
+
 ## 3.0.0 - 2026-06-02
 ### Breaking Changes
 * **`TaskGroup1.orderCancelled`** — the `Bool?` property has been removed; replace any access with the new `cancelledAtTimestamp: Date?` property.
