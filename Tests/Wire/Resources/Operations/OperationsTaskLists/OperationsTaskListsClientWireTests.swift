@@ -97,6 +97,7 @@ import Chrt
                       "task_type": "review_order_details",
                       "title": "title",
                       "description": "description",
+                      "deadline_anchor": "from_first_task",
                       "deadline_offset_seconds": 1
                     }
                   ],
@@ -128,6 +129,7 @@ import Chrt
                     taskType: .reviewOrderDetails,
                     title: "title",
                     description: "description",
+                    deadlineAnchor: Optional(.fromFirstTask),
                     deadlineOffsetSeconds: Optional(1)
                 )
             ]),
@@ -193,7 +195,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func addEntriesV11() async throws -> Void {
+    @Test func setEntriesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -208,7 +210,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.operationsTaskLists.addEntriesV1(
+        let response = try await client.operations.operationsTaskLists.setEntriesV1(
             taskListId: "task_list_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -216,7 +218,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func removeEntriesV11() async throws -> Void {
+    @Test func reorderEntriesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -231,7 +233,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.operationsTaskLists.removeEntriesV1(
+        let response = try await client.operations.operationsTaskLists.reorderEntriesV1(
             taskListId: "task_list_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -305,7 +307,7 @@ import Chrt
         let response = try await client.operations.operationsTaskLists.applyToCaseV1(
             taskListId: "task_list_id",
             caseId: "case_id",
-            overallDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            initialDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

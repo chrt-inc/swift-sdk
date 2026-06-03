@@ -33,6 +33,19 @@ public final class CargoClient: Sendable {
         )
     }
 
+    /// Removes an existing cargo association from a task in a draft order (e.g. when the wrong cargo was selected). | (OrderDraftUnassociateCargoWithTaskReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unassociateWithTaskV1(request: Requests.OrderDraftUnassociateCargoWithTaskReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_drafts/cargo/unassociate_with_task/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Updates a cargo item in an existing draft order. Validates order is in DRAFT status and owned by caller. | (OrderDraftUpdateCargoReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

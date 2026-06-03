@@ -67,26 +67,26 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Appends entries to an OperationsTaskList's `entries` array. | authz: min_org_role=operator | (OperationsTaskListEntriesAdd1) -> (bool)
+    /// Replaces an OperationsTaskList's `entries` array wholesale — covering add, remove, reorder, and edit in one operation. Order is load-bearing for from_previous_task-anchored deadlines. | authz: min_org_role=operator | (OperationsTaskListSetEntries1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addEntriesV1(taskListId: String, request: Requests.OperationsTaskListEntriesAdd1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setEntriesV1(taskListId: String, request: Requests.OperationsTaskListSetEntries1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/entries/add/v1/\(taskListId)",
+            path: "/operations/operations_task_lists/entries/set/v1/\(taskListId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Removes entries from an OperationsTaskList by entry id. | authz: min_org_role=operator | (OperationsTaskListEntriesRemove1) -> (bool)
+    /// Reorders an OperationsTaskList's existing entries. `entry_ids` must be an exact permutation of the list's current entry ids (every id present, no extras, no duplicates), so a reorder can never drop, add, or mutate an entry. | authz: min_org_role=operator | (OperationsTaskListReorderEntries1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeEntriesV1(taskListId: String, request: Requests.OperationsTaskListEntriesRemove1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func reorderEntriesV1(taskListId: String, request: Requests.OperationsTaskListReorderEntries1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/entries/remove/v1/\(taskListId)",
+            path: "/operations/operations_task_lists/entries/reorder/v1/\(taskListId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -117,16 +117,16 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Case (status=not_started, source_task_list_id set). Deadlines: overall_deadline_timestamp wins, else the entry's deadline_offset_seconds, else a positional 20-min stagger. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
+    /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Case (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
     ///
-    /// - Parameter overallDeadlineTimestamp: If set, overrides every materialized task's deadline with this timestamp.
+    /// - Parameter initialDeadlineTimestamp: If set, pins the first entry's deadline; later FROM_PREVIOUS_TASK entries cascade from it.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func applyToCaseV1(taskListId: String, caseId: String, overallDeadlineTimestamp: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func applyToCaseV1(taskListId: String, caseId: String, initialDeadlineTimestamp: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
         return try await httpClient.performRequest(
             method: .post,
             path: "/operations/operations_task_lists/apply_to_case/v1/\(taskListId)/\(caseId)",
             queryParams: [
-                "overall_deadline_timestamp": overallDeadlineTimestamp.map { .date($0) }
+                "initial_deadline_timestamp": initialDeadlineTimestamp.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: [String].self

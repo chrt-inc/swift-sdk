@@ -57,6 +57,32 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func unassociateWithTaskV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.cargo.unassociateWithTaskV1(
+            request: .init(
+                orderId: "order_id",
+                taskId: "task_id",
+                cargoId: "cargo_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

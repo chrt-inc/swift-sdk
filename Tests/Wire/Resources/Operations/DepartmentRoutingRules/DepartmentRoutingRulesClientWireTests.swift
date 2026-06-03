@@ -11,8 +11,8 @@ import Chrt
                 [
                   {
                     "schema_version": 1,
-                    "counterparty_type": "shipper_org",
-                    "counterparty_id": "counterparty_id",
+                    "shipper_org_id": "shipper_org_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "department_id": "department_id",
                     "_id": "_id",
                     "owner_org_id": "owner_org_id",
@@ -31,8 +31,8 @@ import Chrt
         let expectedResponse = [
             DepartmentRoutingRule1(
                 schemaVersion: 1,
-                counterpartyType: .shipperOrg,
-                counterpartyId: "counterparty_id",
+                shipperOrgId: Optional("shipper_org_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 departmentId: "department_id",
                 id: "_id",
                 ownerOrgId: "owner_org_id",
@@ -62,8 +62,6 @@ import Chrt
         let response = try await client.operations.departmentRoutingRules.upsertV1(
             request: .init(
                 schemaVersion: 1,
-                counterpartyType: .shipperOrg,
-                counterpartyId: "counterparty_id",
                 departmentId: "department_id"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -87,8 +85,8 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.operations.departmentRoutingRules.deleteV1(
-            counterpartyType: .shipperOrg,
-            counterpartyId: "counterparty_id",
+            shipperOrgId: "shipper_org_id",
+            offChrtShipperOrgId: "off_chrt_shipper_org_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

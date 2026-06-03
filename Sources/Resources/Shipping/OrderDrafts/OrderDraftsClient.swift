@@ -45,6 +45,19 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
+    /// Sets the ordering of task groups within a draft order. Must provide all task group IDs with no duplicates. | (SetTaskGroupOrderingDraftReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setTaskGroupOrderingV1(orderId: String, request: Requests.SetTaskGroupOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/order_drafts/set_task_group_ordering/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Deletes a draft order and all associated entities. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

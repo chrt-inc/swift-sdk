@@ -76,7 +76,7 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Clears the executor on a task group along with the assigned driver and all PPP/PPD billing attachments, returning the TG to executor-less state. Coordinator-only. PPP/PPD LineItemGroup1 and BillingLedgerPeriod1 documents stay alive (orphaned-but-alive); the (ex-)executor disposes of them via their own routes. SPP is unaffected. | authz_personas=[coordinator_org_operators] | () -> (bool)
+    /// Clears the executor and assigned driver on a task group. Refuses while PPP or PPD billing is attached; detach billing explicitly first. | authz_personas=[coordinator_org_operators] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeExecutorV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

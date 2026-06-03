@@ -1,34 +1,46 @@
 import Foundation
 
 extension Requests {
-    public struct OperationsTaskListEntriesRemove1: Codable, Hashable, Sendable {
-        public let entryIds: [String]?
+    public struct OrderDraftUnassociateCargoWithTaskReq: Codable, Hashable, Sendable {
+        public let orderId: String
+        public let taskId: String
+        public let cargoId: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            entryIds: [String]? = nil,
+            orderId: String,
+            taskId: String,
+            cargoId: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.entryIds = entryIds
+            self.orderId = orderId
+            self.taskId = taskId
+            self.cargoId = cargoId
             self.additionalProperties = additionalProperties
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.entryIds = try container.decodeIfPresent([String].self, forKey: .entryIds)
+            self.orderId = try container.decode(String.self, forKey: .orderId)
+            self.taskId = try container.decode(String.self, forKey: .taskId)
+            self.cargoId = try container.decode(String.self, forKey: .cargoId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.entryIds, forKey: .entryIds)
+            try container.encode(self.orderId, forKey: .orderId)
+            try container.encode(self.taskId, forKey: .taskId)
+            try container.encode(self.cargoId, forKey: .cargoId)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case entryIds = "entry_ids"
+            case orderId = "order_id"
+            case taskId = "task_id"
+            case cargoId = "cargo_id"
         }
     }
 }
