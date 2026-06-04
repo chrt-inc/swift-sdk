@@ -178,7 +178,12 @@ import Chrt
                     "cargos_have_valid_lifecycle": true,
                     "order_has_shipper": true,
                     "order_has_coordinator": true
-                  }
+                  },
+                  "issues": [
+                    {
+                      "requirement_key": "requirement_key"
+                    }
+                  ]
                 }
                 """.utf8
             )
@@ -200,7 +205,12 @@ import Chrt
                 cargosHaveValidLifecycle: Optional(true),
                 orderHasShipper: Optional(true),
                 orderHasCoordinator: Optional(true)
-            )
+            ),
+            issues: Optional([
+                ValidationIssue(
+                    requirementKey: "requirement_key"
+                )
+            ])
         )
         let response = try await client.shipping.orderDrafts.validateV1(
             orderId: "order_id",

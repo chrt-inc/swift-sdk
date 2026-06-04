@@ -157,9 +157,6 @@ import Chrt
             pageSize: 1,
             filterBillingLedgerId: "filter_billing_ledger_id",
             filterOwnedByOrgId: "filter_owned_by_org_id",
-            filterStatus: [
-                .open
-            ],
             filterStatementId: "filter_statement_id",
             filterAttachedToStatement: true,
             filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
