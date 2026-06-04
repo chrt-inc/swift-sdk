@@ -1,3 +1,9 @@
+## 4.1.0 - 2026-06-04
+### Added
+* **`ValidationIssue`** — new public struct representing a single validation problem, carrying a `requirementKey` string and an optional `scope`.
+* **`ValidationIssueScope`** — new public struct that scopes a `ValidationIssue` to an optional `taskGroupId`, `taskId`, or `cargoId`.
+* **`OrderDraftValidationResult.issues`** — new optional `[ValidationIssue]?` field that surfaces structured validation issues returned by the order-draft validation endpoint.
+
 ## 4.0.0 - 2026-06-03
 * feat!: rename/replace counterparty fields, task list methods, and task type enum cases
 * Multiple breaking API surface changes across routing rules, task lists,
