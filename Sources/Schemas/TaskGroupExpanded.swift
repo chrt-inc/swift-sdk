@@ -3,6 +3,7 @@ import Foundation
 public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let taskGroup: TaskGroup1
     public let tasksExpanded: [TaskExpanded]?
+    public let awbNumbers: [String]?
     public let driver: Driver1?
     /// Must be a string starting with `org_`
     public let executorOrgId: String?
@@ -25,6 +26,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public init(
         taskGroup: TaskGroup1,
         tasksExpanded: [TaskExpanded]? = nil,
+        awbNumbers: [String]? = nil,
         driver: Driver1? = nil,
         executorOrgId: String? = nil,
         executorOrgCompanyName: String? = nil,
@@ -40,6 +42,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     ) {
         self.taskGroup = taskGroup
         self.tasksExpanded = tasksExpanded
+        self.awbNumbers = awbNumbers
         self.driver = driver
         self.executorOrgId = executorOrgId
         self.executorOrgCompanyName = executorOrgCompanyName
@@ -58,6 +61,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.taskGroup = try container.decode(TaskGroup1.self, forKey: .taskGroup)
         self.tasksExpanded = try container.decodeIfPresent([TaskExpanded].self, forKey: .tasksExpanded)
+        self.awbNumbers = try container.decodeIfPresent([String].self, forKey: .awbNumbers)
         self.driver = try container.decodeIfPresent(Driver1.self, forKey: .driver)
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
         self.executorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .executorOrgCompanyName)
@@ -77,6 +81,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.taskGroup, forKey: .taskGroup)
         try container.encodeIfPresent(self.tasksExpanded, forKey: .tasksExpanded)
+        try container.encodeIfPresent(self.awbNumbers, forKey: .awbNumbers)
         try container.encodeIfPresent(self.driver, forKey: .driver)
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.executorOrgCompanyName, forKey: .executorOrgCompanyName)
@@ -94,6 +99,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case taskGroup = "task_group"
         case tasksExpanded = "tasks_expanded"
+        case awbNumbers = "awb_numbers"
         case driver
         case executorOrgId = "executor_org_id"
         case executorOrgCompanyName = "executor_org_company_name"

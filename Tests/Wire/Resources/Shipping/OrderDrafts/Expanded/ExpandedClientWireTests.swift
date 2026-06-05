@@ -86,6 +86,9 @@ import Chrt
                           }
                         }
                       ],
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
                       "driver": {
                         "schema_version": 1,
                         "_id": "_id",
@@ -116,6 +119,7 @@ import Chrt
                       "turnable": true,
                       "stackable": true,
                       "description": "description",
+                      "awb_number": "awb_number",
                       "_id": "_id",
                       "order_id": "order_id",
                       "order_short_id": "order_short_id",
@@ -224,6 +228,9 @@ import Chrt
                             )
                         )
                     ]),
+                    awbNumbers: Optional([
+                        "awb_numbers"
+                    ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
                         id: "_id",
@@ -254,6 +261,7 @@ import Chrt
                     turnable: Optional(true),
                     stackable: Optional(true),
                     description: Optional("description"),
+                    awbNumber: Optional("awb_number"),
                     id: "_id",
                     orderId: "order_id",
                     orderShortId: "order_short_id",

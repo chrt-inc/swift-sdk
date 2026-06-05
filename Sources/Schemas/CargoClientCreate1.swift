@@ -11,6 +11,8 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
     public let turnable: Bool?
     public let stackable: Bool?
     public let description: String?
+    /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+    public let awbNumber: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -25,6 +27,7 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         turnable: Bool? = nil,
         stackable: Bool? = nil,
         description: String? = nil,
+        awbNumber: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -37,6 +40,7 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         self.turnable = turnable
         self.stackable = stackable
         self.description = description
+        self.awbNumber = awbNumber
         self.additionalProperties = additionalProperties
     }
 
@@ -52,6 +56,7 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -68,6 +73,7 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
         try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -82,5 +88,6 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         case turnable
         case stackable
         case description
+        case awbNumber = "awb_number"
     }
 }

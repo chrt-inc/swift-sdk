@@ -86,6 +86,9 @@ import Chrt
                           }
                         }
                       ],
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
                       "driver": {
                         "schema_version": 1,
                         "_id": "_id",
@@ -190,6 +193,9 @@ import Chrt
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                             )
                         )
+                    ]),
+                    awbNumbers: Optional([
+                        "awb_numbers"
                     ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
@@ -303,6 +309,9 @@ import Chrt
                           }
                         }
                       ],
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
                       "driver": {
                         "schema_version": 1,
                         "_id": "_id",
@@ -407,6 +416,9 @@ import Chrt
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                             )
                         )
+                    ]),
+                    awbNumbers: Optional([
+                        "awb_numbers"
                     ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
@@ -540,9 +552,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -669,9 +678,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

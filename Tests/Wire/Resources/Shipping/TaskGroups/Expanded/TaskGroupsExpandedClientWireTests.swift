@@ -113,6 +113,9 @@ import Chrt
                       ]
                     }
                   ],
+                  "awb_numbers": [
+                    "awb_numbers"
+                  ],
                   "driver": {
                     "schema_version": 1,
                     "email_address_primary": "email_address_primary",
@@ -277,6 +280,9 @@ import Chrt
                         )
                     ])
                 )
+            ]),
+            awbNumbers: Optional([
+                "awb_numbers"
             ]),
             driver: Optional(Driver1(
                 schemaVersion: 1,
@@ -456,6 +462,9 @@ import Chrt
                       ]
                     }
                   ],
+                  "awb_numbers": [
+                    "awb_numbers"
+                  ],
                   "driver": {
                     "schema_version": 1,
                     "email_address_primary": "email_address_primary",
@@ -620,6 +629,9 @@ import Chrt
                         )
                     ])
                 )
+            ]),
+            awbNumbers: Optional([
+                "awb_numbers"
             ]),
             driver: Optional(Driver1(
                 schemaVersion: 1,
@@ -799,6 +811,9 @@ import Chrt
                       ]
                     }
                   ],
+                  "awb_numbers": [
+                    "awb_numbers"
+                  ],
                   "driver": {
                     "schema_version": 1,
                     "email_address_primary": "email_address_primary",
@@ -963,6 +978,9 @@ import Chrt
                         )
                     ])
                 )
+            ]),
+            awbNumbers: Optional([
+                "awb_numbers"
             ]),
             driver: Optional(Driver1(
                 schemaVersion: 1,
@@ -1142,6 +1160,9 @@ import Chrt
                       ]
                     }
                   ],
+                  "awb_numbers": [
+                    "awb_numbers"
+                  ],
                   "driver": {
                     "schema_version": 1,
                     "email_address_primary": "email_address_primary",
@@ -1307,6 +1328,9 @@ import Chrt
                     ])
                 )
             ]),
+            awbNumbers: Optional([
+                "awb_numbers"
+            ]),
             driver: Optional(Driver1(
                 schemaVersion: 1,
                 emailAddressPrimary: Optional("email_address_primary"),
@@ -1405,6 +1429,9 @@ import Chrt
                           }
                         }
                       ],
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
                       "driver": {
                         "schema_version": 1,
                         "_id": "_id",
@@ -1458,6 +1485,9 @@ import Chrt
                             )
                         )
                     ]),
+                    awbNumbers: Optional([
+                        "awb_numbers"
+                    ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
                         id: "_id",
@@ -1484,9 +1514,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1543,6 +1570,9 @@ import Chrt
                           }
                         }
                       ],
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
                       "driver": {
                         "schema_version": 1,
                         "_id": "_id",
@@ -1596,6 +1626,9 @@ import Chrt
                             )
                         )
                     ]),
+                    awbNumbers: Optional([
+                        "awb_numbers"
+                    ]),
                     driver: Optional(Driver1(
                         schemaVersion: 1,
                         id: "_id",
@@ -1622,9 +1655,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

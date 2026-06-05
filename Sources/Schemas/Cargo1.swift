@@ -11,6 +11,8 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let turnable: Bool?
     public let stackable: Bool?
     public let description: String?
+    /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+    public let awbNumber: String?
     public let id: String
     public let orderId: String
     public let orderShortId: String
@@ -44,6 +46,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         turnable: Bool? = nil,
         stackable: Bool? = nil,
         description: String? = nil,
+        awbNumber: String? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
@@ -73,6 +76,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.turnable = turnable
         self.stackable = stackable
         self.description = description
+        self.awbNumber = awbNumber
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
@@ -105,6 +109,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -138,6 +143,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
         try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -169,6 +175,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case turnable
         case stackable
         case description
+        case awbNumber = "awb_number"
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
