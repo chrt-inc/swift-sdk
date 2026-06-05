@@ -1,3 +1,11 @@
+## 4.2.0 - 2026-06-05
+### Added
+* **`CargoaiTrackAndTraceClient`** — new sub-client on `IntegrationsClient` (at `client.integrations.cargoaiTrackAndTrace`) exposing `subscriptionV1`, `updatesV1`, `subscriptionsByTaskGroupV1`, `subscribeV1`, and `refreshV1` methods for managing CargoAI AWB track-and-trace subscriptions and updates.
+* **`CargoAiTrackAndTraceSubscription1`**, **`CargoAiTrackAndTraceUpdate1`**, and related types — new public structs and enums modelling CargoAI tracking subscriptions, update payloads, events, flights, ULDs, alerts, and webhook acknowledgements.
+* **`Requests.CargoAiTrackAndTraceSubscribeReq`** — new request struct for the subscribe endpoint, accepting an `awb` string and an optional `emails` array.
+* **`awbNumber: String?`** — new optional IATA Air Waybill number field added to `Cargo1`, `CargoClientCreate1`, and `CargoClientUpdate1`; `CargoClientUpdate1` also gains `awbNumberSetToNone: Bool?` to explicitly clear the value.
+* **`TaskGroupExpanded.awbNumbers`** — new optional `[String]?` field exposing AWB numbers associated with a task group's cargo.
+
 ## 4.1.0 - 2026-06-04
 ### Added
 * **`ValidationIssue`** — new public struct representing a single validation problem, carrying a `requirementKey` string and an optional `scope`.
