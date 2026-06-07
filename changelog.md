@@ -1,3 +1,17 @@
+## 5.0.0 - 2026-06-07
+### Breaking Changes
+* **`ExpandedClient.typeaheadV1`**, **`OrdersExpandedClient.typeaheadV1`**, and **`TaskGroupsExpandedClient.typeaheadV1`** — removed; order-draft typeahead is now on **`OrderDraftsClient.typeaheadV1`** at a new URL — replace call sites with `client.shipping.orderDrafts.typeaheadV1(...)`.
+* **`OperationsTasksClient.listV1`** — parameter `filterOrderId` renamed to `filterOrderIds`; update all call sites to use the new parameter name.
+* **`OperationsTasksClient.completeV1`** and **`uncompleteV1`** — removed; use `updateStatusV1` with the appropriate `OperationsTaskStatusReq` to mark tasks complete or incomplete.
+* **`OrderTypeaheadResult.values`** — type changed from `[String]` to `[OrderTypeaheadValue]`; update any code reading values as plain strings to use the new `OrderTypeaheadValue` type.
+* **`OperationsTaskTypeEnum.precheck`** — replaced by `flightCheck`, `facilityCheck`, and `weatherCheck`; update all switch statements and references to use the new cases.
+### Added
+* **`OrderTemplatesClient`** — new sub-client at `client.shipping.orderTemplates` exposing full order-template lifecycle management including `getByIdV1`, `listV1`, `createV1`, `updateV1`, `deleteV1`, `archiveV1`, `unarchiveV1`, and `referencesRemoveV1`.
+* **`OrderTemplate1`**, **`OrderTemplateExpanded`**, and related structs/enums — new public types modelling order templates, their expanded references, and sort/column options.
+* **`Requests.OrderTemplateClientCreate1`** and **`Requests.OrderTemplateClientUpdate1`** — new request structs for creating and updating order templates with nullable-clear `*SetToNone` flag support.
+* **`OrdersClient.typeaheadV1(query:limit:)`** and **`TaskGroupsClient.typeaheadV1(query:limit:)`** — new typeahead search methods returning `[OrderTypeaheadResult]` and `[TaskGroupTypeaheadResult]` respectively.
+* **`Order1.orderTemplateId`** — new optional `String?` field linking an order to the template it was created from.
+
 ## 4.2.0 - 2026-06-05
 ### Added
 * **`CargoaiTrackAndTraceClient`** — new sub-client on `IntegrationsClient` (at `client.integrations.cargoaiTrackAndTrace`) exposing `subscriptionV1`, `updatesV1`, `subscriptionsByTaskGroupV1`, `subscribeV1`, and `refreshV1` methods for managing CargoAI AWB track-and-trace subscriptions and updates.
