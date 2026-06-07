@@ -97,6 +97,24 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
+    /// Returns distinct short_id and off_chrt_reference_id values matching the query via case-insensitive regex. Searches draft orders created by the caller's org. | authz: min_org_role=operator | () -> (list[OrderTypeaheadResult])
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/order_drafts/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OrderTypeaheadResult].self
+        )
+    }
+
     /// Validates the draft order for staging and returns requirement results. | () -> (OrderDraftValidationResult)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

@@ -3,6 +3,53 @@ import Testing
 import Chrt
 
 @Suite("OrdersClient Wire Tests") struct OrdersClientWireTests {
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "type": "off_chrt_reference_id",
+                    "values": [
+                      {
+                        "value": "value",
+                        "order_ids": [
+                          "order_ids"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            OrderTypeaheadResult(
+                type: .offChrtReferenceId,
+                values: [
+                    OrderTypeaheadValue(
+                        value: "value",
+                        orderIds: [
+                            "order_ids"
+                        ]
+                    )
+                ]
+            )
+        ]
+        let response = try await client.shipping.orders.typeaheadV1(
+            query: "query",
+            limit: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func stageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

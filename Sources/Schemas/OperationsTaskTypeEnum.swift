@@ -14,7 +14,9 @@ import Foundation
 /// around, and the channel is a title/tag detail.
 public enum OperationsTaskTypeEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case reviewOrderDetails = "review_order_details"
-    case precheck
+    case flightCheck = "flight_check"
+    case facilityCheck = "facility_check"
+    case weatherCheck = "weather_check"
     case bookCargo = "book_cargo"
     case trackAndVerify = "track_and_verify"
     case contactCustomer = "contact_customer"

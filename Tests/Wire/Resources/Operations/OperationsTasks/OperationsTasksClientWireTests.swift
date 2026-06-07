@@ -87,17 +87,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterOrderId: "filter_order_id",
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
-            filterTag: [
-                "filter_tag"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -252,50 +242,6 @@ import Chrt
                 title: "title",
                 description: "description"
             ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func completeV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.operationsTasks.completeV1(
-            taskId: "task_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func uncompleteV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.operationsTasks.uncompleteV1(
-            taskId: "task_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

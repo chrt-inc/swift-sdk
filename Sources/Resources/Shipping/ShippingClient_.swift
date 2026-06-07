@@ -8,6 +8,7 @@ public final class ShippingClient_: Sendable {
     public let orders: OrdersClient
     public let orderDrafts: OrderDraftsClient
     public let orderSchedules: OrderSchedulesClient
+    public let orderTemplates: OrderTemplatesClient
     public let taskGroups: TaskGroupsClient
     public let tasks: TasksClient
     private let httpClient: HTTPClient
@@ -20,6 +21,7 @@ public final class ShippingClient_: Sendable {
         self.orders = OrdersClient(config: config)
         self.orderDrafts = OrderDraftsClient(config: config)
         self.orderSchedules = OrderSchedulesClient(config: config)
+        self.orderTemplates = OrderTemplatesClient(config: config)
         self.taskGroups = TaskGroupsClient(config: config)
         self.tasks = TasksClient(config: config)
         self.httpClient = HTTPClient(config: config)

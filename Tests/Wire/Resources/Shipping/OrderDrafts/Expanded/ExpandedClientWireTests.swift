@@ -19,6 +19,7 @@ import Chrt
                     "off_chrt_reference_id": "off_chrt_reference_id",
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
+                    "order_template_id": "order_template_id",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -161,6 +162,7 @@ import Chrt
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
+                orderTemplateId: Optional("order_template_id"),
                 createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
@@ -428,43 +430,6 @@ import Chrt
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func typeaheadV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                [
-                  {
-                    "type": "off_chrt_reference_id",
-                    "values": [
-                      "values"
-                    ]
-                  }
-                ]
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            OrderTypeaheadResult(
-                type: .offChrtReferenceId,
-                values: [
-                    "values"
-                ]
-            )
-        ]
-        let response = try await client.shipping.orderDrafts.expanded.typeaheadV1(
-            query: "query",
-            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

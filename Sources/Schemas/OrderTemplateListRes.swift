@@ -1,38 +1,38 @@
 import Foundation
 
-public struct OrderTypeaheadResult: Codable, Hashable, Sendable {
-    public let type: OrderTypeaheadFieldEnum
-    public let values: [OrderTypeaheadValue]
+public struct OrderTemplateListRes: Codable, Hashable, Sendable {
+    public let items: [OrderTemplate1]
+    public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        type: OrderTypeaheadFieldEnum,
-        values: [OrderTypeaheadValue],
+        items: [OrderTemplate1],
+        totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.type = type
-        self.values = values
+        self.items = items
+        self.totalCount = totalCount
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(OrderTypeaheadFieldEnum.self, forKey: .type)
-        self.values = try container.decode([OrderTypeaheadValue].self, forKey: .values)
+        self.items = try container.decode([OrderTemplate1].self, forKey: .items)
+        self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.type, forKey: .type)
-        try container.encode(self.values, forKey: .values)
+        try container.encode(self.items, forKey: .items)
+        try container.encode(self.totalCount, forKey: .totalCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case type
-        case values
+        case items
+        case totalCount = "total_count"
     }
 }
