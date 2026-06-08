@@ -1,3 +1,16 @@
+## 6.0.0 - 2026-06-08
+### Breaking Changes
+* **`OrderManifest1.cargos`** and **`OrderManifest1.taskGroups`** — renamed to `cargoManifests` and `taskGroupManifests` respectively; update all read and write sites to use the new property names.
+* **`TaskGroupManifest1.tasks`** — renamed to `taskManifests` (JSON key changed to `task_manifests`); update all read and write sites to use the new property name.
+* **`OrderSchedule1`** — `status` renamed to `intendedStatus`, `scheduleSpec` type changed from `ScheduleSpec` to `OrderScheduleSpec1` (now optional), `orderManifest` made optional, and `orchestratorScheduleStatus`/`orchestratorScheduleCreatedAtTimestamp` removed; update all call sites and decoding logic.
+* **`Task1`, `TaskArtifact1`, `TaskGroup1`, `OrderExpanded`, and `TaskGroupExpanded`** — `orderScheduleId`, `orderScheduleRunIdempotencyKey`, and `orderScheduleTemplatePath` replaced by a single `orderScheduleTemplatePathIdempotencyKey: String?` field; update all references accordingly.
+* **`TaskManifest1`** — `cargoTemplateIndices` renamed to `cargoManifestIndices`, `action` type changed from `ChrtGroundProviderTaskActionEnum1` to `Action`, and **`OrderScheduleSortByEnum.status`** replaced by `.intendedStatus`; update all references and switch statements.
+### Added
+* **`DraftClient`** — new sub-client at `client.shipping.orderSchedules.draft` with `newV1(request:requestOptions:)` and `updateV1(orderScheduleId:request:requestOptions:)` for creating and updating draft order schedules.
+* **`OrderScheduleSpec1`** — new public struct modelling an order schedule specification with an optional `ScheduleCalendarSpec`, `startAt`/`endAt` dates, and a required IANA `timeZoneName`.
+* **`CargoManifest1.awbNumber`** — new optional `String?` field for the IATA Air Waybill number on cargo manifests used in scheduled orders.
+* **`TaskManifest1.geofenceDistanceMiles`** — new optional `Double?` field added to task manifests.
+
 ## 5.0.0 - 2026-06-07
 ### Breaking Changes
 * **`ExpandedClient.typeaheadV1`**, **`OrdersExpandedClient.typeaheadV1`**, and **`TaskGroupsExpandedClient.typeaheadV1`** — removed; order-draft typeahead is now on **`OrderDraftsClient.typeaheadV1`** at a new URL — replace call sites with `client.shipping.orderDrafts.typeaheadV1(...)`.
