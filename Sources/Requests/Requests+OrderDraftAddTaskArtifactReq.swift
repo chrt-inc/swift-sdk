@@ -5,7 +5,7 @@ extension Requests {
         public let taskId: String
         public let taskArtifactType: TaskArtifactTypeEnum1
         public let expectedScanPayloads: [String]?
-        public let orderScheduleTemplatePath: String?
+        public let orderScheduleTemplatePathIdempotencyKey: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -13,13 +13,13 @@ extension Requests {
             taskId: String,
             taskArtifactType: TaskArtifactTypeEnum1,
             expectedScanPayloads: [String]? = nil,
-            orderScheduleTemplatePath: String? = nil,
+            orderScheduleTemplatePathIdempotencyKey: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.taskId = taskId
             self.taskArtifactType = taskArtifactType
             self.expectedScanPayloads = expectedScanPayloads
-            self.orderScheduleTemplatePath = orderScheduleTemplatePath
+            self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
             self.additionalProperties = additionalProperties
         }
 
@@ -28,7 +28,7 @@ extension Requests {
             self.taskId = try container.decode(String.self, forKey: .taskId)
             self.taskArtifactType = try container.decode(TaskArtifactTypeEnum1.self, forKey: .taskArtifactType)
             self.expectedScanPayloads = try container.decodeIfPresent([String].self, forKey: .expectedScanPayloads)
-            self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+            self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -38,7 +38,7 @@ extension Requests {
             try container.encode(self.taskId, forKey: .taskId)
             try container.encode(self.taskArtifactType, forKey: .taskArtifactType)
             try container.encodeIfPresent(self.expectedScanPayloads, forKey: .expectedScanPayloads)
-            try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+            try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -46,7 +46,7 @@ extension Requests {
             case taskId = "task_id"
             case taskArtifactType = "task_artifact_type"
             case expectedScanPayloads = "expected_scan_payloads"
-            case orderScheduleTemplatePath = "order_schedule_template_path"
+            case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         }
     }
 }

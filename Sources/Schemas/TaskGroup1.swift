@@ -8,9 +8,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
     public let taskIds: [String]?
-    public let orderScheduleId: String?
-    public let orderScheduleRunIdempotencyKey: String?
-    public let orderScheduleTemplatePath: String?
+    public let orderScheduleTemplatePathIdempotencyKey: String?
     /// Must be a string starting with `user_`
     public let createdByUserId: String?
     /// Must be a string starting with `org_`
@@ -61,9 +59,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         orderShortId: String,
         orderOffChrtReferenceId: String? = nil,
         taskIds: [String]? = nil,
-        orderScheduleId: String? = nil,
-        orderScheduleRunIdempotencyKey: String? = nil,
-        orderScheduleTemplatePath: String? = nil,
+        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         createdByUserId: String? = nil,
         createdByOrgId: String,
         shipperOrgId: String? = nil,
@@ -107,9 +103,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderShortId = orderShortId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
         self.taskIds = taskIds
-        self.orderScheduleId = orderScheduleId
-        self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
-        self.orderScheduleTemplatePath = orderScheduleTemplatePath
+        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.createdByUserId = createdByUserId
         self.createdByOrgId = createdByOrgId
         self.shipperOrgId = shipperOrgId
@@ -156,9 +150,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
         self.taskIds = try container.decodeIfPresent([String].self, forKey: .taskIds)
-        self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
-        self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
-        self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
@@ -206,9 +198,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
         try container.encodeIfPresent(self.taskIds, forKey: .taskIds)
-        try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
-        try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
-        try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
@@ -254,9 +244,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case orderShortId = "order_short_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
         case taskIds = "task_ids"
-        case orderScheduleId = "order_schedule_id"
-        case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
-        case orderScheduleTemplatePath = "order_schedule_template_path"
+        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case createdByUserId = "created_by_user_id"
         case createdByOrgId = "created_by_org_id"
         case shipperOrgId = "shipper_org_id"

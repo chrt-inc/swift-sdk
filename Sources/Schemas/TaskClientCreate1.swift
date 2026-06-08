@@ -5,9 +5,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let location: LocationFeature?
     public let geofenceDistanceMiles: Double?
     public let action: Action?
-    public let datetimeWindows: [DateTimeWindow1]?
     public let orderPlacerComments: String?
     public let directoryEntryIds: [String]?
+    public let datetimeWindows: [DateTimeWindow1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -16,18 +16,18 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         location: LocationFeature? = nil,
         geofenceDistanceMiles: Double? = nil,
         action: Action? = nil,
-        datetimeWindows: [DateTimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
         directoryEntryIds: [String]? = nil,
+        datetimeWindows: [DateTimeWindow1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
         self.location = location
         self.geofenceDistanceMiles = geofenceDistanceMiles
         self.action = action
-        self.datetimeWindows = datetimeWindows
         self.orderPlacerComments = orderPlacerComments
         self.directoryEntryIds = directoryEntryIds
+        self.datetimeWindows = datetimeWindows
         self.additionalProperties = additionalProperties
     }
 
@@ -37,9 +37,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
-        self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
+        self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -50,9 +50,9 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.action, forKey: .action)
-        try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
+        try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -61,8 +61,8 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         case location
         case geofenceDistanceMiles = "geofence_distance_miles"
         case action
-        case datetimeWindows = "datetime_windows"
         case orderPlacerComments = "order_placer_comments"
         case directoryEntryIds = "directory_entry_ids"
+        case datetimeWindows = "datetime_windows"
     }
 }

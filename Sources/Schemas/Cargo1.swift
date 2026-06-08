@@ -16,9 +16,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let id: String
     public let orderId: String
     public let orderShortId: String
-    public let orderScheduleId: String?
-    public let orderScheduleRunIdempotencyKey: String?
-    public let orderScheduleTemplatePath: String?
+    public let orderScheduleTemplatePathIdempotencyKey: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
@@ -50,9 +48,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         id: String,
         orderId: String,
         orderShortId: String,
-        orderScheduleId: String? = nil,
-        orderScheduleRunIdempotencyKey: String? = nil,
-        orderScheduleTemplatePath: String? = nil,
+        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
         deviceIds: [String]? = nil,
@@ -80,9 +76,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
-        self.orderScheduleId = orderScheduleId
-        self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
-        self.orderScheduleTemplatePath = orderScheduleTemplatePath
+        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.deviceIds = deviceIds
@@ -113,9 +107,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
-        self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
-        self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
-        self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.deviceIds = try container.decodeIfPresent([String].self, forKey: .deviceIds)
@@ -147,9 +139,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
-        try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
-        try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
-        try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.deviceIds, forKey: .deviceIds)
@@ -179,9 +169,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
-        case orderScheduleId = "order_schedule_id"
-        case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
-        case orderScheduleTemplatePath = "order_schedule_template_path"
+        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case deviceIds = "device_ids"

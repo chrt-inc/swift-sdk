@@ -14,19 +14,18 @@ import Chrt
                       "schema_version": 1,
                       "name": "name",
                       "description": "description",
-                      "order_manifest": {},
-                      "schedule_spec": {},
+                      "schedule_spec": {
+                        "time_zone_name": "America/New_York"
+                      },
                       "_id": "_id",
                       "owned_by_user_id": "owned_by_user_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "owned_by_org_type": "provider",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                      "status": "draft",
-                      "orchestrator_schedule_status": "not_created",
+                      "intended_status": "draft",
                       "orchestrator_schedule_id": "orchestrator_schedule_id",
-                      "orchestrator_schedule_paused": true,
-                      "orchestrator_schedule_created_at_timestamp": "2024-01-15T09:30:00Z"
+                      "orchestrator_schedule_paused": true
                     }
                   ],
                   "total_count": 1
@@ -45,23 +44,18 @@ import Chrt
                     schemaVersion: 1,
                     name: "name",
                     description: Optional("description"),
-                    orderManifest: OrderManifest1(
-
-                    ),
-                    scheduleSpec: ScheduleSpec(
-
-                    ),
+                    scheduleSpec: Optional(OrderScheduleSpec1(
+                        timeZoneName: "America/New_York"
+                    )),
                     id: "_id",
                     ownedByUserId: "owned_by_user_id",
                     ownedByOrgId: "owned_by_org_id",
                     ownedByOrgType: .provider,
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    status: Optional(.draft),
-                    orchestratorScheduleStatus: Optional(.notCreated),
-                    orchestratorScheduleId: "orchestrator_schedule_id",
-                    orchestratorSchedulePaused: Optional(true),
-                    orchestratorScheduleCreatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+                    intendedStatus: Optional(.draft),
+                    orchestratorScheduleId: Optional("orchestrator_schedule_id"),
+                    orchestratorSchedulePaused: Optional(true)
                 )
             ],
             totalCount: 1
@@ -71,12 +65,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .draft
-            ],
-            filterOrchestratorScheduleStatus: [
-                .notCreated
-            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -101,16 +89,16 @@ import Chrt
                     "shipper_org_id": "shipper_org_id",
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "cargos": [
+                    "cargo_manifests": [
                       {
                         "schema_version": 1,
                         "cargo_type": "spare_parts"
                       }
                     ],
-                    "task_groups": [
+                    "task_group_manifests": [
                       {
                         "task_group_type": "chrt_ground_provider",
-                        "tasks": [
+                        "task_manifests": [
                           {
                             "schema_version": 1
                           }
@@ -120,24 +108,47 @@ import Chrt
                     "auto_stage": true
                   },
                   "schedule_spec": {
-                    "calendars": [
-                      {}
-                    ],
-                    "intervals": [
-                      {
-                        "every": "every"
-                      }
-                    ],
-                    "cron_expressions": [
-                      "cron_expressions"
-                    ],
-                    "skip": [
-                      {}
-                    ],
+                    "schedule_calendar_spec": {
+                      "second": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "minute": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "hour": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "day_of_month": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "month": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "year": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "day_of_week": [
+                        {
+                          "start": 1
+                        }
+                      ],
+                      "comment": "comment"
+                    },
                     "start_at": "2024-01-15T09:30:00Z",
                     "end_at": "2024-01-15T09:30:00Z",
-                    "jitter": "jitter",
-                    "time_zone_name": "time_zone_name"
+                    "time_zone_name": "America/New_York"
                   },
                   "_id": "_id",
                   "owned_by_user_id": "owned_by_user_id",
@@ -145,11 +156,9 @@ import Chrt
                   "owned_by_org_type": "provider",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                  "status": "draft",
-                  "orchestrator_schedule_status": "not_created",
+                  "intended_status": "draft",
                   "orchestrator_schedule_id": "orchestrator_schedule_id",
-                  "orchestrator_schedule_paused": true,
-                  "orchestrator_schedule_created_at_timestamp": "2024-01-15T09:30:00Z"
+                  "orchestrator_schedule_paused": true
                 }
                 """.utf8
             )
@@ -163,21 +172,21 @@ import Chrt
             schemaVersion: 1,
             name: "name",
             description: Optional("description"),
-            orderManifest: OrderManifest1(
+            orderManifest: Optional(OrderManifest1(
                 coordinatorOrgId: Optional("coordinator_org_id"),
                 shipperOrgId: Optional("shipper_org_id"),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                cargos: Optional([
+                cargoManifests: Optional([
                     CargoManifest1(
                         schemaVersion: 1,
                         cargoType: .spareParts
                     )
                 ]),
-                taskGroups: Optional([
+                taskGroupManifests: Optional([
                     TaskGroupManifest1(
                         taskGroupType: .chrtGroundProvider,
-                        tasks: [
+                        taskManifests: [
                             TaskManifest1(
                                 schemaVersion: 1
                             )
@@ -185,42 +194,59 @@ import Chrt
                     )
                 ]),
                 autoStage: Optional(true)
-            ),
-            scheduleSpec: ScheduleSpec(
-                calendars: Optional([
-                    ScheduleCalendarSpec(
-
-                    )
-                ]),
-                intervals: Optional([
-                    ScheduleIntervalSpec(
-                        every: "every"
-                    )
-                ]),
-                cronExpressions: Optional([
-                    "cron_expressions"
-                ]),
-                skip: Optional([
-                    ScheduleCalendarSpec(
-
-                    )
-                ]),
+            )),
+            scheduleSpec: Optional(OrderScheduleSpec1(
+                scheduleCalendarSpec: Optional(ScheduleCalendarSpec(
+                    second: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    minute: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    hour: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    dayOfMonth: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    month: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    year: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    dayOfWeek: Optional([
+                        ScheduleRange(
+                            start: 1
+                        )
+                    ]),
+                    comment: Optional("comment")
+                )),
                 startAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 endAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                jitter: Optional("jitter"),
-                timeZoneName: Optional("time_zone_name")
-            ),
+                timeZoneName: "America/New_York"
+            )),
             id: "_id",
             ownedByUserId: "owned_by_user_id",
             ownedByOrgId: "owned_by_org_id",
             ownedByOrgType: .provider,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            status: Optional(.draft),
-            orchestratorScheduleStatus: Optional(.notCreated),
-            orchestratorScheduleId: "orchestrator_schedule_id",
-            orchestratorSchedulePaused: Optional(true),
-            orchestratorScheduleCreatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            intendedStatus: Optional(.draft),
+            orchestratorScheduleId: Optional("orchestrator_schedule_id"),
+            orchestratorSchedulePaused: Optional(true)
         )
         let response = try await client.shipping.orderSchedules.getByIdV1(
             orderScheduleId: "order_schedule_id",
@@ -235,68 +261,8 @@ import Chrt
             body: Data(
                 """
                 {
-                  "order_schedule": {
-                    "schema_version": 1,
-                    "name": "name",
-                    "description": "description",
-                    "order_manifest": {
-                      "coordinator_org_id": "coordinator_org_id",
-                      "shipper_org_id": "shipper_org_id",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                      "off_chrt_reference_id": "off_chrt_reference_id",
-                      "cargos": [
-                        {
-                          "schema_version": 1,
-                          "cargo_type": "spare_parts"
-                        }
-                      ],
-                      "task_groups": [
-                        {
-                          "task_group_type": "chrt_ground_provider",
-                          "tasks": [
-                            {
-                              "schema_version": 1
-                            }
-                          ]
-                        }
-                      ],
-                      "auto_stage": true
-                    },
-                    "schedule_spec": {
-                      "calendars": [
-                        {}
-                      ],
-                      "intervals": [
-                        {
-                          "every": "every"
-                        }
-                      ],
-                      "cron_expressions": [
-                        "cron_expressions"
-                      ],
-                      "skip": [
-                        {}
-                      ],
-                      "start_at": "2024-01-15T09:30:00Z",
-                      "end_at": "2024-01-15T09:30:00Z",
-                      "jitter": "jitter",
-                      "time_zone_name": "time_zone_name"
-                    },
-                    "_id": "_id",
-                    "owned_by_user_id": "owned_by_user_id",
-                    "owned_by_org_id": "owned_by_org_id",
-                    "owned_by_org_type": "provider",
-                    "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                    "status": "draft",
-                    "orchestrator_schedule_status": "not_created",
-                    "orchestrator_schedule_id": "orchestrator_schedule_id",
-                    "orchestrator_schedule_paused": true,
-                    "orchestrator_schedule_created_at_timestamp": "2024-01-15T09:30:00Z"
-                  },
                   "orders_created_count": 1,
                   "orchestrator_schedule_status": {
-                    "status": "not_created",
                     "exists": true,
                     "paused": true,
                     "actions_count": 1,
@@ -320,72 +286,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderScheduleAboutRes(
-            orderSchedule: OrderSchedule1(
-                schemaVersion: 1,
-                name: "name",
-                description: Optional("description"),
-                orderManifest: OrderManifest1(
-                    coordinatorOrgId: Optional("coordinator_org_id"),
-                    shipperOrgId: Optional("shipper_org_id"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                    offChrtReferenceId: Optional("off_chrt_reference_id"),
-                    cargos: Optional([
-                        CargoManifest1(
-                            schemaVersion: 1,
-                            cargoType: .spareParts
-                        )
-                    ]),
-                    taskGroups: Optional([
-                        TaskGroupManifest1(
-                            taskGroupType: .chrtGroundProvider,
-                            tasks: [
-                                TaskManifest1(
-                                    schemaVersion: 1
-                                )
-                            ]
-                        )
-                    ]),
-                    autoStage: Optional(true)
-                ),
-                scheduleSpec: ScheduleSpec(
-                    calendars: Optional([
-                        ScheduleCalendarSpec(
-
-                        )
-                    ]),
-                    intervals: Optional([
-                        ScheduleIntervalSpec(
-                            every: "every"
-                        )
-                    ]),
-                    cronExpressions: Optional([
-                        "cron_expressions"
-                    ]),
-                    skip: Optional([
-                        ScheduleCalendarSpec(
-
-                        )
-                    ]),
-                    startAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    endAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    jitter: Optional("jitter"),
-                    timeZoneName: Optional("time_zone_name")
-                ),
-                id: "_id",
-                ownedByUserId: "owned_by_user_id",
-                ownedByOrgId: "owned_by_org_id",
-                ownedByOrgType: .provider,
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                status: Optional(.draft),
-                orchestratorScheduleStatus: Optional(.notCreated),
-                orchestratorScheduleId: "orchestrator_schedule_id",
-                orchestratorSchedulePaused: Optional(true),
-                orchestratorScheduleCreatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
-            ),
             ordersCreatedCount: 1,
             orchestratorScheduleStatus: OrderScheduleOrchestratorScheduleStatus(
-                status: .notCreated,
                 exists: true,
                 paused: Optional(true),
                 actionsCount: Optional(1),
@@ -401,82 +303,6 @@ import Chrt
             )
         )
         let response = try await client.shipping.orderSchedules.aboutV1(
-            orderScheduleId: "order_schedule_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func newV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.shipping.orderSchedules.newV1(
-            request: .init(
-                schemaVersion: 1,
-                name: "name",
-                orderManifest: OrderManifest1(
-
-                ),
-                scheduleSpec: ScheduleSpec(
-
-                )
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updateV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orderSchedules.updateV1(
-            orderScheduleId: "order_schedule_id",
-            request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func takeOwnershipV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orderSchedules.takeOwnershipV1(
             orderScheduleId: "order_schedule_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -505,7 +331,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func unpauseV11() async throws -> Void {
+    @Test func triggerV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -520,7 +346,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orderSchedules.unpauseV1(
+        let response = try await client.shipping.orderSchedules.triggerV1(
             orderScheduleId: "order_schedule_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -549,6 +375,50 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func unpauseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderSchedules.unpauseV1(
+            orderScheduleId: "order_schedule_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func takeOwnershipV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderSchedules.takeOwnershipV1(
+            orderScheduleId: "order_schedule_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func archiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -571,7 +441,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func triggerV11() async throws -> Void {
+    @Test func syncWithOrchestratorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -586,7 +456,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orderSchedules.triggerV1(
+        let response = try await client.shipping.orderSchedules.syncWithOrchestratorV1(
             orderScheduleId: "order_schedule_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

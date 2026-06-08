@@ -4,8 +4,8 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let name: String
     public let description: String?
-    public let orderManifest: OrderManifest1
-    public let scheduleSpec: ScheduleSpec
+    public let orderManifest: OrderManifest1?
+    public let scheduleSpec: OrderScheduleSpec1?
     public let id: String
     /// Must be a string starting with `user_`
     public let ownedByUserId: String
@@ -14,11 +14,9 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
     public let ownedByOrgType: OrgTypeEnum
     public let createdAtTimestamp: Date
     public let lastEditedAtTimestamp: Date
-    public let status: OrderScheduleStatusEnum1?
-    public let orchestratorScheduleStatus: OrderScheduleOrchestratorScheduleStatusEnum1?
-    public let orchestratorScheduleId: String
+    public let intendedStatus: OrderScheduleStatusEnum1?
+    public let orchestratorScheduleId: String?
     public let orchestratorSchedulePaused: Bool?
-    public let orchestratorScheduleCreatedAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -26,19 +24,17 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         name: String,
         description: String? = nil,
-        orderManifest: OrderManifest1,
-        scheduleSpec: ScheduleSpec,
+        orderManifest: OrderManifest1? = nil,
+        scheduleSpec: OrderScheduleSpec1? = nil,
         id: String,
         ownedByUserId: String,
         ownedByOrgId: String,
         ownedByOrgType: OrgTypeEnum,
         createdAtTimestamp: Date,
         lastEditedAtTimestamp: Date,
-        status: OrderScheduleStatusEnum1? = nil,
-        orchestratorScheduleStatus: OrderScheduleOrchestratorScheduleStatusEnum1? = nil,
-        orchestratorScheduleId: String,
+        intendedStatus: OrderScheduleStatusEnum1? = nil,
+        orchestratorScheduleId: String? = nil,
         orchestratorSchedulePaused: Bool? = nil,
-        orchestratorScheduleCreatedAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -52,11 +48,9 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         self.ownedByOrgType = ownedByOrgType
         self.createdAtTimestamp = createdAtTimestamp
         self.lastEditedAtTimestamp = lastEditedAtTimestamp
-        self.status = status
-        self.orchestratorScheduleStatus = orchestratorScheduleStatus
+        self.intendedStatus = intendedStatus
         self.orchestratorScheduleId = orchestratorScheduleId
         self.orchestratorSchedulePaused = orchestratorSchedulePaused
-        self.orchestratorScheduleCreatedAtTimestamp = orchestratorScheduleCreatedAtTimestamp
         self.additionalProperties = additionalProperties
     }
 
@@ -65,19 +59,17 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.name = try container.decode(String.self, forKey: .name)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
-        self.orderManifest = try container.decode(OrderManifest1.self, forKey: .orderManifest)
-        self.scheduleSpec = try container.decode(ScheduleSpec.self, forKey: .scheduleSpec)
+        self.orderManifest = try container.decodeIfPresent(OrderManifest1.self, forKey: .orderManifest)
+        self.scheduleSpec = try container.decodeIfPresent(OrderScheduleSpec1.self, forKey: .scheduleSpec)
         self.id = try container.decode(String.self, forKey: .id)
         self.ownedByUserId = try container.decode(String.self, forKey: .ownedByUserId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.ownedByOrgType = try container.decode(OrgTypeEnum.self, forKey: .ownedByOrgType)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
-        self.status = try container.decodeIfPresent(OrderScheduleStatusEnum1.self, forKey: .status)
-        self.orchestratorScheduleStatus = try container.decodeIfPresent(OrderScheduleOrchestratorScheduleStatusEnum1.self, forKey: .orchestratorScheduleStatus)
-        self.orchestratorScheduleId = try container.decode(String.self, forKey: .orchestratorScheduleId)
+        self.intendedStatus = try container.decodeIfPresent(OrderScheduleStatusEnum1.self, forKey: .intendedStatus)
+        self.orchestratorScheduleId = try container.decodeIfPresent(String.self, forKey: .orchestratorScheduleId)
         self.orchestratorSchedulePaused = try container.decodeIfPresent(Bool.self, forKey: .orchestratorSchedulePaused)
-        self.orchestratorScheduleCreatedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orchestratorScheduleCreatedAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -87,19 +79,17 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.description, forKey: .description)
-        try container.encode(self.orderManifest, forKey: .orderManifest)
-        try container.encode(self.scheduleSpec, forKey: .scheduleSpec)
+        try container.encodeIfPresent(self.orderManifest, forKey: .orderManifest)
+        try container.encodeIfPresent(self.scheduleSpec, forKey: .scheduleSpec)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.ownedByUserId, forKey: .ownedByUserId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encode(self.ownedByOrgType, forKey: .ownedByOrgType)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
-        try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encodeIfPresent(self.orchestratorScheduleStatus, forKey: .orchestratorScheduleStatus)
-        try container.encode(self.orchestratorScheduleId, forKey: .orchestratorScheduleId)
+        try container.encodeIfPresent(self.intendedStatus, forKey: .intendedStatus)
+        try container.encodeIfPresent(self.orchestratorScheduleId, forKey: .orchestratorScheduleId)
         try container.encodeIfPresent(self.orchestratorSchedulePaused, forKey: .orchestratorSchedulePaused)
-        try container.encodeIfPresent(self.orchestratorScheduleCreatedAtTimestamp, forKey: .orchestratorScheduleCreatedAtTimestamp)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -115,10 +105,8 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         case ownedByOrgType = "owned_by_org_type"
         case createdAtTimestamp = "created_at_timestamp"
         case lastEditedAtTimestamp = "last_edited_at_timestamp"
-        case status
-        case orchestratorScheduleStatus = "orchestrator_schedule_status"
+        case intendedStatus = "intended_status"
         case orchestratorScheduleId = "orchestrator_schedule_id"
         case orchestratorSchedulePaused = "orchestrator_schedule_paused"
-        case orchestratorScheduleCreatedAtTimestamp = "orchestrator_schedule_created_at_timestamp"
     }
 }

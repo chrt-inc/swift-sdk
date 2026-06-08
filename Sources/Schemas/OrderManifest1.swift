@@ -9,8 +9,8 @@ public struct OrderManifest1: Codable, Hashable, Sendable {
     public let offChrtShipperOrgId: String?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
-    public let cargos: [CargoManifest1]?
-    public let taskGroups: [TaskGroupManifest1]?
+    public let cargoManifests: [CargoManifest1]?
+    public let taskGroupManifests: [TaskGroupManifest1]?
     public let autoStage: Bool?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -20,8 +20,8 @@ public struct OrderManifest1: Codable, Hashable, Sendable {
         shipperOrgId: String? = nil,
         offChrtShipperOrgId: String? = nil,
         offChrtReferenceId: String? = nil,
-        cargos: [CargoManifest1]? = nil,
-        taskGroups: [TaskGroupManifest1]? = nil,
+        cargoManifests: [CargoManifest1]? = nil,
+        taskGroupManifests: [TaskGroupManifest1]? = nil,
         autoStage: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -29,8 +29,8 @@ public struct OrderManifest1: Codable, Hashable, Sendable {
         self.shipperOrgId = shipperOrgId
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.offChrtReferenceId = offChrtReferenceId
-        self.cargos = cargos
-        self.taskGroups = taskGroups
+        self.cargoManifests = cargoManifests
+        self.taskGroupManifests = taskGroupManifests
         self.autoStage = autoStage
         self.additionalProperties = additionalProperties
     }
@@ -41,8 +41,8 @@ public struct OrderManifest1: Codable, Hashable, Sendable {
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-        self.cargos = try container.decodeIfPresent([CargoManifest1].self, forKey: .cargos)
-        self.taskGroups = try container.decodeIfPresent([TaskGroupManifest1].self, forKey: .taskGroups)
+        self.cargoManifests = try container.decodeIfPresent([CargoManifest1].self, forKey: .cargoManifests)
+        self.taskGroupManifests = try container.decodeIfPresent([TaskGroupManifest1].self, forKey: .taskGroupManifests)
         self.autoStage = try container.decodeIfPresent(Bool.self, forKey: .autoStage)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -54,8 +54,8 @@ public struct OrderManifest1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-        try container.encodeIfPresent(self.cargos, forKey: .cargos)
-        try container.encodeIfPresent(self.taskGroups, forKey: .taskGroups)
+        try container.encodeIfPresent(self.cargoManifests, forKey: .cargoManifests)
+        try container.encodeIfPresent(self.taskGroupManifests, forKey: .taskGroupManifests)
         try container.encodeIfPresent(self.autoStage, forKey: .autoStage)
     }
 
@@ -65,8 +65,8 @@ public struct OrderManifest1: Codable, Hashable, Sendable {
         case shipperOrgId = "shipper_org_id"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case offChrtReferenceId = "off_chrt_reference_id"
-        case cargos
-        case taskGroups = "task_groups"
+        case cargoManifests = "cargo_manifests"
+        case taskGroupManifests = "task_group_manifests"
         case autoStage = "auto_stage"
     }
 }

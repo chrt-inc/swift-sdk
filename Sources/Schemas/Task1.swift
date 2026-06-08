@@ -5,16 +5,14 @@ public struct Task1: Codable, Hashable, Sendable {
     public let location: LocationFeature?
     public let geofenceDistanceMiles: Double?
     public let action: Action?
-    public let datetimeWindows: [DateTimeWindow1]?
     public let orderPlacerComments: String?
     public let directoryEntryIds: [String]?
+    public let datetimeWindows: [DateTimeWindow1]?
     public let id: String
     public let orderId: String
     public let orderShortId: String
     public let taskGroupId: String
-    public let orderScheduleId: String?
-    public let orderScheduleRunIdempotencyKey: String?
-    public let orderScheduleTemplatePath: String?
+    public let orderScheduleTemplatePathIdempotencyKey: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
@@ -48,16 +46,14 @@ public struct Task1: Codable, Hashable, Sendable {
         location: LocationFeature? = nil,
         geofenceDistanceMiles: Double? = nil,
         action: Action? = nil,
-        datetimeWindows: [DateTimeWindow1]? = nil,
         orderPlacerComments: String? = nil,
         directoryEntryIds: [String]? = nil,
+        datetimeWindows: [DateTimeWindow1]? = nil,
         id: String,
         orderId: String,
         orderShortId: String,
         taskGroupId: String,
-        orderScheduleId: String? = nil,
-        orderScheduleRunIdempotencyKey: String? = nil,
-        orderScheduleTemplatePath: String? = nil,
+        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
         completedByOrgId: String? = nil,
@@ -84,16 +80,14 @@ public struct Task1: Codable, Hashable, Sendable {
         self.location = location
         self.geofenceDistanceMiles = geofenceDistanceMiles
         self.action = action
-        self.datetimeWindows = datetimeWindows
         self.orderPlacerComments = orderPlacerComments
         self.directoryEntryIds = directoryEntryIds
+        self.datetimeWindows = datetimeWindows
         self.id = id
         self.orderId = orderId
         self.orderShortId = orderShortId
         self.taskGroupId = taskGroupId
-        self.orderScheduleId = orderScheduleId
-        self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
-        self.orderScheduleTemplatePath = orderScheduleTemplatePath
+        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.completedByOrgId = completedByOrgId
@@ -123,16 +117,14 @@ public struct Task1: Codable, Hashable, Sendable {
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
-        self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
+        self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
         self.id = try container.decode(String.self, forKey: .id)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
-        self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
-        self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
@@ -163,16 +155,14 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.action, forKey: .action)
-        try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
+        try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
-        try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
-        try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
@@ -201,16 +191,14 @@ public struct Task1: Codable, Hashable, Sendable {
         case location
         case geofenceDistanceMiles = "geofence_distance_miles"
         case action
-        case datetimeWindows = "datetime_windows"
         case orderPlacerComments = "order_placer_comments"
         case directoryEntryIds = "directory_entry_ids"
+        case datetimeWindows = "datetime_windows"
         case id = "_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
         case taskGroupId = "task_group_id"
-        case orderScheduleId = "order_schedule_id"
-        case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
-        case orderScheduleTemplatePath = "order_schedule_template_path"
+        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case completedByOrgId = "completed_by_org_id"

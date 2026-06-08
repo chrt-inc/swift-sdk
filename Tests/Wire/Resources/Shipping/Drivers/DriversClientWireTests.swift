@@ -19,9 +19,7 @@ import Chrt
                       "task_ids": [
                         "task_ids"
                       ],
-                      "order_schedule_id": "order_schedule_id",
-                      "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
-                      "order_schedule_template_path": "order_schedule_template_path",
+                      "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
                       "created_by_user_id": "created_by_user_id",
                       "created_by_org_id": "created_by_org_id",
                       "shipper_org_id": "shipper_org_id",
@@ -80,9 +78,7 @@ import Chrt
                       "task_ids": [
                         "task_ids"
                       ],
-                      "order_schedule_id": "order_schedule_id",
-                      "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
-                      "order_schedule_template_path": "order_schedule_template_path",
+                      "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
                       "created_by_user_id": "created_by_user_id",
                       "created_by_org_id": "created_by_org_id",
                       "shipper_org_id": "shipper_org_id",
@@ -154,9 +150,7 @@ import Chrt
                     taskIds: Optional([
                         "task_ids"
                     ]),
-                    orderScheduleId: Optional("order_schedule_id"),
-                    orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
-                    orderScheduleTemplatePath: Optional("order_schedule_template_path"),
+                    orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
                     createdByUserId: Optional("created_by_user_id"),
                     createdByOrgId: "created_by_org_id",
                     shipperOrgId: Optional("shipper_org_id"),
@@ -215,9 +209,7 @@ import Chrt
                     taskIds: Optional([
                         "task_ids"
                     ]),
-                    orderScheduleId: Optional("order_schedule_id"),
-                    orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
-                    orderScheduleTemplatePath: Optional("order_schedule_template_path"),
+                    orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
                     createdByUserId: Optional("created_by_user_id"),
                     createdByOrgId: "created_by_org_id",
                     shipperOrgId: Optional("shipper_org_id"),
@@ -587,9 +579,6 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
-            filterRole: [
-                .owner
-            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,

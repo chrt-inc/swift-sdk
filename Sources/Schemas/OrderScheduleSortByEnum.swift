@@ -4,5 +4,5 @@ public enum OrderScheduleSortByEnum: String, Codable, Hashable, CaseIterable, Se
     case createdAtTimestamp = "created_at_timestamp"
     case lastEditedAtTimestamp = "last_edited_at_timestamp"
     case name
-    case status
+    case intendedStatus = "intended_status"
 }

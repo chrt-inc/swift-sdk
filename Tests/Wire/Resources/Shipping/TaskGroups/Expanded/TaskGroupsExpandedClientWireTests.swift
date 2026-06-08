@@ -18,9 +18,7 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "order_schedule_id": "order_schedule_id",
-                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
-                    "order_schedule_template_path": "order_schedule_template_path",
+                    "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -186,9 +184,7 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                orderScheduleId: Optional("order_schedule_id"),
-                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
-                orderScheduleTemplatePath: Optional("order_schedule_template_path"),
+                orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
                 createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
@@ -367,9 +363,7 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "order_schedule_id": "order_schedule_id",
-                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
-                    "order_schedule_template_path": "order_schedule_template_path",
+                    "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -535,9 +529,7 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                orderScheduleId: Optional("order_schedule_id"),
-                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
-                orderScheduleTemplatePath: Optional("order_schedule_template_path"),
+                orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
                 createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
@@ -716,9 +708,7 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "order_schedule_id": "order_schedule_id",
-                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
-                    "order_schedule_template_path": "order_schedule_template_path",
+                    "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -884,9 +874,7 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                orderScheduleId: Optional("order_schedule_id"),
-                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
-                orderScheduleTemplatePath: Optional("order_schedule_template_path"),
+                orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
                 createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
@@ -1065,9 +1053,7 @@ import Chrt
                     "task_ids": [
                       "task_ids"
                     ],
-                    "order_schedule_id": "order_schedule_id",
-                    "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
-                    "order_schedule_template_path": "order_schedule_template_path",
+                    "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
                     "created_by_user_id": "created_by_user_id",
                     "created_by_org_id": "created_by_org_id",
                     "shipper_org_id": "shipper_org_id",
@@ -1233,9 +1219,7 @@ import Chrt
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                orderScheduleId: Optional("order_schedule_id"),
-                orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
-                orderScheduleTemplatePath: Optional("order_schedule_template_path"),
+                orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
                 createdByUserId: Optional("created_by_user_id"),
                 createdByOrgId: "created_by_org_id",
                 shipperOrgId: Optional("shipper_org_id"),
@@ -1514,9 +1498,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1658,9 +1639,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

@@ -9,9 +9,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let orderShortId: String
     public let taskGroupId: String
     public let taskId: String
-    public let orderScheduleId: String?
-    public let orderScheduleRunIdempotencyKey: String?
-    public let orderScheduleTemplatePath: String?
+    public let orderScheduleTemplatePathIdempotencyKey: String?
     public let taskArtifactS3ObjectMetadataIds: [String]?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
@@ -45,9 +43,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         orderShortId: String,
         taskGroupId: String,
         taskId: String,
-        orderScheduleId: String? = nil,
-        orderScheduleRunIdempotencyKey: String? = nil,
-        orderScheduleTemplatePath: String? = nil,
+        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         taskArtifactS3ObjectMetadataIds: [String]? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
@@ -73,9 +69,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.orderShortId = orderShortId
         self.taskGroupId = taskGroupId
         self.taskId = taskId
-        self.orderScheduleId = orderScheduleId
-        self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
-        self.orderScheduleTemplatePath = orderScheduleTemplatePath
+        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.taskArtifactS3ObjectMetadataIds = taskArtifactS3ObjectMetadataIds
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
@@ -104,9 +98,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
-        self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
-        self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
-        self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.taskArtifactS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .taskArtifactS3ObjectMetadataIds)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
@@ -136,9 +128,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskId, forKey: .taskId)
-        try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
-        try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
-        try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encodeIfPresent(self.taskArtifactS3ObjectMetadataIds, forKey: .taskArtifactS3ObjectMetadataIds)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
@@ -166,9 +156,7 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         case orderShortId = "order_short_id"
         case taskGroupId = "task_group_id"
         case taskId = "task_id"
-        case orderScheduleId = "order_schedule_id"
-        case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
-        case orderScheduleTemplatePath = "order_schedule_template_path"
+        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case taskArtifactS3ObjectMetadataIds = "task_artifact_s3_object_metadata_ids"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"

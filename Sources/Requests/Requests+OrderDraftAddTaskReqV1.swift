@@ -5,7 +5,7 @@ extension Requests {
         public let taskGroupId: String
         public let task: TaskClientCreate1
         public let cargoIds: [String]?
-        public let orderScheduleTemplatePath: String?
+        public let orderScheduleTemplatePathIdempotencyKey: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -13,13 +13,13 @@ extension Requests {
             taskGroupId: String,
             task: TaskClientCreate1,
             cargoIds: [String]? = nil,
-            orderScheduleTemplatePath: String? = nil,
+            orderScheduleTemplatePathIdempotencyKey: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.taskGroupId = taskGroupId
             self.task = task
             self.cargoIds = cargoIds
-            self.orderScheduleTemplatePath = orderScheduleTemplatePath
+            self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
             self.additionalProperties = additionalProperties
         }
 
@@ -28,7 +28,7 @@ extension Requests {
             self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
             self.task = try container.decode(TaskClientCreate1.self, forKey: .task)
             self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)
-            self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+            self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -38,7 +38,7 @@ extension Requests {
             try container.encode(self.taskGroupId, forKey: .taskGroupId)
             try container.encode(self.task, forKey: .task)
             try container.encodeIfPresent(self.cargoIds, forKey: .cargoIds)
-            try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+            try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -46,7 +46,7 @@ extension Requests {
             case taskGroupId = "task_group_id"
             case task
             case cargoIds = "cargo_ids"
-            case orderScheduleTemplatePath = "order_schedule_template_path"
+            case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         }
     }
 }

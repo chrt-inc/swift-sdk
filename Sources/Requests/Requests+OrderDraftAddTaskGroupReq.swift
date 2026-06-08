@@ -4,7 +4,7 @@ extension Requests {
     public struct OrderDraftAddTaskGroupReq: Codable, Hashable, Sendable {
         public let taskGroupType: TaskGroupTypeEnum1
         public let orderId: String
-        public let orderScheduleTemplatePath: String?
+        public let orderScheduleTemplatePathIdempotencyKey: String?
         public let vehicleType: VehicleTypeEnum?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
@@ -12,13 +12,13 @@ extension Requests {
         public init(
             taskGroupType: TaskGroupTypeEnum1,
             orderId: String,
-            orderScheduleTemplatePath: String? = nil,
+            orderScheduleTemplatePathIdempotencyKey: String? = nil,
             vehicleType: VehicleTypeEnum? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.taskGroupType = taskGroupType
             self.orderId = orderId
-            self.orderScheduleTemplatePath = orderScheduleTemplatePath
+            self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
             self.vehicleType = vehicleType
             self.additionalProperties = additionalProperties
         }
@@ -27,7 +27,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
             self.orderId = try container.decode(String.self, forKey: .orderId)
-            self.orderScheduleTemplatePath = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePath)
+            self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
             self.vehicleType = try container.decodeIfPresent(VehicleTypeEnum.self, forKey: .vehicleType)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
@@ -37,7 +37,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encode(self.taskGroupType, forKey: .taskGroupType)
             try container.encode(self.orderId, forKey: .orderId)
-            try container.encodeIfPresent(self.orderScheduleTemplatePath, forKey: .orderScheduleTemplatePath)
+            try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
             try container.encodeIfPresent(self.vehicleType, forKey: .vehicleType)
         }
 
@@ -45,7 +45,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case taskGroupType = "task_group_type"
             case orderId = "order_id"
-            case orderScheduleTemplatePath = "order_schedule_template_path"
+            case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
             case vehicleType = "vehicle_type"
         }
     }

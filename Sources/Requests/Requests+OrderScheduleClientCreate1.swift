@@ -5,8 +5,8 @@ extension Requests {
         public let schemaVersion: Int
         public let name: String
         public let description: String?
-        public let orderManifest: OrderManifest1
-        public let scheduleSpec: ScheduleSpec
+        public let orderManifest: OrderManifest1?
+        public let scheduleSpec: OrderScheduleSpec1?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -14,8 +14,8 @@ extension Requests {
             schemaVersion: Int,
             name: String,
             description: String? = nil,
-            orderManifest: OrderManifest1,
-            scheduleSpec: ScheduleSpec,
+            orderManifest: OrderManifest1? = nil,
+            scheduleSpec: OrderScheduleSpec1? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
@@ -31,8 +31,8 @@ extension Requests {
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
             self.name = try container.decode(String.self, forKey: .name)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
-            self.orderManifest = try container.decode(OrderManifest1.self, forKey: .orderManifest)
-            self.scheduleSpec = try container.decode(ScheduleSpec.self, forKey: .scheduleSpec)
+            self.orderManifest = try container.decodeIfPresent(OrderManifest1.self, forKey: .orderManifest)
+            self.scheduleSpec = try container.decodeIfPresent(OrderScheduleSpec1.self, forKey: .scheduleSpec)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -42,8 +42,8 @@ extension Requests {
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
             try container.encode(self.name, forKey: .name)
             try container.encodeIfPresent(self.description, forKey: .description)
-            try container.encode(self.orderManifest, forKey: .orderManifest)
-            try container.encode(self.scheduleSpec, forKey: .scheduleSpec)
+            try container.encodeIfPresent(self.orderManifest, forKey: .orderManifest)
+            try container.encodeIfPresent(self.scheduleSpec, forKey: .scheduleSpec)
         }
 
         /// Keys for encoding/decoding struct properties.
