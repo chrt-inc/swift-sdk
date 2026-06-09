@@ -1,3 +1,15 @@
+## 7.0.0 - 2026-06-09
+### Breaking Changes
+* **`FlightInfoForTaskRes`** — `flightNumber` and `faFlightIds` removed; replaced by `flightLegs: [FlightLeg1]?`. Update all read sites to iterate the new `flightLegs` array.
+* **`SetFlightInfoReq`** — `flightNumber` and `faFlightIds` removed; now requires `flightLegs: [FlightLegClientCreate1]`. Update all construction sites to pass an ordered array of `FlightLegClientCreate1` values.
+* **`ShippingTaskGroupFlightInfoUpdatedWebhookPayload`**, **`TaskGroup1`**, and **`TaskGroupExpanded`** — `flightNumber` and `faFlightIds` removed; replaced by `flightLegs` or `flightLegIds` respectively. Update all read and decoding sites.
+* **`OrderSchedule1`** and **`OrderScheduleAboutRes`** — new required `shortId: String` field added. Update all construction and decoding sites to supply this value.
+* **`DevClient.postAgentPingScheduleV1`**, **`ScheduledPingReq`**, **`ScheduledPingRes`**, and **`ScheduleSpec`** removed entirely. Remove all call sites and references.
+### Added
+* **`FlightLeg1`**, **`FlightLegClientCreate1`**, **`FlightLegWebhookInfo`** — new public structs representing flight legs in API responses, creation requests, and webhook payloads respectively.
+* **`FlightLegProvenanceEnum1`** — new enum with cases `manual`, `cirium`, and `flightaware` indicating the data source for a flight leg.
+* **`FlightsClient.getFlightLegsForTaskGroupV1(taskGroupId:requestOptions:)`** — new method returning the ordered list of `FlightLeg1` records for a given task group.
+
 ## 6.0.0 - 2026-06-08
 ### Breaking Changes
 * **`OrderManifest1.cargos`** and **`OrderManifest1.taskGroups`** — renamed to `cargoManifests` and `taskGroupManifests` respectively; update all read and write sites to use the new property names.
