@@ -195,7 +195,13 @@ import Chrt
         let response = try await client.shipping.taskGroups.setFlightInfoV1(
             taskGroupId: "task_group_id",
             request: SetFlightInfoReq(
-
+                flightLegs: [
+                    FlightLegClientCreate1(
+                        schemaVersion: 1,
+                        flightNumber: "flight_number",
+                        provenance: .manual
+                    )
+                ]
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

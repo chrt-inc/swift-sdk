@@ -18,6 +18,7 @@ import Chrt
                         "time_zone_name": "America/New_York"
                       },
                       "_id": "_id",
+                      "short_id": "short_id",
                       "owned_by_user_id": "owned_by_user_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "owned_by_org_type": "provider",
@@ -48,6 +49,7 @@ import Chrt
                         timeZoneName: "America/New_York"
                     )),
                     id: "_id",
+                    shortId: "short_id",
                     ownedByUserId: "owned_by_user_id",
                     ownedByOrgId: "owned_by_org_id",
                     ownedByOrgType: .provider,
@@ -65,9 +67,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterIntendedStatus: [
-                .draft
-            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -154,6 +153,7 @@ import Chrt
                     "time_zone_name": "America/New_York"
                   },
                   "_id": "_id",
+                  "short_id": "short_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_org_type": "provider",
@@ -242,6 +242,7 @@ import Chrt
                 timeZoneName: "America/New_York"
             )),
             id: "_id",
+            shortId: "short_id",
             ownedByUserId: "owned_by_user_id",
             ownedByOrgId: "owned_by_org_id",
             ownedByOrgType: .provider,
@@ -264,6 +265,7 @@ import Chrt
             body: Data(
                 """
                 {
+                  "short_id": "short_id",
                   "orders_created_count": 1,
                   "orchestrator_schedule_status": {
                     "exists": true,
@@ -289,6 +291,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderScheduleAboutRes(
+            shortId: "short_id",
             ordersCreatedCount: 1,
             orchestratorScheduleStatus: OrderScheduleOrchestratorScheduleStatus(
                 exists: true,

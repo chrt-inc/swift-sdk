@@ -45,9 +45,8 @@ import Chrt
                       "mileage_observed": 1.1,
                       "wait_time_total_minutes": 1.1,
                       "mileage_asserted": true,
-                      "flight_number": "flight_number",
-                      "fa_flight_ids": [
-                        "fa_flight_ids"
+                      "flight_leg_ids": [
+                        "flight_leg_ids"
                       ],
                       "messages": [
                         {
@@ -104,9 +103,8 @@ import Chrt
                       "mileage_observed": 1.1,
                       "wait_time_total_minutes": 1.1,
                       "mileage_asserted": true,
-                      "flight_number": "flight_number",
-                      "fa_flight_ids": [
-                        "fa_flight_ids"
+                      "flight_leg_ids": [
+                        "flight_leg_ids"
                       ],
                       "messages": [
                         {
@@ -176,9 +174,8 @@ import Chrt
                     mileageObserved: Optional(1.1),
                     waitTimeTotalMinutes: Optional(1.1),
                     mileageAsserted: Optional(true),
-                    flightNumber: Optional("flight_number"),
-                    faFlightIds: Optional([
-                        "fa_flight_ids"
+                    flightLegIds: Optional([
+                        "flight_leg_ids"
                     ]),
                     messages: Optional([
                         TaskGroupMessage1(
@@ -235,9 +232,8 @@ import Chrt
                     mileageObserved: Optional(1.1),
                     waitTimeTotalMinutes: Optional(1.1),
                     mileageAsserted: Optional(true),
-                    flightNumber: Optional("flight_number"),
-                    faFlightIds: Optional([
-                        "fa_flight_ids"
+                    flightLegIds: Optional([
+                        "flight_leg_ids"
                     ]),
                     messages: Optional([
                         TaskGroupMessage1(
@@ -579,9 +575,6 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
-            filterRole: [
-                .owner
-            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,

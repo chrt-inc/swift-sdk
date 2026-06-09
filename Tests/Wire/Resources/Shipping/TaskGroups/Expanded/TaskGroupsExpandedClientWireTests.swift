@@ -44,9 +44,8 @@ import Chrt
                     "mileage_observed": 1.1,
                     "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
-                    "flight_number": "flight_number",
-                    "fa_flight_ids": [
-                      "fa_flight_ids"
+                    "flight_leg_ids": [
+                      "flight_leg_ids"
                     ],
                     "messages": [
                       {
@@ -210,9 +209,8 @@ import Chrt
                 mileageObserved: Optional(1.1),
                 waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
-                flightNumber: Optional("flight_number"),
-                faFlightIds: Optional([
-                    "fa_flight_ids"
+                flightLegIds: Optional([
+                    "flight_leg_ids"
                 ]),
                 messages: Optional([
                     TaskGroupMessage1(
@@ -389,9 +387,8 @@ import Chrt
                     "mileage_observed": 1.1,
                     "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
-                    "flight_number": "flight_number",
-                    "fa_flight_ids": [
-                      "fa_flight_ids"
+                    "flight_leg_ids": [
+                      "flight_leg_ids"
                     ],
                     "messages": [
                       {
@@ -555,9 +552,8 @@ import Chrt
                 mileageObserved: Optional(1.1),
                 waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
-                flightNumber: Optional("flight_number"),
-                faFlightIds: Optional([
-                    "fa_flight_ids"
+                flightLegIds: Optional([
+                    "flight_leg_ids"
                 ]),
                 messages: Optional([
                     TaskGroupMessage1(
@@ -734,9 +730,8 @@ import Chrt
                     "mileage_observed": 1.1,
                     "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
-                    "flight_number": "flight_number",
-                    "fa_flight_ids": [
-                      "fa_flight_ids"
+                    "flight_leg_ids": [
+                      "flight_leg_ids"
                     ],
                     "messages": [
                       {
@@ -900,9 +895,8 @@ import Chrt
                 mileageObserved: Optional(1.1),
                 waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
-                flightNumber: Optional("flight_number"),
-                faFlightIds: Optional([
-                    "fa_flight_ids"
+                flightLegIds: Optional([
+                    "flight_leg_ids"
                 ]),
                 messages: Optional([
                     TaskGroupMessage1(
@@ -1079,9 +1073,8 @@ import Chrt
                     "mileage_observed": 1.1,
                     "wait_time_total_minutes": 1.1,
                     "mileage_asserted": true,
-                    "flight_number": "flight_number",
-                    "fa_flight_ids": [
-                      "fa_flight_ids"
+                    "flight_leg_ids": [
+                      "flight_leg_ids"
                     ],
                     "messages": [
                       {
@@ -1245,9 +1238,8 @@ import Chrt
                 mileageObserved: Optional(1.1),
                 waitTimeTotalMinutes: Optional(1.1),
                 mileageAsserted: Optional(true),
-                flightNumber: Optional("flight_number"),
-                faFlightIds: Optional([
-                    "fa_flight_ids"
+                flightLegIds: Optional([
+                    "flight_leg_ids"
                 ]),
                 messages: Optional([
                     TaskGroupMessage1(
@@ -1498,9 +1490,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1642,9 +1631,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

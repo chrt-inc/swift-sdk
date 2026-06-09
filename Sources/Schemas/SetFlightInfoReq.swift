@@ -1,40 +1,33 @@
 import Foundation
 
 public struct SetFlightInfoReq: Codable, Hashable, Sendable {
-    /// Flight number to set on the task group
-    public let flightNumber: String?
-    /// Flight Aware's uuid for flights
-    public let faFlightIds: [String]?
+    /// Ordered list of flight legs for the task group. Replaces any existing flight legs. Pass an empty list to clear all flight legs.
+    public let flightLegs: [FlightLegClientCreate1]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        flightNumber: String? = nil,
-        faFlightIds: [String]? = nil,
+        flightLegs: [FlightLegClientCreate1],
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.flightNumber = flightNumber
-        self.faFlightIds = faFlightIds
+        self.flightLegs = flightLegs
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
-        self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
+        self.flightLegs = try container.decode([FlightLegClientCreate1].self, forKey: .flightLegs)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
-        try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
+        try container.encode(self.flightLegs, forKey: .flightLegs)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case flightNumber = "flight_number"
-        case faFlightIds = "fa_flight_ids"
+        case flightLegs = "flight_legs"
     }
 }

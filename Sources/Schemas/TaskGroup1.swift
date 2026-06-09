@@ -37,8 +37,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let mileageObserved: Double?
     public let waitTimeTotalMinutes: Double?
     public let mileageAsserted: Bool?
-    public let flightNumber: String?
-    public let faFlightIds: [String]?
+    public let flightLegIds: [String]?
     public let messages: [TaskGroupMessage1]?
     public let shipperPayProviderRateSheetId: String?
     public let shipperPayProviderLineItemGroupId: String?
@@ -83,8 +82,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         mileageObserved: Double? = nil,
         waitTimeTotalMinutes: Double? = nil,
         mileageAsserted: Bool? = nil,
-        flightNumber: String? = nil,
-        faFlightIds: [String]? = nil,
+        flightLegIds: [String]? = nil,
         messages: [TaskGroupMessage1]? = nil,
         shipperPayProviderRateSheetId: String? = nil,
         shipperPayProviderLineItemGroupId: String? = nil,
@@ -127,8 +125,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.mileageObserved = mileageObserved
         self.waitTimeTotalMinutes = waitTimeTotalMinutes
         self.mileageAsserted = mileageAsserted
-        self.flightNumber = flightNumber
-        self.faFlightIds = faFlightIds
+        self.flightLegIds = flightLegIds
         self.messages = messages
         self.shipperPayProviderRateSheetId = shipperPayProviderRateSheetId
         self.shipperPayProviderLineItemGroupId = shipperPayProviderLineItemGroupId
@@ -174,8 +171,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.mileageObserved = try container.decodeIfPresent(Double.self, forKey: .mileageObserved)
         self.waitTimeTotalMinutes = try container.decodeIfPresent(Double.self, forKey: .waitTimeTotalMinutes)
         self.mileageAsserted = try container.decodeIfPresent(Bool.self, forKey: .mileageAsserted)
-        self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
-        self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
+        self.flightLegIds = try container.decodeIfPresent([String].self, forKey: .flightLegIds)
         self.messages = try container.decodeIfPresent([TaskGroupMessage1].self, forKey: .messages)
         self.shipperPayProviderRateSheetId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderRateSheetId)
         self.shipperPayProviderLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderLineItemGroupId)
@@ -222,8 +218,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.mileageObserved, forKey: .mileageObserved)
         try container.encodeIfPresent(self.waitTimeTotalMinutes, forKey: .waitTimeTotalMinutes)
         try container.encodeIfPresent(self.mileageAsserted, forKey: .mileageAsserted)
-        try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
-        try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
+        try container.encodeIfPresent(self.flightLegIds, forKey: .flightLegIds)
         try container.encodeIfPresent(self.messages, forKey: .messages)
         try container.encodeIfPresent(self.shipperPayProviderRateSheetId, forKey: .shipperPayProviderRateSheetId)
         try container.encodeIfPresent(self.shipperPayProviderLineItemGroupId, forKey: .shipperPayProviderLineItemGroupId)
@@ -268,8 +263,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case mileageObserved = "mileage_observed"
         case waitTimeTotalMinutes = "wait_time_total_minutes"
         case mileageAsserted = "mileage_asserted"
-        case flightNumber = "flight_number"
-        case faFlightIds = "fa_flight_ids"
+        case flightLegIds = "flight_leg_ids"
         case messages
         case shipperPayProviderRateSheetId = "shipper_pay_provider_rate_sheet_id"
         case shipperPayProviderLineItemGroupId = "shipper_pay_provider_line_item_group_id"

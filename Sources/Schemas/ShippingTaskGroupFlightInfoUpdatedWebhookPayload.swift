@@ -8,10 +8,8 @@ public struct ShippingTaskGroupFlightInfoUpdatedWebhookPayload: Codable, Hashabl
     public let orderId: String
     /// The task group whose flight info was updated
     public let taskGroupId: String
-    /// The flight number (if set)
-    public let flightNumber: String?
-    /// FlightAware flight UUIDs associated with this task group
-    public let faFlightIds: [String]
+    /// The task group's ordered flight legs
+    public let flightLegs: [FlightLegWebhookInfo]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -20,16 +18,14 @@ public struct ShippingTaskGroupFlightInfoUpdatedWebhookPayload: Codable, Hashabl
         eventTimestamp: Date,
         orderId: String,
         taskGroupId: String,
-        flightNumber: String? = nil,
-        faFlightIds: [String],
+        flightLegs: [FlightLegWebhookInfo],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventType = eventType
         self.eventTimestamp = eventTimestamp
         self.orderId = orderId
         self.taskGroupId = taskGroupId
-        self.flightNumber = flightNumber
-        self.faFlightIds = faFlightIds
+        self.flightLegs = flightLegs
         self.additionalProperties = additionalProperties
     }
 
@@ -39,8 +35,7 @@ public struct ShippingTaskGroupFlightInfoUpdatedWebhookPayload: Codable, Hashabl
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.flightNumber = try container.decodeIfPresent(String.self, forKey: .flightNumber)
-        self.faFlightIds = try container.decode([String].self, forKey: .faFlightIds)
+        self.flightLegs = try container.decode([FlightLegWebhookInfo].self, forKey: .flightLegs)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -51,8 +46,7 @@ public struct ShippingTaskGroupFlightInfoUpdatedWebhookPayload: Codable, Hashabl
         try container.encode(self.eventTimestamp, forKey: .eventTimestamp)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encodeIfPresent(self.flightNumber, forKey: .flightNumber)
-        try container.encode(self.faFlightIds, forKey: .faFlightIds)
+        try container.encode(self.flightLegs, forKey: .flightLegs)
     }
 
     public enum ShippingTaskGroupFlightInfoUpdated: String, Codable, Hashable, CaseIterable, Sendable {
@@ -65,7 +59,6 @@ public struct ShippingTaskGroupFlightInfoUpdatedWebhookPayload: Codable, Hashabl
         case eventTimestamp = "event_timestamp"
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
-        case flightNumber = "flight_number"
-        case faFlightIds = "fa_flight_ids"
+        case flightLegs = "flight_legs"
     }
 }

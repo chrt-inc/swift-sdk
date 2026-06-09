@@ -7,6 +7,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
     public let orderManifest: OrderManifest1?
     public let scheduleSpec: OrderScheduleSpec1?
     public let id: String
+    public let shortId: String
     /// Must be a string starting with `user_`
     public let ownedByUserId: String
     /// Must be a string starting with `org_`
@@ -27,6 +28,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         orderManifest: OrderManifest1? = nil,
         scheduleSpec: OrderScheduleSpec1? = nil,
         id: String,
+        shortId: String,
         ownedByUserId: String,
         ownedByOrgId: String,
         ownedByOrgType: OrgTypeEnum,
@@ -43,6 +45,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         self.orderManifest = orderManifest
         self.scheduleSpec = scheduleSpec
         self.id = id
+        self.shortId = shortId
         self.ownedByUserId = ownedByUserId
         self.ownedByOrgId = ownedByOrgId
         self.ownedByOrgType = ownedByOrgType
@@ -62,6 +65,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         self.orderManifest = try container.decodeIfPresent(OrderManifest1.self, forKey: .orderManifest)
         self.scheduleSpec = try container.decodeIfPresent(OrderScheduleSpec1.self, forKey: .scheduleSpec)
         self.id = try container.decode(String.self, forKey: .id)
+        self.shortId = try container.decode(String.self, forKey: .shortId)
         self.ownedByUserId = try container.decode(String.self, forKey: .ownedByUserId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.ownedByOrgType = try container.decode(OrgTypeEnum.self, forKey: .ownedByOrgType)
@@ -82,6 +86,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderManifest, forKey: .orderManifest)
         try container.encodeIfPresent(self.scheduleSpec, forKey: .scheduleSpec)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.shortId, forKey: .shortId)
         try container.encode(self.ownedByUserId, forKey: .ownedByUserId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encode(self.ownedByOrgType, forKey: .ownedByOrgType)
@@ -100,6 +105,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         case orderManifest = "order_manifest"
         case scheduleSpec = "schedule_spec"
         case id = "_id"
+        case shortId = "short_id"
         case ownedByUserId = "owned_by_user_id"
         case ownedByOrgId = "owned_by_org_id"
         case ownedByOrgType = "owned_by_org_type"

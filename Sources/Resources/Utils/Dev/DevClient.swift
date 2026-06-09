@@ -7,19 +7,6 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates or updates a Temporal Schedule that runs the scheduled ping workflow for developer diagnostics. | authz: min_org_role=administrator | (ScheduledPingReq) -> (ScheduledPingRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentPingScheduleV1(request: Requests.ScheduledPingReq, requestOptions: RequestOptions? = nil) async throws -> ScheduledPingRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/dev/agent/ping-schedule/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: ScheduledPingRes.self
-        )
-    }
-
     /// Runs a minimal Temporal workflow that sends a prompt to OpenAI and returns the response. | (PingOpenAIReq) -> (PingOpenAIRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
