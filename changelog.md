@@ -1,3 +1,8 @@
+## 8.0.0 - 2026-06-10
+### Added
+* **`FlightTrackRes`** — new public struct representing the positional track for a flight leg, including an optional flown breadcrumb trail (`positions`), planned waypoints (`waypoints`), legacy route string, bearing, and heading.
+* **`FlightTrackWaypoint`** — new public struct representing a lat/lon point on the published flight plan (the planned path).
+
 ## 7.0.0 - 2026-06-09
 ### Breaking Changes
 * **`FlightInfoForTaskRes`** — `flightNumber` and `faFlightIds` removed; replaced by `flightLegs: [FlightLeg1]?`. Update all read sites to iterate the new `flightLegs` array.
