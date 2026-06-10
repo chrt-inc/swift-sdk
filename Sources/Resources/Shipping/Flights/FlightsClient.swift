@@ -30,4 +30,28 @@ public final class FlightsClient: Sendable {
             responseType: FlightInfoForTaskRes.self
         )
     }
+
+    /// Returns the flight leg with its Cirium-sourced status, lazily resolving the Cirium flightId and refreshing the cached status on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightLeg1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getFlightStatusForFlightLegV1(flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightLeg1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/flights/status/for_flight_leg/v1/\(flightLegId)",
+            requestOptions: requestOptions,
+            responseType: FlightLeg1.self
+        )
+    }
+
+    /// Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getFlightTrackForFlightLegV1(flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/flights/track/for_flight_leg/v1/\(flightLegId)",
+            requestOptions: requestOptions,
+            responseType: FlightTrackRes.self
+        )
+    }
 }

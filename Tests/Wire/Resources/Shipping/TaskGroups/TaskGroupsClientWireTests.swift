@@ -199,7 +199,10 @@ import Chrt
                     FlightLegClientCreate1(
                         schemaVersion: 1,
                         flightNumber: "flight_number",
-                        provenance: .manual
+                        provenance: .manual,
+                        originIata: "origin_iata",
+                        destinationIata: "destination_iata",
+                        scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )
                 ]
             ),

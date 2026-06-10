@@ -14,8 +14,6 @@ public struct FlightLegWebhookInfo: Codable, Hashable, Sendable {
     public let scheduledDepartureUtc: Date?
     /// Scheduled arrival (UTC)
     public let scheduledArrivalUtc: Date?
-    /// FlightAware flight UUIDs associated with this leg
-    public let faFlightIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -26,7 +24,6 @@ public struct FlightLegWebhookInfo: Codable, Hashable, Sendable {
         destinationIata: String? = nil,
         scheduledDepartureUtc: Date? = nil,
         scheduledArrivalUtc: Date? = nil,
-        faFlightIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.flightNumber = flightNumber
@@ -35,7 +32,6 @@ public struct FlightLegWebhookInfo: Codable, Hashable, Sendable {
         self.destinationIata = destinationIata
         self.scheduledDepartureUtc = scheduledDepartureUtc
         self.scheduledArrivalUtc = scheduledArrivalUtc
-        self.faFlightIds = faFlightIds
         self.additionalProperties = additionalProperties
     }
 
@@ -47,7 +43,6 @@ public struct FlightLegWebhookInfo: Codable, Hashable, Sendable {
         self.destinationIata = try container.decodeIfPresent(String.self, forKey: .destinationIata)
         self.scheduledDepartureUtc = try container.decodeIfPresent(Date.self, forKey: .scheduledDepartureUtc)
         self.scheduledArrivalUtc = try container.decodeIfPresent(Date.self, forKey: .scheduledArrivalUtc)
-        self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -60,7 +55,6 @@ public struct FlightLegWebhookInfo: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.destinationIata, forKey: .destinationIata)
         try container.encodeIfPresent(self.scheduledDepartureUtc, forKey: .scheduledDepartureUtc)
         try container.encodeIfPresent(self.scheduledArrivalUtc, forKey: .scheduledArrivalUtc)
-        try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -71,6 +65,5 @@ public struct FlightLegWebhookInfo: Codable, Hashable, Sendable {
         case destinationIata = "destination_iata"
         case scheduledDepartureUtc = "scheduled_departure_utc"
         case scheduledArrivalUtc = "scheduled_arrival_utc"
-        case faFlightIds = "fa_flight_ids"
     }
 }
