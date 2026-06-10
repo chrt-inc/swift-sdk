@@ -1,3 +1,9 @@
+## 9.0.0 - 2026-06-10
+### Breaking Changes
+* **`CargoaiTrackAndTraceClient.refreshV1(awb:requestOptions:)`** — method removed entirely; remove all call sites that triggered on-demand CargoAI polling.
+* **`CargoAiTrackAndTraceUpdate1.polledByUserId`** and **`polledByOrgId`** — optional fields removed from the struct; remove all read and decoding references to these properties.
+* **`CargoAiTrackAndTraceUpdateSourceEnum.poll`** — enum case removed; update any `switch` statements that matched on `.poll` to remove that branch.
+
 ## 8.0.0 - 2026-06-10
 ### Added
 * **`FlightTrackRes`** — new public struct representing the positional track for a flight leg, including an optional flown breadcrumb trail (`positions`), planned waypoints (`waypoints`), legacy route string, bearing, and heading.

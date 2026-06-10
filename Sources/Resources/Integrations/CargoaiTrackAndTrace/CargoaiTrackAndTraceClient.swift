@@ -55,16 +55,4 @@ public final class CargoaiTrackAndTraceClient: Sendable {
             responseType: CargoAiTrackAndTraceSubscription1.self
         )
     }
-
-    /// Polls CargoAi for the current tracking snapshot of an AWB and stores it as a new update (source=poll). No subscription required — any order participant can poll on demand. | authz: order participant | () -> (CargoAiTrackAndTraceUpdate1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func refreshV1(awb: String, requestOptions: RequestOptions? = nil) async throws -> CargoAiTrackAndTraceUpdate1 {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/integrations/cargoai_track_and_trace/refresh/v1/\(awb)",
-            requestOptions: requestOptions,
-            responseType: CargoAiTrackAndTraceUpdate1.self
-        )
-    }
 }

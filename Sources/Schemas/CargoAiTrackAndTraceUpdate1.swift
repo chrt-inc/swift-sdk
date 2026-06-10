@@ -18,10 +18,6 @@ public struct CargoAiTrackAndTraceUpdate1: Codable, Hashable, Sendable {
     public let id: String
     public let receivedAt: Date
     public let source: CargoAiTrackAndTraceUpdateSourceEnum
-    /// Must be a string starting with `user_`
-    public let polledByUserId: String?
-    /// Must be a string starting with `org_`
-    public let polledByOrgId: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -42,8 +38,6 @@ public struct CargoAiTrackAndTraceUpdate1: Codable, Hashable, Sendable {
         id: String,
         receivedAt: Date,
         source: CargoAiTrackAndTraceUpdateSourceEnum,
-        polledByUserId: String? = nil,
-        polledByOrgId: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -62,8 +56,6 @@ public struct CargoAiTrackAndTraceUpdate1: Codable, Hashable, Sendable {
         self.id = id
         self.receivedAt = receivedAt
         self.source = source
-        self.polledByUserId = polledByUserId
-        self.polledByOrgId = polledByOrgId
         self.additionalProperties = additionalProperties
     }
 
@@ -85,8 +77,6 @@ public struct CargoAiTrackAndTraceUpdate1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.receivedAt = try container.decode(Date.self, forKey: .receivedAt)
         self.source = try container.decode(CargoAiTrackAndTraceUpdateSourceEnum.self, forKey: .source)
-        self.polledByUserId = try container.decodeIfPresent(String.self, forKey: .polledByUserId)
-        self.polledByOrgId = try container.decodeIfPresent(String.self, forKey: .polledByOrgId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -109,8 +99,6 @@ public struct CargoAiTrackAndTraceUpdate1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.receivedAt, forKey: .receivedAt)
         try container.encode(self.source, forKey: .source)
-        try container.encodeIfPresent(self.polledByUserId, forKey: .polledByUserId)
-        try container.encodeIfPresent(self.polledByOrgId, forKey: .polledByOrgId)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -131,7 +119,5 @@ public struct CargoAiTrackAndTraceUpdate1: Codable, Hashable, Sendable {
         case id = "_id"
         case receivedAt
         case source
-        case polledByUserId
-        case polledByOrgId
     }
 }
