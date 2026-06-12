@@ -1,3 +1,15 @@
+## 2.0.0 - 2026-06-12
+### Breaking Changes
+* **`DriverUpdateRes`** — new required field `driverByDriverPingRecorded: Bool` added; update all construction and decoding sites to supply this value.
+* **`FlightTrackPosition`** — renamed to `FlightTrackPosition1`; update all references to use the new name.
+* **`FlightTrackWaypoint`** — renamed to `FlightTrackWaypoint1`; update all references to use the new name.
+* **`FlightLegClientCreate1.carrierIata`** — changed from optional to required `String`; update all construction sites to always supply a carrier IATA code.
+### Added
+* **`DriverClient.updateV2(request:requestOptions:)`** — new method for recording driver location updates with a client-supplied capture timestamp, writing a driver-by-driver ping on every call.
+* **`DriverSelfReportedHoursAndMileage1`** and **`DriverSelfReportedHoursAndMileageListRes`** — new public structs for driver self-reported hours and mileage records and paginated list responses.
+* **`DriverByDriverDataPointClientCreate1`**, **`DriverSelfReportedHoursAndMileageClientCreate1`**, and **`DriverSelfReportedHoursAndMileageClientUpdate1`** — new request structs for creating and updating driver self-reported hours and mileage data.
+* **`DriversOrgListSelfReportedHoursAndMileageV1RequestSortBy`** — new enum for sorting self-reported hours and mileage list results by `date` or `driverId`.
+
 ## 8.0.0 - 2026-06-10
 ### Added
 * **`FlightTrackRes`** — new public struct representing the positional track for a flight leg, including an optional flown breadcrumb trail (`positions`), planned waypoints (`waypoints`), legacy route string, bearing, and heading.
