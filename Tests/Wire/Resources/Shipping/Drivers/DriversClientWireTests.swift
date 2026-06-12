@@ -125,9 +125,24 @@ import Chrt
                       "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
                     }
                   ],
-                  "cleaned_task_group_duration_hours": 1.1,
-                  "overlap_detected": true,
-                  "total_mileage_observed": 1.1
+                  "deduped_task_group_driver_hours": 1.1,
+                  "overlapping_task_groups_detected": true,
+                  "total_driver_mileage_tracked": 1.1,
+                  "deduped_task_group_driver_mileage_tracked": 1.1,
+                  "self_reported_hours_and_mileage": [
+                    {
+                      "schema_version": 1,
+                      "driver_id": "driver_id",
+                      "date": "date",
+                      "hours_worked": 1.1,
+                      "miles_driven": 1.1,
+                      "org_id": "org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "updated_at": "2024-01-15T09:30:00Z",
+                      "_id": "_id"
+                    }
+                  ]
                 }
                 """.utf8
             )
@@ -254,9 +269,24 @@ import Chrt
                     providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
                 )
             ],
-            cleanedTaskGroupDurationHours: 1.1,
-            overlapDetected: true,
-            totalMileageObserved: Optional(1.1)
+            dedupedTaskGroupDriverHours: 1.1,
+            overlappingTaskGroupsDetected: true,
+            totalDriverMileageTracked: Optional(1.1),
+            dedupedTaskGroupDriverMileageTracked: Optional(1.1),
+            selfReportedHoursAndMileage: Optional([
+                DriverSelfReportedHoursAndMileage1(
+                    schemaVersion: 1,
+                    driverId: "driver_id",
+                    date: "date",
+                    hoursWorked: Optional(1.1),
+                    milesDriven: Optional(1.1),
+                    orgId: "org_id",
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "_id"
+                )
+            ])
         )
         let response = try await client.shipping.drivers.getStatsV1(
             driverId: "driver_id",
@@ -264,6 +294,287 @@ import Chrt
                 startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getSelfReportedHoursAndMileageV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "driver_id": "driver_id",
+                  "date": "date",
+                  "hours_worked": 1.1,
+                  "miles_driven": 1.1,
+                  "org_id": "org_id",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "created_by_user_id": "created_by_user_id",
+                  "updated_at": "2024-01-15T09:30:00Z",
+                  "_id": "_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DriverSelfReportedHoursAndMileage1(
+            schemaVersion: 1,
+            driverId: "driver_id",
+            date: "date",
+            hoursWorked: Optional(1.1),
+            milesDriven: Optional(1.1),
+            orgId: "org_id",
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            createdByUserId: "created_by_user_id",
+            updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            id: "_id"
+        )
+        let response = try await client.shipping.drivers.getSelfReportedHoursAndMileageV1(
+            driverId: "driver_id",
+            reportDate: "report_date",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listSelfReportedHoursAndMileageV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "schema_version": 1,
+                      "driver_id": "driver_id",
+                      "date": "date",
+                      "hours_worked": 1.1,
+                      "miles_driven": 1.1,
+                      "org_id": "org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "updated_at": "2024-01-15T09:30:00Z",
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DriverSelfReportedHoursAndMileageListRes(
+            items: [
+                DriverSelfReportedHoursAndMileage1(
+                    schemaVersion: 1,
+                    driverId: "driver_id",
+                    date: "date",
+                    hoursWorked: Optional(1.1),
+                    milesDriven: Optional(1.1),
+                    orgId: "org_id",
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.shipping.drivers.listSelfReportedHoursAndMileageV1(
+            driverId: "driver_id",
+            filterStartDate: "filter_start_date",
+            filterEndDate: "filter_end_date",
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func orgListSelfReportedHoursAndMileageV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "schema_version": 1,
+                      "driver_id": "driver_id",
+                      "date": "date",
+                      "hours_worked": 1.1,
+                      "miles_driven": 1.1,
+                      "org_id": "org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "updated_at": "2024-01-15T09:30:00Z",
+                      "_id": "_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DriverSelfReportedHoursAndMileageListRes(
+            items: [
+                DriverSelfReportedHoursAndMileage1(
+                    schemaVersion: 1,
+                    driverId: "driver_id",
+                    date: "date",
+                    hoursWorked: Optional(1.1),
+                    milesDriven: Optional(1.1),
+                    orgId: "org_id",
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    id: "_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.shipping.drivers.orgListSelfReportedHoursAndMileageV1(
+            filterDriverId: "filter_driver_id",
+            filterStartDate: "filter_start_date",
+            filterEndDate: "filter_end_date",
+            sortBy: .date,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createSelfReportedHoursAndMileageV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "driver_id": "driver_id",
+                  "date": "date",
+                  "hours_worked": 1.1,
+                  "miles_driven": 1.1,
+                  "org_id": "org_id",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "created_by_user_id": "created_by_user_id",
+                  "updated_at": "2024-01-15T09:30:00Z",
+                  "_id": "_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DriverSelfReportedHoursAndMileage1(
+            schemaVersion: 1,
+            driverId: "driver_id",
+            date: "date",
+            hoursWorked: Optional(1.1),
+            milesDriven: Optional(1.1),
+            orgId: "org_id",
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            createdByUserId: "created_by_user_id",
+            updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            id: "_id"
+        )
+        let response = try await client.shipping.drivers.createSelfReportedHoursAndMileageV1(
+            request: .init(
+                schemaVersion: 1,
+                driverId: "driver_id",
+                date: "date"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateSelfReportedHoursAndMileageV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "driver_id": "driver_id",
+                  "date": "date",
+                  "hours_worked": 1.1,
+                  "miles_driven": 1.1,
+                  "org_id": "org_id",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "created_by_user_id": "created_by_user_id",
+                  "updated_at": "2024-01-15T09:30:00Z",
+                  "_id": "_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = DriverSelfReportedHoursAndMileage1(
+            schemaVersion: 1,
+            driverId: "driver_id",
+            date: "date",
+            hoursWorked: Optional(1.1),
+            milesDriven: Optional(1.1),
+            orgId: "org_id",
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            createdByUserId: "created_by_user_id",
+            updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            id: "_id"
+        )
+        let response = try await client.shipping.drivers.updateSelfReportedHoursAndMileageV1(
+            driverId: "driver_id",
+            reportDate: "report_date",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func deleteSelfReportedHoursAndMileageV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.drivers.deleteSelfReportedHoursAndMileageV1(
+            driverId: "driver_id",
+            reportDate: "report_date",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

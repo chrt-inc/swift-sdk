@@ -202,7 +202,8 @@ import Chrt
                         provenance: .manual,
                         originIata: "origin_iata",
                         destinationIata: "destination_iata",
-                        scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                        scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        carrierIata: "carrier_iata"
                     )
                 ]
             ),

@@ -1,7 +1,6 @@
 import Foundation
 
-/// A lat/lon point on the published flight plan (the planned path).
-public struct FlightTrackWaypoint: Codable, Hashable, Sendable {
+public struct FlightTrackWaypoint1: Codable, Hashable, Sendable {
     public let lat: Double?
     public let lon: Double?
     /// Additional properties that are not explicitly defined in the schema

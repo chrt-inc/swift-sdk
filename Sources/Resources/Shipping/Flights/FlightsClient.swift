@@ -43,7 +43,7 @@ public final class FlightsClient: Sendable {
         )
     }
 
-    /// Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+    /// Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call, cached on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getFlightTrackForFlightLegV1(flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {

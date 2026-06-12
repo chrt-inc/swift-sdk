@@ -20321,7 +20321,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves driver stats (hours worked + observed mileage) with overlap-corrected duration. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
+Retrieves driver stats for a time window: overlap-corrected hours worked, total GPS mileage, and mileage restricted to worked task-group intervals. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
 </dd>
 </dl>
 </dd>
@@ -20375,6 +20375,581 @@ try await main()
 <dd>
 
 **request:** `Requests.DriverStatsReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">getSelfReportedHoursAndMileageV1</a>(driverId: String, reportDate: String, requestOptions: RequestOptions?) -> DriverSelfReportedHoursAndMileage1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a driver's self-report for a single calendar day. Caller must be the driver themselves or an operator+ in the driver's org. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (DriverSelfReportedHoursAndMileage1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.getSelfReportedHoursAndMileageV1(
+        driverId: "driver_id",
+        reportDate: "report_date"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reportDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listSelfReportedHoursAndMileageV1</a>(driverId: String, filterStartDate: String?, filterEndDate: String?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> DriverSelfReportedHoursAndMileageListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists a driver's self-reports across an optional date range with sorting and pagination. Caller must be the driver themselves or an operator+ in the driver's org. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (DriverSelfReportedHoursAndMileageListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.listSelfReportedHoursAndMileageV1(
+        driverId: "driver_id",
+        filterStartDate: "filter_start_date",
+        filterEndDate: "filter_end_date",
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStartDate:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterEndDate:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">orgListSelfReportedHoursAndMileageV1</a>(filterDriverId: String?, filterStartDate: String?, filterEndDate: String?, sortBy: DriversOrgListSelfReportedHoursAndMileageV1RequestSortBy?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> DriverSelfReportedHoursAndMileageListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all drivers' self-reports in the caller's org with date-range filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverSelfReportedHoursAndMileageListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.orgListSelfReportedHoursAndMileageV1(
+        filterDriverId: "filter_driver_id",
+        filterStartDate: "filter_start_date",
+        filterEndDate: "filter_end_date",
+        sortBy: .date,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterDriverId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStartDate:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterEndDate:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `DriversOrgListSelfReportedHoursAndMileageV1RequestSortBy?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">createSelfReportedHoursAndMileageV1</a>(request: Requests.DriverSelfReportedHoursAndMileageClientCreate1, requestOptions: RequestOptions?) -> DriverSelfReportedHoursAndMileage1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a driver's self-reported hours worked and miles driven for a single calendar day. Caller must be the driver themselves. | authz: allowed_org_types=[provider], min_org_role=driver | (DriverSelfReportedHoursAndMileageClientCreate1) -> (DriverSelfReportedHoursAndMileage1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.createSelfReportedHoursAndMileageV1(request: .init(
+        schemaVersion: 1,
+        driverId: "driver_id",
+        date: "date"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.DriverSelfReportedHoursAndMileageClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">updateSelfReportedHoursAndMileageV1</a>(driverId: String, reportDate: String, request: Requests.DriverSelfReportedHoursAndMileageClientUpdate1, requestOptions: RequestOptions?) -> DriverSelfReportedHoursAndMileage1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Partially updates a driver's self-reported hours worked and/or miles driven for a calendar day. Caller must be the driver themselves. | authz: allowed_org_types=[provider], min_org_role=driver | (DriverSelfReportedHoursAndMileageClientUpdate1) -> (DriverSelfReportedHoursAndMileage1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.updateSelfReportedHoursAndMileageV1(
+        driverId: "driver_id",
+        reportDate: "report_date",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reportDate:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.DriverSelfReportedHoursAndMileageClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">deleteSelfReportedHoursAndMileageV1</a>(driverId: String, reportDate: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently deletes a driver's self-report for a calendar day. Caller must be the driver themselves. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.deleteSelfReportedHoursAndMileageV1(
+        driverId: "driver_id",
+        reportDate: "report_date"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reportDate:** `String` 
     
 </dd>
 </dl>
@@ -21558,7 +22133,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call, cached on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
 </dd>
 </dl>
 </dd>
@@ -25042,7 +25617,8 @@ private func main() async throws {
                     provenance: .manual,
                     originIata: "origin_iata",
                     destinationIata: "destination_iata",
-                    scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    carrierIata: "carrier_iata"
                 )
             ]
         )
@@ -28131,7 +28707,8 @@ private func main() async throws {
                     provenance: .manual,
                     originIata: "origin_iata",
                     destinationIata: "destination_iata",
-                    scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    carrierIata: "carrier_iata"
                 )
             ]
         )
@@ -33640,6 +34217,98 @@ try await main()
 <dd>
 
 **request:** `LocationFeature` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.driver.<a href="/Sources/Resources/Tracking/Driver/DriverClient.swift">updateV2</a>(request: Requests.DriverByDriverDataPointClientCreate1, requestOptions: RequestOptions?) -> DriverUpdateRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records driver location updates with a client-supplied capture timestamp. Writes a driver_by_driver ping on every call, updates the driver's last seen, and records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | auth: api_key | (DriverByDriverDataPointClientCreate1) -> (DriverUpdateRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.driver.updateV2(request: .init(
+        schemaVersion: 1,
+        location: LocationFeature(
+            type: .feature,
+            geometry: Geometry.geometryCollection(
+                .init(
+                    geometries: [
+                        GeometryCollectionGeometriesItem.lineString(
+                            .init(
+                                coordinates: [
+                                    LineStringCoordinatesItem.position2D(
+                                        []
+                                    )
+                                ]
+                            )
+                        )
+                    ]
+                )
+            )
+        ),
+        timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.DriverByDriverDataPointClientCreate1` 
     
 </dd>
 </dl>

@@ -7,7 +7,7 @@ public struct FlightLegClientCreate1: Codable, Hashable, Sendable {
     public let originIata: String
     public let destinationIata: String
     public let scheduledDepartureUtc: Date
-    public let carrierIata: String?
+    public let carrierIata: String
     public let carrierIcao: String?
     public let scheduledArrivalUtc: Date?
     /// Additional properties that are not explicitly defined in the schema
@@ -20,7 +20,7 @@ public struct FlightLegClientCreate1: Codable, Hashable, Sendable {
         originIata: String,
         destinationIata: String,
         scheduledDepartureUtc: Date,
-        carrierIata: String? = nil,
+        carrierIata: String,
         carrierIcao: String? = nil,
         scheduledArrivalUtc: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -45,7 +45,7 @@ public struct FlightLegClientCreate1: Codable, Hashable, Sendable {
         self.originIata = try container.decode(String.self, forKey: .originIata)
         self.destinationIata = try container.decode(String.self, forKey: .destinationIata)
         self.scheduledDepartureUtc = try container.decode(Date.self, forKey: .scheduledDepartureUtc)
-        self.carrierIata = try container.decodeIfPresent(String.self, forKey: .carrierIata)
+        self.carrierIata = try container.decode(String.self, forKey: .carrierIata)
         self.carrierIcao = try container.decodeIfPresent(String.self, forKey: .carrierIcao)
         self.scheduledArrivalUtc = try container.decodeIfPresent(Date.self, forKey: .scheduledArrivalUtc)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -60,7 +60,7 @@ public struct FlightLegClientCreate1: Codable, Hashable, Sendable {
         try container.encode(self.originIata, forKey: .originIata)
         try container.encode(self.destinationIata, forKey: .destinationIata)
         try container.encode(self.scheduledDepartureUtc, forKey: .scheduledDepartureUtc)
-        try container.encodeIfPresent(self.carrierIata, forKey: .carrierIata)
+        try container.encode(self.carrierIata, forKey: .carrierIata)
         try container.encodeIfPresent(self.carrierIcao, forKey: .carrierIcao)
         try container.encodeIfPresent(self.scheduledArrivalUtc, forKey: .scheduledArrivalUtc)
     }

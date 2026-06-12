@@ -1,7 +1,6 @@
 import Foundation
 
-/// A single reported (or derived) aircraft position along the flown trail.
-public struct FlightTrackPosition: Codable, Hashable, Sendable {
+public struct FlightTrackPosition1: Codable, Hashable, Sendable {
     public let lat: Double?
     public let lon: Double?
     public let altitudeFt: Int?

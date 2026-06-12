@@ -58,7 +58,7 @@ import Chrt
                     originIata: "origin_iata",
                     destinationIata: "destination_iata",
                     scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    carrierIata: Optional("carrier_iata"),
+                    carrierIata: "carrier_iata",
                     carrierIcao: Optional("carrier_icao"),
                     scheduledArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     ciriumFlightId: Optional(1),
@@ -138,7 +138,7 @@ import Chrt
                     originIata: "origin_iata",
                     destinationIata: "destination_iata",
                     scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    carrierIata: Optional("carrier_iata"),
+                    carrierIata: "carrier_iata",
                     carrierIcao: Optional("carrier_icao"),
                     scheduledArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     ciriumFlightId: Optional(1),
@@ -212,7 +212,7 @@ import Chrt
             originIata: "origin_iata",
             destinationIata: "destination_iata",
             scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            carrierIata: Optional("carrier_iata"),
+            carrierIata: "carrier_iata",
             carrierIcao: Optional("carrier_icao"),
             scheduledArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             ciriumFlightId: Optional(1),
@@ -273,7 +273,7 @@ import Chrt
         let expectedResponse = FlightTrackRes(
             ciriumFlightId: Optional(1),
             positions: Optional([
-                FlightTrackPosition(
+                FlightTrackPosition1(
                     lat: Optional(1.1),
                     lon: Optional(1.1),
                     altitudeFt: Optional(1),
@@ -283,7 +283,7 @@ import Chrt
                 )
             ]),
             waypoints: Optional([
-                FlightTrackWaypoint(
+                FlightTrackWaypoint1(
                     lat: Optional(1.1),
                     lon: Optional(1.1)
                 )

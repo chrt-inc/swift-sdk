@@ -9,8 +9,8 @@ import Foundation
 /// endpoint never errors on a missing track (fail-soft, like the status route).
 public struct FlightTrackRes: Codable, Hashable, Sendable {
     public let ciriumFlightId: Int?
-    public let positions: [FlightTrackPosition]?
-    public let waypoints: [FlightTrackWaypoint]?
+    public let positions: [FlightTrackPosition1]?
+    public let waypoints: [FlightTrackWaypoint1]?
     public let legacyRoute: String?
     public let bearing: Double?
     public let heading: Double?
@@ -19,8 +19,8 @@ public struct FlightTrackRes: Codable, Hashable, Sendable {
 
     public init(
         ciriumFlightId: Int? = nil,
-        positions: [FlightTrackPosition]? = nil,
-        waypoints: [FlightTrackWaypoint]? = nil,
+        positions: [FlightTrackPosition1]? = nil,
+        waypoints: [FlightTrackWaypoint1]? = nil,
         legacyRoute: String? = nil,
         bearing: Double? = nil,
         heading: Double? = nil,
@@ -38,8 +38,8 @@ public struct FlightTrackRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.ciriumFlightId = try container.decodeIfPresent(Int.self, forKey: .ciriumFlightId)
-        self.positions = try container.decodeIfPresent([FlightTrackPosition].self, forKey: .positions)
-        self.waypoints = try container.decodeIfPresent([FlightTrackWaypoint].self, forKey: .waypoints)
+        self.positions = try container.decodeIfPresent([FlightTrackPosition1].self, forKey: .positions)
+        self.waypoints = try container.decodeIfPresent([FlightTrackWaypoint1].self, forKey: .waypoints)
         self.legacyRoute = try container.decodeIfPresent(String.self, forKey: .legacyRoute)
         self.bearing = try container.decodeIfPresent(Double.self, forKey: .bearing)
         self.heading = try container.decodeIfPresent(Double.self, forKey: .heading)

@@ -9,7 +9,7 @@ public final class DriversClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves driver stats (hours worked + observed mileage) with overlap-corrected duration. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
+    /// Retrieves driver stats for a time window: overlap-corrected hours worked, total GPS mileage, and mileage restricted to worked task-group intervals. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getStatsV1(driverId: String, request: Requests.DriverStatsReq, requestOptions: RequestOptions? = nil) async throws -> DriverStatsRes {
@@ -19,6 +19,96 @@ public final class DriversClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: DriverStatsRes.self
+        )
+    }
+
+    /// Retrieves a driver's self-report for a single calendar day. Caller must be the driver themselves or an operator+ in the driver's org. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (DriverSelfReportedHoursAndMileage1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getSelfReportedHoursAndMileageV1(driverId: String, reportDate: String, requestOptions: RequestOptions? = nil) async throws -> DriverSelfReportedHoursAndMileage1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/drivers/self_reported_hours_and_mileage/get/v1/\(driverId)/\(reportDate)",
+            requestOptions: requestOptions,
+            responseType: DriverSelfReportedHoursAndMileage1.self
+        )
+    }
+
+    /// Lists a driver's self-reports across an optional date range with sorting and pagination. Caller must be the driver themselves or an operator+ in the driver's org. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (DriverSelfReportedHoursAndMileageListRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listSelfReportedHoursAndMileageV1(driverId: String, filterStartDate: String? = nil, filterEndDate: String? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverSelfReportedHoursAndMileageListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/drivers/self_reported_hours_and_mileage/list/v1/\(driverId)",
+            queryParams: [
+                "filter_start_date": filterStartDate.map { .string($0) }, 
+                "filter_end_date": filterEndDate.map { .string($0) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: DriverSelfReportedHoursAndMileageListRes.self
+        )
+    }
+
+    /// Lists all drivers' self-reports in the caller's org with date-range filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverSelfReportedHoursAndMileageListRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func orgListSelfReportedHoursAndMileageV1(filterDriverId: String? = nil, filterStartDate: String? = nil, filterEndDate: String? = nil, sortBy: DriversOrgListSelfReportedHoursAndMileageV1RequestSortBy? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverSelfReportedHoursAndMileageListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/drivers/self_reported_hours_and_mileage/org_list/v1",
+            queryParams: [
+                "filter_driver_id": filterDriverId.map { .string($0) }, 
+                "filter_start_date": filterStartDate.map { .string($0) }, 
+                "filter_end_date": filterEndDate.map { .string($0) }, 
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: DriverSelfReportedHoursAndMileageListRes.self
+        )
+    }
+
+    /// Creates a driver's self-reported hours worked and miles driven for a single calendar day. Caller must be the driver themselves. | authz: allowed_org_types=[provider], min_org_role=driver | (DriverSelfReportedHoursAndMileageClientCreate1) -> (DriverSelfReportedHoursAndMileage1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createSelfReportedHoursAndMileageV1(request: Requests.DriverSelfReportedHoursAndMileageClientCreate1, requestOptions: RequestOptions? = nil) async throws -> DriverSelfReportedHoursAndMileage1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/self_reported_hours_and_mileage/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: DriverSelfReportedHoursAndMileage1.self
+        )
+    }
+
+    /// Partially updates a driver's self-reported hours worked and/or miles driven for a calendar day. Caller must be the driver themselves. | authz: allowed_org_types=[provider], min_org_role=driver | (DriverSelfReportedHoursAndMileageClientUpdate1) -> (DriverSelfReportedHoursAndMileage1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateSelfReportedHoursAndMileageV1(driverId: String, reportDate: String, request: Requests.DriverSelfReportedHoursAndMileageClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> DriverSelfReportedHoursAndMileage1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/drivers/self_reported_hours_and_mileage/update/v1/\(driverId)/\(reportDate)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: DriverSelfReportedHoursAndMileage1.self
+        )
+    }
+
+    /// Permanently deletes a driver's self-report for a calendar day. Caller must be the driver themselves. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteSelfReportedHoursAndMileageV1(driverId: String, reportDate: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/self_reported_hours_and_mileage/delete/v1/\(driverId)/\(reportDate)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
