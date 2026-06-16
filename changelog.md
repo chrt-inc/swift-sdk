@@ -1,3 +1,16 @@
+## 3.0.0 - 2026-06-16
+### Breaking Changes
+* **`OrderTemplateExpanded`** — renamed to `OrderTemplateExpanded1`; update all type references and construction sites to use the new name.
+* **`OrderTemplateOrgRef1`** — renamed to `OrderTemplateOrgInfo1`; update all type references, including `shipperOrg` and `executorOrgs` fields on `OrderTemplateExpanded1`, to use the new name.
+* **`WorkflowActorContext`** — renamed to `WorkflowActor`; update all type references to use the new name.
+* **`OrderTemplate1`** — `orderInput: String?` removed and initializer parameter order changed; replace `orderInput` with the new `text: String?` field and update all construction sites to supply `coordinatorOrgId` and `departmentId` as needed.
+### Added
+* **`OrderGroupsClient`** (`shipping.orderGroups`) and **`OrdersAndOrderGroupsClient`** (`shipping.ordersAndOrderGroups`) — new clients for creating, listing, and managing order groups and querying expanded order groups with nested orders.
+* **`OffChrtVendorClient`** (`orgs.offChrtVendor`) — new client for managing off-platform vendor shells used as billing payment destinations, with full CRUD support.
+* **`BillingReviewStatusEnum`** and **`CasesClient.setBillingReviewStatusV1(caseId:request:requestOptions:)`** — new enum and method for setting billing-review status on cases and order groups.
+* **`OrderGroup1`**, **`OffChrtVendor1`**, **`OrderTemplateCore1`**, **`ShippingTurnClientCreate1`**, **`UngroupedOrderRow`**, and related list/response structs — new public types supporting order group management, off-chart vendors, and the agentic order builder.
+* **New optional fields** across `OrderTemplate1`, `OrdersNewDraftReq`, `StatementCreateClientReq`, `Statement1`, `Case1`, `LineItemGroup1`, `Order1`, and billing statement line item structs for `billingReviewStatus`, `orderGroupId`, `orderGroupShortId`, `paymentDestinationOffChrtVendorId`, `creationIdempotencyKey`, `coordinatorOrgId`, `departmentId`, and `text`.
+
 ## 2.0.0 - 2026-06-12
 ### Breaking Changes
 * **`DriverUpdateRes`** — new required field `driverByDriverPingRecorded: Bool` added; update all construction and decoding sites to supply this value.
