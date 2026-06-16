@@ -8,6 +8,7 @@ public final class OrgsClient: Sendable {
     public let privateData: PrivateDataClient
     public let orgProfiles: OrgProfilesClient
     public let publicData: PublicDataClient
+    public let offChrtVendor: OffChrtVendorClient
     public let orgInfoForConnections: OrgInfoForConnectionsClient
     private let httpClient: HTTPClient
 
@@ -19,6 +20,7 @@ public final class OrgsClient: Sendable {
         self.privateData = PrivateDataClient(config: config)
         self.orgProfiles = OrgProfilesClient(config: config)
         self.publicData = PublicDataClient(config: config)
+        self.offChrtVendor = OffChrtVendorClient(config: config)
         self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }

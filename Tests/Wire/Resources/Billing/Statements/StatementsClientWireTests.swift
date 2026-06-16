@@ -26,6 +26,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -36,6 +38,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -75,6 +78,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -85,6 +90,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -128,6 +134,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -138,6 +146,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -177,6 +186,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -187,6 +198,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -231,6 +243,8 @@ import Chrt
                     "order_off_chrt_reference_ids": [
                       "order_off_chrt_reference_ids"
                     ],
+                    "order_group_id": "order_group_id",
+                    "order_group_short_id": "order_group_short_id",
                     "amount": 1,
                     "units": "usd",
                     "staged_by_user_id": "staged_by_user_id",
@@ -241,6 +255,7 @@ import Chrt
                     "payment_destination_org_id": "payment_destination_org_id",
                     "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                     "payment_destination_driver_id": "payment_destination_driver_id",
+                    "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                     "status": "staged",
                     "stripe_invoice_id": "stripe_invoice_id",
                     "stripe_invoice_url": "stripe_invoice_url",
@@ -262,6 +277,8 @@ import Chrt
                       "order_id": "order_id",
                       "order_short_id": "order_short_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
+                      "order_group_id": "order_group_id",
+                      "order_group_short_id": "order_group_short_id",
                       "rate_sheet_id": "rate_sheet_id",
                       "agreement_line_item_ids": [
                         "agreement_line_item_ids"
@@ -290,6 +307,7 @@ import Chrt
                       "payment_destination_org_id": "payment_destination_org_id",
                       "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                       "payment_destination_driver_id": "payment_destination_driver_id",
+                      "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                       "status": "staged",
                       "finalized_at_timestamp": "2024-01-15T09:30:00Z",
                       "finalized_by_user_id": "finalized_by_user_id",
@@ -331,6 +349,8 @@ import Chrt
                 orderOffChrtReferenceIds: Optional([
                     "order_off_chrt_reference_ids"
                 ]),
+                orderGroupId: Optional("order_group_id"),
+                orderGroupShortId: Optional("order_group_short_id"),
                 amount: Optional(1),
                 units: Optional(.usd),
                 stagedByUserId: Optional("staged_by_user_id"),
@@ -341,6 +361,7 @@ import Chrt
                 paymentDestinationOrgId: Optional("payment_destination_org_id"),
                 paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
                 paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+                paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
                 status: Optional(.staged),
                 stripeInvoiceId: Optional("stripe_invoice_id"),
                 stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -362,6 +383,8 @@ import Chrt
                     orderId: Optional("order_id"),
                     orderShortId: Optional("order_short_id"),
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
+                    orderGroupId: Optional("order_group_id"),
+                    orderGroupShortId: Optional("order_group_short_id"),
                     rateSheetId: Optional("rate_sheet_id"),
                     agreementLineItemIds: Optional([
                         "agreement_line_item_ids"
@@ -390,6 +413,7 @@ import Chrt
                     paymentDestinationOrgId: Optional("payment_destination_org_id"),
                     paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
                     paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+                    paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
                     status: Optional(.staged),
                     finalizedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     finalizedByUserId: Optional("finalized_by_user_id"),
@@ -436,6 +460,8 @@ import Chrt
                       "order_off_chrt_reference_ids": [
                         "order_off_chrt_reference_ids"
                       ],
+                      "order_group_id": "order_group_id",
+                      "order_group_short_id": "order_group_short_id",
                       "amount": 1,
                       "units": "usd",
                       "staged_by_user_id": "staged_by_user_id",
@@ -446,6 +472,7 @@ import Chrt
                       "payment_destination_org_id": "payment_destination_org_id",
                       "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                       "payment_destination_driver_id": "payment_destination_driver_id",
+                      "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                       "status": "staged",
                       "stripe_invoice_id": "stripe_invoice_id",
                       "stripe_invoice_url": "stripe_invoice_url",
@@ -490,6 +517,8 @@ import Chrt
                     orderOffChrtReferenceIds: Optional([
                         "order_off_chrt_reference_ids"
                     ]),
+                    orderGroupId: Optional("order_group_id"),
+                    orderGroupShortId: Optional("order_group_short_id"),
                     amount: Optional(1),
                     units: Optional(.usd),
                     stagedByUserId: Optional("staged_by_user_id"),
@@ -500,6 +529,7 @@ import Chrt
                     paymentDestinationOrgId: Optional("payment_destination_org_id"),
                     paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
                     paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+                    paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
                     status: Optional(.staged),
                     stripeInvoiceId: Optional("stripe_invoice_id"),
                     stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -521,9 +551,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .staged
-            ],
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
@@ -625,9 +652,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .staged
-            ],
             filterSettlementType: .stripeConnect,
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
@@ -672,6 +696,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -682,6 +708,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -721,6 +748,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -731,6 +760,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -774,6 +804,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -784,6 +816,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -823,6 +856,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -833,6 +868,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -877,6 +913,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -887,6 +925,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -926,6 +965,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -936,6 +977,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -980,6 +1022,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -990,6 +1034,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1029,6 +1074,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1039,6 +1086,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1083,6 +1131,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1093,6 +1143,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1132,6 +1183,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1142,6 +1195,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1186,6 +1240,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1196,6 +1252,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1235,6 +1292,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1245,6 +1304,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1288,6 +1348,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1298,6 +1360,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1337,6 +1400,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1347,6 +1412,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1390,6 +1456,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1400,6 +1468,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1439,6 +1508,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1449,6 +1520,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1492,6 +1564,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1502,6 +1576,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1541,6 +1616,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1551,6 +1628,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1594,6 +1672,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1604,6 +1684,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1643,6 +1724,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1653,6 +1736,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1696,6 +1780,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1706,6 +1792,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1745,6 +1832,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1755,6 +1844,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
@@ -1798,6 +1888,8 @@ import Chrt
                   "order_off_chrt_reference_ids": [
                     "order_off_chrt_reference_ids"
                   ],
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
                   "amount": 1,
                   "units": "usd",
                   "staged_by_user_id": "staged_by_user_id",
@@ -1808,6 +1900,7 @@ import Chrt
                   "payment_destination_org_id": "payment_destination_org_id",
                   "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
                   "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
                   "status": "staged",
                   "stripe_invoice_id": "stripe_invoice_id",
                   "stripe_invoice_url": "stripe_invoice_url",
@@ -1847,6 +1940,8 @@ import Chrt
             orderOffChrtReferenceIds: Optional([
                 "order_off_chrt_reference_ids"
             ]),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
             amount: Optional(1),
             units: Optional(.usd),
             stagedByUserId: Optional("staged_by_user_id"),
@@ -1857,6 +1952,7 @@ import Chrt
             paymentDestinationOrgId: Optional("payment_destination_org_id"),
             paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
             paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
             status: Optional(.staged),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),

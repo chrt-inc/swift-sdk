@@ -9,30 +9,6 @@ import Chrt
             body: Data(
                 """
                 {
-                  "order_template": {
-                    "schema_version": 1,
-                    "name": "name",
-                    "description": "description",
-                    "order_input": "order_input",
-                    "off_chrt_reference_id_str": "off_chrt_reference_id_str",
-                    "shipper_org_id": "shipper_org_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                    "executor_org_ids": [
-                      "executor_org_ids"
-                    ],
-                    "driver_ids": [
-                      "driver_ids"
-                    ],
-                    "directory_entry_ids": [
-                      "directory_entry_ids"
-                    ],
-                    "_id": "_id",
-                    "owned_by_user_id": "owned_by_user_id",
-                    "owned_by_org_id": "owned_by_org_id",
-                    "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                    "archived_at_timestamp": "2024-01-15T09:30:00Z"
-                  },
                   "shipper_org": {
                     "org_id": "org_id",
                     "company_name": "company_name",
@@ -152,7 +128,33 @@ import Chrt
                       "created_by_user_id": "created_by_user_id",
                       "_id": "_id"
                     }
-                  ]
+                  ],
+                  "order_template": {
+                    "schema_version": 1,
+                    "text": "text",
+                    "shipper_org_id": "shipper_org_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "executor_org_ids": [
+                      "executor_org_ids"
+                    ],
+                    "driver_ids": [
+                      "driver_ids"
+                    ],
+                    "directory_entry_ids": [
+                      "directory_entry_ids"
+                    ],
+                    "coordinator_org_id": "coordinator_org_id",
+                    "department_id": "department_id",
+                    "name": "name",
+                    "description": "description",
+                    "off_chrt_reference_id_str": "off_chrt_reference_id_str",
+                    "_id": "_id",
+                    "owned_by_user_id": "owned_by_user_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "archived_at_timestamp": "2024-01-15T09:30:00Z"
+                  }
                 }
                 """.utf8
             )
@@ -162,32 +164,8 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OrderTemplateExpanded(
-            orderTemplate: OrderTemplate1(
-                schemaVersion: 1,
-                name: "name",
-                description: Optional("description"),
-                orderInput: Optional("order_input"),
-                offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
-                shipperOrgId: Optional("shipper_org_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                executorOrgIds: Optional([
-                    "executor_org_ids"
-                ]),
-                driverIds: Optional([
-                    "driver_ids"
-                ]),
-                directoryEntryIds: Optional([
-                    "directory_entry_ids"
-                ]),
-                id: "_id",
-                ownedByUserId: "owned_by_user_id",
-                ownedByOrgId: "owned_by_org_id",
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
-            ),
-            shipperOrg: Optional(OrderTemplateOrgRef1(
+        let expectedResponse = OrderTemplateExpanded1(
+            shipperOrg: Optional(OrderTemplateOrgInfo1(
                 orgId: "org_id",
                 companyName: Optional("company_name"),
                 handle: Optional("handle")
@@ -231,7 +209,7 @@ import Chrt
                 id: "_id"
             )),
             executorOrgs: Optional([
-                OrderTemplateOrgRef1(
+                OrderTemplateOrgInfo1(
                     orgId: "org_id",
                     companyName: Optional("company_name"),
                     handle: Optional("handle")
@@ -320,7 +298,33 @@ import Chrt
                     createdByUserId: "created_by_user_id",
                     id: "_id"
                 )
-            ])
+            ]),
+            orderTemplate: OrderTemplate1(
+                schemaVersion: 1,
+                text: Optional("text"),
+                shipperOrgId: Optional("shipper_org_id"),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                executorOrgIds: Optional([
+                    "executor_org_ids"
+                ]),
+                driverIds: Optional([
+                    "driver_ids"
+                ]),
+                directoryEntryIds: Optional([
+                    "directory_entry_ids"
+                ]),
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                departmentId: Optional("department_id"),
+                name: "name",
+                description: Optional("description"),
+                offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
+                id: "_id",
+                ownedByUserId: "owned_by_user_id",
+                ownedByOrgId: "owned_by_org_id",
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            )
         )
         let response = try await client.shipping.orderTemplates.getExpandedByIdV1(
             orderTemplateId: "order_template_id",
@@ -338,10 +342,7 @@ import Chrt
                   "items": [
                     {
                       "schema_version": 1,
-                      "name": "name",
-                      "description": "description",
-                      "order_input": "order_input",
-                      "off_chrt_reference_id_str": "off_chrt_reference_id_str",
+                      "text": "text",
                       "shipper_org_id": "shipper_org_id",
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "executor_org_ids": [
@@ -353,6 +354,11 @@ import Chrt
                       "directory_entry_ids": [
                         "directory_entry_ids"
                       ],
+                      "coordinator_org_id": "coordinator_org_id",
+                      "department_id": "department_id",
+                      "name": "name",
+                      "description": "description",
+                      "off_chrt_reference_id_str": "off_chrt_reference_id_str",
                       "_id": "_id",
                       "owned_by_user_id": "owned_by_user_id",
                       "owned_by_org_id": "owned_by_org_id",
@@ -375,10 +381,7 @@ import Chrt
             items: [
                 OrderTemplate1(
                     schemaVersion: 1,
-                    name: "name",
-                    description: Optional("description"),
-                    orderInput: Optional("order_input"),
-                    offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
+                    text: Optional("text"),
                     shipperOrgId: Optional("shipper_org_id"),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     executorOrgIds: Optional([
@@ -390,6 +393,11 @@ import Chrt
                     directoryEntryIds: Optional([
                         "directory_entry_ids"
                     ]),
+                    coordinatorOrgId: Optional("coordinator_org_id"),
+                    departmentId: Optional("department_id"),
+                    name: "name",
+                    description: Optional("description"),
+                    offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
                     id: "_id",
                     ownedByUserId: "owned_by_user_id",
                     ownedByOrgId: "owned_by_org_id",
@@ -424,10 +432,7 @@ import Chrt
                 """
                 {
                   "schema_version": 1,
-                  "name": "name",
-                  "description": "description",
-                  "order_input": "order_input",
-                  "off_chrt_reference_id_str": "off_chrt_reference_id_str",
+                  "text": "text",
                   "shipper_org_id": "shipper_org_id",
                   "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                   "executor_org_ids": [
@@ -439,6 +444,11 @@ import Chrt
                   "directory_entry_ids": [
                     "directory_entry_ids"
                   ],
+                  "coordinator_org_id": "coordinator_org_id",
+                  "department_id": "department_id",
+                  "name": "name",
+                  "description": "description",
+                  "off_chrt_reference_id_str": "off_chrt_reference_id_str",
                   "_id": "_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "owned_by_org_id": "owned_by_org_id",
@@ -456,10 +466,7 @@ import Chrt
         )
         let expectedResponse = OrderTemplate1(
             schemaVersion: 1,
-            name: "name",
-            description: Optional("description"),
-            orderInput: Optional("order_input"),
-            offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
+            text: Optional("text"),
             shipperOrgId: Optional("shipper_org_id"),
             offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
             executorOrgIds: Optional([
@@ -471,6 +478,11 @@ import Chrt
             directoryEntryIds: Optional([
                 "directory_entry_ids"
             ]),
+            coordinatorOrgId: Optional("coordinator_org_id"),
+            departmentId: Optional("department_id"),
+            name: "name",
+            description: Optional("description"),
+            offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
             id: "_id",
             ownedByUserId: "owned_by_user_id",
             ownedByOrgId: "owned_by_org_id",

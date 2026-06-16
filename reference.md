@@ -97,9 +97,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -585,9 +582,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .active
-        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -1021,9 +1015,6 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStatus: [
-            .open
-        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1564,9 +1555,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5177,9 +5165,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5432,9 +5417,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -8845,12 +8827,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -9047,12 +9023,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -9241,12 +9211,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -11299,9 +11263,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -11481,9 +11442,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13858,9 +13816,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterDepartmentId: [
-            "filter_department_id"
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterUnassigned: true
     )
@@ -14367,6 +14322,88 @@ try await main()
 <dd>
 
 **caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.cases.<a href="/Sources/Resources/Operations/Cases/CasesClient.swift">setBillingReviewStatusV1</a>(caseId: String, request: Requests.CaseSetBillingReviewStatusReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the case's operator billing-review status. | authz: min_org_role=operator | (CaseSetBillingReviewStatusReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.cases.setBillingReviewStatusV1(
+        caseId: "case_id",
+        request: .init(billingReviewStatus: .notStarted)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CaseSetBillingReviewStatusReq` 
     
 </dd>
 </dl>
@@ -14976,10 +15013,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -16368,19 +16402,7 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
-        filterTag: [
-            "filter_tag"
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -19591,6 +19613,387 @@ try await main()
 </dl>
 </details>
 
+## Orgs OffChrtVendor
+<details><summary><code>client.orgs.offChrtVendor.<a href="/Sources/Resources/Orgs/OffChrtVendor/OffChrtVendorClient.swift">createV1</a>(request: Requests.OffChrtVendorClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an off-platform vendor shell owned by the caller's org. Used as an off-CHRT billing payment destination (e.g. an airline). | (OffChrtVendorClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.offChrtVendor.createV1(request: .init(
+        schemaVersion: 1,
+        name: "name"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OffChrtVendorClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.offChrtVendor.<a href="/Sources/Resources/Orgs/OffChrtVendor/OffChrtVendorClient.swift">listV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OffChrtVendorListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all off-chrt vendors created by the caller's organization. Pagination only — no search/filter. | () -> (OffChrtVendorListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.offChrtVendor.listV1(
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.offChrtVendor.<a href="/Sources/Resources/Orgs/OffChrtVendor/OffChrtVendorClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> OffChrtVendor1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a specific off-chrt vendor by ID. Scoped to the caller's org. | () -> (OffChrtVendor1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.offChrtVendor.getByIdV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.offChrtVendor.<a href="/Sources/Resources/Orgs/OffChrtVendor/OffChrtVendorClient.swift">deleteByIdV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an off-chrt vendor owned by the caller's organization. Existing LineItemGroups / Statements keep their snapshotted destination id; deletion does not cascade. | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.offChrtVendor.deleteByIdV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.offChrtVendor.<a href="/Sources/Resources/Orgs/OffChrtVendor/OffChrtVendorClient.swift">updateByIdV1</a>(id: String, request: Requests.OffChrtVendorClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing off-chrt vendor owned by the caller's organization. | (OffChrtVendorClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.offChrtVendor.updateByIdV1(
+        id: "id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OffChrtVendorClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Orgs ComplianceDocuments S3Object
 <details><summary><code>client.orgs.complianceDocuments.s3Object.<a href="/Sources/Resources/Orgs/ComplianceDocuments/S3Object/S3ObjectClient.swift">getS3ObjectMetadataV1</a>(orgComplianceDocumentS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> OrgComplianceDocumentS3ObjectMetadata1</code></summary>
 <dl>
@@ -21198,9 +21601,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -22125,7 +22525,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the flight leg with its Cirium-sourced status, lazily resolving the Cirium flightId and refreshing the cached status on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightLeg1)
+Returns the flight leg with its Cirium-sourced status, lazily resolving the Cirium flightId and refreshing the cached status on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightLeg1)
 </dd>
 </dl>
 </dd>
@@ -22196,7 +22596,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call, cached on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call, cached on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
 </dd>
 </dl>
 </dd>
@@ -23331,7 +23731,7 @@ try await main()
 <dl>
 <dd>
 
-Converts an order screenshot into lightly structured text for the AI order builder. | (UploadFile) -> (str)
+Converts an order screenshot into lightly structured text for the AI order builder. | authz: min_org_role=operator | (UploadFile) -> (str)
 </dd>
 </dl>
 </dd>
@@ -23543,6 +23943,851 @@ try await main()
 </dl>
 </details>
 
+## Shipping OrderGroups
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">listV1</a>(sortBy: OrderGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOrderId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderGroupListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists order groups for the caller's organization with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroupListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.listV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterOrderId: "filter_order_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `OrderGroupSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderId:** `String?` — Filter to groups containing this order id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">getByIdV1</a>(orderGroupId: String, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an order group by ID. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.getByIdV1(orderGroupId: "order_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">newV1</a>(request: Requests.OrderGroupClientCreate1, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an order group owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderGroupClientCreate1) -> (OrderGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.newV1(request: .init(
+        schemaVersion: 1,
+        name: "name"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderGroupClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">updateV1</a>(orderGroupId: String, request: Requests.OrderGroupClientUpdate1, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an order group's name or description. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderGroupClientUpdate1) -> (OrderGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.updateV1(
+        orderGroupId: "order_group_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderGroupClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">addOrderV1</a>(orderGroupId: String, orderId: String, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds an order to an order group. The caller's org must be the coordinator or an executor on the order, and the order must not already belong to another of the caller's groups. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.addOrderV1(
+        orderGroupId: "order_group_id",
+        orderId: "order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">removeOrderV1</a>(orderGroupId: String, orderId: String, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes an order from an order group. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.removeOrderV1(
+        orderGroupId: "order_group_id",
+        orderId: "order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">setBillingReviewStatusV1</a>(orderGroupId: String, request: Requests.OrderGroupSetBillingReviewStatusReq, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the order group's operator billing-review status. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderGroupSetBillingReviewStatusReq) -> (OrderGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderGroups.setBillingReviewStatusV1(
+        orderGroupId: "order_group_id",
+        request: .init(billingReviewStatus: .notStarted)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderGroupSetBillingReviewStatusReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping OrdersAndOrderGroups
+<details><summary><code>client.shipping.ordersAndOrderGroups.<a href="/Sources/Resources/Shipping/OrdersAndOrderGroups/OrdersAndOrderGroupsClient.swift">orderGroupsListV1</a>(sortBy: OrderGroupExpandedSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterBillingReviewStatus: BillingReviewStatusEnum?, filterOrderId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderGroupExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's order groups with member orders nested and a derived shipping-status rollup. Filtering, sorting, and pagination use stored group fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroupExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.ordersAndOrderGroups.orderGroupsListV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterOrderId: "filter_order_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `OrderGroupExpandedSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterBillingReviewStatus:** `BillingReviewStatusEnum?` — Filter by the group's billing-review status(es).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderId:** `String?` — Filter to groups containing this order id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.ordersAndOrderGroups.<a href="/Sources/Resources/Shipping/OrdersAndOrderGroups/OrdersAndOrderGroupsClient.swift">ungroupedOrdersListV1</a>(filterShippingStatus: OrderStatusEnum1?, sortBy: UngroupedOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> UngroupedOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's standalone orders (provider party, non-DRAFT, not in any of the caller's order groups), each with the caller org's billing-review status. Filtering, sorting, and pagination use stored Order fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (UngroupedOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
+        sortBy: .draftStartedAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterShippingStatus:** `OrderStatusEnum1?` — Filter by order status(es).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `UngroupedOrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping OrderSchedules
 <details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">listV1</a>(sortBy: OrderScheduleSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterIntendedStatus: OrderScheduleStatusEnum1?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderScheduleListRes</code></summary>
 <dl>
@@ -23582,9 +24827,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterIntendedStatus: [
-            .draft
-        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -24340,7 +25582,7 @@ try await main()
 </details>
 
 ## Shipping OrderTemplates
-<details><summary><code>client.shipping.orderTemplates.<a href="/Sources/Resources/Shipping/OrderTemplates/OrderTemplatesClient.swift">getExpandedByIdV1</a>(orderTemplateId: String, requestOptions: RequestOptions?) -> OrderTemplateExpanded</code></summary>
+<details><summary><code>client.shipping.orderTemplates.<a href="/Sources/Resources/Shipping/OrderTemplates/OrderTemplatesClient.swift">getExpandedByIdV1</a>(orderTemplateId: String, requestOptions: RequestOptions?) -> OrderTemplateExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -24352,7 +25594,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an order template with its reference columns resolved (shipper, executor orgs, drivers, directory entries). Unresolvable list references are omitted so the caller can detect dangling ids. | authz: min_org_role=operator | () -> (OrderTemplateExpanded)
+Retrieves an order template with its reference columns resolved (shipper, executor orgs, drivers, directory entries). Unresolvable list references are omitted so the caller can detect dangling ids. | authz: min_org_role=operator | () -> (OrderTemplateExpanded1)
 </dd>
 </dl>
 </dd>
@@ -24423,7 +25665,7 @@ try await main()
 <dl>
 <dd>
 
-Lists order templates for the caller's organization with filtering, sorting, pagination, and optional full-text search (name, description, order_input, off_chrt_reference_id_str). | authz: min_org_role=operator | () -> (OrderTemplateListRes)
+Lists order templates for the caller's organization with filtering, sorting, pagination, and optional full-text search (name, description, text, off_chrt_reference_id_str). | authz: min_org_role=operator | () -> (OrderTemplateListRes)
 </dd>
 </dl>
 </dd>
@@ -28433,80 +29675,6 @@ try await main()
 </details>
 
 ## Shipping OrderDrafts Agentic
-<details><summary><code>client.shipping.orderDrafts.agentic.<a href="/Sources/Resources/Shipping/OrderDrafts/Agentic/AgenticClient.swift">precheckV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderPrecheckRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Predicts whether input is complete enough for the AI order builder. | (OrderBuilderReq) -> (OrderBuilderPrecheckRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderDrafts.agentic.precheckV1(request: OrderBuilderReq(
-        orderShortId: "order_short_id",
-        text: "text"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `OrderBuilderReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.shipping.orderDrafts.agentic.<a href="/Sources/Resources/Shipping/OrderDrafts/Agentic/AgenticClient.swift">newV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderRes</code></summary>
 <dl>
 <dd>
@@ -28519,7 +29687,7 @@ try await main()
 <dl>
 <dd>
 
-Populates an existing draft order with cargo, task groups, and tasks parsed from natural language. | (OrderBuilderReq) -> (OrderBuilderRes)
+Creates a draft order, populating cargo, task groups, and tasks parsed from natural language or a template. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderRes)
 </dd>
 </dl>
 </dd>
@@ -28541,8 +29709,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.orderDrafts.agentic.newV1(request: OrderBuilderReq(
-        orderShortId: "order_short_id",
-        text: "text"
+
     ))
 }
 
@@ -28593,7 +29760,7 @@ try await main()
 <dl>
 <dd>
 
-Populates an existing draft order from natural language and streams progress events via SSE. | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
+Creates a draft order from natural language or a template and streams progress events via SSE. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
 </dd>
 </dl>
 </dd>
@@ -28615,8 +29782,80 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.orderDrafts.agentic.newWithStreamingV1(request: OrderBuilderReq(
-        orderShortId: "order_short_id",
-        text: "text"
+
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrderBuilderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderDrafts.agentic.<a href="/Sources/Resources/Shipping/OrderDrafts/Agentic/AgenticClient.swift">precheckV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderTemplateResolvabilityRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reports whether an order builder request's references resolve. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderTemplateResolvabilityRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderDrafts.agentic.precheckV1(request: OrderBuilderReq(
+
     ))
 }
 
@@ -30892,9 +32131,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31158,9 +32394,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -32766,9 +33999,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -33059,9 +34289,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -34843,7 +36070,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~3 days out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
+Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>

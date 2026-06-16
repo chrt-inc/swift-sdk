@@ -7,20 +7,7 @@ public final class AgenticClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Predicts whether input is complete enough for the AI order builder. | (OrderBuilderReq) -> (OrderBuilderPrecheckRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func precheckV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderBuilderPrecheckRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_drafts/agentic/precheck/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrderBuilderPrecheckRes.self
-        )
-    }
-
-    /// Populates an existing draft order with cargo, task groups, and tasks parsed from natural language. | (OrderBuilderReq) -> (OrderBuilderRes)
+    /// Creates a draft order, populating cargo, task groups, and tasks parsed from natural language or a template. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func newV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderBuilderRes {
@@ -33,7 +20,7 @@ public final class AgenticClient: Sendable {
         )
     }
 
-    /// Populates an existing draft order from natural language and streams progress events via SSE. | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
+    /// Creates a draft order from natural language or a template and streams progress events via SSE. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func newWithStreamingV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
@@ -43,6 +30,19 @@ public final class AgenticClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: JSONValue.self
+        )
+    }
+
+    /// Reports whether an order builder request's references resolve. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderTemplateResolvabilityRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func precheckV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateResolvabilityRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_drafts/agentic/precheck/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderTemplateResolvabilityRes.self
         )
     }
 }

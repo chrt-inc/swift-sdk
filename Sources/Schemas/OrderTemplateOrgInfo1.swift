@@ -1,6 +1,6 @@
 import Foundation
 
-public struct OrderTemplateOrgRef1: Codable, Hashable, Sendable {
+public struct OrderTemplateOrgInfo1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let companyName: String?

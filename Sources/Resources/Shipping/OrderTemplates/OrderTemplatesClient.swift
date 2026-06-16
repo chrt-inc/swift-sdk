@@ -7,19 +7,19 @@ public final class OrderTemplatesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves an order template with its reference columns resolved (shipper, executor orgs, drivers, directory entries). Unresolvable list references are omitted so the caller can detect dangling ids. | authz: min_org_role=operator | () -> (OrderTemplateExpanded)
+    /// Retrieves an order template with its reference columns resolved (shipper, executor orgs, drivers, directory entries). Unresolvable list references are omitted so the caller can detect dangling ids. | authz: min_org_role=operator | () -> (OrderTemplateExpanded1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getExpandedByIdV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateExpanded {
+    public func getExpandedByIdV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateExpanded1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates/expanded/v1/\(orderTemplateId)",
             requestOptions: requestOptions,
-            responseType: OrderTemplateExpanded.self
+            responseType: OrderTemplateExpanded1.self
         )
     }
 
-    /// Lists order templates for the caller's organization with filtering, sorting, pagination, and optional full-text search (name, description, order_input, off_chrt_reference_id_str). | authz: min_org_role=operator | () -> (OrderTemplateListRes)
+    /// Lists order templates for the caller's organization with filtering, sorting, pagination, and optional full-text search (name, description, text, off_chrt_reference_id_str). | authz: min_org_role=operator | () -> (OrderTemplateListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct WorkflowActorContext: Codable, Hashable, Sendable {
+public struct WorkflowActor: Codable, Hashable, Sendable {
     /// Must be a string starting with `user_`
     public let userId: String
     /// Must be a string starting with `org_`

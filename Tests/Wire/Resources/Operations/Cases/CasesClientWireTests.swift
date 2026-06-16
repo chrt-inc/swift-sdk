@@ -22,6 +22,7 @@ import Chrt
                       ],
                       "_id": "_id",
                       "org_id": "org_id",
+                      "billing_review_status": "not_started",
                       "messages": [
                         {
                           "message": "message",
@@ -57,6 +58,7 @@ import Chrt
                     ]),
                     id: "_id",
                     orgId: "org_id",
+                    billingReviewStatus: Optional(.notStarted),
                     messages: Optional([
                         CaseMessage1(
                             message: "message",
@@ -75,9 +77,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartmentId: [
-                "filter_department_id"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterUnassigned: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -102,6 +101,7 @@ import Chrt
                   ],
                   "_id": "_id",
                   "org_id": "org_id",
+                  "billing_review_status": "not_started",
                   "messages": [
                     {
                       "id": "id",
@@ -133,6 +133,7 @@ import Chrt
             ]),
             id: "_id",
             orgId: "org_id",
+            billingReviewStatus: Optional(.notStarted),
             messages: Optional([
                 CaseMessage1(
                     id: Optional("id"),
@@ -191,6 +192,7 @@ import Chrt
                   ],
                   "_id": "_id",
                   "org_id": "org_id",
+                  "billing_review_status": "not_started",
                   "messages": [
                     {
                       "id": "id",
@@ -222,6 +224,7 @@ import Chrt
             ]),
             id: "_id",
             orgId: "org_id",
+            billingReviewStatus: Optional(.notStarted),
             messages: Optional([
                 CaseMessage1(
                     id: Optional("id"),
@@ -257,6 +260,7 @@ import Chrt
                   ],
                   "_id": "_id",
                   "org_id": "org_id",
+                  "billing_review_status": "not_started",
                   "messages": [
                     {
                       "id": "id",
@@ -288,6 +292,7 @@ import Chrt
             ]),
             id: "_id",
             orgId: "org_id",
+            billingReviewStatus: Optional(.notStarted),
             messages: Optional([
                 CaseMessage1(
                     id: Optional("id"),
@@ -323,6 +328,7 @@ import Chrt
                   ],
                   "_id": "_id",
                   "org_id": "org_id",
+                  "billing_review_status": "not_started",
                   "messages": [
                     {
                       "id": "id",
@@ -354,6 +360,7 @@ import Chrt
             ]),
             id: "_id",
             orgId: "org_id",
+            billingReviewStatus: Optional(.notStarted),
             messages: Optional([
                 CaseMessage1(
                     id: Optional("id"),
@@ -389,6 +396,29 @@ import Chrt
         let expectedResponse = Optional("string")
         let response = try await client.operations.cases.getSuggestedDepartmentV1(
             caseId: "case_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setBillingReviewStatusV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.cases.setBillingReviewStatusV1(
+            caseId: "case_id",
+            request: .init(billingReviewStatus: .notStarted),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

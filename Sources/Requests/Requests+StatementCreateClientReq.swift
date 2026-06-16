@@ -10,6 +10,8 @@ extension Requests {
         public let paymentDestinationOrgId: String?
         public let paymentDestinationOffChrtProviderOrgId: String?
         public let paymentDestinationDriverId: String?
+        public let paymentDestinationOffChrtVendorId: String?
+        public let orderGroupId: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -20,6 +22,8 @@ extension Requests {
             paymentDestinationOrgId: String? = nil,
             paymentDestinationOffChrtProviderOrgId: String? = nil,
             paymentDestinationDriverId: String? = nil,
+            paymentDestinationOffChrtVendorId: String? = nil,
+            orderGroupId: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.settlementType = settlementType
@@ -28,6 +32,8 @@ extension Requests {
             self.paymentDestinationOrgId = paymentDestinationOrgId
             self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
             self.paymentDestinationDriverId = paymentDestinationDriverId
+            self.paymentDestinationOffChrtVendorId = paymentDestinationOffChrtVendorId
+            self.orderGroupId = orderGroupId
             self.additionalProperties = additionalProperties
         }
 
@@ -39,6 +45,8 @@ extension Requests {
             self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
             self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
             self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
+            self.paymentDestinationOffChrtVendorId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtVendorId)
+            self.orderGroupId = try container.decodeIfPresent(String.self, forKey: .orderGroupId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -51,6 +59,8 @@ extension Requests {
             try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
             try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
             try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
+            try container.encodeIfPresent(self.paymentDestinationOffChrtVendorId, forKey: .paymentDestinationOffChrtVendorId)
+            try container.encodeIfPresent(self.orderGroupId, forKey: .orderGroupId)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -61,6 +71,8 @@ extension Requests {
             case paymentDestinationOrgId = "payment_destination_org_id"
             case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
             case paymentDestinationDriverId = "payment_destination_driver_id"
+            case paymentDestinationOffChrtVendorId = "payment_destination_off_chrt_vendor_id"
+            case orderGroupId = "order_group_id"
         }
     }
 }

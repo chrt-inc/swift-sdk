@@ -3,37 +3,6 @@ import Testing
 import Chrt
 
 @Suite("AgenticClient Wire Tests") struct AgenticClientWireTests {
-    @Test func precheckV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "valid": true,
-                  "feedback": "feedback"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrderBuilderPrecheckRes(
-            valid: true,
-            feedback: Optional("feedback")
-        )
-        let response = try await client.shipping.orderDrafts.agentic.precheckV1(
-            request: OrderBuilderReq(
-                orderShortId: "order_short_id",
-                text: "text"
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func newV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -60,8 +29,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderBuilderRes(
-            orderId: "order_id",
-            orderShortId: "order_short_id",
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
             summary: "summary",
             validationPassed: Optional(true),
             validationIssues: Optional([
@@ -73,8 +42,51 @@ import Chrt
         )
         let response = try await client.shipping.orderDrafts.agentic.newV1(
             request: OrderBuilderReq(
-                orderShortId: "order_short_id",
-                text: "text"
+
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func precheckV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "valid": true,
+                  "unresolvable_off_chrt_shipper": true,
+                  "unresolvable_driver_ids": [
+                    "unresolvable_driver_ids"
+                  ],
+                  "unresolvable_directory_entry_ids": [
+                    "unresolvable_directory_entry_ids"
+                  ],
+                  "unresolvable_coordinator": true
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrderTemplateResolvabilityRes(
+            valid: true,
+            unresolvableOffChrtShipper: Optional(true),
+            unresolvableDriverIds: Optional([
+                "unresolvable_driver_ids"
+            ]),
+            unresolvableDirectoryEntryIds: Optional([
+                "unresolvable_directory_entry_ids"
+            ]),
+            unresolvableCoordinator: Optional(true)
+        )
+        let response = try await client.shipping.orderDrafts.agentic.precheckV1(
+            request: OrderBuilderReq(
+
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

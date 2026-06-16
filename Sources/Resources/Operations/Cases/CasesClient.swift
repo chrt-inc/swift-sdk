@@ -109,6 +109,19 @@ public final class CasesClient: Sendable {
         )
     }
 
+    /// Sets the case's operator billing-review status. | authz: min_org_role=operator | (CaseSetBillingReviewStatusReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setBillingReviewStatusV1(caseId: String, request: Requests.CaseSetBillingReviewStatusReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/cases/set_billing_review_status/v1/\(caseId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Adds operator(s) to a case. | authz: min_org_role=operator | (CaseAssignReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

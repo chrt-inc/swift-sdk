@@ -24,6 +24,8 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
     public let orderShortId: String?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
+    public let orderGroupId: String?
+    public let orderGroupShortId: String?
     public let rateSheetId: String?
     public let agreementLineItemIds: [String]?
     public let agreementAmount: Double?
@@ -45,6 +47,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
     public let paymentDestinationOrgId: String?
     public let paymentDestinationOffChrtProviderOrgId: String?
     public let paymentDestinationDriverId: String?
+    public let paymentDestinationOffChrtVendorId: String?
     public let status: LineItemGroupStatusEnum1?
     public let finalizedAtTimestamp: Date?
     /// Must be a string starting with `user_`
@@ -60,6 +63,8 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         orderId: String? = nil,
         orderShortId: String? = nil,
         orderOffChrtReferenceId: String? = nil,
+        orderGroupId: String? = nil,
+        orderGroupShortId: String? = nil,
         rateSheetId: String? = nil,
         agreementLineItemIds: [String]? = nil,
         agreementAmount: Double? = nil,
@@ -78,6 +83,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         paymentDestinationOrgId: String? = nil,
         paymentDestinationOffChrtProviderOrgId: String? = nil,
         paymentDestinationDriverId: String? = nil,
+        paymentDestinationOffChrtVendorId: String? = nil,
         status: LineItemGroupStatusEnum1? = nil,
         finalizedAtTimestamp: Date? = nil,
         finalizedByUserId: String? = nil,
@@ -90,6 +96,8 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.orderShortId = orderShortId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
+        self.orderGroupId = orderGroupId
+        self.orderGroupShortId = orderGroupShortId
         self.rateSheetId = rateSheetId
         self.agreementLineItemIds = agreementLineItemIds
         self.agreementAmount = agreementAmount
@@ -108,6 +116,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.paymentDestinationOrgId = paymentDestinationOrgId
         self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
         self.paymentDestinationDriverId = paymentDestinationDriverId
+        self.paymentDestinationOffChrtVendorId = paymentDestinationOffChrtVendorId
         self.status = status
         self.finalizedAtTimestamp = finalizedAtTimestamp
         self.finalizedByUserId = finalizedByUserId
@@ -123,6 +132,8 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
         self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
+        self.orderGroupId = try container.decodeIfPresent(String.self, forKey: .orderGroupId)
+        self.orderGroupShortId = try container.decodeIfPresent(String.self, forKey: .orderGroupShortId)
         self.rateSheetId = try container.decodeIfPresent(String.self, forKey: .rateSheetId)
         self.agreementLineItemIds = try container.decodeIfPresent([String].self, forKey: .agreementLineItemIds)
         self.agreementAmount = try container.decodeIfPresent(Double.self, forKey: .agreementAmount)
@@ -141,6 +152,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
         self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
         self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
+        self.paymentDestinationOffChrtVendorId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtVendorId)
         self.status = try container.decodeIfPresent(LineItemGroupStatusEnum1.self, forKey: .status)
         self.finalizedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .finalizedAtTimestamp)
         self.finalizedByUserId = try container.decodeIfPresent(String.self, forKey: .finalizedByUserId)
@@ -157,6 +169,8 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
+        try container.encodeIfPresent(self.orderGroupId, forKey: .orderGroupId)
+        try container.encodeIfPresent(self.orderGroupShortId, forKey: .orderGroupShortId)
         try container.encodeIfPresent(self.rateSheetId, forKey: .rateSheetId)
         try container.encodeIfPresent(self.agreementLineItemIds, forKey: .agreementLineItemIds)
         try container.encodeIfPresent(self.agreementAmount, forKey: .agreementAmount)
@@ -175,6 +189,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
         try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
         try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
+        try container.encodeIfPresent(self.paymentDestinationOffChrtVendorId, forKey: .paymentDestinationOffChrtVendorId)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.finalizedAtTimestamp, forKey: .finalizedAtTimestamp)
         try container.encodeIfPresent(self.finalizedByUserId, forKey: .finalizedByUserId)
@@ -189,6 +204,8 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case orderShortId = "order_short_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
+        case orderGroupId = "order_group_id"
+        case orderGroupShortId = "order_group_short_id"
         case rateSheetId = "rate_sheet_id"
         case agreementLineItemIds = "agreement_line_item_ids"
         case agreementAmount = "agreement_amount"
@@ -207,6 +224,7 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         case paymentDestinationOrgId = "payment_destination_org_id"
         case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
         case paymentDestinationDriverId = "payment_destination_driver_id"
+        case paymentDestinationOffChrtVendorId = "payment_destination_off_chrt_vendor_id"
         case status
         case finalizedAtTimestamp = "finalized_at_timestamp"
         case finalizedByUserId = "finalized_by_user_id"

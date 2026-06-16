@@ -9,6 +9,7 @@ public struct Case1: Codable, Hashable, Sendable {
     public let id: String
     /// Must be a string starting with `org_`
     public let orgId: String
+    public let billingReviewStatus: BillingReviewStatusEnum?
     public let messages: [CaseMessage1]?
     public let createdAt: Date
     /// Additional properties that are not explicitly defined in the schema
@@ -22,6 +23,7 @@ public struct Case1: Codable, Hashable, Sendable {
         caseS3ObjectMetadataIds: [String]? = nil,
         id: String,
         orgId: String,
+        billingReviewStatus: BillingReviewStatusEnum? = nil,
         messages: [CaseMessage1]? = nil,
         createdAt: Date,
         additionalProperties: [String: JSONValue] = .init()
@@ -33,6 +35,7 @@ public struct Case1: Codable, Hashable, Sendable {
         self.caseS3ObjectMetadataIds = caseS3ObjectMetadataIds
         self.id = id
         self.orgId = orgId
+        self.billingReviewStatus = billingReviewStatus
         self.messages = messages
         self.createdAt = createdAt
         self.additionalProperties = additionalProperties
@@ -47,6 +50,7 @@ public struct Case1: Codable, Hashable, Sendable {
         self.caseS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .caseS3ObjectMetadataIds)
         self.id = try container.decode(String.self, forKey: .id)
         self.orgId = try container.decode(String.self, forKey: .orgId)
+        self.billingReviewStatus = try container.decodeIfPresent(BillingReviewStatusEnum.self, forKey: .billingReviewStatus)
         self.messages = try container.decodeIfPresent([CaseMessage1].self, forKey: .messages)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -62,6 +66,7 @@ public struct Case1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.caseS3ObjectMetadataIds, forKey: .caseS3ObjectMetadataIds)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.orgId, forKey: .orgId)
+        try container.encodeIfPresent(self.billingReviewStatus, forKey: .billingReviewStatus)
         try container.encodeIfPresent(self.messages, forKey: .messages)
         try container.encode(self.createdAt, forKey: .createdAt)
     }
@@ -75,6 +80,7 @@ public struct Case1: Codable, Hashable, Sendable {
         case caseS3ObjectMetadataIds = "case_s3_object_metadata_ids"
         case id = "_id"
         case orgId = "org_id"
+        case billingReviewStatus = "billing_review_status"
         case messages
         case createdAt = "created_at"
     }

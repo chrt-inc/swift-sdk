@@ -1,8 +1,8 @@
 import Foundation
 
 public struct OrderBuilderRes: Codable, Hashable, Sendable {
-    public let orderId: String
-    public let orderShortId: String
+    public let orderId: String?
+    public let orderShortId: String?
     public let summary: String
     public let validationPassed: Bool?
     public let validationIssues: [String]?
@@ -11,8 +11,8 @@ public struct OrderBuilderRes: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        orderId: String,
-        orderShortId: String,
+        orderId: String? = nil,
+        orderShortId: String? = nil,
         summary: String,
         validationPassed: Bool? = nil,
         validationIssues: [String]? = nil,
@@ -30,8 +30,8 @@ public struct OrderBuilderRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
+        self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
+        self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
         self.summary = try container.decode(String.self, forKey: .summary)
         self.validationPassed = try container.decodeIfPresent(Bool.self, forKey: .validationPassed)
         self.validationIssues = try container.decodeIfPresent([String].self, forKey: .validationIssues)
@@ -42,8 +42,8 @@ public struct OrderBuilderRes: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.orderId, forKey: .orderId)
-        try container.encode(self.orderShortId, forKey: .orderShortId)
+        try container.encodeIfPresent(self.orderId, forKey: .orderId)
+        try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.summary, forKey: .summary)
         try container.encodeIfPresent(self.validationPassed, forKey: .validationPassed)
         try container.encodeIfPresent(self.validationIssues, forKey: .validationIssues)

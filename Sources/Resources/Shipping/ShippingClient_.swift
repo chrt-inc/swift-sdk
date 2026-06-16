@@ -7,6 +7,8 @@ public final class ShippingClient_: Sendable {
     public let taskArtifacts: TaskArtifactsClient
     public let orders: OrdersClient
     public let orderDrafts: OrderDraftsClient
+    public let orderGroups: OrderGroupsClient
+    public let ordersAndOrderGroups: OrdersAndOrderGroupsClient
     public let orderSchedules: OrderSchedulesClient
     public let orderTemplates: OrderTemplatesClient
     public let taskGroups: TaskGroupsClient
@@ -20,6 +22,8 @@ public final class ShippingClient_: Sendable {
         self.taskArtifacts = TaskArtifactsClient(config: config)
         self.orders = OrdersClient(config: config)
         self.orderDrafts = OrderDraftsClient(config: config)
+        self.orderGroups = OrderGroupsClient(config: config)
+        self.ordersAndOrderGroups = OrdersAndOrderGroupsClient(config: config)
         self.orderSchedules = OrderSchedulesClient(config: config)
         self.orderTemplates = OrderTemplatesClient(config: config)
         self.taskGroups = TaskGroupsClient(config: config)
