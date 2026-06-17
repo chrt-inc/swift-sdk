@@ -33,4 +33,5 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case billingLineItemGroupMessage = "billing.line_item_group.message"
     case billingLineItemGroupFileAdded = "billing.line_item_group.file_added"
     case billingLineItemFileAdded = "billing.line_item.file_added"
+    case trackingSessionDestinationGeofenceEntered = "tracking.session.destination_geofence_entered"
 }

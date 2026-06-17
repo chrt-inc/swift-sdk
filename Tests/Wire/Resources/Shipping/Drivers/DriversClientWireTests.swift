@@ -41,6 +41,7 @@ import Chrt
                       "exception_at_timestamp": "2024-01-15T09:30:00Z",
                       "task_group_type": "chrt_ground_provider",
                       "vehicle_type": "sedan",
+                      "flight_setup_notes": "flight_setup_notes",
                       "mileage_estimated": 1.1,
                       "mileage_observed": 1.1,
                       "wait_time_total_minutes": 1.1,
@@ -99,6 +100,7 @@ import Chrt
                       "exception_at_timestamp": "2024-01-15T09:30:00Z",
                       "task_group_type": "chrt_ground_provider",
                       "vehicle_type": "sedan",
+                      "flight_setup_notes": "flight_setup_notes",
                       "mileage_estimated": 1.1,
                       "mileage_observed": 1.1,
                       "wait_time_total_minutes": 1.1,
@@ -185,6 +187,7 @@ import Chrt
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskGroupType: .chrtGroundProvider,
                     vehicleType: Optional(.sedan),
+                    flightSetupNotes: Optional("flight_setup_notes"),
                     mileageEstimated: Optional(1.1),
                     mileageObserved: Optional(1.1),
                     waitTimeTotalMinutes: Optional(1.1),
@@ -243,6 +246,7 @@ import Chrt
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskGroupType: .chrtGroundProvider,
                     vehicleType: Optional(.sedan),
+                    flightSetupNotes: Optional("flight_setup_notes"),
                     mileageEstimated: Optional(1.1),
                     mileageObserved: Optional(1.1),
                     waitTimeTotalMinutes: Optional(1.1),
@@ -886,9 +890,6 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
-            filterRole: [
-                .owner
-            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,

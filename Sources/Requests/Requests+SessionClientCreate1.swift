@@ -11,6 +11,8 @@ extension Requests {
         public let terminationScheduledForTimestamp: Date?
         public let flightNumbers: [String]?
         public let faFlightIds: [String]?
+        public let destinationGeofenceLocation: LocationFeature?
+        public let destinationGeofenceRadiusMiles: Double?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -23,6 +25,8 @@ extension Requests {
             terminationScheduledForTimestamp: Date? = nil,
             flightNumbers: [String]? = nil,
             faFlightIds: [String]? = nil,
+            destinationGeofenceLocation: LocationFeature? = nil,
+            destinationGeofenceRadiusMiles: Double? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
@@ -33,6 +37,8 @@ extension Requests {
             self.terminationScheduledForTimestamp = terminationScheduledForTimestamp
             self.flightNumbers = flightNumbers
             self.faFlightIds = faFlightIds
+            self.destinationGeofenceLocation = destinationGeofenceLocation
+            self.destinationGeofenceRadiusMiles = destinationGeofenceRadiusMiles
             self.additionalProperties = additionalProperties
         }
 
@@ -46,6 +52,8 @@ extension Requests {
             self.terminationScheduledForTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminationScheduledForTimestamp)
             self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
             self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
+            self.destinationGeofenceLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .destinationGeofenceLocation)
+            self.destinationGeofenceRadiusMiles = try container.decodeIfPresent(Double.self, forKey: .destinationGeofenceRadiusMiles)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -60,6 +68,8 @@ extension Requests {
             try container.encodeIfPresent(self.terminationScheduledForTimestamp, forKey: .terminationScheduledForTimestamp)
             try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
             try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
+            try container.encodeIfPresent(self.destinationGeofenceLocation, forKey: .destinationGeofenceLocation)
+            try container.encodeIfPresent(self.destinationGeofenceRadiusMiles, forKey: .destinationGeofenceRadiusMiles)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -72,6 +82,8 @@ extension Requests {
             case terminationScheduledForTimestamp = "termination_scheduled_for_timestamp"
             case flightNumbers = "flight_numbers"
             case faFlightIds = "fa_flight_ids"
+            case destinationGeofenceLocation = "destination_geofence_location"
+            case destinationGeofenceRadiusMiles = "destination_geofence_radius_miles"
         }
     }
 }

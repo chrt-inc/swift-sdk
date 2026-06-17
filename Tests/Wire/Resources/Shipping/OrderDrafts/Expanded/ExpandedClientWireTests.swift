@@ -51,6 +51,7 @@ import Chrt
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
                       "order_id": "order_id",
+                      "session_id": "session_id",
                       "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
@@ -192,7 +193,8 @@ import Chrt
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    orderId: "order_id",
+                    orderId: Optional("order_id"),
+                    sessionId: Optional("session_id"),
                     directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
@@ -319,7 +321,6 @@ import Chrt
                           "created_at_timestamp": "2024-01-15T09:30:00Z",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "order_id": "order_id",
                           "directory_entry_id": "directory_entry_id",
                           "_id": "_id"
                         }
@@ -380,7 +381,6 @@ import Chrt
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            orderId: "order_id",
                             directoryEntryId: "directory_entry_id",
                             id: "_id"
                         )

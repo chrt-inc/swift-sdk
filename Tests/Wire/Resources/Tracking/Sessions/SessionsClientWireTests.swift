@@ -49,6 +49,22 @@ import Chrt
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_seen_at_location_city": "last_seen_at_location_city",
                       "last_seen_at_location_large_city": "last_seen_at_location_large_city",
+                      "destination_geofence_location": {
+                        "type": "Feature",
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        }
+                      },
+                      "destination_geofence_radius_miles": 1.1,
+                      "destination_geofence_entered": true,
                       "fa_alert_ids": [
                         1
                       ],
@@ -119,6 +135,26 @@ import Chrt
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
                     lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                    destinationGeofenceLocation: Optional(LocationFeature(
+                        type: .feature,
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    )),
+                    destinationGeofenceRadiusMiles: Optional(1.1),
+                    destinationGeofenceEntered: Optional(true),
                     faAlertIds: Optional([
                         1
                     ]),
@@ -218,6 +254,32 @@ import Chrt
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location_city": "last_seen_at_location_city",
                   "last_seen_at_location_large_city": "last_seen_at_location_large_city",
+                  "destination_geofence_location": {
+                    "bbox": [
+                      {
+                        "key": "value"
+                      }
+                    ],
+                    "type": "Feature",
+                    "geometry": {
+                      "geometries": [
+                        {
+                          "coordinates": [
+                            []
+                          ],
+                          "type": "LineString"
+                        }
+                      ],
+                      "type": "GeometryCollection"
+                    },
+                    "properties": {
+                      "address": "address",
+                      "name": "name"
+                    },
+                    "id": 1
+                  },
+                  "destination_geofence_radius_miles": 1.1,
+                  "destination_geofence_entered": true,
                   "fa_alert_ids": [
                     1
                   ],
@@ -300,6 +362,40 @@ import Chrt
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
             lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+            destinationGeofenceLocation: Optional(LocationFeature(
+                bbox: Optional([
+                    JSONValue.object(
+                        [
+                            "key": JSONValue.string("value")
+                        ]
+                    )
+                ]),
+                type: .feature,
+                geometry: .geometryCollection(
+                    .init(
+                        geometries: [
+                            .lineString(
+                                .init(
+                                    coordinates: [
+                                        LineStringCoordinatesItem.position2D(
+                                            []
+                                        )
+                                    ]
+                                )
+                            )
+                        ]
+                    )
+                ),
+                properties: Optional(LocationProperties(
+                    address: Optional("address"),
+                    name: Optional("name")
+                )),
+                id: Optional(Id.int(
+                    1
+                ))
+            )),
+            destinationGeofenceRadiusMiles: Optional(1.1),
+            destinationGeofenceEntered: Optional(true),
             faAlertIds: Optional([
                 1
             ]),

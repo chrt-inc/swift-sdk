@@ -22,4 +22,5 @@ public enum NotificationEventsForUsersEnum: String, Codable, Hashable, CaseItera
     case operationsCaseFileAdded = "operations.case.file_added"
     case billingLineItemGroupMessage = "billing.line_item_group.message"
     case billingLineItemGroupFileAdded = "billing.line_item_group.file_added"
+    case trackingSessionDestinationGeofenceEntered = "tracking.session.destination_geofence_entered"
 }

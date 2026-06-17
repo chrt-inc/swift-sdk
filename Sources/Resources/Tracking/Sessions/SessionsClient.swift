@@ -98,7 +98,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
+    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -115,7 +115,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Updates a session's metadata. | auth: api_key | (SessionClientUpdate1) -> (bool)
+    /// Updates a session's mutable metadata (off_chrt_reference_id, comments, public, termination_scheduled_for_timestamp, destination_geofence_location, destination_geofence_radius_miles). Setting or replacing the destination geofence location resets the entered latch so it can fire again; clearing it (destination_geofence_location__set_to_None) also resets the latch. | auth: api_key | (SessionClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(sessionId: String, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -77,9 +77,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartmentId: [
-                "filter_department_id"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterUnassigned: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
