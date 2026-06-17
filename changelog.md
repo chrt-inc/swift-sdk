@@ -1,3 +1,12 @@
+## 4.0.0 - 2026-06-17
+### Breaking Changes
+* **`NotificationEventsForUsersEnum`** — new case `trackingSessionDestinationGeofenceEntered` added; exhaustive `switch` statements over this enum will fail to compile until a handler or `default` branch is added for the new case.
+### Added
+* **`TrackingSessionDestinationGeofenceEnteredWebhookPayload`** — new struct representing the webhook payload fired when a tracking session's tracker enters the configured destination geofence, carrying `eventType`, `eventTimestamp`, and `sessionId`.
+* **`NotificationIntentAdHocClientCreate1`** — new request struct for creating ad-hoc notification intents, supporting `emailEvents`, `pushEvents`, and `smsEvents` arrays of `NotificationEventsForAdHocEnum`.
+* **`Session1`** — new optional fields `destinationGeofenceLocation`, `destinationGeofenceRadiusMiles`, and `destinationGeofenceEntered` for tracking geofence configuration and entry state on a session.
+* **`TaskGroup1`** — new optional `flightSetupNotes: String?` field for storing flight setup notes on a task group.
+
 ## 3.0.0 - 2026-06-16
 ### Breaking Changes
 * **`OrderTemplateExpanded`** — renamed to `OrderTemplateExpanded1`; update all type references and construction sites to use the new name.
