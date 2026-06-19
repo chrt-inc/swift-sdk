@@ -1,3 +1,9 @@
+## 5.0.0 - 2026-06-19
+### Added
+* **`LineItem1.lineItemCalculationId`** — new optional `String?` field linking a line item to its backing calculation record.
+* **`OrderTemplate1.taskListIds`** and **`OrderTemplateCore1.taskListIds`** — new optional `[String]?` fields for associating task lists with an order template.
+* **`OperationsTaskListEntryClientCreate1`** — new request struct for supplying task list entry content (`taskType`, `title`, `description`, and optional `deadlineAnchor`/`deadlineOffsetSeconds`) when creating or editing operations task list entries.
+
 ## 4.0.0 - 2026-06-17
 ### Breaking Changes
 * **`NotificationEventsForUsersEnum`** — new case `trackingSessionDestinationGeofenceEntered` added; exhaustive `switch` statements over this enum will fail to compile until a handler or `default` branch is added for the new case.
