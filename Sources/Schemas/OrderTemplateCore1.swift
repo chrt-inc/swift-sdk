@@ -15,6 +15,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
     public let departmentId: String?
+    public let taskListIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -28,6 +29,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         directoryEntryIds: [String]? = nil,
         coordinatorOrgId: String? = nil,
         departmentId: String? = nil,
+        taskListIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -39,6 +41,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.directoryEntryIds = directoryEntryIds
         self.coordinatorOrgId = coordinatorOrgId
         self.departmentId = departmentId
+        self.taskListIds = taskListIds
         self.additionalProperties = additionalProperties
     }
 
@@ -53,6 +56,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
+        self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -68,6 +72,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
+        try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -81,5 +86,6 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         case directoryEntryIds = "directory_entry_ids"
         case coordinatorOrgId = "coordinator_org_id"
         case departmentId = "department_id"
+        case taskListIds = "task_list_ids"
     }
 }

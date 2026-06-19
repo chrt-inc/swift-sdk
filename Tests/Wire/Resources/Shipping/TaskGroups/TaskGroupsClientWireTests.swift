@@ -693,6 +693,7 @@ import Chrt
                       "ad_hoc__status": "pending",
                       "rate_sheet_id": "rate_sheet_id",
                       "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "line_item_calculation_id": "line_item_calculation_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "line_item_s3_object_metadata_ids": [
                         "line_item_s3_object_metadata_ids"
@@ -736,6 +737,7 @@ import Chrt
                     adHocStatus: Optional(.pending),
                     rateSheetId: Optional("rate_sheet_id"),
                     proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    lineItemCalculationId: Optional("line_item_calculation_id"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lineItemS3ObjectMetadataIds: Optional([
                         "line_item_s3_object_metadata_ids"
@@ -784,6 +786,7 @@ import Chrt
                       "ad_hoc__status": "pending",
                       "rate_sheet_id": "rate_sheet_id",
                       "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "line_item_calculation_id": "line_item_calculation_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "line_item_s3_object_metadata_ids": [
                         "line_item_s3_object_metadata_ids"
@@ -827,6 +830,7 @@ import Chrt
                     adHocStatus: Optional(.pending),
                     rateSheetId: Optional("rate_sheet_id"),
                     proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    lineItemCalculationId: Optional("line_item_calculation_id"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lineItemS3ObjectMetadataIds: Optional([
                         "line_item_s3_object_metadata_ids"
@@ -875,6 +879,7 @@ import Chrt
                       "ad_hoc__status": "pending",
                       "rate_sheet_id": "rate_sheet_id",
                       "pro_forma__bid_thread_id": "pro_forma__bid_thread_id",
+                      "line_item_calculation_id": "line_item_calculation_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "line_item_s3_object_metadata_ids": [
                         "line_item_s3_object_metadata_ids"
@@ -918,6 +923,7 @@ import Chrt
                     adHocStatus: Optional(.pending),
                     rateSheetId: Optional("rate_sheet_id"),
                     proFormaBidThreadId: Optional("pro_forma__bid_thread_id"),
+                    lineItemCalculationId: Optional("line_item_calculation_id"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lineItemS3ObjectMetadataIds: Optional([
                         "line_item_s3_object_metadata_ids"

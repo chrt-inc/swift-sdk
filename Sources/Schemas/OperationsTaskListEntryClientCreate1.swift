@@ -1,15 +1,13 @@
 import Foundation
 
-/// A stored Task List entry: client content plus a server-assigned stable
-/// `uuid`. The `uuid` keys the edit / remove / reorder routes (entries are not
-/// unique by `task_type` — a list can repeat a type).
-public struct OperationsTaskListEntry1: Codable, Hashable, Sendable {
+/// Entry content the client supplies — at list-create time and via the add /
+/// edit entry routes. Carries no identity: the server assigns the `uuid`.
+public struct OperationsTaskListEntryClientCreate1: Codable, Hashable, Sendable {
     public let taskType: OperationsTaskTypeEnum
     public let title: String
     public let description: String
     public let deadlineAnchor: DeadlineAnchorEnum?
     public let deadlineOffsetSeconds: Int?
-    public let uuid: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -19,7 +17,6 @@ public struct OperationsTaskListEntry1: Codable, Hashable, Sendable {
         description: String,
         deadlineAnchor: DeadlineAnchorEnum? = nil,
         deadlineOffsetSeconds: Int? = nil,
-        uuid: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.taskType = taskType
@@ -27,7 +24,6 @@ public struct OperationsTaskListEntry1: Codable, Hashable, Sendable {
         self.description = description
         self.deadlineAnchor = deadlineAnchor
         self.deadlineOffsetSeconds = deadlineOffsetSeconds
-        self.uuid = uuid
         self.additionalProperties = additionalProperties
     }
 
@@ -38,7 +34,6 @@ public struct OperationsTaskListEntry1: Codable, Hashable, Sendable {
         self.description = try container.decode(String.self, forKey: .description)
         self.deadlineAnchor = try container.decodeIfPresent(DeadlineAnchorEnum.self, forKey: .deadlineAnchor)
         self.deadlineOffsetSeconds = try container.decodeIfPresent(Int.self, forKey: .deadlineOffsetSeconds)
-        self.uuid = try container.decodeIfPresent(String.self, forKey: .uuid)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -50,7 +45,6 @@ public struct OperationsTaskListEntry1: Codable, Hashable, Sendable {
         try container.encode(self.description, forKey: .description)
         try container.encodeIfPresent(self.deadlineAnchor, forKey: .deadlineAnchor)
         try container.encodeIfPresent(self.deadlineOffsetSeconds, forKey: .deadlineOffsetSeconds)
-        try container.encodeIfPresent(self.uuid, forKey: .uuid)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -60,6 +54,5 @@ public struct OperationsTaskListEntry1: Codable, Hashable, Sendable {
         case description
         case deadlineAnchor = "deadline_anchor"
         case deadlineOffsetSeconds = "deadline_offset_seconds"
-        case uuid
     }
 }

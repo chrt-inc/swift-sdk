@@ -97,9 +97,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -585,9 +582,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .active
-        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -1021,9 +1015,6 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStatus: [
-            .open
-        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1564,9 +1555,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -2641,6 +2629,84 @@ try await main()
 <dd>
 
 **request:** `CreateLigFromRateSheetForVectorClientReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">sharedTaskGroupMileageCreateV1</a>(request: Requests.LineItemGroupSharedTaskGroupMileageCreateClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Prices a single driver's combined trip across several task groups once. Recomputes route mileage from the ordered task locations (plus optional start/end legs), applies the CHRT-ground rate sheet, and atomically creates an OrderGroup-anchored LineItemGroup, its mileage LineItems, and the LineItemCalculation that records how the charges were derived. The LIG is detached on create (task_group_id is None) — attach to a Statement afterwards. | authz: allowed_org_types=[provider], min_org_role=operator | (LineItemGroupSharedTaskGroupMileageCreateClientReq) -> (LineItemGroup1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billing.lineItemGroups.sharedTaskGroupMileageCreateV1(request: .init(
+        orderGroupId: "order_group_id",
+        rateSheetId: "rate_sheet_id",
+        paymentDestinationDriverId: "payment_destination_driver_id",
+        taskIds: [
+            "task_ids"
+        ]
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.LineItemGroupSharedTaskGroupMileageCreateClientReq` 
     
 </dd>
 </dl>
@@ -5177,9 +5243,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5432,9 +5495,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -8845,12 +8905,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -9047,12 +9101,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -9241,12 +9289,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -11299,9 +11341,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -11481,9 +11520,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -14034,9 +14070,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterDepartmentId: [
-            "filter_department_id"
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterUnassigned: true
     )
@@ -15234,10 +15267,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -16108,7 +16138,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">setEntriesV1</a>(taskListId: String, request: Requests.OperationsTaskListSetEntries1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">addEntryV1</a>(taskListId: String, request: OperationsTaskListEntryClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -16120,7 +16150,7 @@ try await main()
 <dl>
 <dd>
 
-Replaces an OperationsTaskList's `entries` array wholesale — covering add, remove, reorder, and edit in one operation. Order is load-bearing for from_previous_task-anchored deadlines. | authz: min_org_role=operator | (OperationsTaskListSetEntries1) -> (bool)
+Appends a new entry to an OperationsTaskList's `entries` array. The server assigns a fresh UUID and returns it. Order is load-bearing for from_previous_task-anchored deadlines. | authz: min_org_role=operator | (OperationsTaskListEntryClientCreate1) -> (str)
 </dd>
 </dl>
 </dd>
@@ -16141,9 +16171,13 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.operations.operationsTaskLists.setEntriesV1(
+    _ = try await client.operations.operationsTaskLists.addEntryV1(
         taskListId: "task_list_id",
-        request: .init()
+        request: OperationsTaskListEntryClientCreate1(
+            taskType: .reviewOrderDetails,
+            title: "title",
+            description: "description"
+        )
     )
 }
 
@@ -16170,7 +16204,184 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OperationsTaskListSetEntries1` 
+**request:** `OperationsTaskListEntryClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">editEntryV1</a>(taskListId: String, entryUuid: String, request: OperationsTaskListEntryClientCreate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the entry with the given uuid in an OperationsTaskList's `entries` array. The stored uuid is preserved regardless of the request body. 404 if no entry matches. | authz: min_org_role=operator | (OperationsTaskListEntryClientCreate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTaskLists.editEntryV1(
+        taskListId: "task_list_id",
+        entryUuid: "entry_uuid",
+        request: OperationsTaskListEntryClientCreate1(
+            taskType: .reviewOrderDetails,
+            title: "title",
+            description: "description"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskListId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entryUuid:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `OperationsTaskListEntryClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">removeEntryV1</a>(taskListId: String, entryUuid: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the entry with the given uuid from an OperationsTaskList's `entries` array, closing the gap in order. 404 if no entry matches. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTaskLists.removeEntryV1(
+        taskListId: "task_list_id",
+        entryUuid: "entry_uuid"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskListId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entryUuid:** `String` 
     
 </dd>
 </dl>
@@ -16202,7 +16413,7 @@ try await main()
 <dl>
 <dd>
 
-Reorders an OperationsTaskList's existing entries. `entry_ids` must be an exact permutation of the list's current entry ids (every id present, no extras, no duplicates), so a reorder can never drop, add, or mutate an entry. | authz: min_org_role=operator | (OperationsTaskListReorderEntries1) -> (bool)
+Reorders an OperationsTaskList's existing entries. `entry_uuids` must be an exact permutation of the list's current entry uuids (every uuid present, no extras, no duplicates), so a reorder can never drop, add, or mutate an entry. | authz: min_org_role=operator | (OperationsTaskListReorderEntries1) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -16505,7 +16716,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">removeFromCaseV1</a>(taskListId: String, caseId: String, requestOptions: RequestOptions?) -> OperationsTaskListRemoveFromCaseRes1</code></summary>
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">removeNotStartedTasksFromCaseV1</a>(taskListId: String, caseId: String, requestOptions: RequestOptions?) -> OperationsTaskListRemoveFromCaseRes1</code></summary>
 <dl>
 <dd>
 
@@ -16538,7 +16749,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.operations.operationsTaskLists.removeFromCaseV1(
+    _ = try await client.operations.operationsTaskLists.removeNotStartedTasksFromCaseV1(
         taskListId: "task_list_id",
         caseId: "case_id"
     )
@@ -16626,19 +16837,7 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
-        filterTag: [
-            "filter_tag"
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -21837,9 +22036,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -24822,9 +25018,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterBillingReviewStatus: [
-            .notStarted
-        ],
         filterOrderId: "filter_order_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -24956,9 +25149,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
-        filterShippingStatus: [
-            .draft
-        ],
         sortBy: .draftStartedAtTimestamp,
         sortOrder: .asc,
         page: 1,
@@ -25072,9 +25262,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterIntendedStatus: [
-            .draft
-        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -32379,9 +32566,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -32645,9 +32829,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -34253,9 +34434,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -34546,9 +34724,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

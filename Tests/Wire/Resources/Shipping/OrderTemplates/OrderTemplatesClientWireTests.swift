@@ -145,6 +145,9 @@ import Chrt
                     ],
                     "coordinator_org_id": "coordinator_org_id",
                     "department_id": "department_id",
+                    "task_list_ids": [
+                      "task_list_ids"
+                    ],
                     "name": "name",
                     "description": "description",
                     "off_chrt_reference_id_str": "off_chrt_reference_id_str",
@@ -315,6 +318,9 @@ import Chrt
                 ]),
                 coordinatorOrgId: Optional("coordinator_org_id"),
                 departmentId: Optional("department_id"),
+                taskListIds: Optional([
+                    "task_list_ids"
+                ]),
                 name: "name",
                 description: Optional("description"),
                 offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
@@ -356,6 +362,9 @@ import Chrt
                       ],
                       "coordinator_org_id": "coordinator_org_id",
                       "department_id": "department_id",
+                      "task_list_ids": [
+                        "task_list_ids"
+                      ],
                       "name": "name",
                       "description": "description",
                       "off_chrt_reference_id_str": "off_chrt_reference_id_str",
@@ -395,6 +404,9 @@ import Chrt
                     ]),
                     coordinatorOrgId: Optional("coordinator_org_id"),
                     departmentId: Optional("department_id"),
+                    taskListIds: Optional([
+                        "task_list_ids"
+                    ]),
                     name: "name",
                     description: Optional("description"),
                     offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
@@ -446,6 +458,9 @@ import Chrt
                   ],
                   "coordinator_org_id": "coordinator_org_id",
                   "department_id": "department_id",
+                  "task_list_ids": [
+                    "task_list_ids"
+                  ],
                   "name": "name",
                   "description": "description",
                   "off_chrt_reference_id_str": "off_chrt_reference_id_str",
@@ -480,6 +495,9 @@ import Chrt
             ]),
             coordinatorOrgId: Optional("coordinator_org_id"),
             departmentId: Optional("department_id"),
+            taskListIds: Optional([
+                "task_list_ids"
+            ]),
             name: "name",
             description: Optional("description"),
             offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),

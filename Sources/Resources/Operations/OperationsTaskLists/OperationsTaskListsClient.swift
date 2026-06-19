@@ -67,20 +67,45 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Replaces an OperationsTaskList's `entries` array wholesale — covering add, remove, reorder, and edit in one operation. Order is load-bearing for from_previous_task-anchored deadlines. | authz: min_org_role=operator | (OperationsTaskListSetEntries1) -> (bool)
+    /// Appends a new entry to an OperationsTaskList's `entries` array. The server assigns a fresh UUID and returns it. Order is load-bearing for from_previous_task-anchored deadlines. | authz: min_org_role=operator | (OperationsTaskListEntryClientCreate1) -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setEntriesV1(taskListId: String, request: Requests.OperationsTaskListSetEntries1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addEntryV1(taskListId: String, request: OperationsTaskListEntryClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/entries/set/v1/\(taskListId)",
+            path: "/operations/operations_task_lists/entries/add/v1/\(taskListId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Replaces the entry with the given uuid in an OperationsTaskList's `entries` array. The stored uuid is preserved regardless of the request body. 404 if no entry matches. | authz: min_org_role=operator | (OperationsTaskListEntryClientCreate1) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func editEntryV1(taskListId: String, entryUuid: String, request: OperationsTaskListEntryClientCreate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_task_lists/entries/edit/v1/\(taskListId)/\(entryUuid)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Reorders an OperationsTaskList's existing entries. `entry_ids` must be an exact permutation of the list's current entry ids (every id present, no extras, no duplicates), so a reorder can never drop, add, or mutate an entry. | authz: min_org_role=operator | (OperationsTaskListReorderEntries1) -> (bool)
+    /// Removes the entry with the given uuid from an OperationsTaskList's `entries` array, closing the gap in order. 404 if no entry matches. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeEntryV1(taskListId: String, entryUuid: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/operations/operations_task_lists/entries/remove/v1/\(taskListId)/\(entryUuid)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Reorders an OperationsTaskList's existing entries. `entry_uuids` must be an exact permutation of the list's current entry uuids (every uuid present, no extras, no duplicates), so a reorder can never drop, add, or mutate an entry. | authz: min_org_role=operator | (OperationsTaskListReorderEntries1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func reorderEntriesV1(taskListId: String, request: Requests.OperationsTaskListReorderEntries1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -136,10 +161,10 @@ public final class OperationsTaskListsClient: Sendable {
     /// Removes the OperationsTasks this OperationsTaskList added to the Case (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromCaseRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeFromCaseV1(taskListId: String, caseId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRemoveFromCaseRes1 {
+    public func removeNotStartedTasksFromCaseV1(taskListId: String, caseId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRemoveFromCaseRes1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/remove_from_case/v1/\(taskListId)/\(caseId)",
+            path: "/operations/operations_task_lists/remove_not_started_tasks_from_case/v1/\(taskListId)/\(caseId)",
             requestOptions: requestOptions,
             responseType: OperationsTaskListRemoveFromCaseRes1.self
         )

@@ -93,12 +93,12 @@ import Chrt
                   ],
                   "entries": [
                     {
-                      "id": "id",
                       "task_type": "review_order_details",
                       "title": "title",
                       "description": "description",
                       "deadline_anchor": "from_first_task",
-                      "deadline_offset_seconds": 1
+                      "deadline_offset_seconds": 1,
+                      "uuid": "uuid"
                     }
                   ],
                   "_id": "_id",
@@ -125,12 +125,12 @@ import Chrt
             ]),
             entries: Optional([
                 OperationsTaskListEntry1(
-                    id: Optional("id"),
                     taskType: .reviewOrderDetails,
                     title: "title",
                     description: "description",
                     deadlineAnchor: Optional(.fromFirstTask),
-                    deadlineOffsetSeconds: Optional(1)
+                    deadlineOffsetSeconds: Optional(1),
+                    uuid: Optional("uuid")
                 )
             ]),
             id: "_id",
@@ -195,7 +195,34 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func setEntriesV11() async throws -> Void {
+    @Test func addEntryV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.operations.operationsTaskLists.addEntryV1(
+            taskListId: "task_list_id",
+            request: OperationsTaskListEntryClientCreate1(
+                taskType: .reviewOrderDetails,
+                title: "title",
+                description: "description"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func editEntryV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -210,9 +237,37 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.operations.operationsTaskLists.setEntriesV1(
+        let response = try await client.operations.operationsTaskLists.editEntryV1(
             taskListId: "task_list_id",
-            request: .init(),
+            entryUuid: "entry_uuid",
+            request: OperationsTaskListEntryClientCreate1(
+                taskType: .reviewOrderDetails,
+                title: "title",
+                description: "description"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeEntryV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.operationsTaskLists.removeEntryV1(
+            taskListId: "task_list_id",
+            entryUuid: "entry_uuid",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -313,7 +368,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func removeFromCaseV11() async throws -> Void {
+    @Test func removeNotStartedTasksFromCaseV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -334,7 +389,7 @@ import Chrt
             deletedCount: 1,
             keptCount: 1
         )
-        let response = try await client.operations.operationsTaskLists.removeFromCaseV1(
+        let response = try await client.operations.operationsTaskLists.removeNotStartedTasksFromCaseV1(
             taskListId: "task_list_id",
             caseId: "case_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

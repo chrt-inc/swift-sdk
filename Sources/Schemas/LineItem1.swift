@@ -22,6 +22,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
     public let adHocStatus: LineItemStatusEnum?
     public let rateSheetId: String?
     public let proFormaBidThreadId: String?
+    public let lineItemCalculationId: String?
     public let createdAtTimestamp: Date?
     public let lineItemS3ObjectMetadataIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
@@ -43,6 +44,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         adHocStatus: LineItemStatusEnum? = nil,
         rateSheetId: String? = nil,
         proFormaBidThreadId: String? = nil,
+        lineItemCalculationId: String? = nil,
         createdAtTimestamp: Date? = nil,
         lineItemS3ObjectMetadataIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -62,6 +64,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         self.adHocStatus = adHocStatus
         self.rateSheetId = rateSheetId
         self.proFormaBidThreadId = proFormaBidThreadId
+        self.lineItemCalculationId = lineItemCalculationId
         self.createdAtTimestamp = createdAtTimestamp
         self.lineItemS3ObjectMetadataIds = lineItemS3ObjectMetadataIds
         self.additionalProperties = additionalProperties
@@ -84,6 +87,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         self.adHocStatus = try container.decodeIfPresent(LineItemStatusEnum.self, forKey: .adHocStatus)
         self.rateSheetId = try container.decodeIfPresent(String.self, forKey: .rateSheetId)
         self.proFormaBidThreadId = try container.decodeIfPresent(String.self, forKey: .proFormaBidThreadId)
+        self.lineItemCalculationId = try container.decodeIfPresent(String.self, forKey: .lineItemCalculationId)
         self.createdAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .createdAtTimestamp)
         self.lineItemS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .lineItemS3ObjectMetadataIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -107,6 +111,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.adHocStatus, forKey: .adHocStatus)
         try container.encodeIfPresent(self.rateSheetId, forKey: .rateSheetId)
         try container.encodeIfPresent(self.proFormaBidThreadId, forKey: .proFormaBidThreadId)
+        try container.encodeIfPresent(self.lineItemCalculationId, forKey: .lineItemCalculationId)
         try container.encodeIfPresent(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.lineItemS3ObjectMetadataIds, forKey: .lineItemS3ObjectMetadataIds)
     }
@@ -128,6 +133,7 @@ public struct LineItem1: Codable, Hashable, Sendable {
         case adHocStatus = "ad_hoc__status"
         case rateSheetId = "rate_sheet_id"
         case proFormaBidThreadId = "pro_forma__bid_thread_id"
+        case lineItemCalculationId = "line_item_calculation_id"
         case createdAtTimestamp = "created_at_timestamp"
         case lineItemS3ObjectMetadataIds = "line_item_s3_object_metadata_ids"
     }

@@ -6,7 +6,7 @@ extension Requests {
         public let name: String
         public let description: String?
         public let tags: [String]?
-        public let entries: [OperationsTaskListEntry1]?
+        public let entries: [OperationsTaskListEntryClientCreate1]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -15,7 +15,7 @@ extension Requests {
             name: String,
             description: String? = nil,
             tags: [String]? = nil,
-            entries: [OperationsTaskListEntry1]? = nil,
+            entries: [OperationsTaskListEntryClientCreate1]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.schemaVersion = schemaVersion
@@ -32,7 +32,7 @@ extension Requests {
             self.name = try container.decode(String.self, forKey: .name)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
-            self.entries = try container.decodeIfPresent([OperationsTaskListEntry1].self, forKey: .entries)
+            self.entries = try container.decodeIfPresent([OperationsTaskListEntryClientCreate1].self, forKey: .entries)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 

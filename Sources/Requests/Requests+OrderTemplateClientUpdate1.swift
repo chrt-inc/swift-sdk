@@ -15,6 +15,7 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let departmentId: String?
+        public let taskListIds: [String]?
         public let descriptionSetToNone: Bool?
         public let textSetToNone: Bool?
         public let offChrtReferenceIdStrSetToNone: Bool?
@@ -37,6 +38,7 @@ extension Requests {
             directoryEntryIds: [String]? = nil,
             coordinatorOrgId: String? = nil,
             departmentId: String? = nil,
+            taskListIds: [String]? = nil,
             descriptionSetToNone: Bool? = nil,
             textSetToNone: Bool? = nil,
             offChrtReferenceIdStrSetToNone: Bool? = nil,
@@ -57,6 +59,7 @@ extension Requests {
             self.directoryEntryIds = directoryEntryIds
             self.coordinatorOrgId = coordinatorOrgId
             self.departmentId = departmentId
+            self.taskListIds = taskListIds
             self.descriptionSetToNone = descriptionSetToNone
             self.textSetToNone = textSetToNone
             self.offChrtReferenceIdStrSetToNone = offChrtReferenceIdStrSetToNone
@@ -80,6 +83,7 @@ extension Requests {
             self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
+            self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
             self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
             self.textSetToNone = try container.decodeIfPresent(Bool.self, forKey: .textSetToNone)
             self.offChrtReferenceIdStrSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdStrSetToNone)
@@ -104,6 +108,7 @@ extension Requests {
             try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
+            try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
             try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
             try container.encodeIfPresent(self.textSetToNone, forKey: .textSetToNone)
             try container.encodeIfPresent(self.offChrtReferenceIdStrSetToNone, forKey: .offChrtReferenceIdStrSetToNone)
@@ -126,6 +131,7 @@ extension Requests {
             case directoryEntryIds = "directory_entry_ids"
             case coordinatorOrgId = "coordinator_org_id"
             case departmentId = "department_id"
+            case taskListIds = "task_list_ids"
             case descriptionSetToNone = "description__set_to_None"
             case textSetToNone = "text__set_to_None"
             case offChrtReferenceIdStrSetToNone = "off_chrt_reference_id_str__set_to_None"
