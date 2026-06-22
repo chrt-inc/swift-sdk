@@ -890,6 +890,9 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
+            filterRole: [
+                .owner
+            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,
@@ -1015,6 +1018,9 @@ import Chrt
             search: "search",
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
+            filterStatus: [
+                .unassigned
+            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -1,3 +1,16 @@
+## 6.0.0 - 2026-06-22
+### Breaking Changes
+* **`LineItemGroupSharedTaskGroupMileageCreateClientReq`** — renamed to `SharedTaskGroupMileageCreateForProviderPayDriverClientReq`; update all type references and usages passed to `sharedTaskGroupMileageCreateV1`.
+* **`Driver1.activeTaskGroupIds`** — removed from `Driver1` and moved exclusively to the new `DriverWithActiveTaskGroupIds1` type; update all sites that read this field.
+* **`DriversClient.getForCallerV1`** and **`DriversClient.getByDriverIdV1`** — return type changed from `Driver1` to `DriverWithActiveTaskGroupIds1`; update all call sites that store or pattern-match the result.
+* **`DriverListRes.items`** — element type changed from `[Driver1]` to `[DriverWithActiveTaskGroupIds1]`; update all iteration and decoding sites.
+* **`OrgMembersAndDrivers.driver`** — type changed from `Driver1?` to `DriverWithActiveTaskGroupIds1?`; update all unwrap and construction sites.
+### Added
+* **`DriverWithActiveTaskGroupIds1`** — new driver read DTO that includes `activeTaskGroupIds: [String]?`, a derived list of active task group IDs computed per request from shipping task groups.
+* **`LineItemGroupsClient.sharedTaskGroupMileageCreateForProviderPayProviderV1`** — new method for pricing a coordinator-pays-executor combined trip, backed by `SharedTaskGroupMileageCreateForProviderPayProviderClientReq`.
+* **`DriversClient.listV1(filterStatus:)`** — new optional `filterStatus: DriverStatusEnum?` parameter for filtering drivers by status (`UNASSIGNED`, `ASSIGNED`, or `IN_PROGRESS`).
+* **`OrderDraftValidationRequirements.atLeastOneTaskHasTimeWindow`** and **`OrderManifestValidationRequirements.atLeastOneTaskHasTimeWindow`** — new optional `Bool?` field indicating whether at least one task has a time window.
+
 ## 5.0.0 - 2026-06-19
 ### Added
 * **`LineItem1.lineItemCalculationId`** — new optional `String?` field linking a line item to its backing calculation record.
