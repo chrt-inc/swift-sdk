@@ -227,13 +227,26 @@ public final class LineItemGroupsClient: Sendable {
         )
     }
 
-    /// Prices a single driver's combined trip across several task groups once. Recomputes route mileage from the ordered task locations (plus optional start/end legs), applies the CHRT-ground rate sheet, and atomically creates an OrderGroup-anchored LineItemGroup, its mileage LineItems, and the LineItemCalculation that records how the charges were derived. The LIG is detached on create (task_group_id is None) — attach to a Statement afterwards. | authz: allowed_org_types=[provider], min_org_role=operator | (LineItemGroupSharedTaskGroupMileageCreateClientReq) -> (LineItemGroup1)
+    /// Prices a single driver's combined trip across several task groups once. Recomputes route mileage from the ordered task locations (plus optional start/end legs), applies the CHRT-ground rate sheet, and atomically creates an OrderGroup-anchored LineItemGroup, its mileage LineItems, and the LineItemCalculation that records how the charges were derived. The LIG is detached on create (task_group_id is None) — attach to a Statement afterwards. | authz: allowed_org_types=[provider], min_org_role=operator | (SharedTaskGroupMileageCreateForProviderPayDriverClientReq) -> (LineItemGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func sharedTaskGroupMileageCreateV1(request: Requests.LineItemGroupSharedTaskGroupMileageCreateClientReq, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+    public func sharedTaskGroupMileageCreateV1(request: Requests.SharedTaskGroupMileageCreateForProviderPayDriverClientReq, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/line_item_groups/shared_task_group_mileage/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: LineItemGroup1.self
+        )
+    }
+
+    /// Prices a single agent's combined trip across several task groups once, on the provider_pay_provider vector — a coordinator paying the executor (commonly an off-chrt agent) that ran the route. Recomputes route mileage from the ordered task locations (plus optional start/end legs), applies the CHRT-ground rate sheet, and atomically creates an OrderGroup-anchored LineItemGroup, its mileage LineItems, and the LineItemCalculation that records how the charges were derived. The LIG is detached on create (task_group_id is None) — attach to a Statement afterwards. | authz: allowed_org_types=[provider], min_org_role=operator | (SharedTaskGroupMileageCreateForProviderPayProviderClientReq) -> (LineItemGroup1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func sharedTaskGroupMileageCreateForProviderPayProviderV1(request: Requests.SharedTaskGroupMileageCreateForProviderPayProviderClientReq, requestOptions: RequestOptions? = nil) async throws -> LineItemGroup1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/line_item_groups/shared_task_group_mileage/create_for_provider_pay_provider/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: LineItemGroup1.self

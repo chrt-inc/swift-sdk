@@ -73,9 +73,6 @@ import Chrt
                       "available_according_to_operators": true,
                       "waiting": true,
                       "auto_assign_enabled": true,
-                      "active_task_group_ids": [
-                        "active_task_group_ids"
-                      ],
                       "last_seen_at_location": {
                         "type": "Feature",
                         "geometry": {
@@ -238,9 +235,6 @@ import Chrt
                     availableAccordingToOperators: Optional(true),
                     waiting: Optional(true),
                     autoAssignEnabled: Optional(true),
-                    activeTaskGroupIds: Optional([
-                        "active_task_group_ids"
-                    ]),
                     lastSeenAtLocation: Optional(LocationFeature(
                         type: .feature,
                         geometry: .geometryCollection(

@@ -112,27 +112,27 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Retrieves driver information for the caller within their organization. | () -> (Driver1)
+    /// Retrieves driver information for the caller within their organization. | () -> (DriverWithActiveTaskGroupIds1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getForCallerV1(requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+    public func getForCallerV1(requestOptions: RequestOptions? = nil) async throws -> DriverWithActiveTaskGroupIds1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/for_caller/v1",
             requestOptions: requestOptions,
-            responseType: Driver1.self
+            responseType: DriverWithActiveTaskGroupIds1.self
         )
     }
 
-    /// Retrieves detailed driver information by driver ID within the organization. | () -> (Driver1)
+    /// Retrieves detailed driver information by driver ID within the organization. | () -> (DriverWithActiveTaskGroupIds1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Driver1 {
+    public func getByDriverIdV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> DriverWithActiveTaskGroupIds1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/v1/\(driverId)",
             requestOptions: requestOptions,
-            responseType: Driver1.self
+            responseType: DriverWithActiveTaskGroupIds1.self
         )
     }
 
@@ -170,8 +170,9 @@ public final class DriversClient: Sendable {
     /// - Parameter search: Full-text search query
     /// - Parameter filterAvailableAccordingToDriver: Filter by driver's self-reported availability
     /// - Parameter filterAvailableAccordingToOperators: Filter by operator-set availability
+    /// - Parameter filterStatus: Filter by driver state (UNASSIGNED / ASSIGNED / IN_PROGRESS)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverListRes {
+    public func listV1(sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, filterStatus: DriverStatusEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/list/v1",
@@ -181,7 +182,8 @@ public final class DriversClient: Sendable {
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
                 "filter_available_according_to_driver": filterAvailableAccordingToDriver.map { .bool($0) }, 
-                "filter_available_according_to_operators": filterAvailableAccordingToOperators.map { .bool($0) }
+                "filter_available_according_to_operators": filterAvailableAccordingToOperators.map { .bool($0) }, 
+                "filter_status": filterStatus.map { .string($0.rawValue) }
             ],
             requestOptions: requestOptions,
             responseType: DriverListRes.self

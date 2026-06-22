@@ -133,9 +133,6 @@ import Chrt
                     "available_according_to_operators": true,
                     "waiting": true,
                     "auto_assign_enabled": true,
-                    "active_task_group_ids": [
-                      "active_task_group_ids"
-                    ],
                     "last_seen_at_location": {
                       "type": "Feature",
                       "geometry": {
@@ -299,9 +296,6 @@ import Chrt
                 availableAccordingToOperators: Optional(true),
                 waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
-                activeTaskGroupIds: Optional([
-                    "active_task_group_ids"
-                ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
                     geometry: .geometryCollection(
@@ -478,9 +472,6 @@ import Chrt
                     "available_according_to_operators": true,
                     "waiting": true,
                     "auto_assign_enabled": true,
-                    "active_task_group_ids": [
-                      "active_task_group_ids"
-                    ],
                     "last_seen_at_location": {
                       "type": "Feature",
                       "geometry": {
@@ -644,9 +635,6 @@ import Chrt
                 availableAccordingToOperators: Optional(true),
                 waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
-                activeTaskGroupIds: Optional([
-                    "active_task_group_ids"
-                ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
                     geometry: .geometryCollection(
@@ -823,9 +811,6 @@ import Chrt
                     "available_according_to_operators": true,
                     "waiting": true,
                     "auto_assign_enabled": true,
-                    "active_task_group_ids": [
-                      "active_task_group_ids"
-                    ],
                     "last_seen_at_location": {
                       "type": "Feature",
                       "geometry": {
@@ -989,9 +974,6 @@ import Chrt
                 availableAccordingToOperators: Optional(true),
                 waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
-                activeTaskGroupIds: Optional([
-                    "active_task_group_ids"
-                ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
                     geometry: .geometryCollection(
@@ -1168,9 +1150,6 @@ import Chrt
                     "available_according_to_operators": true,
                     "waiting": true,
                     "auto_assign_enabled": true,
-                    "active_task_group_ids": [
-                      "active_task_group_ids"
-                    ],
                     "last_seen_at_location": {
                       "type": "Feature",
                       "geometry": {
@@ -1334,9 +1313,6 @@ import Chrt
                 availableAccordingToOperators: Optional(true),
                 waiting: Optional(true),
                 autoAssignEnabled: Optional(true),
-                activeTaskGroupIds: Optional([
-                    "active_task_group_ids"
-                ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     type: .feature,
                     geometry: .geometryCollection(
@@ -1498,9 +1474,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1642,9 +1615,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

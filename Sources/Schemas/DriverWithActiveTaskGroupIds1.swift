@@ -1,6 +1,10 @@
 import Foundation
 
-public struct Driver1: Codable, Hashable, Sendable {
+/// Driver read DTO: persisted Driver1 plus the derived active task group IDs.
+/// 
+/// The field is computed per request from shipping.task_groups so the JSON shape
+/// stays identical to when active_task_group_ids was persisted on the driver.
+public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let emailAddressPrimary: String?
     public let emailAddressSecondary: String?
@@ -23,6 +27,7 @@ public struct Driver1: Codable, Hashable, Sendable {
     public let lastSeenAtTimestamp: Date?
     public let lastSeenAtLocationCity: String?
     public let lastSeenAtLocationLargeCity: String?
+    public let activeTaskGroupIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -47,6 +52,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         lastSeenAtTimestamp: Date? = nil,
         lastSeenAtLocationCity: String? = nil,
         lastSeenAtLocationLargeCity: String? = nil,
+        activeTaskGroupIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.schemaVersion = schemaVersion
@@ -69,6 +75,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
         self.lastSeenAtLocationCity = lastSeenAtLocationCity
         self.lastSeenAtLocationLargeCity = lastSeenAtLocationLargeCity
+        self.activeTaskGroupIds = activeTaskGroupIds
         self.additionalProperties = additionalProperties
     }
 
@@ -94,6 +101,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
         self.lastSeenAtLocationCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationCity)
         self.lastSeenAtLocationLargeCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationLargeCity)
+        self.activeTaskGroupIds = try container.decodeIfPresent([String].self, forKey: .activeTaskGroupIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -120,6 +128,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
         try container.encodeIfPresent(self.lastSeenAtLocationCity, forKey: .lastSeenAtLocationCity)
         try container.encodeIfPresent(self.lastSeenAtLocationLargeCity, forKey: .lastSeenAtLocationLargeCity)
+        try container.encodeIfPresent(self.activeTaskGroupIds, forKey: .activeTaskGroupIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -144,5 +153,6 @@ public struct Driver1: Codable, Hashable, Sendable {
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
         case lastSeenAtLocationCity = "last_seen_at_location_city"
         case lastSeenAtLocationLargeCity = "last_seen_at_location_large_city"
+        case activeTaskGroupIds = "active_task_group_ids"
     }
 }

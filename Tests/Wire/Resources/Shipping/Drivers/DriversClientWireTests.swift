@@ -608,9 +608,6 @@ import Chrt
                   "available_according_to_operators": true,
                   "waiting": true,
                   "auto_assign_enabled": true,
-                  "active_task_group_ids": [
-                    "active_task_group_ids"
-                  ],
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -637,7 +634,10 @@ import Chrt
                   },
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location_city": "last_seen_at_location_city",
-                  "last_seen_at_location_large_city": "last_seen_at_location_large_city"
+                  "last_seen_at_location_large_city": "last_seen_at_location_large_city",
+                  "active_task_group_ids": [
+                    "active_task_group_ids"
+                  ]
                 }
                 """.utf8
             )
@@ -647,7 +647,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Driver1(
+        let expectedResponse = DriverWithActiveTaskGroupIds1(
             schemaVersion: 1,
             emailAddressPrimary: Optional("email_address_primary"),
             emailAddressSecondary: Optional("email_address_secondary"),
@@ -666,9 +666,6 @@ import Chrt
             availableAccordingToOperators: Optional(true),
             waiting: Optional(true),
             autoAssignEnabled: Optional(true),
-            activeTaskGroupIds: Optional([
-                "active_task_group_ids"
-            ]),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -703,7 +700,10 @@ import Chrt
             )),
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-            lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
+            lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+            activeTaskGroupIds: Optional([
+                "active_task_group_ids"
+            ])
         )
         let response = try await client.shipping.drivers.getForCallerV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -733,9 +733,6 @@ import Chrt
                   "available_according_to_operators": true,
                   "waiting": true,
                   "auto_assign_enabled": true,
-                  "active_task_group_ids": [
-                    "active_task_group_ids"
-                  ],
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -762,7 +759,10 @@ import Chrt
                   },
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location_city": "last_seen_at_location_city",
-                  "last_seen_at_location_large_city": "last_seen_at_location_large_city"
+                  "last_seen_at_location_large_city": "last_seen_at_location_large_city",
+                  "active_task_group_ids": [
+                    "active_task_group_ids"
+                  ]
                 }
                 """.utf8
             )
@@ -772,7 +772,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Driver1(
+        let expectedResponse = DriverWithActiveTaskGroupIds1(
             schemaVersion: 1,
             emailAddressPrimary: Optional("email_address_primary"),
             emailAddressSecondary: Optional("email_address_secondary"),
@@ -791,9 +791,6 @@ import Chrt
             availableAccordingToOperators: Optional(true),
             waiting: Optional(true),
             autoAssignEnabled: Optional(true),
-            activeTaskGroupIds: Optional([
-                "active_task_group_ids"
-            ]),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -828,7 +825,10 @@ import Chrt
             )),
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-            lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
+            lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+            activeTaskGroupIds: Optional([
+                "active_task_group_ids"
+            ])
         )
         let response = try await client.shipping.drivers.getByDriverIdV1(
             driverId: "driver_id",
@@ -878,7 +878,7 @@ import Chrt
                         firstName: Optional(nil),
                         lastName: Optional(nil)
                     ),
-                    driver: Optional(Driver1(
+                    driver: Optional(DriverWithActiveTaskGroupIds1(
                         schemaVersion: 1,
                         id: "_id",
                         orgId: "org_id",
@@ -890,9 +890,6 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
-            filterRole: [
-                .owner
-            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,
@@ -930,9 +927,6 @@ import Chrt
                       "available_according_to_operators": true,
                       "waiting": true,
                       "auto_assign_enabled": true,
-                      "active_task_group_ids": [
-                        "active_task_group_ids"
-                      ],
                       "last_seen_at_location": {
                         "type": "Feature",
                         "geometry": {
@@ -949,7 +943,10 @@ import Chrt
                       },
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_seen_at_location_city": "last_seen_at_location_city",
-                      "last_seen_at_location_large_city": "last_seen_at_location_large_city"
+                      "last_seen_at_location_large_city": "last_seen_at_location_large_city",
+                      "active_task_group_ids": [
+                        "active_task_group_ids"
+                      ]
                     }
                   ],
                   "total_count": 1
@@ -964,7 +961,7 @@ import Chrt
         )
         let expectedResponse = DriverListRes(
             items: [
-                Driver1(
+                DriverWithActiveTaskGroupIds1(
                     schemaVersion: 1,
                     emailAddressPrimary: Optional("email_address_primary"),
                     emailAddressSecondary: Optional("email_address_secondary"),
@@ -983,9 +980,6 @@ import Chrt
                     availableAccordingToOperators: Optional(true),
                     waiting: Optional(true),
                     autoAssignEnabled: Optional(true),
-                    activeTaskGroupIds: Optional([
-                        "active_task_group_ids"
-                    ]),
                     lastSeenAtLocation: Optional(LocationFeature(
                         type: .feature,
                         geometry: .geometryCollection(
@@ -1006,7 +1000,10 @@ import Chrt
                     )),
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city")
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                    activeTaskGroupIds: Optional([
+                        "active_task_group_ids"
+                    ])
                 )
             ],
             totalCount: 1

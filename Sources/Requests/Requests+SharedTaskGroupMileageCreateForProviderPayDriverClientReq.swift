@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct LineItemGroupSharedTaskGroupMileageCreateClientReq: Codable, Hashable, Sendable {
+    public struct SharedTaskGroupMileageCreateForProviderPayDriverClientReq: Codable, Hashable, Sendable {
         public let orderGroupId: String
         public let rateSheetId: String
         public let paymentDestinationDriverId: String

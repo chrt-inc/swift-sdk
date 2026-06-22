@@ -514,9 +514,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .staged
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterOrderShortId: "filter_order_short_id",
@@ -2013,6 +2010,132 @@ import Chrt
                 orderGroupId: "order_group_id",
                 rateSheetId: "rate_sheet_id",
                 paymentDestinationDriverId: "payment_destination_driver_id",
+                taskIds: [
+                    "task_ids"
+                ]
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func sharedTaskGroupMileageCreateForProviderPayProviderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "schema_version": 1,
+                  "_id": "_id",
+                  "task_group_id": "task_group_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
+                  "order_off_chrt_reference_id": "order_off_chrt_reference_id",
+                  "order_group_id": "order_group_id",
+                  "order_group_short_id": "order_group_short_id",
+                  "rate_sheet_id": "rate_sheet_id",
+                  "agreement_line_item_ids": [
+                    "agreement_line_item_ids"
+                  ],
+                  "agreement_amount": 1.1,
+                  "amendment_line_item_ids": [
+                    "amendment_line_item_ids"
+                  ],
+                  "amendment_amount": 1.1,
+                  "pending_line_item_ids": [
+                    "pending_line_item_ids"
+                  ],
+                  "pending_amount": 1.1,
+                  "denied_line_item_ids": [
+                    "denied_line_item_ids"
+                  ],
+                  "denied_amount": 1.1,
+                  "line_item_group_s3_object_metadata_ids": [
+                    "line_item_group_s3_object_metadata_ids"
+                  ],
+                  "statement_id": "statement_id",
+                  "owned_by_org_id": "owned_by_org_id",
+                  "settlement_type": "stripe_connect",
+                  "payment_origin_org_id": "payment_origin_org_id",
+                  "payment_origin_off_chrt_shipper_org_id": "payment_origin_off_chrt_shipper_org_id",
+                  "payment_destination_org_id": "payment_destination_org_id",
+                  "payment_destination_off_chrt_provider_org_id": "payment_destination_off_chrt_provider_org_id",
+                  "payment_destination_driver_id": "payment_destination_driver_id",
+                  "payment_destination_off_chrt_vendor_id": "payment_destination_off_chrt_vendor_id",
+                  "status": "staged",
+                  "finalized_at_timestamp": "2024-01-15T09:30:00Z",
+                  "finalized_by_user_id": "finalized_by_user_id",
+                  "messages": [
+                    {
+                      "message": "message",
+                      "user_id": "user_id",
+                      "org_id": "org_id",
+                      "timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ]
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = LineItemGroup1(
+            schemaVersion: 1,
+            id: "_id",
+            taskGroupId: Optional("task_group_id"),
+            orderId: Optional("order_id"),
+            orderShortId: Optional("order_short_id"),
+            orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
+            orderGroupId: Optional("order_group_id"),
+            orderGroupShortId: Optional("order_group_short_id"),
+            rateSheetId: Optional("rate_sheet_id"),
+            agreementLineItemIds: Optional([
+                "agreement_line_item_ids"
+            ]),
+            agreementAmount: Optional(1.1),
+            amendmentLineItemIds: Optional([
+                "amendment_line_item_ids"
+            ]),
+            amendmentAmount: Optional(1.1),
+            pendingLineItemIds: Optional([
+                "pending_line_item_ids"
+            ]),
+            pendingAmount: Optional(1.1),
+            deniedLineItemIds: Optional([
+                "denied_line_item_ids"
+            ]),
+            deniedAmount: Optional(1.1),
+            lineItemGroupS3ObjectMetadataIds: Optional([
+                "line_item_group_s3_object_metadata_ids"
+            ]),
+            statementId: Optional("statement_id"),
+            ownedByOrgId: "owned_by_org_id",
+            settlementType: Optional(.stripeConnect),
+            paymentOriginOrgId: Optional("payment_origin_org_id"),
+            paymentOriginOffChrtShipperOrgId: Optional("payment_origin_off_chrt_shipper_org_id"),
+            paymentDestinationOrgId: Optional("payment_destination_org_id"),
+            paymentDestinationOffChrtProviderOrgId: Optional("payment_destination_off_chrt_provider_org_id"),
+            paymentDestinationDriverId: Optional("payment_destination_driver_id"),
+            paymentDestinationOffChrtVendorId: Optional("payment_destination_off_chrt_vendor_id"),
+            status: Optional(.staged),
+            finalizedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            finalizedByUserId: Optional("finalized_by_user_id"),
+            messages: Optional([
+                LineItemGroupMessage1(
+                    message: "message",
+                    userId: "user_id",
+                    orgId: "org_id",
+                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ])
+        )
+        let response = try await client.billing.lineItemGroups.sharedTaskGroupMileageCreateForProviderPayProviderV1(
+            request: .init(
+                orderGroupId: "order_group_id",
+                rateSheetId: "rate_sheet_id",
                 taskIds: [
                     "task_ids"
                 ]

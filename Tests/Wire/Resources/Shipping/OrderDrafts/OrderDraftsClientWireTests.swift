@@ -223,6 +223,7 @@ import Chrt
                     "task_groups_have_valid_task_sequence": true,
                     "tasks_have_valid_cargo": true,
                     "cargos_have_valid_lifecycle": true,
+                    "at_least_one_task_has_time_window": true,
                     "order_has_shipper": true,
                     "order_has_coordinator": true
                   },
@@ -250,6 +251,7 @@ import Chrt
                 taskGroupsHaveValidTaskSequence: Optional(true),
                 tasksHaveValidCargo: Optional(true),
                 cargosHaveValidLifecycle: Optional(true),
+                atLeastOneTaskHasTimeWindow: Optional(true),
                 orderHasShipper: Optional(true),
                 orderHasCoordinator: Optional(true)
             ),
