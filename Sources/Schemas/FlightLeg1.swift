@@ -3,8 +3,9 @@ import Foundation
 public struct FlightLeg1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let id: String
-    public let orderId: String
-    public let taskGroupId: String
+    public let orderId: String?
+    public let taskGroupId: String?
+    public let sessionId: String?
     public let flightNumber: String
     public let provenance: FlightLegProvenanceEnum1
     public let originIata: String
@@ -31,8 +32,9 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
     public init(
         schemaVersion: Int,
         id: String,
-        orderId: String,
-        taskGroupId: String,
+        orderId: String? = nil,
+        taskGroupId: String? = nil,
+        sessionId: String? = nil,
         flightNumber: String,
         provenance: FlightLegProvenanceEnum1,
         originIata: String,
@@ -59,6 +61,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         self.id = id
         self.orderId = orderId
         self.taskGroupId = taskGroupId
+        self.sessionId = sessionId
         self.flightNumber = flightNumber
         self.provenance = provenance
         self.originIata = originIata
@@ -86,8 +89,9 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.id = try container.decode(String.self, forKey: .id)
-        self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
+        self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
+        self.taskGroupId = try container.decodeIfPresent(String.self, forKey: .taskGroupId)
+        self.sessionId = try container.decodeIfPresent(String.self, forKey: .sessionId)
         self.flightNumber = try container.decode(String.self, forKey: .flightNumber)
         self.provenance = try container.decode(FlightLegProvenanceEnum1.self, forKey: .provenance)
         self.originIata = try container.decode(String.self, forKey: .originIata)
@@ -116,8 +120,9 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.orderId, forKey: .orderId)
-        try container.encode(self.taskGroupId, forKey: .taskGroupId)
+        try container.encodeIfPresent(self.orderId, forKey: .orderId)
+        try container.encodeIfPresent(self.taskGroupId, forKey: .taskGroupId)
+        try container.encodeIfPresent(self.sessionId, forKey: .sessionId)
         try container.encode(self.flightNumber, forKey: .flightNumber)
         try container.encode(self.provenance, forKey: .provenance)
         try container.encode(self.originIata, forKey: .originIata)
@@ -146,6 +151,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         case id = "_id"
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
+        case sessionId = "session_id"
         case flightNumber = "flight_number"
         case provenance
         case originIata = "origin_iata"

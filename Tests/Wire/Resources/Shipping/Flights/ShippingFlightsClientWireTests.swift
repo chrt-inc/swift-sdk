@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("FlightsClient Wire Tests") struct FlightsClientWireTests {
+@Suite("ShippingFlightsClient Wire Tests") struct ShippingFlightsClientWireTests {
     @Test func getFlightInfoForTaskV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -15,6 +15,7 @@ import Chrt
                       "_id": "_id",
                       "order_id": "order_id",
                       "task_group_id": "task_group_id",
+                      "session_id": "session_id",
                       "flight_number": "flight_number",
                       "provenance": "manual",
                       "origin_iata": "origin_iata",
@@ -51,8 +52,9 @@ import Chrt
                 FlightLeg1(
                     schemaVersion: 1,
                     id: "_id",
-                    orderId: "order_id",
-                    taskGroupId: "task_group_id",
+                    orderId: Optional("order_id"),
+                    taskGroupId: Optional("task_group_id"),
+                    sessionId: Optional("session_id"),
                     flightNumber: "flight_number",
                     provenance: .manual,
                     originIata: "origin_iata",
@@ -95,6 +97,7 @@ import Chrt
                       "_id": "_id",
                       "order_id": "order_id",
                       "task_group_id": "task_group_id",
+                      "session_id": "session_id",
                       "flight_number": "flight_number",
                       "provenance": "manual",
                       "origin_iata": "origin_iata",
@@ -131,8 +134,9 @@ import Chrt
                 FlightLeg1(
                     schemaVersion: 1,
                     id: "_id",
-                    orderId: "order_id",
-                    taskGroupId: "task_group_id",
+                    orderId: Optional("order_id"),
+                    taskGroupId: Optional("task_group_id"),
+                    sessionId: Optional("session_id"),
                     flightNumber: "flight_number",
                     provenance: .manual,
                     originIata: "origin_iata",
@@ -173,6 +177,7 @@ import Chrt
                   "_id": "_id",
                   "order_id": "order_id",
                   "task_group_id": "task_group_id",
+                  "session_id": "session_id",
                   "flight_number": "flight_number",
                   "provenance": "manual",
                   "origin_iata": "origin_iata",
@@ -205,8 +210,9 @@ import Chrt
         let expectedResponse = FlightLeg1(
             schemaVersion: 1,
             id: "_id",
-            orderId: "order_id",
-            taskGroupId: "task_group_id",
+            orderId: Optional("order_id"),
+            taskGroupId: Optional("task_group_id"),
+            sessionId: Optional("session_id"),
             flightNumber: "flight_number",
             provenance: .manual,
             originIata: "origin_iata",

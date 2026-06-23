@@ -196,12 +196,6 @@ import Chrt
                     "public": true,
                     "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                     "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
-                    "flight_numbers": [
-                      "flight_numbers"
-                    ],
-                    "fa_flight_ids": [
-                      "fa_flight_ids"
-                    ],
                     "device_id": "device_id",
                     "device_mac_address": "device_mac_address",
                     "org_id": "org_id",
@@ -246,19 +240,16 @@ import Chrt
                     },
                     "destination_geofence_radius_miles": 1.1,
                     "destination_geofence_entered": true,
-                    "fa_alert_ids": [
-                      1
+                    "flight_leg_ids": [
+                      "flight_leg_ids"
+                    ],
+                    "flight_numbers": [
+                      "flight_numbers"
                     ],
                     "flight_loaded_statuses": [
                       "flight_loaded_statuses"
                     ],
-                    "fa_alert_id_by_flight_number": {
-                      "key": 1
-                    },
-                    "flight_status_by_fa_flight_id": {
-                      "key": "unknown"
-                    },
-                    "flight_loaded_status_by_fa_flight_id": {
+                    "flight_loaded_status_by_flight_leg_id": {
                       "key": "value"
                     },
                     "_id": "_id"
@@ -301,12 +292,6 @@ import Chrt
                       "public": true,
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "termination_scheduled_for_timestamp": "2024-01-15T09:30:00Z",
-                      "flight_numbers": [
-                        "flight_numbers"
-                      ],
-                      "fa_flight_ids": [
-                        "fa_flight_ids"
-                      ],
                       "device_id": "device_id",
                       "device_mac_address": "device_mac_address",
                       "org_id": "org_id",
@@ -349,18 +334,15 @@ import Chrt
                       },
                       "destination_geofence_radius_miles": 1.1,
                       "destination_geofence_entered": true,
-                      "fa_alert_ids": [
-                        1
+                      "flight_leg_ids": [
+                        "flight_leg_ids"
+                      ],
+                      "flight_numbers": [
+                        "flight_numbers"
                       ],
                       "flight_loaded_statuses": [
                         "flight_loaded_statuses"
                       ],
-                      "fa_alert_id_by_flight_number": {
-                        "key": 1
-                      },
-                      "flight_status_by_fa_flight_id": {
-                        "key": "unknown"
-                      },
                       "_id": "_id"
                     }
                   ],
@@ -463,12 +445,6 @@ import Chrt
                 public: Optional(true),
                 offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                 terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                flightNumbers: Optional([
-                    "flight_numbers"
-                ]),
-                faFlightIds: Optional([
-                    "fa_flight_ids"
-                ]),
                 deviceId: "device_id",
                 deviceMacAddress: "device_mac_address",
                 orgId: "org_id",
@@ -525,19 +501,16 @@ import Chrt
                 )),
                 destinationGeofenceRadiusMiles: Optional(1.1),
                 destinationGeofenceEntered: Optional(true),
-                faAlertIds: Optional([
-                    1
+                flightLegIds: Optional([
+                    "flight_leg_ids"
+                ]),
+                flightNumbers: Optional([
+                    "flight_numbers"
                 ]),
                 flightLoadedStatuses: Optional([
                     "flight_loaded_statuses"
                 ]),
-                faAlertIdByFlightNumber: Optional([
-                    "key": 1
-                ]),
-                flightStatusByFaFlightId: Optional([
-                    "key": .unknown
-                ]),
-                flightLoadedStatusByFaFlightId: Optional([
+                flightLoadedStatusByFlightLegId: Optional([
                     "key": Optional("value")
                 ]),
                 id: "_id"
@@ -580,12 +553,6 @@ import Chrt
                     public: Optional(true),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     terminationScheduledForTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    flightNumbers: Optional([
-                        "flight_numbers"
-                    ]),
-                    faFlightIds: Optional([
-                        "fa_flight_ids"
-                    ]),
                     deviceId: "device_id",
                     deviceMacAddress: "device_mac_address",
                     orgId: "org_id",
@@ -636,17 +603,14 @@ import Chrt
                     )),
                     destinationGeofenceRadiusMiles: Optional(1.1),
                     destinationGeofenceEntered: Optional(true),
-                    faAlertIds: Optional([
-                        1
+                    flightLegIds: Optional([
+                        "flight_leg_ids"
+                    ]),
+                    flightNumbers: Optional([
+                        "flight_numbers"
                     ]),
                     flightLoadedStatuses: Optional([
                         "flight_loaded_statuses"
-                    ]),
-                    faAlertIdByFlightNumber: Optional([
-                        "key": 1
-                    ]),
-                    flightStatusByFaFlightId: Optional([
-                        "key": .unknown
                     ]),
                     id: "_id"
                 )

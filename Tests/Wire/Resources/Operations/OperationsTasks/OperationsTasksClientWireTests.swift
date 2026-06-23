@@ -87,19 +87,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
-            filterTag: [
-                "filter_tag"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -254,6 +242,37 @@ import Chrt
                 title: "title",
                 description: "description"
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func bulkUpdateDeadlinesV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "updated_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OperationsTasksBulkUpdateDeadlinesRes1(
+            updatedCount: 1
+        )
+        let response = try await client.operations.operationsTasks.bulkUpdateDeadlinesV1(
+            request: .init(operationsTaskDeadlineUpdates: [
+                OperationsTaskDeadlineUpdate1(
+                    taskId: "task_id",
+                    deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ]),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

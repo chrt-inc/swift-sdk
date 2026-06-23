@@ -158,7 +158,7 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Removes the OperationsTasks this OperationsTaskList added to the Case (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromCaseRes1)
+    /// Removes the OperationsTasks this OperationsTaskList added to the Case (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromCaseRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeNotStartedTasksFromCaseV1(taskListId: String, caseId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRemoveFromCaseRes1 {

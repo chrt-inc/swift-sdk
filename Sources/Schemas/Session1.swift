@@ -8,8 +8,6 @@ public struct Session1: Codable, Hashable, Sendable {
     public let `public`: Bool?
     public let offChrtShipperOrgId: String?
     public let terminationScheduledForTimestamp: Date?
-    public let flightNumbers: [String]?
-    public let faFlightIds: [String]?
     public let deviceId: String
     public let deviceMacAddress: String
     /// Must be a string starting with `org_`
@@ -25,11 +23,10 @@ public struct Session1: Codable, Hashable, Sendable {
     public let destinationGeofenceLocation: LocationFeature?
     public let destinationGeofenceRadiusMiles: Double?
     public let destinationGeofenceEntered: Bool?
-    public let faAlertIds: [Int]?
+    public let flightLegIds: [String]?
+    public let flightNumbers: [String]?
     public let flightLoadedStatuses: [String]?
-    public let faAlertIdByFlightNumber: [String: Int]?
-    public let flightStatusByFaFlightId: [String: FlightStatusEnum]?
-    public let flightLoadedStatusByFaFlightId: [String: String?]?
+    public let flightLoadedStatusByFlightLegId: [String: String?]?
     public let id: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -41,8 +38,6 @@ public struct Session1: Codable, Hashable, Sendable {
         public: Bool? = nil,
         offChrtShipperOrgId: String? = nil,
         terminationScheduledForTimestamp: Date? = nil,
-        flightNumbers: [String]? = nil,
-        faFlightIds: [String]? = nil,
         deviceId: String,
         deviceMacAddress: String,
         orgId: String,
@@ -57,11 +52,10 @@ public struct Session1: Codable, Hashable, Sendable {
         destinationGeofenceLocation: LocationFeature? = nil,
         destinationGeofenceRadiusMiles: Double? = nil,
         destinationGeofenceEntered: Bool? = nil,
-        faAlertIds: [Int]? = nil,
+        flightLegIds: [String]? = nil,
+        flightNumbers: [String]? = nil,
         flightLoadedStatuses: [String]? = nil,
-        faAlertIdByFlightNumber: [String: Int]? = nil,
-        flightStatusByFaFlightId: [String: FlightStatusEnum]? = nil,
-        flightLoadedStatusByFaFlightId: [String: String?]? = nil,
+        flightLoadedStatusByFlightLegId: [String: String?]? = nil,
         id: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -71,8 +65,6 @@ public struct Session1: Codable, Hashable, Sendable {
         self.public = `public`
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.terminationScheduledForTimestamp = terminationScheduledForTimestamp
-        self.flightNumbers = flightNumbers
-        self.faFlightIds = faFlightIds
         self.deviceId = deviceId
         self.deviceMacAddress = deviceMacAddress
         self.orgId = orgId
@@ -87,11 +79,10 @@ public struct Session1: Codable, Hashable, Sendable {
         self.destinationGeofenceLocation = destinationGeofenceLocation
         self.destinationGeofenceRadiusMiles = destinationGeofenceRadiusMiles
         self.destinationGeofenceEntered = destinationGeofenceEntered
-        self.faAlertIds = faAlertIds
+        self.flightLegIds = flightLegIds
+        self.flightNumbers = flightNumbers
         self.flightLoadedStatuses = flightLoadedStatuses
-        self.faAlertIdByFlightNumber = faAlertIdByFlightNumber
-        self.flightStatusByFaFlightId = flightStatusByFaFlightId
-        self.flightLoadedStatusByFaFlightId = flightLoadedStatusByFaFlightId
+        self.flightLoadedStatusByFlightLegId = flightLoadedStatusByFlightLegId
         self.id = id
         self.additionalProperties = additionalProperties
     }
@@ -104,8 +95,6 @@ public struct Session1: Codable, Hashable, Sendable {
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.terminationScheduledForTimestamp = try container.decodeIfPresent(Date.self, forKey: .terminationScheduledForTimestamp)
-        self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
-        self.faFlightIds = try container.decodeIfPresent([String].self, forKey: .faFlightIds)
         self.deviceId = try container.decode(String.self, forKey: .deviceId)
         self.deviceMacAddress = try container.decode(String.self, forKey: .deviceMacAddress)
         self.orgId = try container.decode(String.self, forKey: .orgId)
@@ -120,11 +109,10 @@ public struct Session1: Codable, Hashable, Sendable {
         self.destinationGeofenceLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .destinationGeofenceLocation)
         self.destinationGeofenceRadiusMiles = try container.decodeIfPresent(Double.self, forKey: .destinationGeofenceRadiusMiles)
         self.destinationGeofenceEntered = try container.decodeIfPresent(Bool.self, forKey: .destinationGeofenceEntered)
-        self.faAlertIds = try container.decodeIfPresent([Int].self, forKey: .faAlertIds)
+        self.flightLegIds = try container.decodeIfPresent([String].self, forKey: .flightLegIds)
+        self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
         self.flightLoadedStatuses = try container.decodeIfPresent([String].self, forKey: .flightLoadedStatuses)
-        self.faAlertIdByFlightNumber = try container.decodeIfPresent([String: Int].self, forKey: .faAlertIdByFlightNumber)
-        self.flightStatusByFaFlightId = try container.decodeIfPresent([String: FlightStatusEnum].self, forKey: .flightStatusByFaFlightId)
-        self.flightLoadedStatusByFaFlightId = try container.decodeIfPresent([String: String?].self, forKey: .flightLoadedStatusByFaFlightId)
+        self.flightLoadedStatusByFlightLegId = try container.decodeIfPresent([String: String?].self, forKey: .flightLoadedStatusByFlightLegId)
         self.id = try container.decode(String.self, forKey: .id)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -138,8 +126,6 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.public, forKey: .public)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.terminationScheduledForTimestamp, forKey: .terminationScheduledForTimestamp)
-        try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
-        try container.encodeIfPresent(self.faFlightIds, forKey: .faFlightIds)
         try container.encode(self.deviceId, forKey: .deviceId)
         try container.encode(self.deviceMacAddress, forKey: .deviceMacAddress)
         try container.encode(self.orgId, forKey: .orgId)
@@ -154,11 +140,10 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.destinationGeofenceLocation, forKey: .destinationGeofenceLocation)
         try container.encodeIfPresent(self.destinationGeofenceRadiusMiles, forKey: .destinationGeofenceRadiusMiles)
         try container.encodeIfPresent(self.destinationGeofenceEntered, forKey: .destinationGeofenceEntered)
-        try container.encodeIfPresent(self.faAlertIds, forKey: .faAlertIds)
+        try container.encodeIfPresent(self.flightLegIds, forKey: .flightLegIds)
+        try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
         try container.encodeIfPresent(self.flightLoadedStatuses, forKey: .flightLoadedStatuses)
-        try container.encodeIfPresent(self.faAlertIdByFlightNumber, forKey: .faAlertIdByFlightNumber)
-        try container.encodeIfPresent(self.flightStatusByFaFlightId, forKey: .flightStatusByFaFlightId)
-        try container.encodeIfPresent(self.flightLoadedStatusByFaFlightId, forKey: .flightLoadedStatusByFaFlightId)
+        try container.encodeIfPresent(self.flightLoadedStatusByFlightLegId, forKey: .flightLoadedStatusByFlightLegId)
         try container.encode(self.id, forKey: .id)
     }
 
@@ -170,8 +155,6 @@ public struct Session1: Codable, Hashable, Sendable {
         case `public`
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case terminationScheduledForTimestamp = "termination_scheduled_for_timestamp"
-        case flightNumbers = "flight_numbers"
-        case faFlightIds = "fa_flight_ids"
         case deviceId = "device_id"
         case deviceMacAddress = "device_mac_address"
         case orgId = "org_id"
@@ -186,11 +169,10 @@ public struct Session1: Codable, Hashable, Sendable {
         case destinationGeofenceLocation = "destination_geofence_location"
         case destinationGeofenceRadiusMiles = "destination_geofence_radius_miles"
         case destinationGeofenceEntered = "destination_geofence_entered"
-        case faAlertIds = "fa_alert_ids"
+        case flightLegIds = "flight_leg_ids"
+        case flightNumbers = "flight_numbers"
         case flightLoadedStatuses = "flight_loaded_statuses"
-        case faAlertIdByFlightNumber = "fa_alert_id_by_flight_number"
-        case flightStatusByFaFlightId = "flight_status_by_fa_flight_id"
-        case flightLoadedStatusByFaFlightId = "flight_loaded_status_by_fa_flight_id"
+        case flightLoadedStatusByFlightLegId = "flight_loaded_status_by_flight_leg_id"
         case id = "_id"
     }
 }

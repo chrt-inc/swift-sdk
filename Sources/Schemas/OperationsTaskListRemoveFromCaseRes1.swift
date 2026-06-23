@@ -3,7 +3,7 @@ import Foundation
 /// Result of removing a Task List from a Case.
 /// 
 /// Only untouched (`not_started`) tasks are deleted; tasks an operator has
-/// started, completed, or skipped are preserved and reported as `kept_count`.
+/// started, completed, skipped, or cancelled are preserved and reported as `kept_count`.
 public struct OperationsTaskListRemoveFromCaseRes1: Codable, Hashable, Sendable {
     public let deletedCount: Int
     public let keptCount: Int

@@ -21,7 +21,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -46,7 +54,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -71,7 +87,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -95,7 +119,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -118,7 +150,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -142,7 +182,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -166,7 +214,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -195,7 +251,15 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -234,7 +298,15 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -269,7 +341,15 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -315,7 +395,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers)
+            )
 
         } catch {
         }
@@ -335,7 +423,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers)
+            )
 
             Issue.record("Expected error to be thrown")
         } catch {
@@ -359,7 +455,15 @@ import Testing
         )
 
         do {
-            _ = try await client.orgs.getInfoV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+            _ = try await client.flights.searchConnectionsV1(
+                request: .init(
+                    origin: "origin",
+                    destination: "destination",
+                    searchBy: .departureTime,
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                ),
+                requestOptions: RequestOptions(additionalHeaders: stub.headers)
+            )
 
         } catch {
         }

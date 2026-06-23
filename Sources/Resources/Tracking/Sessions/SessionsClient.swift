@@ -18,7 +18,6 @@ public final class SessionsClient: Sendable {
     /// - Parameter filterDeviceId: Filter by device ID
     /// - Parameter filterOffChrtReferenceId: Filter by off-CHRT reference ID (exact match)
     /// - Parameter filterFlightNumber: Filter by flight number (exact match)
-    /// - Parameter filterFaFlightId: Filter by FlightAware flight ID (exact match)
     /// - Parameter filterFlightLoadedStatus: Filter by flight loaded status (exact match)
     /// - Parameter filterHasLastSeen: Filter by whether both last_seen_at_location and last_seen_at_timestamp are set
     /// - Parameter filterCreatedAtTimestampGte: Filter by created_at_timestamp >= value
@@ -30,7 +29,7 @@ public final class SessionsClient: Sendable {
     /// - Parameter filterTerminatedAtTimestampGte: Filter by terminated_at_timestamp >= value
     /// - Parameter filterTerminatedAtTimestampLte: Filter by terminated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFaFlightId: String? = nil, filterFlightLoadedStatus: String? = nil, filterHasLastSeen: Bool? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
+    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFlightLoadedStatus: String? = nil, filterHasLastSeen: Bool? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/list/v1",
@@ -46,7 +45,6 @@ public final class SessionsClient: Sendable {
                 "filter_device_id": filterDeviceId.map { .string($0) }, 
                 "filter_off_chrt_reference_id": filterOffChrtReferenceId.map { .string($0) }, 
                 "filter_flight_number": filterFlightNumber.map { .string($0) }, 
-                "filter_fa_flight_id": filterFaFlightId.map { .string($0) }, 
                 "filter_flight_loaded_status": filterFlightLoadedStatus.map { .string($0) }, 
                 "filter_has_last_seen": filterHasLastSeen.map { .bool($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
@@ -98,7 +96,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
+    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification; attach flights afterwards via set_flight_info. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -144,7 +142,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Terminates a session. Moves device.active_session_id to device.past_session_ids. | auth: api_key | () -> (bool)
+    /// Terminates a session. Moves device.active_session_id to device.past_session_ids and deactivates the device. | auth: api_key | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func terminateV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -159,42 +157,45 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Adds a flight number and FA flight IDs to an existing session. Creates or reuses a FlightAware alert. | auth: api_key | authz: min_org_role=operator | (SessionAddFlightReq1) -> (bool)
+    /// Returns the session's flight legs in order, with Cirium-sourced status lazily resolved and refreshed on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (list[FlightLeg1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addFlightV1(request: Requests.SessionAddFlightReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func flightLegsV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> [FlightLeg1] {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sessions/add_flight/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes a flight number and FA flight IDs from a session. Runs the shared-aware FlightAware unsubscribe cycle before removing. | auth: api_key | authz: min_org_role=operator | (SessionRemoveFlightReq1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeFlightV1(request: Requests.SessionRemoveFlightReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sessions/remove_flight/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Fetches current OOOI timestamps from FlightAware for each fa_flight_id on the session and updates flight_status_by_fa_flight_id. Use when the webhook may have left state out of sync. | auth: api_key | authz: min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func syncFlightStatusV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sessions/sync_flight_status/v1",
+            method: .get,
+            path: "/tracking/sessions/flight_legs/v1",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
+            requestOptions: requestOptions,
+            responseType: [FlightLeg1].self
+        )
+    }
+
+    /// Returns the Cirium-sourced positional track for one of the session's flight legs — the live breadcrumb trail plus the planned path (waypoints + legacy route) — cached on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func flightTrackV1(sessionId: String, flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/sessions/flight_track/v1",
+            queryParams: [
+                "session_id": .string(sessionId), 
+                "flight_leg_id": .string(flightLegId)
+            ],
+            requestOptions: requestOptions,
+            responseType: FlightTrackRes.self
+        )
+    }
+
+    /// Replaces the session's followed flights: deletes the existing session-owned FlightLeg documents and creates new ones from the supplied flight details. Each leg's Cirium flightId and status resolve lazily on read. Pass an empty list to clear all flights. | auth: api_key | authz: min_org_role=operator | (SessionSetFlightInfoReq1) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setFlightInfoV1(request: Requests.SessionSetFlightInfoReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/sessions/set_flight_info/v1",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

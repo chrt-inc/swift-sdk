@@ -3,7 +3,7 @@ import Foundation
 public final class ShippingClient_: Sendable {
     public let drivers: DriversClient
     public let cargos: CargosClient
-    public let flights: FlightsClient
+    public let flights: ShippingFlightsClient
     public let taskArtifacts: TaskArtifactsClient
     public let orders: OrdersClient
     public let orderDrafts: OrderDraftsClient
@@ -18,7 +18,7 @@ public final class ShippingClient_: Sendable {
     init(config: ClientConfig) {
         self.drivers = DriversClient(config: config)
         self.cargos = CargosClient(config: config)
-        self.flights = FlightsClient(config: config)
+        self.flights = ShippingFlightsClient(config: config)
         self.taskArtifacts = TaskArtifactsClient(config: config)
         self.orders = OrdersClient(config: config)
         self.orderDrafts = OrderDraftsClient(config: config)

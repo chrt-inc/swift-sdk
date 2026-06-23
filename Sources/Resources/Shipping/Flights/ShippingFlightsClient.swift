@@ -1,6 +1,6 @@
 import Foundation
 
-public final class FlightsClient: Sendable {
+public final class ShippingFlightsClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {

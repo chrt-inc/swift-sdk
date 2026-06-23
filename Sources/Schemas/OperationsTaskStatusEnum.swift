@@ -10,4 +10,5 @@ public enum OperationsTaskStatusEnum: String, Codable, Hashable, CaseIterable, S
     case inProgress = "in_progress"
     case completed
     case skipped
+    case cancelled
 }
