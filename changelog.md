@@ -1,3 +1,15 @@
+## 7.0.0 - 2026-06-23
+### Breaking Changes
+* **`Session1.faFlightIds`**, **`Session1.faAlertIds`**, **`Session1.faAlertIdByFlightNumber`**, and **`Session1.flightStatusByFaFlightId`** — removed; update all read sites and any `Session1(...)` call sites that passed these arguments.
+* **`Session1.flightLoadedStatusByFaFlightId`** — renamed to `flightLoadedStatusByFlightLegId`; update all read and construction sites to use the new name.
+* **`OperationsTaskStatusEnum`** — new `cancelled` case added; exhaustive `switch` statements must add a handler or `default` branch to compile.
+### Added
+* **`Session1.flightLegIds`** — new optional `[String]?` field replacing the removed FlightAware-specific identifiers with internal flight leg IDs.
+* **`FlightConnectionsSearchRes`**, **`FlightConnection`**, and **`FlightConnectionLeg`** — new response types for the flight connections search endpoint, carrying scored multi-leg itineraries with carrier, airport, and timing details.
+* **`CiriumFlightStatus`**, **`CiriumOperationalTimes`**, **`CiriumAirportResources`**, and **`CiriumDate`** — new Cirium-sourced flight status schemas exposing OOOI times, gate/runway assignments, and UTC date wrappers.
+* **`ConnectionSearchByEnum`** and **`ConnectionSearchPreferenceEnum`** — new enums for controlling flight connection search direction and preference.
+* **`OperationsTaskDeadlineUpdate1`**, **`OperationsTasksBulkUpdateDeadlinesRes1`**, and **`OrderBuilderReq.initialDeadlineTimestamp`** — new types and field supporting bulk operations task deadline management at build time.
+
 ## 6.0.0 - 2026-06-22
 ### Breaking Changes
 * **`LineItemGroupSharedTaskGroupMileageCreateClientReq`** — renamed to `SharedTaskGroupMileageCreateForProviderPayDriverClientReq`; update all type references and usages passed to `sharedTaskGroupMileageCreateV1`.
