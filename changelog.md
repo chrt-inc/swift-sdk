@@ -1,7 +1,3 @@
-## 8.0.0 - 2026-06-24
-### Breaking Changes
-* **`DriverClient.updateV1`** — removed; migrate all call sites to `updateV2(request:requestOptions:)`, which accepts a `DriverByDriverDataPointClientCreate1` body and additionally writes a driver-by-driver ping on every call.
-
 ## 7.0.0 - 2026-06-23
 ### Breaking Changes
 * **`Session1.faFlightIds`**, **`Session1.faAlertIds`**, **`Session1.faAlertIdByFlightNumber`**, and **`Session1.flightStatusByFaFlightId`** — removed; update all read sites and any `Session1(...)` call sites that passed these arguments.
