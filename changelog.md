@@ -1,3 +1,10 @@
+## 2.0.0 - 2026-06-24
+### Breaking Changes
+* **`FlightConnectionLeg.departureTimeLocal`** — renamed to `departureTimeUtc`; update all read sites and any `FlightConnectionLeg(...)` call sites that passed `departureTimeLocal:` to use `departureTimeUtc:`.
+* **`FlightConnectionLeg.arrivalTimeLocal`** — renamed to `arrivalTimeUtc`; update all read sites and any `FlightConnectionLeg(...)` call sites that passed `arrivalTimeLocal:` to use `arrivalTimeUtc:`.
+### Changed
+* **`FlightConnectionLeg`** JSON coding keys updated from `departure_time_local`/`arrival_time_local` to `departure_time_utc`/`arrival_time_utc`; any manually decoded payloads using the old key names will no longer deserialize into these fields.
+
 ## 7.0.0 - 2026-06-23
 ### Breaking Changes
 * **`Session1.faFlightIds`**, **`Session1.faAlertIds`**, **`Session1.faAlertIdByFlightNumber`**, and **`Session1.flightStatusByFaFlightId`** — removed; update all read sites and any `Session1(...)` call sites that passed these arguments.

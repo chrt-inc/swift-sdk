@@ -87,7 +87,19 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterOrderIds: [
+                "filter_order_ids"
+            ],
             filterDepartmentId: "filter_department_id",
+            filterTaskType: [
+                .reviewOrderDetails
+            ],
+            filterStatus: [
+                .notStarted
+            ],
+            filterTag: [
+                "filter_tag"
+            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
