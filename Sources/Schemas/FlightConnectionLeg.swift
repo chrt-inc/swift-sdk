@@ -14,8 +14,8 @@ public struct FlightConnectionLeg: Codable, Hashable, Sendable {
     public let destinationTimeZone: String?
     public let destinationLatitude: Double?
     public let destinationLongitude: Double?
-    public let departureTimeLocal: Date?
-    public let arrivalTimeLocal: Date?
+    public let departureTimeUtc: Date?
+    public let arrivalTimeUtc: Date?
     public let equipmentName: String?
     public let isCodeshare: Bool?
     /// Additional properties that are not explicitly defined in the schema
@@ -35,8 +35,8 @@ public struct FlightConnectionLeg: Codable, Hashable, Sendable {
         destinationTimeZone: String? = nil,
         destinationLatitude: Double? = nil,
         destinationLongitude: Double? = nil,
-        departureTimeLocal: Date? = nil,
-        arrivalTimeLocal: Date? = nil,
+        departureTimeUtc: Date? = nil,
+        arrivalTimeUtc: Date? = nil,
         equipmentName: String? = nil,
         isCodeshare: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -54,8 +54,8 @@ public struct FlightConnectionLeg: Codable, Hashable, Sendable {
         self.destinationTimeZone = destinationTimeZone
         self.destinationLatitude = destinationLatitude
         self.destinationLongitude = destinationLongitude
-        self.departureTimeLocal = departureTimeLocal
-        self.arrivalTimeLocal = arrivalTimeLocal
+        self.departureTimeUtc = departureTimeUtc
+        self.arrivalTimeUtc = arrivalTimeUtc
         self.equipmentName = equipmentName
         self.isCodeshare = isCodeshare
         self.additionalProperties = additionalProperties
@@ -76,8 +76,8 @@ public struct FlightConnectionLeg: Codable, Hashable, Sendable {
         self.destinationTimeZone = try container.decodeIfPresent(String.self, forKey: .destinationTimeZone)
         self.destinationLatitude = try container.decodeIfPresent(Double.self, forKey: .destinationLatitude)
         self.destinationLongitude = try container.decodeIfPresent(Double.self, forKey: .destinationLongitude)
-        self.departureTimeLocal = try container.decodeIfPresent(Date.self, forKey: .departureTimeLocal)
-        self.arrivalTimeLocal = try container.decodeIfPresent(Date.self, forKey: .arrivalTimeLocal)
+        self.departureTimeUtc = try container.decodeIfPresent(Date.self, forKey: .departureTimeUtc)
+        self.arrivalTimeUtc = try container.decodeIfPresent(Date.self, forKey: .arrivalTimeUtc)
         self.equipmentName = try container.decodeIfPresent(String.self, forKey: .equipmentName)
         self.isCodeshare = try container.decodeIfPresent(Bool.self, forKey: .isCodeshare)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -99,8 +99,8 @@ public struct FlightConnectionLeg: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.destinationTimeZone, forKey: .destinationTimeZone)
         try container.encodeIfPresent(self.destinationLatitude, forKey: .destinationLatitude)
         try container.encodeIfPresent(self.destinationLongitude, forKey: .destinationLongitude)
-        try container.encodeIfPresent(self.departureTimeLocal, forKey: .departureTimeLocal)
-        try container.encodeIfPresent(self.arrivalTimeLocal, forKey: .arrivalTimeLocal)
+        try container.encodeIfPresent(self.departureTimeUtc, forKey: .departureTimeUtc)
+        try container.encodeIfPresent(self.arrivalTimeUtc, forKey: .arrivalTimeUtc)
         try container.encodeIfPresent(self.equipmentName, forKey: .equipmentName)
         try container.encodeIfPresent(self.isCodeshare, forKey: .isCodeshare)
     }
@@ -120,8 +120,8 @@ public struct FlightConnectionLeg: Codable, Hashable, Sendable {
         case destinationTimeZone = "destination_time_zone"
         case destinationLatitude = "destination_latitude"
         case destinationLongitude = "destination_longitude"
-        case departureTimeLocal = "departure_time_local"
-        case arrivalTimeLocal = "arrival_time_local"
+        case departureTimeUtc = "departure_time_utc"
+        case arrivalTimeUtc = "arrival_time_utc"
         case equipmentName = "equipment_name"
         case isCodeshare = "is_codeshare"
     }
