@@ -9,140 +9,36 @@ import Chrt
             body: Data(
                 """
                 {
-                  "task_groups": [
+                  "driver_analytics_days": [
                     {
-                      "schema_version": 1,
-                      "_id": "_id",
-                      "order_id": "order_id",
-                      "order_short_id": "order_short_id",
-                      "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "task_ids": [
-                        "task_ids"
-                      ],
-                      "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
-                      "created_by_user_id": "created_by_user_id",
-                      "created_by_org_id": "created_by_org_id",
-                      "shipper_org_id": "shipper_org_id",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                      "coordinator_org_id": "coordinator_org_id",
-                      "executor_org_id": "executor_org_id",
-                      "off_chrt_executor_org_id": "off_chrt_executor_org_id",
-                      "driver_id": "driver_id",
-                      "task_group_s3_object_metadata_ids": [
-                        "task_group_s3_object_metadata_ids"
-                      ],
-                      "status": "draft",
-                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
-                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
-                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                      "skipped_at_timestamp": "2024-01-15T09:30:00Z",
-                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
-                      "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                      "task_group_type": "chrt_ground_provider",
-                      "vehicle_type": "sedan",
-                      "flight_setup_notes": "flight_setup_notes",
-                      "mileage_estimated": 1.1,
-                      "mileage_observed": 1.1,
-                      "wait_time_total_minutes": 1.1,
-                      "mileage_asserted": true,
-                      "flight_leg_ids": [
-                        "flight_leg_ids"
-                      ],
-                      "messages": [
-                        {
-                          "message": "message",
-                          "user_id": "user_id",
-                          "org_id": "org_id",
-                          "timestamp": "2024-01-15T09:30:00Z"
-                        }
-                      ],
-                      "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
-                      "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
-                      "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
-                      "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
-                      "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
-                      "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
-                      "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
-                      "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
-                      "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
+                      "day": "day",
+                      "observed_mileage_order_in_progress_deduped": 1.1,
+                      "observed_mileage_order_not_in_progress": 1.1,
+                      "observed_mileage_total": 1.1,
+                      "self_reported_hours_and_mileage": {
+                        "schema_version": 1,
+                        "driver_id": "driver_id",
+                        "date": "date",
+                        "org_id": "org_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "updated_at": "2024-01-15T09:30:00Z",
+                        "_id": "_id"
+                      }
                     }
                   ],
-                  "excluded_task_groups": [
+                  "driver_analytics_task_groups": [
                     {
-                      "schema_version": 1,
-                      "_id": "_id",
-                      "order_id": "order_id",
-                      "order_short_id": "order_short_id",
-                      "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "task_ids": [
-                        "task_ids"
-                      ],
-                      "order_schedule_template_path_idempotency_key": "order_schedule_template_path_idempotency_key",
-                      "created_by_user_id": "created_by_user_id",
-                      "created_by_org_id": "created_by_org_id",
-                      "shipper_org_id": "shipper_org_id",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                      "coordinator_org_id": "coordinator_org_id",
-                      "executor_org_id": "executor_org_id",
-                      "off_chrt_executor_org_id": "off_chrt_executor_org_id",
-                      "driver_id": "driver_id",
-                      "task_group_s3_object_metadata_ids": [
-                        "task_group_s3_object_metadata_ids"
-                      ],
-                      "status": "draft",
-                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
-                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
-                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
-                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                      "skipped_at_timestamp": "2024-01-15T09:30:00Z",
-                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
-                      "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                      "task_group_type": "chrt_ground_provider",
-                      "vehicle_type": "sedan",
-                      "flight_setup_notes": "flight_setup_notes",
-                      "mileage_estimated": 1.1,
-                      "mileage_observed": 1.1,
-                      "wait_time_total_minutes": 1.1,
-                      "mileage_asserted": true,
-                      "flight_leg_ids": [
-                        "flight_leg_ids"
-                      ],
-                      "messages": [
-                        {
-                          "message": "message",
-                          "user_id": "user_id",
-                          "org_id": "org_id",
-                          "timestamp": "2024-01-15T09:30:00Z"
-                        }
-                      ],
-                      "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
-                      "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
-                      "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
-                      "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
-                      "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
-                      "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
-                      "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
-                      "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
-                      "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id"
-                    }
-                  ],
-                  "deduped_task_group_driver_hours": 1.1,
-                  "overlapping_task_groups_detected": true,
-                  "total_driver_mileage_tracked": 1.1,
-                  "deduped_task_group_driver_mileage_tracked": 1.1,
-                  "self_reported_hours_and_mileage": [
-                    {
-                      "schema_version": 1,
-                      "driver_id": "driver_id",
-                      "date": "date",
-                      "hours_worked": 1.1,
-                      "miles_driven": 1.1,
-                      "org_id": "org_id",
-                      "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "created_by_user_id": "created_by_user_id",
-                      "updated_at": "2024-01-15T09:30:00Z",
-                      "_id": "_id"
+                      "task_group": {
+                        "schema_version": 1,
+                        "_id": "_id",
+                        "order_id": "order_id",
+                        "order_short_id": "order_short_id",
+                        "created_by_org_id": "created_by_org_id",
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                        "task_group_type": "chrt_ground_provider"
+                      },
+                      "observed_mileage_order_in_progress": 1.1
                     }
                   ]
                 }
@@ -155,140 +51,36 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = DriverStatsRes(
-            taskGroups: [
-                TaskGroup1(
-                    schemaVersion: 1,
-                    id: "_id",
-                    orderId: "order_id",
-                    orderShortId: "order_short_id",
-                    orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    taskIds: Optional([
-                        "task_ids"
-                    ]),
-                    orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
-                    createdByUserId: Optional("created_by_user_id"),
-                    createdByOrgId: "created_by_org_id",
-                    shipperOrgId: Optional("shipper_org_id"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                    coordinatorOrgId: Optional("coordinator_org_id"),
-                    executorOrgId: Optional("executor_org_id"),
-                    offChrtExecutorOrgId: Optional("off_chrt_executor_org_id"),
-                    driverId: Optional("driver_id"),
-                    taskGroupS3ObjectMetadataIds: Optional([
-                        "task_group_s3_object_metadata_ids"
-                    ]),
-                    status: Optional(.draft),
-                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    taskGroupType: .chrtGroundProvider,
-                    vehicleType: Optional(.sedan),
-                    flightSetupNotes: Optional("flight_setup_notes"),
-                    mileageEstimated: Optional(1.1),
-                    mileageObserved: Optional(1.1),
-                    waitTimeTotalMinutes: Optional(1.1),
-                    mileageAsserted: Optional(true),
-                    flightLegIds: Optional([
-                        "flight_leg_ids"
-                    ]),
-                    messages: Optional([
-                        TaskGroupMessage1(
-                            message: "message",
-                            userId: "user_id",
-                            orgId: "org_id",
-                            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-                        )
-                    ]),
-                    shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
-                    shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
-                    shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
-                    providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
-                    providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
-                    providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
-                    providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
-                    providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
-                    providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
+            driverAnalyticsDays: Optional([
+                DriverAnalyticsDay(
+                    day: "day",
+                    observedMileageOrderInProgressDeduped: 1.1,
+                    observedMileageOrderNotInProgress: 1.1,
+                    observedMileageTotal: 1.1,
+                    selfReportedHoursAndMileage: Optional(DriverSelfReportedHoursAndMileage1(
+                        schemaVersion: 1,
+                        driverId: "driver_id",
+                        date: "date",
+                        orgId: "org_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        id: "_id"
+                    ))
                 )
-            ],
-            excludedTaskGroups: [
-                TaskGroup1(
-                    schemaVersion: 1,
-                    id: "_id",
-                    orderId: "order_id",
-                    orderShortId: "order_short_id",
-                    orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    taskIds: Optional([
-                        "task_ids"
-                    ]),
-                    orderScheduleTemplatePathIdempotencyKey: Optional("order_schedule_template_path_idempotency_key"),
-                    createdByUserId: Optional("created_by_user_id"),
-                    createdByOrgId: "created_by_org_id",
-                    shipperOrgId: Optional("shipper_org_id"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                    coordinatorOrgId: Optional("coordinator_org_id"),
-                    executorOrgId: Optional("executor_org_id"),
-                    offChrtExecutorOrgId: Optional("off_chrt_executor_org_id"),
-                    driverId: Optional("driver_id"),
-                    taskGroupS3ObjectMetadataIds: Optional([
-                        "task_group_s3_object_metadata_ids"
-                    ]),
-                    status: Optional(.draft),
-                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    taskGroupType: .chrtGroundProvider,
-                    vehicleType: Optional(.sedan),
-                    flightSetupNotes: Optional("flight_setup_notes"),
-                    mileageEstimated: Optional(1.1),
-                    mileageObserved: Optional(1.1),
-                    waitTimeTotalMinutes: Optional(1.1),
-                    mileageAsserted: Optional(true),
-                    flightLegIds: Optional([
-                        "flight_leg_ids"
-                    ]),
-                    messages: Optional([
-                        TaskGroupMessage1(
-                            message: "message",
-                            userId: "user_id",
-                            orgId: "org_id",
-                            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-                        )
-                    ]),
-                    shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
-                    shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
-                    shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
-                    providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
-                    providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
-                    providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
-                    providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
-                    providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
-                    providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id")
-                )
-            ],
-            dedupedTaskGroupDriverHours: 1.1,
-            overlappingTaskGroupsDetected: true,
-            totalDriverMileageTracked: Optional(1.1),
-            dedupedTaskGroupDriverMileageTracked: Optional(1.1),
-            selfReportedHoursAndMileage: Optional([
-                DriverSelfReportedHoursAndMileage1(
-                    schemaVersion: 1,
-                    driverId: "driver_id",
-                    date: "date",
-                    hoursWorked: Optional(1.1),
-                    milesDriven: Optional(1.1),
-                    orgId: "org_id",
-                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    createdByUserId: "created_by_user_id",
-                    updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    id: "_id"
+            ]),
+            driverAnalyticsTaskGroups: Optional([
+                DriverAnalyticsTaskGroup(
+                    taskGroup: TaskGroup1(
+                        schemaVersion: 1,
+                        id: "_id",
+                        orderId: "order_id",
+                        orderShortId: "order_short_id",
+                        createdByOrgId: "created_by_org_id",
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        taskGroupType: .chrtGroundProvider
+                    ),
+                    observedMileageOrderInProgress: 1.1
                 )
             ])
         )
@@ -890,9 +682,6 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
-            filterRole: [
-                .owner
-            ],
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             sortBy: .firstName,
@@ -1018,9 +807,6 @@ import Chrt
             search: "search",
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
-            filterStatus: [
-                .unassigned
-            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

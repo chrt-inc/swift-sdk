@@ -9,7 +9,7 @@ public final class DriversClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves driver stats for a time window: overlap-corrected hours worked, total GPS mileage, and mileage restricted to worked task-group intervals. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
+    /// Retrieves driver analytics for a time window. Daily rows are clipped to the requested UTC window; task-group rows include full in-progress mileage for task groups whose in-progress interval overlaps the requested window. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverStatsReq) -> (DriverStatsRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getStatsV1(driverId: String, request: Requests.DriverStatsReq, requestOptions: RequestOptions? = nil) async throws -> DriverStatsRes {

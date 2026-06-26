@@ -39,7 +39,7 @@ public final class AdHocClient: Sendable {
         )
     }
 
-    /// Creates a new ad-hoc notification intent for an order. | authz: min_org_role=operator | (NotificationIntentAdHocClientCreate1) -> (PydanticObjectId)
+    /// Creates or returns an existing ad-hoc notification intent for an order. | authz: min_org_role=operator | (NotificationIntentAdHocClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(orderId: String, request: NotificationIntentAdHocClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
