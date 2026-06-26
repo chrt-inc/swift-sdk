@@ -1,3 +1,13 @@
+## 3.0.0 - 2026-06-26
+### Breaking Changes
+* **`DriverStatsRes`** — fields `taskGroups`, `excludedTaskGroups`, `dedupedTaskGroupDriverHours`, `overlappingTaskGroupsDetected`, `totalDriverMileageTracked`, `dedupedTaskGroupDriverMileageTracked`, and `selfReportedHoursAndMileage` are removed; replace all read and construction sites with the new optional fields `driverAnalyticsDays: [DriverAnalyticsDay]?` and `driverAnalyticsTaskGroups: [DriverAnalyticsTaskGroup]?`.
+* **`DriverStatsReq.excludedTaskGroupIds`** — removed from the request struct and its initializer; remove any `excludedTaskGroupIds:` argument at call sites.
+* **`LineStringCoordinatesItem`**, **`MultiPointCoordinatesItem`**, **`PolygonCoordinatesItemItem`**, **`MultiLineStringCoordinatesItemItem`**, **`MultiPolygonCoordinatesItemItemItem`**, and **`GeometryCollectionGeometriesItem`** — renamed to shorter forms (`CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`, and `GeometriesItem`); update all type references and construction sites.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all type references, pattern-match sites, and `ValidationError.loc` element-type references accordingly.
+### Added
+* **`DriverAnalyticsDay`** — new response type exposing per-UTC-day observed GPS mileage broken down into order in-progress (deduped), order not in-progress, and total, plus an optional `DriverSelfReportedHoursAndMileage1` record.
+* **`DriverAnalyticsTaskGroup`** — new response type pairing a `TaskGroup1` with its observed in-progress GPS mileage across the full task-group interval.
+
 ## 2.0.0 - 2026-06-24
 ### Breaking Changes
 * **`FlightConnectionLeg.departureTimeLocal`** — renamed to `departureTimeUtc`; update all read sites and any `FlightConnectionLeg(...)` call sites that passed `departureTimeLocal:` to use `departureTimeUtc:`.

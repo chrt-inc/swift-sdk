@@ -1,7 +1,7 @@
 import Foundation
 
 public struct ValidationError: Codable, Hashable, Sendable {
-    public let loc: [ValidationErrorLocItem]
+    public let loc: [LocationItem]
     public let msg: String
     public let type: String
     public let input: JSONValue?
@@ -10,7 +10,7 @@ public struct ValidationError: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        loc: [ValidationErrorLocItem],
+        loc: [LocationItem],
         msg: String,
         type: String,
         input: JSONValue? = nil,
@@ -27,7 +27,7 @@ public struct ValidationError: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.loc = try container.decode([ValidationErrorLocItem].self, forKey: .loc)
+        self.loc = try container.decode([LocationItem].self, forKey: .loc)
         self.msg = try container.decode(String.self, forKey: .msg)
         self.type = try container.decode(String.self, forKey: .type)
         self.input = try container.decodeIfPresent(JSONValue.self, forKey: .input)
