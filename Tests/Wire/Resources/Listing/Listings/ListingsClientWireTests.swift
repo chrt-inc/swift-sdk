@@ -559,12 +559,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
-            filterType: [
-                .dispatch
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterCreatedByOrgId: "filter_created_by_org_id",
@@ -642,12 +636,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
-            filterType: [
-                .dispatch
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterCreatedByOrgId: "filter_created_by_org_id",
@@ -725,12 +713,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
-            filterType: [
-                .dispatch
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterCreatedByOrgId: "filter_created_by_org_id",
