@@ -1,3 +1,7 @@
+## 3.0.1 - 2026-07-01
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 3.0.0 - 2026-06-26
 ### Breaking Changes
 * **`DriverStatsRes`** — fields `taskGroups`, `excludedTaskGroups`, `dedupedTaskGroupDriverHours`, `overlappingTaskGroupsDetected`, `totalDriverMileageTracked`, `dedupedTaskGroupDriverMileageTracked`, and `selfReportedHoursAndMileage` are removed; replace all read and construction sites with the new optional fields `driverAnalyticsDays: [DriverAnalyticsDay]?` and `driverAnalyticsTaskGroups: [DriverAnalyticsTaskGroup]?`.
