@@ -7190,7 +7190,7 @@ try await main()
 </details>
 
 ## Billing LineItemGroups S3Objects
-<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">addV1</a>(lineItemGroupId: String, request: Requests.BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">addV1</a>(lineItemGroupId: String, request: Requests.BodyLineItemGroupsS3ObjectPostAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -7252,7 +7252,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyLineItemGroupsS3ObjectPostAddV1BillingLineItemGroupsS3ObjectsAddV1LineItemGroupIdPost` 
+**request:** `Requests.BodyLineItemGroupsS3ObjectPostAddV1` 
     
 </dd>
 </dl>
@@ -7486,7 +7486,7 @@ try await main()
 </details>
 
 ## Billing LineItems S3Objects
-<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">addV1</a>(lineItemId: String, request: Requests.BodyLineItemsS3ObjectPostAddV1BillingLineItemsS3ObjectsAddV1LineItemIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">addV1</a>(lineItemId: String, request: Requests.BodyLineItemsS3ObjectPostAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -7548,7 +7548,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyLineItemsS3ObjectPostAddV1BillingLineItemsS3ObjectsAddV1LineItemIdPost` 
+**request:** `Requests.BodyLineItemsS3ObjectPostAddV1` 
     
 </dd>
 </dl>
@@ -17926,7 +17926,7 @@ try await main()
 </details>
 
 ## Operations Cases S3Objects
-<details><summary><code>client.operations.cases.s3Objects.<a href="/Sources/Resources/Operations/Cases/S3Objects/CasesS3ObjectsClient.swift">addV1</a>(caseId: String, request: Requests.BodyPostCasesS3ObjectsAddV1OperationsCasesS3ObjectsAddV1CaseIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.cases.s3Objects.<a href="/Sources/Resources/Operations/Cases/S3Objects/CasesS3ObjectsClient.swift">addV1</a>(caseId: String, request: Requests.BodyPostCasesS3ObjectsAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -17988,7 +17988,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyPostCasesS3ObjectsAddV1OperationsCasesS3ObjectsAddV1CaseIdPost` 
+**request:** `Requests.BodyPostCasesS3ObjectsAddV1` 
     
 </dd>
 </dl>
@@ -20841,7 +20841,7 @@ try await main()
 </details>
 
 ## Orgs ComplianceDocuments S3Object
-<details><summary><code>client.orgs.complianceDocuments.s3Object.<a href="/Sources/Resources/Orgs/ComplianceDocuments/S3Object/S3ObjectClient.swift">addV1</a>(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1OrgsComplianceDocumentsS3ObjectAddV1OrgComplianceDocumentIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgs.complianceDocuments.s3Object.<a href="/Sources/Resources/Orgs/ComplianceDocuments/S3Object/S3ObjectClient.swift">addV1</a>(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -20903,7 +20903,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1OrgsComplianceDocumentsS3ObjectAddV1OrgComplianceDocumentIdPost` 
+**request:** `Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1` 
     
 </dd>
 </dl>
@@ -23654,7 +23654,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">imageToTextV1</a>(request: Requests.BodyPostShippingOrderDraftsImageToTextV1ShippingOrderDraftsImageToTextV1Post, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">imageToTextV1</a>(request: Requests.BodyPostShippingOrderDraftsImageToTextV1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -23705,7 +23705,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyPostShippingOrderDraftsImageToTextV1ShippingOrderDraftsImageToTextV1Post` 
+**request:** `Requests.BodyPostShippingOrderDraftsImageToTextV1` 
     
 </dd>
 </dl>
@@ -30233,7 +30233,7 @@ try await main()
 </details>
 
 ## Shipping Drivers ComplianceDocuments S3Object
-<details><summary><code>client.shipping.drivers.complianceDocuments.s3Object.<a href="/Sources/Resources/Shipping/Drivers/ComplianceDocuments/S3Object/ComplianceDocumentsS3ObjectClient.swift">addV1</a>(driverComplianceDocumentId: String, request: Requests.BodyPostDriverComplianceDocumentsS3ObjectAddV1ShippingDriversComplianceDocumentsS3ObjectAddV1DriverComplianceDocumentIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.drivers.complianceDocuments.s3Object.<a href="/Sources/Resources/Shipping/Drivers/ComplianceDocuments/S3Object/ComplianceDocumentsS3ObjectClient.swift">addV1</a>(driverComplianceDocumentId: String, request: Requests.BodyPostDriverComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -30295,7 +30295,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyPostDriverComplianceDocumentsS3ObjectAddV1ShippingDriversComplianceDocumentsS3ObjectAddV1DriverComplianceDocumentIdPost` 
+**request:** `Requests.BodyPostDriverComplianceDocumentsS3ObjectAddV1` 
     
 </dd>
 </dl>
@@ -33464,7 +33464,7 @@ try await main()
 </details>
 
 ## Shipping TaskArtifacts S3Object
-<details><summary><code>client.shipping.taskArtifacts.s3Object.<a href="/Sources/Resources/Shipping/TaskArtifacts/S3Object/TaskArtifactsS3ObjectClient.swift">addV1</a>(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1ShippingTaskArtifactsS3ObjectAddV1TaskArtifactIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.taskArtifacts.s3Object.<a href="/Sources/Resources/Shipping/TaskArtifacts/S3Object/TaskArtifactsS3ObjectClient.swift">addV1</a>(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -33526,7 +33526,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyPostTaskArtifactsS3ObjectAddV1ShippingTaskArtifactsS3ObjectAddV1TaskArtifactIdPost` 
+**request:** `Requests.BodyPostTaskArtifactsS3ObjectAddV1` 
     
 </dd>
 </dl>
@@ -34947,7 +34947,7 @@ try await main()
 </details>
 
 ## Shipping TaskGroups S3Object
-<details><summary><code>client.shipping.taskGroups.s3Object.<a href="/Sources/Resources/Shipping/TaskGroups/S3Object/TaskGroupsS3ObjectClient.swift">addV1</a>(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1ShippingTaskGroupsS3ObjectAddV1TaskGroupIdPost, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.taskGroups.s3Object.<a href="/Sources/Resources/Shipping/TaskGroups/S3Object/TaskGroupsS3ObjectClient.swift">addV1</a>(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -35009,7 +35009,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyPostTaskGroupsS3ObjectAddV1ShippingTaskGroupsS3ObjectAddV1TaskGroupIdPost` 
+**request:** `Requests.BodyPostTaskGroupsS3ObjectAddV1` 
     
 </dd>
 </dl>
@@ -40882,6 +40882,77 @@ try await main()
 </details>
 
 ## Utils Dev
+<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentGeographyV1</a>(request: Requests.GeographyReq, requestOptions: RequestOptions?) -> GeographyRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Runs the Pydantic AI Temporal geography sample workflow and returns the response. | (GeographyReq) -> (GeographyRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.utils.dev.postAgentGeographyV1(request: .init(prompt: "prompt"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.GeographyReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOpenaiPingV1</a>(request: Requests.PingOpenAiReq, requestOptions: RequestOptions?) -> PingOpenAiRes</code></summary>
 <dl>
 <dd>

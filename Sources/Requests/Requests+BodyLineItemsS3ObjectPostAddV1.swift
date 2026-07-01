@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct BodyPostCasesS3ObjectsAddV1OperationsCasesS3ObjectsAddV1CaseIdPost {
+    public struct BodyLineItemsS3ObjectPostAddV1 {
         public let file: FormFile
 
         public init(
@@ -12,7 +12,7 @@ extension Requests {
     }
 }
 
-extension Requests.BodyPostCasesS3ObjectsAddV1OperationsCasesS3ObjectsAddV1CaseIdPost: MultipartFormDataConvertible {
+extension Requests.BodyLineItemsS3ObjectPostAddV1: MultipartFormDataConvertible {
     var multipartFormFields: [MultipartFormField] {
         [
             .file(file, fieldName: "file")

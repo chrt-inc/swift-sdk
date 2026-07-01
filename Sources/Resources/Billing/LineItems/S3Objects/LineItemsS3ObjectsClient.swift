@@ -10,7 +10,7 @@ public final class LineItemsS3ObjectsClient: Sendable {
     /// Uploads a file to a line item. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addV1(lineItemId: String, request: Requests.BodyLineItemsS3ObjectPostAddV1BillingLineItemsS3ObjectsAddV1LineItemIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addV1(lineItemId: String, request: Requests.BodyLineItemsS3ObjectPostAddV1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing/line_items/s3_objects/add/v1/\(lineItemId)",

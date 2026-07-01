@@ -7,6 +7,19 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Runs the Pydantic AI Temporal geography sample workflow and returns the response. | (GeographyReq) -> (GeographyRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postAgentGeographyV1(request: Requests.GeographyReq, requestOptions: RequestOptions? = nil) async throws -> GeographyRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/dev/agent/geography/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: GeographyRes.self
+        )
+    }
+
     /// Runs a minimal Temporal workflow that sends a prompt to OpenAI and returns the response. | (PingOpenAIReq) -> (PingOpenAIRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

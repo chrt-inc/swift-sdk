@@ -10,7 +10,7 @@ public final class CasesS3ObjectsClient: Sendable {
     /// Uploads a file to a case. Automatic blurhash generation for images. | authz: min_org_role=operator | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addV1(caseId: String, request: Requests.BodyPostCasesS3ObjectsAddV1OperationsCasesS3ObjectsAddV1CaseIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addV1(caseId: String, request: Requests.BodyPostCasesS3ObjectsAddV1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/operations/cases/s3_objects/add/v1/\(caseId)",

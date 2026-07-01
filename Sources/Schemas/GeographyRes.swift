@@ -1,50 +1,32 @@
 import Foundation
 
-public struct PingRes: Codable, Hashable, Sendable {
-    public let activityCompletedAt: String
-    public let nonce: String
+public struct GeographyRes: Codable, Hashable, Sendable {
     public let response: String
-    public let workflowCompletedAt: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        activityCompletedAt: String,
-        nonce: String,
         response: String,
-        workflowCompletedAt: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.activityCompletedAt = activityCompletedAt
-        self.nonce = nonce
         self.response = response
-        self.workflowCompletedAt = workflowCompletedAt
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.activityCompletedAt = try container.decode(String.self, forKey: .activityCompletedAt)
-        self.nonce = try container.decode(String.self, forKey: .nonce)
         self.response = try container.decode(String.self, forKey: .response)
-        self.workflowCompletedAt = try container.decode(String.self, forKey: .workflowCompletedAt)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.activityCompletedAt, forKey: .activityCompletedAt)
-        try container.encode(self.nonce, forKey: .nonce)
         try container.encode(self.response, forKey: .response)
-        try container.encode(self.workflowCompletedAt, forKey: .workflowCompletedAt)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case activityCompletedAt = "activity_completed_at"
-        case nonce
         case response
-        case workflowCompletedAt = "workflow_completed_at"
     }
 }

@@ -3,6 +3,32 @@ import Testing
 import Chrt
 
 @Suite("DevClient Wire Tests") struct DevClientWireTests {
+    @Test func postAgentGeographyV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "response": "response"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = GeographyRes(
+            response: "response"
+        )
+        let response = try await client.utils.dev.postAgentGeographyV1(
+            request: .init(prompt: "prompt"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func postAgentOpenaiPingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -35,10 +61,10 @@ import Chrt
             body: Data(
                 """
                 {
-                  "activity_timestamp": "activity_timestamp",
+                  "activity_completed_at": "activity_completed_at",
                   "nonce": "nonce",
                   "response": "response",
-                  "workflow_timestamp": "workflow_timestamp"
+                  "workflow_completed_at": "workflow_completed_at"
                 }
                 """.utf8
             )
@@ -49,10 +75,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = PingRes(
-            activityTimestamp: "activity_timestamp",
+            activityCompletedAt: "activity_completed_at",
             nonce: "nonce",
             response: "response",
-            workflowTimestamp: "workflow_timestamp"
+            workflowCompletedAt: "workflow_completed_at"
         )
         let response = try await client.utils.dev.postAgentPingV1(
             request: .init(),
