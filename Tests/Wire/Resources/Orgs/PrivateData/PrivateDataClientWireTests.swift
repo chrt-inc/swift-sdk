@@ -9,20 +9,20 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
-                  "org_type": "provider",
+                  "_id": "_id",
                   "org_id": "org_id",
                   "org_subscription": true,
-                  "stripe_customer_id": "stripe_customer_id",
+                  "org_type": "provider",
+                  "schema_version": 1,
                   "stripe_connect_account_id": "stripe_connect_account_id",
-                  "webhook_enabled": true,
+                  "stripe_customer_id": "stripe_customer_id",
                   "svix_app_id": "svix_app_id",
                   "webcargo_api_key": "webcargo_api_key",
-                  "webcargo_email": "webcargo_email",
                   "webcargo_countries": [
                     "webcargo_countries"
                   ],
-                  "_id": "_id"
+                  "webcargo_email": "webcargo_email",
+                  "webhook_enabled": true
                 }
                 """.utf8
             )
@@ -33,20 +33,20 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrgPrivateData1(
-            schemaVersion: 1,
-            orgType: .provider,
+            id: "_id",
             orgId: "org_id",
             orgSubscription: Optional(true),
-            stripeCustomerId: Optional("stripe_customer_id"),
+            orgType: .provider,
+            schemaVersion: 1,
             stripeConnectAccountId: Optional("stripe_connect_account_id"),
-            webhookEnabled: Optional(true),
+            stripeCustomerId: Optional("stripe_customer_id"),
             svixAppId: Optional("svix_app_id"),
             webcargoApiKey: Optional("webcargo_api_key"),
-            webcargoEmail: Optional("webcargo_email"),
             webcargoCountries: Optional([
                 "webcargo_countries"
             ]),
-            id: "_id"
+            webcargoEmail: Optional("webcargo_email"),
+            webhookEnabled: Optional(true)
         )
         let response = try await client.orgs.privateData.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)

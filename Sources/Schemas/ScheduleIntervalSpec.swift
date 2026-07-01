@@ -1,5 +1,8 @@
 import Foundation
 
+/// Specification for scheduling on an interval.
+/// 
+/// Matches times expressed as epoch + (n * every) + offset.
 public struct ScheduleIntervalSpec: Codable, Hashable, Sendable {
     public let every: String
     public let offset: String?

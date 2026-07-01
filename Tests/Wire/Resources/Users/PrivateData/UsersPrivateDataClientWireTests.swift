@@ -3,25 +3,25 @@ import Testing
 import Chrt
 
 @Suite("UsersPrivateDataClient Wire Tests") struct UsersPrivateDataClientWireTests {
-    @Test func getV11() async throws -> Void {
+    @Test func upsertFirebaseCloudMessagingTokenV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
                 {
-                  "schema_version": 1,
+                  "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "user_id": "user_id",
-                  "primary_email_address": "primary_email_address",
-                  "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
                     {
                       "firebase_cloud_messaging_token": "firebase_cloud_messaging_token",
-                      "platform": "android",
-                      "last_used_timestamp": "2024-01-15T09:30:00Z"
+                      "last_used_timestamp": "2024-01-15T09:30:00Z",
+                      "platform": "android"
                     }
                   ],
-                  "_id": "_id"
+                  "phone_number": "phone_number",
+                  "primary_email_address": "primary_email_address",
+                  "schema_version": 1,
+                  "user_id": "user_id"
                 }
                 """.utf8
             )
@@ -32,19 +32,69 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = UserPrivateData1(
-            schemaVersion: 1,
+            id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            userId: "user_id",
-            primaryEmailAddress: Optional("primary_email_address"),
-            phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
-                    platform: Optional(.android),
-                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    platform: Optional(.android)
                 )
             ]),
-            id: "_id"
+            phoneNumber: Optional("phone_number"),
+            primaryEmailAddress: Optional("primary_email_address"),
+            schemaVersion: 1,
+            userId: "user_id"
+        )
+        let response = try await client.users.privateData.upsertFirebaseCloudMessagingTokenV1(
+            request: .init(firebaseCloudMessagingToken: "firebase_cloud_messaging_token"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "_id": "_id",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "firebase_cloud_messaging_token_data": [
+                    {
+                      "firebase_cloud_messaging_token": "firebase_cloud_messaging_token",
+                      "last_used_timestamp": "2024-01-15T09:30:00Z",
+                      "platform": "android"
+                    }
+                  ],
+                  "phone_number": "phone_number",
+                  "primary_email_address": "primary_email_address",
+                  "schema_version": 1,
+                  "user_id": "user_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = UserPrivateData1(
+            id: "_id",
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            firebaseCloudMessagingTokenData: Optional([
+                FirebaseCloudMessagingTokenData1(
+                    firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
+                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    platform: Optional(.android)
+                )
+            ]),
+            phoneNumber: Optional("phone_number"),
+            primaryEmailAddress: Optional("primary_email_address"),
+            schemaVersion: 1,
+            userId: "user_id"
         )
         let response = try await client.users.privateData.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -56,19 +106,19 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
+                  "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "user_id": "user_id",
-                  "primary_email_address": "primary_email_address",
-                  "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
                     {
                       "firebase_cloud_messaging_token": "firebase_cloud_messaging_token",
-                      "platform": "android",
-                      "last_used_timestamp": "2024-01-15T09:30:00Z"
+                      "last_used_timestamp": "2024-01-15T09:30:00Z",
+                      "platform": "android"
                     }
                   ],
-                  "_id": "_id"
+                  "phone_number": "phone_number",
+                  "primary_email_address": "primary_email_address",
+                  "schema_version": 1,
+                  "user_id": "user_id"
                 }
                 """.utf8
             )
@@ -79,19 +129,19 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = UserPrivateData1(
-            schemaVersion: 1,
+            id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            userId: "user_id",
-            primaryEmailAddress: Optional("primary_email_address"),
-            phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
-                    platform: Optional(.android),
-                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    platform: Optional(.android)
                 )
             ]),
-            id: "_id"
+            phoneNumber: Optional("phone_number"),
+            primaryEmailAddress: Optional("primary_email_address"),
+            schemaVersion: 1,
+            userId: "user_id"
         )
         let response = try await client.users.privateData.createV1(
             request: .init(schemaVersion: 1),
@@ -106,19 +156,19 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
+                  "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "user_id": "user_id",
-                  "primary_email_address": "primary_email_address",
-                  "phone_number": "phone_number",
                   "firebase_cloud_messaging_token_data": [
                     {
                       "firebase_cloud_messaging_token": "firebase_cloud_messaging_token",
-                      "platform": "android",
-                      "last_used_timestamp": "2024-01-15T09:30:00Z"
+                      "last_used_timestamp": "2024-01-15T09:30:00Z",
+                      "platform": "android"
                     }
                   ],
-                  "_id": "_id"
+                  "phone_number": "phone_number",
+                  "primary_email_address": "primary_email_address",
+                  "schema_version": 1,
+                  "user_id": "user_id"
                 }
                 """.utf8
             )
@@ -129,72 +179,22 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = UserPrivateData1(
-            schemaVersion: 1,
+            id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            userId: "user_id",
-            primaryEmailAddress: Optional("primary_email_address"),
-            phoneNumber: Optional("phone_number"),
             firebaseCloudMessagingTokenData: Optional([
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
-                    platform: Optional(.android),
-                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    platform: Optional(.android)
                 )
             ]),
-            id: "_id"
+            phoneNumber: Optional("phone_number"),
+            primaryEmailAddress: Optional("primary_email_address"),
+            schemaVersion: 1,
+            userId: "user_id"
         )
         let response = try await client.users.privateData.updateV1(
             request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func upsertFirebaseCloudMessagingTokenV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "schema_version": 1,
-                  "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "user_id": "user_id",
-                  "primary_email_address": "primary_email_address",
-                  "phone_number": "phone_number",
-                  "firebase_cloud_messaging_token_data": [
-                    {
-                      "firebase_cloud_messaging_token": "firebase_cloud_messaging_token",
-                      "platform": "android",
-                      "last_used_timestamp": "2024-01-15T09:30:00Z"
-                    }
-                  ],
-                  "_id": "_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = UserPrivateData1(
-            schemaVersion: 1,
-            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            userId: "user_id",
-            primaryEmailAddress: Optional("primary_email_address"),
-            phoneNumber: Optional("phone_number"),
-            firebaseCloudMessagingTokenData: Optional([
-                FirebaseCloudMessagingTokenData1(
-                    firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
-                    platform: Optional(.android),
-                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-                )
-            ]),
-            id: "_id"
-        )
-        let response = try await client.users.privateData.upsertFirebaseCloudMessagingTokenV1(
-            request: .init(firebaseCloudMessagingToken: "firebase_cloud_messaging_token"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

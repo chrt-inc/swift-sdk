@@ -7,63 +7,31 @@ public final class OperationsTaskListsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists OperationsTaskLists for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
+    /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Case (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
     ///
-    /// - Parameter sortBy: Field to sort by
-    /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter filterArchived: Filter by archived flag. None=all, True=archived only, False=unarchived only.
+    /// - Parameter initialDeadlineTimestamp: If set, pins the first entry's deadline; later FROM_PREVIOUS_TASK entries cascade from it.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskListSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListListRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/operations/operations_task_lists/list/v1",
-            queryParams: [
-                "sort_by": sortBy.map { .string($0.rawValue) }, 
-                "sort_order": sortOrder.map { .string($0.rawValue) }, 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }, 
-                "filter_archived": filterArchived.map { .bool($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: OperationsTaskListListRes.self
-        )
-    }
-
-    /// Retrieves a single OperationsTaskList by id. | authz: min_org_role=operator | () -> (OperationsTaskList1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskList1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/operations/operations_task_lists/v1/\(taskListId)",
-            requestOptions: requestOptions,
-            responseType: OperationsTaskList1.self
-        )
-    }
-
-    /// Updates scalar fields (name, description, tags) on an OperationsTaskList. | authz: min_org_role=operator | (OperationsTaskListClientUpdate1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(taskListId: String, request: Requests.OperationsTaskListClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/operations/operations_task_lists/v1/\(taskListId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Creates a new OperationsTaskList for the caller's organization. | authz: min_org_role=operator | (OperationsTaskListClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.OperationsTaskListClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func applyToCaseV1(taskListId: String, caseId: String, initialDeadlineTimestamp: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/v1",
-            body: request,
+            path: "/operations/operations_task_lists/apply_to_case/v1/\(taskListId)/\(caseId)",
+            queryParams: [
+                "initial_deadline_timestamp": initialDeadlineTimestamp.map { .date($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: [String].self
+        )
+    }
+
+    /// Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Cases are unaffected. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func archiveV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/operations_task_lists/archive/v1/\(taskListId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -118,15 +86,37 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Cases are unaffected. | authz: min_org_role=operator | () -> (bool)
+    /// Lists OperationsTaskLists for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
+    ///
+    /// - Parameter sortBy: Field to sort by
+    /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter filterArchived: Filter by archived flag. None=all, True=archived only, False=unarchived only.
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listV1(sortBy: OperationsTaskListSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/operations_task_lists/list/v1",
+            queryParams: [
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }, 
+                "filter_archived": filterArchived.map { .bool($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: OperationsTaskListListRes.self
+        )
+    }
+
+    /// Removes the OperationsTasks this OperationsTaskList added to the Case (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromCaseRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func archiveV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func removeNotStartedTasksFromCaseV1(taskListId: String, caseId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRemoveFromCaseRes1 {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/archive/v1/\(taskListId)",
+            path: "/operations/operations_task_lists/remove_not_started_tasks_from_case/v1/\(taskListId)/\(caseId)",
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: OperationsTaskListRemoveFromCaseRes1.self
         )
     }
 
@@ -142,31 +132,41 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Case (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
+    /// Creates a new OperationsTaskList for the caller's organization. | authz: min_org_role=operator | (OperationsTaskListClientCreate1) -> (PydanticObjectId)
     ///
-    /// - Parameter initialDeadlineTimestamp: If set, pins the first entry's deadline; later FROM_PREVIOUS_TASK entries cascade from it.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func applyToCaseV1(taskListId: String, caseId: String, initialDeadlineTimestamp: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func createV1(request: Requests.OperationsTaskListClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/operations/operations_task_lists/apply_to_case/v1/\(taskListId)/\(caseId)",
-            queryParams: [
-                "initial_deadline_timestamp": initialDeadlineTimestamp.map { .date($0) }
-            ],
+            path: "/operations/operations_task_lists/v1",
+            body: request,
             requestOptions: requestOptions,
-            responseType: [String].self
+            responseType: String.self
         )
     }
 
-    /// Removes the OperationsTasks this OperationsTaskList added to the Case (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromCaseRes1)
+    /// Retrieves a single OperationsTaskList by id. | authz: min_org_role=operator | () -> (OperationsTaskList1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeNotStartedTasksFromCaseV1(taskListId: String, caseId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRemoveFromCaseRes1 {
+    public func getV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskList1 {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/operations_task_lists/remove_not_started_tasks_from_case/v1/\(taskListId)/\(caseId)",
+            method: .get,
+            path: "/operations/operations_task_lists/v1/\(taskListId)",
             requestOptions: requestOptions,
-            responseType: OperationsTaskListRemoveFromCaseRes1.self
+            responseType: OperationsTaskList1.self
+        )
+    }
+
+    /// Updates scalar fields (name, description, tags) on an OperationsTaskList. | authz: min_org_role=operator | (OperationsTaskListClientUpdate1) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(taskListId: String, request: Requests.OperationsTaskListClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_task_lists/v1/\(taskListId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 }

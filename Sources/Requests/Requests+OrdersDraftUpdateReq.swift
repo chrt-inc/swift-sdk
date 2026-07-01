@@ -5,36 +5,36 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?
-        /// Must be a string starting with `org_`
-        public let shipperOrgId: String?
-        public let shipperOrgIdSetToNone: Bool?
-        public let offChrtShipperOrgId: String?
-        public let offChrtShipperOrgIdSetToNone: Bool?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let offChrtReferenceIdSetToNone: Bool?
+        public let offChrtShipperOrgId: String?
+        public let offChrtShipperOrgIdSetToNone: Bool?
+        /// Must be a string starting with `org_`
+        public let shipperOrgId: String?
+        public let shipperOrgIdSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             coordinatorOrgId: String? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
-            shipperOrgId: String? = nil,
-            shipperOrgIdSetToNone: Bool? = nil,
-            offChrtShipperOrgId: String? = nil,
-            offChrtShipperOrgIdSetToNone: Bool? = nil,
             offChrtReferenceId: String? = nil,
             offChrtReferenceIdSetToNone: Bool? = nil,
+            offChrtShipperOrgId: String? = nil,
+            offChrtShipperOrgIdSetToNone: Bool? = nil,
+            shipperOrgId: String? = nil,
+            shipperOrgIdSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.coordinatorOrgId = coordinatorOrgId
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
-            self.shipperOrgId = shipperOrgId
-            self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
-            self.offChrtShipperOrgId = offChrtShipperOrgId
-            self.offChrtShipperOrgIdSetToNone = offChrtShipperOrgIdSetToNone
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtReferenceIdSetToNone = offChrtReferenceIdSetToNone
+            self.offChrtShipperOrgId = offChrtShipperOrgId
+            self.offChrtShipperOrgIdSetToNone = offChrtShipperOrgIdSetToNone
+            self.shipperOrgId = shipperOrgId
+            self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
             self.additionalProperties = additionalProperties
         }
 
@@ -42,12 +42,12 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
-            self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-            self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
-            self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
-            self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtReferenceIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdSetToNone)
+            self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+            self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
+            self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
+            self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -56,24 +56,24 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
-            try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-            try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
-            try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
-            try container.encodeIfPresent(self.offChrtShipperOrgIdSetToNone, forKey: .offChrtShipperOrgIdSetToNone)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtReferenceIdSetToNone, forKey: .offChrtReferenceIdSetToNone)
+            try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+            try container.encodeIfPresent(self.offChrtShipperOrgIdSetToNone, forKey: .offChrtShipperOrgIdSetToNone)
+            try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+            try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorOrgId = "coordinator_org_id"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
-            case shipperOrgId = "shipper_org_id"
-            case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
-            case offChrtShipperOrgId = "off_chrt_shipper_org_id"
-            case offChrtShipperOrgIdSetToNone = "off_chrt_shipper_org_id__set_to_None"
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtReferenceIdSetToNone = "off_chrt_reference_id__set_to_None"
+            case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+            case offChrtShipperOrgIdSetToNone = "off_chrt_shipper_org_id__set_to_None"
+            case shipperOrgId = "shipper_org_id"
+            case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
         }
     }
 }

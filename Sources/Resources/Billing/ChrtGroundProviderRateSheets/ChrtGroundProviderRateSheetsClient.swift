@@ -7,6 +7,18 @@ public final class ChrtGroundProviderRateSheetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Archives a ChrtGroundProvider rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func archiveV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/chrt_ground_provider_rate_sheets/archive/v1/\(id)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Retrieves a specific ChrtGroundProvider rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ChrtGroundProviderRateSheet1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -16,6 +28,31 @@ public final class ChrtGroundProviderRateSheetsClient: Sendable {
             path: "/billing/chrt_ground_provider_rate_sheets/by_id/v1/\(id)",
             requestOptions: requestOptions,
             responseType: ChrtGroundProviderRateSheet1.self
+        )
+    }
+
+    /// Creates a ChrtGroundProvider rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (ChrtGroundProviderRateSheetClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.ChrtGroundProviderRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/chrt_ground_provider_rate_sheets/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Hard-deletes a ChrtGroundProvider rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/billing/chrt_ground_provider_rate_sheets/delete/v1/\(id)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -36,44 +73,6 @@ public final class ChrtGroundProviderRateSheetsClient: Sendable {
         )
     }
 
-    /// Creates a ChrtGroundProvider rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (ChrtGroundProviderRateSheetClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.ChrtGroundProviderRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/chrt_ground_provider_rate_sheets/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Updates a ChrtGroundProvider rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (ChrtGroundProviderRateSheetClientUpdate1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(id: String, request: Requests.ChrtGroundProviderRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/chrt_ground_provider_rate_sheets/update/v1/\(id)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Archives a ChrtGroundProvider rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func archiveV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/chrt_ground_provider_rate_sheets/archive/v1/\(id)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Unarchives a ChrtGroundProvider rate sheet (sets archived=False). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -86,13 +85,14 @@ public final class ChrtGroundProviderRateSheetsClient: Sendable {
         )
     }
 
-    /// Hard-deletes a ChrtGroundProvider rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    /// Updates a ChrtGroundProvider rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (ChrtGroundProviderRateSheetClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(id: String, request: Requests.ChrtGroundProviderRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .delete,
-            path: "/billing/chrt_ground_provider_rate_sheets/delete/v1/\(id)",
+            method: .patch,
+            path: "/billing/chrt_ground_provider_rate_sheets/update/v1/\(id)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

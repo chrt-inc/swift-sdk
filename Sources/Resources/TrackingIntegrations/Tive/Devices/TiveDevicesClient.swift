@@ -7,6 +7,21 @@ public final class TiveDevicesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves a single Tive device by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDevice1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(tiveDeviceId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDevice1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking_integrations/tive/devices/get/v1",
+            queryParams: [
+                "tive_device_id": .string(tiveDeviceId)
+            ],
+            requestOptions: requestOptions,
+            responseType: TiveDevice1.self
+        )
+    }
+
     /// Lists Tive devices with filtering, sorting, and pagination. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDeviceListRes)
     ///
     /// - Parameter sortBy: Field to sort by
@@ -32,21 +47,6 @@ public final class TiveDevicesClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: TiveDeviceListRes.self
-        )
-    }
-
-    /// Retrieves a single Tive device by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDevice1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(tiveDeviceId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDevice1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking_integrations/tive/devices/get/v1",
-            queryParams: [
-                "tive_device_id": .string(tiveDeviceId)
-            ],
-            requestOptions: requestOptions,
-            responseType: TiveDevice1.self
         )
     }
 }

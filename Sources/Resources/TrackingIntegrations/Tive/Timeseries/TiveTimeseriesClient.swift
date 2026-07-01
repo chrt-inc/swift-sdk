@@ -7,21 +7,6 @@ public final class TiveTimeseriesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the most recent Tive data point for a shipment. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDataPoint1 | None)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func lastSeenV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDataPoint1? {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking_integrations/tive/timeseries/last_seen/v1",
-            queryParams: [
-                "tive_shipment_id": .string(tiveShipmentId)
-            ],
-            requestOptions: requestOptions,
-            responseType: TiveDataPoint1?.self
-        )
-    }
-
     /// Returns raw Tive data points for a shipment within the given time range. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveTimeseriesRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -36,6 +21,21 @@ public final class TiveTimeseriesClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: TiveTimeseriesRes.self
+        )
+    }
+
+    /// Returns the most recent Tive data point for a shipment. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDataPoint1 | None)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func lastSeenV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDataPoint1? {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking_integrations/tive/timeseries/last_seen/v1",
+            queryParams: [
+                "tive_shipment_id": .string(tiveShipmentId)
+            ],
+            requestOptions: requestOptions,
+            responseType: TiveDataPoint1?.self
         )
     }
 

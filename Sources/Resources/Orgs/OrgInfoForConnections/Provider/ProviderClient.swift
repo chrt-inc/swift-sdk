@@ -7,15 +7,16 @@ public final class ProviderClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves provider organization connection information for the caller's organization. | () -> (ProviderOrgInfoForConnections1)
+    /// Creates provider organization connection information. Fails if already exists. | (ProviderOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ProviderOrgInfoForConnections1 {
+    public func createV1(request: Requests.ProviderOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/org_info_for_connections/provider/v1",
+            method: .post,
+            path: "/orgs/org_info_for_connections/provider/create/v1",
+            body: request,
             requestOptions: requestOptions,
-            responseType: ProviderOrgInfoForConnections1.self
+            responseType: String.self
         )
     }
 
@@ -31,19 +32,6 @@ public final class ProviderClient: Sendable {
         )
     }
 
-    /// Creates provider organization connection information. Fails if already exists. | (ProviderOrgInfoForConnectionsClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.ProviderOrgInfoForConnectionsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/orgs/org_info_for_connections/provider/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
     /// Updates existing provider organization connection information. | (ProviderOrgInfoForConnectionsClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -54,6 +42,18 @@ public final class ProviderClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves provider organization connection information for the caller's organization. | () -> (ProviderOrgInfoForConnections1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ProviderOrgInfoForConnections1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_info_for_connections/provider/v1",
+            requestOptions: requestOptions,
+            responseType: ProviderOrgInfoForConnections1.self
         )
     }
 }

@@ -7,6 +7,45 @@ public final class TaskArtifactsS3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addV1(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1ShippingTaskArtifactsS3ObjectAddV1TaskArtifactIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/task_artifacts/s3_object/add/v1/\(taskArtifactId)",
+            contentType: .multipartFormData,
+            body: request.asMultipartFormData(),
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Writes the AI-generated image description onto an existing TaskArtifactS3ObjectMetadata. Called by the shipping_task_image_analysis Temporal workflow via a delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (AIImageDescription) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func writeAiImageDescriptionV1(taskArtifactS3ObjectMetadataId: String, request: AiImageDescription, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/task_artifacts/s3_object/ai_image_description/v1/\(taskArtifactS3ObjectMetadataId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Deletes an S3 object metadata and the associated S3 object from a task artifact. Only the uploader or an operator from the uploading org can delete. | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(taskArtifactS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/task_artifacts/s3_object/delete/v1/\(taskArtifactS3ObjectMetadataId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Retrieves the metadata for a task artifact S3 object, including blurhash for placeholder loading. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | () -> (TaskArtifactS3ObjectMetadata1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -28,45 +67,6 @@ public final class TaskArtifactsS3ObjectClient: Sendable {
             path: "/shipping/task_artifacts/s3_object/v1/\(taskArtifactS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: Data.self
-        )
-    }
-
-    /// Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addV1(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1ShippingTaskArtifactsS3ObjectAddV1TaskArtifactIdPost, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/task_artifacts/s3_object/add/v1/\(taskArtifactId)",
-            contentType: .multipartFormData,
-            body: request.asMultipartFormData(),
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Deletes an S3 object metadata and the associated S3 object from a task artifact. Only the uploader or an operator from the uploading org can delete. | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(taskArtifactS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/task_artifacts/s3_object/delete/v1/\(taskArtifactS3ObjectMetadataId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Writes the AI-generated image description onto an existing TaskArtifactS3ObjectMetadata. Called by the shipping_task_image_analysis Temporal workflow via a delegation JWT. | authz_personas=[driver_for_executor, executor_org_operators, shipper_org_operators, coordinator_org_operators] | (AIImageDescription) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func writeAiImageDescriptionV1(taskArtifactS3ObjectMetadataId: String, request: AiImageDescription, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/task_artifacts/s3_object/ai_image_description/v1/\(taskArtifactS3ObjectMetadataId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
         )
     }
 }

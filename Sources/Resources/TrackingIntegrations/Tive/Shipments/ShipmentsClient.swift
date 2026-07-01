@@ -7,6 +7,21 @@ public final class ShipmentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipment1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveShipment1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking_integrations/tive/shipments/get/v1",
+            queryParams: [
+                "tive_shipment_id": .string(tiveShipmentId)
+            ],
+            requestOptions: requestOptions,
+            responseType: TiveShipment1.self
+        )
+    }
+
     /// Lists Tive shipments with filtering, sorting, and pagination. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipmentListRes)
     ///
     /// - Parameter sortBy: Field to sort by
@@ -32,21 +47,6 @@ public final class ShipmentsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: TiveShipmentListRes.self
-        )
-    }
-
-    /// Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipment1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveShipment1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking_integrations/tive/shipments/get/v1",
-            queryParams: [
-                "tive_shipment_id": .string(tiveShipmentId)
-            ],
-            requestOptions: requestOptions,
-            responseType: TiveShipment1.self
         )
     }
 }

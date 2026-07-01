@@ -7,6 +7,18 @@ public final class RateSheetMappingsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Appends `rate_sheet_id` to the per-TG-type list on a mapping. Idempotent — already-present ids are a no-op. The 0-index entry remains the default; use the set_default route to promote a different sheet. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func appendRateSheetV1(id: String, tgType: String, rateSheetId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/rate_sheet_mappings/append_rate_sheet/v1/\(id)/\(tgType)/\(rateSheetId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Retrieves a specific rate sheet mapping owned by the caller's org (`owned_by_org_id == caller.org_id`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetMapping1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -16,6 +28,31 @@ public final class RateSheetMappingsClient: Sendable {
             path: "/billing/rate_sheet_mappings/by_id/v1/\(id)",
             requestOptions: requestOptions,
             responseType: RateSheetMapping1.self
+        )
+    }
+
+    /// Creates a rate sheet mapping owned by the caller's org. The caller becomes `owned_by_org_id`. Body must set exactly one of `counterparty_org_id` / `counterparty_driver_id` (XOR). | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetMappingClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.RateSheetMappingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/rate_sheet_mappings/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Deletes a rate sheet mapping owned by the caller's org. Does not cascade — rate sheet documents themselves are untouched. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/billing/rate_sheet_mappings/delete/v1/\(id)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -50,43 +87,6 @@ public final class RateSheetMappingsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: [String].self
-        )
-    }
-
-    /// Creates a rate sheet mapping owned by the caller's org. The caller becomes `owned_by_org_id`. Body must set exactly one of `counterparty_org_id` / `counterparty_driver_id` (XOR). | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetMappingClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.RateSheetMappingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/rate_sheet_mappings/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Deletes a rate sheet mapping owned by the caller's org. Does not cascade — rate sheet documents themselves are untouched. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/billing/rate_sheet_mappings/delete/v1/\(id)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Appends `rate_sheet_id` to the per-TG-type list on a mapping. Idempotent — already-present ids are a no-op. The 0-index entry remains the default; use the set_default route to promote a different sheet. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func appendRateSheetV1(id: String, tgType: String, rateSheetId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/rate_sheet_mappings/append_rate_sheet/v1/\(id)/\(tgType)/\(rateSheetId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
         )
     }
 

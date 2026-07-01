@@ -19,6 +19,31 @@ public final class BillingLedgersClient: Sendable {
         )
     }
 
+    /// Creates a billing ledger owned by the caller's org. Caller must be the receiving provider for shipper-pay-provider, or the paying provider for provider-pay-provider/driver. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingLedgerClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.BillingLedgerClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/billing_ledgers/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Flips a billing ledger to INACTIVE and stamps `inactive_at_timestamp`. Idempotent; the current OPEN period is left untouched. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deactivateV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/billing_ledgers/deactivate/v1/\(id)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Lists billing ledgers the caller's org owns or is a payment counterparty on. | authz_personas=[billing_ledger_org_operators] | () -> (BillingLedgerListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
@@ -47,19 +72,6 @@ public final class BillingLedgersClient: Sendable {
         )
     }
 
-    /// Creates a billing ledger owned by the caller's org. Caller must be the receiving provider for shipper-pay-provider, or the paying provider for provider-pay-provider/driver. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingLedgerClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.BillingLedgerClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/billing_ledgers/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
     /// Updates a billing ledger's `name` and `comments`. Cycle and rate are per-period values supplied at `billing_ledger_periods/open/v1` time; the ledger does not carry them. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | (BillingLedgerClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -68,18 +80,6 @@ public final class BillingLedgersClient: Sendable {
             method: .patch,
             path: "/billing/billing_ledgers/update/v1/\(id)",
             body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Flips a billing ledger to INACTIVE and stamps `inactive_at_timestamp`. Idempotent; the current OPEN period is left untouched. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deactivateV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/billing_ledgers/deactivate/v1/\(id)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

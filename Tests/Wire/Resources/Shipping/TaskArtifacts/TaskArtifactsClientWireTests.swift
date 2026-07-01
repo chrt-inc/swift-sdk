@@ -21,11 +21,11 @@ import Chrt
         let response = try await client.shipping.taskArtifacts.addToTaskV1(
             taskId: "task_id",
             request: .init(
+                status: .draft,
                 taskArtifact: TaskArtifactClientCreate1(
                     schemaVersion: 1,
                     type: .image
-                ),
-                status: .draft
+                )
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -54,28 +54,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func skipV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.taskArtifacts.skipV1(
-            taskArtifactId: "task_artifact_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -92,6 +70,28 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.shipping.taskArtifacts.deleteV1(
+            taskArtifactId: "task_artifact_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func skipV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.taskArtifacts.skipV1(
             taskArtifactId: "task_artifact_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

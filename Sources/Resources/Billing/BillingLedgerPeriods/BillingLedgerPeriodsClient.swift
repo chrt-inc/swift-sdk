@@ -19,6 +19,18 @@ public final class BillingLedgerPeriodsClient: Sendable {
         )
     }
 
+    /// Closes an OPEN billing ledger period. 400 if the period is already CLOSED. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_period_owner_operators] | () -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func closeV1(billingLedgerPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/billing_ledger_periods/close/v1/\(billingLedgerPeriodId)",
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Lists billing ledger periods the caller's org owns or is a payment counterparty on. | authz_personas=[billing_ledger_period_org_operators] | () -> (BillingLedgerPeriodListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
@@ -61,18 +73,6 @@ public final class BillingLedgerPeriodsClient: Sendable {
             method: .post,
             path: "/billing/billing_ledger_periods/open/v1/\(billingLedgerId)",
             body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Closes an OPEN billing ledger period. 400 if the period is already CLOSED. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_period_owner_operators] | () -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func closeV1(billingLedgerPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/billing_ledger_periods/close/v1/\(billingLedgerPeriodId)",
             requestOptions: requestOptions,
             responseType: String.self
         )

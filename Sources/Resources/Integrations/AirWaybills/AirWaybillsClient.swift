@@ -7,6 +7,18 @@ public final class AirWaybillsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves all CHAMP confirmation receipts linked to the air waybill for a task group. | () -> (list[ChampConfirmationReceipt1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func confirmationsV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [ChampConfirmationReceipt1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/integrations/air_waybills/confirmations/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: [ChampConfirmationReceipt1].self
+        )
+    }
+
     /// Creates a CHAMP air waybill pre-populated from the stored WebCargo booking record. The booking must be synced first via the webcargo_bookings sync route. Returns 409 if an air waybill already exists for this task group. | (AirWaybillCreateReq) -> (ChampAirWaybill1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -20,6 +32,30 @@ public final class AirWaybillsClient: Sendable {
         )
     }
 
+    /// Retrieves all CHAMP flight status updates linked to the air waybill for a task group. | () -> (list[ChampFlightStatus1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func flightStatusesV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [ChampFlightStatus1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/integrations/air_waybills/flight_statuses/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: [ChampFlightStatus1].self
+        )
+    }
+
+    /// Converts a CHAMP air waybill to PDF via CHAMP's conversion API. Requires shipper, consignee, and charge_declarations to be filled in. Returns the PDF file as application/pdf. | () -> (PDF binary)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func pdfV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/integrations/air_waybills/pdf/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: JSONValue.self
+        )
+    }
+
     /// Retrieves the stored CHAMP air waybill for a task group. | () -> (ChampAirWaybill1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -27,19 +63,6 @@ public final class AirWaybillsClient: Sendable {
         return try await httpClient.performRequest(
             method: .get,
             path: "/integrations/air_waybills/retrieve/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: ChampAirWaybill1.self
-        )
-    }
-
-    /// Updates fields on an existing CHAMP air waybill. Any editable field can be set — only fields included in the request body are changed. | (ChampAirWaybillClientUpdate1) -> (ChampAirWaybill1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(taskGroupId: String, request: Requests.ChampAirWaybillClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ChampAirWaybill1 {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/integrations/air_waybills/update/v1/\(taskGroupId)",
-            body: request,
             requestOptions: requestOptions,
             responseType: ChampAirWaybill1.self
         )
@@ -57,39 +80,16 @@ public final class AirWaybillsClient: Sendable {
         )
     }
 
-    /// Converts a CHAMP air waybill to PDF via CHAMP's conversion API. Requires shipper, consignee, and charge_declarations to be filled in. Returns the PDF file as application/pdf. | () -> (PDF binary)
+    /// Updates fields on an existing CHAMP air waybill. Any editable field can be set — only fields included in the request body are changed. | (ChampAirWaybillClientUpdate1) -> (ChampAirWaybill1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pdfV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
+    public func updateV1(taskGroupId: String, request: Requests.ChampAirWaybillClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ChampAirWaybill1 {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/integrations/air_waybills/pdf/v1/\(taskGroupId)",
+            method: .patch,
+            path: "/integrations/air_waybills/update/v1/\(taskGroupId)",
+            body: request,
             requestOptions: requestOptions,
-            responseType: JSONValue.self
-        )
-    }
-
-    /// Retrieves all CHAMP confirmation receipts linked to the air waybill for a task group. | () -> (list[ChampConfirmationReceipt1])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func confirmationsV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [ChampConfirmationReceipt1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/integrations/air_waybills/confirmations/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: [ChampConfirmationReceipt1].self
-        )
-    }
-
-    /// Retrieves all CHAMP flight status updates linked to the air waybill for a task group. | () -> (list[ChampFlightStatus1])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func flightStatusesV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [ChampFlightStatus1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/integrations/air_waybills/flight_statuses/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: [ChampFlightStatus1].self
+            responseType: ChampAirWaybill1.self
         )
     }
 }

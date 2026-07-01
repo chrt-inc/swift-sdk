@@ -20,67 +20,9 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.shipping.orderDrafts.taskGroup.addV1(
             request: .init(
-                taskGroupType: .chrtGroundProvider,
-                orderId: "order_id"
+                orderId: "order_id",
+                taskGroupType: .chrtGroundProvider
             ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func setFlightInfoV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.taskGroup.setFlightInfoV1(
-            taskGroupId: "task_group_id",
-            request: SetFlightInfoReq(
-                flightLegs: [
-                    FlightLegClientCreate1(
-                        schemaVersion: 1,
-                        flightNumber: "flight_number",
-                        provenance: .manual,
-                        originIata: "origin_iata",
-                        destinationIata: "destination_iata",
-                        scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        carrierIata: "carrier_iata"
-                    )
-                ]
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func setVehicleTypeV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.taskGroup.setVehicleTypeV1(
-            taskGroupId: "task_group_id",
-            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -109,7 +51,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func removeExecutorV11() async throws -> Void {
+    @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -124,31 +66,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.taskGroup.removeExecutorV1(
+        let response = try await client.shipping.orderDrafts.taskGroup.deleteV1(
             taskGroupId: "task_group_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updateDriverV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.taskGroup.updateDriverV1(
-            taskGroupId: "task_group_id",
-            request: .init(driverId: "driver_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -171,6 +90,86 @@ import Chrt
         let expectedResponse = true
         let response = try await client.shipping.orderDrafts.taskGroup.removeDriverV1(
             taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeExecutorV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.taskGroup.removeExecutorV1(
+            taskGroupId: "task_group_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setFlightInfoV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.taskGroup.setFlightInfoV1(
+            taskGroupId: "task_group_id",
+            request: SetFlightInfoReq(
+                flightLegs: [
+                    FlightLegClientCreate1(
+                        carrierIata: "carrier_iata",
+                        destinationIata: "destination_iata",
+                        flightNumber: "flight_number",
+                        originIata: "origin_iata",
+                        provenance: .manual,
+                        scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        schemaVersion: 1
+                    )
+                ]
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setRateSheetsV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.taskGroup.setRateSheetsV1(
+            taskGroupId: "task_group_id",
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -201,7 +200,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func setRateSheetsV11() async throws -> Void {
+    @Test func setVehicleTypeV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -216,7 +215,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.taskGroup.setRateSheetsV1(
+        let response = try await client.shipping.orderDrafts.taskGroup.setVehicleTypeV1(
             taskGroupId: "task_group_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -224,7 +223,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func deleteV11() async throws -> Void {
+    @Test func updateDriverV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -239,8 +238,9 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.taskGroup.deleteV1(
+        let response = try await client.shipping.orderDrafts.taskGroup.updateDriverV1(
             taskGroupId: "task_group_id",
+            request: .init(driverId: "driver_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

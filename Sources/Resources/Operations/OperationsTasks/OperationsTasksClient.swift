@@ -7,6 +7,44 @@ public final class OperationsTasksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Appends a comment to an OperationsTask's comment thread. Returns the new comment id. | authz: min_org_role=operator | (OperationsTaskAddCommentReq1) -> (str)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addCommentV1(taskId: String, request: Requests.OperationsTaskAddCommentReq1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/operations_tasks/add_comment/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Sets deadline_timestamp on multiple OperationsTasks in one call, each scoped to the caller's organization. Task ids that don't exist or belong to another org are silently skipped; the response reports how many were updated. | authz: min_org_role=operator | (OperationsTasksBulkUpdateDeadlinesReq1) -> (OperationsTasksBulkUpdateDeadlinesRes1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func bulkUpdateDeadlinesV1(request: Requests.OperationsTasksBulkUpdateDeadlinesReq1, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksBulkUpdateDeadlinesRes1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_tasks/bulk_update_deadlines/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OperationsTasksBulkUpdateDeadlinesRes1.self
+        )
+    }
+
+    /// Deletes a comment from an OperationsTask's comment thread. 404 if the comment isn't found. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteCommentV1(taskId: String, commentId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/operations/operations_tasks/delete_comment/v1/\(taskId)/\(commentId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Lists OperationsTasks for the caller's organization, with order ids / department / type / status / tag / assignee / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
     ///
     /// - Parameter sortBy: Field to sort by
@@ -43,6 +81,32 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
+    /// Sets an OperationsTask's status (not_started / in_progress / completed / skipped / cancelled). Setting COMPLETED stamps completed_at/by; any other status clears them. | authz: min_org_role=operator | (OperationsTaskStatusReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateStatusV1(taskId: String, request: Requests.OperationsTaskStatusReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_tasks/status/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Creates a new OperationsTask on an Order the caller's organization has a Case for. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.OperationsTaskClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/operations_tasks/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Retrieves a single OperationsTask by id. | authz: min_org_role=operator | () -> (OperationsTask1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -75,70 +139,6 @@ public final class OperationsTasksClient: Sendable {
             method: .patch,
             path: "/operations/operations_tasks/v1/\(taskId)",
             body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Creates a new OperationsTask on an Order the caller's organization has a Case for. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.OperationsTaskClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/operations_tasks/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Sets deadline_timestamp on multiple OperationsTasks in one call, each scoped to the caller's organization. Task ids that don't exist or belong to another org are silently skipped; the response reports how many were updated. | authz: min_org_role=operator | (OperationsTasksBulkUpdateDeadlinesReq1) -> (OperationsTasksBulkUpdateDeadlinesRes1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func bulkUpdateDeadlinesV1(request: Requests.OperationsTasksBulkUpdateDeadlinesReq1, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksBulkUpdateDeadlinesRes1 {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/operations/operations_tasks/bulk_update_deadlines/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OperationsTasksBulkUpdateDeadlinesRes1.self
-        )
-    }
-
-    /// Sets an OperationsTask's status (not_started / in_progress / completed / skipped / cancelled). Setting COMPLETED stamps completed_at/by; any other status clears them. | authz: min_org_role=operator | (OperationsTaskStatusReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateStatusV1(taskId: String, request: Requests.OperationsTaskStatusReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/operations/operations_tasks/status/v1/\(taskId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Appends a comment to an OperationsTask's comment thread. Returns the new comment id. | authz: min_org_role=operator | (OperationsTaskAddCommentReq1) -> (str)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addCommentV1(taskId: String, request: Requests.OperationsTaskAddCommentReq1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/operations_tasks/add_comment/v1/\(taskId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Deletes a comment from an OperationsTask's comment thread. 404 if the comment isn't found. | authz: min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteCommentV1(taskId: String, commentId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/operations/operations_tasks/delete_comment/v1/\(taskId)/\(commentId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

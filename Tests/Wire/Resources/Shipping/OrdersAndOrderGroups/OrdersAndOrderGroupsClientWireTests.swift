@@ -12,23 +12,23 @@ import Chrt
                   "items": [
                     {
                       "order_group": {
-                        "schema_version": 1,
-                        "name": "name",
                         "_id": "_id",
-                        "short_id": "short_id",
-                        "owned_by_org_id": "owned_by_org_id",
-                        "created_by_user_id": "created_by_user_id",
-                        "created_by_org_id": "created_by_org_id",
                         "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z"
+                        "created_by_org_id": "created_by_org_id",
+                        "created_by_user_id": "created_by_user_id",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "name": "name",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "schema_version": 1,
+                        "short_id": "short_id"
                       },
                       "orders": [
                         {
-                          "schema_version": 1,
                           "_id": "_id",
-                          "short_id": "short_id",
                           "created_by_org_id": "created_by_org_id",
-                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                          "schema_version": 1,
+                          "short_id": "short_id"
                         }
                       ],
                       "shipping_status": "draft"
@@ -48,23 +48,23 @@ import Chrt
             items: [
                 OrderGroupExpandedRow(
                     orderGroup: OrderGroup1(
-                        schemaVersion: 1,
-                        name: "name",
                         id: "_id",
-                        shortId: "short_id",
-                        ownedByOrgId: "owned_by_org_id",
-                        createdByUserId: "created_by_user_id",
-                        createdByOrgId: "created_by_org_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                        createdByOrgId: "created_by_org_id",
+                        createdByUserId: "created_by_user_id",
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        name: "name",
+                        ownedByOrgId: "owned_by_org_id",
+                        schemaVersion: 1,
+                        shortId: "short_id"
                     ),
                     orders: [
                         Order1(
-                            schemaVersion: 1,
                             id: "_id",
-                            shortId: "short_id",
                             createdByOrgId: "created_by_org_id",
-                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            schemaVersion: 1,
+                            shortId: "short_id"
                         )
                     ],
                     shippingStatus: Optional(.draft)
@@ -77,9 +77,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterBillingReviewStatus: [
-                .notStarted
-            ],
             filterOrderId: "filter_order_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -96,14 +93,14 @@ import Chrt
                 {
                   "items": [
                     {
+                      "billing_review_status": "not_started",
                       "order": {
-                        "schema_version": 1,
                         "_id": "_id",
-                        "short_id": "short_id",
                         "created_by_org_id": "created_by_org_id",
-                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z"
-                      },
-                      "billing_review_status": "not_started"
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                        "schema_version": 1,
+                        "short_id": "short_id"
+                      }
                     }
                   ],
                   "total_count": 1
@@ -119,22 +116,19 @@ import Chrt
         let expectedResponse = UngroupedOrderListRes(
             items: [
                 UngroupedOrderRow(
+                    billingReviewStatus: .notStarted,
                     order: Order1(
-                        schemaVersion: 1,
                         id: "_id",
-                        shortId: "short_id",
                         createdByOrgId: "created_by_org_id",
-                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-                    ),
-                    billingReviewStatus: .notStarted
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        schemaVersion: 1,
+                        shortId: "short_id"
+                    )
                 )
             ],
             totalCount: 1
         )
         let response = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
-            filterShippingStatus: [
-                .draft
-            ],
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,

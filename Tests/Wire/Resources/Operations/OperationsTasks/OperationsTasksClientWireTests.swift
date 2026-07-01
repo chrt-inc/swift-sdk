@@ -3,6 +3,83 @@ import Testing
 import Chrt
 
 @Suite("OperationsTasksClient Wire Tests") struct OperationsTasksClientWireTests {
+    @Test func addCommentV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.operations.operationsTasks.addCommentV1(
+            taskId: "task_id",
+            request: .init(comment: "comment"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func bulkUpdateDeadlinesV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "updated_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OperationsTasksBulkUpdateDeadlinesRes1(
+            updatedCount: 1
+        )
+        let response = try await client.operations.operationsTasks.bulkUpdateDeadlinesV1(
+            request: .init(operationsTaskDeadlineUpdates: [
+                OperationsTaskDeadlineUpdate1(
+                    deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    taskId: "task_id"
+                )
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func deleteCommentV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.operationsTasks.deleteCommentV1(
+            taskId: "task_id",
+            commentId: "comment_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -11,32 +88,32 @@ import Chrt
                 {
                   "items": [
                     {
-                      "schema_version": 1,
-                      "order_id": "order_id",
-                      "task_type": "review_order_details",
-                      "title": "title",
-                      "description": "description",
-                      "deadline_timestamp": "2024-01-15T09:30:00Z",
-                      "tags": [
-                        "tags"
-                      ],
+                      "_id": "_id",
                       "assigned_user_ids": [
                         "assigned_user_ids"
                       ],
-                      "_id": "_id",
-                      "org_id": "org_id",
-                      "department_id": "department_id",
-                      "source_task_list_id": "source_task_list_id",
-                      "status": "not_started",
-                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                      "completed_by_user_id": "completed_by_user_id",
                       "comments": [
                         {
                           "comment": "comment",
-                          "user_id": "user_id",
-                          "timestamp": "2024-01-15T09:30:00Z"
+                          "timestamp": "2024-01-15T09:30:00Z",
+                          "user_id": "user_id"
                         }
-                      ]
+                      ],
+                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
+                      "completed_by_user_id": "completed_by_user_id",
+                      "deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "department_id": "department_id",
+                      "description": "description",
+                      "order_id": "order_id",
+                      "org_id": "org_id",
+                      "schema_version": 1,
+                      "source_task_list_id": "source_task_list_id",
+                      "status": "not_started",
+                      "tags": [
+                        "tags"
+                      ],
+                      "task_type": "review_order_details",
+                      "title": "title"
                     }
                   ],
                   "total_count": 1
@@ -52,32 +129,32 @@ import Chrt
         let expectedResponse = OperationsTaskListRes(
             items: [
                 OperationsTask1(
-                    schemaVersion: 1,
-                    orderId: "order_id",
-                    taskType: .reviewOrderDetails,
-                    title: "title",
-                    description: "description",
-                    deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    tags: Optional([
-                        "tags"
-                    ]),
+                    id: "_id",
                     assignedUserIds: Optional([
                         "assigned_user_ids"
                     ]),
-                    id: "_id",
-                    orgId: "org_id",
-                    departmentId: Optional("department_id"),
-                    sourceTaskListId: Optional("source_task_list_id"),
-                    status: Optional(.notStarted),
-                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    completedByUserId: Optional("completed_by_user_id"),
                     comments: Optional([
                         OperationsTaskComment1(
                             comment: "comment",
-                            userId: "user_id",
-                            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            userId: "user_id"
                         )
-                    ])
+                    ]),
+                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    completedByUserId: Optional("completed_by_user_id"),
+                    deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    departmentId: Optional("department_id"),
+                    description: "description",
+                    orderId: "order_id",
+                    orgId: "org_id",
+                    schemaVersion: 1,
+                    sourceTaskListId: Optional("source_task_list_id"),
+                    status: Optional(.notStarted),
+                    tags: Optional([
+                        "tags"
+                    ]),
+                    taskType: .reviewOrderDetails,
+                    title: "title"
                 )
             ],
             totalCount: 1
@@ -87,22 +164,61 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
-            filterTag: [
-                "filter_tag"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateStatusV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.operationsTasks.updateStatusV1(
+            taskId: "task_id",
+            request: .init(status: .notStarted),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.operations.operationsTasks.createV1(
+            request: .init(
+                description: "description",
+                orderId: "order_id",
+                schemaVersion: 1,
+                taskType: .reviewOrderDetails,
+                title: "title"
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -114,33 +230,33 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
-                  "order_id": "order_id",
-                  "task_type": "review_order_details",
-                  "title": "title",
-                  "description": "description",
-                  "deadline_timestamp": "2024-01-15T09:30:00Z",
-                  "tags": [
-                    "tags"
-                  ],
+                  "_id": "_id",
                   "assigned_user_ids": [
                     "assigned_user_ids"
                   ],
-                  "_id": "_id",
-                  "org_id": "org_id",
-                  "department_id": "department_id",
-                  "source_task_list_id": "source_task_list_id",
-                  "status": "not_started",
-                  "completed_at_timestamp": "2024-01-15T09:30:00Z",
-                  "completed_by_user_id": "completed_by_user_id",
                   "comments": [
                     {
-                      "id": "id",
                       "comment": "comment",
-                      "user_id": "user_id",
-                      "timestamp": "2024-01-15T09:30:00Z"
+                      "id": "id",
+                      "timestamp": "2024-01-15T09:30:00Z",
+                      "user_id": "user_id"
                     }
-                  ]
+                  ],
+                  "completed_at_timestamp": "2024-01-15T09:30:00Z",
+                  "completed_by_user_id": "completed_by_user_id",
+                  "deadline_timestamp": "2024-01-15T09:30:00Z",
+                  "department_id": "department_id",
+                  "description": "description",
+                  "order_id": "order_id",
+                  "org_id": "org_id",
+                  "schema_version": 1,
+                  "source_task_list_id": "source_task_list_id",
+                  "status": "not_started",
+                  "tags": [
+                    "tags"
+                  ],
+                  "task_type": "review_order_details",
+                  "title": "title"
                 }
                 """.utf8
             )
@@ -151,33 +267,33 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OperationsTask1(
-            schemaVersion: 1,
-            orderId: "order_id",
-            taskType: .reviewOrderDetails,
-            title: "title",
-            description: "description",
-            deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            tags: Optional([
-                "tags"
-            ]),
+            id: "_id",
             assignedUserIds: Optional([
                 "assigned_user_ids"
             ]),
-            id: "_id",
-            orgId: "org_id",
-            departmentId: Optional("department_id"),
-            sourceTaskListId: Optional("source_task_list_id"),
-            status: Optional(.notStarted),
-            completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            completedByUserId: Optional("completed_by_user_id"),
             comments: Optional([
                 OperationsTaskComment1(
-                    id: Optional("id"),
                     comment: "comment",
-                    userId: "user_id",
-                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    id: Optional("id"),
+                    timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    userId: "user_id"
                 )
-            ])
+            ]),
+            completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            completedByUserId: Optional("completed_by_user_id"),
+            deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            departmentId: Optional("department_id"),
+            description: "description",
+            orderId: "order_id",
+            orgId: "org_id",
+            schemaVersion: 1,
+            sourceTaskListId: Optional("source_task_list_id"),
+            status: Optional(.notStarted),
+            tags: Optional([
+                "tags"
+            ]),
+            taskType: .reviewOrderDetails,
+            title: "title"
         )
         let response = try await client.operations.operationsTasks.getV1(
             taskId: "task_id",
@@ -226,134 +342,6 @@ import Chrt
         let response = try await client.operations.operationsTasks.updateV1(
             taskId: "task_id",
             request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func createV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.operations.operationsTasks.createV1(
-            request: .init(
-                schemaVersion: 1,
-                orderId: "order_id",
-                taskType: .reviewOrderDetails,
-                title: "title",
-                description: "description"
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func bulkUpdateDeadlinesV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "updated_count": 1
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OperationsTasksBulkUpdateDeadlinesRes1(
-            updatedCount: 1
-        )
-        let response = try await client.operations.operationsTasks.bulkUpdateDeadlinesV1(
-            request: .init(operationsTaskDeadlineUpdates: [
-                OperationsTaskDeadlineUpdate1(
-                    taskId: "task_id",
-                    deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-                )
-            ]),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updateStatusV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.operationsTasks.updateStatusV1(
-            taskId: "task_id",
-            request: .init(status: .notStarted),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func addCommentV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.operations.operationsTasks.addCommentV1(
-            taskId: "task_id",
-            request: .init(comment: "comment"),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func deleteCommentV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.operationsTasks.deleteCommentV1(
-            taskId: "task_id",
-            commentId: "comment_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

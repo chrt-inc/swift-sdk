@@ -20,8 +20,8 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.orgs.offChrtShipperOrg.createV1(
             request: .init(
-                schemaVersion: 1,
-                emailAddressPrimary: "email_address_primary"
+                emailAddressPrimary: "email_address_primary",
+                schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -36,11 +36,22 @@ import Chrt
                 {
                   "items": [
                     {
-                      "schema_version": 1,
+                      "_id": "_id",
                       "company_name": "company_name",
+                      "contact_first_name": "contact_first_name",
+                      "contact_last_name": "contact_last_name",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "email_address_primary": "email_address_primary",
+                      "email_address_secondary": "email_address_secondary",
                       "industry": "industry",
+                      "job_title": "job_title",
+                      "notes": "notes",
+                      "phone_number_primary": "phone_number_primary",
+                      "phone_number_secondary": "phone_number_secondary",
+                      "schema_version": 1,
+                      "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
                       "street_address": {
-                        "type": "Feature",
                         "geometry": {
                           "geometries": [
                             {
@@ -51,20 +62,9 @@ import Chrt
                             }
                           ],
                           "type": "GeometryCollection"
-                        }
-                      },
-                      "contact_first_name": "contact_first_name",
-                      "contact_last_name": "contact_last_name",
-                      "phone_number_primary": "phone_number_primary",
-                      "phone_number_secondary": "phone_number_secondary",
-                      "email_address_primary": "email_address_primary",
-                      "email_address_secondary": "email_address_secondary",
-                      "job_title": "job_title",
-                      "notes": "notes",
-                      "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
-                      "created_by_org_id": "created_by_org_id",
-                      "created_by_user_id": "created_by_user_id",
-                      "_id": "_id"
+                        },
+                        "type": "Feature"
+                      }
                     }
                   ],
                   "total_count": 1
@@ -80,18 +80,29 @@ import Chrt
         let expectedResponse = OffChrtShipperOrgListRes(
             items: [
                 OffChrtShipperOrg1(
-                    schemaVersion: 1,
+                    id: "_id",
                     companyName: Optional("company_name"),
+                    contactFirstName: Optional("contact_first_name"),
+                    contactLastName: Optional("contact_last_name"),
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
+                    emailAddressPrimary: "email_address_primary",
+                    emailAddressSecondary: Optional("email_address_secondary"),
                     industry: Optional("industry"),
+                    jobTitle: Optional("job_title"),
+                    notes: Optional("notes"),
+                    phoneNumberPrimary: Optional("phone_number_primary"),
+                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    schemaVersion: 1,
+                    shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
                     streetAddress: Optional(LocationFeature(
-                        type: .feature,
                         geometry: .geometryCollection(
                             .init(
                                 geometries: [
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -99,20 +110,9 @@ import Chrt
                                     )
                                 ]
                             )
-                        )
-                    )),
-                    contactFirstName: Optional("contact_first_name"),
-                    contactLastName: Optional("contact_last_name"),
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
-                    emailAddressPrimary: "email_address_primary",
-                    emailAddressSecondary: Optional("email_address_secondary"),
-                    jobTitle: Optional("job_title"),
-                    notes: Optional("notes"),
-                    shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
-                    createdByOrgId: "created_by_org_id",
-                    createdByUserId: "created_by_user_id",
-                    id: "_id"
+                        ),
+                        type: .feature
+                    ))
                 )
             ],
             totalCount: 1
@@ -132,16 +132,27 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
+                  "_id": "_id",
                   "company_name": "company_name",
+                  "contact_first_name": "contact_first_name",
+                  "contact_last_name": "contact_last_name",
+                  "created_by_org_id": "created_by_org_id",
+                  "created_by_user_id": "created_by_user_id",
+                  "email_address_primary": "email_address_primary",
+                  "email_address_secondary": "email_address_secondary",
                   "industry": "industry",
+                  "job_title": "job_title",
+                  "notes": "notes",
+                  "phone_number_primary": "phone_number_primary",
+                  "phone_number_secondary": "phone_number_secondary",
+                  "schema_version": 1,
+                  "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
                   "street_address": {
                     "bbox": [
                       {
                         "key": "value"
                       }
                     ],
-                    "type": "Feature",
                     "geometry": {
                       "geometries": [
                         {
@@ -153,24 +164,13 @@ import Chrt
                       ],
                       "type": "GeometryCollection"
                     },
+                    "id": 1,
                     "properties": {
                       "address": "address",
                       "name": "name"
                     },
-                    "id": 1
-                  },
-                  "contact_first_name": "contact_first_name",
-                  "contact_last_name": "contact_last_name",
-                  "phone_number_primary": "phone_number_primary",
-                  "phone_number_secondary": "phone_number_secondary",
-                  "email_address_primary": "email_address_primary",
-                  "email_address_secondary": "email_address_secondary",
-                  "job_title": "job_title",
-                  "notes": "notes",
-                  "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
-                  "created_by_org_id": "created_by_org_id",
-                  "created_by_user_id": "created_by_user_id",
-                  "_id": "_id"
+                    "type": "Feature"
+                  }
                 }
                 """.utf8
             )
@@ -181,9 +181,21 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OffChrtShipperOrg1(
-            schemaVersion: 1,
+            id: "_id",
             companyName: Optional("company_name"),
+            contactFirstName: Optional("contact_first_name"),
+            contactLastName: Optional("contact_last_name"),
+            createdByOrgId: "created_by_org_id",
+            createdByUserId: "created_by_user_id",
+            emailAddressPrimary: "email_address_primary",
+            emailAddressSecondary: Optional("email_address_secondary"),
             industry: Optional("industry"),
+            jobTitle: Optional("job_title"),
+            notes: Optional("notes"),
+            phoneNumberPrimary: Optional("phone_number_primary"),
+            phoneNumberSecondary: Optional("phone_number_secondary"),
+            schemaVersion: 1,
+            shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
             streetAddress: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -192,14 +204,13 @@ import Chrt
                         ]
                     )
                 ]),
-                type: .feature,
                 geometry: .geometryCollection(
                     .init(
                         geometries: [
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]
@@ -208,26 +219,15 @@ import Chrt
                         ]
                     )
                 ),
+                id: Optional(Id.int(
+                    1
+                )),
                 properties: Optional(LocationProperties(
                     address: Optional("address"),
                     name: Optional("name")
                 )),
-                id: Optional(Id.int(
-                    1
-                ))
-            )),
-            contactFirstName: Optional("contact_first_name"),
-            contactLastName: Optional("contact_last_name"),
-            phoneNumberPrimary: Optional("phone_number_primary"),
-            phoneNumberSecondary: Optional("phone_number_secondary"),
-            emailAddressPrimary: "email_address_primary",
-            emailAddressSecondary: Optional("email_address_secondary"),
-            jobTitle: Optional("job_title"),
-            notes: Optional("notes"),
-            shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
-            createdByOrgId: "created_by_org_id",
-            createdByUserId: "created_by_user_id",
-            id: "_id"
+                type: .feature
+            ))
         )
         let response = try await client.orgs.offChrtShipperOrg.getByIdV1(
             id: "id",

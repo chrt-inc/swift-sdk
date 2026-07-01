@@ -9,10 +9,10 @@ import Chrt
             body: Data(
                 """
                 {
-                  "timezone": "timezone",
                   "lat": 1.1,
                   "lng": 1.1,
-                  "method": "method"
+                  "method": "method",
+                  "timezone": "timezone"
                 }
                 """.utf8
             )
@@ -23,10 +23,10 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = TimezoneResponse(
-            timezone: "timezone",
             lat: 1.1,
             lng: 1.1,
-            method: "method"
+            method: "method",
+            timezone: "timezone"
         )
         let response = try await client.utils.getTimezoneV1(
             lat: 37.7749,

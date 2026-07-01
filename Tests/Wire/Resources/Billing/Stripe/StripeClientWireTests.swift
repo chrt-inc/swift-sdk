@@ -24,8 +24,8 @@ import Chrt
         )
         let response = try await client.billing.stripe.createCheckoutSessionV1(
             request: .init(
-                productId: "product_id",
-                priceId: "price_id"
+                priceId: "price_id",
+                productId: "product_id"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

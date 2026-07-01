@@ -20,32 +20,6 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Replaces the ordered list of flights on a draft task group. | (SetFlightInfoReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setFlightInfoV1(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/set_flight_info/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Sets the vehicle type on a draft task group. | authz_personas=[draft_creator_org_operator] | (SetVehicleTypeReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setVehicleTypeV1(taskGroupId: String, request: Requests.SetVehicleTypeReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/set_vehicle_type/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Assigns an executor organization to a draft task group. Coordinator-only; provider-provider direct assignments require auto-assign consent. | authz_personas=[task_group_coordinator_operators] | (OrderDraftAddExecutorReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -59,26 +33,13 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Clears the executor, driver, and PPP/PPD billing attachments from a draft task group. Coordinator-only; executor Cases are preserved. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+    /// Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeExecutorV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/remove_executor/v1/\(taskGroupId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Assigns or swaps the driver on a draft task group. Only the executor org may assign drivers. | authz_personas=[executor_org_operators] | (OrderDraftUpdateDriverReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateDriverV1(taskGroupId: String, request: Requests.OrderDraftUpdateDriverReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/task_group/update_driver/v1/\(taskGroupId)",
-            body: request,
+            method: .delete,
+            path: "/shipping/order_drafts/task_group/delete/v1/\(taskGroupId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -96,13 +57,25 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
+    /// Clears the executor, driver, and PPP/PPD billing attachments from a draft task group. Coordinator-only; executor Cases are preserved. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setTaskOrderingV1(taskGroupId: String, request: Requests.SetTaskOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func removeExecutorV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .put,
-            path: "/shipping/order_drafts/task_group/set_task_ordering/v1/\(taskGroupId)",
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/remove_executor/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Replaces the ordered list of flights on a draft task group. | (SetFlightInfoReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setFlightInfoV1(taskGroupId: String, request: SetFlightInfoReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/set_flight_info/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -122,13 +95,40 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Deletes a task group and all associated entities (tasks, task artifacts, S3 metadata). The task group must belong to a DRAFT order. | () -> (bool)
+    /// Sets the ordering of tasks within a draft task group. Must provide all task IDs with no duplicates. | (SetTaskOrderingDraftReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setTaskOrderingV1(taskGroupId: String, request: Requests.SetTaskOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/order_drafts/task_group/delete/v1/\(taskGroupId)",
+            method: .put,
+            path: "/shipping/order_drafts/task_group/set_task_ordering/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Sets the vehicle type on a draft task group. | authz_personas=[draft_creator_org_operator] | (SetVehicleTypeReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setVehicleTypeV1(taskGroupId: String, request: Requests.SetVehicleTypeReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/set_vehicle_type/v1/\(taskGroupId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Assigns or swaps the driver on a draft task group. Only the executor org may assign drivers. | authz_personas=[executor_org_operators] | (OrderDraftUpdateDriverReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDriverV1(taskGroupId: String, request: Requests.OrderDraftUpdateDriverReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/task_group/update_driver/v1/\(taskGroupId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

@@ -7,6 +7,18 @@ public final class CargoOnFlightRateSheetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Archives a CargoOnFlight rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func archiveV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing/cargo_on_flight_rate_sheets/archive/v1/\(id)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Retrieves a specific CargoOnFlight rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (CargoOnFlightRateSheet1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -16,6 +28,31 @@ public final class CargoOnFlightRateSheetsClient: Sendable {
             path: "/billing/cargo_on_flight_rate_sheets/by_id/v1/\(id)",
             requestOptions: requestOptions,
             responseType: CargoOnFlightRateSheet1.self
+        )
+    }
+
+    /// Creates a CargoOnFlight rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (CargoOnFlightRateSheetClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.CargoOnFlightRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing/cargo_on_flight_rate_sheets/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Hard-deletes a CargoOnFlight rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/billing/cargo_on_flight_rate_sheets/delete/v1/\(id)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -36,44 +73,6 @@ public final class CargoOnFlightRateSheetsClient: Sendable {
         )
     }
 
-    /// Creates a CargoOnFlight rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (CargoOnFlightRateSheetClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.CargoOnFlightRateSheetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing/cargo_on_flight_rate_sheets/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Updates a CargoOnFlight rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (CargoOnFlightRateSheetClientUpdate1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(id: String, request: Requests.CargoOnFlightRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/cargo_on_flight_rate_sheets/update/v1/\(id)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Archives a CargoOnFlight rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func archiveV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/billing/cargo_on_flight_rate_sheets/archive/v1/\(id)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Unarchives a CargoOnFlight rate sheet (sets archived=False). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -86,13 +85,14 @@ public final class CargoOnFlightRateSheetsClient: Sendable {
         )
     }
 
-    /// Hard-deletes a CargoOnFlight rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    /// Updates a CargoOnFlight rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (CargoOnFlightRateSheetClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(id: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(id: String, request: Requests.CargoOnFlightRateSheetClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .delete,
-            path: "/billing/cargo_on_flight_rate_sheets/delete/v1/\(id)",
+            method: .patch,
+            path: "/billing/cargo_on_flight_rate_sheets/update/v1/\(id)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

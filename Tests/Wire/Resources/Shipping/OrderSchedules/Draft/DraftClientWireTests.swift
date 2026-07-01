@@ -20,8 +20,8 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.shipping.orderSchedules.draft.newV1(
             request: .init(
-                schemaVersion: 1,
-                name: "name"
+                name: "name",
+                schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

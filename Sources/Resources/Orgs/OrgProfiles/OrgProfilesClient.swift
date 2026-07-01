@@ -7,15 +7,15 @@ public final class OrgProfilesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves the provider organization profile for the caller's organization. | () -> (ProviderOrgProfile1)
+    /// Returns the organization avatar image URL from WorkOS or a placeholder if not found. | () -> (str)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ProviderOrgProfile1 {
+    public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/orgs/org_profiles/v1",
+            path: "/orgs/org_profiles/avatar/v1/\(handle)",
             requestOptions: requestOptions,
-            responseType: ProviderOrgProfile1.self
+            responseType: String.self
         )
     }
 
@@ -45,6 +45,18 @@ public final class OrgProfilesClient: Sendable {
         )
     }
 
+    /// Retrieves the provider organization profile for the caller's organization. | () -> (ProviderOrgProfile1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(requestOptions: RequestOptions? = nil) async throws -> ProviderOrgProfile1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_profiles/v1",
+            requestOptions: requestOptions,
+            responseType: ProviderOrgProfile1.self
+        )
+    }
+
     /// Retrieves a provider organization profile by handle for public profile viewing. | () -> (ProviderOrgProfile1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -54,18 +66,6 @@ public final class OrgProfilesClient: Sendable {
             path: "/orgs/org_profiles/v1/\(handle)",
             requestOptions: requestOptions,
             responseType: ProviderOrgProfile1.self
-        )
-    }
-
-    /// Returns the organization avatar image URL from WorkOS or a placeholder if not found. | () -> (str)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/org_profiles/avatar/v1/\(handle)",
-            requestOptions: requestOptions,
-            responseType: String.self
         )
     }
 }

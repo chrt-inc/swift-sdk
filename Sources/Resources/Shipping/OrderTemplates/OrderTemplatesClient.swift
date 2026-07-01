@@ -7,7 +7,19 @@ public final class OrderTemplatesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves an order template with its reference columns resolved (shipper, executor orgs, drivers, directory entries). Unresolvable list references are omitted so the caller can detect dangling ids. | authz: min_org_role=operator | () -> (OrderTemplateExpanded1)
+    /// Archives an order template by setting archived_at_timestamp. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func archiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates/archive/v1/\(orderTemplateId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Retrieves an order template with resolved references, recent orders, and total order count. Unresolvable list references are omitted so the caller can detect dangling ids. | authz: min_org_role=operator | () -> (OrderTemplateExpanded1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getExpandedByIdV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateExpanded1 {
@@ -53,6 +65,57 @@ public final class OrderTemplatesClient: Sendable {
         )
     }
 
+    /// Removes a (possibly dangling) reference id from a template column. | authz: min_org_role=operator | (OrderTemplateRemoveReferenceReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func referencesRemoveV1(orderTemplateId: String, request: Requests.OrderTemplateRemoveReferenceReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates/references/remove/v1/\(orderTemplateId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Restores an archived order template by clearing archived_at_timestamp. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unarchiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates/unarchive/v1/\(orderTemplateId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates an order template. | authz: min_org_role=operator | (OrderTemplateClientUpdate1) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(orderTemplateId: String, request: Requests.OrderTemplateClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_templates/update/v1/\(orderTemplateId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Creates a new order template. | authz: min_org_role=operator | (OrderTemplateClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.OrderTemplateClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Retrieves an order template by ID. | authz: min_org_role=operator | () -> (OrderTemplate1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -72,69 +135,6 @@ public final class OrderTemplatesClient: Sendable {
         return try await httpClient.performRequest(
             method: .delete,
             path: "/shipping/order_templates/v1/\(orderTemplateId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Creates a new order template. | authz: min_org_role=operator | (OrderTemplateClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.OrderTemplateClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_templates/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Updates an order template. | authz: min_org_role=operator | (OrderTemplateClientUpdate1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(orderTemplateId: String, request: Requests.OrderTemplateClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_templates/update/v1/\(orderTemplateId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Archives an order template by setting archived_at_timestamp. | authz: min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func archiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_templates/archive/v1/\(orderTemplateId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Restores an archived order template by clearing archived_at_timestamp. | authz: min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func unarchiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_templates/unarchive/v1/\(orderTemplateId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes a (possibly dangling) reference id from a template column. | authz: min_org_role=operator | (OrderTemplateRemoveReferenceReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func referencesRemoveV1(orderTemplateId: String, request: Requests.OrderTemplateRemoveReferenceReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_templates/references/remove/v1/\(orderTemplateId)",
-            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

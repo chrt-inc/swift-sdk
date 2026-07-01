@@ -7,30 +7,6 @@ public final class LineItemsS3ObjectsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves metadata for a line item S3 object. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemS3ObjectMetadata1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getS3ObjectMetadataV1(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemS3ObjectMetadata1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/billing/line_items/s3_objects/s3_object_metadata/v1/\(lineItemS3ObjectMetadataId)",
-            requestOptions: requestOptions,
-            responseType: LineItemS3ObjectMetadata1.self
-        )
-    }
-
-    /// Streams a line item S3 object file from storage. | authz_personas=[lig_org_operators, lig_driver] | () -> (binary)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/billing/line_items/s3_objects/v1/\(lineItemS3ObjectMetadataId)",
-            requestOptions: requestOptions,
-            responseType: Data.self
-        )
-    }
-
     /// Uploads a file to a line item. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -54,6 +30,30 @@ public final class LineItemsS3ObjectsClient: Sendable {
             path: "/billing/line_items/s3_objects/delete/v1/\(lineItemS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves metadata for a line item S3 object. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemS3ObjectMetadata1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getS3ObjectMetadataV1(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> LineItemS3ObjectMetadata1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing/line_items/s3_objects/s3_object_metadata/v1/\(lineItemS3ObjectMetadataId)",
+            requestOptions: requestOptions,
+            responseType: LineItemS3ObjectMetadata1.self
+        )
+    }
+
+    /// Streams a line item S3 object file from storage. | authz_personas=[lig_org_operators, lig_driver] | () -> (binary)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing/line_items/s3_objects/v1/\(lineItemS3ObjectMetadataId)",
+            requestOptions: requestOptions,
+            responseType: Data.self
         )
     }
 }

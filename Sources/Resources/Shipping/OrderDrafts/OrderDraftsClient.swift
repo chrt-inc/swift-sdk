@@ -2,60 +2,21 @@ import Foundation
 
 public final class OrderDraftsClient: Sendable {
     public let agentic: AgenticClient
-    public let taskGroup: TaskGroupClient
-    public let task: TaskClient
-    public let taskArtifact: TaskArtifactClient
     public let cargo: CargoClient
     public let expanded: ExpandedClient
+    public let task: TaskClient
+    public let taskArtifact: TaskArtifactClient
+    public let taskGroup: TaskGroupClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.agentic = AgenticClient(config: config)
-        self.taskGroup = TaskGroupClient(config: config)
-        self.task = TaskClient(config: config)
-        self.taskArtifact = TaskArtifactClient(config: config)
         self.cargo = CargoClient(config: config)
         self.expanded = ExpandedClient(config: config)
+        self.task = TaskClient(config: config)
+        self.taskArtifact = TaskArtifactClient(config: config)
+        self.taskGroup = TaskGroupClient(config: config)
         self.httpClient = HTTPClient(config: config)
-    }
-
-    /// Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func newV1(request: Requests.OrdersNewDraftReq, requestOptions: RequestOptions? = nil) async throws -> OrdersNewDraftRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_drafts/new/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrdersNewDraftRes.self
-        )
-    }
-
-    /// Updates coordinator and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(orderId: String, request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftUpdateRes {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_drafts/update/v1/\(orderId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrdersDraftUpdateRes.self
-        )
-    }
-
-    /// Sets the ordering of task groups within a draft order. Must provide all task group IDs with no duplicates. | (SetTaskGroupOrderingDraftReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setTaskGroupOrderingV1(orderId: String, request: Requests.SetTaskGroupOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .put,
-            path: "/shipping/order_drafts/set_task_group_ordering/v1/\(orderId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
     }
 
     /// Deletes a draft order and all associated entities. | () -> (bool)
@@ -97,6 +58,32 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
+    /// Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func newV1(request: Requests.OrdersNewDraftReq, requestOptions: RequestOptions? = nil) async throws -> OrdersNewDraftRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_drafts/new/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrdersNewDraftRes.self
+        )
+    }
+
+    /// Sets the ordering of task groups within a draft order. Must provide all task group IDs with no duplicates. | (SetTaskGroupOrderingDraftReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setTaskGroupOrderingV1(orderId: String, request: Requests.SetTaskGroupOrderingDraftReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/order_drafts/set_task_group_ordering/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Returns distinct short_id and off_chrt_reference_id values matching the query via case-insensitive regex. Searches draft orders created by the caller's org. | authz: min_org_role=operator | () -> (list[OrderTypeaheadResult])
     ///
     /// - Parameter query: Typeahead search query
@@ -112,6 +99,19 @@ public final class OrderDraftsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: [OrderTypeaheadResult].self
+        )
+    }
+
+    /// Updates coordinator and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(orderId: String, request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftUpdateRes {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_drafts/update/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrdersDraftUpdateRes.self
         )
     }
 

@@ -9,51 +9,26 @@ public final class CasesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists cases for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (CaseListRes)
+    /// Appends a message to a case. | authz: min_org_role=operator | (CaseAddMessageReq) -> (bool)
     ///
-    /// - Parameter sortBy: Field to sort by
-    /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter filterDepartmentId: Filter by department ID(s)
-    /// - Parameter filterAssignedUserId: Filter by assigned user ID (matches any case that includes this user)
-    /// - Parameter filterUnassigned: Filter for unassigned cases
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: CaseSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentId: String? = nil, filterAssignedUserId: String? = nil, filterUnassigned: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CaseListRes {
+    public func addMessageV1(caseId: String, request: Requests.CaseAddMessageReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/operations/cases/list/v1",
-            queryParams: [
-                "sort_by": sortBy.map { .string($0.rawValue) }, 
-                "sort_order": sortOrder.map { .string($0.rawValue) }, 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }, 
-                "filter_department_id": filterDepartmentId.map { .string($0) }, 
-                "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
-                "filter_unassigned": filterUnassigned.map { .bool($0) }
-            ],
+            method: .post,
+            path: "/operations/cases/add_message/v1/\(caseId)",
+            body: request,
             requestOptions: requestOptions,
-            responseType: CaseListRes.self
+            responseType: Bool.self
         )
     }
 
-    /// Retrieves a single case. | authz: min_org_role=operator | () -> (Case1)
+    /// Adds operator(s) to a case. | authz: min_org_role=operator | (CaseAssignReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(caseId: String, requestOptions: RequestOptions? = nil) async throws -> Case1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/operations/cases/v1/\(caseId)",
-            requestOptions: requestOptions,
-            responseType: Case1.self
-        )
-    }
-
-    /// Updates a case's department_id. | authz: min_org_role=operator | (CaseClientUpdate1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(caseId: String, request: Requests.CaseClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func assignV1(caseId: String, request: Requests.CaseAssignReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/operations/cases/v1/\(caseId)",
+            path: "/operations/cases/assign/v1/\(caseId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -97,15 +72,61 @@ public final class CasesClient: Sendable {
         )
     }
 
-    /// Returns the department this case's order would map to from the shipper connection — a non-binding default for the UI. Department is never auto-applied; the frontend applies it explicitly via the update route. | authz: min_org_role=operator | () -> (PydanticObjectId | None)
+    /// Deletes a message from a case. | authz: min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getSuggestedDepartmentV1(caseId: String, requestOptions: RequestOptions? = nil) async throws -> String? {
+    public func deleteMessageV1(caseId: String, messageId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/operations/cases/delete_message/v1/\(caseId)/\(messageId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Lists the dispatcher Case view by exact case tag with related order and party data. | authz: min_org_role=operator | () -> (CasesExpandedListRes)
+    ///
+    /// - Parameter filterCaseTag: Exact case tag to list cases for
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func expandedListV1(filterCaseTag: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> CasesExpandedListRes {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/operations/cases/suggested_department/v1/\(caseId)",
+            path: "/operations/cases/expanded/list/v1",
+            queryParams: [
+                "filter_case_tag": .string(filterCaseTag), 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
             requestOptions: requestOptions,
-            responseType: String?.self
+            responseType: CasesExpandedListRes.self
+        )
+    }
+
+    /// Lists cases for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (CaseListRes)
+    ///
+    /// - Parameter sortBy: Field to sort by
+    /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter filterDepartmentId: Filter by department ID(s)
+    /// - Parameter filterCaseTag: Filter by case tag(s)
+    /// - Parameter filterAssignedUserId: Filter by assigned user ID (matches any case that includes this user)
+    /// - Parameter filterUnassigned: Filter for unassigned cases
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listV1(sortBy: CaseSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentId: String? = nil, filterCaseTag: String? = nil, filterAssignedUserId: String? = nil, filterUnassigned: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CaseListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/cases/list/v1",
+            queryParams: [
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }, 
+                "filter_department_id": filterDepartmentId.map { .string($0) }, 
+                "filter_case_tag": filterCaseTag.map { .string($0) }, 
+                "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
+                "filter_unassigned": filterUnassigned.map { .bool($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: CaseListRes.self
         )
     }
 
@@ -122,16 +143,33 @@ public final class CasesClient: Sendable {
         )
     }
 
-    /// Adds operator(s) to a case. | authz: min_org_role=operator | (CaseAssignReq) -> (bool)
+    /// Returns the department this case's order would map to from the shipper connection — a non-binding default for the UI. Department is never auto-applied; the frontend applies it explicitly via the update route. | authz: min_org_role=operator | () -> (PydanticObjectId | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func assignV1(caseId: String, request: Requests.CaseAssignReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func getSuggestedDepartmentV1(caseId: String, requestOptions: RequestOptions? = nil) async throws -> String? {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/operations/cases/assign/v1/\(caseId)",
-            body: request,
+            method: .get,
+            path: "/operations/cases/suggested_department/v1/\(caseId)",
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: String?.self
+        )
+    }
+
+    /// Returns distinct case_tag values matching the query via case-insensitive regex for the caller's organization. | authz: min_org_role=operator | () -> (list[CaseTypeaheadResult])
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CaseTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/cases/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [CaseTypeaheadResult].self
         )
     }
 
@@ -148,26 +186,26 @@ public final class CasesClient: Sendable {
         )
     }
 
-    /// Appends a message to a case. | authz: min_org_role=operator | (CaseAddMessageReq) -> (bool)
+    /// Retrieves a single case. | authz: min_org_role=operator | () -> (Case1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addMessageV1(caseId: String, request: Requests.CaseAddMessageReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func getV1(caseId: String, requestOptions: RequestOptions? = nil) async throws -> Case1 {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/operations/cases/add_message/v1/\(caseId)",
-            body: request,
+            method: .get,
+            path: "/operations/cases/v1/\(caseId)",
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: Case1.self
         )
     }
 
-    /// Deletes a message from a case. | authz: min_org_role=operator | () -> (bool)
+    /// Updates a case's department_id and case_tag. | authz: min_org_role=operator | (CaseClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteMessageV1(caseId: String, messageId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(caseId: String, request: Requests.CaseClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .delete,
-            path: "/operations/cases/delete_message/v1/\(caseId)/\(messageId)",
+            method: .patch,
+            path: "/operations/cases/v1/\(caseId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

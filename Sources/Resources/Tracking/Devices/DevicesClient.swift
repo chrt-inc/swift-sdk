@@ -7,35 +7,6 @@ public final class DevicesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | auth: api_key | (DeviceClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func registerToOrgV1(request: Requests.DeviceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/devices/register_to_org/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
-    /// Updates a device's type, comments, and/or off_chrt_reference_id. Use __set_to_None flags to explicitly clear Optional fields. | auth: api_key | (DeviceClientUpdate1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(deviceId: String, request: Requests.DeviceClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/devices/update/v1",
-            queryParams: [
-                "device_id": .string(deviceId)
-            ],
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Archives a device by setting archived=True. Device must not have an active session — terminate it first. | auth: api_key | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -46,49 +17,6 @@ public final class DevicesClient: Sendable {
             queryParams: [
                 "device_id": .string(deviceId)
             ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Pauses a device and opens a new pause time window. | auth: api_key | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/devices/pause/v1",
-            queryParams: [
-                "device_id": .string(deviceId)
-            ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Unpauses a device. Closes the open pause time window. | auth: api_key | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func unpauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/devices/unpause/v1",
-            queryParams: [
-                "device_id": .string(deviceId)
-            ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | auth: api_key | (DevicesUpdateSharedOrgsReq1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateSharedOrgsV1(request: Requests.DevicesUpdateSharedOrgsReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/devices/update_shared_orgs/v1",
-            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -159,6 +87,34 @@ public final class DevicesClient: Sendable {
         )
     }
 
+    /// Pauses a device and opens a new pause time window. | auth: api_key | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func pauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/pause/v1",
+            queryParams: [
+                "device_id": .string(deviceId)
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | auth: api_key | (DeviceClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func registerToOrgV1(request: Requests.DeviceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/register_to_org/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
     ///
     /// - Parameter query: Typeahead search query
@@ -176,6 +132,50 @@ public final class DevicesClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: [TrackingTypeaheadResult].self
+        )
+    }
+
+    /// Unpauses a device. Closes the open pause time window. | auth: api_key | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unpauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/unpause/v1",
+            queryParams: [
+                "device_id": .string(deviceId)
+            ],
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates a device's type, comments, and/or off_chrt_reference_id. Use __set_to_None flags to explicitly clear Optional fields. | auth: api_key | (DeviceClientUpdate1) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(deviceId: String, request: Requests.DeviceClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/update/v1",
+            queryParams: [
+                "device_id": .string(deviceId)
+            ],
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | auth: api_key | (DevicesUpdateSharedOrgsReq1) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateSharedOrgsV1(request: Requests.DevicesUpdateSharedOrgsReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/devices/update_shared_orgs/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 }

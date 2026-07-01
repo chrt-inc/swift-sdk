@@ -1,176 +1,176 @@
 import Foundation
 
 public struct TaskArtifact1: Codable, Hashable, Sendable {
-    public let schemaVersion: Int
-    public let type: TaskArtifactTypeEnum1
-    public let expectedScanPayloads: [String]?
     public let id: String
-    public let orderId: String
-    public let orderShortId: String
-    public let taskGroupId: String
-    public let taskId: String
-    public let orderScheduleTemplatePathIdempotencyKey: String?
-    public let taskArtifactS3ObjectMetadataIds: [String]?
-    /// Must be a string starting with `org_`
-    public let createdByOrgId: String
-    /// Must be a string starting with `user_`
-    public let createdByUserId: String?
-    /// Must be a string starting with `org_`
-    public let requestedByOrgId: String?
-    /// Must be a string starting with `user_`
-    public let requestedByUserId: String?
+    public let cancelledAtTimestamp: Date?
+    public let completedAtTimestamp: Date?
     /// Must be a string starting with `org_`
     public let completedByOrgId: String?
     /// Must be a string starting with `user_`
     public let completedByUserId: String?
-    public let observedScanPayloads: [String]?
-    public let status: TaskArtifactStatusEnum1?
+    /// Must be a string starting with `org_`
+    public let createdByOrgId: String
+    /// Must be a string starting with `user_`
+    public let createdByUserId: String?
     public let draftStartedAtTimestamp: Date
-    public let stagedAtTimestamp: Date?
-    public let completedAtTimestamp: Date?
-    public let skippedAtTimestamp: Date?
-    public let cancelledAtTimestamp: Date?
     public let exceptionAtTimestamp: Date?
+    public let expectedScanPayloads: [String]?
+    public let observedScanPayloads: [String]?
+    public let orderId: String
+    public let orderScheduleTemplatePathIdempotencyKey: String?
+    public let orderShortId: String
+    /// Must be a string starting with `org_`
+    public let requestedByOrgId: String?
+    /// Must be a string starting with `user_`
+    public let requestedByUserId: String?
+    public let schemaVersion: Int
+    public let skippedAtTimestamp: Date?
+    public let stagedAtTimestamp: Date?
+    public let status: TaskArtifactStatusEnum1?
+    public let taskArtifactS3ObjectMetadataIds: [String]?
+    public let taskGroupId: String
+    public let taskId: String
+    public let type: TaskArtifactTypeEnum1
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        schemaVersion: Int,
-        type: TaskArtifactTypeEnum1,
-        expectedScanPayloads: [String]? = nil,
         id: String,
-        orderId: String,
-        orderShortId: String,
-        taskGroupId: String,
-        taskId: String,
-        orderScheduleTemplatePathIdempotencyKey: String? = nil,
-        taskArtifactS3ObjectMetadataIds: [String]? = nil,
-        createdByOrgId: String,
-        createdByUserId: String? = nil,
-        requestedByOrgId: String? = nil,
-        requestedByUserId: String? = nil,
+        cancelledAtTimestamp: Date? = nil,
+        completedAtTimestamp: Date? = nil,
         completedByOrgId: String? = nil,
         completedByUserId: String? = nil,
-        observedScanPayloads: [String]? = nil,
-        status: TaskArtifactStatusEnum1? = nil,
+        createdByOrgId: String,
+        createdByUserId: String? = nil,
         draftStartedAtTimestamp: Date,
-        stagedAtTimestamp: Date? = nil,
-        completedAtTimestamp: Date? = nil,
-        skippedAtTimestamp: Date? = nil,
-        cancelledAtTimestamp: Date? = nil,
         exceptionAtTimestamp: Date? = nil,
+        expectedScanPayloads: [String]? = nil,
+        observedScanPayloads: [String]? = nil,
+        orderId: String,
+        orderScheduleTemplatePathIdempotencyKey: String? = nil,
+        orderShortId: String,
+        requestedByOrgId: String? = nil,
+        requestedByUserId: String? = nil,
+        schemaVersion: Int,
+        skippedAtTimestamp: Date? = nil,
+        stagedAtTimestamp: Date? = nil,
+        status: TaskArtifactStatusEnum1? = nil,
+        taskArtifactS3ObjectMetadataIds: [String]? = nil,
+        taskGroupId: String,
+        taskId: String,
+        type: TaskArtifactTypeEnum1,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.schemaVersion = schemaVersion
-        self.type = type
-        self.expectedScanPayloads = expectedScanPayloads
         self.id = id
-        self.orderId = orderId
-        self.orderShortId = orderShortId
-        self.taskGroupId = taskGroupId
-        self.taskId = taskId
-        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
-        self.taskArtifactS3ObjectMetadataIds = taskArtifactS3ObjectMetadataIds
-        self.createdByOrgId = createdByOrgId
-        self.createdByUserId = createdByUserId
-        self.requestedByOrgId = requestedByOrgId
-        self.requestedByUserId = requestedByUserId
+        self.cancelledAtTimestamp = cancelledAtTimestamp
+        self.completedAtTimestamp = completedAtTimestamp
         self.completedByOrgId = completedByOrgId
         self.completedByUserId = completedByUserId
-        self.observedScanPayloads = observedScanPayloads
-        self.status = status
+        self.createdByOrgId = createdByOrgId
+        self.createdByUserId = createdByUserId
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
-        self.stagedAtTimestamp = stagedAtTimestamp
-        self.completedAtTimestamp = completedAtTimestamp
-        self.skippedAtTimestamp = skippedAtTimestamp
-        self.cancelledAtTimestamp = cancelledAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
+        self.expectedScanPayloads = expectedScanPayloads
+        self.observedScanPayloads = observedScanPayloads
+        self.orderId = orderId
+        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
+        self.orderShortId = orderShortId
+        self.requestedByOrgId = requestedByOrgId
+        self.requestedByUserId = requestedByUserId
+        self.schemaVersion = schemaVersion
+        self.skippedAtTimestamp = skippedAtTimestamp
+        self.stagedAtTimestamp = stagedAtTimestamp
+        self.status = status
+        self.taskArtifactS3ObjectMetadataIds = taskArtifactS3ObjectMetadataIds
+        self.taskGroupId = taskGroupId
+        self.taskId = taskId
+        self.type = type
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.type = try container.decode(TaskArtifactTypeEnum1.self, forKey: .type)
-        self.expectedScanPayloads = try container.decodeIfPresent([String].self, forKey: .expectedScanPayloads)
         self.id = try container.decode(String.self, forKey: .id)
-        self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
-        self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
-        self.taskId = try container.decode(String.self, forKey: .taskId)
-        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
-        self.taskArtifactS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .taskArtifactS3ObjectMetadataIds)
-        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
-        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
-        self.requestedByOrgId = try container.decodeIfPresent(String.self, forKey: .requestedByOrgId)
-        self.requestedByUserId = try container.decodeIfPresent(String.self, forKey: .requestedByUserId)
+        self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
+        self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
         self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
-        self.observedScanPayloads = try container.decodeIfPresent([String].self, forKey: .observedScanPayloads)
-        self.status = try container.decodeIfPresent(TaskArtifactStatusEnum1.self, forKey: .status)
+        self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
+        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
-        self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
-        self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
-        self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
-        self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
+        self.expectedScanPayloads = try container.decodeIfPresent([String].self, forKey: .expectedScanPayloads)
+        self.observedScanPayloads = try container.decodeIfPresent([String].self, forKey: .observedScanPayloads)
+        self.orderId = try container.decode(String.self, forKey: .orderId)
+        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
+        self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
+        self.requestedByOrgId = try container.decodeIfPresent(String.self, forKey: .requestedByOrgId)
+        self.requestedByUserId = try container.decodeIfPresent(String.self, forKey: .requestedByUserId)
+        self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
+        self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
+        self.status = try container.decodeIfPresent(TaskArtifactStatusEnum1.self, forKey: .status)
+        self.taskArtifactS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .taskArtifactS3ObjectMetadataIds)
+        self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
+        self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.type = try container.decode(TaskArtifactTypeEnum1.self, forKey: .type)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encode(self.type, forKey: .type)
-        try container.encodeIfPresent(self.expectedScanPayloads, forKey: .expectedScanPayloads)
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.orderId, forKey: .orderId)
-        try container.encode(self.orderShortId, forKey: .orderShortId)
-        try container.encode(self.taskGroupId, forKey: .taskGroupId)
-        try container.encode(self.taskId, forKey: .taskId)
-        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
-        try container.encodeIfPresent(self.taskArtifactS3ObjectMetadataIds, forKey: .taskArtifactS3ObjectMetadataIds)
-        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
-        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
-        try container.encodeIfPresent(self.requestedByOrgId, forKey: .requestedByOrgId)
-        try container.encodeIfPresent(self.requestedByUserId, forKey: .requestedByUserId)
+        try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
+        try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
         try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
-        try container.encodeIfPresent(self.observedScanPayloads, forKey: .observedScanPayloads)
-        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
+        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
-        try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
-        try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
-        try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
-        try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
+        try container.encodeIfPresent(self.expectedScanPayloads, forKey: .expectedScanPayloads)
+        try container.encodeIfPresent(self.observedScanPayloads, forKey: .observedScanPayloads)
+        try container.encode(self.orderId, forKey: .orderId)
+        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
+        try container.encode(self.orderShortId, forKey: .orderShortId)
+        try container.encodeIfPresent(self.requestedByOrgId, forKey: .requestedByOrgId)
+        try container.encodeIfPresent(self.requestedByUserId, forKey: .requestedByUserId)
+        try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
+        try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.taskArtifactS3ObjectMetadataIds, forKey: .taskArtifactS3ObjectMetadataIds)
+        try container.encode(self.taskGroupId, forKey: .taskGroupId)
+        try container.encode(self.taskId, forKey: .taskId)
+        try container.encode(self.type, forKey: .type)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case schemaVersion = "schema_version"
-        case type
-        case expectedScanPayloads = "expected_scan_payloads"
         case id = "_id"
-        case orderId = "order_id"
-        case orderShortId = "order_short_id"
-        case taskGroupId = "task_group_id"
-        case taskId = "task_id"
-        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
-        case taskArtifactS3ObjectMetadataIds = "task_artifact_s3_object_metadata_ids"
-        case createdByOrgId = "created_by_org_id"
-        case createdByUserId = "created_by_user_id"
-        case requestedByOrgId = "requested_by_org_id"
-        case requestedByUserId = "requested_by_user_id"
+        case cancelledAtTimestamp = "cancelled_at_timestamp"
+        case completedAtTimestamp = "completed_at_timestamp"
         case completedByOrgId = "completed_by_org_id"
         case completedByUserId = "completed_by_user_id"
-        case observedScanPayloads = "observed_scan_payloads"
-        case status
+        case createdByOrgId = "created_by_org_id"
+        case createdByUserId = "created_by_user_id"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
-        case stagedAtTimestamp = "staged_at_timestamp"
-        case completedAtTimestamp = "completed_at_timestamp"
-        case skippedAtTimestamp = "skipped_at_timestamp"
-        case cancelledAtTimestamp = "cancelled_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
+        case expectedScanPayloads = "expected_scan_payloads"
+        case observedScanPayloads = "observed_scan_payloads"
+        case orderId = "order_id"
+        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
+        case orderShortId = "order_short_id"
+        case requestedByOrgId = "requested_by_org_id"
+        case requestedByUserId = "requested_by_user_id"
+        case schemaVersion = "schema_version"
+        case skippedAtTimestamp = "skipped_at_timestamp"
+        case stagedAtTimestamp = "staged_at_timestamp"
+        case status
+        case taskArtifactS3ObjectMetadataIds = "task_artifact_s3_object_metadata_ids"
+        case taskGroupId = "task_group_id"
+        case taskId = "task_id"
+        case type
     }
 }

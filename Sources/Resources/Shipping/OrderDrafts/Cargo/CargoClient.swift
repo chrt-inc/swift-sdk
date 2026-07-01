@@ -33,6 +33,18 @@ public final class CargoClient: Sendable {
         )
     }
 
+    /// Deletes a cargo item from a draft order and removes references from associated tasks. | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(cargoId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/order_drafts/cargo/delete/v1/\(cargoId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Removes an existing cargo association from a task in a draft order (e.g. when the wrong cargo was selected). | (OrderDraftUnassociateCargoWithTaskReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -56,18 +68,6 @@ public final class CargoClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
-        )
-    }
-
-    /// Deletes a cargo item from a draft order and removes references from associated tasks. | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(cargoId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/order_drafts/cargo/delete/v1/\(cargoId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
         )
     }
 }

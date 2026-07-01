@@ -7,6 +7,69 @@ public final class SessionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification; attach flights afterwards via set_flight_info. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/sessions/create_session/v1",
+            queryParams: [
+                "device_id": .string(deviceId), 
+                "no_auto_termination": noAutoTermination.map { .bool($0) }
+            ],
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Returns the session's flight legs in order, with Cirium-sourced status lazily resolved and refreshed on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (list[FlightLeg1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func flightLegsV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> [FlightLeg1] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/sessions/flight_legs/v1",
+            queryParams: [
+                "session_id": .string(sessionId)
+            ],
+            requestOptions: requestOptions,
+            responseType: [FlightLeg1].self
+        )
+    }
+
+    /// Returns the Cirium-sourced positional track for one of the session's flight legs — the live breadcrumb trail plus the planned path (waypoints + legacy route) — cached on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func flightTrackV1(sessionId: String, flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/sessions/flight_track/v1",
+            queryParams: [
+                "session_id": .string(sessionId), 
+                "flight_leg_id": .string(flightLegId)
+            ],
+            requestOptions: requestOptions,
+            responseType: FlightTrackRes.self
+        )
+    }
+
+    /// Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/sessions/get/v1",
+            queryParams: [
+                "session_id": .string(sessionId)
+            ],
+            requestOptions: requestOptions,
+            responseType: Session1.self
+        )
+    }
+
     /// Lists sessions with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (SessionListRes)
     ///
     /// - Parameter sortBy: Field to sort by
@@ -61,18 +124,31 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session1)
+    /// Replaces the session's followed flights: deletes the existing session-owned FlightLeg documents and creates new ones from the supplied flight details. Each leg's Cirium flightId and status resolve lazily on read. Pass an empty list to clear all flights. | auth: api_key | authz: min_org_role=operator | (SessionSetFlightInfoReq1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session1 {
+    public func setFlightInfoV1(request: Requests.SessionSetFlightInfoReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/sessions/get/v1",
+            method: .post,
+            path: "/tracking/sessions/set_flight_info/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Terminates a session. Moves device.active_session_id to device.past_session_ids and deactivates the device. | auth: api_key | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func terminateV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking/sessions/terminate/v1",
             queryParams: [
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
-            responseType: Session1.self
+            responseType: Bool.self
         )
     }
 
@@ -93,23 +169,6 @@ public final class SessionsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: [TrackingTypeaheadResult].self
-        )
-    }
-
-    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification; attach flights afterwards via set_flight_info. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sessions/create_session/v1",
-            queryParams: [
-                "device_id": .string(deviceId), 
-                "no_auto_termination": noAutoTermination.map { .bool($0) }
-            ],
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
         )
     }
 
@@ -136,65 +195,6 @@ public final class SessionsClient: Sendable {
         return try await httpClient.performRequest(
             method: .post,
             path: "/tracking/sessions/update_shared_orgs/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Terminates a session. Moves device.active_session_id to device.past_session_ids and deactivates the device. | auth: api_key | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func terminateV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sessions/terminate/v1",
-            queryParams: [
-                "session_id": .string(sessionId)
-            ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Returns the session's flight legs in order, with Cirium-sourced status lazily resolved and refreshed on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (list[FlightLeg1])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func flightLegsV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> [FlightLeg1] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/sessions/flight_legs/v1",
-            queryParams: [
-                "session_id": .string(sessionId)
-            ],
-            requestOptions: requestOptions,
-            responseType: [FlightLeg1].self
-        )
-    }
-
-    /// Returns the Cirium-sourced positional track for one of the session's flight legs — the live breadcrumb trail plus the planned path (waypoints + legacy route) — cached on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func flightTrackV1(sessionId: String, flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/tracking/sessions/flight_track/v1",
-            queryParams: [
-                "session_id": .string(sessionId), 
-                "flight_leg_id": .string(flightLegId)
-            ],
-            requestOptions: requestOptions,
-            responseType: FlightTrackRes.self
-        )
-    }
-
-    /// Replaces the session's followed flights: deletes the existing session-owned FlightLeg documents and creates new ones from the supplied flight details. Each leg's Cirium flightId and status resolve lazily on read. Pass an empty list to clear all flights. | auth: api_key | authz: min_org_role=operator | (SessionSetFlightInfoReq1) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setFlightInfoV1(request: Requests.SessionSetFlightInfoReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking/sessions/set_flight_info/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

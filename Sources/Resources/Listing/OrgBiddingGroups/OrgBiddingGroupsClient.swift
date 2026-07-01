@@ -7,6 +7,18 @@ public final class OrgBiddingGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Adds an on-chrt provider org to a bidding group. The provider must have a live provider -> provider connection to the caller's org. Duplicate adds are idempotent ($addToSet). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addProviderMemberV1(groupId: String, providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/listing/org_bidding_groups/add_provider_member/v1/\(groupId)/\(providerOrgId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Fetches an org bidding group by id. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrgBiddingGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -16,6 +28,31 @@ public final class OrgBiddingGroupsClient: Sendable {
             path: "/listing/org_bidding_groups/by_id/v1/\(groupId)",
             requestOptions: requestOptions,
             responseType: OrgBiddingGroup1.self
+        )
+    }
+
+    /// Creates an org bidding group owned by the caller's org. The group starts empty — add members via /add_provider_member. | authz: allowed_org_types=[provider], min_org_role=operator | (OrgBiddingGroupClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.OrgBiddingGroupClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/listing/org_bidding_groups/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Hard-deletes an org bidding group. Live Listings that used this group as a source are unaffected — they hold their own snapshotted `participant_provider_org_ids`. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/listing/org_bidding_groups/delete/v1/\(groupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -51,16 +88,15 @@ public final class OrgBiddingGroupsClient: Sendable {
         )
     }
 
-    /// Creates an org bidding group owned by the caller's org. The group starts empty — add members via /add_provider_member. | authz: allowed_org_types=[provider], min_org_role=operator | (OrgBiddingGroupClientCreate1) -> (PydanticObjectId)
+    /// Removes an on-chrt provider org from a bidding group. No-op if not a member. Live Listings retain their snapshotted members. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.OrgBiddingGroupClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func removeProviderMemberV1(groupId: String, providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/listing/org_bidding_groups/create/v1",
-            body: request,
+            method: .delete,
+            path: "/listing/org_bidding_groups/remove_provider_member/v1/\(groupId)/\(providerOrgId)",
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: Bool.self
         )
     }
 
@@ -74,42 +110,6 @@ public final class OrgBiddingGroupsClient: Sendable {
             queryParams: [
                 "group_name": .string(groupName)
             ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Adds an on-chrt provider org to a bidding group. The provider must have a live provider -> provider connection to the caller's org. Duplicate adds are idempotent ($addToSet). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addProviderMemberV1(groupId: String, providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/listing/org_bidding_groups/add_provider_member/v1/\(groupId)/\(providerOrgId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes an on-chrt provider org from a bidding group. No-op if not a member. Live Listings retain their snapshotted members. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeProviderMemberV1(groupId: String, providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/listing/org_bidding_groups/remove_provider_member/v1/\(groupId)/\(providerOrgId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Hard-deletes an org bidding group. Live Listings that used this group as a source are unaffected — they hold their own snapshotted `participant_provider_org_ids`. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/listing/org_bidding_groups/delete/v1/\(groupId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

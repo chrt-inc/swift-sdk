@@ -7,6 +7,18 @@ public final class DriverBiddingGroupsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Adds a driver to a bidding group. Driver must be part of the caller's org. Duplicate adds are idempotent ($addToSet). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addMemberV1(groupId: String, driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/listing/driver_bidding_groups/add_member/v1/\(groupId)/\(driverId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Fetches a driver bidding group by id. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroup1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -16,6 +28,31 @@ public final class DriverBiddingGroupsClient: Sendable {
             path: "/listing/driver_bidding_groups/by_id/v1/\(groupId)",
             requestOptions: requestOptions,
             responseType: DriverBiddingGroup1.self
+        )
+    }
+
+    /// Creates a driver bidding group owned by the caller's org. The group starts empty — add drivers via /add_member. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverBiddingGroupClientCreate1) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.DriverBiddingGroupClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/listing/driver_bidding_groups/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Hard-deletes a driver bidding group. Live Listings that reference this group as a source are unaffected — they hold their own snapshotted `participant_driver_ids`. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/listing/driver_bidding_groups/delete/v1/\(groupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -51,16 +88,15 @@ public final class DriverBiddingGroupsClient: Sendable {
         )
     }
 
-    /// Creates a driver bidding group owned by the caller's org. The group starts empty — add drivers via /add_member. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverBiddingGroupClientCreate1) -> (PydanticObjectId)
+    /// Removes a driver from a bidding group. No-op if the driver is not a member. Live Listings retain their snapshotted members. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.DriverBiddingGroupClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func removeMemberV1(groupId: String, driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/listing/driver_bidding_groups/create/v1",
-            body: request,
+            method: .delete,
+            path: "/listing/driver_bidding_groups/remove_member/v1/\(groupId)/\(driverId)",
             requestOptions: requestOptions,
-            responseType: String.self
+            responseType: Bool.self
         )
     }
 
@@ -74,42 +110,6 @@ public final class DriverBiddingGroupsClient: Sendable {
             queryParams: [
                 "group_name": .string(groupName)
             ],
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Adds a driver to a bidding group. Driver must be part of the caller's org. Duplicate adds are idempotent ($addToSet). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addMemberV1(groupId: String, driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/listing/driver_bidding_groups/add_member/v1/\(groupId)/\(driverId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes a driver from a bidding group. No-op if the driver is not a member. Live Listings retain their snapshotted members. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeMemberV1(groupId: String, driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/listing/driver_bidding_groups/remove_member/v1/\(groupId)/\(driverId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Hard-deletes a driver bidding group. Live Listings that reference this group as a source are unaffected — they hold their own snapshotted `participant_driver_ids`. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/listing/driver_bidding_groups/delete/v1/\(groupId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

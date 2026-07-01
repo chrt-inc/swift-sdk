@@ -23,10 +23,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -56,10 +56,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -89,10 +89,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -121,10 +121,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -152,10 +152,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -184,10 +184,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -216,10 +216,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -253,10 +253,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -300,10 +300,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -343,10 +343,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -397,10 +397,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers)
             )
@@ -425,10 +425,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers)
             )
@@ -457,10 +457,10 @@ import Testing
         do {
             _ = try await client.flights.searchConnectionsV1(
                 request: .init(
-                    origin: "origin",
                     destination: "destination",
-                    searchBy: .departureTime,
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    origin: "origin",
+                    searchBy: .departureTime
                 ),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )

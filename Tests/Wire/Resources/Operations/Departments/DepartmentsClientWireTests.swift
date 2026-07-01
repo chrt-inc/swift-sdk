@@ -3,6 +3,29 @@ import Testing
 import Chrt
 
 @Suite("DepartmentsClient Wire Tests") struct DepartmentsClientWireTests {
+    @Test func addOperatorV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.departments.addOperatorV1(
+            departmentId: "department_id",
+            userId: "user_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -11,11 +34,11 @@ import Chrt
                 {
                   "items": [
                     {
-                      "schema_version": 1,
-                      "name": "name",
+                      "_id": "_id",
+                      "created_at": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
                       "department_type": "aerospace",
                       "location": {
-                        "type": "Feature",
                         "geometry": {
                           "geometries": [
                             {
@@ -26,16 +49,16 @@ import Chrt
                             }
                           ],
                           "type": "GeometryCollection"
-                        }
+                        },
+                        "type": "Feature"
                       },
+                      "name": "name",
                       "operator_user_ids": [
                         "operator_user_ids"
                       ],
-                      "_id": "_id",
                       "org_id": "org_id",
-                      "short_id": "short_id",
-                      "created_by_user_id": "created_by_user_id",
-                      "created_at": "2024-01-15T09:30:00Z"
+                      "schema_version": 1,
+                      "short_id": "short_id"
                     }
                   ],
                   "total_count": 1
@@ -51,18 +74,18 @@ import Chrt
         let expectedResponse = DepartmentListRes(
             items: [
                 Department1(
-                    schemaVersion: 1,
-                    name: "name",
+                    id: "_id",
+                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
                     departmentType: .aerospace,
                     location: Optional(LocationFeature(
-                        type: .feature,
                         geometry: .geometryCollection(
                             .init(
                                 geometries: [
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -70,16 +93,16 @@ import Chrt
                                     )
                                 ]
                             )
-                        )
+                        ),
+                        type: .feature
                     )),
+                    name: "name",
                     operatorUserIds: Optional([
                         "operator_user_ids"
                     ]),
-                    id: "_id",
                     orgId: "org_id",
-                    shortId: "short_id",
-                    createdByUserId: "created_by_user_id",
-                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    schemaVersion: 1,
+                    shortId: "short_id"
                 )
             ],
             totalCount: 1
@@ -89,9 +112,55 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartmentType: [
-                .aerospace
-            ],
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeOperatorV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.departments.removeOperatorV1(
+            departmentId: "department_id",
+            userId: "user_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.operations.departments.createV1(
+            request: .init(
+                departmentType: .aerospace,
+                name: "name",
+                schemaVersion: 1
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -103,8 +172,9 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
-                  "name": "name",
+                  "_id": "_id",
+                  "created_at": "2024-01-15T09:30:00Z",
+                  "created_by_user_id": "created_by_user_id",
                   "department_type": "aerospace",
                   "location": {
                     "bbox": [
@@ -112,7 +182,6 @@ import Chrt
                         "key": "value"
                       }
                     ],
-                    "type": "Feature",
                     "geometry": {
                       "geometries": [
                         {
@@ -124,20 +193,20 @@ import Chrt
                       ],
                       "type": "GeometryCollection"
                     },
+                    "id": 1,
                     "properties": {
                       "address": "address",
                       "name": "name"
                     },
-                    "id": 1
+                    "type": "Feature"
                   },
+                  "name": "name",
                   "operator_user_ids": [
                     "operator_user_ids"
                   ],
-                  "_id": "_id",
                   "org_id": "org_id",
-                  "short_id": "short_id",
-                  "created_by_user_id": "created_by_user_id",
-                  "created_at": "2024-01-15T09:30:00Z"
+                  "schema_version": 1,
+                  "short_id": "short_id"
                 }
                 """.utf8
             )
@@ -148,8 +217,9 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = Department1(
-            schemaVersion: 1,
-            name: "name",
+            id: "_id",
+            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            createdByUserId: "created_by_user_id",
             departmentType: .aerospace,
             location: Optional(LocationFeature(
                 bbox: Optional([
@@ -159,14 +229,13 @@ import Chrt
                         ]
                     )
                 ]),
-                type: .feature,
                 geometry: .geometryCollection(
                     .init(
                         geometries: [
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]
@@ -175,22 +244,22 @@ import Chrt
                         ]
                     )
                 ),
+                id: Optional(Id.int(
+                    1
+                )),
                 properties: Optional(LocationProperties(
                     address: Optional("address"),
                     name: Optional("name")
                 )),
-                id: Optional(Id.int(
-                    1
-                ))
+                type: .feature
             )),
+            name: "name",
             operatorUserIds: Optional([
                 "operator_user_ids"
             ]),
-            id: "_id",
             orgId: "org_id",
-            shortId: "short_id",
-            createdByUserId: "created_by_user_id",
-            createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            schemaVersion: 1,
+            shortId: "short_id"
         )
         let response = try await client.operations.departments.getV1(
             departmentId: "department_id",
@@ -239,78 +308,6 @@ import Chrt
         let response = try await client.operations.departments.updateV1(
             departmentId: "department_id",
             request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func createV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.operations.departments.createV1(
-            request: .init(
-                schemaVersion: 1,
-                name: "name",
-                departmentType: .aerospace
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func addOperatorV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.departments.addOperatorV1(
-            departmentId: "department_id",
-            userId: "user_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func removeOperatorV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.departments.removeOperatorV1(
-            departmentId: "department_id",
-            userId: "user_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

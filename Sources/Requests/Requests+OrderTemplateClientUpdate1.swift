@@ -2,143 +2,155 @@ import Foundation
 
 extension Requests {
     public struct OrderTemplateClientUpdate1: Codable, Hashable, Sendable {
-        public let name: String?
-        public let description: String?
-        public let text: String?
-        public let offChrtReferenceIdStr: String?
-        /// Must be a string starting with `org_`
-        public let shipperOrgId: String?
-        public let offChrtShipperOrgId: String?
-        public let executorOrgIds: [String]?
-        public let driverIds: [String]?
-        public let directoryEntryIds: [String]?
+        public let caseTag: String?
+        public let caseTagSetToNone: Bool?
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
-        public let departmentId: String?
-        public let taskListIds: [String]?
-        public let descriptionSetToNone: Bool?
-        public let textSetToNone: Bool?
-        public let offChrtReferenceIdStrSetToNone: Bool?
-        public let shipperOrgIdSetToNone: Bool?
-        public let offChrtShipperOrgIdSetToNone: Bool?
         public let coordinatorOrgIdSetToNone: Bool?
+        public let departmentId: String?
         public let departmentIdSetToNone: Bool?
+        public let description: String?
+        public let descriptionSetToNone: Bool?
+        public let directoryEntryIds: [String]?
+        public let driverIds: [String]?
+        public let executorOrgIds: [String]?
+        public let name: String?
+        public let offChrtReferenceIdStr: String?
+        public let offChrtReferenceIdStrSetToNone: Bool?
+        public let offChrtShipperOrgId: String?
+        public let offChrtShipperOrgIdSetToNone: Bool?
+        /// Must be a string starting with `org_`
+        public let shipperOrgId: String?
+        public let shipperOrgIdSetToNone: Bool?
+        public let taskListIds: [String]?
+        public let text: String?
+        public let textSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            name: String? = nil,
-            description: String? = nil,
-            text: String? = nil,
-            offChrtReferenceIdStr: String? = nil,
-            shipperOrgId: String? = nil,
-            offChrtShipperOrgId: String? = nil,
-            executorOrgIds: [String]? = nil,
-            driverIds: [String]? = nil,
-            directoryEntryIds: [String]? = nil,
+            caseTag: String? = nil,
+            caseTagSetToNone: Bool? = nil,
             coordinatorOrgId: String? = nil,
-            departmentId: String? = nil,
-            taskListIds: [String]? = nil,
-            descriptionSetToNone: Bool? = nil,
-            textSetToNone: Bool? = nil,
-            offChrtReferenceIdStrSetToNone: Bool? = nil,
-            shipperOrgIdSetToNone: Bool? = nil,
-            offChrtShipperOrgIdSetToNone: Bool? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
+            departmentId: String? = nil,
             departmentIdSetToNone: Bool? = nil,
+            description: String? = nil,
+            descriptionSetToNone: Bool? = nil,
+            directoryEntryIds: [String]? = nil,
+            driverIds: [String]? = nil,
+            executorOrgIds: [String]? = nil,
+            name: String? = nil,
+            offChrtReferenceIdStr: String? = nil,
+            offChrtReferenceIdStrSetToNone: Bool? = nil,
+            offChrtShipperOrgId: String? = nil,
+            offChrtShipperOrgIdSetToNone: Bool? = nil,
+            shipperOrgId: String? = nil,
+            shipperOrgIdSetToNone: Bool? = nil,
+            taskListIds: [String]? = nil,
+            text: String? = nil,
+            textSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.name = name
-            self.description = description
-            self.text = text
-            self.offChrtReferenceIdStr = offChrtReferenceIdStr
-            self.shipperOrgId = shipperOrgId
-            self.offChrtShipperOrgId = offChrtShipperOrgId
-            self.executorOrgIds = executorOrgIds
-            self.driverIds = driverIds
-            self.directoryEntryIds = directoryEntryIds
+            self.caseTag = caseTag
+            self.caseTagSetToNone = caseTagSetToNone
             self.coordinatorOrgId = coordinatorOrgId
-            self.departmentId = departmentId
-            self.taskListIds = taskListIds
-            self.descriptionSetToNone = descriptionSetToNone
-            self.textSetToNone = textSetToNone
-            self.offChrtReferenceIdStrSetToNone = offChrtReferenceIdStrSetToNone
-            self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
-            self.offChrtShipperOrgIdSetToNone = offChrtShipperOrgIdSetToNone
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
+            self.departmentId = departmentId
             self.departmentIdSetToNone = departmentIdSetToNone
+            self.description = description
+            self.descriptionSetToNone = descriptionSetToNone
+            self.directoryEntryIds = directoryEntryIds
+            self.driverIds = driverIds
+            self.executorOrgIds = executorOrgIds
+            self.name = name
+            self.offChrtReferenceIdStr = offChrtReferenceIdStr
+            self.offChrtReferenceIdStrSetToNone = offChrtReferenceIdStrSetToNone
+            self.offChrtShipperOrgId = offChrtShipperOrgId
+            self.offChrtShipperOrgIdSetToNone = offChrtShipperOrgIdSetToNone
+            self.shipperOrgId = shipperOrgId
+            self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
+            self.taskListIds = taskListIds
+            self.text = text
+            self.textSetToNone = textSetToNone
             self.additionalProperties = additionalProperties
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.name = try container.decodeIfPresent(String.self, forKey: .name)
-            self.description = try container.decodeIfPresent(String.self, forKey: .description)
-            self.text = try container.decodeIfPresent(String.self, forKey: .text)
-            self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
-            self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-            self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
-            self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
-            self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
-            self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
+            self.caseTag = try container.decodeIfPresent(String.self, forKey: .caseTag)
+            self.caseTagSetToNone = try container.decodeIfPresent(Bool.self, forKey: .caseTagSetToNone)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
-            self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
-            self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
-            self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
-            self.textSetToNone = try container.decodeIfPresent(Bool.self, forKey: .textSetToNone)
-            self.offChrtReferenceIdStrSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdStrSetToNone)
-            self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
-            self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
+            self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.departmentIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .departmentIdSetToNone)
+            self.description = try container.decodeIfPresent(String.self, forKey: .description)
+            self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
+            self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
+            self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
+            self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
+            self.name = try container.decodeIfPresent(String.self, forKey: .name)
+            self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
+            self.offChrtReferenceIdStrSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdStrSetToNone)
+            self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+            self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
+            self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
+            self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
+            self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
+            self.text = try container.decodeIfPresent(String.self, forKey: .text)
+            self.textSetToNone = try container.decodeIfPresent(Bool.self, forKey: .textSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.name, forKey: .name)
-            try container.encodeIfPresent(self.description, forKey: .description)
-            try container.encodeIfPresent(self.text, forKey: .text)
-            try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
-            try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-            try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
-            try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
-            try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
-            try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
+            try container.encodeIfPresent(self.caseTag, forKey: .caseTag)
+            try container.encodeIfPresent(self.caseTagSetToNone, forKey: .caseTagSetToNone)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
-            try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
-            try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
-            try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
-            try container.encodeIfPresent(self.textSetToNone, forKey: .textSetToNone)
-            try container.encodeIfPresent(self.offChrtReferenceIdStrSetToNone, forKey: .offChrtReferenceIdStrSetToNone)
-            try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
-            try container.encodeIfPresent(self.offChrtShipperOrgIdSetToNone, forKey: .offChrtShipperOrgIdSetToNone)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
+            try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
             try container.encodeIfPresent(self.departmentIdSetToNone, forKey: .departmentIdSetToNone)
+            try container.encodeIfPresent(self.description, forKey: .description)
+            try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
+            try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
+            try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
+            try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
+            try container.encodeIfPresent(self.name, forKey: .name)
+            try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
+            try container.encodeIfPresent(self.offChrtReferenceIdStrSetToNone, forKey: .offChrtReferenceIdStrSetToNone)
+            try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+            try container.encodeIfPresent(self.offChrtShipperOrgIdSetToNone, forKey: .offChrtShipperOrgIdSetToNone)
+            try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+            try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
+            try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
+            try container.encodeIfPresent(self.text, forKey: .text)
+            try container.encodeIfPresent(self.textSetToNone, forKey: .textSetToNone)
         }
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case name
-            case description
-            case text
-            case offChrtReferenceIdStr = "off_chrt_reference_id_str"
-            case shipperOrgId = "shipper_org_id"
-            case offChrtShipperOrgId = "off_chrt_shipper_org_id"
-            case executorOrgIds = "executor_org_ids"
-            case driverIds = "driver_ids"
-            case directoryEntryIds = "directory_entry_ids"
+            case caseTag = "case_tag"
+            case caseTagSetToNone = "case_tag__set_to_None"
             case coordinatorOrgId = "coordinator_org_id"
-            case departmentId = "department_id"
-            case taskListIds = "task_list_ids"
-            case descriptionSetToNone = "description__set_to_None"
-            case textSetToNone = "text__set_to_None"
-            case offChrtReferenceIdStrSetToNone = "off_chrt_reference_id_str__set_to_None"
-            case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
-            case offChrtShipperOrgIdSetToNone = "off_chrt_shipper_org_id__set_to_None"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
+            case departmentId = "department_id"
             case departmentIdSetToNone = "department_id__set_to_None"
+            case description
+            case descriptionSetToNone = "description__set_to_None"
+            case directoryEntryIds = "directory_entry_ids"
+            case driverIds = "driver_ids"
+            case executorOrgIds = "executor_org_ids"
+            case name
+            case offChrtReferenceIdStr = "off_chrt_reference_id_str"
+            case offChrtReferenceIdStrSetToNone = "off_chrt_reference_id_str__set_to_None"
+            case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+            case offChrtShipperOrgIdSetToNone = "off_chrt_shipper_org_id__set_to_None"
+            case shipperOrgId = "shipper_org_id"
+            case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
+            case taskListIds = "task_list_ids"
+            case text
+            case textSetToNone = "text__set_to_None"
         }
     }
 }

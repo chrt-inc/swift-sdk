@@ -7,42 +7,6 @@ public final class ConnectionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists shipper organizations connected to the caller (caller must be a provider) with optional search by company name or handle. | () -> (ShipperConnectionListRes)
-    ///
-    /// - Parameter search: Search by company name or handle
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listShippersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperConnectionListRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/connections/shippers/list/v1",
-            queryParams: [
-                "search": search.map { .string($0) }, 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: ShipperConnectionListRes.self
-        )
-    }
-
-    /// Lists provider organizations connected to the caller. Shippers see providers from shipper_provider_connections; providers see other providers from provider_provider_connections (in either direction). | () -> (ProviderConnectionListRes)
-    ///
-    /// - Parameter search: Search by company name or handle
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listProvidersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ProviderConnectionListRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/orgs/connections/providers/list/v1",
-            queryParams: [
-                "search": search.map { .string($0) }, 
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: ProviderConnectionListRes.self
-        )
-    }
-
     /// Gets the connection between caller's org and the org with the specified handle. | () -> (ShipperProviderConnection1 | ProviderProviderConnection1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -81,6 +45,24 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
+    /// Lists provider organizations connected to the caller. Shippers see providers from shipper_provider_connections; providers see other providers from provider_provider_connections (in either direction). | () -> (ProviderConnectionListRes)
+    ///
+    /// - Parameter search: Search by company name or handle
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listProvidersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ProviderConnectionListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/connections/providers/list/v1",
+            queryParams: [
+                "search": search.map { .string($0) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: ProviderConnectionListRes.self
+        )
+    }
+
     /// Toggles `auto_assign_enabled` on a provider-provider connection — the executor org's opt-in for receiving direct (non-bidding) task-group assignments. Executor org only, min role: administrator. | (ProviderProviderUpdateAutoAssignReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -91,6 +73,24 @@ public final class ConnectionsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Lists shipper organizations connected to the caller (caller must be a provider) with optional search by company name or handle. | () -> (ShipperConnectionListRes)
+    ///
+    /// - Parameter search: Search by company name or handle
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listShippersV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperConnectionListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/connections/shippers/list/v1",
+            queryParams: [
+                "search": search.map { .string($0) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: ShipperConnectionListRes.self
         )
     }
 }

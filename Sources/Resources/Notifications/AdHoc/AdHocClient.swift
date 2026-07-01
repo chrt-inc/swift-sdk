@@ -7,38 +7,6 @@ public final class AdHocClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists all ad-hoc notification intents for an order. | authz: min_org_role=operator | () -> (NotificationAdHocListRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByOrderIdV1(orderId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationAdHocListRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/notifications/ad_hoc/list_by_order_id/v1/\(orderId)",
-            queryParams: [
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: NotificationAdHocListRes.self
-        )
-    }
-
-    /// Lists all ad-hoc notification intents for a tracking session. | authz: min_org_role=operator | () -> (NotificationAdHocListRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listBySessionIdV1(sessionId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationAdHocListRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/notifications/ad_hoc/list_by_session_id/v1/\(sessionId)",
-            queryParams: [
-                "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: NotificationAdHocListRes.self
-        )
-    }
-
     /// Creates or returns an existing ad-hoc notification intent for an order. | authz: min_org_role=operator | (NotificationIntentAdHocClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -74,6 +42,38 @@ public final class AdHocClient: Sendable {
             path: "/notifications/ad_hoc/delete/v1/\(adHocId)",
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Lists all ad-hoc notification intents for an order. | authz: min_org_role=operator | () -> (NotificationAdHocListRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listByOrderIdV1(orderId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationAdHocListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/notifications/ad_hoc/list_by_order_id/v1/\(orderId)",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: NotificationAdHocListRes.self
+        )
+    }
+
+    /// Lists all ad-hoc notification intents for a tracking session. | authz: min_org_role=operator | () -> (NotificationAdHocListRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listBySessionIdV1(sessionId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationAdHocListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/notifications/ad_hoc/list_by_session_id/v1/\(sessionId)",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: NotificationAdHocListRes.self
         )
     }
 }

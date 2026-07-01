@@ -20,8 +20,8 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.orgs.offChrtVendor.createV1(
             request: .init(
-                schemaVersion: 1,
-                name: "name"
+                name: "name",
+                schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -36,12 +36,12 @@ import Chrt
                 {
                   "items": [
                     {
-                      "schema_version": 1,
-                      "name": "name",
-                      "notes": "notes",
                       "_id": "_id",
                       "created_by_org_id": "created_by_org_id",
-                      "created_by_user_id": "created_by_user_id"
+                      "created_by_user_id": "created_by_user_id",
+                      "name": "name",
+                      "notes": "notes",
+                      "schema_version": 1
                     }
                   ],
                   "total_count": 1
@@ -57,12 +57,12 @@ import Chrt
         let expectedResponse = OffChrtVendorListRes(
             items: [
                 OffChrtVendor1(
-                    schemaVersion: 1,
-                    name: "name",
-                    notes: Optional("notes"),
                     id: "_id",
                     createdByOrgId: "created_by_org_id",
-                    createdByUserId: "created_by_user_id"
+                    createdByUserId: "created_by_user_id",
+                    name: "name",
+                    notes: Optional("notes"),
+                    schemaVersion: 1
                 )
             ],
             totalCount: 1
@@ -81,12 +81,12 @@ import Chrt
             body: Data(
                 """
                 {
-                  "schema_version": 1,
-                  "name": "name",
-                  "notes": "notes",
                   "_id": "_id",
                   "created_by_org_id": "created_by_org_id",
-                  "created_by_user_id": "created_by_user_id"
+                  "created_by_user_id": "created_by_user_id",
+                  "name": "name",
+                  "notes": "notes",
+                  "schema_version": 1
                 }
                 """.utf8
             )
@@ -97,12 +97,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OffChrtVendor1(
-            schemaVersion: 1,
-            name: "name",
-            notes: Optional("notes"),
             id: "_id",
             createdByOrgId: "created_by_org_id",
-            createdByUserId: "created_by_user_id"
+            createdByUserId: "created_by_user_id",
+            name: "name",
+            notes: Optional("notes"),
+            schemaVersion: 1
         )
         let response = try await client.orgs.offChrtVendor.getByIdV1(
             id: "id",

@@ -7,20 +7,6 @@ public final class OrdersExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves an expanded order with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
-    ///
-    /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func forShipperOperatorsV1(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderExpanded {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/expanded/for_shipper_operators/v1/\(orderRef)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrderExpanded.self
-        )
-    }
-
     /// Retrieves an expanded order with optional related data for coordinator operators (the provider org coordinating the order). | authz_personas=[coordinator_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
     ///
     /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
@@ -29,6 +15,20 @@ public final class OrdersExpandedClient: Sendable {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/for_coordinator_operators/v1/\(orderRef)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderExpanded.self
+        )
+    }
+
+    /// Retrieves an expanded order with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpanded)
+    ///
+    /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func forShipperOperatorsV1(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrderExpanded {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/orders/expanded/for_shipper_operators/v1/\(orderRef)",
             body: request,
             requestOptions: requestOptions,
             responseType: OrderExpanded.self

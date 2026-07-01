@@ -3,96 +3,6 @@ import Testing
 import Chrt
 
 @Suite("OrderDraftsClient Wire Tests") struct OrderDraftsClientWireTests {
-    @Test func newV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "order_id": "order_id",
-                  "order_short_id": "order_short_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrdersNewDraftRes(
-            orderId: "order_id",
-            orderShortId: "order_short_id"
-        )
-        let response = try await client.shipping.orderDrafts.newV1(
-            request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updateV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "order_id": "order_id",
-                  "order_short_id": "order_short_id",
-                  "coordinator_org_id": "coordinator_org_id",
-                  "shipper_org_id": "shipper_org_id",
-                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                  "off_chrt_reference_id": "off_chrt_reference_id"
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrdersDraftUpdateRes(
-            orderId: "order_id",
-            orderShortId: "order_short_id",
-            coordinatorOrgId: Optional("coordinator_org_id"),
-            shipperOrgId: Optional("shipper_org_id"),
-            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-            offChrtReferenceId: Optional("off_chrt_reference_id")
-        )
-        let response = try await client.shipping.orderDrafts.updateV1(
-            orderId: "order_id",
-            request: .init(),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func setTaskGroupOrderingV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orderDrafts.setTaskGroupOrderingV1(
-            orderId: "order_id",
-            request: .init(taskGroupIds: [
-                "task_group_ids"
-            ]),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -161,6 +71,59 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func newV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrdersNewDraftRes(
+            orderId: "order_id",
+            orderShortId: "order_short_id"
+        )
+        let response = try await client.shipping.orderDrafts.newV1(
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setTaskGroupOrderingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.setTaskGroupOrderingV1(
+            orderId: "order_id",
+            request: .init(taskGroupIds: [
+                "task_group_ids"
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func typeaheadV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -171,10 +134,10 @@ import Chrt
                     "type": "off_chrt_reference_id",
                     "values": [
                       {
-                        "value": "value",
                         "order_ids": [
                           "order_ids"
-                        ]
+                        ],
+                        "value": "value"
                       }
                     ]
                   }
@@ -192,10 +155,10 @@ import Chrt
                 type: .offChrtReferenceId,
                 values: [
                     OrderTypeaheadValue(
-                        value: "value",
                         orderIds: [
                             "order_ids"
-                        ]
+                        ],
+                        value: "value"
                     )
                 ]
             )
@@ -208,6 +171,43 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func updateV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "coordinator_org_id": "coordinator_org_id",
+                  "off_chrt_reference_id": "off_chrt_reference_id",
+                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                  "order_id": "order_id",
+                  "order_short_id": "order_short_id",
+                  "shipper_org_id": "shipper_org_id"
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrdersDraftUpdateRes(
+            coordinatorOrgId: Optional("coordinator_org_id"),
+            offChrtReferenceId: Optional("off_chrt_reference_id"),
+            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+            orderId: "order_id",
+            orderShortId: "order_short_id",
+            shipperOrgId: Optional("shipper_org_id")
+        )
+        let response = try await client.shipping.orderDrafts.updateV1(
+            orderId: "order_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func validateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -215,23 +215,23 @@ import Chrt
                 """
                 {
                   "is_valid": true,
-                  "requirements": {
-                    "all_entities_are_draft": true,
-                    "order_has_task_groups": true,
-                    "task_groups_have_valid_tasks": true,
-                    "tasks_have_valid_actions": true,
-                    "task_groups_have_valid_task_sequence": true,
-                    "tasks_have_valid_cargo": true,
-                    "cargos_have_valid_lifecycle": true,
-                    "at_least_one_task_has_time_window": true,
-                    "order_has_shipper": true,
-                    "order_has_coordinator": true
-                  },
                   "issues": [
                     {
                       "requirement_key": "requirement_key"
                     }
-                  ]
+                  ],
+                  "requirements": {
+                    "all_entities_are_draft": true,
+                    "at_least_one_task_has_time_window": true,
+                    "cargos_have_valid_lifecycle": true,
+                    "order_has_coordinator": true,
+                    "order_has_shipper": true,
+                    "order_has_task_groups": true,
+                    "task_groups_have_valid_task_sequence": true,
+                    "task_groups_have_valid_tasks": true,
+                    "tasks_have_valid_actions": true,
+                    "tasks_have_valid_cargo": true
+                  }
                 }
                 """.utf8
             )
@@ -243,23 +243,23 @@ import Chrt
         )
         let expectedResponse = OrderDraftValidationResult(
             isValid: true,
-            requirements: OrderDraftValidationRequirements(
-                allEntitiesAreDraft: Optional(true),
-                orderHasTaskGroups: Optional(true),
-                taskGroupsHaveValidTasks: Optional(true),
-                tasksHaveValidActions: Optional(true),
-                taskGroupsHaveValidTaskSequence: Optional(true),
-                tasksHaveValidCargo: Optional(true),
-                cargosHaveValidLifecycle: Optional(true),
-                atLeastOneTaskHasTimeWindow: Optional(true),
-                orderHasShipper: Optional(true),
-                orderHasCoordinator: Optional(true)
-            ),
             issues: Optional([
                 ValidationIssue(
                     requirementKey: "requirement_key"
                 )
-            ])
+            ]),
+            requirements: OrderDraftValidationRequirements(
+                allEntitiesAreDraft: Optional(true),
+                atLeastOneTaskHasTimeWindow: Optional(true),
+                cargosHaveValidLifecycle: Optional(true),
+                orderHasCoordinator: Optional(true),
+                orderHasShipper: Optional(true),
+                orderHasTaskGroups: Optional(true),
+                taskGroupsHaveValidTaskSequence: Optional(true),
+                taskGroupsHaveValidTasks: Optional(true),
+                tasksHaveValidActions: Optional(true),
+                tasksHaveValidCargo: Optional(true)
+            )
         )
         let response = try await client.shipping.orderDrafts.validateV1(
             orderId: "order_id",

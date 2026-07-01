@@ -10,14 +10,14 @@ import Chrt
                 """
                 [
                   {
-                    "schema_version": 1,
-                    "shipper_org_id": "shipper_org_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                    "department_id": "department_id",
                     "_id": "_id",
-                    "owner_org_id": "owner_org_id",
+                    "created_at": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
-                    "created_at": "2024-01-15T09:30:00Z"
+                    "department_id": "department_id",
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "owner_org_id": "owner_org_id",
+                    "schema_version": 1,
+                    "shipper_org_id": "shipper_org_id"
                   }
                 ]
                 """.utf8
@@ -30,14 +30,14 @@ import Chrt
         )
         let expectedResponse = [
             DepartmentRoutingRule1(
-                schemaVersion: 1,
-                shipperOrgId: Optional("shipper_org_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                departmentId: "department_id",
                 id: "_id",
-                ownerOrgId: "owner_org_id",
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                departmentId: "department_id",
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                ownerOrgId: "owner_org_id",
+                schemaVersion: 1,
+                shipperOrgId: Optional("shipper_org_id")
             )
         ]
         let response = try await client.operations.departmentRoutingRules.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -61,8 +61,8 @@ import Chrt
         let expectedResponse = "string"
         let response = try await client.operations.departmentRoutingRules.upsertV1(
             request: .init(
-                schemaVersion: 1,
-                departmentId: "department_id"
+                departmentId: "department_id",
+                schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

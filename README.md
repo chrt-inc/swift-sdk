@@ -20,7 +20,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "3.0.0"),
+    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.841.0"),
 ]
 ```
 
@@ -40,10 +40,10 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.flights.searchConnectionsV1(request: .init(
-        origin: "origin",
         destination: "destination",
-        searchBy: .departureTime,
-        localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        origin: "origin",
+        searchBy: .departureTime
     ))
 }
 

@@ -9,16 +9,16 @@ import Chrt
             body: Data(
                 """
                 {
+                  "notes": [
+                    "notes"
+                  ],
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
                   "summary": "summary",
-                  "validation_passed": true,
                   "validation_issues": [
                     "validation_issues"
                   ],
-                  "notes": [
-                    "notes"
-                  ]
+                  "validation_passed": true
                 }
                 """.utf8
             )
@@ -29,16 +29,16 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderBuilderRes(
+            notes: Optional([
+                "notes"
+            ]),
             orderId: Optional("order_id"),
             orderShortId: Optional("order_short_id"),
             summary: "summary",
-            validationPassed: Optional(true),
             validationIssues: Optional([
                 "validation_issues"
             ]),
-            notes: Optional([
-                "notes"
-            ])
+            validationPassed: Optional(true)
         )
         let response = try await client.shipping.orderDrafts.agentic.newV1(
             request: OrderBuilderReq(
@@ -55,15 +55,15 @@ import Chrt
             body: Data(
                 """
                 {
-                  "valid": true,
-                  "unresolvable_off_chrt_shipper": true,
-                  "unresolvable_driver_ids": [
-                    "unresolvable_driver_ids"
-                  ],
+                  "unresolvable_coordinator": true,
                   "unresolvable_directory_entry_ids": [
                     "unresolvable_directory_entry_ids"
                   ],
-                  "unresolvable_coordinator": true
+                  "unresolvable_driver_ids": [
+                    "unresolvable_driver_ids"
+                  ],
+                  "unresolvable_off_chrt_shipper": true,
+                  "valid": true
                 }
                 """.utf8
             )
@@ -74,15 +74,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderTemplateResolvabilityRes(
-            valid: true,
-            unresolvableOffChrtShipper: Optional(true),
-            unresolvableDriverIds: Optional([
-                "unresolvable_driver_ids"
-            ]),
+            unresolvableCoordinator: Optional(true),
             unresolvableDirectoryEntryIds: Optional([
                 "unresolvable_directory_entry_ids"
             ]),
-            unresolvableCoordinator: Optional(true)
+            unresolvableDriverIds: Optional([
+                "unresolvable_driver_ids"
+            ]),
+            unresolvableOffChrtShipper: Optional(true),
+            valid: true
         )
         let response = try await client.shipping.orderDrafts.agentic.precheckV1(
             request: OrderBuilderReq(

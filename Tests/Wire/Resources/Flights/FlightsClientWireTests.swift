@@ -12,11 +12,11 @@ import Chrt
                   "connections": [
                     {
                       "elapsed_minutes": 1,
-                      "score": 1,
-                      "stops": 1,
                       "legs": [
                         {}
-                      ]
+                      ],
+                      "score": 1,
+                      "stops": 1
                     }
                   ]
                 }
@@ -32,22 +32,22 @@ import Chrt
             connections: Optional([
                 FlightConnection(
                     elapsedMinutes: Optional(1),
-                    score: Optional(1),
-                    stops: 1,
                     legs: [
                         FlightConnectionLeg(
 
                         )
-                    ]
+                    ],
+                    score: Optional(1),
+                    stops: 1
                 )
             ])
         )
         let response = try await client.flights.searchConnectionsV1(
             request: .init(
-                origin: "origin",
                 destination: "destination",
-                searchBy: .departureTime,
-                localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                origin: "origin",
+                searchBy: .departureTime
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

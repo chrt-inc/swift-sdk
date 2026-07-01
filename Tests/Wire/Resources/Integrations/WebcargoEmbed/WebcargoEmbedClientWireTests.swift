@@ -29,10 +29,10 @@ import Chrt
         let response = try await client.integrations.webcargoEmbed.getEmbedV1(
             taskGroupId: "task_group_id",
             request: .init(
-                origin: "origin",
-                destination: "destination",
+                country: "country",
                 departure: "departure",
-                country: "country"
+                destination: "destination",
+                origin: "origin"
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

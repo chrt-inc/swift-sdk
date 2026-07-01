@@ -7,30 +7,6 @@ public final class CasesS3ObjectsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves metadata for a case S3 object. | authz: min_org_role=operator | () -> (CaseS3ObjectMetadata1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getS3ObjectMetadataV1(caseS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> CaseS3ObjectMetadata1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/operations/cases/s3_objects/s3_object_metadata/v1/\(caseS3ObjectMetadataId)",
-            requestOptions: requestOptions,
-            responseType: CaseS3ObjectMetadata1.self
-        )
-    }
-
-    /// Streams a case S3 object file from storage. | authz: min_org_role=operator | () -> (binary)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(caseS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/operations/cases/s3_objects/v1/\(caseS3ObjectMetadataId)",
-            requestOptions: requestOptions,
-            responseType: Data.self
-        )
-    }
-
     /// Uploads a file to a case. Automatic blurhash generation for images. | authz: min_org_role=operator | (UploadFile) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -54,6 +30,30 @@ public final class CasesS3ObjectsClient: Sendable {
             path: "/operations/cases/s3_objects/delete/v1/\(caseS3ObjectMetadataId)",
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves metadata for a case S3 object. | authz: min_org_role=operator | () -> (CaseS3ObjectMetadata1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getS3ObjectMetadataV1(caseS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> CaseS3ObjectMetadata1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/cases/s3_objects/s3_object_metadata/v1/\(caseS3ObjectMetadataId)",
+            requestOptions: requestOptions,
+            responseType: CaseS3ObjectMetadata1.self
+        )
+    }
+
+    /// Streams a case S3 object file from storage. | authz: min_org_role=operator | () -> (binary)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getV1(caseS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/cases/s3_objects/v1/\(caseS3ObjectMetadataId)",
+            requestOptions: requestOptions,
+            responseType: Data.self
         )
     }
 }

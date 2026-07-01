@@ -11,6 +11,42 @@ public final class OrderSchedulesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Retrieves the generated order count and live orchestrator status from Temporal. | authz: min_org_role=operator | () -> (OrderScheduleAboutRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func aboutV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> OrderScheduleAboutRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/order_schedules/about/v1/\(orderScheduleId)",
+            requestOptions: requestOptions,
+            responseType: OrderScheduleAboutRes.self
+        )
+    }
+
+    /// Validates a draft order schedule, creates its Temporal orchestrator schedule, and activates it. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func activateV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_schedules/activate/v1/\(orderScheduleId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Archives an order schedule and deletes its Temporal schedule, preventing future runs. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func archiveV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/order_schedules/archive/v1/\(orderScheduleId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Lists order schedules for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OrderScheduleListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
@@ -43,54 +79,6 @@ public final class OrderSchedulesClient: Sendable {
         )
     }
 
-    /// Retrieves an order schedule by ID. | authz: min_org_role=operator | () -> (OrderSchedule1)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getByIdV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> OrderSchedule1 {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/shipping/order_schedules/v1/\(orderScheduleId)",
-            requestOptions: requestOptions,
-            responseType: OrderSchedule1.self
-        )
-    }
-
-    /// Retrieves the generated order count and live orchestrator status from Temporal. | authz: min_org_role=operator | () -> (OrderScheduleAboutRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func aboutV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> OrderScheduleAboutRes {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/shipping/order_schedules/about/v1/\(orderScheduleId)",
-            requestOptions: requestOptions,
-            responseType: OrderScheduleAboutRes.self
-        )
-    }
-
-    /// Validates a draft order schedule, creates its Temporal orchestrator schedule, and activates it. | authz: min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func activateV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_schedules/activate/v1/\(orderScheduleId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Triggers an order schedule immediately. | authz: min_org_role=operator | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func triggerV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_schedules/trigger/v1/\(orderScheduleId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
     /// Pauses an active order schedule. | authz: min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -103,13 +91,13 @@ public final class OrderSchedulesClient: Sendable {
         )
     }
 
-    /// Unpauses a paused order schedule. | authz: min_org_role=operator | () -> (bool)
+    /// Re-syncs the Temporal schedule to match the order schedule's intended status. | authz: min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func unpauseV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func syncWithOrchestratorV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_schedules/unpause/v1/\(orderScheduleId)",
+            method: .post,
+            path: "/shipping/order_schedules/sync_with_orchestrator/v1/\(orderScheduleId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -127,27 +115,39 @@ public final class OrderSchedulesClient: Sendable {
         )
     }
 
-    /// Archives an order schedule and deletes its Temporal schedule, preventing future runs. | authz: min_org_role=operator | () -> (bool)
+    /// Triggers an order schedule immediately. | authz: min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func archiveV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func triggerV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/order_schedules/archive/v1/\(orderScheduleId)",
+            method: .post,
+            path: "/shipping/order_schedules/trigger/v1/\(orderScheduleId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Re-syncs the Temporal schedule to match the order schedule's intended status. | authz: min_org_role=operator | () -> (bool)
+    /// Unpauses a paused order schedule. | authz: min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func syncWithOrchestratorV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func unpauseV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/order_schedules/sync_with_orchestrator/v1/\(orderScheduleId)",
+            method: .patch,
+            path: "/shipping/order_schedules/unpause/v1/\(orderScheduleId)",
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Retrieves an order schedule by ID. | authz: min_org_role=operator | () -> (OrderSchedule1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getByIdV1(orderScheduleId: String, requestOptions: RequestOptions? = nil) async throws -> OrderSchedule1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/order_schedules/v1/\(orderScheduleId)",
+            requestOptions: requestOptions,
+            responseType: OrderSchedule1.self
         )
     }
 }

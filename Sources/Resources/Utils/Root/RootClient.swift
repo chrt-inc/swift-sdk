@@ -7,30 +7,6 @@ public final class RootClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Test endpoint for authenticated requests that requires valid authentication tokens. | () -> (dict[str, str])
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pingAuthd(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/authd",
-            requestOptions: requestOptions,
-            responseType: [String: String].self
-        )
-    }
-
-    /// Test endpoint for optionally authenticated requests that works with or without authentication. | () -> (dict)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func pingOptionallyAuthd(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/optionally_authd",
-            requestOptions: requestOptions,
-            responseType: [String: JSONValue].self
-        )
-    }
-
     /// Returns a greeting message to verify the API is accessible. | () -> (dict)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -40,6 +16,18 @@ public final class RootClient: Sendable {
             path: "/",
             requestOptions: requestOptions,
             responseType: [String: JSONValue].self
+        )
+    }
+
+    /// Test endpoint for authenticated requests that requires valid authentication tokens. | () -> (dict[str, str])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func pingAuthd(requestOptions: RequestOptions? = nil) async throws -> [String: String] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/authd",
+            requestOptions: requestOptions,
+            responseType: [String: String].self
         )
     }
 
@@ -62,6 +50,18 @@ public final class RootClient: Sendable {
         return try await httpClient.performRequest(
             method: .get,
             path: "/health",
+            requestOptions: requestOptions,
+            responseType: [String: JSONValue].self
+        )
+    }
+
+    /// Test endpoint for optionally authenticated requests that works with or without authentication. | () -> (dict)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func pingOptionallyAuthd(requestOptions: RequestOptions? = nil) async throws -> [String: JSONValue] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/optionally_authd",
             requestOptions: requestOptions,
             responseType: [String: JSONValue].self
         )
