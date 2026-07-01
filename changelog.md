@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-07-01
+### Breaking Changes
+* **`LineStringCoordinatesItem`, `MultiPointCoordinatesItem`, `PolygonCoordinatesItemItem`, `MultiLineStringCoordinatesItemItem`, `MultiPolygonCoordinatesItemItemItem`** — renamed to `CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`; update all geometry type references and construction sites.
+* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all type references and construction sites.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all type references and `ValidationError.loc` element-type references.
+* **`PingRes.activityTimestamp`** — renamed to `activityCompletedAt` (JSON key `activity_completed_at`); update all read sites and `PingRes(...)` call sites.
+* **`PingRes.workflowTimestamp`** — renamed to `workflowCompletedAt` (JSON key `workflow_completed_at`); update all read sites and `PingRes(...)` call sites.
+### Added
+* **`DevClient.postAgentGeographyV1(request:requestOptions:)`** — new method that runs the Pydantic AI Temporal geography sample workflow and returns a `GeographyRes`.
+* **`GeographyReq` and `GeographyRes`** — new request and response types supporting the geography workflow endpoint.
+* **`Requests.BodyPostShippingOrderDraftsImageToTextV1`, `Requests.BodyPostTaskArtifactsS3ObjectAddV1`, `Requests.BodyPostTaskGroupsS3ObjectAddV1`** — new multipart form-data request body structs for file-upload endpoints.
+* **New filter parameters** (`filterStatus`, `filterType`, `filterRole`, `filterIntendedStatus`, `filterOrderIds`, `filterTaskType`, `filterTag`, `filterDepartmentId`, `filterCaseTag`, `filterBillingReviewStatus`, `filterShippingStatus`) — added to list endpoints across billing, listing, operations, orgs, and shipping clients.
+
 ## 3.0.1 - 2026-07-01
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
