@@ -1,3 +1,9 @@
+## 2.1.0 - 2026-07-02
+### Added
+* **`OrderTemplatesClient.listV1`** — nine new optional filter parameters (`filterOffChrtReferenceIdStr`, `filterShipperOrgId`, `filterOffChrtShipperOrgId`, `filterCoordinatorOrgId`, `filterDepartmentId`, `filterCaseTag`, `filterDriverId`, `filterDirectoryEntryId`, `filterTaskListId`) for more granular order template queries.
+* **`OrderTemplatesClient.listV1`** — two new optional timestamp filter parameters (`filterLastUsedAtTimestampGte`, `filterLastUsedAtTimestampLte`) to filter templates by last-used time range.
+* **`OrderTemplateSortByEnum`** — new cases `lastUsedAtTimestamp` and `offChrtReferenceIdStr` for sorting order template list results.
+
 ## 2.0.0 - 2026-07-01
 ### Breaking Changes
 * **`LineStringCoordinatesItem`, `MultiPointCoordinatesItem`, `PolygonCoordinatesItemItem`, `MultiLineStringCoordinatesItemItem`, `MultiPolygonCoordinatesItemItemItem`** — renamed to `CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`; update all geometry type references and construction sites.

@@ -25724,7 +25724,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderTemplates.<a href="/Sources/Resources/Shipping/OrderTemplates/OrderTemplatesClient.swift">listV1</a>(sortBy: OrderTemplateSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterArchived: Bool?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateListRes</code></summary>
+<details><summary><code>client.shipping.orderTemplates.<a href="/Sources/Resources/Shipping/OrderTemplates/OrderTemplatesClient.swift">listV1</a>(sortBy: OrderTemplateSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterArchived: Bool?, filterOwnedByUserId: String?, filterOffChrtReferenceIdStr: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgId: String?, filterCoordinatorOrgId: String?, filterDepartmentId: String?, filterCaseTag: String?, filterDriverId: String?, filterDirectoryEntryId: String?, filterTaskListId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateListRes</code></summary>
 <dl>
 <dd>
 
@@ -25765,10 +25765,21 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
+        filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
+        filterShipperOrgId: "filter_shipper_org_id",
+        filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+        filterCoordinatorOrgId: "filter_coordinator_org_id",
+        filterDepartmentId: "filter_department_id",
+        filterCaseTag: "filter_case_tag",
+        filterDriverId: "filter_driver_id",
+        filterDirectoryEntryId: "filter_directory_entry_id",
+        filterTaskListId: "filter_task_list_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
 
@@ -25843,6 +25854,78 @@ try await main()
 <dl>
 <dd>
 
+**filterOffChrtReferenceIdStr:** `String?` — Filter by the off-CHRT reference ID string.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShipperOrgId:** `String?` — Filter by on-CHRT shipper org ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOffChrtShipperOrgId:** `String?` — Filter by off-CHRT shipper org shell ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCoordinatorOrgId:** `String?` — Filter by coordinator org ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDepartmentId:** `String?` — Filter by coordinator department ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCaseTag:** `String?` — Filter by case tag.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDriverId:** `String?` — Filter by driver ID included in the template.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDirectoryEntryId:** `String?` — Filter by directory entry ID included in the template.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTaskListId:** `String?` — Filter by task list ID included in the template.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
     
 </dd>
@@ -25868,6 +25951,22 @@ try await main()
 <dd>
 
 **filterLastEditedAtTimestampLte:** `Date?` — Filter last_edited_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastUsedAtTimestampGte:** `Date?` — Filter last_used_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastUsedAtTimestampLte:** `Date?` — Filter last_used_at_timestamp <= value (inclusive).
     
 </dd>
 </dl>

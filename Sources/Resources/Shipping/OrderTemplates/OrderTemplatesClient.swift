@@ -38,12 +38,23 @@ public final class OrderTemplatesClient: Sendable {
     /// - Parameter search: Full-text search query
     /// - Parameter filterArchived: Filter by archived (True) vs active (False) templates.
     /// - Parameter filterOwnedByUserId: Filter by the user who owns the order template.
+    /// - Parameter filterOffChrtReferenceIdStr: Filter by the off-CHRT reference ID string.
+    /// - Parameter filterShipperOrgId: Filter by on-CHRT shipper org ID.
+    /// - Parameter filterOffChrtShipperOrgId: Filter by off-CHRT shipper org shell ID.
+    /// - Parameter filterCoordinatorOrgId: Filter by coordinator org ID.
+    /// - Parameter filterDepartmentId: Filter by coordinator department ID.
+    /// - Parameter filterCaseTag: Filter by case tag.
+    /// - Parameter filterDriverId: Filter by driver ID included in the template.
+    /// - Parameter filterDirectoryEntryId: Filter by directory entry ID included in the template.
+    /// - Parameter filterTaskListId: Filter by task list ID included in the template.
     /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value (inclusive).
     /// - Parameter filterCreatedAtTimestampLte: Filter created_at_timestamp <= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampLte: Filter last_edited_at_timestamp <= value (inclusive).
+    /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
+    /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateListRes {
+    public func listV1(sortBy: OrderTemplateSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterOffChrtReferenceIdStr: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, filterDepartmentId: String? = nil, filterCaseTag: String? = nil, filterDriverId: String? = nil, filterDirectoryEntryId: String? = nil, filterTaskListId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates/list/v1",
@@ -55,10 +66,21 @@ public final class OrderTemplatesClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
+                "filter_off_chrt_reference_id_str": filterOffChrtReferenceIdStr.map { .string($0) }, 
+                "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 
+                "filter_off_chrt_shipper_org_id": filterOffChrtShipperOrgId.map { .string($0) }, 
+                "filter_coordinator_org_id": filterCoordinatorOrgId.map { .string($0) }, 
+                "filter_department_id": filterDepartmentId.map { .string($0) }, 
+                "filter_case_tag": filterCaseTag.map { .string($0) }, 
+                "filter_driver_id": filterDriverId.map { .string($0) }, 
+                "filter_directory_entry_id": filterDirectoryEntryId.map { .string($0) }, 
+                "filter_task_list_id": filterTaskListId.map { .string($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
                 "filter_last_edited_at_timestamp_gte": filterLastEditedAtTimestampGte.map { .date($0) }, 
-                "filter_last_edited_at_timestamp_lte": filterLastEditedAtTimestampLte.map { .date($0) }
+                "filter_last_edited_at_timestamp_lte": filterLastEditedAtTimestampLte.map { .date($0) }, 
+                "filter_last_used_at_timestamp_gte": filterLastUsedAtTimestampGte.map { .date($0) }, 
+                "filter_last_used_at_timestamp_lte": filterLastUsedAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: OrderTemplateListRes.self

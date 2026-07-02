@@ -520,10 +520,21 @@ import Chrt
             search: "search",
             filterArchived: true,
             filterOwnedByUserId: "filter_owned_by_user_id",
+            filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
+            filterShipperOrgId: "filter_shipper_org_id",
+            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterCoordinatorOrgId: "filter_coordinator_org_id",
+            filterDepartmentId: "filter_department_id",
+            filterCaseTag: "filter_case_tag",
+            filterDriverId: "filter_driver_id",
+            filterDirectoryEntryId: "filter_directory_entry_id",
+            filterTaskListId: "filter_task_list_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
