@@ -4,6 +4,7 @@ public struct OrderTemplateResolvabilityRes: Codable, Hashable, Sendable {
     public let unresolvableCoordinator: Bool?
     public let unresolvableDirectoryEntryIds: [String]?
     public let unresolvableDriverIds: [String]?
+    public let unresolvableOffChrtExecutorOrgIds: [String]?
     public let unresolvableOffChrtShipper: Bool?
     public let valid: Bool
     /// Additional properties that are not explicitly defined in the schema
@@ -13,6 +14,7 @@ public struct OrderTemplateResolvabilityRes: Codable, Hashable, Sendable {
         unresolvableCoordinator: Bool? = nil,
         unresolvableDirectoryEntryIds: [String]? = nil,
         unresolvableDriverIds: [String]? = nil,
+        unresolvableOffChrtExecutorOrgIds: [String]? = nil,
         unresolvableOffChrtShipper: Bool? = nil,
         valid: Bool,
         additionalProperties: [String: JSONValue] = .init()
@@ -20,6 +22,7 @@ public struct OrderTemplateResolvabilityRes: Codable, Hashable, Sendable {
         self.unresolvableCoordinator = unresolvableCoordinator
         self.unresolvableDirectoryEntryIds = unresolvableDirectoryEntryIds
         self.unresolvableDriverIds = unresolvableDriverIds
+        self.unresolvableOffChrtExecutorOrgIds = unresolvableOffChrtExecutorOrgIds
         self.unresolvableOffChrtShipper = unresolvableOffChrtShipper
         self.valid = valid
         self.additionalProperties = additionalProperties
@@ -30,6 +33,7 @@ public struct OrderTemplateResolvabilityRes: Codable, Hashable, Sendable {
         self.unresolvableCoordinator = try container.decodeIfPresent(Bool.self, forKey: .unresolvableCoordinator)
         self.unresolvableDirectoryEntryIds = try container.decodeIfPresent([String].self, forKey: .unresolvableDirectoryEntryIds)
         self.unresolvableDriverIds = try container.decodeIfPresent([String].self, forKey: .unresolvableDriverIds)
+        self.unresolvableOffChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .unresolvableOffChrtExecutorOrgIds)
         self.unresolvableOffChrtShipper = try container.decodeIfPresent(Bool.self, forKey: .unresolvableOffChrtShipper)
         self.valid = try container.decode(Bool.self, forKey: .valid)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -41,6 +45,7 @@ public struct OrderTemplateResolvabilityRes: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.unresolvableCoordinator, forKey: .unresolvableCoordinator)
         try container.encodeIfPresent(self.unresolvableDirectoryEntryIds, forKey: .unresolvableDirectoryEntryIds)
         try container.encodeIfPresent(self.unresolvableDriverIds, forKey: .unresolvableDriverIds)
+        try container.encodeIfPresent(self.unresolvableOffChrtExecutorOrgIds, forKey: .unresolvableOffChrtExecutorOrgIds)
         try container.encodeIfPresent(self.unresolvableOffChrtShipper, forKey: .unresolvableOffChrtShipper)
         try container.encode(self.valid, forKey: .valid)
     }
@@ -50,6 +55,7 @@ public struct OrderTemplateResolvabilityRes: Codable, Hashable, Sendable {
         case unresolvableCoordinator = "unresolvable_coordinator"
         case unresolvableDirectoryEntryIds = "unresolvable_directory_entry_ids"
         case unresolvableDriverIds = "unresolvable_driver_ids"
+        case unresolvableOffChrtExecutorOrgIds = "unresolvable_off_chrt_executor_org_ids"
         case unresolvableOffChrtShipper = "unresolvable_off_chrt_shipper"
         case valid
     }

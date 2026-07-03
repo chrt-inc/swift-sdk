@@ -11,6 +11,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     public let directoryEntryIds: [String]?
     public let driverIds: [String]?
     public let executorOrgIds: [String]?
+    public let offChrtExecutorOrgIds: [String]?
     public let offChrtShipperOrgId: String?
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
@@ -27,6 +28,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         directoryEntryIds: [String]? = nil,
         driverIds: [String]? = nil,
         executorOrgIds: [String]? = nil,
+        offChrtExecutorOrgIds: [String]? = nil,
         offChrtShipperOrgId: String? = nil,
         schemaVersion: Int,
         shipperOrgId: String? = nil,
@@ -40,6 +42,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.directoryEntryIds = directoryEntryIds
         self.driverIds = driverIds
         self.executorOrgIds = executorOrgIds
+        self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.schemaVersion = schemaVersion
         self.shipperOrgId = shipperOrgId
@@ -56,6 +59,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
         self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
+        self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
@@ -73,6 +77,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
         try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
+        try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
@@ -88,6 +93,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         case directoryEntryIds = "directory_entry_ids"
         case driverIds = "driver_ids"
         case executorOrgIds = "executor_org_ids"
+        case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case schemaVersion = "schema_version"
         case shipperOrgId = "shipper_org_id"

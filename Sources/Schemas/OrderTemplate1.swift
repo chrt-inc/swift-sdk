@@ -15,6 +15,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
     public let lastEditedAtTimestamp: Date
     public let lastUsedAtTimestamp: Date?
     public let name: String
+    public let offChrtExecutorOrgIds: [String]?
     public let offChrtReferenceIdStr: String?
     public let offChrtShipperOrgId: String?
     /// Must be a string starting with `org_`
@@ -43,6 +44,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         lastEditedAtTimestamp: Date,
         lastUsedAtTimestamp: Date? = nil,
         name: String,
+        offChrtExecutorOrgIds: [String]? = nil,
         offChrtReferenceIdStr: String? = nil,
         offChrtShipperOrgId: String? = nil,
         ownedByOrgId: String,
@@ -66,6 +68,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         self.lastEditedAtTimestamp = lastEditedAtTimestamp
         self.lastUsedAtTimestamp = lastUsedAtTimestamp
         self.name = name
+        self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
         self.offChrtReferenceIdStr = offChrtReferenceIdStr
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.ownedByOrgId = ownedByOrgId
@@ -92,6 +95,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
         self.lastUsedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastUsedAtTimestamp)
         self.name = try container.decode(String.self, forKey: .name)
+        self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
         self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
@@ -119,6 +123,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
         try container.encodeIfPresent(self.lastUsedAtTimestamp, forKey: .lastUsedAtTimestamp)
         try container.encode(self.name, forKey: .name)
+        try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
         try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
@@ -144,6 +149,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         case lastEditedAtTimestamp = "last_edited_at_timestamp"
         case lastUsedAtTimestamp = "last_used_at_timestamp"
         case name
+        case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
         case offChrtReferenceIdStr = "off_chrt_reference_id_str"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case ownedByOrgId = "owned_by_org_id"

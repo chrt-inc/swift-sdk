@@ -17374,7 +17374,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOrderIds: String?, filterDepartmentId: String?, filterTaskType: OperationsTaskTypeEnum?, filterStatus: OperationsTaskStatusEnum?, filterTag: String?, filterAssignedUserId: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOrderIds: String?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentId: String?, filterTaskType: OperationsTaskTypeEnum?, filterStatus: OperationsTaskStatusEnum?, filterTag: String?, filterAssignedUserId: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
 <dl>
 <dd>
 
@@ -17386,7 +17386,7 @@ try await main()
 <dl>
 <dd>
 
-Lists OperationsTasks for the caller's organization, with order ids / department / type / status / tag / assignee / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
+Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / tag / assignee / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
 </dd>
 </dl>
 </dd>
@@ -17412,6 +17412,8 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterOrderShortId: "filter_order_short_id",
+        filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -17466,7 +17468,23 @@ try await main()
 <dl>
 <dd>
 
-**filterOrderIds:** `String?` — Filter to tasks on any of these order ids (e.g. the order_ids returned by the orders typeahead for a chosen short_id / off-chrt reference)
+**filterOrderIds:** `String?` — Filter to tasks on any of these order ids (e.g. the order_ids returned by the orders typeahead for a chosen short_id / off-chrt reference id)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderShortId:** `String?` — Filter to tasks for this order short ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderOffChrtReferenceId:** `String?` — Filter to tasks for this order off-CHRT reference ID
     
 </dd>
 </dl>
@@ -23522,7 +23540,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a draft order and all associated entities. | () -> (bool)
+Deletes a draft order and all associated entities. | authz_personas=[draft_creator_org_operator] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -23581,7 +23599,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">deleteManyV1</a>(request: Requests.OrdersDraftDeleteManyReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.orderDrafts.<a href="/Sources/Resources/Shipping/OrderDrafts/OrderDraftsClient.swift">deleteManyV1</a>(request: Requests.OrdersDraftDeleteManyReq, requestOptions: RequestOptions?) -> OrdersDraftDeleteManyRes</code></summary>
 <dl>
 <dd>
 
@@ -23593,7 +23611,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes multiple draft orders and associated entities. | (OrdersDraftDeleteManyReq) -> (bool)
+Deletes multiple draft orders and associated entities, skipping drafts with billing links. | authz_personas=[draft_creator_org_operator] | (OrdersDraftDeleteManyReq) -> (OrdersDraftDeleteManyRes)
 </dd>
 </dl>
 </dd>
@@ -23737,7 +23755,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
+Creates a new draft order with org assignments based on caller's organization type. | authz: min_org_role=operator | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
 </dd>
 </dl>
 </dd>
@@ -23974,7 +23992,7 @@ try await main()
 <dl>
 <dd>
 
-Updates coordinator and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
+Updates coordinator and/or shipper org assignments for a draft order. | authz_personas=[draft_creator_org_operator] | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
 </dd>
 </dl>
 </dd>
@@ -26522,7 +26540,7 @@ try await main()
 <dl>
 <dd>
 
-Validates a draft order and stages all related entities in a transaction. | () -> (bool)
+Validates a draft order and stages all related entities in a transaction. | authz_personas=[draft_creator_org_operator] | () -> (bool)
 </dd>
 </dl>
 </dd>

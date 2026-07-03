@@ -4,6 +4,7 @@ public struct OrderTemplateExpanded1: Codable, Hashable, Sendable {
     public let directoryEntries: [DirectoryEntry1]?
     public let drivers: [Driver1]?
     public let executorOrgs: [OrderTemplateOrgInfo1]?
+    public let offChrtExecutorOrgs: [OffChrtProviderOrg1]?
     public let offChrtShipperOrg: OffChrtShipperOrg1?
     public let orderTemplate: OrderTemplate1
     public let orders: [Order1]?
@@ -16,6 +17,7 @@ public struct OrderTemplateExpanded1: Codable, Hashable, Sendable {
         directoryEntries: [DirectoryEntry1]? = nil,
         drivers: [Driver1]? = nil,
         executorOrgs: [OrderTemplateOrgInfo1]? = nil,
+        offChrtExecutorOrgs: [OffChrtProviderOrg1]? = nil,
         offChrtShipperOrg: OffChrtShipperOrg1? = nil,
         orderTemplate: OrderTemplate1,
         orders: [Order1]? = nil,
@@ -26,6 +28,7 @@ public struct OrderTemplateExpanded1: Codable, Hashable, Sendable {
         self.directoryEntries = directoryEntries
         self.drivers = drivers
         self.executorOrgs = executorOrgs
+        self.offChrtExecutorOrgs = offChrtExecutorOrgs
         self.offChrtShipperOrg = offChrtShipperOrg
         self.orderTemplate = orderTemplate
         self.orders = orders
@@ -39,6 +42,7 @@ public struct OrderTemplateExpanded1: Codable, Hashable, Sendable {
         self.directoryEntries = try container.decodeIfPresent([DirectoryEntry1].self, forKey: .directoryEntries)
         self.drivers = try container.decodeIfPresent([Driver1].self, forKey: .drivers)
         self.executorOrgs = try container.decodeIfPresent([OrderTemplateOrgInfo1].self, forKey: .executorOrgs)
+        self.offChrtExecutorOrgs = try container.decodeIfPresent([OffChrtProviderOrg1].self, forKey: .offChrtExecutorOrgs)
         self.offChrtShipperOrg = try container.decodeIfPresent(OffChrtShipperOrg1.self, forKey: .offChrtShipperOrg)
         self.orderTemplate = try container.decode(OrderTemplate1.self, forKey: .orderTemplate)
         self.orders = try container.decodeIfPresent([Order1].self, forKey: .orders)
@@ -53,6 +57,7 @@ public struct OrderTemplateExpanded1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.directoryEntries, forKey: .directoryEntries)
         try container.encodeIfPresent(self.drivers, forKey: .drivers)
         try container.encodeIfPresent(self.executorOrgs, forKey: .executorOrgs)
+        try container.encodeIfPresent(self.offChrtExecutorOrgs, forKey: .offChrtExecutorOrgs)
         try container.encodeIfPresent(self.offChrtShipperOrg, forKey: .offChrtShipperOrg)
         try container.encode(self.orderTemplate, forKey: .orderTemplate)
         try container.encodeIfPresent(self.orders, forKey: .orders)
@@ -65,6 +70,7 @@ public struct OrderTemplateExpanded1: Codable, Hashable, Sendable {
         case directoryEntries = "directory_entries"
         case drivers
         case executorOrgs = "executor_orgs"
+        case offChrtExecutorOrgs = "off_chrt_executor_orgs"
         case offChrtShipperOrg = "off_chrt_shipper_org"
         case orderTemplate = "order_template"
         case orders

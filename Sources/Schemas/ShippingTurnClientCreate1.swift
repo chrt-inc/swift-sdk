@@ -5,6 +5,7 @@ public struct ShippingTurnClientCreate1: Codable, Hashable, Sendable {
     public let directoryEntryIds: [String]?
     public let driverIds: [String]?
     public let executorOrgIds: [String]?
+    public let offChrtExecutorOrgIds: [String]?
     public let offChrtShipperOrgId: String?
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
@@ -20,6 +21,7 @@ public struct ShippingTurnClientCreate1: Codable, Hashable, Sendable {
         directoryEntryIds: [String]? = nil,
         driverIds: [String]? = nil,
         executorOrgIds: [String]? = nil,
+        offChrtExecutorOrgIds: [String]? = nil,
         offChrtShipperOrgId: String? = nil,
         shipperOrgId: String? = nil,
         taskArtifactIds: [String]? = nil,
@@ -32,6 +34,7 @@ public struct ShippingTurnClientCreate1: Codable, Hashable, Sendable {
         self.directoryEntryIds = directoryEntryIds
         self.driverIds = driverIds
         self.executorOrgIds = executorOrgIds
+        self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.shipperOrgId = shipperOrgId
         self.taskArtifactIds = taskArtifactIds
@@ -47,6 +50,7 @@ public struct ShippingTurnClientCreate1: Codable, Hashable, Sendable {
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
         self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
+        self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.taskArtifactIds = try container.decodeIfPresent([String].self, forKey: .taskArtifactIds)
@@ -63,6 +67,7 @@ public struct ShippingTurnClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
         try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
+        try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.taskArtifactIds, forKey: .taskArtifactIds)
@@ -77,6 +82,7 @@ public struct ShippingTurnClientCreate1: Codable, Hashable, Sendable {
         case directoryEntryIds = "directory_entry_ids"
         case driverIds = "driver_ids"
         case executorOrgIds = "executor_org_ids"
+        case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case shipperOrgId = "shipper_org_id"
         case taskArtifactIds = "task_artifact_ids"

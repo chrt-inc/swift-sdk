@@ -34,7 +34,7 @@ public final class OrdersClient: Sendable {
         )
     }
 
-    /// Validates a draft order and stages all related entities in a transaction. | () -> (bool)
+    /// Validates a draft order and stages all related entities in a transaction. | authz_personas=[draft_creator_org_operator] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func stageV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

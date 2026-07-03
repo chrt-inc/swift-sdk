@@ -15,6 +15,7 @@ extension Requests {
         public let driverIds: [String]?
         public let executorOrgIds: [String]?
         public let name: String?
+        public let offChrtExecutorOrgIds: [String]?
         public let offChrtReferenceIdStr: String?
         public let offChrtReferenceIdStrSetToNone: Bool?
         public let offChrtShipperOrgId: String?
@@ -41,6 +42,7 @@ extension Requests {
             driverIds: [String]? = nil,
             executorOrgIds: [String]? = nil,
             name: String? = nil,
+            offChrtExecutorOrgIds: [String]? = nil,
             offChrtReferenceIdStr: String? = nil,
             offChrtReferenceIdStrSetToNone: Bool? = nil,
             offChrtShipperOrgId: String? = nil,
@@ -64,6 +66,7 @@ extension Requests {
             self.driverIds = driverIds
             self.executorOrgIds = executorOrgIds
             self.name = name
+            self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
             self.offChrtReferenceIdStr = offChrtReferenceIdStr
             self.offChrtReferenceIdStrSetToNone = offChrtReferenceIdStrSetToNone
             self.offChrtShipperOrgId = offChrtShipperOrgId
@@ -90,6 +93,7 @@ extension Requests {
             self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
             self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
+            self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
             self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
             self.offChrtReferenceIdStrSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdStrSetToNone)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
@@ -117,6 +121,7 @@ extension Requests {
             try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
             try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
             try container.encodeIfPresent(self.name, forKey: .name)
+            try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
             try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
             try container.encodeIfPresent(self.offChrtReferenceIdStrSetToNone, forKey: .offChrtReferenceIdStrSetToNone)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
@@ -142,6 +147,7 @@ extension Requests {
             case driverIds = "driver_ids"
             case executorOrgIds = "executor_org_ids"
             case name
+            case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
             case offChrtReferenceIdStr = "off_chrt_reference_id_str"
             case offChrtReferenceIdStrSetToNone = "off_chrt_reference_id_str__set_to_None"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"

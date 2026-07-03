@@ -11,6 +11,7 @@ extension Requests {
         public let driverIds: [String]?
         public let executorOrgIds: [String]?
         public let name: String
+        public let offChrtExecutorOrgIds: [String]?
         public let offChrtReferenceIdStr: String?
         public let offChrtShipperOrgId: String?
         public let schemaVersion: Int
@@ -30,6 +31,7 @@ extension Requests {
             driverIds: [String]? = nil,
             executorOrgIds: [String]? = nil,
             name: String,
+            offChrtExecutorOrgIds: [String]? = nil,
             offChrtReferenceIdStr: String? = nil,
             offChrtShipperOrgId: String? = nil,
             schemaVersion: Int,
@@ -46,6 +48,7 @@ extension Requests {
             self.driverIds = driverIds
             self.executorOrgIds = executorOrgIds
             self.name = name
+            self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
             self.offChrtReferenceIdStr = offChrtReferenceIdStr
             self.offChrtShipperOrgId = offChrtShipperOrgId
             self.schemaVersion = schemaVersion
@@ -65,6 +68,7 @@ extension Requests {
             self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
             self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
             self.name = try container.decode(String.self, forKey: .name)
+            self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
             self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -85,6 +89,7 @@ extension Requests {
             try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
             try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
             try container.encode(self.name, forKey: .name)
+            try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
             try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -103,6 +108,7 @@ extension Requests {
             case driverIds = "driver_ids"
             case executorOrgIds = "executor_org_ids"
             case name
+            case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
             case offChrtReferenceIdStr = "off_chrt_reference_id_str"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"
             case schemaVersion = "schema_version"

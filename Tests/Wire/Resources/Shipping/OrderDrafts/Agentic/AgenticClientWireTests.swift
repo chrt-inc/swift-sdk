@@ -62,6 +62,9 @@ import Chrt
                   "unresolvable_driver_ids": [
                     "unresolvable_driver_ids"
                   ],
+                  "unresolvable_off_chrt_executor_org_ids": [
+                    "unresolvable_off_chrt_executor_org_ids"
+                  ],
                   "unresolvable_off_chrt_shipper": true,
                   "valid": true
                 }
@@ -80,6 +83,9 @@ import Chrt
             ]),
             unresolvableDriverIds: Optional([
                 "unresolvable_driver_ids"
+            ]),
+            unresolvableOffChrtExecutorOrgIds: Optional([
+                "unresolvable_off_chrt_executor_org_ids"
             ]),
             unresolvableOffChrtShipper: Optional(true),
             valid: true

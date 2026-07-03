@@ -11,6 +11,9 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
     public let departmentId: String?
     public let description: String
     public let orderId: String
+    /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
+    public let orderOffChrtReferenceId: String?
+    public let orderShortId: String
     /// Must be a string starting with `org_`
     public let orgId: String
     public let schemaVersion: Int
@@ -32,6 +35,8 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         departmentId: String? = nil,
         description: String,
         orderId: String,
+        orderOffChrtReferenceId: String? = nil,
+        orderShortId: String,
         orgId: String,
         schemaVersion: Int,
         sourceTaskListId: String? = nil,
@@ -50,6 +55,8 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         self.departmentId = departmentId
         self.description = description
         self.orderId = orderId
+        self.orderOffChrtReferenceId = orderOffChrtReferenceId
+        self.orderShortId = orderShortId
         self.orgId = orgId
         self.schemaVersion = schemaVersion
         self.sourceTaskListId = sourceTaskListId
@@ -71,6 +78,8 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.description = try container.decode(String.self, forKey: .description)
         self.orderId = try container.decode(String.self, forKey: .orderId)
+        self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
+        self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.sourceTaskListId = try container.decodeIfPresent(String.self, forKey: .sourceTaskListId)
@@ -93,6 +102,8 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encode(self.description, forKey: .description)
         try container.encode(self.orderId, forKey: .orderId)
+        try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
+        try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.sourceTaskListId, forKey: .sourceTaskListId)
@@ -113,6 +124,8 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         case departmentId = "department_id"
         case description
         case orderId = "order_id"
+        case orderOffChrtReferenceId = "order_off_chrt_reference_id"
+        case orderShortId = "order_short_id"
         case orgId = "org_id"
         case schemaVersion = "schema_version"
         case sourceTaskListId = "source_task_list_id"

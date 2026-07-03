@@ -19,7 +19,7 @@ public final class OrderDraftsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Deletes a draft order and all associated entities. | () -> (bool)
+    /// Deletes a draft order and all associated entities. | authz_personas=[draft_creator_org_operator] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -31,16 +31,16 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Deletes multiple draft orders and associated entities. | (OrdersDraftDeleteManyReq) -> (bool)
+    /// Deletes multiple draft orders and associated entities, skipping drafts with billing links. | authz_personas=[draft_creator_org_operator] | (OrdersDraftDeleteManyReq) -> (OrdersDraftDeleteManyRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteManyV1(request: Requests.OrdersDraftDeleteManyReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func deleteManyV1(request: Requests.OrdersDraftDeleteManyReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftDeleteManyRes {
         return try await httpClient.performRequest(
             method: .delete,
             path: "/shipping/order_drafts/delete_many/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: OrdersDraftDeleteManyRes.self
         )
     }
 
@@ -58,7 +58,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Creates a new draft order with org assignments based on caller's organization type. | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
+    /// Creates a new draft order with org assignments based on caller's organization type. | authz: min_org_role=operator | (OrdersNewDraftReq) -> (OrdersNewDraftRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func newV1(request: Requests.OrdersNewDraftReq, requestOptions: RequestOptions? = nil) async throws -> OrdersNewDraftRes {
@@ -102,7 +102,7 @@ public final class OrderDraftsClient: Sendable {
         )
     }
 
-    /// Updates coordinator and/or shipper org assignments for a draft order. | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
+    /// Updates coordinator and/or shipper org assignments for a draft order. | authz_personas=[draft_creator_org_operator] | (OrdersDraftUpdateReq) -> (OrdersDraftUpdateRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(orderId: String, request: Requests.OrdersDraftUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDraftUpdateRes {
