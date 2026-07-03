@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-07-03
+### Breaking Changes
+* **`LineStringCoordinatesItem`, `MultiPointCoordinatesItem`** — renamed to `CoordinatesItem`; update all type references and geometry construction sites.
+* **`PolygonCoordinatesItemItem`, `MultiLineStringCoordinatesItemItem`** — renamed to `CoordinatesItemItem`; update all type references and polygon/multi-line-string construction sites.
+* **`MultiPolygonCoordinatesItemItemItem`**, **`GeometryCollectionGeometriesItem`**, **`ValidationErrorLocItem`** — renamed to `CoordinatesItemItemItem`, `GeometriesItem`, and `LocationItem` respectively; update all type references and pattern-match sites.
+* **`OrderDraftsClient.deleteManyV1`** — return type changed from `Bool` to `OrdersDraftDeleteManyRes`; update all call sites to handle the new response struct instead of a plain boolean.
+### Added
+* **`OrdersDraftDeleteManyRes`** — new response type exposing `deletedOrderIds` and `orderIdsSkippedDueToBillingLinks` for bulk draft-order deletion.
+* **`offChrtExecutorOrgIds`** and **`offChrtExecutorOrgs`** — new optional fields on `OrderTemplate1`, `OrderTemplateCore1`, `OrderTemplateExpanded1`, and related request/response types exposing associated off-Chrt executor organisations.
+* **`OperationsTask1.orderShortId`** and **`OperationsTask1.orderOffChrtReferenceId`** — new fields on `OperationsTask1`; `orderShortId` is required and `orderOffChrtReferenceId` is optional.
+* **New filter parameters** — added across `OperationsTasksClient.listV1`, Listings, Cases, Orgs, OrderSchedules, and OrdersAndOrderGroups list endpoints for finer-grained server-side filtering by status, role, type, tag, order ID, and more.
+* **`unresolvableOffChrtExecutorOrgIds`** — new optional field added to `OrderTemplateResolvabilityRes` and the agentic order draft response type.
+
 ## 2.0.0 - 2026-07-01
 ### Breaking Changes
 * **`LineStringCoordinatesItem`, `MultiPointCoordinatesItem`, `PolygonCoordinatesItemItem`, `MultiLineStringCoordinatesItemItem`, `MultiPolygonCoordinatesItemItemItem`** — renamed to `CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`; update all geometry type references and construction sites.
