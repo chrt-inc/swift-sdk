@@ -8,8 +8,6 @@ extension Requests {
         /// Optional key, unique per caller org, that makes draft creation idempotent: re-sending the same key returns the already-created draft instead of creating a duplicate.
         public let creationIdempotencyKey: String?
         public let departmentId: String?
-        /// If set, pins the first applied OperationsTask's deadline; later from_previous_task entries cascade from it. None anchors the chain to the apply time (now).
-        public let initialDeadlineTimestamp: Date?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let offChrtShipperOrgId: String?
@@ -19,8 +17,10 @@ extension Requests {
         public let orderThreadShippingTurn: ShippingTurnClientCreate1?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
-        /// OperationsTaskList ids to apply to the coordinator's Case at draft creation; foreign/stale ids are skipped without failing the draft.
-        public let taskListIds: [String]?
+        /// OperationsTaskList applications to apply to the coordinator's Case at order creation, each with its own optional first-deadline pin.
+        public let taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]?
+        /// OperationsTaskList applications to copy onto the coordinator's Case for deferred application when the draft order is staged.
+        public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -29,26 +29,26 @@ extension Requests {
             coordinatorOrgId: String? = nil,
             creationIdempotencyKey: String? = nil,
             departmentId: String? = nil,
-            initialDeadlineTimestamp: Date? = nil,
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgId: String? = nil,
             orderTemplateId: String? = nil,
             orderThreadShippingTurn: ShippingTurnClientCreate1? = nil,
             shipperOrgId: String? = nil,
-            taskListIds: [String]? = nil,
+            taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]? = nil,
+            taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.caseTag = caseTag
             self.coordinatorOrgId = coordinatorOrgId
             self.creationIdempotencyKey = creationIdempotencyKey
             self.departmentId = departmentId
-            self.initialDeadlineTimestamp = initialDeadlineTimestamp
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgId = offChrtShipperOrgId
             self.orderTemplateId = orderTemplateId
             self.orderThreadShippingTurn = orderThreadShippingTurn
             self.shipperOrgId = shipperOrgId
-            self.taskListIds = taskListIds
+            self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
+            self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
             self.additionalProperties = additionalProperties
         }
 
@@ -58,13 +58,13 @@ extension Requests {
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.creationIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .creationIdempotencyKey)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
-            self.initialDeadlineTimestamp = try container.decodeIfPresent(Date.self, forKey: .initialDeadlineTimestamp)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
             self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
             self.orderThreadShippingTurn = try container.decodeIfPresent(ShippingTurnClientCreate1.self, forKey: .orderThreadShippingTurn)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-            self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
+            self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderCreation)
+            self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -75,13 +75,13 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.creationIdempotencyKey, forKey: .creationIdempotencyKey)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
-            try container.encodeIfPresent(self.initialDeadlineTimestamp, forKey: .initialDeadlineTimestamp)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
             try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
             try container.encodeIfPresent(self.orderThreadShippingTurn, forKey: .orderThreadShippingTurn)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-            try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
+            try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
+            try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -90,13 +90,13 @@ extension Requests {
             case coordinatorOrgId = "coordinator_org_id"
             case creationIdempotencyKey = "creation_idempotency_key"
             case departmentId = "department_id"
-            case initialDeadlineTimestamp = "initial_deadline_timestamp"
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"
             case orderTemplateId = "order_template_id"
             case orderThreadShippingTurn = "order_thread_shipping_turn"
             case shipperOrgId = "shipper_org_id"
-            case taskListIds = "task_list_ids"
+            case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"
+            case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"
         }
     }
 }

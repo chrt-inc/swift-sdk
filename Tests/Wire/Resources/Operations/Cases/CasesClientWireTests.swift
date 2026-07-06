@@ -79,7 +79,13 @@ import Chrt
                   ],
                   "order_id": "order_id",
                   "org_id": "org_id",
-                  "schema_version": 1
+                  "schema_version": 1,
+                  "task_lists_to_apply_at_order_staging": [
+                    {
+                      "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "task_list_id": "task_list_id"
+                    }
+                  ]
                 }
                 """.utf8
             )
@@ -112,7 +118,13 @@ import Chrt
             ]),
             orderId: "order_id",
             orgId: "org_id",
-            schemaVersion: 1
+            schemaVersion: 1,
+            taskListsToApplyAtOrderStaging: Optional([
+                TaskListToApplyToCase1(
+                    initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    taskListId: "task_list_id"
+                )
+            ])
         )
         let response = try await client.operations.cases.getByOrderV1(
             orderId: "order_id",
@@ -149,7 +161,13 @@ import Chrt
                   ],
                   "order_id": "order_id",
                   "org_id": "org_id",
-                  "schema_version": 1
+                  "schema_version": 1,
+                  "task_lists_to_apply_at_order_staging": [
+                    {
+                      "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "task_list_id": "task_list_id"
+                    }
+                  ]
                 }
                 """.utf8
             )
@@ -182,7 +200,13 @@ import Chrt
             ]),
             orderId: "order_id",
             orgId: "org_id",
-            schemaVersion: 1
+            schemaVersion: 1,
+            taskListsToApplyAtOrderStaging: Optional([
+                TaskListToApplyToCase1(
+                    initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    taskListId: "task_list_id"
+                )
+            ])
         )
         let response = try await client.operations.cases.getByOrderRefV1(
             orderRef: "order_ref",
@@ -219,7 +243,13 @@ import Chrt
                   ],
                   "order_id": "order_id",
                   "org_id": "org_id",
-                  "schema_version": 1
+                  "schema_version": 1,
+                  "task_lists_to_apply_at_order_staging": [
+                    {
+                      "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "task_list_id": "task_list_id"
+                    }
+                  ]
                 }
                 """.utf8
             )
@@ -252,7 +282,13 @@ import Chrt
             ]),
             orderId: "order_id",
             orgId: "org_id",
-            schemaVersion: 1
+            schemaVersion: 1,
+            taskListsToApplyAtOrderStaging: Optional([
+                TaskListToApplyToCase1(
+                    initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    taskListId: "task_list_id"
+                )
+            ])
         )
         let response = try await client.operations.cases.getByOrderShortIdV1(
             orderShortId: "order_short_id",
@@ -521,7 +557,12 @@ import Chrt
                       ],
                       "order_id": "order_id",
                       "org_id": "org_id",
-                      "schema_version": 1
+                      "schema_version": 1,
+                      "task_lists_to_apply_at_order_staging": [
+                        {
+                          "task_list_id": "task_list_id"
+                        }
+                      ]
                     }
                   ],
                   "total_count": 1
@@ -558,7 +599,12 @@ import Chrt
                     ]),
                     orderId: "order_id",
                     orgId: "org_id",
-                    schemaVersion: 1
+                    schemaVersion: 1,
+                    taskListsToApplyAtOrderStaging: Optional([
+                        TaskListToApplyToCase1(
+                            taskListId: "task_list_id"
+                        )
+                    ])
                 )
             ],
             totalCount: 1
@@ -568,12 +614,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartmentId: [
-                "filter_department_id"
-            ],
-            filterCaseTag: [
-                "filter_case_tag"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterUnassigned: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -621,6 +661,53 @@ import Chrt
         let expectedResponse = Optional("string")
         let response = try await client.operations.cases.getSuggestedDepartmentV1(
             caseId: "case_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func addTaskListToApplyAtOrderStagingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.cases.addTaskListToApplyAtOrderStagingV1(
+            caseId: "case_id",
+            taskListId: "task_list_id",
+            request: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeTaskListToApplyAtOrderStagingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.operations.cases.removeTaskListToApplyAtOrderStagingV1(
+            caseId: "case_id",
+            taskListId: "task_list_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -716,7 +803,13 @@ import Chrt
                   ],
                   "order_id": "order_id",
                   "org_id": "org_id",
-                  "schema_version": 1
+                  "schema_version": 1,
+                  "task_lists_to_apply_at_order_staging": [
+                    {
+                      "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "task_list_id": "task_list_id"
+                    }
+                  ]
                 }
                 """.utf8
             )
@@ -749,7 +842,13 @@ import Chrt
             ]),
             orderId: "order_id",
             orgId: "org_id",
-            schemaVersion: 1
+            schemaVersion: 1,
+            taskListsToApplyAtOrderStaging: Optional([
+                TaskListToApplyToCase1(
+                    initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    taskListId: "task_list_id"
+                )
+            ])
         )
         let response = try await client.operations.cases.getV1(
             caseId: "case_id",

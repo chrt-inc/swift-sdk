@@ -23,7 +23,8 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let shipperOrgIdSetToNone: Bool?
-        public let taskListIds: [String]?
+        public let taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]?
+        public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
         public let text: String?
         public let textSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
@@ -49,7 +50,8 @@ extension Requests {
             offChrtShipperOrgIdSetToNone: Bool? = nil,
             shipperOrgId: String? = nil,
             shipperOrgIdSetToNone: Bool? = nil,
-            taskListIds: [String]? = nil,
+            taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]? = nil,
+            taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
             text: String? = nil,
             textSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -73,7 +75,8 @@ extension Requests {
             self.offChrtShipperOrgIdSetToNone = offChrtShipperOrgIdSetToNone
             self.shipperOrgId = shipperOrgId
             self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
-            self.taskListIds = taskListIds
+            self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
+            self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
             self.text = text
             self.textSetToNone = textSetToNone
             self.additionalProperties = additionalProperties
@@ -100,7 +103,8 @@ extension Requests {
             self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
-            self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
+            self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderCreation)
+            self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
             self.text = try container.decodeIfPresent(String.self, forKey: .text)
             self.textSetToNone = try container.decodeIfPresent(Bool.self, forKey: .textSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -128,7 +132,8 @@ extension Requests {
             try container.encodeIfPresent(self.offChrtShipperOrgIdSetToNone, forKey: .offChrtShipperOrgIdSetToNone)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
-            try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
+            try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
+            try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
             try container.encodeIfPresent(self.text, forKey: .text)
             try container.encodeIfPresent(self.textSetToNone, forKey: .textSetToNone)
         }
@@ -154,7 +159,8 @@ extension Requests {
             case offChrtShipperOrgIdSetToNone = "off_chrt_shipper_org_id__set_to_None"
             case shipperOrgId = "shipper_org_id"
             case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
-            case taskListIds = "task_list_ids"
+            case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"
+            case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"
             case text
             case textSetToNone = "text__set_to_None"
         }

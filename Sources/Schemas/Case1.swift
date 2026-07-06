@@ -13,6 +13,7 @@ public struct Case1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let schemaVersion: Int
+    public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -28,6 +29,7 @@ public struct Case1: Codable, Hashable, Sendable {
         orderId: String,
         orgId: String,
         schemaVersion: Int,
+        taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
@@ -41,6 +43,7 @@ public struct Case1: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.orgId = orgId
         self.schemaVersion = schemaVersion
+        self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
         self.additionalProperties = additionalProperties
     }
 
@@ -57,6 +60,7 @@ public struct Case1: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -74,6 +78,7 @@ public struct Case1: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -89,5 +94,6 @@ public struct Case1: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case orgId = "org_id"
         case schemaVersion = "schema_version"
+        case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"
     }
 }

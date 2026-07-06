@@ -204,8 +204,15 @@ import Chrt
                     "owned_by_user_id": "owned_by_user_id",
                     "schema_version": 1,
                     "shipper_org_id": "shipper_org_id",
-                    "task_list_ids": [
-                      "task_list_ids"
+                    "task_lists_to_apply_at_order_creation": [
+                      {
+                        "task_list_id": "task_list_id"
+                      }
+                    ],
+                    "task_lists_to_apply_at_order_staging": [
+                      {
+                        "task_list_id": "task_list_id"
+                      }
                     ],
                     "text": "text"
                   },
@@ -279,7 +286,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -313,7 +320,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -369,7 +376,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -405,7 +412,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -449,8 +456,15 @@ import Chrt
                 ownedByUserId: "owned_by_user_id",
                 schemaVersion: 1,
                 shipperOrgId: Optional("shipper_org_id"),
-                taskListIds: Optional([
-                    "task_list_ids"
+                taskListsToApplyAtOrderCreation: Optional([
+                    TaskListToApplyToCase1(
+                        taskListId: "task_list_id"
+                    )
+                ]),
+                taskListsToApplyAtOrderStaging: Optional([
+                    TaskListToApplyToCase1(
+                        taskListId: "task_list_id"
+                    )
                 ]),
                 text: Optional("text")
             ),
@@ -537,8 +551,15 @@ import Chrt
                       "owned_by_user_id": "owned_by_user_id",
                       "schema_version": 1,
                       "shipper_org_id": "shipper_org_id",
-                      "task_list_ids": [
-                        "task_list_ids"
+                      "task_lists_to_apply_at_order_creation": [
+                        {
+                          "task_list_id": "task_list_id"
+                        }
+                      ],
+                      "task_lists_to_apply_at_order_staging": [
+                        {
+                          "task_list_id": "task_list_id"
+                        }
                       ],
                       "text": "text"
                     }
@@ -584,8 +605,15 @@ import Chrt
                     ownedByUserId: "owned_by_user_id",
                     schemaVersion: 1,
                     shipperOrgId: Optional("shipper_org_id"),
-                    taskListIds: Optional([
-                        "task_list_ids"
+                    taskListsToApplyAtOrderCreation: Optional([
+                        TaskListToApplyToCase1(
+                            taskListId: "task_list_id"
+                        )
+                    ]),
+                    taskListsToApplyAtOrderStaging: Optional([
+                        TaskListToApplyToCase1(
+                            taskListId: "task_list_id"
+                        )
                     ]),
                     text: Optional("text")
                 )
@@ -608,7 +636,8 @@ import Chrt
             filterCaseTag: "filter_case_tag",
             filterDriverId: "filter_driver_id",
             filterDirectoryEntryId: "filter_directory_entry_id",
-            filterTaskListId: "filter_task_list_id",
+            filterTaskListsToApplyAtOrderCreationTaskListId: "filter_task_lists_to_apply_at_order_creation_task_list_id",
+            filterTaskListsToApplyAtOrderStagingTaskListId: "filter_task_lists_to_apply_at_order_staging_task_list_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -747,8 +776,17 @@ import Chrt
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
                   "shipper_org_id": "shipper_org_id",
-                  "task_list_ids": [
-                    "task_list_ids"
+                  "task_lists_to_apply_at_order_creation": [
+                    {
+                      "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "task_list_id": "task_list_id"
+                    }
+                  ],
+                  "task_lists_to_apply_at_order_staging": [
+                    {
+                      "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
+                      "task_list_id": "task_list_id"
+                    }
                   ],
                   "text": "text"
                 }
@@ -789,8 +827,17 @@ import Chrt
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
             shipperOrgId: Optional("shipper_org_id"),
-            taskListIds: Optional([
-                "task_list_ids"
+            taskListsToApplyAtOrderCreation: Optional([
+                TaskListToApplyToCase1(
+                    initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    taskListId: "task_list_id"
+                )
+            ]),
+            taskListsToApplyAtOrderStaging: Optional([
+                TaskListToApplyToCase1(
+                    initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    taskListId: "task_list_id"
+                )
             ]),
             text: Optional("text")
         )

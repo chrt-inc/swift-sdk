@@ -16,7 +16,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
-    public let taskListIds: [String]?
+    public let taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]?
+    public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
     public let text: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -32,7 +33,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         offChrtShipperOrgId: String? = nil,
         schemaVersion: Int,
         shipperOrgId: String? = nil,
-        taskListIds: [String]? = nil,
+        taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]? = nil,
+        taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
         text: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -46,7 +48,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.schemaVersion = schemaVersion
         self.shipperOrgId = shipperOrgId
-        self.taskListIds = taskListIds
+        self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
+        self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
         self.text = text
         self.additionalProperties = additionalProperties
     }
@@ -63,7 +66,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-        self.taskListIds = try container.decodeIfPresent([String].self, forKey: .taskListIds)
+        self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderCreation)
+        self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -81,7 +85,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-        try container.encodeIfPresent(self.taskListIds, forKey: .taskListIds)
+        try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
+        try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
         try container.encodeIfPresent(self.text, forKey: .text)
     }
 
@@ -97,7 +102,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case schemaVersion = "schema_version"
         case shipperOrgId = "shipper_org_id"
-        case taskListIds = "task_list_ids"
+        case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"
+        case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"
         case text
     }
 }

@@ -155,6 +155,31 @@ public final class CasesClient: Sendable {
         )
     }
 
+    /// Adds a task list to apply when the order is staged. | authz: min_org_role=operator | (UTCDatetime | None) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addTaskListToApplyAtOrderStagingV1(caseId: String, taskListId: String, request: Date?, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/task_lists_to_apply_at_order_staging/add/v1/\(caseId)/\(taskListId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Removes a pending staging task list to apply from a draft order case. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeTaskListToApplyAtOrderStagingV1(caseId: String, taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/operations/cases/task_lists_to_apply_at_order_staging/remove/v1/\(caseId)/\(taskListId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Returns distinct case_tag values matching the query via case-insensitive regex for the caller's organization. | authz: min_org_role=operator | () -> (list[CaseTypeaheadResult])
     ///
     /// - Parameter query: Typeahead search query
@@ -198,7 +223,7 @@ public final class CasesClient: Sendable {
         )
     }
 
-    /// Updates a case's department_id and case_tag. | authz: min_org_role=operator | (CaseClientUpdate1) -> (bool)
+    /// Updates a case's department and tag. | authz: min_org_role=operator | (CaseClientUpdate1) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(caseId: String, request: Requests.CaseClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
