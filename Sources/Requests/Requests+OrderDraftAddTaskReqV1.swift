@@ -3,7 +3,6 @@ import Foundation
 extension Requests {
     public struct OrderDraftAddTaskReqV1: Codable, Hashable, Sendable {
         public let cargoIds: [String]?
-        public let orderScheduleTemplatePathIdempotencyKey: String?
         public let task: TaskClientCreate1
         public let taskGroupId: String
         /// Additional properties that are not explicitly defined in the schema
@@ -11,13 +10,11 @@ extension Requests {
 
         public init(
             cargoIds: [String]? = nil,
-            orderScheduleTemplatePathIdempotencyKey: String? = nil,
             task: TaskClientCreate1,
             taskGroupId: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.cargoIds = cargoIds
-            self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
             self.task = task
             self.taskGroupId = taskGroupId
             self.additionalProperties = additionalProperties
@@ -26,7 +23,6 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)
-            self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
             self.task = try container.decode(TaskClientCreate1.self, forKey: .task)
             self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -36,7 +32,6 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.cargoIds, forKey: .cargoIds)
-            try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
             try container.encode(self.task, forKey: .task)
             try container.encode(self.taskGroupId, forKey: .taskGroupId)
         }
@@ -44,7 +39,6 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case cargoIds = "cargo_ids"
-            case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
             case task
             case taskGroupId = "task_group_id"
         }

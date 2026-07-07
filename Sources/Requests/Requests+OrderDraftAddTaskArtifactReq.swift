@@ -3,7 +3,6 @@ import Foundation
 extension Requests {
     public struct OrderDraftAddTaskArtifactReq: Codable, Hashable, Sendable {
         public let expectedScanPayloads: [String]?
-        public let orderScheduleTemplatePathIdempotencyKey: String?
         public let taskArtifactType: TaskArtifactTypeEnum1
         public let taskId: String
         /// Additional properties that are not explicitly defined in the schema
@@ -11,13 +10,11 @@ extension Requests {
 
         public init(
             expectedScanPayloads: [String]? = nil,
-            orderScheduleTemplatePathIdempotencyKey: String? = nil,
             taskArtifactType: TaskArtifactTypeEnum1,
             taskId: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.expectedScanPayloads = expectedScanPayloads
-            self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
             self.taskArtifactType = taskArtifactType
             self.taskId = taskId
             self.additionalProperties = additionalProperties
@@ -26,7 +23,6 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.expectedScanPayloads = try container.decodeIfPresent([String].self, forKey: .expectedScanPayloads)
-            self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
             self.taskArtifactType = try container.decode(TaskArtifactTypeEnum1.self, forKey: .taskArtifactType)
             self.taskId = try container.decode(String.self, forKey: .taskId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -36,7 +32,6 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.expectedScanPayloads, forKey: .expectedScanPayloads)
-            try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
             try container.encode(self.taskArtifactType, forKey: .taskArtifactType)
             try container.encode(self.taskId, forKey: .taskId)
         }
@@ -44,7 +39,6 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case expectedScanPayloads = "expected_scan_payloads"
-            case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
             case taskArtifactType = "task_artifact_type"
             case taskId = "task_id"
         }

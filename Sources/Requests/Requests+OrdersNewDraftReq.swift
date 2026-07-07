@@ -11,6 +11,10 @@ extension Requests {
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let offChrtShipperOrgId: String?
+        /// Order schedule provenance for scheduled draft creation.
+        public let orderScheduleId: String?
+        /// Idempotency key for one scheduled order run.
+        public let orderScheduleRunIdempotencyKey: String?
         /// Saved order template that seeded this draft. Used as template-build provenance.
         public let orderTemplateId: String?
         /// Seed content for the OrderThread's first user turn (text + long-lived references). Agentic builds supply it; click-ops leaves it None for a blank seed turn.
@@ -31,6 +35,8 @@ extension Requests {
             departmentId: String? = nil,
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgId: String? = nil,
+            orderScheduleId: String? = nil,
+            orderScheduleRunIdempotencyKey: String? = nil,
             orderTemplateId: String? = nil,
             orderThreadShippingTurn: ShippingTurnClientCreate1? = nil,
             shipperOrgId: String? = nil,
@@ -44,6 +50,8 @@ extension Requests {
             self.departmentId = departmentId
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgId = offChrtShipperOrgId
+            self.orderScheduleId = orderScheduleId
+            self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
             self.orderTemplateId = orderTemplateId
             self.orderThreadShippingTurn = orderThreadShippingTurn
             self.shipperOrgId = shipperOrgId
@@ -60,6 +68,8 @@ extension Requests {
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+            self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
+            self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
             self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
             self.orderThreadShippingTurn = try container.decodeIfPresent(ShippingTurnClientCreate1.self, forKey: .orderThreadShippingTurn)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
@@ -77,6 +87,8 @@ extension Requests {
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+            try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
+            try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
             try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
             try container.encodeIfPresent(self.orderThreadShippingTurn, forKey: .orderThreadShippingTurn)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
@@ -92,6 +104,8 @@ extension Requests {
             case departmentId = "department_id"
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+            case orderScheduleId = "order_schedule_id"
+            case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
             case orderTemplateId = "order_template_id"
             case orderThreadShippingTurn = "order_thread_shipping_turn"
             case shipperOrgId = "shipper_org_id"

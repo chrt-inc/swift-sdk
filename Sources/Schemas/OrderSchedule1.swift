@@ -2,6 +2,7 @@ import Foundation
 
 public struct OrderSchedule1: Codable, Hashable, Sendable {
     public let id: String
+    public let autoStage: Bool?
     public let createdAtTimestamp: Date
     public let description: String?
     public let intendedStatus: OrderScheduleStatusEnum1?
@@ -9,7 +10,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
     public let name: String
     public let orchestratorScheduleId: String?
     public let orchestratorSchedulePaused: Bool?
-    public let orderManifest: OrderManifest1?
+    public let orderTemplateCore: OrderTemplateCore1?
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
     public let ownedByOrgType: OrgTypeEnum
@@ -23,6 +24,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        autoStage: Bool? = nil,
         createdAtTimestamp: Date,
         description: String? = nil,
         intendedStatus: OrderScheduleStatusEnum1? = nil,
@@ -30,7 +32,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         name: String,
         orchestratorScheduleId: String? = nil,
         orchestratorSchedulePaused: Bool? = nil,
-        orderManifest: OrderManifest1? = nil,
+        orderTemplateCore: OrderTemplateCore1? = nil,
         ownedByOrgId: String,
         ownedByOrgType: OrgTypeEnum,
         ownedByUserId: String,
@@ -40,6 +42,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.autoStage = autoStage
         self.createdAtTimestamp = createdAtTimestamp
         self.description = description
         self.intendedStatus = intendedStatus
@@ -47,7 +50,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         self.name = name
         self.orchestratorScheduleId = orchestratorScheduleId
         self.orchestratorSchedulePaused = orchestratorSchedulePaused
-        self.orderManifest = orderManifest
+        self.orderTemplateCore = orderTemplateCore
         self.ownedByOrgId = ownedByOrgId
         self.ownedByOrgType = ownedByOrgType
         self.ownedByUserId = ownedByUserId
@@ -60,6 +63,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.autoStage = try container.decodeIfPresent(Bool.self, forKey: .autoStage)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.intendedStatus = try container.decodeIfPresent(OrderScheduleStatusEnum1.self, forKey: .intendedStatus)
@@ -67,7 +71,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         self.name = try container.decode(String.self, forKey: .name)
         self.orchestratorScheduleId = try container.decodeIfPresent(String.self, forKey: .orchestratorScheduleId)
         self.orchestratorSchedulePaused = try container.decodeIfPresent(Bool.self, forKey: .orchestratorSchedulePaused)
-        self.orderManifest = try container.decodeIfPresent(OrderManifest1.self, forKey: .orderManifest)
+        self.orderTemplateCore = try container.decodeIfPresent(OrderTemplateCore1.self, forKey: .orderTemplateCore)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.ownedByOrgType = try container.decode(OrgTypeEnum.self, forKey: .ownedByOrgType)
         self.ownedByUserId = try container.decode(String.self, forKey: .ownedByUserId)
@@ -81,6 +85,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.autoStage, forKey: .autoStage)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.description, forKey: .description)
         try container.encodeIfPresent(self.intendedStatus, forKey: .intendedStatus)
@@ -88,7 +93,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.orchestratorScheduleId, forKey: .orchestratorScheduleId)
         try container.encodeIfPresent(self.orchestratorSchedulePaused, forKey: .orchestratorSchedulePaused)
-        try container.encodeIfPresent(self.orderManifest, forKey: .orderManifest)
+        try container.encodeIfPresent(self.orderTemplateCore, forKey: .orderTemplateCore)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encode(self.ownedByOrgType, forKey: .ownedByOrgType)
         try container.encode(self.ownedByUserId, forKey: .ownedByUserId)
@@ -100,6 +105,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case autoStage = "auto_stage"
         case createdAtTimestamp = "created_at_timestamp"
         case description
         case intendedStatus = "intended_status"
@@ -107,7 +113,7 @@ public struct OrderSchedule1: Codable, Hashable, Sendable {
         case name
         case orchestratorScheduleId = "orchestrator_schedule_id"
         case orchestratorSchedulePaused = "orchestrator_schedule_paused"
-        case orderManifest = "order_manifest"
+        case orderTemplateCore = "order_template_core"
         case ownedByOrgId = "owned_by_org_id"
         case ownedByOrgType = "owned_by_org_type"
         case ownedByUserId = "owned_by_user_id"

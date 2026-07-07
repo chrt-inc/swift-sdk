@@ -17,7 +17,6 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let expectedScanPayloads: [String]?
     public let observedScanPayloads: [String]?
     public let orderId: String
-    public let orderScheduleTemplatePathIdempotencyKey: String?
     public let orderShortId: String
     /// Must be a string starting with `org_`
     public let requestedByOrgId: String?
@@ -47,7 +46,6 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         expectedScanPayloads: [String]? = nil,
         observedScanPayloads: [String]? = nil,
         orderId: String,
-        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         orderShortId: String,
         requestedByOrgId: String? = nil,
         requestedByUserId: String? = nil,
@@ -73,7 +71,6 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.expectedScanPayloads = expectedScanPayloads
         self.observedScanPayloads = observedScanPayloads
         self.orderId = orderId
-        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.orderShortId = orderShortId
         self.requestedByOrgId = requestedByOrgId
         self.requestedByUserId = requestedByUserId
@@ -102,7 +99,6 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.expectedScanPayloads = try container.decodeIfPresent([String].self, forKey: .expectedScanPayloads)
         self.observedScanPayloads = try container.decodeIfPresent([String].self, forKey: .observedScanPayloads)
         self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.requestedByOrgId = try container.decodeIfPresent(String.self, forKey: .requestedByOrgId)
         self.requestedByUserId = try container.decodeIfPresent(String.self, forKey: .requestedByUserId)
@@ -132,7 +128,6 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.expectedScanPayloads, forKey: .expectedScanPayloads)
         try container.encodeIfPresent(self.observedScanPayloads, forKey: .observedScanPayloads)
         try container.encode(self.orderId, forKey: .orderId)
-        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.requestedByOrgId, forKey: .requestedByOrgId)
         try container.encodeIfPresent(self.requestedByUserId, forKey: .requestedByUserId)
@@ -160,7 +155,6 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         case expectedScanPayloads = "expected_scan_payloads"
         case observedScanPayloads = "observed_scan_payloads"
         case orderId = "order_id"
-        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case orderShortId = "order_short_id"
         case requestedByOrgId = "requested_by_org_id"
         case requestedByUserId = "requested_by_user_id"

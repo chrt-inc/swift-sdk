@@ -112,6 +112,7 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "auto_stage": true,
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "description": "description",
                       "intended_status": "draft",
@@ -119,6 +120,9 @@ import Chrt
                       "name": "name",
                       "orchestrator_schedule_id": "orchestrator_schedule_id",
                       "orchestrator_schedule_paused": true,
+                      "order_template_core": {
+                        "schema_version": 1
+                      },
                       "owned_by_org_id": "owned_by_org_id",
                       "owned_by_org_type": "provider",
                       "owned_by_user_id": "owned_by_user_id",
@@ -143,6 +147,7 @@ import Chrt
             items: [
                 OrderSchedule1(
                     id: "_id",
+                    autoStage: Optional(true),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     description: Optional("description"),
                     intendedStatus: Optional(.draft),
@@ -150,6 +155,9 @@ import Chrt
                     name: "name",
                     orchestratorScheduleId: Optional("orchestrator_schedule_id"),
                     orchestratorSchedulePaused: Optional(true),
+                    orderTemplateCore: Optional(OrderTemplateCore1(
+                        schemaVersion: 1
+                    )),
                     ownedByOrgId: "owned_by_org_id",
                     ownedByOrgType: .provider,
                     ownedByUserId: "owned_by_user_id",
@@ -294,6 +302,7 @@ import Chrt
                 """
                 {
                   "_id": "_id",
+                  "auto_stage": true,
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
                   "intended_status": "draft",
@@ -301,28 +310,36 @@ import Chrt
                   "name": "name",
                   "orchestrator_schedule_id": "orchestrator_schedule_id",
                   "orchestrator_schedule_paused": true,
-                  "order_manifest": {
-                    "auto_stage": true,
-                    "cargo_manifests": [
+                  "order_template_core": {
+                    "case_tag": "case_tag",
+                    "coordinator_org_id": "coordinator_org_id",
+                    "department_id": "department_id",
+                    "directory_entry_ids": [
+                      "directory_entry_ids"
+                    ],
+                    "driver_ids": [
+                      "driver_ids"
+                    ],
+                    "executor_org_ids": [
+                      "executor_org_ids"
+                    ],
+                    "off_chrt_executor_org_ids": [
+                      "off_chrt_executor_org_ids"
+                    ],
+                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "schema_version": 1,
+                    "shipper_org_id": "shipper_org_id",
+                    "task_lists_to_apply_at_order_creation": [
                       {
-                        "cargo_type": "spare_parts",
-                        "schema_version": 1
+                        "task_list_id": "task_list_id"
                       }
                     ],
-                    "coordinator_org_id": "coordinator_org_id",
-                    "off_chrt_reference_id": "off_chrt_reference_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
-                    "shipper_org_id": "shipper_org_id",
-                    "task_group_manifests": [
+                    "task_lists_to_apply_at_order_staging": [
                       {
-                        "task_group_type": "chrt_ground_provider",
-                        "task_manifests": [
-                          {
-                            "schema_version": 1
-                          }
-                        ]
+                        "task_list_id": "task_list_id"
                       }
-                    ]
+                    ],
+                    "text": "text"
                   },
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_org_type": "provider",
@@ -383,6 +400,7 @@ import Chrt
         )
         let expectedResponse = OrderSchedule1(
             id: "_id",
+            autoStage: Optional(true),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
             intendedStatus: Optional(.draft),
@@ -390,28 +408,36 @@ import Chrt
             name: "name",
             orchestratorScheduleId: Optional("orchestrator_schedule_id"),
             orchestratorSchedulePaused: Optional(true),
-            orderManifest: Optional(OrderManifest1(
-                autoStage: Optional(true),
-                cargoManifests: Optional([
-                    CargoManifest1(
-                        cargoType: .spareParts,
-                        schemaVersion: 1
+            orderTemplateCore: Optional(OrderTemplateCore1(
+                caseTag: Optional("case_tag"),
+                coordinatorOrgId: Optional("coordinator_org_id"),
+                departmentId: Optional("department_id"),
+                directoryEntryIds: Optional([
+                    "directory_entry_ids"
+                ]),
+                driverIds: Optional([
+                    "driver_ids"
+                ]),
+                executorOrgIds: Optional([
+                    "executor_org_ids"
+                ]),
+                offChrtExecutorOrgIds: Optional([
+                    "off_chrt_executor_org_ids"
+                ]),
+                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                schemaVersion: 1,
+                shipperOrgId: Optional("shipper_org_id"),
+                taskListsToApplyAtOrderCreation: Optional([
+                    TaskListToApplyToCase1(
+                        taskListId: "task_list_id"
                     )
                 ]),
-                coordinatorOrgId: Optional("coordinator_org_id"),
-                offChrtReferenceId: Optional("off_chrt_reference_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
-                shipperOrgId: Optional("shipper_org_id"),
-                taskGroupManifests: Optional([
-                    TaskGroupManifest1(
-                        taskGroupType: .chrtGroundProvider,
-                        taskManifests: [
-                            TaskManifest1(
-                                schemaVersion: 1
-                            )
-                        ]
+                taskListsToApplyAtOrderStaging: Optional([
+                    TaskListToApplyToCase1(
+                        taskListId: "task_list_id"
                     )
-                ])
+                ]),
+                text: Optional("text")
             )),
             ownedByOrgId: "owned_by_org_id",
             ownedByOrgType: .provider,

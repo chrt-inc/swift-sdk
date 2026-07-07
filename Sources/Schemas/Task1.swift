@@ -24,7 +24,6 @@ public struct Task1: Codable, Hashable, Sendable {
     public let location: LocationFeature?
     public let orderId: String
     public let orderPlacerComments: String?
-    public let orderScheduleTemplatePathIdempotencyKey: String?
     public let orderShortId: String
     public let schemaVersion: Int
     public let skippedAtTimestamp: Date?
@@ -61,7 +60,6 @@ public struct Task1: Codable, Hashable, Sendable {
         location: LocationFeature? = nil,
         orderId: String,
         orderPlacerComments: String? = nil,
-        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         orderShortId: String,
         schemaVersion: Int,
         skippedAtTimestamp: Date? = nil,
@@ -95,7 +93,6 @@ public struct Task1: Codable, Hashable, Sendable {
         self.location = location
         self.orderId = orderId
         self.orderPlacerComments = orderPlacerComments
-        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.orderShortId = orderShortId
         self.schemaVersion = schemaVersion
         self.skippedAtTimestamp = skippedAtTimestamp
@@ -132,7 +129,6 @@ public struct Task1: Codable, Hashable, Sendable {
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
-        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
@@ -170,7 +166,6 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
-        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
@@ -206,7 +201,6 @@ public struct Task1: Codable, Hashable, Sendable {
         case location
         case orderId = "order_id"
         case orderPlacerComments = "order_placer_comments"
-        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case orderShortId = "order_short_id"
         case schemaVersion = "schema_version"
         case skippedAtTimestamp = "skipped_at_timestamp"

@@ -19,7 +19,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let inTransitAtTimestamp: Date?
     public let lengthInches: Double?
     public let orderId: String
-    public let orderScheduleTemplatePathIdempotencyKey: String?
     public let orderShortId: String
     public let quantity: Int?
     public let schemaVersion: Int
@@ -49,7 +48,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         inTransitAtTimestamp: Date? = nil,
         lengthInches: Double? = nil,
         orderId: String,
-        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         orderShortId: String,
         quantity: Int? = nil,
         schemaVersion: Int,
@@ -77,7 +75,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.inTransitAtTimestamp = inTransitAtTimestamp
         self.lengthInches = lengthInches
         self.orderId = orderId
-        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.orderShortId = orderShortId
         self.quantity = quantity
         self.schemaVersion = schemaVersion
@@ -108,7 +105,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.inTransitAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inTransitAtTimestamp)
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
         self.orderId = try container.decode(String.self, forKey: .orderId)
-        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.quantity = try container.decodeIfPresent(Int.self, forKey: .quantity)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -140,7 +136,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.inTransitAtTimestamp, forKey: .inTransitAtTimestamp)
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
         try container.encode(self.orderId, forKey: .orderId)
-        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -170,7 +165,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case inTransitAtTimestamp = "in_transit_at_timestamp"
         case lengthInches = "length_inches"
         case orderId = "order_id"
-        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case orderShortId = "order_short_id"
         case quantity
         case schemaVersion = "schema_version"

@@ -2,12 +2,10 @@ import Foundation
 
 public final class OrderSchedulesClient: Sendable {
     public let draft: DraftClient
-    public let orderManifest: OrderManifestClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.draft = DraftClient(config: config)
-        self.orderManifest = OrderManifestClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

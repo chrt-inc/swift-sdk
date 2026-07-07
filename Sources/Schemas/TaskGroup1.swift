@@ -27,7 +27,6 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let orderId: String
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
-    public let orderScheduleTemplatePathIdempotencyKey: String?
     public let orderShortId: String
     public let providerPayDriverBillingLedgerPeriodId: String?
     public let providerPayDriverLineItemGroupId: String?
@@ -74,7 +73,6 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         offChrtShipperOrgId: String? = nil,
         orderId: String,
         orderOffChrtReferenceId: String? = nil,
-        orderScheduleTemplatePathIdempotencyKey: String? = nil,
         orderShortId: String,
         providerPayDriverBillingLedgerPeriodId: String? = nil,
         providerPayDriverLineItemGroupId: String? = nil,
@@ -118,7 +116,6 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.orderId = orderId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
-        self.orderScheduleTemplatePathIdempotencyKey = orderScheduleTemplatePathIdempotencyKey
         self.orderShortId = orderShortId
         self.providerPayDriverBillingLedgerPeriodId = providerPayDriverBillingLedgerPeriodId
         self.providerPayDriverLineItemGroupId = providerPayDriverLineItemGroupId
@@ -165,7 +162,6 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
-        self.orderScheduleTemplatePathIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleTemplatePathIdempotencyKey)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.providerPayDriverBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverBillingLedgerPeriodId)
         self.providerPayDriverLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverLineItemGroupId)
@@ -213,7 +209,6 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
-        try container.encodeIfPresent(self.orderScheduleTemplatePathIdempotencyKey, forKey: .orderScheduleTemplatePathIdempotencyKey)
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.providerPayDriverBillingLedgerPeriodId, forKey: .providerPayDriverBillingLedgerPeriodId)
         try container.encodeIfPresent(self.providerPayDriverLineItemGroupId, forKey: .providerPayDriverLineItemGroupId)
@@ -259,7 +254,6 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case orderId = "order_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
-        case orderScheduleTemplatePathIdempotencyKey = "order_schedule_template_path_idempotency_key"
         case orderShortId = "order_short_id"
         case providerPayDriverBillingLedgerPeriodId = "provider_pay_driver_billing_ledger_period_id"
         case providerPayDriverLineItemGroupId = "provider_pay_driver_line_item_group_id"
