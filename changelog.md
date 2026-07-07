@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-07-07
+### Breaking Changes
+* **`orderScheduleTemplatePathIdempotencyKey`** — removed from `OrderDraftAddCargoReq`, `OrderDraftAddTaskArtifactReq`, `OrderDraftAddTaskGroupReq`, `OrderDraftAddTaskReqV1`, `Cargo1`, `Task1`, `TaskArtifact1`, and `TaskGroup1`; remove all read and write sites referencing this field.
+* **`OrderSchedulesClient.orderManifest`** and related types (`OrderManifestClient`, `OrderManifest1`, `CargoManifest1`, `TaskGroupManifest1`, `TaskManifest1`, `TimeWindow1`, `ScheduledOrdersNewDraftReq`, `OrderManifestValidationResult`, `OrderManifestValidationRequirements`)  — deleted entirely; migrate to the new order-template–based API using `orderTemplateCore`.
+* **`OrderScheduleClientCreate1.orderManifest`** and **`OrderScheduleClientUpdate1.orderManifest`** — field renamed to `orderTemplateCore` with type changed from `OrderManifest1?` to `OrderTemplateCore1?`; update all construction and access sites.
+* **Geometry coordinate item types** (`MultiPointCoordinatesItem`, `LineStringCoordinatesItem`, `PolygonCoordinatesItemItem`, `MultiLineStringCoordinatesItemItem`, `MultiPolygonCoordinatesItemItemItem`, `GeometryCollectionGeometriesItem`) — renamed to `CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`, and `GeometriesItem` respectively; update all type references and geometry construction sites.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` element-type references and pattern-match sites.
+### Added
+* **`OrderSchedule1.autoStage`**, **`OrderScheduleClientCreate1.autoStage`**, and **`OrderScheduleClientUpdate1.autoStage`** — new optional `Bool` field for controlling automatic staging of order schedules.
+* **`OrderScheduleBuildSeedRes`** and **`OrderTemplateReferencesExpanded1`** — new response and reference-expansion types for order schedule build seed operations.
+* **`Requests.OrdersNewDraftReq.orderScheduleId`** and **`Requests.OrdersNewDraftReq.orderScheduleRunIdempotencyKey`** — new optional fields for supplying order schedule provenance when creating a scheduled draft order.
+* **New filter parameters** (`filterStatus`, `filterType`, `filterRole`, `filterOrderIds`, `filterTaskType`, `filterTag`, `filterDepartmentId`, `filterCaseTag`, `filterBillingReviewStatus`, `filterShippingStatus`) — added as optional arguments across billing, listing, operations, orgs, and shipping list endpoints for finer-grained server-side filtering.
+
 ## 2.0.0 - 2026-07-03
 ### Breaking Changes
 * **`LineStringCoordinatesItem`, `MultiPointCoordinatesItem`** — renamed to `CoordinatesItem`; update all type references and geometry construction sites.
