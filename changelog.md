@@ -1,3 +1,11 @@
+## 3.0.0 - 2026-07-11
+### Breaking Changes
+* **`ShippingClient_.orderDrafts`** — removed; access order drafts via `shipping.orders.drafts` (`DraftsClient`) instead.
+* **`OrderDraftsClient`** — renamed to `DraftsClient`; `AgenticClient` sub-client removed and its three methods replaced by `buildV1`, `buildWithStreamingV1`, and `buildPrecheckV1` directly on `DraftsClient`; update all call sites accordingly.
+* **`OrdersNewDraftReq`** and **`OrdersNewDraftRes`** — renamed to `OrdersOpenDraftReq` and `OrdersOpenDraftRes`; `DraftsClient.newV1` renamed to `openV1`; update all construction, type annotation, and call sites.
+* **`BodyPostShippingOrderDraftsImageToTextV1`** — renamed to `BodyPostShippingOrdersDraftsImageToTextV1`; update all type references passed to `imageToTextV1`.
+* **`ExpandedClient`** (drafts) renamed to `DraftsExpandedClient`; **`OrdersExpandedClient`** renamed to `ExpandedClient`; all HTTP paths changed from `/shipping/order_drafts/…` to `/shipping/orders/drafts/…`; update all type references and call sites.
+
 ## 2.0.1 - 2026-07-11
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
