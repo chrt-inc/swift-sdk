@@ -4,7 +4,6 @@ public final class ShippingClient_: Sendable {
     public let cargos: CargosClient
     public let drivers: DriversClient
     public let flights: ShippingFlightsClient
-    public let orderDrafts: OrderDraftsClient
     public let orderGroups: OrderGroupsClient
     public let orderSchedules: OrderSchedulesClient
     public let orderTemplates: OrderTemplatesClient
@@ -19,7 +18,6 @@ public final class ShippingClient_: Sendable {
         self.cargos = CargosClient(config: config)
         self.drivers = DriversClient(config: config)
         self.flights = ShippingFlightsClient(config: config)
-        self.orderDrafts = OrderDraftsClient(config: config)
         self.orderGroups = OrderGroupsClient(config: config)
         self.orderSchedules = OrderSchedulesClient(config: config)
         self.orderTemplates = OrderTemplatesClient(config: config)
