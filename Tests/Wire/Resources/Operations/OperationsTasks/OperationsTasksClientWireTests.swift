@@ -80,6 +80,106 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func expandedListV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "assigned_users": [
+                        {
+                          "first_name": null,
+                          "last_name": null,
+                          "role": "owner",
+                          "user_id": "user_id"
+                        }
+                      ],
+                      "department": {
+                        "_id": "_id",
+                        "created_at": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "department_type": "aerospace",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "short_id": "short_id"
+                      },
+                      "operations_task": {
+                        "_id": "_id",
+                        "description": "description",
+                        "order_id": "order_id",
+                        "order_short_id": "order_short_id",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "task_type": "review_order_details",
+                        "title": "title"
+                      }
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OperationsTaskExpandedListRes(
+            items: [
+                OperationsTaskExpandedListItem(
+                    assignedUsers: [
+                        OrgMemberDetails(
+                            firstName: Optional(nil),
+                            lastName: Optional(nil),
+                            role: .owner,
+                            userId: "user_id"
+                        )
+                    ],
+                    department: Optional(Department1(
+                        id: "_id",
+                        createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        departmentType: .aerospace,
+                        name: "name",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        shortId: "short_id"
+                    )),
+                    operationsTask: OperationsTask1(
+                        id: "_id",
+                        description: "description",
+                        orderId: "order_id",
+                        orderShortId: "order_short_id",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        taskType: .reviewOrderDetails,
+                        title: "title"
+                    )
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.operations.operationsTasks.expandedListV1(
+            sortBy: .deadlineTimestamp,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            search: "search",
+            filterOrderShortId: "filter_order_short_id",
+            filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
+            filterDepartmentId: "filter_department_id",
+            filterAssignedUserId: "filter_assigned_user_id",
+            filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -111,9 +211,6 @@ import Chrt
                       "schema_version": 1,
                       "source_task_list_id": "source_task_list_id",
                       "status": "not_started",
-                      "tags": [
-                        "tags"
-                      ],
                       "task_type": "review_order_details",
                       "title": "title"
                     }
@@ -154,9 +251,6 @@ import Chrt
                     schemaVersion: 1,
                     sourceTaskListId: Optional("source_task_list_id"),
                     status: Optional(.notStarted),
-                    tags: Optional([
-                        "tags"
-                    ]),
                     taskType: .reviewOrderDetails,
                     title: "title"
                 )
@@ -168,21 +262,10 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
+            search: "search",
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
-            filterTag: [
-                "filter_tag"
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -272,9 +355,6 @@ import Chrt
                   "schema_version": 1,
                   "source_task_list_id": "source_task_list_id",
                   "status": "not_started",
-                  "tags": [
-                    "tags"
-                  ],
                   "task_type": "review_order_details",
                   "title": "title"
                 }
@@ -311,9 +391,6 @@ import Chrt
             schemaVersion: 1,
             sourceTaskListId: Optional("source_task_list_id"),
             status: Optional(.notStarted),
-            tags: Optional([
-                "tags"
-            ]),
             taskType: .reviewOrderDetails,
             title: "title"
         )

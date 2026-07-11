@@ -77,9 +77,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterBillingReviewStatus: [
-                .notStarted
-            ],
             filterOrderId: "filter_order_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -96,7 +93,6 @@ import Chrt
                 {
                   "items": [
                     {
-                      "billing_review_status": "not_started",
                       "order": {
                         "_id": "_id",
                         "created_by_org_id": "created_by_org_id",
@@ -119,7 +115,6 @@ import Chrt
         let expectedResponse = UngroupedOrderListRes(
             items: [
                 UngroupedOrderRow(
-                    billingReviewStatus: .notStarted,
                     order: Order1(
                         id: "_id",
                         createdByOrgId: "created_by_org_id",
@@ -132,9 +127,6 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
-            filterShippingStatus: [
-                .draft
-            ],
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,

@@ -175,9 +175,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterIntendedStatus: [
-                .draft
-            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -314,7 +311,7 @@ import Chrt
                   "orchestrator_schedule_id": "orchestrator_schedule_id",
                   "orchestrator_schedule_paused": true,
                   "order_template_core": {
-                    "case_tag": "case_tag",
+                    "coordinator_label": "coordinator_label",
                     "coordinator_org_id": "coordinator_org_id",
                     "department_id": "department_id",
                     "directory_entry_ids": [
@@ -412,7 +409,7 @@ import Chrt
             orchestratorScheduleId: Optional("orchestrator_schedule_id"),
             orchestratorSchedulePaused: Optional(true),
             orderTemplateCore: Optional(OrderTemplateCore1(
-                caseTag: Optional("case_tag"),
+                coordinatorLabel: Optional("coordinator_label"),
                 coordinatorOrgId: Optional("coordinator_org_id"),
                 departmentId: Optional("department_id"),
                 directoryEntryIds: Optional([
@@ -431,12 +428,12 @@ import Chrt
                 schemaVersion: 1,
                 shipperOrgId: Optional("shipper_org_id"),
                 taskListsToApplyAtOrderCreation: Optional([
-                    TaskListToApplyToCase1(
+                    TaskListToApplyToOrder1(
                         taskListId: "task_list_id"
                     )
                 ]),
                 taskListsToApplyAtOrderStaging: Optional([
-                    TaskListToApplyToCase1(
+                    TaskListToApplyToOrder1(
                         taskListId: "task_list_id"
                     )
                 ]),

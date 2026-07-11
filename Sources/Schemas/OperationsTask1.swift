@@ -19,7 +19,6 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let sourceTaskListId: String?
     public let status: OperationsTaskStatusEnum?
-    public let tags: [String]?
     public let taskType: OperationsTaskTypeEnum
     public let title: String
     /// Additional properties that are not explicitly defined in the schema
@@ -41,7 +40,6 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         sourceTaskListId: String? = nil,
         status: OperationsTaskStatusEnum? = nil,
-        tags: [String]? = nil,
         taskType: OperationsTaskTypeEnum,
         title: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -61,7 +59,6 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.sourceTaskListId = sourceTaskListId
         self.status = status
-        self.tags = tags
         self.taskType = taskType
         self.title = title
         self.additionalProperties = additionalProperties
@@ -84,7 +81,6 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.sourceTaskListId = try container.decodeIfPresent(String.self, forKey: .sourceTaskListId)
         self.status = try container.decodeIfPresent(OperationsTaskStatusEnum.self, forKey: .status)
-        self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
         self.taskType = try container.decode(OperationsTaskTypeEnum.self, forKey: .taskType)
         self.title = try container.decode(String.self, forKey: .title)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -108,7 +104,6 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.sourceTaskListId, forKey: .sourceTaskListId)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encodeIfPresent(self.tags, forKey: .tags)
         try container.encode(self.taskType, forKey: .taskType)
         try container.encode(self.title, forKey: .title)
     }
@@ -130,7 +125,6 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case sourceTaskListId = "source_task_list_id"
         case status
-        case tags
         case taskType = "task_type"
         case title
     }

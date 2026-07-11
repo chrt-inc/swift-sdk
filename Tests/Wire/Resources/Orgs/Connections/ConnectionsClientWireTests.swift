@@ -89,6 +89,79 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func listProviderProviderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "auto_assign_enabled": true,
+                      "caller_connection_role": "coordinator",
+                      "connected": true,
+                      "connection_id": "connection_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "counterparty_org_public_data": {
+                        "_id": "_id",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "counterparty_provider_org_info_for_connections": {
+                        "_id": "_id",
+                        "email_address_primary": "email_address_primary",
+                        "provider_org_id": "provider_org_id",
+                        "schema_version": 1
+                      }
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ProviderProviderConnectionListRes(
+            items: [
+                ProviderProviderConnectionListItem(
+                    autoAssignEnabled: true,
+                    callerConnectionRole: .coordinator,
+                    connected: true,
+                    connectionId: "connection_id",
+                    counterpartyOrgId: "counterparty_org_id",
+                    counterpartyOrgPublicData: Optional(OrgPublicData1(
+                        id: "_id",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    )),
+                    counterpartyProviderOrgInfoForConnections: Optional(ProviderOrgInfoForConnections1(
+                        id: "_id",
+                        emailAddressPrimary: "email_address_primary",
+                        providerOrgId: "provider_org_id",
+                        schemaVersion: 1
+                    ))
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.connections.listProviderProviderV1(
+            search: "search",
+            page: 1,
+            pageSize: 1,
+            filterCallerConnectionRole: .coordinator,
+            filterConnected: true,
+            filterAutoAssignEnabled: true,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listProvidersV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

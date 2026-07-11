@@ -4,8 +4,12 @@ public struct Order1: Codable, Hashable, Sendable {
     public let id: String
     public let cancelledAtTimestamp: Date?
     public let completedAtTimestamp: Date?
+    public let coordinatorAssignedUserIds: [String]?
+    public let coordinatorDepartmentId: String?
+    public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
+    public let coordinatorTaskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
@@ -14,9 +18,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let creationIdempotencyKey: String?
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?
-    public let executorOrgIds: [String]?
     public let inProgressAtTimestamp: Date?
-    public let offChrtExecutorOrgIds: [String]?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
     public let offChrtShipperOrgId: String?
@@ -29,7 +31,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let shortId: String
     public let stagedAtTimestamp: Date?
     public let status: OrderStatusEnum1?
-    public let taskGroupIds: [String]?
+    public let taskGroupDetails: [OrderTaskGroupExecutorDetails1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -37,15 +39,17 @@ public struct Order1: Codable, Hashable, Sendable {
         id: String,
         cancelledAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
+        coordinatorAssignedUserIds: [String]? = nil,
+        coordinatorDepartmentId: String? = nil,
+        coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
+        coordinatorTaskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
         creationIdempotencyKey: String? = nil,
         draftStartedAtTimestamp: Date,
         exceptionAtTimestamp: Date? = nil,
-        executorOrgIds: [String]? = nil,
         inProgressAtTimestamp: Date? = nil,
-        offChrtExecutorOrgIds: [String]? = nil,
         offChrtReferenceId: String? = nil,
         offChrtShipperOrgId: String? = nil,
         orderScheduleId: String? = nil,
@@ -56,21 +60,23 @@ public struct Order1: Codable, Hashable, Sendable {
         shortId: String,
         stagedAtTimestamp: Date? = nil,
         status: OrderStatusEnum1? = nil,
-        taskGroupIds: [String]? = nil,
+        taskGroupDetails: [OrderTaskGroupExecutorDetails1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
         self.cancelledAtTimestamp = cancelledAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
+        self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
+        self.coordinatorDepartmentId = coordinatorDepartmentId
+        self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
+        self.coordinatorTaskListsToApplyAtOrderStaging = coordinatorTaskListsToApplyAtOrderStaging
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.creationIdempotencyKey = creationIdempotencyKey
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
-        self.executorOrgIds = executorOrgIds
         self.inProgressAtTimestamp = inProgressAtTimestamp
-        self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
         self.offChrtReferenceId = offChrtReferenceId
         self.offChrtShipperOrgId = offChrtShipperOrgId
         self.orderScheduleId = orderScheduleId
@@ -81,7 +87,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.shortId = shortId
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
-        self.taskGroupIds = taskGroupIds
+        self.taskGroupDetails = taskGroupDetails
         self.additionalProperties = additionalProperties
     }
 
@@ -90,15 +96,17 @@ public struct Order1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
+        self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
+        self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
+        self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.coordinatorTaskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .coordinatorTaskListsToApplyAtOrderStaging)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.creationIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .creationIdempotencyKey)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
-        self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
-        self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
@@ -109,7 +117,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.shortId = try container.decode(String.self, forKey: .shortId)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(OrderStatusEnum1.self, forKey: .status)
-        self.taskGroupIds = try container.decodeIfPresent([String].self, forKey: .taskGroupIds)
+        self.taskGroupDetails = try container.decodeIfPresent([OrderTaskGroupExecutorDetails1].self, forKey: .taskGroupDetails)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -119,15 +127,17 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
+        try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
+        try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
+        try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.coordinatorTaskListsToApplyAtOrderStaging, forKey: .coordinatorTaskListsToApplyAtOrderStaging)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.creationIdempotencyKey, forKey: .creationIdempotencyKey)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
-        try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
-        try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
         try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
@@ -138,7 +148,7 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encodeIfPresent(self.taskGroupIds, forKey: .taskGroupIds)
+        try container.encodeIfPresent(self.taskGroupDetails, forKey: .taskGroupDetails)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -146,15 +156,17 @@ public struct Order1: Codable, Hashable, Sendable {
         case id = "_id"
         case cancelledAtTimestamp = "cancelled_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
+        case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
+        case coordinatorDepartmentId = "coordinator_department_id"
+        case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
+        case coordinatorTaskListsToApplyAtOrderStaging = "coordinator_task_lists_to_apply_at_order_staging"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case creationIdempotencyKey = "creation_idempotency_key"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
-        case executorOrgIds = "executor_org_ids"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
-        case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
         case offChrtReferenceId = "off_chrt_reference_id"
         case offChrtShipperOrgId = "off_chrt_shipper_org_id"
         case orderScheduleId = "order_schedule_id"
@@ -165,6 +177,6 @@ public struct Order1: Codable, Hashable, Sendable {
         case shortId = "short_id"
         case stagedAtTimestamp = "staged_at_timestamp"
         case status
-        case taskGroupIds = "task_group_ids"
+        case taskGroupDetails = "task_group_details"
     }
 }

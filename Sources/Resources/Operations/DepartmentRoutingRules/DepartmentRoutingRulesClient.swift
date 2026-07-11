@@ -19,7 +19,7 @@ public final class DepartmentRoutingRulesClient: Sendable {
         )
     }
 
-    /// Sets the caller org's default operations desk for a counterparty. The body must set exactly one of shipper_org_id (on-chrt shipper) / off_chrt_shipper_org_id (off-chrt shipper shell) (XOR). Upsert: one rule per (owner, counterparty). Returns the rule id. The mapping is a non-binding suggestion surfaced at Case creation. | authz: min_org_role=administrator | (DepartmentRoutingRuleClientCreate1) -> (PydanticObjectId)
+    /// Sets the caller org's default operations desk for a counterparty. The body must set exactly one of shipper_org_id (on-chrt shipper) / off_chrt_shipper_org_id (off-chrt shipper shell) (XOR). Upsert: one rule per (owner, counterparty). Returns the rule id. The mapping is a non-binding suggestion surfaced via suggested_department. | authz: min_org_role=administrator | (DepartmentRoutingRuleClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func upsertV1(request: Requests.DepartmentRoutingRuleClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {

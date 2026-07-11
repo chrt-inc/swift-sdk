@@ -2,8 +2,8 @@ import Foundation
 
 extension Requests {
     public struct OrderTemplateClientUpdate1: Codable, Hashable, Sendable {
-        public let caseTag: String?
-        public let caseTagSetToNone: Bool?
+        public let coordinatorLabel: String?
+        public let coordinatorLabelSetToNone: Bool?
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?
@@ -23,16 +23,16 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let shipperOrgIdSetToNone: Bool?
-        public let taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]?
-        public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
+        public let taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]?
+        public let taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]?
         public let text: String?
         public let textSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            caseTag: String? = nil,
-            caseTagSetToNone: Bool? = nil,
+            coordinatorLabel: String? = nil,
+            coordinatorLabelSetToNone: Bool? = nil,
             coordinatorOrgId: String? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
             departmentId: String? = nil,
@@ -50,14 +50,14 @@ extension Requests {
             offChrtShipperOrgIdSetToNone: Bool? = nil,
             shipperOrgId: String? = nil,
             shipperOrgIdSetToNone: Bool? = nil,
-            taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]? = nil,
-            taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
+            taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
+            taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
             text: String? = nil,
             textSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.caseTag = caseTag
-            self.caseTagSetToNone = caseTagSetToNone
+            self.coordinatorLabel = coordinatorLabel
+            self.coordinatorLabelSetToNone = coordinatorLabelSetToNone
             self.coordinatorOrgId = coordinatorOrgId
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
             self.departmentId = departmentId
@@ -84,8 +84,8 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.caseTag = try container.decodeIfPresent(String.self, forKey: .caseTag)
-            self.caseTagSetToNone = try container.decodeIfPresent(Bool.self, forKey: .caseTagSetToNone)
+            self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
+            self.coordinatorLabelSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorLabelSetToNone)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
@@ -103,8 +103,8 @@ extension Requests {
             self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
-            self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderCreation)
-            self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
+            self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
+            self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderStaging)
             self.text = try container.decodeIfPresent(String.self, forKey: .text)
             self.textSetToNone = try container.decodeIfPresent(Bool.self, forKey: .textSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -113,8 +113,8 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.caseTag, forKey: .caseTag)
-            try container.encodeIfPresent(self.caseTagSetToNone, forKey: .caseTagSetToNone)
+            try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
+            try container.encodeIfPresent(self.coordinatorLabelSetToNone, forKey: .coordinatorLabelSetToNone)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
@@ -140,8 +140,8 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case caseTag = "case_tag"
-            case caseTagSetToNone = "case_tag__set_to_None"
+            case coordinatorLabel = "coordinator_label"
+            case coordinatorLabelSetToNone = "coordinator_label__set_to_None"
             case coordinatorOrgId = "coordinator_org_id"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
             case departmentId = "department_id"

@@ -4,7 +4,7 @@ import Foundation
 /// 
 /// NOTE - some fields have multiple values and must be properly mapped to an entity by the order builder, e.g. for `driver_ids` each resolves to a single task group
 public struct OrderTemplateCore1: Codable, Hashable, Sendable {
-    public let caseTag: String?
+    public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
     public let departmentId: String?
@@ -16,14 +16,14 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
-    public let taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]?
-    public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
+    public let taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]?
+    public let taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]?
     public let text: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        caseTag: String? = nil,
+        coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
         departmentId: String? = nil,
         directoryEntryIds: [String]? = nil,
@@ -33,12 +33,12 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         offChrtShipperOrgId: String? = nil,
         schemaVersion: Int,
         shipperOrgId: String? = nil,
-        taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]? = nil,
-        taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
+        taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
+        taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
         text: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.caseTag = caseTag
+        self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
         self.departmentId = departmentId
         self.directoryEntryIds = directoryEntryIds
@@ -56,7 +56,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.caseTag = try container.decodeIfPresent(String.self, forKey: .caseTag)
+        self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
@@ -66,8 +66,8 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-        self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderCreation)
-        self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
+        self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
+        self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderStaging)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -75,7 +75,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.caseTag, forKey: .caseTag)
+        try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
@@ -92,7 +92,7 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case caseTag = "case_tag"
+        case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
         case departmentId = "department_id"
         case directoryEntryIds = "directory_entry_ids"

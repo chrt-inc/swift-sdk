@@ -178,7 +178,7 @@ import Chrt
                   "order_template": {
                     "_id": "_id",
                     "archived_at_timestamp": "2024-01-15T09:30:00Z",
-                    "case_tag": "case_tag",
+                    "coordinator_label": "coordinator_label",
                     "coordinator_org_id": "coordinator_org_id",
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "department_id": "department_id",
@@ -221,19 +221,23 @@ import Chrt
                       "_id": "_id",
                       "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                       "completed_at_timestamp": "2024-01-15T09:30:00Z",
+                      "coordinator_assigned_user_ids": [
+                        "coordinator_assigned_user_ids"
+                      ],
+                      "coordinator_department_id": "coordinator_department_id",
+                      "coordinator_label": "coordinator_label",
                       "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_task_lists_to_apply_at_order_staging": [
+                        {
+                          "task_list_id": "task_list_id"
+                        }
+                      ],
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
                       "creation_idempotency_key": "creation_idempotency_key",
                       "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                       "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                      "executor_org_ids": [
-                        "executor_org_ids"
-                      ],
                       "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
-                      "off_chrt_executor_org_ids": [
-                        "off_chrt_executor_org_ids"
-                      ],
                       "off_chrt_reference_id": "off_chrt_reference_id",
                       "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
                       "order_schedule_id": "order_schedule_id",
@@ -244,8 +248,10 @@ import Chrt
                       "short_id": "short_id",
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "status": "draft",
-                      "task_group_ids": [
-                        "task_group_ids"
+                      "task_group_details": [
+                        {
+                          "task_group_id": "task_group_id"
+                        }
                       ]
                     }
                   ],
@@ -286,7 +292,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -320,7 +326,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -376,7 +382,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -412,7 +418,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -430,7 +436,7 @@ import Chrt
             orderTemplate: OrderTemplate1(
                 id: "_id",
                 archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                caseTag: Optional("case_tag"),
+                coordinatorLabel: Optional("coordinator_label"),
                 coordinatorOrgId: Optional("coordinator_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 departmentId: Optional("department_id"),
@@ -457,12 +463,12 @@ import Chrt
                 schemaVersion: 1,
                 shipperOrgId: Optional("shipper_org_id"),
                 taskListsToApplyAtOrderCreation: Optional([
-                    TaskListToApplyToCase1(
+                    TaskListToApplyToOrder1(
                         taskListId: "task_list_id"
                     )
                 ]),
                 taskListsToApplyAtOrderStaging: Optional([
-                    TaskListToApplyToCase1(
+                    TaskListToApplyToOrder1(
                         taskListId: "task_list_id"
                     )
                 ]),
@@ -473,19 +479,23 @@ import Chrt
                     id: "_id",
                     cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    coordinatorAssignedUserIds: Optional([
+                        "coordinator_assigned_user_ids"
+                    ]),
+                    coordinatorDepartmentId: Optional("coordinator_department_id"),
+                    coordinatorLabel: Optional("coordinator_label"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorTaskListsToApplyAtOrderStaging: Optional([
+                        TaskListToApplyToOrder1(
+                            taskListId: "task_list_id"
+                        )
+                    ]),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: Optional("created_by_user_id"),
                     creationIdempotencyKey: Optional("creation_idempotency_key"),
                     draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    executorOrgIds: Optional([
-                        "executor_org_ids"
-                    ]),
                     inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    offChrtExecutorOrgIds: Optional([
-                        "off_chrt_executor_org_ids"
-                    ]),
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
                     offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
                     orderScheduleId: Optional("order_schedule_id"),
@@ -496,8 +506,10 @@ import Chrt
                     shortId: "short_id",
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     status: Optional(.draft),
-                    taskGroupIds: Optional([
-                        "task_group_ids"
+                    taskGroupDetails: Optional([
+                        OrderTaskGroupExecutorDetails1(
+                            taskGroupId: "task_group_id"
+                        )
                     ])
                 )
             ]),
@@ -525,7 +537,7 @@ import Chrt
                     {
                       "_id": "_id",
                       "archived_at_timestamp": "2024-01-15T09:30:00Z",
-                      "case_tag": "case_tag",
+                      "coordinator_label": "coordinator_label",
                       "coordinator_org_id": "coordinator_org_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "department_id": "department_id",
@@ -579,7 +591,7 @@ import Chrt
                 OrderTemplate1(
                     id: "_id",
                     archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    caseTag: Optional("case_tag"),
+                    coordinatorLabel: Optional("coordinator_label"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     departmentId: Optional("department_id"),
@@ -606,12 +618,12 @@ import Chrt
                     schemaVersion: 1,
                     shipperOrgId: Optional("shipper_org_id"),
                     taskListsToApplyAtOrderCreation: Optional([
-                        TaskListToApplyToCase1(
+                        TaskListToApplyToOrder1(
                             taskListId: "task_list_id"
                         )
                     ]),
                     taskListsToApplyAtOrderStaging: Optional([
-                        TaskListToApplyToCase1(
+                        TaskListToApplyToOrder1(
                             taskListId: "task_list_id"
                         )
                     ]),
@@ -633,7 +645,7 @@ import Chrt
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterDepartmentId: "filter_department_id",
-            filterCaseTag: "filter_case_tag",
+            filterCoordinatorLabel: "filter_coordinator_label",
             filterDriverId: "filter_driver_id",
             filterDirectoryEntryId: "filter_directory_entry_id",
             filterTaskListsToApplyAtOrderCreationTaskListId: "filter_task_lists_to_apply_at_order_creation_task_list_id",
@@ -750,7 +762,7 @@ import Chrt
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
-                  "case_tag": "case_tag",
+                  "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "department_id": "department_id",
@@ -778,12 +790,14 @@ import Chrt
                   "shipper_org_id": "shipper_org_id",
                   "task_lists_to_apply_at_order_creation": [
                     {
+                      "department_id": "department_id",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
                   ],
                   "task_lists_to_apply_at_order_staging": [
                     {
+                      "department_id": "department_id",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -801,7 +815,7 @@ import Chrt
         let expectedResponse = OrderTemplate1(
             id: "_id",
             archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            caseTag: Optional("case_tag"),
+            coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             departmentId: Optional("department_id"),
@@ -828,13 +842,15 @@ import Chrt
             schemaVersion: 1,
             shipperOrgId: Optional("shipper_org_id"),
             taskListsToApplyAtOrderCreation: Optional([
-                TaskListToApplyToCase1(
+                TaskListToApplyToOrder1(
+                    departmentId: Optional("department_id"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
             ]),
             taskListsToApplyAtOrderStaging: Optional([
-                TaskListToApplyToCase1(
+                TaskListToApplyToOrder1(
+                    departmentId: Optional("department_id"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )

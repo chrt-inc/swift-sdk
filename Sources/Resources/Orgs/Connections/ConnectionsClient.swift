@@ -45,7 +45,31 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
-    /// Lists provider organizations connected to the caller. Shippers see providers from shipper_provider_connections; providers see other providers from provider_provider_connections (in either direction). | () -> (ProviderConnectionListRes)
+    /// Lists provider-provider connections with the caller's coordinator or executor role. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ProviderProviderConnectionListRes)
+    ///
+    /// - Parameter search: Search counterparty company name or handle
+    /// - Parameter filterCallerConnectionRole: Filter by the caller's role in the connection
+    /// - Parameter filterConnected: Filter by connection status
+    /// - Parameter filterAutoAssignEnabled: Filter by executor auto-assign consent
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listProviderProviderV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterCallerConnectionRole: ProviderProviderConnectionCallerRoleEnum? = nil, filterConnected: Bool? = nil, filterAutoAssignEnabled: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ProviderProviderConnectionListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/connections/provider_provider/list/v1",
+            queryParams: [
+                "search": search.map { .string($0) }, 
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }, 
+                "filter_caller_connection_role": filterCallerConnectionRole.map { .string($0.rawValue) }, 
+                "filter_connected": filterConnected.map { .bool($0) }, 
+                "filter_auto_assign_enabled": filterAutoAssignEnabled.map { .bool($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: ProviderProviderConnectionListRes.self
+        )
+    }
+
+    /// Lists provider organizations connected to the calling shipper. | () -> (ProviderConnectionListRes)
     ///
     /// - Parameter search: Search by company name or handle
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

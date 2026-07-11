@@ -3,7 +3,7 @@ import Testing
 import Chrt
 
 @Suite("OperationsTaskListsClient Wire Tests") struct OperationsTaskListsClientWireTests {
-    @Test func applyToCaseV11() async throws -> Void {
+    @Test func applyToOrderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -22,9 +22,10 @@ import Chrt
         let expectedResponse = [
             "string"
         ]
-        let response = try await client.operations.operationsTaskLists.applyToCaseV1(
+        let response = try await client.operations.operationsTaskLists.applyToOrderV1(
             taskListId: "task_list_id",
-            caseId: "case_id",
+            orderId: "order_id",
+            departmentId: "department_id",
             initialDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -177,9 +178,6 @@ import Chrt
                       "name": "name",
                       "org_id": "org_id",
                       "schema_version": 1,
-                      "tags": [
-                        "tags"
-                      ],
                       "updated_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ],
@@ -211,9 +209,6 @@ import Chrt
                     name: "name",
                     orgId: "org_id",
                     schemaVersion: 1,
-                    tags: Optional([
-                        "tags"
-                    ]),
                     updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                 )
             ],
@@ -230,7 +225,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func removeNotStartedTasksFromCaseV11() async throws -> Void {
+    @Test func removeNotStartedTasksFromOrderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -247,13 +242,13 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OperationsTaskListRemoveFromCaseRes1(
+        let expectedResponse = OperationsTaskListRemoveFromOrderRes1(
             deletedCount: 1,
             keptCount: 1
         )
-        let response = try await client.operations.operationsTaskLists.removeNotStartedTasksFromCaseV1(
+        let response = try await client.operations.operationsTaskLists.removeNotStartedTasksFromOrderV1(
             taskListId: "task_list_id",
-            caseId: "case_id",
+            orderId: "order_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -330,9 +325,6 @@ import Chrt
                   "name": "name",
                   "org_id": "org_id",
                   "schema_version": 1,
-                  "tags": [
-                    "tags"
-                  ],
                   "updated_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """.utf8
@@ -362,9 +354,6 @@ import Chrt
             name: "name",
             orgId: "org_id",
             schemaVersion: 1,
-            tags: Optional([
-                "tags"
-            ]),
             updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
         let response = try await client.operations.operationsTaskLists.getV1(

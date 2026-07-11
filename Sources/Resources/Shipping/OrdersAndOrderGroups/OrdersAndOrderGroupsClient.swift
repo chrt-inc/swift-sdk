@@ -35,7 +35,7 @@ public final class OrdersAndOrderGroupsClient: Sendable {
         )
     }
 
-    /// Lists the caller's standalone orders (provider party, non-DRAFT, not in any of the caller's order groups), each with the caller org's billing-review status. Filtering, sorting, and pagination use stored Order fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (UngroupedOrderListRes)
+    /// Lists the caller's standalone orders (provider party, non-DRAFT, not in any of the caller's order groups). Filtering, sorting, and pagination use stored Order fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (UngroupedOrderListRes)
     ///
     /// - Parameter filterShippingStatus: Filter by order status(es).
     /// - Parameter sortBy: Field to sort by.

@@ -3,6 +3,54 @@ import Testing
 import Chrt
 
 @Suite("OrderDraftsClient Wire Tests") struct OrderDraftsClientWireTests {
+    @Test func addCoordinatorTaskListToApplyAtOrderStagingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.addCoordinatorTaskListToApplyAtOrderStagingV1(
+            orderId: "order_id",
+            taskListId: "task_list_id",
+            departmentId: "department_id",
+            request: .init(body: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func removeCoordinatorTaskListToApplyAtOrderStagingV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orderDrafts.removeCoordinatorTaskListToApplyAtOrderStagingV1(
+            orderId: "order_id",
+            taskListId: "task_list_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -133,53 +181,6 @@ import Chrt
             request: .init(taskGroupIds: [
                 "task_group_ids"
             ]),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func typeaheadV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                [
-                  {
-                    "type": "off_chrt_reference_id",
-                    "values": [
-                      {
-                        "order_ids": [
-                          "order_ids"
-                        ],
-                        "value": "value"
-                      }
-                    ]
-                  }
-                ]
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            OrderTypeaheadResult(
-                type: .offChrtReferenceId,
-                values: [
-                    OrderTypeaheadValue(
-                        orderIds: [
-                            "order_ids"
-                        ],
-                        value: "value"
-                    )
-                ]
-            )
-        ]
-        let response = try await client.shipping.orderDrafts.typeaheadV1(
-            query: "query",
-            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

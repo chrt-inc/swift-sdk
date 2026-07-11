@@ -12,7 +12,6 @@ public struct OperationsTaskList1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let schemaVersion: Int
-    public let tags: [String]?
     public let updatedAtTimestamp: Date
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -27,7 +26,6 @@ public struct OperationsTaskList1: Codable, Hashable, Sendable {
         name: String,
         orgId: String,
         schemaVersion: Int,
-        tags: [String]? = nil,
         updatedAtTimestamp: Date,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -40,7 +38,6 @@ public struct OperationsTaskList1: Codable, Hashable, Sendable {
         self.name = name
         self.orgId = orgId
         self.schemaVersion = schemaVersion
-        self.tags = tags
         self.updatedAtTimestamp = updatedAtTimestamp
         self.additionalProperties = additionalProperties
     }
@@ -56,7 +53,6 @@ public struct OperationsTaskList1: Codable, Hashable, Sendable {
         self.name = try container.decode(String.self, forKey: .name)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-        self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
         self.updatedAtTimestamp = try container.decode(Date.self, forKey: .updatedAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -73,7 +69,6 @@ public struct OperationsTaskList1: Codable, Hashable, Sendable {
         try container.encode(self.name, forKey: .name)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
-        try container.encodeIfPresent(self.tags, forKey: .tags)
         try container.encode(self.updatedAtTimestamp, forKey: .updatedAtTimestamp)
     }
 
@@ -88,7 +83,6 @@ public struct OperationsTaskList1: Codable, Hashable, Sendable {
         case name
         case orgId = "org_id"
         case schemaVersion = "schema_version"
-        case tags
         case updatedAtTimestamp = "updated_at_timestamp"
     }
 }

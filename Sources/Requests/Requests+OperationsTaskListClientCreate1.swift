@@ -6,7 +6,6 @@ extension Requests {
         public let entries: [OperationsTaskListEntryClientCreate1]?
         public let name: String
         public let schemaVersion: Int
-        public let tags: [String]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -15,14 +14,12 @@ extension Requests {
             entries: [OperationsTaskListEntryClientCreate1]? = nil,
             name: String,
             schemaVersion: Int,
-            tags: [String]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.description = description
             self.entries = entries
             self.name = name
             self.schemaVersion = schemaVersion
-            self.tags = tags
             self.additionalProperties = additionalProperties
         }
 
@@ -32,7 +29,6 @@ extension Requests {
             self.entries = try container.decodeIfPresent([OperationsTaskListEntryClientCreate1].self, forKey: .entries)
             self.name = try container.decode(String.self, forKey: .name)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-            self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -43,7 +39,6 @@ extension Requests {
             try container.encodeIfPresent(self.entries, forKey: .entries)
             try container.encode(self.name, forKey: .name)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
-            try container.encodeIfPresent(self.tags, forKey: .tags)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -52,7 +47,6 @@ extension Requests {
             case entries
             case name
             case schemaVersion = "schema_version"
-            case tags
         }
     }
 }

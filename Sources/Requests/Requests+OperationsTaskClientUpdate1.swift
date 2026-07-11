@@ -5,7 +5,6 @@ extension Requests {
         public let assignedUserIds: [String]?
         public let deadlineTimestamp: Date?
         public let description: String?
-        public let tags: [String]?
         public let taskType: OperationsTaskTypeEnum?
         public let title: String?
         /// Additional properties that are not explicitly defined in the schema
@@ -15,7 +14,6 @@ extension Requests {
             assignedUserIds: [String]? = nil,
             deadlineTimestamp: Date? = nil,
             description: String? = nil,
-            tags: [String]? = nil,
             taskType: OperationsTaskTypeEnum? = nil,
             title: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -23,7 +21,6 @@ extension Requests {
             self.assignedUserIds = assignedUserIds
             self.deadlineTimestamp = deadlineTimestamp
             self.description = description
-            self.tags = tags
             self.taskType = taskType
             self.title = title
             self.additionalProperties = additionalProperties
@@ -34,7 +31,6 @@ extension Requests {
             self.assignedUserIds = try container.decodeIfPresent([String].self, forKey: .assignedUserIds)
             self.deadlineTimestamp = try container.decodeIfPresent(Date.self, forKey: .deadlineTimestamp)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
-            self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
             self.taskType = try container.decodeIfPresent(OperationsTaskTypeEnum.self, forKey: .taskType)
             self.title = try container.decodeIfPresent(String.self, forKey: .title)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -46,7 +42,6 @@ extension Requests {
             try container.encodeIfPresent(self.assignedUserIds, forKey: .assignedUserIds)
             try container.encodeIfPresent(self.deadlineTimestamp, forKey: .deadlineTimestamp)
             try container.encodeIfPresent(self.description, forKey: .description)
-            try container.encodeIfPresent(self.tags, forKey: .tags)
             try container.encodeIfPresent(self.taskType, forKey: .taskType)
             try container.encodeIfPresent(self.title, forKey: .title)
         }
@@ -56,7 +51,6 @@ extension Requests {
             case assignedUserIds = "assigned_user_ids"
             case deadlineTimestamp = "deadline_timestamp"
             case description
-            case tags
             case taskType = "task_type"
             case title
         }

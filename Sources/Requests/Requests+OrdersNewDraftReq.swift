@@ -2,12 +2,12 @@ import Foundation
 
 extension Requests {
     public struct OrdersNewDraftReq: Codable, Hashable, Sendable {
-        public let caseTag: String?
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         /// Optional key, unique per caller org, that makes draft creation idempotent: re-sending the same key returns the already-created draft instead of creating a duplicate.
         public let creationIdempotencyKey: String?
         public let departmentId: String?
+        public let label: String?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let offChrtShipperOrgId: String?
@@ -21,18 +21,18 @@ extension Requests {
         public let orderThreadShippingTurn: ShippingTurnClientCreate1?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
-        /// OperationsTaskList applications to apply to the coordinator's Case at order creation, each with its own optional first-deadline pin.
-        public let taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]?
-        /// OperationsTaskList applications to copy onto the coordinator's Case for deferred application when the draft order is staged.
-        public let taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]?
+        /// OperationsTaskList applications to materialize on the Order for the coordinator org at draft creation, each with optional department override and first-deadline pin.
+        public let taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]?
+        /// OperationsTaskList applications stored on the Order for deferred application at staging, each with an optional department override.
+        public let taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            caseTag: String? = nil,
             coordinatorOrgId: String? = nil,
             creationIdempotencyKey: String? = nil,
             departmentId: String? = nil,
+            label: String? = nil,
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgId: String? = nil,
             orderScheduleId: String? = nil,
@@ -40,14 +40,14 @@ extension Requests {
             orderTemplateId: String? = nil,
             orderThreadShippingTurn: ShippingTurnClientCreate1? = nil,
             shipperOrgId: String? = nil,
-            taskListsToApplyAtOrderCreation: [TaskListToApplyToCase1]? = nil,
-            taskListsToApplyAtOrderStaging: [TaskListToApplyToCase1]? = nil,
+            taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
+            taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.caseTag = caseTag
             self.coordinatorOrgId = coordinatorOrgId
             self.creationIdempotencyKey = creationIdempotencyKey
             self.departmentId = departmentId
+            self.label = label
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgId = offChrtShipperOrgId
             self.orderScheduleId = orderScheduleId
@@ -62,10 +62,10 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.caseTag = try container.decodeIfPresent(String.self, forKey: .caseTag)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.creationIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .creationIdempotencyKey)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
+            self.label = try container.decodeIfPresent(String.self, forKey: .label)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
             self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
@@ -73,18 +73,18 @@ extension Requests {
             self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
             self.orderThreadShippingTurn = try container.decodeIfPresent(ShippingTurnClientCreate1.self, forKey: .orderThreadShippingTurn)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-            self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderCreation)
-            self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToCase1].self, forKey: .taskListsToApplyAtOrderStaging)
+            self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
+            self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderStaging)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.caseTag, forKey: .caseTag)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.creationIdempotencyKey, forKey: .creationIdempotencyKey)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
+            try container.encodeIfPresent(self.label, forKey: .label)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
             try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
@@ -98,10 +98,10 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case caseTag = "case_tag"
             case coordinatorOrgId = "coordinator_org_id"
             case creationIdempotencyKey = "creation_idempotency_key"
             case departmentId = "department_id"
+            case label
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgId = "off_chrt_shipper_org_id"
             case orderScheduleId = "order_schedule_id"

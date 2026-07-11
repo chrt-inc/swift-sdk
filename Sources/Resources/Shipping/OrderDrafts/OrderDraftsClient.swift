@@ -19,6 +19,34 @@ public final class OrderDraftsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Adds a coordinator task list with an optional department override to apply when the draft order is staged. | authz_personas=[coordinator_org_operators] | (UTCDatetime | None) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addCoordinatorTaskListToApplyAtOrderStagingV1(orderId: String, taskListId: String, departmentId: String? = nil, request: Date?, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_drafts/coordinator_task_lists_to_apply_at_order_staging/add/v1/\(orderId)/\(taskListId)",
+            queryParams: [
+                "department_id": departmentId.map { .string($0) }
+            ],
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Removes a pending coordinator staging task list from a draft order. | authz_personas=[coordinator_org_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeCoordinatorTaskListToApplyAtOrderStagingV1(orderId: String, taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_drafts/coordinator_task_lists_to_apply_at_order_staging/remove/v1/\(orderId)/\(taskListId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Deletes a draft order and all associated entities. | authz_personas=[draft_creator_org_operator] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -81,24 +109,6 @@ public final class OrderDraftsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
-        )
-    }
-
-    /// Returns distinct short_id and off_chrt_reference_id values matching the query via case-insensitive regex. Searches draft orders created by the caller's org. | authz: min_org_role=operator | () -> (list[OrderTypeaheadResult])
-    ///
-    /// - Parameter query: Typeahead search query
-    /// - Parameter limit: Max results per field
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrderTypeaheadResult] {
-        return try await httpClient.performRequest(
-            method: .get,
-            path: "/shipping/order_drafts/typeahead/v1",
-            queryParams: [
-                "query": .string(query), 
-                "limit": limit.map { .int($0) }
-            ],
-            requestOptions: requestOptions,
-            responseType: [OrderTypeaheadResult].self
         )
     }
 

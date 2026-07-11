@@ -7,7 +7,6 @@ extension Requests {
         public let description: String
         public let orderId: String
         public let schemaVersion: Int
-        public let tags: [String]?
         public let taskType: OperationsTaskTypeEnum
         public let title: String
         /// Additional properties that are not explicitly defined in the schema
@@ -19,7 +18,6 @@ extension Requests {
             description: String,
             orderId: String,
             schemaVersion: Int,
-            tags: [String]? = nil,
             taskType: OperationsTaskTypeEnum,
             title: String,
             additionalProperties: [String: JSONValue] = .init()
@@ -29,7 +27,6 @@ extension Requests {
             self.description = description
             self.orderId = orderId
             self.schemaVersion = schemaVersion
-            self.tags = tags
             self.taskType = taskType
             self.title = title
             self.additionalProperties = additionalProperties
@@ -42,7 +39,6 @@ extension Requests {
             self.description = try container.decode(String.self, forKey: .description)
             self.orderId = try container.decode(String.self, forKey: .orderId)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
-            self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
             self.taskType = try container.decode(OperationsTaskTypeEnum.self, forKey: .taskType)
             self.title = try container.decode(String.self, forKey: .title)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -56,7 +52,6 @@ extension Requests {
             try container.encode(self.description, forKey: .description)
             try container.encode(self.orderId, forKey: .orderId)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
-            try container.encodeIfPresent(self.tags, forKey: .tags)
             try container.encode(self.taskType, forKey: .taskType)
             try container.encode(self.title, forKey: .title)
         }
@@ -68,7 +63,6 @@ extension Requests {
             case description
             case orderId = "order_id"
             case schemaVersion = "schema_version"
-            case tags
             case taskType = "task_type"
             case title
         }
