@@ -1,3 +1,7 @@
+## 2.0.1 - 2026-07-11
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 2.0.0 - 2026-07-07
 ### Breaking Changes
 * **`orderScheduleTemplatePathIdempotencyKey`** — removed from `OrderDraftAddCargoReq`, `OrderDraftAddTaskArtifactReq`, `OrderDraftAddTaskGroupReq`, `OrderDraftAddTaskReqV1`, `Cargo1`, `Task1`, `TaskArtifact1`, and `TaskGroup1`; remove all read and write sites referencing this field.
