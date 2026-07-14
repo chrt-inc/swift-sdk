@@ -1034,6 +1034,11 @@ import Chrt
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterCoordinatorDepartmentId: "filter_coordinator_department_id",
+            filterCoordinatorAssignedUserIds: [
+                "filter_coordinator_assigned_user_ids"
+            ],
+            filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -1294,6 +1299,11 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterCoordinatorDepartmentId: "filter_coordinator_department_id",
+            filterCoordinatorAssignedUserIds: [
+                "filter_coordinator_assigned_user_ids"
+            ],
+            filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),

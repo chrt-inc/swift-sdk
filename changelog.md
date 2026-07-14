@@ -1,3 +1,8 @@
+## 3.1.0 - 2026-07-14
+### Added
+* **`ExpandedClient.listForCoordinatorOperatorsV1`** — new optional filter parameters `filterCoordinatorDepartmentId`, `filterCoordinatorAssignedUserIds`, and `filterCoordinatorLabel` for narrowing expanded order listings by coordinator department, assigned users, and label.
+* **`ExpandedClient.listForProviderOperatorsV1`** — same three coordinator filter parameters (`filterCoordinatorDepartmentId`, `filterCoordinatorAssignedUserIds`, `filterCoordinatorLabel`) added for consistent filtering across provider operator listings.
+
 ## 3.0.0 - 2026-07-11
 ### Breaking Changes
 * **`ShippingClient_.orderDrafts`** — removed; access order drafts via `shipping.orders.drafts` (`DraftsClient`) instead.
