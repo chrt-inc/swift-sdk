@@ -30132,7 +30132,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a draft order, populating cargo, task groups, and tasks parsed from natural language or a template. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderRes)
+Creates a draft order from an ad-hoc core or saved template. When both a core and template ID are supplied, the core drives the build and the template ID is recorded as provenance. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderRes)
 </dd>
 </dl>
 </dd>
@@ -30278,7 +30278,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a draft order from natural language or a template and streams progress events via SSE. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
+Creates a draft order from an ad-hoc core or saved template and streams progress events via SSE. When both a core and template ID are supplied, the core drives the build and the template ID is recorded as provenance. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
 </dd>
 </dl>
 </dd>

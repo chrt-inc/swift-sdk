@@ -8,6 +8,7 @@ public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
     public let notes: [String]?
     public let orderId: String?
     public let orderShortId: String?
+    public let progress: Double
     public let summary: String?
     public let validationIssues: [String]?
     public let validationPassed: Bool?
@@ -21,6 +22,7 @@ public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
         notes: [String]? = nil,
         orderId: String? = nil,
         orderShortId: String? = nil,
+        progress: Double,
         summary: String? = nil,
         validationIssues: [String]? = nil,
         validationPassed: Bool? = nil,
@@ -32,6 +34,7 @@ public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
         self.notes = notes
         self.orderId = orderId
         self.orderShortId = orderShortId
+        self.progress = progress
         self.summary = summary
         self.validationIssues = validationIssues
         self.validationPassed = validationPassed
@@ -46,6 +49,7 @@ public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
         self.notes = try container.decodeIfPresent([String].self, forKey: .notes)
         self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
         self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
+        self.progress = try container.decode(Double.self, forKey: .progress)
         self.summary = try container.decodeIfPresent(String.self, forKey: .summary)
         self.validationIssues = try container.decodeIfPresent([String].self, forKey: .validationIssues)
         self.validationPassed = try container.decodeIfPresent(Bool.self, forKey: .validationPassed)
@@ -61,6 +65,7 @@ public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.notes, forKey: .notes)
         try container.encodeIfPresent(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
+        try container.encode(self.progress, forKey: .progress)
         try container.encodeIfPresent(self.summary, forKey: .summary)
         try container.encodeIfPresent(self.validationIssues, forKey: .validationIssues)
         try container.encodeIfPresent(self.validationPassed, forKey: .validationPassed)
@@ -74,6 +79,7 @@ public struct OrderBuilderStreamEvent: Codable, Hashable, Sendable {
         case notes
         case orderId = "order_id"
         case orderShortId = "order_short_id"
+        case progress
         case summary
         case validationIssues = "validation_issues"
         case validationPassed = "validation_passed"
