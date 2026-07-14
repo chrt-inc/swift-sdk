@@ -1,3 +1,18 @@
+## 2.0.0 - 2026-07-14
+### Breaking Changes
+* **`LineStringCoordinatesItem` and `MultiPointCoordinatesItem`** — both renamed to `CoordinatesItem`; update all type references and construction sites.
+* **`PolygonCoordinatesItemItem` and `MultiLineStringCoordinatesItemItem`** — both renamed to `CoordinatesItemItem` and old types removed; update all type references and construction sites.
+* **`MultiPolygonCoordinatesItemItemItem`** — renamed to `CoordinatesItemItemItem` and old type removed; update all type references and construction sites.
+* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all `GeometryCollection.geometries` element-type references.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` element-type references and pattern-match sites.
+* **`OrderBuilderStreamEvent.progress`** — new required `Double` field added; add `progress:` to every `OrderBuilderStreamEvent` construction site or the build will fail to compile.
+* See full changelog for all changes
+### Added
+* **`OrderBuilderReq.streamOrderParsingProgressUpdates`** — new optional `Bool` field to enable streaming of order-parsing progress updates during order building.
+* **`filterStatus`** — new optional status filter parameter added to billing ledger periods, billing ledgers, line item groups, statements, bid threads, task groups, listings, operations tasks, and expanded orders list endpoints.
+* **`filterRole`** — new optional role filter parameter added to `listOrgMembersAndDriversV1` and `orgs.listMembersV1` endpoints.
+* **`filterType`, `filterOrderIds`, `filterTaskType`, `filterIntendedStatus`, `filterCoordinatorAssignedUserIds`, `filterBillingReviewStatus`, and `filterShippingStatus`** — new optional filter parameters added across listings, operations tasks, order schedules, and orders-and-order-groups list endpoints.
+
 ## 3.0.0 - 2026-07-11
 ### Breaking Changes
 * **`ShippingClient_.orderDrafts`** — removed; access order drafts via `shipping.orders.drafts` (`DraftsClient`) instead.
