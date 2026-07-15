@@ -21,7 +21,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
     public let lastSeenBatteryLevel: String?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
-    public let offChrtShipperOrgId: String?
+    public let offChrtShipperOrgDataId: String?
     /// Must be a string starting with `org_`
     public let orgId: String
     public let pauseWindows: [DevicePausedTimeWindow1]?
@@ -48,7 +48,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         lastSeenAtTimestamp: Date? = nil,
         lastSeenBatteryLevel: String? = nil,
         offChrtReferenceId: String? = nil,
-        offChrtShipperOrgId: String? = nil,
+        offChrtShipperOrgDataId: String? = nil,
         orgId: String,
         pauseWindows: [DevicePausedTimeWindow1]? = nil,
         paused: Bool? = nil,
@@ -72,7 +72,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
         self.lastSeenBatteryLevel = lastSeenBatteryLevel
         self.offChrtReferenceId = offChrtReferenceId
-        self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orgId = orgId
         self.pauseWindows = pauseWindows
         self.paused = paused
@@ -99,7 +99,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
         self.lastSeenBatteryLevel = try container.decodeIfPresent(String.self, forKey: .lastSeenBatteryLevel)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.pauseWindows = try container.decodeIfPresent([DevicePausedTimeWindow1].self, forKey: .pauseWindows)
         self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
@@ -127,7 +127,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
         try container.encodeIfPresent(self.lastSeenBatteryLevel, forKey: .lastSeenBatteryLevel)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.pauseWindows, forKey: .pauseWindows)
         try container.encodeIfPresent(self.paused, forKey: .paused)
@@ -153,7 +153,7 @@ public struct DeviceLimitedForList1: Codable, Hashable, Sendable {
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
         case lastSeenBatteryLevel = "last_seen_battery_level"
         case offChrtReferenceId = "off_chrt_reference_id"
-        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orgId = "org_id"
         case pauseWindows = "pause_windows"
         case paused

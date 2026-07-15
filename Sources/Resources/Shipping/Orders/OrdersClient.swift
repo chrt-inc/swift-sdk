@@ -61,7 +61,7 @@ public final class OrdersClient: Sendable {
         )
     }
 
-    /// Returns the department this order would map to from the shipper routing rules — a non-binding default for the UI. Department is never auto-applied; the frontend applies it explicitly via update_department_and_label. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (PydanticObjectId | None)
+    /// Returns the coordinator's account-level default department for the order's shipper. | authz: min_org_role=operator | () -> (PydanticObjectId | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getSuggestedDepartmentV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> String? {

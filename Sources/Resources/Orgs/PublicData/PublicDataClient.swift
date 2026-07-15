@@ -7,6 +7,30 @@ public final class PublicDataClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Returns the organization avatar URL or a placeholder. | () -> (str)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_public_data/avatar/v1/\(handle)",
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Retrieves public organization data by handle. | () -> (OrgPublicData1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> OrgPublicData1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/org_public_data/by_handle/v1/\(handle)",
+            requestOptions: requestOptions,
+            responseType: OrgPublicData1.self
+        )
+    }
+
     /// Returns True when the provided handle is available, otherwise False. | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -31,7 +55,7 @@ public final class PublicDataClient: Sendable {
         )
     }
 
-    /// Updates the handle and/or company_name for the caller's organization. | (UpdateOrgPublicDataReq) -> (bool)
+    /// Updates public identity data for the caller's organization. | (UpdateOrgPublicDataReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.UpdateOrgPublicDataReq, requestOptions: RequestOptions? = nil) async throws -> Bool {

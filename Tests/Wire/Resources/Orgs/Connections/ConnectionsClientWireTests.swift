@@ -11,7 +11,9 @@ import Chrt
                 {
                   "_id": "_id",
                   "connected": true,
+                  "coordinator_default_department_id": "coordinator_default_department_id",
                   "coordinator_org_id": "coordinator_org_id",
+                  "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "schema_version": 1,
                   "shipper_customer_id_for_coordinator_stripe_connect_account": "shipper_customer_id_for_coordinator_stripe_connect_account",
                   "shipper_org_id": "shipper_org_id"
@@ -28,10 +30,12 @@ import Chrt
             ShipperProviderConnection1(
                 id: "_id",
                 connected: Optional(true),
+                coordinatorDefaultDepartmentId: Optional("coordinator_default_department_id"),
                 coordinatorOrgId: "coordinator_org_id",
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 schemaVersion: 1,
                 shipperCustomerIdForCoordinatorStripeConnectAccount: Optional("shipper_customer_id_for_coordinator_stripe_connect_account"),
-                shipperOrgId: "shipper_org_id"
+                shipperOrgId: Optional("shipper_org_id")
             )
         ))
         let response = try await client.orgs.connections.getByHandleV1(
@@ -97,21 +101,26 @@ import Chrt
                 {
                   "items": [
                     {
-                      "auto_assign_enabled": true,
                       "caller_connection_role": "coordinator",
-                      "connected": true,
-                      "connection_id": "connection_id",
-                      "counterparty_org_id": "counterparty_org_id",
+                      "counterparty_off_chrt_org_data": {
+                        "_id": "_id",
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_type": "provider",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "schema_version": 1
+                      },
                       "counterparty_org_public_data": {
                         "_id": "_id",
+                        "name": "name",
                         "org_id": "org_id",
                         "org_type": "provider",
                         "schema_version": 1
                       },
-                      "counterparty_provider_org_info_for_connections": {
+                      "distance_meters": 1.1,
+                      "provider_provider_connection": {
                         "_id": "_id",
-                        "email_address_primary": "email_address_primary",
-                        "provider_org_id": "provider_org_id",
+                        "coordinator_org_id": "coordinator_org_id",
                         "schema_version": 1
                       }
                     }
@@ -129,23 +138,28 @@ import Chrt
         let expectedResponse = ProviderProviderConnectionListRes(
             items: [
                 ProviderProviderConnectionListItem(
-                    autoAssignEnabled: true,
                     callerConnectionRole: .coordinator,
-                    connected: true,
-                    connectionId: "connection_id",
-                    counterpartyOrgId: "counterparty_org_id",
+                    counterpartyOffChrtOrgData: Optional(OffChrtOrgData1(
+                        id: "_id",
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgType: .provider,
+                        ownedByOrgId: "owned_by_org_id",
+                        schemaVersion: 1
+                    )),
                     counterpartyOrgPublicData: Optional(OrgPublicData1(
                         id: "_id",
+                        name: "name",
                         orgId: "org_id",
                         orgType: .provider,
                         schemaVersion: 1
                     )),
-                    counterpartyProviderOrgInfoForConnections: Optional(ProviderOrgInfoForConnections1(
+                    distanceMeters: Optional(1.1),
+                    providerProviderConnection: ProviderProviderConnection1(
                         id: "_id",
-                        emailAddressPrimary: "email_address_primary",
-                        providerOrgId: "provider_org_id",
+                        coordinatorOrgId: "coordinator_org_id",
                         schemaVersion: 1
-                    ))
+                    )
                 )
             ],
             totalCount: 1
@@ -154,6 +168,8 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            latitude: 1.1,
+            longitude: 1.1,
             filterCallerConnectionRole: .coordinator,
             filterConnected: true,
             filterAutoAssignEnabled: true,
@@ -170,11 +186,16 @@ import Chrt
                 {
                   "items": [
                     {
-                      "connected": true,
-                      "provider_org_info_for_connections": {
+                      "coordinator_org_public_data": {
                         "_id": "_id",
-                        "email_address_primary": "email_address_primary",
-                        "provider_org_id": "provider_org_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "shipper_provider_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
                         "schema_version": 1
                       }
                     }
@@ -189,14 +210,19 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ProviderConnectionListRes(
+        let expectedResponse = ShipperProviderConnectionsForShipperListRes(
             items: [
-                ProviderConnectionRes(
-                    connected: true,
-                    providerOrgInfoForConnections: ProviderOrgInfoForConnections1(
+                ShipperProviderConnectionForShipperListItem(
+                    coordinatorOrgPublicData: OrgPublicData1(
                         id: "_id",
-                        emailAddressPrimary: "email_address_primary",
-                        providerOrgId: "provider_org_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    ),
+                    shipperProviderConnection: ShipperProviderConnection1(
+                        id: "_id",
+                        coordinatorOrgId: "coordinator_org_id",
                         schemaVersion: 1
                     )
                 )
@@ -235,6 +261,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func setShipperProviderDefaultDepartmentV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.connections.setShipperProviderDefaultDepartmentV1(
+            connectionId: "connection_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listShippersV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -243,12 +292,25 @@ import Chrt
                 {
                   "items": [
                     {
-                      "connected": true,
-                      "shipper_org_info_for_connections": {
+                      "off_chrt_shipper_org_data": {
                         "_id": "_id",
-                        "email_address_primary": "email_address_primary",
-                        "schema_version": 1,
-                        "shipper_org_id": "shipper_org_id"
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_type": "provider",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "schema_version": 1
+                      },
+                      "shipper_org_public_data": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "shipper_provider_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
+                        "schema_version": 1
                       }
                     }
                   ],
@@ -262,15 +324,28 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperConnectionListRes(
+        let expectedResponse = ShipperProviderConnectionsForCoordinatorListRes(
             items: [
-                ShipperConnectionRes(
-                    connected: true,
-                    shipperOrgInfoForConnections: ShipperOrgInfoForConnections1(
+                ShipperProviderConnectionForCoordinatorListItem(
+                    offChrtShipperOrgData: Optional(OffChrtOrgData1(
                         id: "_id",
-                        emailAddressPrimary: "email_address_primary",
-                        schemaVersion: 1,
-                        shipperOrgId: "shipper_org_id"
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgType: .provider,
+                        ownedByOrgId: "owned_by_org_id",
+                        schemaVersion: 1
+                    )),
+                    shipperOrgPublicData: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    )),
+                    shipperProviderConnection: ShipperProviderConnection1(
+                        id: "_id",
+                        coordinatorOrgId: "coordinator_org_id",
+                        schemaVersion: 1
                     )
                 )
             ],

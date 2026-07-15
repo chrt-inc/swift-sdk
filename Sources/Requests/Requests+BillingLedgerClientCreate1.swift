@@ -5,10 +5,10 @@ extension Requests {
         public let comments: String?
         public let name: String?
         public let paymentDestinationDriverId: String?
-        public let paymentDestinationOffChrtProviderOrgId: String?
+        public let paymentDestinationOffChrtProviderOrgDataId: String?
         /// Must be a string starting with `org_`
         public let paymentDestinationOrgId: String?
-        public let paymentOriginOffChrtShipperOrgId: String?
+        public let paymentOriginOffChrtShipperOrgDataId: String?
         /// Must be a string starting with `org_`
         public let paymentOriginOrgId: String?
         public let schemaVersion: Int
@@ -20,9 +20,9 @@ extension Requests {
             comments: String? = nil,
             name: String? = nil,
             paymentDestinationDriverId: String? = nil,
-            paymentDestinationOffChrtProviderOrgId: String? = nil,
+            paymentDestinationOffChrtProviderOrgDataId: String? = nil,
             paymentDestinationOrgId: String? = nil,
-            paymentOriginOffChrtShipperOrgId: String? = nil,
+            paymentOriginOffChrtShipperOrgDataId: String? = nil,
             paymentOriginOrgId: String? = nil,
             schemaVersion: Int,
             taskGroupType: TaskGroupTypeEnum1? = nil,
@@ -31,9 +31,9 @@ extension Requests {
             self.comments = comments
             self.name = name
             self.paymentDestinationDriverId = paymentDestinationDriverId
-            self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
+            self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
             self.paymentDestinationOrgId = paymentDestinationOrgId
-            self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
+            self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
             self.paymentOriginOrgId = paymentOriginOrgId
             self.schemaVersion = schemaVersion
             self.taskGroupType = taskGroupType
@@ -45,9 +45,9 @@ extension Requests {
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
-            self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
+            self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
             self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
-            self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
+            self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
             self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
             self.taskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
@@ -60,9 +60,9 @@ extension Requests {
             try container.encodeIfPresent(self.comments, forKey: .comments)
             try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
-            try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
+            try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
             try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
-            try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
+            try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
             try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
             try container.encodeIfPresent(self.taskGroupType, forKey: .taskGroupType)
@@ -73,9 +73,9 @@ extension Requests {
             case comments
             case name
             case paymentDestinationDriverId = "payment_destination_driver_id"
-            case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
+            case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
             case paymentDestinationOrgId = "payment_destination_org_id"
-            case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
+            case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
             case paymentOriginOrgId = "payment_origin_org_id"
             case schemaVersion = "schema_version"
             case taskGroupType = "task_group_type"

@@ -19,7 +19,7 @@ public struct OrderLimitedForShipper1: Codable, Hashable, Sendable {
     public let inProgressAtTimestamp: Date?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
-    public let offChrtShipperOrgId: String?
+    public let offChrtShipperOrgDataId: String?
     public let orderScheduleId: String?
     public let orderScheduleRunIdempotencyKey: String?
     public let orderTemplateId: String?
@@ -45,7 +45,7 @@ public struct OrderLimitedForShipper1: Codable, Hashable, Sendable {
         exceptionAtTimestamp: Date? = nil,
         inProgressAtTimestamp: Date? = nil,
         offChrtReferenceId: String? = nil,
-        offChrtShipperOrgId: String? = nil,
+        offChrtShipperOrgDataId: String? = nil,
         orderScheduleId: String? = nil,
         orderScheduleRunIdempotencyKey: String? = nil,
         orderTemplateId: String? = nil,
@@ -68,7 +68,7 @@ public struct OrderLimitedForShipper1: Codable, Hashable, Sendable {
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.offChrtReferenceId = offChrtReferenceId
-        self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orderScheduleId = orderScheduleId
         self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
         self.orderTemplateId = orderTemplateId
@@ -94,7 +94,7 @@ public struct OrderLimitedForShipper1: Codable, Hashable, Sendable {
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
         self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
         self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
@@ -121,7 +121,7 @@ public struct OrderLimitedForShipper1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
         try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
         try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
@@ -146,7 +146,7 @@ public struct OrderLimitedForShipper1: Codable, Hashable, Sendable {
         case exceptionAtTimestamp = "exception_at_timestamp"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case offChrtReferenceId = "off_chrt_reference_id"
-        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orderScheduleId = "order_schedule_id"
         case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
         case orderTemplateId = "order_template_id"

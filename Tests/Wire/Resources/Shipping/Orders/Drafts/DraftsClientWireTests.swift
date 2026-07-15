@@ -62,8 +62,8 @@ import Chrt
                   "unresolvable_driver_ids": [
                     "unresolvable_driver_ids"
                   ],
-                  "unresolvable_off_chrt_executor_org_ids": [
-                    "unresolvable_off_chrt_executor_org_ids"
+                  "unresolvable_off_chrt_executor_org_data_ids": [
+                    "unresolvable_off_chrt_executor_org_data_ids"
                   ],
                   "unresolvable_off_chrt_shipper": true,
                   "valid": true
@@ -84,8 +84,8 @@ import Chrt
             unresolvableDriverIds: Optional([
                 "unresolvable_driver_ids"
             ]),
-            unresolvableOffChrtExecutorOrgIds: Optional([
-                "unresolvable_off_chrt_executor_org_ids"
+            unresolvableOffChrtExecutorOrgDataIds: Optional([
+                "unresolvable_off_chrt_executor_org_data_ids"
             ]),
             unresolvableOffChrtShipper: Optional(true),
             valid: true
@@ -290,7 +290,7 @@ import Chrt
                 {
                   "coordinator_org_id": "coordinator_org_id",
                   "off_chrt_reference_id": "off_chrt_reference_id",
-                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                  "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
                   "shipper_org_id": "shipper_org_id"
@@ -306,7 +306,7 @@ import Chrt
         let expectedResponse = OrdersDraftUpdateRes(
             coordinatorOrgId: Optional("coordinator_org_id"),
             offChrtReferenceId: Optional("off_chrt_reference_id"),
-            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+            offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             orderId: "order_id",
             orderShortId: "order_short_id",
             shipperOrgId: Optional("shipper_org_id")

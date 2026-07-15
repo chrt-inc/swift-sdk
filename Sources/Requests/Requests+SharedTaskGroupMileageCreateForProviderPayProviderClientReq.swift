@@ -6,7 +6,7 @@ extension Requests {
         public let endLocationLabel: String?
         /// Must be a string starting with `org_`
         public let executorOrgId: String?
-        public let offChrtExecutorOrgId: String?
+        public let offChrtExecutorOrgDataId: String?
         public let orderGroupId: String
         public let rateSheetId: String
         public let startLocation: LocationFeature?
@@ -19,7 +19,7 @@ extension Requests {
             endLocation: LocationFeature? = nil,
             endLocationLabel: String? = nil,
             executorOrgId: String? = nil,
-            offChrtExecutorOrgId: String? = nil,
+            offChrtExecutorOrgDataId: String? = nil,
             orderGroupId: String,
             rateSheetId: String,
             startLocation: LocationFeature? = nil,
@@ -30,7 +30,7 @@ extension Requests {
             self.endLocation = endLocation
             self.endLocationLabel = endLocationLabel
             self.executorOrgId = executorOrgId
-            self.offChrtExecutorOrgId = offChrtExecutorOrgId
+            self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
             self.orderGroupId = orderGroupId
             self.rateSheetId = rateSheetId
             self.startLocation = startLocation
@@ -44,7 +44,7 @@ extension Requests {
             self.endLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .endLocation)
             self.endLocationLabel = try container.decodeIfPresent(String.self, forKey: .endLocationLabel)
             self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
-            self.offChrtExecutorOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgId)
+            self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
             self.orderGroupId = try container.decode(String.self, forKey: .orderGroupId)
             self.rateSheetId = try container.decode(String.self, forKey: .rateSheetId)
             self.startLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .startLocation)
@@ -59,7 +59,7 @@ extension Requests {
             try container.encodeIfPresent(self.endLocation, forKey: .endLocation)
             try container.encodeIfPresent(self.endLocationLabel, forKey: .endLocationLabel)
             try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
-            try container.encodeIfPresent(self.offChrtExecutorOrgId, forKey: .offChrtExecutorOrgId)
+            try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
             try container.encode(self.orderGroupId, forKey: .orderGroupId)
             try container.encode(self.rateSheetId, forKey: .rateSheetId)
             try container.encodeIfPresent(self.startLocation, forKey: .startLocation)
@@ -72,7 +72,7 @@ extension Requests {
             case endLocation = "end_location"
             case endLocationLabel = "end_location_label"
             case executorOrgId = "executor_org_id"
-            case offChrtExecutorOrgId = "off_chrt_executor_org_id"
+            case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
             case orderGroupId = "order_group_id"
             case rateSheetId = "rate_sheet_id"
             case startLocation = "start_location"

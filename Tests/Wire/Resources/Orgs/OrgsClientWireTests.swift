@@ -86,9 +86,6 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.listMembersV1(
-            filterRole: [
-                .owner
-            ],
             sortBy: .firstName,
             sortOrder: .asc,
             page: 1,
@@ -115,7 +112,10 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.orgs.setupOrgV1(
-            request: .init(orgType: .provider),
+            request: .init(
+                name: "name",
+                orgType: .provider
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

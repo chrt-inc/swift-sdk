@@ -41,8 +41,8 @@ import Chrt
                     "chrt_ground_provider_rate_sheet_ids"
                   ],
                   "counterparty_driver_id": "counterparty_driver_id",
-                  "counterparty_off_chrt_provider_org_id": "counterparty_off_chrt_provider_org_id",
-                  "counterparty_off_chrt_shipper_org_id": "counterparty_off_chrt_shipper_org_id",
+                  "counterparty_off_chrt_provider_org_data_id": "counterparty_off_chrt_provider_org_data_id",
+                  "counterparty_off_chrt_shipper_org_data_id": "counterparty_off_chrt_shipper_org_data_id",
                   "counterparty_org_id": "counterparty_org_id",
                   "onboard_courier_rate_sheet_ids": [
                     "onboard_courier_rate_sheet_ids"
@@ -67,8 +67,8 @@ import Chrt
                 "chrt_ground_provider_rate_sheet_ids"
             ]),
             counterpartyDriverId: Optional("counterparty_driver_id"),
-            counterpartyOffChrtProviderOrgId: Optional("counterparty_off_chrt_provider_org_id"),
-            counterpartyOffChrtShipperOrgId: Optional("counterparty_off_chrt_shipper_org_id"),
+            counterpartyOffChrtProviderOrgDataId: Optional("counterparty_off_chrt_provider_org_data_id"),
+            counterpartyOffChrtShipperOrgDataId: Optional("counterparty_off_chrt_shipper_org_data_id"),
             counterpartyOrgId: Optional("counterparty_org_id"),
             onboardCourierRateSheetIds: Optional([
                 "onboard_courier_rate_sheet_ids"
@@ -143,8 +143,8 @@ import Chrt
                         "chrt_ground_provider_rate_sheet_ids"
                       ],
                       "counterparty_driver_id": "counterparty_driver_id",
-                      "counterparty_off_chrt_provider_org_id": "counterparty_off_chrt_provider_org_id",
-                      "counterparty_off_chrt_shipper_org_id": "counterparty_off_chrt_shipper_org_id",
+                      "counterparty_off_chrt_provider_org_data_id": "counterparty_off_chrt_provider_org_data_id",
+                      "counterparty_off_chrt_shipper_org_data_id": "counterparty_off_chrt_shipper_org_data_id",
                       "counterparty_org_id": "counterparty_org_id",
                       "onboard_courier_rate_sheet_ids": [
                         "onboard_courier_rate_sheet_ids"
@@ -174,8 +174,8 @@ import Chrt
                         "chrt_ground_provider_rate_sheet_ids"
                     ]),
                     counterpartyDriverId: Optional("counterparty_driver_id"),
-                    counterpartyOffChrtProviderOrgId: Optional("counterparty_off_chrt_provider_org_id"),
-                    counterpartyOffChrtShipperOrgId: Optional("counterparty_off_chrt_shipper_org_id"),
+                    counterpartyOffChrtProviderOrgDataId: Optional("counterparty_off_chrt_provider_org_data_id"),
+                    counterpartyOffChrtShipperOrgDataId: Optional("counterparty_off_chrt_shipper_org_data_id"),
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     onboardCourierRateSheetIds: Optional([
                         "onboard_courier_rate_sheet_ids"
@@ -217,8 +217,8 @@ import Chrt
             tgType: .chrtGroundProvider,
             counterpartyOrgId: "counterparty_org_id",
             counterpartyDriverId: "counterparty_driver_id",
-            counterpartyOffChrtProviderOrgId: "counterparty_off_chrt_provider_org_id",
-            counterpartyOffChrtShipperOrgId: "counterparty_off_chrt_shipper_org_id",
+            counterpartyOffChrtProviderOrgDataId: "counterparty_off_chrt_provider_org_data_id",
+            counterpartyOffChrtShipperOrgDataId: "counterparty_off_chrt_shipper_org_data_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

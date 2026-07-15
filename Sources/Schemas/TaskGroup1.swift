@@ -22,8 +22,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let mileageAsserted: Bool?
     public let mileageEstimated: Double?
     public let mileageObserved: Double?
-    public let offChrtExecutorOrgId: String?
-    public let offChrtShipperOrgId: String?
+    public let offChrtExecutorOrgDataId: String?
+    public let offChrtShipperOrgDataId: String?
     public let orderId: String
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
@@ -69,8 +69,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         mileageAsserted: Bool? = nil,
         mileageEstimated: Double? = nil,
         mileageObserved: Double? = nil,
-        offChrtExecutorOrgId: String? = nil,
-        offChrtShipperOrgId: String? = nil,
+        offChrtExecutorOrgDataId: String? = nil,
+        offChrtShipperOrgDataId: String? = nil,
         orderId: String,
         orderOffChrtReferenceId: String? = nil,
         orderShortId: String,
@@ -112,8 +112,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.mileageAsserted = mileageAsserted
         self.mileageEstimated = mileageEstimated
         self.mileageObserved = mileageObserved
-        self.offChrtExecutorOrgId = offChrtExecutorOrgId
-        self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
+        self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orderId = orderId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
         self.orderShortId = orderShortId
@@ -158,8 +158,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.mileageAsserted = try container.decodeIfPresent(Bool.self, forKey: .mileageAsserted)
         self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
         self.mileageObserved = try container.decodeIfPresent(Double.self, forKey: .mileageObserved)
-        self.offChrtExecutorOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgId)
-        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
+        self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -205,8 +205,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.mileageAsserted, forKey: .mileageAsserted)
         try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
         try container.encodeIfPresent(self.mileageObserved, forKey: .mileageObserved)
-        try container.encodeIfPresent(self.offChrtExecutorOrgId, forKey: .offChrtExecutorOrgId)
-        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
+        try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -250,8 +250,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case mileageAsserted = "mileage_asserted"
         case mileageEstimated = "mileage_estimated"
         case mileageObserved = "mileage_observed"
-        case offChrtExecutorOrgId = "off_chrt_executor_org_id"
-        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
+        case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orderId = "order_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
         case orderShortId = "order_short_id"

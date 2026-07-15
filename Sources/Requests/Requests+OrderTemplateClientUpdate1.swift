@@ -15,11 +15,11 @@ extension Requests {
         public let driverIds: [String]?
         public let executorOrgIds: [String]?
         public let name: String?
-        public let offChrtExecutorOrgIds: [String]?
+        public let offChrtExecutorOrgDataIds: [String]?
         public let offChrtReferenceIdStr: String?
         public let offChrtReferenceIdStrSetToNone: Bool?
-        public let offChrtShipperOrgId: String?
-        public let offChrtShipperOrgIdSetToNone: Bool?
+        public let offChrtShipperOrgDataId: String?
+        public let offChrtShipperOrgDataIdSetToNone: Bool?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let shipperOrgIdSetToNone: Bool?
@@ -43,11 +43,11 @@ extension Requests {
             driverIds: [String]? = nil,
             executorOrgIds: [String]? = nil,
             name: String? = nil,
-            offChrtExecutorOrgIds: [String]? = nil,
+            offChrtExecutorOrgDataIds: [String]? = nil,
             offChrtReferenceIdStr: String? = nil,
             offChrtReferenceIdStrSetToNone: Bool? = nil,
-            offChrtShipperOrgId: String? = nil,
-            offChrtShipperOrgIdSetToNone: Bool? = nil,
+            offChrtShipperOrgDataId: String? = nil,
+            offChrtShipperOrgDataIdSetToNone: Bool? = nil,
             shipperOrgId: String? = nil,
             shipperOrgIdSetToNone: Bool? = nil,
             taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
@@ -68,11 +68,11 @@ extension Requests {
             self.driverIds = driverIds
             self.executorOrgIds = executorOrgIds
             self.name = name
-            self.offChrtExecutorOrgIds = offChrtExecutorOrgIds
+            self.offChrtExecutorOrgDataIds = offChrtExecutorOrgDataIds
             self.offChrtReferenceIdStr = offChrtReferenceIdStr
             self.offChrtReferenceIdStrSetToNone = offChrtReferenceIdStrSetToNone
-            self.offChrtShipperOrgId = offChrtShipperOrgId
-            self.offChrtShipperOrgIdSetToNone = offChrtShipperOrgIdSetToNone
+            self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
+            self.offChrtShipperOrgDataIdSetToNone = offChrtShipperOrgDataIdSetToNone
             self.shipperOrgId = shipperOrgId
             self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
             self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
@@ -96,11 +96,11 @@ extension Requests {
             self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
             self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
-            self.offChrtExecutorOrgIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgIds)
+            self.offChrtExecutorOrgDataIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgDataIds)
             self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
             self.offChrtReferenceIdStrSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdStrSetToNone)
-            self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
-            self.offChrtShipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgIdSetToNone)
+            self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
+            self.offChrtShipperOrgDataIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgDataIdSetToNone)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
             self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
@@ -125,11 +125,11 @@ extension Requests {
             try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
             try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
             try container.encodeIfPresent(self.name, forKey: .name)
-            try container.encodeIfPresent(self.offChrtExecutorOrgIds, forKey: .offChrtExecutorOrgIds)
+            try container.encodeIfPresent(self.offChrtExecutorOrgDataIds, forKey: .offChrtExecutorOrgDataIds)
             try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
             try container.encodeIfPresent(self.offChrtReferenceIdStrSetToNone, forKey: .offChrtReferenceIdStrSetToNone)
-            try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
-            try container.encodeIfPresent(self.offChrtShipperOrgIdSetToNone, forKey: .offChrtShipperOrgIdSetToNone)
+            try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
+            try container.encodeIfPresent(self.offChrtShipperOrgDataIdSetToNone, forKey: .offChrtShipperOrgDataIdSetToNone)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
             try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
@@ -152,11 +152,11 @@ extension Requests {
             case driverIds = "driver_ids"
             case executorOrgIds = "executor_org_ids"
             case name
-            case offChrtExecutorOrgIds = "off_chrt_executor_org_ids"
+            case offChrtExecutorOrgDataIds = "off_chrt_executor_org_data_ids"
             case offChrtReferenceIdStr = "off_chrt_reference_id_str"
             case offChrtReferenceIdStrSetToNone = "off_chrt_reference_id_str__set_to_None"
-            case offChrtShipperOrgId = "off_chrt_shipper_org_id"
-            case offChrtShipperOrgIdSetToNone = "off_chrt_shipper_org_id__set_to_None"
+            case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
+            case offChrtShipperOrgDataIdSetToNone = "off_chrt_shipper_org_data_id__set_to_None"
             case shipperOrgId = "shipper_org_id"
             case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
             case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"

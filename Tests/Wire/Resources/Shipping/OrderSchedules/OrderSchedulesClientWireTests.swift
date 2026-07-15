@@ -175,9 +175,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterIntendedStatus: [
-                .draft
-            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -326,10 +323,10 @@ import Chrt
                     "executor_org_ids": [
                       "executor_org_ids"
                     ],
-                    "off_chrt_executor_org_ids": [
-                      "off_chrt_executor_org_ids"
+                    "off_chrt_executor_org_data_ids": [
+                      "off_chrt_executor_org_data_ids"
                     ],
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "schema_version": 1,
                     "shipper_org_id": "shipper_org_id",
                     "task_lists_to_apply_at_order_creation": [
@@ -424,10 +421,10 @@ import Chrt
                 executorOrgIds: Optional([
                     "executor_org_ids"
                 ]),
-                offChrtExecutorOrgIds: Optional([
-                    "off_chrt_executor_org_ids"
+                offChrtExecutorOrgDataIds: Optional([
+                    "off_chrt_executor_org_data_ids"
                 ]),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 schemaVersion: 1,
                 shipperOrgId: Optional("shipper_org_id"),
                 taskListsToApplyAtOrderCreation: Optional([

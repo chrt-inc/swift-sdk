@@ -19,10 +19,10 @@ public struct TaskGroupQuoteResp: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
     public let paymentDestinationDriverId: String?
-    public let paymentDestinationOffChrtProviderOrgId: String?
+    public let paymentDestinationOffChrtProviderOrgDataId: String?
     /// Must be a string starting with `org_`
     public let paymentDestinationOrgId: String?
-    public let paymentOriginOffChrtShipperOrgId: String?
+    public let paymentOriginOffChrtShipperOrgDataId: String?
     /// Must be a string starting with `org_`
     public let paymentOriginOrgId: String?
     public let rateSheetId: String
@@ -37,9 +37,9 @@ public struct TaskGroupQuoteResp: Codable, Hashable, Sendable {
         lineItems: [LineItem1],
         ownedByOrgId: String,
         paymentDestinationDriverId: String? = nil,
-        paymentDestinationOffChrtProviderOrgId: String? = nil,
+        paymentDestinationOffChrtProviderOrgDataId: String? = nil,
         paymentDestinationOrgId: String? = nil,
-        paymentOriginOffChrtShipperOrgId: String? = nil,
+        paymentOriginOffChrtShipperOrgDataId: String? = nil,
         paymentOriginOrgId: String? = nil,
         rateSheetId: String,
         rateSheetOwnedByOrgId: String,
@@ -50,9 +50,9 @@ public struct TaskGroupQuoteResp: Codable, Hashable, Sendable {
         self.lineItems = lineItems
         self.ownedByOrgId = ownedByOrgId
         self.paymentDestinationDriverId = paymentDestinationDriverId
-        self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
+        self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
         self.paymentDestinationOrgId = paymentDestinationOrgId
-        self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
+        self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
         self.paymentOriginOrgId = paymentOriginOrgId
         self.rateSheetId = rateSheetId
         self.rateSheetOwnedByOrgId = rateSheetOwnedByOrgId
@@ -66,9 +66,9 @@ public struct TaskGroupQuoteResp: Codable, Hashable, Sendable {
         self.lineItems = try container.decode([LineItem1].self, forKey: .lineItems)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
-        self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
+        self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
-        self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
+        self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
         self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
         self.rateSheetId = try container.decode(String.self, forKey: .rateSheetId)
         self.rateSheetOwnedByOrgId = try container.decode(String.self, forKey: .rateSheetOwnedByOrgId)
@@ -83,9 +83,9 @@ public struct TaskGroupQuoteResp: Codable, Hashable, Sendable {
         try container.encode(self.lineItems, forKey: .lineItems)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
-        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
+        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
-        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
+        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
         try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
         try container.encode(self.rateSheetId, forKey: .rateSheetId)
         try container.encode(self.rateSheetOwnedByOrgId, forKey: .rateSheetOwnedByOrgId)
@@ -98,9 +98,9 @@ public struct TaskGroupQuoteResp: Codable, Hashable, Sendable {
         case lineItems = "line_items"
         case ownedByOrgId = "owned_by_org_id"
         case paymentDestinationDriverId = "payment_destination_driver_id"
-        case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
+        case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
         case paymentDestinationOrgId = "payment_destination_org_id"
-        case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
+        case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
         case paymentOriginOrgId = "payment_origin_org_id"
         case rateSheetId = "rate_sheet_id"
         case rateSheetOwnedByOrgId = "rate_sheet_owned_by_org_id"

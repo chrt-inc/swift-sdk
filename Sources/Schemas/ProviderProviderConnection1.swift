@@ -8,7 +8,8 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String
     /// Must be a string starting with `org_`
-    public let executorOrgId: String
+    public let executorOrgId: String?
+    public let offChrtExecutorOrgDataId: String?
     public let schemaVersion: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -19,7 +20,8 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         connected: Bool? = nil,
         coordinatorCustomerIdForExecutorStripeConnectAccount: String? = nil,
         coordinatorOrgId: String,
-        executorOrgId: String,
+        executorOrgId: String? = nil,
+        offChrtExecutorOrgDataId: String? = nil,
         schemaVersion: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -29,6 +31,7 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         self.coordinatorCustomerIdForExecutorStripeConnectAccount = coordinatorCustomerIdForExecutorStripeConnectAccount
         self.coordinatorOrgId = coordinatorOrgId
         self.executorOrgId = executorOrgId
+        self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
         self.schemaVersion = schemaVersion
         self.additionalProperties = additionalProperties
     }
@@ -40,7 +43,8 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         self.connected = try container.decodeIfPresent(Bool.self, forKey: .connected)
         self.coordinatorCustomerIdForExecutorStripeConnectAccount = try container.decodeIfPresent(String.self, forKey: .coordinatorCustomerIdForExecutorStripeConnectAccount)
         self.coordinatorOrgId = try container.decode(String.self, forKey: .coordinatorOrgId)
-        self.executorOrgId = try container.decode(String.self, forKey: .executorOrgId)
+        self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
+        self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -53,7 +57,8 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.connected, forKey: .connected)
         try container.encodeIfPresent(self.coordinatorCustomerIdForExecutorStripeConnectAccount, forKey: .coordinatorCustomerIdForExecutorStripeConnectAccount)
         try container.encode(self.coordinatorOrgId, forKey: .coordinatorOrgId)
-        try container.encode(self.executorOrgId, forKey: .executorOrgId)
+        try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
+        try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
     }
 
@@ -65,6 +70,7 @@ public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
         case coordinatorCustomerIdForExecutorStripeConnectAccount = "coordinator_customer_id_for_executor_stripe_connect_account"
         case coordinatorOrgId = "coordinator_org_id"
         case executorOrgId = "executor_org_id"
+        case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
         case schemaVersion = "schema_version"
     }
 }

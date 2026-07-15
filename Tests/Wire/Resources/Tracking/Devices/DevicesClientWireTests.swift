@@ -114,7 +114,7 @@ import Chrt
                     "last_seen_at_location_large_city": "last_seen_at_location_large_city",
                     "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "org_id": "org_id",
                     "public": true,
                     "schema_version": 1,
@@ -154,7 +154,7 @@ import Chrt
                     "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_seen_battery_level": "last_seen_battery_level",
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "org_id": "org_id",
                     "pause_windows": [
                       {
@@ -250,7 +250,7 @@ import Chrt
                       "last_seen_at_location_large_city": "last_seen_at_location_large_city",
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "off_chrt_reference_id": "off_chrt_reference_id",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "org_id": "org_id",
                       "public": true,
                       "schema_version": 1,
@@ -313,7 +313,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -349,7 +349,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -367,7 +367,7 @@ import Chrt
                 lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
                 lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orgId: "org_id",
                 public: Optional(true),
                 schemaVersion: 1,
@@ -394,7 +394,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -413,7 +413,7 @@ import Chrt
                 lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orgId: "org_id",
                 pauseWindows: Optional([
                     DevicePausedTimeWindow1(
@@ -472,7 +472,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -502,7 +502,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -517,7 +517,7 @@ import Chrt
                     lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     orgId: "org_id",
                     public: Optional(true),
                     schemaVersion: 1,
@@ -572,7 +572,7 @@ import Chrt
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_seen_battery_level": "last_seen_battery_level",
                       "off_chrt_reference_id": "off_chrt_reference_id",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "org_id": "org_id",
                       "pause_windows": [
                         {
@@ -616,7 +616,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -632,7 +632,7 @@ import Chrt
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenBatteryLevel: Optional("last_seen_battery_level"),
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     orgId: "org_id",
                     pauseWindows: Optional([
                         DevicePausedTimeWindow1(

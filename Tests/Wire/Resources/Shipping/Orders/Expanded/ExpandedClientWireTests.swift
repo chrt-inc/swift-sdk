@@ -55,7 +55,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "order_template_id": "order_template_id",
@@ -89,7 +89,7 @@ import Chrt
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "shipper_org_id": "shipper_org_id",
                       "task_group": {
@@ -172,7 +172,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateId: Optional("order_template_id"),
@@ -206,7 +206,7 @@ import Chrt
                     executorOrgHandle: Optional("executor_org_handle"),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskGroup: TaskGroup1(
@@ -311,7 +311,7 @@ import Chrt
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "shipper_org_id": "shipper_org_id",
                       "task_group": {
@@ -409,7 +409,7 @@ import Chrt
                     executorOrgHandle: Optional("executor_org_handle"),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskGroup: TaskGroup1(
@@ -499,7 +499,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "order_template_id": "order_template_id",
@@ -536,7 +536,7 @@ import Chrt
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "shipper_org_id": "shipper_org_id",
                       "task_group": {
@@ -619,7 +619,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateId: Optional("order_template_id"),
@@ -656,7 +656,7 @@ import Chrt
                     executorOrgHandle: Optional("executor_org_handle"),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskGroup: TaskGroup1(
@@ -736,7 +736,7 @@ import Chrt
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_id": "off_chrt_reference_id",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "order_template_id": "order_template_id",
@@ -770,7 +770,7 @@ import Chrt
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "shipper_org_company_name": "shipper_org_company_name",
                       "shipper_org_id": "shipper_org_id",
                       "task_group": {
@@ -843,7 +843,7 @@ import Chrt
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateId: Optional("order_template_id"),
@@ -877,7 +877,7 @@ import Chrt
                     executorOrgHandle: Optional("executor_org_handle"),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskGroup: TaskGroup1(
@@ -1016,9 +1016,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1033,11 +1030,8 @@ import Chrt
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
-            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1146,9 +1140,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1163,7 +1154,7 @@ import Chrt
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
-            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
             )),
@@ -1280,9 +1271,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1298,11 +1286,8 @@ import Chrt
             filterExecutorOrgId: "filter_executor_org_id",
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
-            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1413,9 +1398,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

@@ -18,10 +18,10 @@ public struct BillingLedgerPeriod1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
     public let paymentDestinationDriverId: String?
-    public let paymentDestinationOffChrtProviderOrgId: String?
+    public let paymentDestinationOffChrtProviderOrgDataId: String?
     /// Must be a string starting with `org_`
     public let paymentDestinationOrgId: String?
-    public let paymentOriginOffChrtShipperOrgId: String?
+    public let paymentOriginOffChrtShipperOrgDataId: String?
     /// Must be a string starting with `org_`
     public let paymentOriginOrgId: String?
     public let periodEndAtTimestamp: Date
@@ -46,9 +46,9 @@ public struct BillingLedgerPeriod1: Codable, Hashable, Sendable {
         openedByUserId: String,
         ownedByOrgId: String,
         paymentDestinationDriverId: String? = nil,
-        paymentDestinationOffChrtProviderOrgId: String? = nil,
+        paymentDestinationOffChrtProviderOrgDataId: String? = nil,
         paymentDestinationOrgId: String? = nil,
-        paymentOriginOffChrtShipperOrgId: String? = nil,
+        paymentOriginOffChrtShipperOrgDataId: String? = nil,
         paymentOriginOrgId: String? = nil,
         periodEndAtTimestamp: Date,
         periodStartAtTimestamp: Date,
@@ -70,9 +70,9 @@ public struct BillingLedgerPeriod1: Codable, Hashable, Sendable {
         self.openedByUserId = openedByUserId
         self.ownedByOrgId = ownedByOrgId
         self.paymentDestinationDriverId = paymentDestinationDriverId
-        self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
+        self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
         self.paymentDestinationOrgId = paymentDestinationOrgId
-        self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
+        self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
         self.paymentOriginOrgId = paymentOriginOrgId
         self.periodEndAtTimestamp = periodEndAtTimestamp
         self.periodStartAtTimestamp = periodStartAtTimestamp
@@ -97,9 +97,9 @@ public struct BillingLedgerPeriod1: Codable, Hashable, Sendable {
         self.openedByUserId = try container.decode(String.self, forKey: .openedByUserId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
-        self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
+        self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
-        self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
+        self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
         self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
         self.periodEndAtTimestamp = try container.decode(Date.self, forKey: .periodEndAtTimestamp)
         self.periodStartAtTimestamp = try container.decode(Date.self, forKey: .periodStartAtTimestamp)
@@ -125,9 +125,9 @@ public struct BillingLedgerPeriod1: Codable, Hashable, Sendable {
         try container.encode(self.openedByUserId, forKey: .openedByUserId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
-        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
+        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
-        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
+        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
         try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
         try container.encode(self.periodEndAtTimestamp, forKey: .periodEndAtTimestamp)
         try container.encode(self.periodStartAtTimestamp, forKey: .periodStartAtTimestamp)
@@ -151,9 +151,9 @@ public struct BillingLedgerPeriod1: Codable, Hashable, Sendable {
         case openedByUserId = "opened_by_user_id"
         case ownedByOrgId = "owned_by_org_id"
         case paymentDestinationDriverId = "payment_destination_driver_id"
-        case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
+        case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
         case paymentDestinationOrgId = "payment_destination_org_id"
-        case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
+        case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
         case paymentOriginOrgId = "payment_origin_org_id"
         case periodEndAtTimestamp = "period_end_at_timestamp"
         case periodStartAtTimestamp = "period_start_at_timestamp"

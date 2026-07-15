@@ -38,11 +38,11 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
     public let paymentDestinationDriverId: String?
-    public let paymentDestinationOffChrtProviderOrgId: String?
+    public let paymentDestinationOffChrtProviderOrgDataId: String?
     public let paymentDestinationOffChrtVendorId: String?
     /// Must be a string starting with `org_`
     public let paymentDestinationOrgId: String?
-    public let paymentOriginOffChrtShipperOrgId: String?
+    public let paymentOriginOffChrtShipperOrgDataId: String?
     /// Must be a string starting with `org_`
     public let paymentOriginOrgId: String?
     public let pendingAmount: Double?
@@ -75,10 +75,10 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         orderShortId: String? = nil,
         ownedByOrgId: String,
         paymentDestinationDriverId: String? = nil,
-        paymentDestinationOffChrtProviderOrgId: String? = nil,
+        paymentDestinationOffChrtProviderOrgDataId: String? = nil,
         paymentDestinationOffChrtVendorId: String? = nil,
         paymentDestinationOrgId: String? = nil,
-        paymentOriginOffChrtShipperOrgId: String? = nil,
+        paymentOriginOffChrtShipperOrgDataId: String? = nil,
         paymentOriginOrgId: String? = nil,
         pendingAmount: Double? = nil,
         pendingLineItemIds: [String]? = nil,
@@ -108,10 +108,10 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.orderShortId = orderShortId
         self.ownedByOrgId = ownedByOrgId
         self.paymentDestinationDriverId = paymentDestinationDriverId
-        self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
+        self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
         self.paymentDestinationOffChrtVendorId = paymentDestinationOffChrtVendorId
         self.paymentDestinationOrgId = paymentDestinationOrgId
-        self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
+        self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
         self.paymentOriginOrgId = paymentOriginOrgId
         self.pendingAmount = pendingAmount
         self.pendingLineItemIds = pendingLineItemIds
@@ -144,10 +144,10 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
-        self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
+        self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         self.paymentDestinationOffChrtVendorId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtVendorId)
         self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
-        self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
+        self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
         self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
         self.pendingAmount = try container.decodeIfPresent(Double.self, forKey: .pendingAmount)
         self.pendingLineItemIds = try container.decodeIfPresent([String].self, forKey: .pendingLineItemIds)
@@ -181,10 +181,10 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
-        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
+        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         try container.encodeIfPresent(self.paymentDestinationOffChrtVendorId, forKey: .paymentDestinationOffChrtVendorId)
         try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
-        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
+        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
         try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
         try container.encodeIfPresent(self.pendingAmount, forKey: .pendingAmount)
         try container.encodeIfPresent(self.pendingLineItemIds, forKey: .pendingLineItemIds)
@@ -216,10 +216,10 @@ public struct LineItemGroup1: Codable, Hashable, Sendable {
         case orderShortId = "order_short_id"
         case ownedByOrgId = "owned_by_org_id"
         case paymentDestinationDriverId = "payment_destination_driver_id"
-        case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
+        case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
         case paymentDestinationOffChrtVendorId = "payment_destination_off_chrt_vendor_id"
         case paymentDestinationOrgId = "payment_destination_org_id"
-        case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
+        case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
         case paymentOriginOrgId = "payment_origin_org_id"
         case pendingAmount = "pending_amount"
         case pendingLineItemIds = "pending_line_item_ids"

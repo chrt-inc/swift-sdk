@@ -4,11 +4,11 @@ extension Requests {
     public struct StatementCreateClientReq: Codable, Hashable, Sendable {
         public let orderGroupId: String?
         public let paymentDestinationDriverId: String?
-        public let paymentDestinationOffChrtProviderOrgId: String?
+        public let paymentDestinationOffChrtProviderOrgDataId: String?
         public let paymentDestinationOffChrtVendorId: String?
         /// Must be a string starting with `org_`
         public let paymentDestinationOrgId: String?
-        public let paymentOriginOffChrtShipperOrgId: String?
+        public let paymentOriginOffChrtShipperOrgDataId: String?
         /// Must be a string starting with `org_`
         public let paymentOriginOrgId: String?
         public let settlementType: SettlementTypeEnum1
@@ -18,20 +18,20 @@ extension Requests {
         public init(
             orderGroupId: String? = nil,
             paymentDestinationDriverId: String? = nil,
-            paymentDestinationOffChrtProviderOrgId: String? = nil,
+            paymentDestinationOffChrtProviderOrgDataId: String? = nil,
             paymentDestinationOffChrtVendorId: String? = nil,
             paymentDestinationOrgId: String? = nil,
-            paymentOriginOffChrtShipperOrgId: String? = nil,
+            paymentOriginOffChrtShipperOrgDataId: String? = nil,
             paymentOriginOrgId: String? = nil,
             settlementType: SettlementTypeEnum1,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.orderGroupId = orderGroupId
             self.paymentDestinationDriverId = paymentDestinationDriverId
-            self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
+            self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
             self.paymentDestinationOffChrtVendorId = paymentDestinationOffChrtVendorId
             self.paymentDestinationOrgId = paymentDestinationOrgId
-            self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
+            self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
             self.paymentOriginOrgId = paymentOriginOrgId
             self.settlementType = settlementType
             self.additionalProperties = additionalProperties
@@ -41,10 +41,10 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.orderGroupId = try container.decodeIfPresent(String.self, forKey: .orderGroupId)
             self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
-            self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
+            self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
             self.paymentDestinationOffChrtVendorId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtVendorId)
             self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
-            self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
+            self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
             self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
             self.settlementType = try container.decode(SettlementTypeEnum1.self, forKey: .settlementType)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -55,10 +55,10 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.orderGroupId, forKey: .orderGroupId)
             try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
-            try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
+            try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
             try container.encodeIfPresent(self.paymentDestinationOffChrtVendorId, forKey: .paymentDestinationOffChrtVendorId)
             try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
-            try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
+            try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
             try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
             try container.encode(self.settlementType, forKey: .settlementType)
         }
@@ -67,10 +67,10 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case orderGroupId = "order_group_id"
             case paymentDestinationDriverId = "payment_destination_driver_id"
-            case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
+            case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
             case paymentDestinationOffChrtVendorId = "payment_destination_off_chrt_vendor_id"
             case paymentDestinationOrgId = "payment_destination_org_id"
-            case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
+            case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
             case paymentOriginOrgId = "payment_origin_org_id"
             case settlementType = "settlement_type"
         }

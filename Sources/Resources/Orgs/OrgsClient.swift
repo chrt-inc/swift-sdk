@@ -3,27 +3,21 @@ import Foundation
 public final class OrgsClient: Sendable {
     public let complianceDocuments: ComplianceDocumentsClient
     public let connections: ConnectionsClient
-    public let offChrtProviderOrg: OffChrtProviderOrgClient
-    public let offChrtShipperOrg: OffChrtShipperOrgClient
+    public let directoryEntries: DirectoryEntriesClient
+    public let offChrtOrgData: OffChrtOrgDataClient
     public let offChrtVendor: OffChrtVendorClient
     public let privateData: PrivateDataClient
-    public let orgProfiles: OrgProfilesClient
     public let publicData: PublicDataClient
-    public let providers: ProvidersClient
-    public let orgInfoForConnections: OrgInfoForConnectionsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.complianceDocuments = ComplianceDocumentsClient(config: config)
         self.connections = ConnectionsClient(config: config)
-        self.offChrtProviderOrg = OffChrtProviderOrgClient(config: config)
-        self.offChrtShipperOrg = OffChrtShipperOrgClient(config: config)
+        self.directoryEntries = DirectoryEntriesClient(config: config)
+        self.offChrtOrgData = OffChrtOrgDataClient(config: config)
         self.offChrtVendor = OffChrtVendorClient(config: config)
         self.privateData = PrivateDataClient(config: config)
-        self.orgProfiles = OrgProfilesClient(config: config)
         self.publicData = PublicDataClient(config: config)
-        self.providers = ProvidersClient(config: config)
-        self.orgInfoForConnections = OrgInfoForConnectionsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -63,7 +57,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Single onboarding entry point. Sets `org_type` in WorkOS JWT metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Optional `handle` and `company_name` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
+    /// Single onboarding entry point. Sets `org_type` in WorkOS JWT metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Required `name` and optional `description` and `handle` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setupOrgV1(request: Requests.SetupOrgReq, requestOptions: RequestOptions? = nil) async throws -> Bool {

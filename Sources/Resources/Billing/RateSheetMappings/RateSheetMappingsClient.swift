@@ -75,15 +75,15 @@ public final class RateSheetMappingsClient: Sendable {
     /// Lists rate sheet IDs mapped to a counterparty for the requested task group type. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[PydanticObjectId])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listRateSheetIdsByCounterpartyV1(tgType: String, counterpartyOrgId: String? = nil, counterpartyDriverId: String? = nil, counterpartyOffChrtProviderOrgId: String? = nil, counterpartyOffChrtShipperOrgId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func listRateSheetIdsByCounterpartyV1(tgType: String, counterpartyOrgId: String? = nil, counterpartyDriverId: String? = nil, counterpartyOffChrtProviderOrgDataId: String? = nil, counterpartyOffChrtShipperOrgDataId: String? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing/rate_sheet_mappings/rate_sheet_ids/by_counterparty/v1/\(tgType)",
             queryParams: [
                 "counterparty_org_id": counterpartyOrgId.map { .string($0) }, 
                 "counterparty_driver_id": counterpartyDriverId.map { .string($0) }, 
-                "counterparty_off_chrt_provider_org_id": counterpartyOffChrtProviderOrgId.map { .string($0) }, 
-                "counterparty_off_chrt_shipper_org_id": counterpartyOffChrtShipperOrgId.map { .string($0) }
+                "counterparty_off_chrt_provider_org_data_id": counterpartyOffChrtProviderOrgDataId.map { .string($0) }, 
+                "counterparty_off_chrt_shipper_org_data_id": counterpartyOffChrtShipperOrgDataId.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: [String].self

@@ -19,7 +19,7 @@ public struct Session1: Codable, Hashable, Sendable {
     public let lastSeenAtTimestamp: Date?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
-    public let offChrtShipperOrgId: String?
+    public let offChrtShipperOrgDataId: String?
     /// Must be a string starting with `org_`
     public let orgId: String
     public let `public`: Bool?
@@ -49,7 +49,7 @@ public struct Session1: Codable, Hashable, Sendable {
         lastSeenAtLocationLargeCity: String? = nil,
         lastSeenAtTimestamp: Date? = nil,
         offChrtReferenceId: String? = nil,
-        offChrtShipperOrgId: String? = nil,
+        offChrtShipperOrgDataId: String? = nil,
         orgId: String,
         public: Bool? = nil,
         schemaVersion: Int,
@@ -76,7 +76,7 @@ public struct Session1: Codable, Hashable, Sendable {
         self.lastSeenAtLocationLargeCity = lastSeenAtLocationLargeCity
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
         self.offChrtReferenceId = offChrtReferenceId
-        self.offChrtShipperOrgId = offChrtShipperOrgId
+        self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orgId = orgId
         self.public = `public`
         self.schemaVersion = schemaVersion
@@ -106,7 +106,7 @@ public struct Session1: Codable, Hashable, Sendable {
         self.lastSeenAtLocationLargeCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationLargeCity)
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-        self.offChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgId)
+        self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -137,7 +137,7 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lastSeenAtLocationLargeCity, forKey: .lastSeenAtLocationLargeCity)
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-        try container.encodeIfPresent(self.offChrtShipperOrgId, forKey: .offChrtShipperOrgId)
+        try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.public, forKey: .public)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -166,7 +166,7 @@ public struct Session1: Codable, Hashable, Sendable {
         case lastSeenAtLocationLargeCity = "last_seen_at_location_large_city"
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
         case offChrtReferenceId = "off_chrt_reference_id"
-        case offChrtShipperOrgId = "off_chrt_shipper_org_id"
+        case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orgId = "org_id"
         case `public`
         case schemaVersion = "schema_version"

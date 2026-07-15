@@ -21,11 +21,11 @@ public struct Statement1: Codable, Hashable, Sendable {
     public let ownedByOrgId: String
     public let paidAtTimestamp: Date?
     public let paymentDestinationDriverId: String?
-    public let paymentDestinationOffChrtProviderOrgId: String?
+    public let paymentDestinationOffChrtProviderOrgDataId: String?
     public let paymentDestinationOffChrtVendorId: String?
     /// Must be a string starting with `org_`
     public let paymentDestinationOrgId: String?
-    public let paymentOriginOffChrtShipperOrgId: String?
+    public let paymentOriginOffChrtShipperOrgDataId: String?
     /// Must be a string starting with `org_`
     public let paymentOriginOrgId: String?
     public let schemaVersion: Int
@@ -61,10 +61,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         ownedByOrgId: String,
         paidAtTimestamp: Date? = nil,
         paymentDestinationDriverId: String? = nil,
-        paymentDestinationOffChrtProviderOrgId: String? = nil,
+        paymentDestinationOffChrtProviderOrgDataId: String? = nil,
         paymentDestinationOffChrtVendorId: String? = nil,
         paymentDestinationOrgId: String? = nil,
-        paymentOriginOffChrtShipperOrgId: String? = nil,
+        paymentOriginOffChrtShipperOrgDataId: String? = nil,
         paymentOriginOrgId: String? = nil,
         schemaVersion: Int,
         settlementType: SettlementTypeEnum1,
@@ -95,10 +95,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.ownedByOrgId = ownedByOrgId
         self.paidAtTimestamp = paidAtTimestamp
         self.paymentDestinationDriverId = paymentDestinationDriverId
-        self.paymentDestinationOffChrtProviderOrgId = paymentDestinationOffChrtProviderOrgId
+        self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
         self.paymentDestinationOffChrtVendorId = paymentDestinationOffChrtVendorId
         self.paymentDestinationOrgId = paymentDestinationOrgId
-        self.paymentOriginOffChrtShipperOrgId = paymentOriginOffChrtShipperOrgId
+        self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
         self.paymentOriginOrgId = paymentOriginOrgId
         self.schemaVersion = schemaVersion
         self.settlementType = settlementType
@@ -132,10 +132,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.paidAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .paidAtTimestamp)
         self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
-        self.paymentDestinationOffChrtProviderOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgId)
+        self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         self.paymentDestinationOffChrtVendorId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtVendorId)
         self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
-        self.paymentOriginOffChrtShipperOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgId)
+        self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
         self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.settlementType = try container.decode(SettlementTypeEnum1.self, forKey: .settlementType)
@@ -170,10 +170,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encodeIfPresent(self.paidAtTimestamp, forKey: .paidAtTimestamp)
         try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
-        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgId, forKey: .paymentDestinationOffChrtProviderOrgId)
+        try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
         try container.encodeIfPresent(self.paymentDestinationOffChrtVendorId, forKey: .paymentDestinationOffChrtVendorId)
         try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
-        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgId, forKey: .paymentOriginOffChrtShipperOrgId)
+        try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
         try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.settlementType, forKey: .settlementType)
@@ -206,10 +206,10 @@ public struct Statement1: Codable, Hashable, Sendable {
         case ownedByOrgId = "owned_by_org_id"
         case paidAtTimestamp = "paid_at_timestamp"
         case paymentDestinationDriverId = "payment_destination_driver_id"
-        case paymentDestinationOffChrtProviderOrgId = "payment_destination_off_chrt_provider_org_id"
+        case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
         case paymentDestinationOffChrtVendorId = "payment_destination_off_chrt_vendor_id"
         case paymentDestinationOrgId = "payment_destination_org_id"
-        case paymentOriginOffChrtShipperOrgId = "payment_origin_off_chrt_shipper_org_id"
+        case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
         case paymentOriginOrgId = "payment_origin_org_id"
         case schemaVersion = "schema_version"
         case settlementType = "settlement_type"

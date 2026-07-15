@@ -34,16 +34,10 @@ import Chrt
                   "directory_entries": [
                     {
                       "_id": "_id",
-                      "company_name": "company_name",
-                      "contact_first_name": "contact_first_name",
-                      "contact_last_name": "contact_last_name",
-                      "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "email_address_primary": "email_address_primary",
-                      "email_address_secondary": "email_address_secondary",
-                      "entry_off_chrt_shipper_org_id": "entry_off_chrt_shipper_org_id",
+                      "email_address": "email_address",
+                      "entry_off_chrt_org_data_id": "entry_off_chrt_org_data_id",
                       "entry_org_id": "entry_org_id",
-                      "industry": "industry",
                       "job_title": "job_title",
                       "location": {
                         "geometry": {
@@ -59,9 +53,10 @@ import Chrt
                         },
                         "type": "Feature"
                       },
+                      "name": "name",
                       "notes": "notes",
-                      "phone_number_primary": "phone_number_primary",
-                      "phone_number_secondary": "phone_number_secondary",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "phone_number": "phone_number",
                       "schema_version": 1
                     }
                   ],
@@ -114,18 +109,13 @@ import Chrt
                   "off_chrt_executor_orgs": [
                     {
                       "_id": "_id",
-                      "company_name": "company_name",
-                      "contact_first_name": "contact_first_name",
-                      "contact_last_name": "contact_last_name",
-                      "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "email_address_primary": "email_address_primary",
-                      "email_address_secondary": "email_address_secondary",
+                      "email_address": "email_address",
                       "industry": "industry",
-                      "job_title": "job_title",
-                      "notes": "notes",
-                      "phone_number_primary": "phone_number_primary",
-                      "phone_number_secondary": "phone_number_secondary",
+                      "name": "name",
+                      "org_type": "provider",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "phone_number": "phone_number",
                       "schema_version": 1,
                       "street_address": {
                         "geometry": {
@@ -145,20 +135,14 @@ import Chrt
                   ],
                   "off_chrt_shipper_org": {
                     "_id": "_id",
-                    "company_name": "company_name",
-                    "contact_first_name": "contact_first_name",
-                    "contact_last_name": "contact_last_name",
-                    "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
-                    "email_address_primary": "email_address_primary",
-                    "email_address_secondary": "email_address_secondary",
+                    "email_address": "email_address",
                     "industry": "industry",
-                    "job_title": "job_title",
-                    "notes": "notes",
-                    "phone_number_primary": "phone_number_primary",
-                    "phone_number_secondary": "phone_number_secondary",
+                    "name": "name",
+                    "org_type": "provider",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "phone_number": "phone_number",
                     "schema_version": 1,
-                    "shipper_customer_id_for_stripe_connect_account": "shipper_customer_id_for_stripe_connect_account",
                     "street_address": {
                       "geometry": {
                         "geometries": [
@@ -195,11 +179,11 @@ import Chrt
                     "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                     "name": "name",
-                    "off_chrt_executor_org_ids": [
-                      "off_chrt_executor_org_ids"
+                    "off_chrt_executor_org_data_ids": [
+                      "off_chrt_executor_org_data_ids"
                     ],
                     "off_chrt_reference_id_str": "off_chrt_reference_id_str",
-                    "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                    "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "owned_by_org_id": "owned_by_org_id",
                     "owned_by_user_id": "owned_by_user_id",
                     "schema_version": 1,
@@ -239,7 +223,7 @@ import Chrt
                       "exception_at_timestamp": "2024-01-15T09:30:00Z",
                       "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "off_chrt_reference_id": "off_chrt_reference_id",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "order_schedule_id": "order_schedule_id",
                       "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                       "order_template_id": "order_template_id",
@@ -274,16 +258,10 @@ import Chrt
             directoryEntries: Optional([
                 DirectoryEntry1(
                     id: "_id",
-                    companyName: Optional("company_name"),
-                    contactFirstName: Optional("contact_first_name"),
-                    contactLastName: Optional("contact_last_name"),
-                    createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    emailAddressPrimary: Optional("email_address_primary"),
-                    emailAddressSecondary: Optional("email_address_secondary"),
-                    entryOffChrtShipperOrgId: Optional("entry_off_chrt_shipper_org_id"),
+                    emailAddress: Optional("email_address"),
+                    entryOffChrtOrgDataId: Optional("entry_off_chrt_org_data_id"),
                     entryOrgId: Optional("entry_org_id"),
-                    industry: Optional("industry"),
                     jobTitle: Optional("job_title"),
                     location: Optional(LocationFeature(
                         geometry: .geometryCollection(
@@ -292,7 +270,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -303,9 +281,10 @@ import Chrt
                         ),
                         type: .feature
                     )),
+                    name: "name",
                     notes: Optional("notes"),
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    ownedByOrgId: "owned_by_org_id",
+                    phoneNumber: Optional("phone_number"),
                     schemaVersion: 1
                 )
             ]),
@@ -326,7 +305,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -360,20 +339,15 @@ import Chrt
                 )
             ]),
             offChrtExecutorOrgs: Optional([
-                OffChrtProviderOrg1(
+                OffChrtOrgData1(
                     id: "_id",
-                    companyName: Optional("company_name"),
-                    contactFirstName: Optional("contact_first_name"),
-                    contactLastName: Optional("contact_last_name"),
-                    createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    emailAddressPrimary: "email_address_primary",
-                    emailAddressSecondary: Optional("email_address_secondary"),
+                    emailAddress: Optional("email_address"),
                     industry: Optional("industry"),
-                    jobTitle: Optional("job_title"),
-                    notes: Optional("notes"),
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    name: "name",
+                    orgType: .provider,
+                    ownedByOrgId: "owned_by_org_id",
+                    phoneNumber: Optional("phone_number"),
                     schemaVersion: 1,
                     streetAddress: Optional(LocationFeature(
                         geometry: .geometryCollection(
@@ -382,7 +356,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -395,22 +369,16 @@ import Chrt
                     ))
                 )
             ]),
-            offChrtShipperOrg: Optional(OffChrtShipperOrg1(
+            offChrtShipperOrg: Optional(OffChrtOrgData1(
                 id: "_id",
-                companyName: Optional("company_name"),
-                contactFirstName: Optional("contact_first_name"),
-                contactLastName: Optional("contact_last_name"),
-                createdByOrgId: "created_by_org_id",
                 createdByUserId: "created_by_user_id",
-                emailAddressPrimary: "email_address_primary",
-                emailAddressSecondary: Optional("email_address_secondary"),
+                emailAddress: Optional("email_address"),
                 industry: Optional("industry"),
-                jobTitle: Optional("job_title"),
-                notes: Optional("notes"),
-                phoneNumberPrimary: Optional("phone_number_primary"),
-                phoneNumberSecondary: Optional("phone_number_secondary"),
+                name: "name",
+                orgType: .provider,
+                ownedByOrgId: "owned_by_org_id",
+                phoneNumber: Optional("phone_number"),
                 schemaVersion: 1,
-                shipperCustomerIdForStripeConnectAccount: Optional("shipper_customer_id_for_stripe_connect_account"),
                 streetAddress: Optional(LocationFeature(
                     geometry: .geometryCollection(
                         .init(
@@ -418,7 +386,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -453,11 +421,11 @@ import Chrt
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 name: "name",
-                offChrtExecutorOrgIds: Optional([
-                    "off_chrt_executor_org_ids"
+                offChrtExecutorOrgDataIds: Optional([
+                    "off_chrt_executor_org_data_ids"
                 ]),
                 offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
-                offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 ownedByOrgId: "owned_by_org_id",
                 ownedByUserId: "owned_by_user_id",
                 schemaVersion: 1,
@@ -497,7 +465,7 @@ import Chrt
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     orderScheduleId: Optional("order_schedule_id"),
                     orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                     orderTemplateId: Optional("order_template_id"),
@@ -554,11 +522,11 @@ import Chrt
                       "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                       "name": "name",
-                      "off_chrt_executor_org_ids": [
-                        "off_chrt_executor_org_ids"
+                      "off_chrt_executor_org_data_ids": [
+                        "off_chrt_executor_org_data_ids"
                       ],
                       "off_chrt_reference_id_str": "off_chrt_reference_id_str",
-                      "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                      "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "owned_by_user_id": "owned_by_user_id",
                       "schema_version": 1,
@@ -608,11 +576,11 @@ import Chrt
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     name: "name",
-                    offChrtExecutorOrgIds: Optional([
-                        "off_chrt_executor_org_ids"
+                    offChrtExecutorOrgDataIds: Optional([
+                        "off_chrt_executor_org_data_ids"
                     ]),
                     offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
-                    offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+                    offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     ownedByOrgId: "owned_by_org_id",
                     ownedByUserId: "owned_by_user_id",
                     schemaVersion: 1,
@@ -642,7 +610,7 @@ import Chrt
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
             filterShipperOrgId: "filter_shipper_org_id",
-            filterOffChrtShipperOrgId: "filter_off_chrt_shipper_org_id",
+            filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterDepartmentId: "filter_department_id",
             filterCoordinatorLabel: "filter_coordinator_label",
@@ -779,11 +747,11 @@ import Chrt
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
-                  "off_chrt_executor_org_ids": [
-                    "off_chrt_executor_org_ids"
+                  "off_chrt_executor_org_data_ids": [
+                    "off_chrt_executor_org_data_ids"
                   ],
                   "off_chrt_reference_id_str": "off_chrt_reference_id_str",
-                  "off_chrt_shipper_org_id": "off_chrt_shipper_org_id",
+                  "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
@@ -832,11 +800,11 @@ import Chrt
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
-            offChrtExecutorOrgIds: Optional([
-                "off_chrt_executor_org_ids"
+            offChrtExecutorOrgDataIds: Optional([
+                "off_chrt_executor_org_data_ids"
             ]),
             offChrtReferenceIdStr: Optional("off_chrt_reference_id_str"),
-            offChrtShipperOrgId: Optional("off_chrt_shipper_org_id"),
+            offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
