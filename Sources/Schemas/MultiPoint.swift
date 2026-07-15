@@ -3,13 +3,13 @@ import Foundation
 /// MultiPoint Model
 public struct MultiPoint: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
-    public let coordinates: [MultiPointCoordinatesItem]
+    public let coordinates: [CoordinatesItem]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         bbox: [JSONValue]? = nil,
-        coordinates: [MultiPointCoordinatesItem],
+        coordinates: [CoordinatesItem],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.bbox = bbox
@@ -20,7 +20,7 @@ public struct MultiPoint: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-        self.coordinates = try container.decode([MultiPointCoordinatesItem].self, forKey: .coordinates)
+        self.coordinates = try container.decode([CoordinatesItem].self, forKey: .coordinates)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
