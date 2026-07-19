@@ -1,3 +1,17 @@
+## 3.0.0 - 2026-07-19
+### Breaking Changes
+* **`ShipperProviderConnection1`** — renamed to `ShipperCoordinatorConnection1`; update all type references and construction sites.
+* **`ProviderProviderConnection1`** / **`ProviderProviderConnectionListRes`** — renamed to `CoordinatorExecutorConnection1` / `CoordinatorExecutorConnectionsForCoordinatorListRes` and related list-item types; update all type references and construction sites.
+* **`ConnectionsGetByHandleV1Response`** — enum cases `.providerProviderConnection1` and `.shipperProviderConnection1` renamed to `.coordinatorExecutorConnection1` and `.shipperCoordinatorConnection1`; add the new cases to all exhaustive `switch` statements.
+* **`OrderTaskGroupExecutorDetails1`** and **`OrderTaskGroupSharedDetails1`** — new required `taskGroupType: TaskGroupTypeEnum1` property added; pass `taskGroupType:` at all construction sites or the build will fail to compile.
+* **`OrderTypeaheadFieldEnum`** — new `awbNumbers` case added; exhaustive `switch` statements must add a `case .awbNumbers:` branch.
+### Added
+* **`CoordinatorsClient`**, **`ExecutorsClient`**, and **`ShippersClient`** — new sub-clients under `orgs.connections.*`, each exposing `typeaheadV1(query:limit:)` for searching connected org names with matching connection IDs.
+* **`ConnectionTypeaheadResult`**, **`ConnectionTypeaheadValue`**, and **`ConnectionTypeaheadFieldEnum`** — new schemas supporting the connection typeahead endpoints.
+* **`CoordinatorExecutorConnectionForCoordinatorListItem`**, **`CoordinatorExecutorConnectionForCoordinatorGeoSearchListItem`**, **`CoordinatorExecutorConnectionForExecutorListItem`**, and related paginated list response types — new schemas for coordinator–executor connection queries.
+* **`awbNumbers`** and **`orderClassificationByTaskGroupType`** — new optional fields added to `Order1`, `OrderLimitedForCoordinator1`, `OrderLimitedForShipper1`, `OrderLimitedForExecutor1`, and `OrderLimitedForProvider1`.
+* **`ShipperCoordinatorConnectionForShipperListItem.coordinatorOrgPublicData`** — changed from required `OrgPublicData1` to optional `OrgPublicData1?`; add `if-let`/`guard` unwrapping at all access sites.
+
 ## 2.0.1 - 2026-07-15
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
