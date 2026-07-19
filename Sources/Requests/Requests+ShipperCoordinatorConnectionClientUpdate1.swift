@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct ShipperProviderConnectionClientUpdate1: Codable, Hashable, Sendable {
+    public struct ShipperCoordinatorConnectionClientUpdate1: Codable, Hashable, Sendable {
         public let coordinatorDefaultDepartmentId: String?
         public let coordinatorDefaultDepartmentIdSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema

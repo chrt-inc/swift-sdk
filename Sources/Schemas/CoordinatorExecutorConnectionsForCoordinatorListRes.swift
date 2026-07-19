@@ -1,13 +1,13 @@
 import Foundation
 
-public struct ShipperProviderConnectionsForShipperListRes: Codable, Hashable, Sendable {
-    public let items: [ShipperProviderConnectionForShipperListItem]
+public struct CoordinatorExecutorConnectionsForCoordinatorListRes: Codable, Hashable, Sendable {
+    public let items: [CoordinatorExecutorConnectionForCoordinatorListItem]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        items: [ShipperProviderConnectionForShipperListItem],
+        items: [CoordinatorExecutorConnectionForCoordinatorListItem],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct ShipperProviderConnectionsForShipperListRes: Codable, Hashable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.items = try container.decode([ShipperProviderConnectionForShipperListItem].self, forKey: .items)
+        self.items = try container.decode([CoordinatorExecutorConnectionForCoordinatorListItem].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

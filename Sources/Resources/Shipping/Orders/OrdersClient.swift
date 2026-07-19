@@ -91,7 +91,7 @@ public final class OrdersClient: Sendable {
         )
     }
 
-    /// Returns distinct short_id and off_chrt_reference_id values matching the query via case-insensitive regex. Searches visible non-draft orders and caller-created draft orders. | authz: allowed_org_types=[provider, shipper], min_org_role=operator | () -> (list[OrderTypeaheadResult])
+    /// Returns distinct order short ID, off-CHRT reference ID, and AWB values matching the query via case-insensitive regex. Searches visible non-draft orders and caller-created draft orders. | authz: allowed_org_types=[provider, shipper], min_org_role=operator | () -> (list[OrderTypeaheadResult])
     ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field

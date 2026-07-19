@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ShipperProviderConnection1: Codable, Hashable, Sendable {
+public struct ShipperCoordinatorConnection1: Codable, Hashable, Sendable {
     public let id: String
     public let connected: Bool?
     public let coordinatorDefaultDepartmentId: String?

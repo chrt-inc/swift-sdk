@@ -203,6 +203,9 @@ import Chrt
                   "orders": [
                     {
                       "_id": "_id",
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
                       "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                       "completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "coordinator_assigned_user_ids": [
@@ -224,6 +227,7 @@ import Chrt
                       "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "off_chrt_reference_id": "off_chrt_reference_id",
                       "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
+                      "order_classification_by_task_group_type": "chrt_ground_provider",
                       "order_schedule_id": "order_schedule_id",
                       "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                       "order_template_id": "order_template_id",
@@ -234,7 +238,8 @@ import Chrt
                       "status": "draft",
                       "task_group_details": [
                         {
-                          "task_group_id": "task_group_id"
+                          "task_group_id": "task_group_id",
+                          "task_group_type": "chrt_ground_provider"
                         }
                       ]
                     }
@@ -270,7 +275,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -305,7 +310,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -356,7 +361,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -386,7 +391,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -445,6 +450,9 @@ import Chrt
             orders: Optional([
                 Order1(
                     id: "_id",
+                    awbNumbers: Optional([
+                        "awb_numbers"
+                    ]),
                     cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     coordinatorAssignedUserIds: Optional([
@@ -466,6 +474,7 @@ import Chrt
                     inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
                     offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
+                    orderClassificationByTaskGroupType: Optional(.chrtGroundProvider),
                     orderScheduleId: Optional("order_schedule_id"),
                     orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                     orderTemplateId: Optional("order_template_id"),
@@ -476,7 +485,8 @@ import Chrt
                     status: Optional(.draft),
                     taskGroupDetails: Optional([
                         OrderTaskGroupExecutorDetails1(
-                            taskGroupId: "task_group_id"
+                            taskGroupId: "task_group_id",
+                            taskGroupType: .chrtGroundProvider
                         )
                     ])
                 )

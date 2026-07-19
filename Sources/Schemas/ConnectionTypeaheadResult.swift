@@ -1,38 +1,38 @@
 import Foundation
 
-public struct ProviderProviderConnectionListRes: Codable, Hashable, Sendable {
-    public let items: [ProviderProviderConnectionListItem]
-    public let totalCount: Int
+public struct ConnectionTypeaheadResult: Codable, Hashable, Sendable {
+    public let type: ConnectionTypeaheadFieldEnum
+    public let values: [ConnectionTypeaheadValue]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        items: [ProviderProviderConnectionListItem],
-        totalCount: Int,
+        type: ConnectionTypeaheadFieldEnum,
+        values: [ConnectionTypeaheadValue],
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.items = items
-        self.totalCount = totalCount
+        self.type = type
+        self.values = values
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.items = try container.decode([ProviderProviderConnectionListItem].self, forKey: .items)
-        self.totalCount = try container.decode(Int.self, forKey: .totalCount)
+        self.type = try container.decode(ConnectionTypeaheadFieldEnum.self, forKey: .type)
+        self.values = try container.decode([ConnectionTypeaheadValue].self, forKey: .values)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.items, forKey: .items)
-        try container.encode(self.totalCount, forKey: .totalCount)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.values, forKey: .values)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case items
-        case totalCount = "total_count"
+        case type
+        case values
     }
 }

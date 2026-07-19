@@ -1,29 +1,29 @@
 import Foundation
 
-public struct ShipperProviderConnectionForCoordinatorListItem: Codable, Hashable, Sendable {
+public struct ShipperCoordinatorConnectionForCoordinatorListItem: Codable, Hashable, Sendable {
     public let offChrtShipperOrgData: OffChrtOrgData1?
+    public let shipperCoordinatorConnection: ShipperCoordinatorConnection1
     public let shipperOrgPublicData: OrgPublicData1?
-    public let shipperProviderConnection: ShipperProviderConnection1
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         offChrtShipperOrgData: OffChrtOrgData1? = nil,
+        shipperCoordinatorConnection: ShipperCoordinatorConnection1,
         shipperOrgPublicData: OrgPublicData1? = nil,
-        shipperProviderConnection: ShipperProviderConnection1,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.offChrtShipperOrgData = offChrtShipperOrgData
+        self.shipperCoordinatorConnection = shipperCoordinatorConnection
         self.shipperOrgPublicData = shipperOrgPublicData
-        self.shipperProviderConnection = shipperProviderConnection
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.offChrtShipperOrgData = try container.decodeIfPresent(OffChrtOrgData1.self, forKey: .offChrtShipperOrgData)
+        self.shipperCoordinatorConnection = try container.decode(ShipperCoordinatorConnection1.self, forKey: .shipperCoordinatorConnection)
         self.shipperOrgPublicData = try container.decodeIfPresent(OrgPublicData1.self, forKey: .shipperOrgPublicData)
-        self.shipperProviderConnection = try container.decode(ShipperProviderConnection1.self, forKey: .shipperProviderConnection)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -31,14 +31,14 @@ public struct ShipperProviderConnectionForCoordinatorListItem: Codable, Hashable
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.offChrtShipperOrgData, forKey: .offChrtShipperOrgData)
+        try container.encode(self.shipperCoordinatorConnection, forKey: .shipperCoordinatorConnection)
         try container.encodeIfPresent(self.shipperOrgPublicData, forKey: .shipperOrgPublicData)
-        try container.encode(self.shipperProviderConnection, forKey: .shipperProviderConnection)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case offChrtShipperOrgData = "off_chrt_shipper_org_data"
+        case shipperCoordinatorConnection = "shipper_coordinator_connection"
         case shipperOrgPublicData = "shipper_org_public_data"
-        case shipperProviderConnection = "shipper_provider_connection"
     }
 }

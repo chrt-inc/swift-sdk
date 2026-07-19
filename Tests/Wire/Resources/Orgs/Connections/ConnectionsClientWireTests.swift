@@ -26,8 +26,8 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Optional(ConnectionsGetByHandleV1Response.shipperProviderConnection1(
-            ShipperProviderConnection1(
+        let expectedResponse = Optional(ConnectionsGetByHandleV1Response.shipperCoordinatorConnection1(
+            ShipperCoordinatorConnection1(
                 id: "_id",
                 connected: Optional(true),
                 coordinatorDefaultDepartmentId: Optional("coordinator_default_department_id"),
@@ -40,6 +40,129 @@ import Chrt
         ))
         let response = try await client.orgs.connections.getByHandleV1(
             handle: "handle",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listCoordinatorsForExecutorV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "coordinator_executor_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
+                        "schema_version": 1
+                      },
+                      "coordinator_org_public_data": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      }
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CoordinatorExecutorConnectionsForExecutorListRes(
+            items: [
+                CoordinatorExecutorConnectionForExecutorListItem(
+                    coordinatorExecutorConnection: CoordinatorExecutorConnection1(
+                        id: "_id",
+                        coordinatorOrgId: "coordinator_org_id",
+                        schemaVersion: 1
+                    ),
+                    coordinatorOrgPublicData: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    ))
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.connections.listCoordinatorsForExecutorV1(
+            search: "search",
+            page: 1,
+            pageSize: 1,
+            filterAutoAssignEnabled: true,
+            filterConnected: true,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listCoordinatorsForShipperV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "items": [
+                    {
+                      "coordinator_org_public_data": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "shipper_coordinator_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
+                        "schema_version": 1
+                      }
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ShipperCoordinatorConnectionsForShipperListRes(
+            items: [
+                ShipperCoordinatorConnectionForShipperListItem(
+                    coordinatorOrgPublicData: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    )),
+                    shipperCoordinatorConnection: ShipperCoordinatorConnection1(
+                        id: "_id",
+                        coordinatorOrgId: "coordinator_org_id",
+                        schemaVersion: 1
+                    )
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.connections.listCoordinatorsForShipperV1(
+            search: "search",
+            page: 1,
+            pageSize: 1,
+            filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -93,7 +216,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listProviderProviderV11() async throws -> Void {
+    @Test func listExecutorsGeoSearchForCoordinatorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -101,27 +224,26 @@ import Chrt
                 {
                   "items": [
                     {
-                      "caller_connection_role": "coordinator",
-                      "counterparty_off_chrt_org_data": {
+                      "coordinator_executor_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
+                        "schema_version": 1
+                      },
+                      "distance_meters": 1.1,
+                      "executor_org_public_data": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "off_chrt_executor_org_data": {
                         "_id": "_id",
                         "created_by_user_id": "created_by_user_id",
                         "name": "name",
                         "org_type": "provider",
                         "owned_by_org_id": "owned_by_org_id",
                         "schema_version": 1
-                      },
-                      "counterparty_org_public_data": {
-                        "_id": "_id",
-                        "name": "name",
-                        "org_id": "org_id",
-                        "org_type": "provider",
-                        "schema_version": 1
-                      },
-                      "distance_meters": 1.1,
-                      "provider_provider_connection": {
-                        "_id": "_id",
-                        "coordinator_org_id": "coordinator_org_id",
-                        "schema_version": 1
                       }
                     }
                   ],
@@ -135,50 +257,47 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ProviderProviderConnectionListRes(
+        let expectedResponse = CoordinatorExecutorConnectionsForCoordinatorGeoSearchListRes(
             items: [
-                ProviderProviderConnectionListItem(
-                    callerConnectionRole: .coordinator,
-                    counterpartyOffChrtOrgData: Optional(OffChrtOrgData1(
+                CoordinatorExecutorConnectionForCoordinatorGeoSearchListItem(
+                    coordinatorExecutorConnection: CoordinatorExecutorConnection1(
                         id: "_id",
-                        createdByUserId: "created_by_user_id",
-                        name: "name",
-                        orgType: .provider,
-                        ownedByOrgId: "owned_by_org_id",
+                        coordinatorOrgId: "coordinator_org_id",
                         schemaVersion: 1
-                    )),
-                    counterpartyOrgPublicData: Optional(OrgPublicData1(
+                    ),
+                    distanceMeters: Optional(1.1),
+                    executorOrgPublicData: Optional(OrgPublicData1(
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
                         orgType: .provider,
                         schemaVersion: 1
                     )),
-                    distanceMeters: Optional(1.1),
-                    providerProviderConnection: ProviderProviderConnection1(
+                    offChrtExecutorOrgData: Optional(OffChrtOrgData1(
                         id: "_id",
-                        coordinatorOrgId: "coordinator_org_id",
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgType: .provider,
+                        ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1
-                    )
+                    ))
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.orgs.connections.listProviderProviderV1(
-            search: "search",
+        let response = try await client.orgs.connections.listExecutorsGeoSearchForCoordinatorV1(
+            nearLatitude: 1.1,
+            nearLongitude: 1.1,
             page: 1,
             pageSize: 1,
-            latitude: 1.1,
-            longitude: 1.1,
-            filterCallerConnectionRole: .coordinator,
-            filterConnected: true,
             filterAutoAssignEnabled: true,
+            filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func listProvidersV11() async throws -> Void {
+    @Test func listExecutorsForCoordinatorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -186,16 +305,24 @@ import Chrt
                 {
                   "items": [
                     {
-                      "coordinator_org_public_data": {
+                      "coordinator_executor_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
+                        "schema_version": 1
+                      },
+                      "executor_org_public_data": {
                         "_id": "_id",
                         "name": "name",
                         "org_id": "org_id",
                         "org_type": "provider",
                         "schema_version": 1
                       },
-                      "shipper_provider_connection": {
+                      "off_chrt_executor_org_data": {
                         "_id": "_id",
-                        "coordinator_org_id": "coordinator_org_id",
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_type": "provider",
+                        "owned_by_org_id": "owned_by_org_id",
                         "schema_version": 1
                       }
                     }
@@ -210,35 +337,45 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperProviderConnectionsForShipperListRes(
+        let expectedResponse = CoordinatorExecutorConnectionsForCoordinatorListRes(
             items: [
-                ShipperProviderConnectionForShipperListItem(
-                    coordinatorOrgPublicData: OrgPublicData1(
+                CoordinatorExecutorConnectionForCoordinatorListItem(
+                    coordinatorExecutorConnection: CoordinatorExecutorConnection1(
+                        id: "_id",
+                        coordinatorOrgId: "coordinator_org_id",
+                        schemaVersion: 1
+                    ),
+                    executorOrgPublicData: Optional(OrgPublicData1(
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
                         orgType: .provider,
                         schemaVersion: 1
-                    ),
-                    shipperProviderConnection: ShipperProviderConnection1(
+                    )),
+                    offChrtExecutorOrgData: Optional(OffChrtOrgData1(
                         id: "_id",
-                        coordinatorOrgId: "coordinator_org_id",
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgType: .provider,
+                        ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1
-                    )
+                    ))
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.orgs.connections.listProvidersV1(
+        let response = try await client.orgs.connections.listExecutorsForCoordinatorV1(
             search: "search",
             page: 1,
             pageSize: 1,
+            filterAutoAssignEnabled: true,
+            filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
     }
 
-    @Test func setProviderProviderAutoAssignV11() async throws -> Void {
+    @Test func setCoordinatorExecutorAutoAssignV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -253,7 +390,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.connections.setProviderProviderAutoAssignV1(
+        let response = try await client.orgs.connections.setCoordinatorExecutorAutoAssignV1(
             connectionId: "connection_id",
             request: .init(autoAssignEnabled: true),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -261,7 +398,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func setShipperProviderDefaultDepartmentV11() async throws -> Void {
+    @Test func setShipperCoordinatorDefaultDepartmentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -276,7 +413,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.connections.setShipperProviderDefaultDepartmentV1(
+        let response = try await client.orgs.connections.setShipperCoordinatorDefaultDepartmentV1(
             connectionId: "connection_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -284,7 +421,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func listShippersV11() async throws -> Void {
+    @Test func listShippersForCoordinatorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -300,16 +437,16 @@ import Chrt
                         "owned_by_org_id": "owned_by_org_id",
                         "schema_version": 1
                       },
+                      "shipper_coordinator_connection": {
+                        "_id": "_id",
+                        "coordinator_org_id": "coordinator_org_id",
+                        "schema_version": 1
+                      },
                       "shipper_org_public_data": {
                         "_id": "_id",
                         "name": "name",
                         "org_id": "org_id",
                         "org_type": "provider",
-                        "schema_version": 1
-                      },
-                      "shipper_provider_connection": {
-                        "_id": "_id",
-                        "coordinator_org_id": "coordinator_org_id",
                         "schema_version": 1
                       }
                     }
@@ -324,9 +461,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShipperProviderConnectionsForCoordinatorListRes(
+        let expectedResponse = ShipperCoordinatorConnectionsForCoordinatorListRes(
             items: [
-                ShipperProviderConnectionForCoordinatorListItem(
+                ShipperCoordinatorConnectionForCoordinatorListItem(
                     offChrtShipperOrgData: Optional(OffChrtOrgData1(
                         id: "_id",
                         createdByUserId: "created_by_user_id",
@@ -335,26 +472,27 @@ import Chrt
                         ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1
                     )),
+                    shipperCoordinatorConnection: ShipperCoordinatorConnection1(
+                        id: "_id",
+                        coordinatorOrgId: "coordinator_org_id",
+                        schemaVersion: 1
+                    ),
                     shipperOrgPublicData: Optional(OrgPublicData1(
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
                         orgType: .provider,
                         schemaVersion: 1
-                    )),
-                    shipperProviderConnection: ShipperProviderConnection1(
-                        id: "_id",
-                        coordinatorOrgId: "coordinator_org_id",
-                        schemaVersion: 1
-                    )
+                    ))
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.orgs.connections.listShippersV1(
+        let response = try await client.orgs.connections.listShippersForCoordinatorV1(
             search: "search",
             page: 1,
             pageSize: 1,
+            filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

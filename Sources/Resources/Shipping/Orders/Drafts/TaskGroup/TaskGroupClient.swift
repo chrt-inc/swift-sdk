@@ -20,7 +20,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Assigns an executor organization to a draft task group. Coordinator-only; provider-provider direct assignments require auto-assign consent. | authz_personas=[task_group_coordinator_operators] | (OrderDraftAddExecutorReq) -> (bool)
+    /// Assigns an executor organization to a draft task group. Coordinator-only; coordinator-executor direct assignments require auto-assign consent. | authz_personas=[task_group_coordinator_operators] | (OrderDraftAddExecutorReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addExecutorV1(taskGroupId: String, request: Requests.OrderDraftAddExecutorReq, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct ProviderProviderUpdateAutoAssignReq: Codable, Hashable, Sendable {
+    public struct CoordinatorExecutorUpdateAutoAssignReq: Codable, Hashable, Sendable {
         public let autoAssignEnabled: Bool
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]

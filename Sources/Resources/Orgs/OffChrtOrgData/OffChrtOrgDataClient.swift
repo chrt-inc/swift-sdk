@@ -7,7 +7,7 @@ public final class OffChrtOrgDataClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Atomically creates owner-scoped off-CHRT organization data and its shipper-provider or provider-provider connection. | authz: allowed_org_types=[provider] | (CreateOffChrtOrgReq) -> (CreateOffChrtOrgRes)
+    /// Atomically creates owner-scoped off-CHRT organization data and its shipper-coordinator or coordinator-executor connection. | authz: allowed_org_types=[provider] | (CreateOffChrtOrgReq) -> (CreateOffChrtOrgRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.CreateOffChrtOrgReq, requestOptions: RequestOptions? = nil) async throws -> CreateOffChrtOrgRes {
@@ -20,9 +20,9 @@ public final class OffChrtOrgDataClient: Sendable {
         )
     }
 
-    /// Lists off-CHRT organization data owned by the caller with optional organization-type filtering, name search, sorting, and pagination. | authz: allowed_org_types=[provider] | () -> (OffChrtOrgDataListRes)
+    /// Lists off-CHRT organization data owned by the caller with optional organization-type filtering, identity search, sorting, and pagination. | authz: allowed_org_types=[provider] | () -> (OffChrtOrgDataListRes)
     ///
-    /// - Parameter search: Search by name
+    /// - Parameter search: Search by name, industry, or email
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

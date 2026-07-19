@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ProviderProviderConnection1: Codable, Hashable, Sendable {
+public struct CoordinatorExecutorConnection1: Codable, Hashable, Sendable {
     public let id: String
     public let autoAssignEnabled: Bool?
     public let connected: Bool?

@@ -8,6 +8,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
     public let executorOrgId: String?
     public let offChrtExecutorOrgDataId: String?
     public let taskGroupId: String
+    public let taskGroupType: TaskGroupTypeEnum1
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -18,6 +19,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         executorOrgId: String? = nil,
         offChrtExecutorOrgDataId: String? = nil,
         taskGroupId: String,
+        taskGroupType: TaskGroupTypeEnum1,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.executorAssignedUserIds = executorAssignedUserIds
@@ -26,6 +28,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         self.executorOrgId = executorOrgId
         self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
         self.taskGroupId = taskGroupId
+        self.taskGroupType = taskGroupType
         self.additionalProperties = additionalProperties
     }
 
@@ -37,6 +40,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
         self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
+        self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -49,6 +53,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
+        try container.encode(self.taskGroupType, forKey: .taskGroupType)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -59,5 +64,6 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         case executorOrgId = "executor_org_id"
         case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
         case taskGroupId = "task_group_id"
+        case taskGroupType = "task_group_type"
     }
 }
