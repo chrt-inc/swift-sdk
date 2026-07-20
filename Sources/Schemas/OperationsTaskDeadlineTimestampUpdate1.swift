@@ -1,25 +1,25 @@
 import Foundation
 
-public struct OperationsTaskDeadlineUpdate1: Codable, Hashable, Sendable {
+public struct OperationsTaskDeadlineTimestampUpdate1: Codable, Hashable, Sendable {
     public let deadlineTimestamp: Date
-    public let taskId: String
+    public let operationsTaskId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         deadlineTimestamp: Date,
-        taskId: String,
+        operationsTaskId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.deadlineTimestamp = deadlineTimestamp
-        self.taskId = taskId
+        self.operationsTaskId = operationsTaskId
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.deadlineTimestamp = try container.decode(Date.self, forKey: .deadlineTimestamp)
-        self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.operationsTaskId = try container.decode(String.self, forKey: .operationsTaskId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -27,12 +27,12 @@ public struct OperationsTaskDeadlineUpdate1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.deadlineTimestamp, forKey: .deadlineTimestamp)
-        try container.encode(self.taskId, forKey: .taskId)
+        try container.encode(self.operationsTaskId, forKey: .operationsTaskId)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case deadlineTimestamp = "deadline_timestamp"
-        case taskId = "task_id"
+        case operationsTaskId = "operations_task_id"
     }
 }

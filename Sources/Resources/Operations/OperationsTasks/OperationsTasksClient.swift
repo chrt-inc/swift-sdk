@@ -20,16 +20,16 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Sets deadline_timestamp on multiple OperationsTasks in one call, each scoped to the caller's organization. Task ids that don't exist or belong to another org are silently skipped; the response reports how many were updated. | authz: min_org_role=operator | (OperationsTasksBulkUpdateDeadlinesReq1) -> (OperationsTasksBulkUpdateDeadlinesRes1)
+    /// Adds the same ISO 8601 duration to every selected OperationsTask's deadline_timestamp. Missing or cross-org task ids are skipped and reported through updated_count. | authz: min_org_role=operator | (OperationsTasksApplyTimeDeltaToDeadlineTimestampsReq1) -> (OperationsTasksDeadlineTimestampsUpdateRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func bulkUpdateDeadlinesV1(request: Requests.OperationsTasksBulkUpdateDeadlinesReq1, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksBulkUpdateDeadlinesRes1 {
+    public func applyTimeDeltaToDeadlineTimestampsV1(request: Requests.OperationsTasksApplyTimeDeltaToDeadlineTimestampsReq1, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksDeadlineTimestampsUpdateRes1 {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/operations/operations_tasks/bulk_update_deadlines/v1",
+            path: "/operations/operations_tasks/apply_time_delta_to_deadline_timestamps/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: OperationsTasksBulkUpdateDeadlinesRes1.self
+            responseType: OperationsTasksDeadlineTimestampsUpdateRes1.self
         )
     }
 
@@ -122,6 +122,19 @@ public final class OperationsTasksClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: OperationsTaskListRes.self
+        )
+    }
+
+    /// Sets each selected OperationsTask's deadline_timestamp to its requested timestamp. Missing or cross-org task ids are skipped and reported through updated_count. | authz: min_org_role=operator | (OperationsTasksSetDeadlineTimestampsReq1) -> (OperationsTasksDeadlineTimestampsUpdateRes1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setDeadlineTimestampsV1(request: Requests.OperationsTasksSetDeadlineTimestampsReq1, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksDeadlineTimestampsUpdateRes1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_tasks/set_deadline_timestamps/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OperationsTasksDeadlineTimestampsUpdateRes1.self
         )
     }
 

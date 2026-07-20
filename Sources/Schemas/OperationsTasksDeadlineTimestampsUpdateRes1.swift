@@ -1,7 +1,7 @@
 import Foundation
 
-public struct OperationsTasksBulkUpdateDeadlinesRes1: Codable, Hashable, Sendable {
-    /// How many of the requested tasks were found in the caller's org and had their deadline set; a value below the number of requested updates means some ids were silently skipped (missing or cross-org).
+public struct OperationsTasksDeadlineTimestampsUpdateRes1: Codable, Hashable, Sendable {
+    /// How many requested tasks were found in the caller's org and updated; a lower count means missing or cross-org task ids were skipped.
     public let updatedCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

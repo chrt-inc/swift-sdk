@@ -26,7 +26,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func bulkUpdateDeadlinesV11() async throws -> Void {
+    @Test func applyTimeDeltaToDeadlineTimestampsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -42,16 +42,16 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OperationsTasksBulkUpdateDeadlinesRes1(
+        let expectedResponse = OperationsTasksDeadlineTimestampsUpdateRes1(
             updatedCount: 1
         )
-        let response = try await client.operations.operationsTasks.bulkUpdateDeadlinesV1(
-            request: .init(operationsTaskDeadlineUpdates: [
-                OperationsTaskDeadlineUpdate1(
-                    deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    taskId: "task_id"
-                )
-            ]),
+        let response = try await client.operations.operationsTasks.applyTimeDeltaToDeadlineTimestampsV1(
+            request: .init(
+                operationsTaskIds: [
+                    "operations_task_ids"
+                ],
+                timeDelta: "time_delta"
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -169,18 +169,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -272,21 +263,43 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func setDeadlineTimestampsV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                {
+                  "updated_count": 1
+                }
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OperationsTasksDeadlineTimestampsUpdateRes1(
+            updatedCount: 1
+        )
+        let response = try await client.operations.operationsTasks.setDeadlineTimestampsV1(
+            request: .init(updates: [
+                OperationsTaskDeadlineTimestampUpdate1(
+                    deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    operationsTaskId: "operations_task_id"
+                )
+            ]),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

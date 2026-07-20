@@ -174,9 +174,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -738,9 +735,6 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStatus: [
-            .open
-        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1282,9 +1276,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .active
-        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -3604,9 +3595,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5878,9 +5866,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -6204,9 +6189,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -9334,9 +9316,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -9509,9 +9488,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -10918,12 +10894,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -11120,12 +11090,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -11314,12 +11278,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -14350,10 +14308,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -15894,7 +15849,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">bulkUpdateDeadlinesV1</a>(request: Requests.OperationsTasksBulkUpdateDeadlinesReq1, requestOptions: RequestOptions?) -> OperationsTasksBulkUpdateDeadlinesRes1</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">applyTimeDeltaToDeadlineTimestampsV1</a>(request: Requests.OperationsTasksApplyTimeDeltaToDeadlineTimestampsReq1, requestOptions: RequestOptions?) -> OperationsTasksDeadlineTimestampsUpdateRes1</code></summary>
 <dl>
 <dd>
 
@@ -15906,7 +15861,7 @@ try await main()
 <dl>
 <dd>
 
-Sets deadline_timestamp on multiple OperationsTasks in one call, each scoped to the caller's organization. Task ids that don't exist or belong to another org are silently skipped; the response reports how many were updated. | authz: min_org_role=operator | (OperationsTasksBulkUpdateDeadlinesReq1) -> (OperationsTasksBulkUpdateDeadlinesRes1)
+Adds the same ISO 8601 duration to every selected OperationsTask's deadline_timestamp. Missing or cross-org task ids are skipped and reported through updated_count. | authz: min_org_role=operator | (OperationsTasksApplyTimeDeltaToDeadlineTimestampsReq1) -> (OperationsTasksDeadlineTimestampsUpdateRes1)
 </dd>
 </dl>
 </dd>
@@ -15927,12 +15882,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.operations.operationsTasks.bulkUpdateDeadlinesV1(request: .init(operationsTaskDeadlineUpdates: [
-        OperationsTaskDeadlineUpdate1(
-            deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            taskId: "task_id"
-        )
-    ]))
+    _ = try await client.operations.operationsTasks.applyTimeDeltaToDeadlineTimestampsV1(request: .init(
+        operationsTaskIds: [
+            "operations_task_ids"
+        ],
+        timeDelta: "time_delta"
+    ))
 }
 
 try await main()
@@ -15950,7 +15905,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OperationsTasksBulkUpdateDeadlinesReq1` 
+**request:** `Requests.OperationsTasksApplyTimeDeltaToDeadlineTimestampsReq1` 
     
 </dd>
 </dl>
@@ -16091,18 +16046,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -16287,18 +16233,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -16425,6 +16362,82 @@ try await main()
 <dd>
 
 **filterDeadlineLte:** `Date?` — Filter to tasks with deadline <= this timestamp
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">setDeadlineTimestampsV1</a>(request: Requests.OperationsTasksSetDeadlineTimestampsReq1, requestOptions: RequestOptions?) -> OperationsTasksDeadlineTimestampsUpdateRes1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets each selected OperationsTask's deadline_timestamp to its requested timestamp. Missing or cross-org task ids are skipped and reported through updated_count. | authz: min_org_role=operator | (OperationsTasksSetDeadlineTimestampsReq1) -> (OperationsTasksDeadlineTimestampsUpdateRes1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.setDeadlineTimestampsV1(request: .init(updates: [
+        OperationsTaskDeadlineTimestampUpdate1(
+            deadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            operationsTaskId: "operations_task_id"
+        )
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OperationsTasksSetDeadlineTimestampsReq1` 
     
 </dd>
 </dl>
@@ -21083,10 +21096,7 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         filterAvailableAccordingToDriver: true,
-        filterAvailableAccordingToOperators: true,
-        filterStatus: [
-            .unassigned
-        ]
+        filterAvailableAccordingToOperators: true
     )
 }
 
@@ -21208,9 +21218,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -23501,9 +23508,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterIntendedStatus: [
-            .draft
-        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -25732,9 +25736,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterBillingReviewStatus: [
-            .notStarted
-        ],
         filterOrderId: "filter_order_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -25866,9 +25867,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
-        filterShippingStatus: [
-            .draft
-        ],
         sortBy: .draftStartedAtTimestamp,
         sortOrder: .asc,
         page: 1,
@@ -31039,12 +31037,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31061,9 +31053,6 @@ private func main() async throws {
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -31345,12 +31334,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31623,12 +31606,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31646,9 +31623,6 @@ private func main() async throws {
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -31946,12 +31920,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -34834,9 +34802,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -35118,9 +35083,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -36771,10 +36733,10 @@ private func main() async throws {
             geometry: Geometry.geometryCollection(
                 .init(
                     geometries: [
-                        GeometriesItem.lineString(
+                        GeometryCollectionGeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    CoordinatesItem.position2D(
+                                    LineStringCoordinatesItem.position2D(
                                         []
                                     )
                                 ]

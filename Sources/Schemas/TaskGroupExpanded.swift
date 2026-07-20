@@ -13,6 +13,8 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let executorOrgHandle: String?
     /// Must be a string starting with `org_`
     public let executorOrgId: String?
+    public let offChrtExecutorOrgCompanyName: String?
+    public let offChrtExecutorOrgDataId: String?
     public let offChrtShipperOrgCompanyName: String?
     public let offChrtShipperOrgDataId: String?
     public let shipperOrgCompanyName: String?
@@ -32,6 +34,8 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         executorOrgCompanyName: String? = nil,
         executorOrgHandle: String? = nil,
         executorOrgId: String? = nil,
+        offChrtExecutorOrgCompanyName: String? = nil,
+        offChrtExecutorOrgDataId: String? = nil,
         offChrtShipperOrgCompanyName: String? = nil,
         offChrtShipperOrgDataId: String? = nil,
         shipperOrgCompanyName: String? = nil,
@@ -48,6 +52,8 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         self.executorOrgCompanyName = executorOrgCompanyName
         self.executorOrgHandle = executorOrgHandle
         self.executorOrgId = executorOrgId
+        self.offChrtExecutorOrgCompanyName = offChrtExecutorOrgCompanyName
+        self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
         self.offChrtShipperOrgCompanyName = offChrtShipperOrgCompanyName
         self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.shipperOrgCompanyName = shipperOrgCompanyName
@@ -67,6 +73,8 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         self.executorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .executorOrgCompanyName)
         self.executorOrgHandle = try container.decodeIfPresent(String.self, forKey: .executorOrgHandle)
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
+        self.offChrtExecutorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgCompanyName)
+        self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
         self.offChrtShipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgCompanyName)
         self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.shipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .shipperOrgCompanyName)
@@ -87,6 +95,8 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.executorOrgCompanyName, forKey: .executorOrgCompanyName)
         try container.encodeIfPresent(self.executorOrgHandle, forKey: .executorOrgHandle)
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
+        try container.encodeIfPresent(self.offChrtExecutorOrgCompanyName, forKey: .offChrtExecutorOrgCompanyName)
+        try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
         try container.encodeIfPresent(self.offChrtShipperOrgCompanyName, forKey: .offChrtShipperOrgCompanyName)
         try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encodeIfPresent(self.shipperOrgCompanyName, forKey: .shipperOrgCompanyName)
@@ -105,6 +115,8 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         case executorOrgCompanyName = "executor_org_company_name"
         case executorOrgHandle = "executor_org_handle"
         case executorOrgId = "executor_org_id"
+        case offChrtExecutorOrgCompanyName = "off_chrt_executor_org_company_name"
+        case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
         case offChrtShipperOrgCompanyName = "off_chrt_shipper_org_company_name"
         case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case shipperOrgCompanyName = "shipper_org_company_name"

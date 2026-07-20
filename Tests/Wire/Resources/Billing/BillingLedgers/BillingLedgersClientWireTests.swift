@@ -167,9 +167,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .active
-            ],
             filterTaskGroupType: .chrtGroundProvider,
             filterPaymentOriginOrgId: "filter_payment_origin_org_id",
             filterPaymentDestinationOrgId: "filter_payment_destination_org_id",

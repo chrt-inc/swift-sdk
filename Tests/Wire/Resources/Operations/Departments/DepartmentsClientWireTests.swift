@@ -85,7 +85,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -112,9 +112,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterDepartmentType: [
-                .aerospace
-            ],
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -238,7 +235,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]

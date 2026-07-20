@@ -56,6 +56,8 @@ import Chrt
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
+                  "off_chrt_executor_org_company_name": "off_chrt_executor_org_company_name",
+                  "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "shipper_org_company_name": "shipper_org_company_name",
@@ -194,7 +196,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -225,6 +227,8 @@ import Chrt
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
             executorOrgId: Optional("executor_org_id"),
+            offChrtExecutorOrgCompanyName: Optional("off_chrt_executor_org_company_name"),
+            offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -395,6 +399,8 @@ import Chrt
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
+                  "off_chrt_executor_org_company_name": "off_chrt_executor_org_company_name",
+                  "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "shipper_org_company_name": "shipper_org_company_name",
@@ -533,7 +539,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -564,6 +570,8 @@ import Chrt
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
             executorOrgId: Optional("executor_org_id"),
+            offChrtExecutorOrgCompanyName: Optional("off_chrt_executor_org_company_name"),
+            offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -734,6 +742,8 @@ import Chrt
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
+                  "off_chrt_executor_org_company_name": "off_chrt_executor_org_company_name",
+                  "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "shipper_org_company_name": "shipper_org_company_name",
@@ -872,7 +882,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -903,6 +913,8 @@ import Chrt
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
             executorOrgId: Optional("executor_org_id"),
+            offChrtExecutorOrgCompanyName: Optional("off_chrt_executor_org_company_name"),
+            offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -1073,6 +1085,8 @@ import Chrt
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
+                  "off_chrt_executor_org_company_name": "off_chrt_executor_org_company_name",
+                  "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                   "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "shipper_org_company_name": "shipper_org_company_name",
@@ -1211,7 +1225,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -1242,6 +1256,8 @@ import Chrt
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
             executorOrgId: Optional("executor_org_id"),
+            offChrtExecutorOrgCompanyName: Optional("off_chrt_executor_org_company_name"),
+            offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
             offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -1382,6 +1398,8 @@ import Chrt
                       "executor_org_company_name": "executor_org_company_name",
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
+                      "off_chrt_executor_org_company_name": "off_chrt_executor_org_company_name",
+                      "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                       "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "shipper_org_company_name": "shipper_org_company_name",
@@ -1438,6 +1456,8 @@ import Chrt
                     executorOrgCompanyName: Optional("executor_org_company_name"),
                     executorOrgHandle: Optional("executor_org_handle"),
                     executorOrgId: Optional("executor_org_id"),
+                    offChrtExecutorOrgCompanyName: Optional("off_chrt_executor_org_company_name"),
+                    offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
                     offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -1474,9 +1494,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1525,6 +1542,8 @@ import Chrt
                       "executor_org_company_name": "executor_org_company_name",
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
+                      "off_chrt_executor_org_company_name": "off_chrt_executor_org_company_name",
+                      "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "off_chrt_shipper_org_company_name": "off_chrt_shipper_org_company_name",
                       "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "shipper_org_company_name": "shipper_org_company_name",
@@ -1581,6 +1600,8 @@ import Chrt
                     executorOrgCompanyName: Optional("executor_org_company_name"),
                     executorOrgHandle: Optional("executor_org_handle"),
                     executorOrgId: Optional("executor_org_id"),
+                    offChrtExecutorOrgCompanyName: Optional("off_chrt_executor_org_company_name"),
+                    offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     offChrtShipperOrgCompanyName: Optional("off_chrt_shipper_org_company_name"),
                     offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
@@ -1617,9 +1638,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
