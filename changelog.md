@@ -1,3 +1,15 @@
+## 4.0.0 - 2026-07-20
+* feat!: rename bulkUpdateDeadlinesV1 and related deadline types
+* Replace the `bulkUpdateDeadlinesV1` endpoint and its associated request/response/schema types with two new, more precisely named endpoints and updated schemas. The old `OperationsTasksBulkUpdateDeadlinesReq1`, `OperationsTasksBulkUpdateDeadlinesRes1`, and `OperationsTaskDeadlineUpdate1` types are removed; callers must migrate to the new API surface.
+* Key changes:
+* `bulkUpdateDeadlinesV1` removed from `OperationsTasksClient`; replaced by `applyTimeDeltaToDeadlineTimestampsV1` (applies an ISO 8601 duration to selected tasks) and new `setDeadlineTimestampsV1` (sets explicit timestamps per task)
+* `OperationsTasksBulkUpdateDeadlinesReq1` renamed to `OperationsTasksSetDeadlineTimestampsReq1` with `operationsTaskDeadlineUpdates` field renamed to `updates` and element type changed from `OperationsTaskDeadlineUpdate1` to `OperationsTaskDeadlineTimestampUpdate1`
+* `OperationsTaskDeadlineUpdate1` renamed to `OperationsTaskDeadlineTimestampUpdate1` with `taskId` property renamed to `operationsTaskId`
+* `OperationsTasksBulkUpdateDeadlinesRes1` renamed to `OperationsTasksDeadlineTimestampsUpdateRes1`
+* New `OperationsTasksApplyTimeDeltaToDeadlineTimestampsReq1` request type added with `operationsTaskIds` and `timeDelta` fields
+* `TaskGroupExpanded` gains two new optional fields: `offChrtExecutorOrgCompanyName` and `offChrtExecutorOrgDataId`
+* 🌿 Generated with Fern
+
 ## 3.0.0 - 2026-07-19
 ### Breaking Changes
 * **`ShipperProviderConnection1`** — renamed to `ShipperCoordinatorConnection1`; update all type references and construction sites.
