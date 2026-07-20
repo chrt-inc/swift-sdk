@@ -1,3 +1,11 @@
+## 4.1.0 - 2026-07-20
+### Added
+* **`AccountsClient.typeaheadV1(query:limit:)`** — new endpoint that returns distinct coordinator-created shipper account names matching a query string, along with their matching account IDs.
+* **`AccountTypeaheadResult`**, **`AccountTypeaheadValue`**, and **`AccountTypeaheadFieldEnum`** — new schema types supporting the account typeahead endpoint.
+* **`AccountClientCreate1.location`** and **`AccountClientUpdate1.location`** — new optional `LocationFeature?` field for setting a geographic location when creating or updating a shipper account; `AccountClientUpdate1` also gains `locationSetToNone: Bool?` to explicitly clear the location.
+* **`Account1.location`** — new optional `LocationFeature?` field returned in account responses.
+* **`AccountsClient.listV1(search:)`** and **`listForCoordinatorOperatorsV1`** / **`listForProviderOperatorsV1`** — new optional `search` and `filterCoordinatorShipperAccountIds` parameters for full-text name search and account-based order filtering respectively.
+
 ## 4.0.1 - 2026-07-20
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

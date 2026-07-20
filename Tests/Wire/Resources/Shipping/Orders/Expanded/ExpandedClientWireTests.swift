@@ -1106,6 +1106,9 @@ import Chrt
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+            filterCoordinatorShipperAccountIds: [
+                "filter_coordinator_shipper_account_ids"
+            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
             filterCoordinatorAssignedUserIds: [
                 "filter_coordinator_assigned_user_ids"
@@ -1379,6 +1382,9 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+            filterCoordinatorShipperAccountIds: [
+                "filter_coordinator_shipper_account_ids"
+            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
             filterCoordinatorAssignedUserIds: [
                 "filter_coordinator_assigned_user_ids"

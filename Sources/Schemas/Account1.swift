@@ -6,6 +6,7 @@ public struct Account1: Codable, Hashable, Sendable {
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
+    public let location: LocationFeature?
     public let name: String
     public let offChrtOrgDataId: String?
     /// Must be a string starting with `org_`
@@ -18,6 +19,7 @@ public struct Account1: Codable, Hashable, Sendable {
         id: String,
         createdByOrgId: String,
         createdByUserId: String,
+        location: LocationFeature? = nil,
         name: String,
         offChrtOrgDataId: String? = nil,
         orgId: String? = nil,
@@ -27,6 +29,7 @@ public struct Account1: Codable, Hashable, Sendable {
         self.id = id
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
+        self.location = location
         self.name = name
         self.offChrtOrgDataId = offChrtOrgDataId
         self.orgId = orgId
@@ -39,6 +42,7 @@ public struct Account1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.name = try container.decode(String.self, forKey: .name)
         self.offChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtOrgDataId)
         self.orgId = try container.decodeIfPresent(String.self, forKey: .orgId)
@@ -52,6 +56,7 @@ public struct Account1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.location, forKey: .location)
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.offChrtOrgDataId, forKey: .offChrtOrgDataId)
         try container.encodeIfPresent(self.orgId, forKey: .orgId)
@@ -63,6 +68,7 @@ public struct Account1: Codable, Hashable, Sendable {
         case id = "_id"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
+        case location
         case name
         case offChrtOrgDataId = "off_chrt_org_data_id"
         case orgId = "org_id"
