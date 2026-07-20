@@ -1,3 +1,7 @@
+## 4.0.1 - 2026-07-20
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 4.0.0 - 2026-07-20
 * feat!: rename bulkUpdateDeadlinesV1 and related deadline types
 * Replace the `bulkUpdateDeadlinesV1` endpoint and its associated request/response/schema types with two new, more precisely named endpoints and updated schemas. The old `OperationsTasksBulkUpdateDeadlinesReq1`, `OperationsTasksBulkUpdateDeadlinesRes1`, and `OperationsTaskDeadlineUpdate1` types are removed; callers must migrate to the new API surface.
