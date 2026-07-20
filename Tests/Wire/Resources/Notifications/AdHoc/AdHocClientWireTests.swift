@@ -21,7 +21,7 @@ import Chrt
         let response = try await client.notifications.adHoc.createV1(
             orderId: "order_id",
             request: NotificationIntentAdHocClientCreate1(
-                directoryEntryId: "directory_entry_id",
+                contactId: "contact_id",
                 schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -47,7 +47,7 @@ import Chrt
         let response = try await client.notifications.adHoc.createForSessionV1(
             sessionId: "session_id",
             request: NotificationIntentAdHocClientCreate1(
-                directoryEntryId: "directory_entry_id",
+                contactId: "contact_id",
                 schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -86,10 +86,10 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "contact_id": "contact_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
                       ],
@@ -118,10 +118,10 @@ import Chrt
             items: [
                 NotificationIntentAdHoc1(
                     id: "_id",
+                    contactId: "contact_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
                     ]),
@@ -156,10 +156,10 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "contact_id": "contact_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
                       ],
@@ -188,10 +188,10 @@ import Chrt
             items: [
                 NotificationIntentAdHoc1(
                     id: "_id",
+                    contactId: "contact_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
                     ]),

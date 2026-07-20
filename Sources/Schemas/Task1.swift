@@ -11,12 +11,12 @@ public struct Task1: Codable, Hashable, Sendable {
     public let completedByOrgId: String?
     /// Must be a string starting with `user_`
     public let completedByUserId: String?
+    public let contactIds: [String]?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String?
     public let datetimeWindows: [DateTimeWindow1]?
-    public let directoryEntryIds: [String]?
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?
     public let executorOrgNotes: [TaskExecutorOrgNote1]?
@@ -49,10 +49,10 @@ public struct Task1: Codable, Hashable, Sendable {
         completedAtTimestamp: Date? = nil,
         completedByOrgId: String? = nil,
         completedByUserId: String? = nil,
+        contactIds: [String]? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
         datetimeWindows: [DateTimeWindow1]? = nil,
-        directoryEntryIds: [String]? = nil,
         draftStartedAtTimestamp: Date,
         exceptionAtTimestamp: Date? = nil,
         executorOrgNotes: [TaskExecutorOrgNote1]? = nil,
@@ -82,10 +82,10 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = completedAtTimestamp
         self.completedByOrgId = completedByOrgId
         self.completedByUserId = completedByUserId
+        self.contactIds = contactIds
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.datetimeWindows = datetimeWindows
-        self.directoryEntryIds = directoryEntryIds
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.executorOrgNotes = executorOrgNotes
@@ -118,10 +118,10 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
         self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
+        self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
-        self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.executorOrgNotes = try container.decodeIfPresent([TaskExecutorOrgNote1].self, forKey: .executorOrgNotes)
@@ -155,10 +155,10 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
         try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
+        try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
-        try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.executorOrgNotes, forKey: .executorOrgNotes)
@@ -190,10 +190,10 @@ public struct Task1: Codable, Hashable, Sendable {
         case completedAtTimestamp = "completed_at_timestamp"
         case completedByOrgId = "completed_by_org_id"
         case completedByUserId = "completed_by_user_id"
+        case contactIds = "contact_ids"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case datetimeWindows = "datetime_windows"
-        case directoryEntryIds = "directory_entry_ids"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case executorOrgNotes = "executor_org_notes"

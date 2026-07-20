@@ -45,7 +45,7 @@ public final class OrderTemplatesClient: Sendable {
     /// - Parameter filterDepartmentId: Filter by coordinator department ID.
     /// - Parameter filterCoordinatorLabel: Filter by coordinator label.
     /// - Parameter filterDriverId: Filter by driver ID included in the template.
-    /// - Parameter filterDirectoryEntryId: Filter by directory entry ID included in the template.
+    /// - Parameter filterContactId: Filter by contact ID included in the template.
     /// - Parameter filterTaskListsToApplyAtOrderCreationTaskListId: Filter by task list ID included in order-creation applications.
     /// - Parameter filterTaskListsToApplyAtOrderStagingTaskListId: Filter by task list ID included in staging applications.
     /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value (inclusive).
@@ -55,7 +55,7 @@ public final class OrderTemplatesClient: Sendable {
     /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
     /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterOffChrtReferenceIdStr: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterDepartmentId: String? = nil, filterCoordinatorLabel: String? = nil, filterDriverId: String? = nil, filterDirectoryEntryId: String? = nil, filterTaskListsToApplyAtOrderCreationTaskListId: String? = nil, filterTaskListsToApplyAtOrderStagingTaskListId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateListRes {
+    public func listV1(sortBy: OrderTemplateSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterOffChrtReferenceIdStr: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterDepartmentId: String? = nil, filterCoordinatorLabel: String? = nil, filterDriverId: String? = nil, filterContactId: String? = nil, filterTaskListsToApplyAtOrderCreationTaskListId: String? = nil, filterTaskListsToApplyAtOrderStagingTaskListId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates/list/v1",
@@ -74,7 +74,7 @@ public final class OrderTemplatesClient: Sendable {
                 "filter_department_id": filterDepartmentId.map { .string($0) }, 
                 "filter_coordinator_label": filterCoordinatorLabel.map { .string($0) }, 
                 "filter_driver_id": filterDriverId.map { .string($0) }, 
-                "filter_directory_entry_id": filterDirectoryEntryId.map { .string($0) }, 
+                "filter_contact_id": filterContactId.map { .string($0) }, 
                 "filter_task_lists_to_apply_at_order_creation_task_list_id": filterTaskListsToApplyAtOrderCreationTaskListId.map { .string($0) }, 
                 "filter_task_lists_to_apply_at_order_staging_task_list_id": filterTaskListsToApplyAtOrderStagingTaskListId.map { .string($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 

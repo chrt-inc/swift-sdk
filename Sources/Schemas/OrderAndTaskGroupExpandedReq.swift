@@ -2,9 +2,9 @@ import Foundation
 
 public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public let expandCargos: Bool?
+    public let expandContacts: Bool?
     public let expandCoordinatorOrgCompanyName: Bool?
     public let expandCoordinatorOrgHandle: Bool?
-    public let expandDirectoryEntries: Bool?
     public let expandDriver: Bool?
     public let expandExecutorOrgCompanyName: Bool?
     public let expandExecutorOrgHandle: Bool?
@@ -18,9 +18,9 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
 
     public init(
         expandCargos: Bool? = nil,
+        expandContacts: Bool? = nil,
         expandCoordinatorOrgCompanyName: Bool? = nil,
         expandCoordinatorOrgHandle: Bool? = nil,
-        expandDirectoryEntries: Bool? = nil,
         expandDriver: Bool? = nil,
         expandExecutorOrgCompanyName: Bool? = nil,
         expandExecutorOrgHandle: Bool? = nil,
@@ -32,9 +32,9 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.expandCargos = expandCargos
+        self.expandContacts = expandContacts
         self.expandCoordinatorOrgCompanyName = expandCoordinatorOrgCompanyName
         self.expandCoordinatorOrgHandle = expandCoordinatorOrgHandle
-        self.expandDirectoryEntries = expandDirectoryEntries
         self.expandDriver = expandDriver
         self.expandExecutorOrgCompanyName = expandExecutorOrgCompanyName
         self.expandExecutorOrgHandle = expandExecutorOrgHandle
@@ -49,9 +49,9 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
+        self.expandContacts = try container.decodeIfPresent(Bool.self, forKey: .expandContacts)
         self.expandCoordinatorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgCompanyName)
         self.expandCoordinatorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgHandle)
-        self.expandDirectoryEntries = try container.decodeIfPresent(Bool.self, forKey: .expandDirectoryEntries)
         self.expandDriver = try container.decodeIfPresent(Bool.self, forKey: .expandDriver)
         self.expandExecutorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgCompanyName)
         self.expandExecutorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgHandle)
@@ -67,9 +67,9 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
+        try container.encodeIfPresent(self.expandContacts, forKey: .expandContacts)
         try container.encodeIfPresent(self.expandCoordinatorOrgCompanyName, forKey: .expandCoordinatorOrgCompanyName)
         try container.encodeIfPresent(self.expandCoordinatorOrgHandle, forKey: .expandCoordinatorOrgHandle)
-        try container.encodeIfPresent(self.expandDirectoryEntries, forKey: .expandDirectoryEntries)
         try container.encodeIfPresent(self.expandDriver, forKey: .expandDriver)
         try container.encodeIfPresent(self.expandExecutorOrgCompanyName, forKey: .expandExecutorOrgCompanyName)
         try container.encodeIfPresent(self.expandExecutorOrgHandle, forKey: .expandExecutorOrgHandle)
@@ -83,9 +83,9 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case expandCargos = "expand_cargos"
+        case expandContacts = "expand_contacts"
         case expandCoordinatorOrgCompanyName = "expand_coordinator_org_company_name"
         case expandCoordinatorOrgHandle = "expand_coordinator_org_handle"
-        case expandDirectoryEntries = "expand_directory_entries"
         case expandDriver = "expand_driver"
         case expandExecutorOrgCompanyName = "expand_executor_org_company_name"
         case expandExecutorOrgHandle = "expand_executor_org_handle"

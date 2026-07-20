@@ -21,7 +21,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = CreateOffChrtOrgRes(
-            connectionId: "connection_id",
+            connectionId: Optional("connection_id"),
             offChrtOrgDataId: "off_chrt_org_data_id"
         )
         let response = try await client.orgs.offChrtOrgData.createV1(
@@ -97,7 +97,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -196,7 +196,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]

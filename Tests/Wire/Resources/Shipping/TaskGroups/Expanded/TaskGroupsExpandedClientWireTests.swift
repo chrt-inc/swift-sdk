@@ -131,12 +131,11 @@ import Chrt
                           "schema_version": 1
                         }
                       ],
-                      "directory_entries": [
+                      "contacts": [
                         {
                           "_id": "_id",
-                          "created_by_user_id": "created_by_user_id",
+                          "created_by_org_id": "created_by_org_id",
                           "name": "name",
-                          "owned_by_org_id": "owned_by_org_id",
                           "schema_version": 1
                         }
                       ],
@@ -196,7 +195,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -302,12 +301,11 @@ import Chrt
                             schemaVersion: 1
                         )
                     ]),
-                    directoryEntries: Optional([
-                        DirectoryEntry1(
+                    contacts: Optional([
+                        Contact1(
                             id: "_id",
-                            createdByUserId: "created_by_user_id",
+                            createdByOrgId: "created_by_org_id",
                             name: "name",
-                            ownedByOrgId: "owned_by_org_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -474,12 +472,11 @@ import Chrt
                           "schema_version": 1
                         }
                       ],
-                      "directory_entries": [
+                      "contacts": [
                         {
                           "_id": "_id",
-                          "created_by_user_id": "created_by_user_id",
+                          "created_by_org_id": "created_by_org_id",
                           "name": "name",
-                          "owned_by_org_id": "owned_by_org_id",
                           "schema_version": 1
                         }
                       ],
@@ -539,7 +536,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -645,12 +642,11 @@ import Chrt
                             schemaVersion: 1
                         )
                     ]),
-                    directoryEntries: Optional([
-                        DirectoryEntry1(
+                    contacts: Optional([
+                        Contact1(
                             id: "_id",
-                            createdByUserId: "created_by_user_id",
+                            createdByOrgId: "created_by_org_id",
                             name: "name",
-                            ownedByOrgId: "owned_by_org_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -817,12 +813,11 @@ import Chrt
                           "schema_version": 1
                         }
                       ],
-                      "directory_entries": [
+                      "contacts": [
                         {
                           "_id": "_id",
-                          "created_by_user_id": "created_by_user_id",
+                          "created_by_org_id": "created_by_org_id",
                           "name": "name",
-                          "owned_by_org_id": "owned_by_org_id",
                           "schema_version": 1
                         }
                       ],
@@ -882,7 +877,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -988,12 +983,11 @@ import Chrt
                             schemaVersion: 1
                         )
                     ]),
-                    directoryEntries: Optional([
-                        DirectoryEntry1(
+                    contacts: Optional([
+                        Contact1(
                             id: "_id",
-                            createdByUserId: "created_by_user_id",
+                            createdByOrgId: "created_by_org_id",
                             name: "name",
-                            ownedByOrgId: "owned_by_org_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -1160,12 +1154,11 @@ import Chrt
                           "schema_version": 1
                         }
                       ],
-                      "directory_entries": [
+                      "contacts": [
                         {
                           "_id": "_id",
-                          "created_by_user_id": "created_by_user_id",
+                          "created_by_org_id": "created_by_org_id",
                           "name": "name",
-                          "owned_by_org_id": "owned_by_org_id",
                           "schema_version": 1
                         }
                       ],
@@ -1225,7 +1218,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -1331,12 +1324,11 @@ import Chrt
                             schemaVersion: 1
                         )
                     ]),
-                    directoryEntries: Optional([
-                        DirectoryEntry1(
+                    contacts: Optional([
+                        Contact1(
                             id: "_id",
-                            createdByUserId: "created_by_user_id",
+                            createdByOrgId: "created_by_org_id",
                             name: "name",
-                            ownedByOrgId: "owned_by_org_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -1494,9 +1486,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1641,9 +1630,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

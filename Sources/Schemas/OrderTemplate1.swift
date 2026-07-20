@@ -3,13 +3,14 @@ import Foundation
 public struct OrderTemplate1: Codable, Hashable, Sendable {
     public let id: String
     public let archivedAtTimestamp: Date?
+    public let contactIds: [String]?
     public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
+    public let coordinatorShipperAccountIds: [String]?
     public let createdAtTimestamp: Date
     public let departmentId: String?
     public let description: String?
-    public let directoryEntryIds: [String]?
     public let driverIds: [String]?
     public let executorOrgIds: [String]?
     public let lastEditedAtTimestamp: Date
@@ -34,12 +35,13 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
     public init(
         id: String,
         archivedAtTimestamp: Date? = nil,
+        contactIds: [String]? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
+        coordinatorShipperAccountIds: [String]? = nil,
         createdAtTimestamp: Date,
         departmentId: String? = nil,
         description: String? = nil,
-        directoryEntryIds: [String]? = nil,
         driverIds: [String]? = nil,
         executorOrgIds: [String]? = nil,
         lastEditedAtTimestamp: Date,
@@ -59,12 +61,13 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
     ) {
         self.id = id
         self.archivedAtTimestamp = archivedAtTimestamp
+        self.contactIds = contactIds
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
+        self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.createdAtTimestamp = createdAtTimestamp
         self.departmentId = departmentId
         self.description = description
-        self.directoryEntryIds = directoryEntryIds
         self.driverIds = driverIds
         self.executorOrgIds = executorOrgIds
         self.lastEditedAtTimestamp = lastEditedAtTimestamp
@@ -87,12 +90,13 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.archivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .archivedAtTimestamp)
+        self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
-        self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
         self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
@@ -116,12 +120,13 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.archivedAtTimestamp, forKey: .archivedAtTimestamp)
+        try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encodeIfPresent(self.description, forKey: .description)
-        try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
         try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
@@ -143,12 +148,13 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
         case archivedAtTimestamp = "archived_at_timestamp"
+        case contactIds = "contact_ids"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
+        case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case createdAtTimestamp = "created_at_timestamp"
         case departmentId = "department_id"
         case description
-        case directoryEntryIds = "directory_entry_ids"
         case driverIds = "driver_ids"
         case executorOrgIds = "executor_org_ids"
         case lastEditedAtTimestamp = "last_edited_at_timestamp"

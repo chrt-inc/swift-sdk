@@ -55,9 +55,12 @@ import Chrt
             body: Data(
                 """
                 {
+                  "unresolvable_contact_ids": [
+                    "unresolvable_contact_ids"
+                  ],
                   "unresolvable_coordinator": true,
-                  "unresolvable_directory_entry_ids": [
-                    "unresolvable_directory_entry_ids"
+                  "unresolvable_coordinator_shipper_account_ids": [
+                    "unresolvable_coordinator_shipper_account_ids"
                   ],
                   "unresolvable_driver_ids": [
                     "unresolvable_driver_ids"
@@ -77,9 +80,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderTemplateResolvabilityRes(
+            unresolvableContactIds: Optional([
+                "unresolvable_contact_ids"
+            ]),
             unresolvableCoordinator: Optional(true),
-            unresolvableDirectoryEntryIds: Optional([
-                "unresolvable_directory_entry_ids"
+            unresolvableCoordinatorShipperAccountIds: Optional([
+                "unresolvable_coordinator_shipper_account_ids"
             ]),
             unresolvableDriverIds: Optional([
                 "unresolvable_driver_ids"
@@ -335,6 +341,7 @@ import Chrt
                     "all_entities_are_draft": true,
                     "at_least_one_task_has_time_window": true,
                     "cargos_have_valid_lifecycle": true,
+                    "coordinator_shipper_accounts_match_order": true,
                     "order_has_coordinator": true,
                     "order_has_shipper": true,
                     "order_has_task_groups": true,
@@ -363,6 +370,7 @@ import Chrt
                 allEntitiesAreDraft: Optional(true),
                 atLeastOneTaskHasTimeWindow: Optional(true),
                 cargosHaveValidLifecycle: Optional(true),
+                coordinatorShipperAccountsMatchOrder: Optional(true),
                 orderHasCoordinator: Optional(true),
                 orderHasShipper: Optional(true),
                 orderHasTaskGroups: Optional(true),

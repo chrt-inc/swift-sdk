@@ -4,6 +4,7 @@ public struct OrderDraftValidationRequirements: Codable, Hashable, Sendable {
     public let allEntitiesAreDraft: Bool?
     public let atLeastOneTaskHasTimeWindow: Bool?
     public let cargosHaveValidLifecycle: Bool?
+    public let coordinatorShipperAccountsMatchOrder: Bool?
     public let orderHasCoordinator: Bool?
     public let orderHasShipper: Bool?
     public let orderHasTaskGroups: Bool?
@@ -18,6 +19,7 @@ public struct OrderDraftValidationRequirements: Codable, Hashable, Sendable {
         allEntitiesAreDraft: Bool? = nil,
         atLeastOneTaskHasTimeWindow: Bool? = nil,
         cargosHaveValidLifecycle: Bool? = nil,
+        coordinatorShipperAccountsMatchOrder: Bool? = nil,
         orderHasCoordinator: Bool? = nil,
         orderHasShipper: Bool? = nil,
         orderHasTaskGroups: Bool? = nil,
@@ -30,6 +32,7 @@ public struct OrderDraftValidationRequirements: Codable, Hashable, Sendable {
         self.allEntitiesAreDraft = allEntitiesAreDraft
         self.atLeastOneTaskHasTimeWindow = atLeastOneTaskHasTimeWindow
         self.cargosHaveValidLifecycle = cargosHaveValidLifecycle
+        self.coordinatorShipperAccountsMatchOrder = coordinatorShipperAccountsMatchOrder
         self.orderHasCoordinator = orderHasCoordinator
         self.orderHasShipper = orderHasShipper
         self.orderHasTaskGroups = orderHasTaskGroups
@@ -45,6 +48,7 @@ public struct OrderDraftValidationRequirements: Codable, Hashable, Sendable {
         self.allEntitiesAreDraft = try container.decodeIfPresent(Bool.self, forKey: .allEntitiesAreDraft)
         self.atLeastOneTaskHasTimeWindow = try container.decodeIfPresent(Bool.self, forKey: .atLeastOneTaskHasTimeWindow)
         self.cargosHaveValidLifecycle = try container.decodeIfPresent(Bool.self, forKey: .cargosHaveValidLifecycle)
+        self.coordinatorShipperAccountsMatchOrder = try container.decodeIfPresent(Bool.self, forKey: .coordinatorShipperAccountsMatchOrder)
         self.orderHasCoordinator = try container.decodeIfPresent(Bool.self, forKey: .orderHasCoordinator)
         self.orderHasShipper = try container.decodeIfPresent(Bool.self, forKey: .orderHasShipper)
         self.orderHasTaskGroups = try container.decodeIfPresent(Bool.self, forKey: .orderHasTaskGroups)
@@ -61,6 +65,7 @@ public struct OrderDraftValidationRequirements: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.allEntitiesAreDraft, forKey: .allEntitiesAreDraft)
         try container.encodeIfPresent(self.atLeastOneTaskHasTimeWindow, forKey: .atLeastOneTaskHasTimeWindow)
         try container.encodeIfPresent(self.cargosHaveValidLifecycle, forKey: .cargosHaveValidLifecycle)
+        try container.encodeIfPresent(self.coordinatorShipperAccountsMatchOrder, forKey: .coordinatorShipperAccountsMatchOrder)
         try container.encodeIfPresent(self.orderHasCoordinator, forKey: .orderHasCoordinator)
         try container.encodeIfPresent(self.orderHasShipper, forKey: .orderHasShipper)
         try container.encodeIfPresent(self.orderHasTaskGroups, forKey: .orderHasTaskGroups)
@@ -75,6 +80,7 @@ public struct OrderDraftValidationRequirements: Codable, Hashable, Sendable {
         case allEntitiesAreDraft = "all_entities_are_draft"
         case atLeastOneTaskHasTimeWindow = "at_least_one_task_has_time_window"
         case cargosHaveValidLifecycle = "cargos_have_valid_lifecycle"
+        case coordinatorShipperAccountsMatchOrder = "coordinator_shipper_accounts_match_order"
         case orderHasCoordinator = "order_has_coordinator"
         case orderHasShipper = "order_has_shipper"
         case orderHasTaskGroups = "order_has_task_groups"

@@ -4,6 +4,7 @@ extension Requests {
     public struct OrdersOpenDraftReq: Codable, Hashable, Sendable {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
+        public let coordinatorShipperAccountIds: [String]?
         /// Optional key, unique per caller org, that makes draft creation idempotent: re-sending the same key returns the already-created draft instead of creating a duplicate.
         public let creationIdempotencyKey: String?
         public let departmentId: String?
@@ -28,6 +29,7 @@ extension Requests {
 
         public init(
             coordinatorOrgId: String? = nil,
+            coordinatorShipperAccountIds: [String]? = nil,
             creationIdempotencyKey: String? = nil,
             departmentId: String? = nil,
             label: String? = nil,
@@ -42,6 +44,7 @@ extension Requests {
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.coordinatorOrgId = coordinatorOrgId
+            self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
             self.creationIdempotencyKey = creationIdempotencyKey
             self.departmentId = departmentId
             self.label = label
@@ -59,6 +62,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+            self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
             self.creationIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .creationIdempotencyKey)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.label = try container.decodeIfPresent(String.self, forKey: .label)
@@ -77,6 +81,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+            try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
             try container.encodeIfPresent(self.creationIdempotencyKey, forKey: .creationIdempotencyKey)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
             try container.encodeIfPresent(self.label, forKey: .label)
@@ -93,6 +98,7 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorOrgId = "coordinator_org_id"
+            case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
             case creationIdempotencyKey = "creation_idempotency_key"
             case departmentId = "department_id"
             case label

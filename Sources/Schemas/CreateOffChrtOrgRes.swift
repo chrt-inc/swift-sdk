@@ -1,13 +1,13 @@
 import Foundation
 
 public struct CreateOffChrtOrgRes: Codable, Hashable, Sendable {
-    public let connectionId: String
+    public let connectionId: String?
     public let offChrtOrgDataId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        connectionId: String,
+        connectionId: String? = nil,
         offChrtOrgDataId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct CreateOffChrtOrgRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.connectionId = try container.decode(String.self, forKey: .connectionId)
+        self.connectionId = try container.decodeIfPresent(String.self, forKey: .connectionId)
         self.offChrtOrgDataId = try container.decode(String.self, forKey: .offChrtOrgDataId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -26,7 +26,7 @@ public struct CreateOffChrtOrgRes: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.connectionId, forKey: .connectionId)
+        try container.encodeIfPresent(self.connectionId, forKey: .connectionId)
         try container.encode(self.offChrtOrgDataId, forKey: .offChrtOrgDataId)
     }
 

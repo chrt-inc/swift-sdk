@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("OffChrtVendorClient Wire Tests") struct OffChrtVendorClientWireTests {
+@Suite("AccountsClient Wire Tests") struct AccountsClientWireTests {
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -18,7 +18,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgs.offChrtVendor.createV1(
+        let response = try await client.orgs.accounts.createV1(
             request: .init(
                 name: "name",
                 schemaVersion: 1
@@ -40,7 +40,8 @@ import Chrt
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
                       "name": "name",
-                      "notes": "notes",
+                      "off_chrt_org_data_id": "off_chrt_org_data_id",
+                      "org_id": "org_id",
                       "schema_version": 1
                     }
                   ],
@@ -54,20 +55,25 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OffChrtVendorListRes(
+        let expectedResponse = AccountListRes(
             items: [
-                OffChrtVendor1(
+                Account1(
                     id: "_id",
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     name: "name",
-                    notes: Optional("notes"),
+                    offChrtOrgDataId: Optional("off_chrt_org_data_id"),
+                    orgId: Optional("org_id"),
                     schemaVersion: 1
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.orgs.offChrtVendor.listV1(
+        let response = try await client.orgs.accounts.listV1(
+            filterOrgId: "filter_org_id",
+            filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
+            sortBy: .name,
+            sortOrder: .asc,
             page: 1,
             pageSize: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -75,7 +81,30 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func getByIdV11() async throws -> Void {
+    @Test func updateV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.accounts.updateV1(
+            accountId: "account_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -85,7 +114,8 @@ import Chrt
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
                   "name": "name",
-                  "notes": "notes",
+                  "off_chrt_org_data_id": "off_chrt_org_data_id",
+                  "org_id": "org_id",
                   "schema_version": 1
                 }
                 """.utf8
@@ -96,61 +126,17 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OffChrtVendor1(
+        let expectedResponse = Account1(
             id: "_id",
             createdByOrgId: "created_by_org_id",
             createdByUserId: "created_by_user_id",
             name: "name",
-            notes: Optional("notes"),
+            offChrtOrgDataId: Optional("off_chrt_org_data_id"),
+            orgId: Optional("org_id"),
             schemaVersion: 1
         )
-        let response = try await client.orgs.offChrtVendor.getByIdV1(
-            id: "id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func deleteByIdV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.orgs.offChrtVendor.deleteByIdV1(
-            id: "id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func updateByIdV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.orgs.offChrtVendor.updateByIdV1(
-            id: "id",
-            request: .init(),
+        let response = try await client.orgs.accounts.getV1(
+            accountId: "account_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

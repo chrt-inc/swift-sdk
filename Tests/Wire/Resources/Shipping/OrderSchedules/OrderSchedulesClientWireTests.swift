@@ -175,9 +175,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterIntendedStatus: [
-                .draft
-            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -314,12 +311,15 @@ import Chrt
                   "orchestrator_schedule_id": "orchestrator_schedule_id",
                   "orchestrator_schedule_paused": true,
                   "order_template_core": {
+                    "contact_ids": [
+                      "contact_ids"
+                    ],
                     "coordinator_label": "coordinator_label",
                     "coordinator_org_id": "coordinator_org_id",
-                    "department_id": "department_id",
-                    "directory_entry_ids": [
-                      "directory_entry_ids"
+                    "coordinator_shipper_account_ids": [
+                      "coordinator_shipper_account_ids"
                     ],
+                    "department_id": "department_id",
                     "driver_ids": [
                       "driver_ids"
                     ],
@@ -412,12 +412,15 @@ import Chrt
             orchestratorScheduleId: Optional("orchestrator_schedule_id"),
             orchestratorSchedulePaused: Optional(true),
             orderTemplateCore: Optional(OrderTemplateCore1(
+                contactIds: Optional([
+                    "contact_ids"
+                ]),
                 coordinatorLabel: Optional("coordinator_label"),
                 coordinatorOrgId: Optional("coordinator_org_id"),
-                departmentId: Optional("department_id"),
-                directoryEntryIds: Optional([
-                    "directory_entry_ids"
+                coordinatorShipperAccountIds: Optional([
+                    "coordinator_shipper_account_ids"
                 ]),
+                departmentId: Optional("department_id"),
                 driverIds: Optional([
                     "driver_ids"
                 ]),

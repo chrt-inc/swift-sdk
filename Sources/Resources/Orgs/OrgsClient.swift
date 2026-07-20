@@ -1,21 +1,21 @@
 import Foundation
 
 public final class OrgsClient: Sendable {
+    public let accounts: AccountsClient
     public let complianceDocuments: ComplianceDocumentsClient
     public let connections: ConnectionsClient
-    public let directoryEntries: DirectoryEntriesClient
+    public let contacts: ContactsClient
     public let offChrtOrgData: OffChrtOrgDataClient
-    public let offChrtVendor: OffChrtVendorClient
     public let privateData: PrivateDataClient
     public let publicData: PublicDataClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.accounts = AccountsClient(config: config)
         self.complianceDocuments = ComplianceDocumentsClient(config: config)
         self.connections = ConnectionsClient(config: config)
-        self.directoryEntries = DirectoryEntriesClient(config: config)
+        self.contacts = ContactsClient(config: config)
         self.offChrtOrgData = OffChrtOrgDataClient(config: config)
-        self.offChrtVendor = OffChrtVendorClient(config: config)
         self.privateData = PrivateDataClient(config: config)
         self.publicData = PublicDataClient(config: config)
         self.httpClient = HTTPClient(config: config)

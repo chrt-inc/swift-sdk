@@ -2,16 +2,17 @@ import Foundation
 
 extension Requests {
     public struct OrderTemplateClientUpdate1: Codable, Hashable, Sendable {
+        public let contactIds: [String]?
         public let coordinatorLabel: String?
         public let coordinatorLabelSetToNone: Bool?
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?
+        public let coordinatorShipperAccountIds: [String]?
         public let departmentId: String?
         public let departmentIdSetToNone: Bool?
         public let description: String?
         public let descriptionSetToNone: Bool?
-        public let directoryEntryIds: [String]?
         public let driverIds: [String]?
         public let executorOrgIds: [String]?
         public let name: String?
@@ -31,15 +32,16 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            contactIds: [String]? = nil,
             coordinatorLabel: String? = nil,
             coordinatorLabelSetToNone: Bool? = nil,
             coordinatorOrgId: String? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
+            coordinatorShipperAccountIds: [String]? = nil,
             departmentId: String? = nil,
             departmentIdSetToNone: Bool? = nil,
             description: String? = nil,
             descriptionSetToNone: Bool? = nil,
-            directoryEntryIds: [String]? = nil,
             driverIds: [String]? = nil,
             executorOrgIds: [String]? = nil,
             name: String? = nil,
@@ -56,15 +58,16 @@ extension Requests {
             textSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.contactIds = contactIds
             self.coordinatorLabel = coordinatorLabel
             self.coordinatorLabelSetToNone = coordinatorLabelSetToNone
             self.coordinatorOrgId = coordinatorOrgId
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
+            self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
             self.departmentId = departmentId
             self.departmentIdSetToNone = departmentIdSetToNone
             self.description = description
             self.descriptionSetToNone = descriptionSetToNone
-            self.directoryEntryIds = directoryEntryIds
             self.driverIds = driverIds
             self.executorOrgIds = executorOrgIds
             self.name = name
@@ -84,15 +87,16 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
             self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
             self.coordinatorLabelSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorLabelSetToNone)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
+            self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.departmentIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .departmentIdSetToNone)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
-            self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
             self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
             self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -113,15 +117,16 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
             try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
             try container.encodeIfPresent(self.coordinatorLabelSetToNone, forKey: .coordinatorLabelSetToNone)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
+            try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
             try container.encodeIfPresent(self.departmentIdSetToNone, forKey: .departmentIdSetToNone)
             try container.encodeIfPresent(self.description, forKey: .description)
             try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
-            try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
             try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
             try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
             try container.encodeIfPresent(self.name, forKey: .name)
@@ -140,15 +145,16 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case contactIds = "contact_ids"
             case coordinatorLabel = "coordinator_label"
             case coordinatorLabelSetToNone = "coordinator_label__set_to_None"
             case coordinatorOrgId = "coordinator_org_id"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
+            case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
             case departmentId = "department_id"
             case departmentIdSetToNone = "department_id__set_to_None"
             case description
             case descriptionSetToNone = "description__set_to_None"
-            case directoryEntryIds = "directory_entry_ids"
             case driverIds = "driver_ids"
             case executorOrgIds = "executor_org_ids"
             case name

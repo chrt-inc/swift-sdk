@@ -4,11 +4,12 @@ import Foundation
 /// 
 /// NOTE - some fields have multiple values and must be properly mapped to an entity by the order builder, e.g. for `driver_ids` each resolves to a single task group
 public struct OrderTemplateCore1: Codable, Hashable, Sendable {
+    public let contactIds: [String]?
     public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
+    public let coordinatorShipperAccountIds: [String]?
     public let departmentId: String?
-    public let directoryEntryIds: [String]?
     public let driverIds: [String]?
     public let executorOrgIds: [String]?
     public let offChrtExecutorOrgDataIds: [String]?
@@ -23,10 +24,11 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        contactIds: [String]? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
+        coordinatorShipperAccountIds: [String]? = nil,
         departmentId: String? = nil,
-        directoryEntryIds: [String]? = nil,
         driverIds: [String]? = nil,
         executorOrgIds: [String]? = nil,
         offChrtExecutorOrgDataIds: [String]? = nil,
@@ -38,10 +40,11 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
         text: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.contactIds = contactIds
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
+        self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.departmentId = departmentId
-        self.directoryEntryIds = directoryEntryIds
         self.driverIds = driverIds
         self.executorOrgIds = executorOrgIds
         self.offChrtExecutorOrgDataIds = offChrtExecutorOrgDataIds
@@ -56,10 +59,11 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
-        self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.driverIds = try container.decodeIfPresent([String].self, forKey: .driverIds)
         self.executorOrgIds = try container.decodeIfPresent([String].self, forKey: .executorOrgIds)
         self.offChrtExecutorOrgDataIds = try container.decodeIfPresent([String].self, forKey: .offChrtExecutorOrgDataIds)
@@ -75,10 +79,11 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
-        try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encodeIfPresent(self.driverIds, forKey: .driverIds)
         try container.encodeIfPresent(self.executorOrgIds, forKey: .executorOrgIds)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataIds, forKey: .offChrtExecutorOrgDataIds)
@@ -92,10 +97,11 @@ public struct OrderTemplateCore1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case contactIds = "contact_ids"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
+        case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case departmentId = "department_id"
-        case directoryEntryIds = "directory_entry_ids"
         case driverIds = "driver_ids"
         case executorOrgIds = "executor_org_ids"
         case offChrtExecutorOrgDataIds = "off_chrt_executor_org_data_ids"

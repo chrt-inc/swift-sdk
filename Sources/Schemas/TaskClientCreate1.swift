@@ -2,8 +2,8 @@ import Foundation
 
 public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let action: Action?
+    public let contactIds: [String]?
     public let datetimeWindows: [DateTimeWindow1]?
-    public let directoryEntryIds: [String]?
     public let geofenceDistanceMiles: Double?
     public let location: LocationFeature?
     public let orderPlacerComments: String?
@@ -13,8 +13,8 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
 
     public init(
         action: Action? = nil,
+        contactIds: [String]? = nil,
         datetimeWindows: [DateTimeWindow1]? = nil,
-        directoryEntryIds: [String]? = nil,
         geofenceDistanceMiles: Double? = nil,
         location: LocationFeature? = nil,
         orderPlacerComments: String? = nil,
@@ -22,8 +22,8 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.action = action
+        self.contactIds = contactIds
         self.datetimeWindows = datetimeWindows
-        self.directoryEntryIds = directoryEntryIds
         self.geofenceDistanceMiles = geofenceDistanceMiles
         self.location = location
         self.orderPlacerComments = orderPlacerComments
@@ -34,8 +34,8 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
-        self.directoryEntryIds = try container.decodeIfPresent([String].self, forKey: .directoryEntryIds)
         self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
@@ -47,8 +47,8 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
         try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
-        try container.encodeIfPresent(self.directoryEntryIds, forKey: .directoryEntryIds)
         try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
@@ -58,8 +58,8 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case action
+        case contactIds = "contact_ids"
         case datetimeWindows = "datetime_windows"
-        case directoryEntryIds = "directory_entry_ids"
         case geofenceDistanceMiles = "geofence_distance_miles"
         case location
         case orderPlacerComments = "order_placer_comments"

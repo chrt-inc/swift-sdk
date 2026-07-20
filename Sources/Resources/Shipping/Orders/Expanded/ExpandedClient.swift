@@ -68,8 +68,9 @@ public final class ExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
+    /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForCoordinatorOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorDepartmentId: String? = nil, filterCoordinatorAssignedUserIds: String? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForCoordinatorRes {
+    public func listForCoordinatorOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterAwbNumber: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorDepartmentId: String? = nil, filterCoordinatorAssignedUserIds: String? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForCoordinatorRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_coordinator_operators/v1",
@@ -81,6 +82,7 @@ public final class ExpandedClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_order_classification_by_task_group_type": filterOrderClassificationByTaskGroupType.map { .string($0.rawValue) }, 
+                "filter_awb_number": filterAwbNumber.map { .string($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_staged_at_timestamp_lte": filterStagedAtTimestampLte.map { .date($0) }, 
@@ -111,8 +113,9 @@ public final class ExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
+    /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForExecutorOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForExecutorRes {
+    public func listForExecutorOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterAwbNumber: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForExecutorRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_executor_operators/v1",
@@ -124,6 +127,7 @@ public final class ExpandedClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_order_classification_by_task_group_type": filterOrderClassificationByTaskGroupType.map { .string($0.rawValue) }, 
+                "filter_awb_number": filterAwbNumber.map { .string($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_staged_at_timestamp_lte": filterStagedAtTimestampLte.map { .date($0) }, 
@@ -151,8 +155,9 @@ public final class ExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
+    /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorDepartmentId: String? = nil, filterCoordinatorAssignedUserIds: String? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
+    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterAwbNumber: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorDepartmentId: String? = nil, filterCoordinatorAssignedUserIds: String? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_provider_operators/v1",
@@ -165,6 +170,7 @@ public final class ExpandedClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_order_classification_by_task_group_type": filterOrderClassificationByTaskGroupType.map { .string($0.rawValue) }, 
+                "filter_awb_number": filterAwbNumber.map { .string($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_staged_at_timestamp_lte": filterStagedAtTimestampLte.map { .date($0) }, 
@@ -196,8 +202,9 @@ public final class ExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
+    /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForShipperRes {
+    public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: OrderStatusEnum1? = nil, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil, filterAwbNumber: String? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForShipperRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_shipper_operators/v1",
@@ -209,6 +216,7 @@ public final class ExpandedClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_order_classification_by_task_group_type": filterOrderClassificationByTaskGroupType.map { .string($0.rawValue) }, 
+                "filter_awb_number": filterAwbNumber.map { .string($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_staged_at_timestamp_lte": filterStagedAtTimestampLte.map { .date($0) }, 

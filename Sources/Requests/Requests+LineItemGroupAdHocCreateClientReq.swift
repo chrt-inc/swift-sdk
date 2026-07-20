@@ -8,7 +8,6 @@ extension Requests {
         public let ownedByOrgId: String
         public let paymentDestinationDriverId: String?
         public let paymentDestinationOffChrtProviderOrgDataId: String?
-        public let paymentDestinationOffChrtVendorId: String?
         /// Must be a string starting with `org_`
         public let paymentDestinationOrgId: String?
         public let paymentOriginOffChrtShipperOrgDataId: String?
@@ -23,7 +22,6 @@ extension Requests {
             ownedByOrgId: String,
             paymentDestinationDriverId: String? = nil,
             paymentDestinationOffChrtProviderOrgDataId: String? = nil,
-            paymentDestinationOffChrtVendorId: String? = nil,
             paymentDestinationOrgId: String? = nil,
             paymentOriginOffChrtShipperOrgDataId: String? = nil,
             paymentOriginOrgId: String? = nil,
@@ -34,7 +32,6 @@ extension Requests {
             self.ownedByOrgId = ownedByOrgId
             self.paymentDestinationDriverId = paymentDestinationDriverId
             self.paymentDestinationOffChrtProviderOrgDataId = paymentDestinationOffChrtProviderOrgDataId
-            self.paymentDestinationOffChrtVendorId = paymentDestinationOffChrtVendorId
             self.paymentDestinationOrgId = paymentDestinationOrgId
             self.paymentOriginOffChrtShipperOrgDataId = paymentOriginOffChrtShipperOrgDataId
             self.paymentOriginOrgId = paymentOriginOrgId
@@ -48,7 +45,6 @@ extension Requests {
             self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
             self.paymentDestinationDriverId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationDriverId)
             self.paymentDestinationOffChrtProviderOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtProviderOrgDataId)
-            self.paymentDestinationOffChrtVendorId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOffChrtVendorId)
             self.paymentDestinationOrgId = try container.decodeIfPresent(String.self, forKey: .paymentDestinationOrgId)
             self.paymentOriginOffChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOffChrtShipperOrgDataId)
             self.paymentOriginOrgId = try container.decodeIfPresent(String.self, forKey: .paymentOriginOrgId)
@@ -63,7 +59,6 @@ extension Requests {
             try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
             try container.encodeIfPresent(self.paymentDestinationDriverId, forKey: .paymentDestinationDriverId)
             try container.encodeIfPresent(self.paymentDestinationOffChrtProviderOrgDataId, forKey: .paymentDestinationOffChrtProviderOrgDataId)
-            try container.encodeIfPresent(self.paymentDestinationOffChrtVendorId, forKey: .paymentDestinationOffChrtVendorId)
             try container.encodeIfPresent(self.paymentDestinationOrgId, forKey: .paymentDestinationOrgId)
             try container.encodeIfPresent(self.paymentOriginOffChrtShipperOrgDataId, forKey: .paymentOriginOffChrtShipperOrgDataId)
             try container.encodeIfPresent(self.paymentOriginOrgId, forKey: .paymentOriginOrgId)
@@ -76,7 +71,6 @@ extension Requests {
             case ownedByOrgId = "owned_by_org_id"
             case paymentDestinationDriverId = "payment_destination_driver_id"
             case paymentDestinationOffChrtProviderOrgDataId = "payment_destination_off_chrt_provider_org_data_id"
-            case paymentDestinationOffChrtVendorId = "payment_destination_off_chrt_vendor_id"
             case paymentDestinationOrgId = "payment_destination_org_id"
             case paymentOriginOffChrtShipperOrgDataId = "payment_origin_off_chrt_shipper_org_data_id"
             case paymentOriginOrgId = "payment_origin_org_id"

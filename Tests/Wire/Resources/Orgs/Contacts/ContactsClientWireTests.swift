@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("DirectoryEntriesClient Wire Tests") struct DirectoryEntriesClientWireTests {
+@Suite("ContactsClient Wire Tests") struct ContactsClientWireTests {
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -18,7 +18,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.orgs.directoryEntries.createV1(
+        let response = try await client.orgs.contacts.createV1(
             request: .init(
                 name: "name",
                 schemaVersion: 1
@@ -43,8 +43,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.directoryEntries.deleteV1(
-            directoryEntryId: "directory_entry_id",
+        let response = try await client.orgs.contacts.deleteV1(
+            contactId: "contact_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -59,10 +59,9 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
-                      "created_by_user_id": "created_by_user_id",
+                      "account_id": "account_id",
+                      "created_by_org_id": "created_by_org_id",
                       "email_address": "email_address",
-                      "entry_off_chrt_org_data_id": "entry_off_chrt_org_data_id",
-                      "entry_org_id": "entry_org_id",
                       "job_title": "job_title",
                       "location": {
                         "geometry": {
@@ -80,7 +79,8 @@ import Chrt
                       },
                       "name": "name",
                       "notes": "notes",
-                      "owned_by_org_id": "owned_by_org_id",
+                      "off_chrt_org_data_id": "off_chrt_org_data_id",
+                      "org_id": "org_id",
                       "phone_number": "phone_number",
                       "schema_version": 1
                     }
@@ -95,14 +95,13 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = DirectoryEntryListRes(
+        let expectedResponse = ContactListRes(
             items: [
-                DirectoryEntry1(
+                Contact1(
                     id: "_id",
-                    createdByUserId: "created_by_user_id",
+                    accountId: Optional("account_id"),
+                    createdByOrgId: "created_by_org_id",
                     emailAddress: Optional("email_address"),
-                    entryOffChrtOrgDataId: Optional("entry_off_chrt_org_data_id"),
-                    entryOrgId: Optional("entry_org_id"),
                     jobTitle: Optional("job_title"),
                     location: Optional(LocationFeature(
                         geometry: .geometryCollection(
@@ -111,7 +110,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -124,17 +123,19 @@ import Chrt
                     )),
                     name: "name",
                     notes: Optional("notes"),
-                    ownedByOrgId: "owned_by_org_id",
+                    offChrtOrgDataId: Optional("off_chrt_org_data_id"),
+                    orgId: Optional("org_id"),
                     phoneNumber: Optional("phone_number"),
                     schemaVersion: 1
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.orgs.directoryEntries.listV1(
+        let response = try await client.orgs.contacts.listV1(
             search: "search",
-            filterEntryOrgId: "filter_entry_org_id",
-            filterEntryOffChrtOrgDataId: "filter_entry_off_chrt_org_data_id",
+            filterOrgId: "filter_org_id",
+            filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
+            filterAccountId: "filter_account_id",
             sortBy: .name,
             sortOrder: .asc,
             page: 1,
@@ -159,8 +160,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.orgs.directoryEntries.updateV1(
-            directoryEntryId: "directory_entry_id",
+        let response = try await client.orgs.contacts.updateV1(
+            contactId: "contact_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -174,10 +175,9 @@ import Chrt
                 """
                 {
                   "_id": "_id",
-                  "created_by_user_id": "created_by_user_id",
+                  "account_id": "account_id",
+                  "created_by_org_id": "created_by_org_id",
                   "email_address": "email_address",
-                  "entry_off_chrt_org_data_id": "entry_off_chrt_org_data_id",
-                  "entry_org_id": "entry_org_id",
                   "job_title": "job_title",
                   "location": {
                     "bbox": [
@@ -205,7 +205,8 @@ import Chrt
                   },
                   "name": "name",
                   "notes": "notes",
-                  "owned_by_org_id": "owned_by_org_id",
+                  "off_chrt_org_data_id": "off_chrt_org_data_id",
+                  "org_id": "org_id",
                   "phone_number": "phone_number",
                   "schema_version": 1
                 }
@@ -217,12 +218,11 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = DirectoryEntry1(
+        let expectedResponse = Contact1(
             id: "_id",
-            createdByUserId: "created_by_user_id",
+            accountId: Optional("account_id"),
+            createdByOrgId: "created_by_org_id",
             emailAddress: Optional("email_address"),
-            entryOffChrtOrgDataId: Optional("entry_off_chrt_org_data_id"),
-            entryOrgId: Optional("entry_org_id"),
             jobTitle: Optional("job_title"),
             location: Optional(LocationFeature(
                 bbox: Optional([
@@ -238,7 +238,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]
@@ -258,12 +258,13 @@ import Chrt
             )),
             name: "name",
             notes: Optional("notes"),
-            ownedByOrgId: "owned_by_org_id",
+            offChrtOrgDataId: Optional("off_chrt_org_data_id"),
+            orgId: Optional("org_id"),
             phoneNumber: Optional("phone_number"),
             schemaVersion: 1
         )
-        let response = try await client.orgs.directoryEntries.getV1(
-            directoryEntryId: "directory_entry_id",
+        let response = try await client.orgs.contacts.getV1(
+            contactId: "contact_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

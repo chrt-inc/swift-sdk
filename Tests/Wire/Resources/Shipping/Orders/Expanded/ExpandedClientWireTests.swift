@@ -14,10 +14,10 @@ import Chrt
                   "notification_intents_ad_hoc": [
                     {
                       "_id": "_id",
+                      "contact_id": "contact_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
                       ],
@@ -46,6 +46,9 @@ import Chrt
                     "coordinator_department_id": "coordinator_department_id",
                     "coordinator_label": "coordinator_label",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_shipper_account_ids": [
+                      "coordinator_shipper_account_ids"
+                    ],
                     "coordinator_task_lists_to_apply_at_order_staging": [
                       {
                         "task_list_id": "task_list_id"
@@ -138,10 +141,10 @@ import Chrt
             notificationIntentsAdHoc: Optional([
                 NotificationIntentAdHoc1(
                     id: "_id",
+                    contactId: "contact_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
                     ]),
@@ -170,6 +173,9 @@ import Chrt
                 coordinatorDepartmentId: Optional("coordinator_department_id"),
                 coordinatorLabel: Optional("coordinator_label"),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorShipperAccountIds: Optional([
+                    "coordinator_shipper_account_ids"
+                ]),
                 coordinatorTaskListsToApplyAtOrderStaging: Optional([
                     TaskListToApplyToOrder1(
                         taskListId: "task_list_id"
@@ -269,10 +275,10 @@ import Chrt
                   "notification_intents_ad_hoc": [
                     {
                       "_id": "_id",
+                      "contact_id": "contact_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
                       ],
@@ -374,10 +380,10 @@ import Chrt
             notificationIntentsAdHoc: Optional([
                 NotificationIntentAdHoc1(
                     id: "_id",
+                    contactId: "contact_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
                     ]),
@@ -486,10 +492,10 @@ import Chrt
                   "notification_intents_ad_hoc": [
                     {
                       "_id": "_id",
+                      "contact_id": "contact_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
                       ],
@@ -518,6 +524,9 @@ import Chrt
                     "coordinator_department_id": "coordinator_department_id",
                     "coordinator_label": "coordinator_label",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_shipper_account_ids": [
+                      "coordinator_shipper_account_ids"
+                    ],
                     "coordinator_task_lists_to_apply_at_order_staging": [
                       {
                         "task_list_id": "task_list_id"
@@ -613,10 +622,10 @@ import Chrt
             notificationIntentsAdHoc: Optional([
                 NotificationIntentAdHoc1(
                     id: "_id",
+                    contactId: "contact_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
                     ]),
@@ -645,6 +654,9 @@ import Chrt
                 coordinatorDepartmentId: Optional("coordinator_department_id"),
                 coordinatorLabel: Optional("coordinator_label"),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorShipperAccountIds: Optional([
+                    "coordinator_shipper_account_ids"
+                ]),
                 coordinatorTaskListsToApplyAtOrderStaging: Optional([
                     TaskListToApplyToOrder1(
                         taskListId: "task_list_id"
@@ -747,10 +759,10 @@ import Chrt
                   "notification_intents_ad_hoc": [
                     {
                       "_id": "_id",
+                      "contact_id": "contact_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
-                      "directory_entry_id": "directory_entry_id",
                       "email_events": [
                         "shipping.order.staged"
                       ],
@@ -861,10 +873,10 @@ import Chrt
             notificationIntentsAdHoc: Optional([
                 NotificationIntentAdHoc1(
                     id: "_id",
+                    contactId: "contact_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
-                    directoryEntryId: "directory_entry_id",
                     emailEvents: Optional([
                         .shippingOrderStaged
                     ]),
@@ -984,10 +996,10 @@ import Chrt
                       "notification_intents_ad_hoc": [
                         {
                           "_id": "_id",
+                          "contact_id": "contact_id",
                           "created_at_timestamp": "2024-01-15T09:30:00Z",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "directory_entry_id": "directory_entry_id",
                           "schema_version": 1
                         }
                       ],
@@ -1033,10 +1045,10 @@ import Chrt
                     notificationIntentsAdHoc: Optional([
                         NotificationIntentAdHoc1(
                             id: "_id",
+                            contactId: "contact_id",
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            directoryEntryId: "directory_entry_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -1072,12 +1084,7 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
+            filterAwbNumber: "filter_awb_number",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1094,9 +1101,6 @@ import Chrt
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1119,10 +1123,10 @@ import Chrt
                       "notification_intents_ad_hoc": [
                         {
                           "_id": "_id",
+                          "contact_id": "contact_id",
                           "created_at_timestamp": "2024-01-15T09:30:00Z",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "directory_entry_id": "directory_entry_id",
                           "schema_version": 1
                         }
                       ],
@@ -1167,10 +1171,10 @@ import Chrt
                     notificationIntentsAdHoc: Optional([
                         NotificationIntentAdHoc1(
                             id: "_id",
+                            contactId: "contact_id",
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            directoryEntryId: "directory_entry_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -1205,12 +1209,7 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
+            filterAwbNumber: "filter_awb_number",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1247,10 +1246,10 @@ import Chrt
                       "notification_intents_ad_hoc": [
                         {
                           "_id": "_id",
+                          "contact_id": "contact_id",
                           "created_at_timestamp": "2024-01-15T09:30:00Z",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "directory_entry_id": "directory_entry_id",
                           "schema_version": 1
                         }
                       ],
@@ -1299,10 +1298,10 @@ import Chrt
                     notificationIntentsAdHoc: Optional([
                         NotificationIntentAdHoc1(
                             id: "_id",
+                            contactId: "contact_id",
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            directoryEntryId: "directory_entry_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -1342,12 +1341,7 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
+            filterAwbNumber: "filter_awb_number",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1365,9 +1359,6 @@ import Chrt
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1390,10 +1381,10 @@ import Chrt
                       "notification_intents_ad_hoc": [
                         {
                           "_id": "_id",
+                          "contact_id": "contact_id",
                           "created_at_timestamp": "2024-01-15T09:30:00Z",
                           "created_by_org_id": "created_by_org_id",
                           "created_by_user_id": "created_by_user_id",
-                          "directory_entry_id": "directory_entry_id",
                           "schema_version": 1
                         }
                       ],
@@ -1439,10 +1430,10 @@ import Chrt
                     notificationIntentsAdHoc: Optional([
                         NotificationIntentAdHoc1(
                             id: "_id",
+                            contactId: "contact_id",
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             createdByOrgId: "created_by_org_id",
                             createdByUserId: "created_by_user_id",
-                            directoryEntryId: "directory_entry_id",
                             schemaVersion: 1
                         )
                     ]),
@@ -1478,12 +1469,7 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
+            filterAwbNumber: "filter_awb_number",
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

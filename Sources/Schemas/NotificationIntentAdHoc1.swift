@@ -2,12 +2,12 @@ import Foundation
 
 public struct NotificationIntentAdHoc1: Codable, Hashable, Sendable {
     public let id: String
+    public let contactId: String
     public let createdAtTimestamp: Date
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
-    public let directoryEntryId: String
     public let emailEvents: [NotificationEventsForAdHocEnum]?
     public let orderId: String?
     public let pushEvents: [NotificationEventsForAdHocEnum]?
@@ -19,10 +19,10 @@ public struct NotificationIntentAdHoc1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        contactId: String,
         createdAtTimestamp: Date,
         createdByOrgId: String,
         createdByUserId: String,
-        directoryEntryId: String,
         emailEvents: [NotificationEventsForAdHocEnum]? = nil,
         orderId: String? = nil,
         pushEvents: [NotificationEventsForAdHocEnum]? = nil,
@@ -32,10 +32,10 @@ public struct NotificationIntentAdHoc1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.contactId = contactId
         self.createdAtTimestamp = createdAtTimestamp
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
-        self.directoryEntryId = directoryEntryId
         self.emailEvents = emailEvents
         self.orderId = orderId
         self.pushEvents = pushEvents
@@ -48,10 +48,10 @@ public struct NotificationIntentAdHoc1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.contactId = try container.decode(String.self, forKey: .contactId)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
-        self.directoryEntryId = try container.decode(String.self, forKey: .directoryEntryId)
         self.emailEvents = try container.decodeIfPresent([NotificationEventsForAdHocEnum].self, forKey: .emailEvents)
         self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
         self.pushEvents = try container.decodeIfPresent([NotificationEventsForAdHocEnum].self, forKey: .pushEvents)
@@ -65,10 +65,10 @@ public struct NotificationIntentAdHoc1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.contactId, forKey: .contactId)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
-        try container.encode(self.directoryEntryId, forKey: .directoryEntryId)
         try container.encodeIfPresent(self.emailEvents, forKey: .emailEvents)
         try container.encodeIfPresent(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.pushEvents, forKey: .pushEvents)
@@ -80,10 +80,10 @@ public struct NotificationIntentAdHoc1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case contactId = "contact_id"
         case createdAtTimestamp = "created_at_timestamp"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
-        case directoryEntryId = "directory_entry_id"
         case emailEvents = "email_events"
         case orderId = "order_id"
         case pushEvents = "push_events"

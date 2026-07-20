@@ -31,13 +31,12 @@ import Chrt
             body: Data(
                 """
                 {
-                  "directory_entries": [
+                  "contacts": [
                     {
                       "_id": "_id",
-                      "created_by_user_id": "created_by_user_id",
+                      "account_id": "account_id",
+                      "created_by_org_id": "created_by_org_id",
                       "email_address": "email_address",
-                      "entry_off_chrt_org_data_id": "entry_off_chrt_org_data_id",
-                      "entry_org_id": "entry_org_id",
                       "job_title": "job_title",
                       "location": {
                         "geometry": {
@@ -55,7 +54,8 @@ import Chrt
                       },
                       "name": "name",
                       "notes": "notes",
-                      "owned_by_org_id": "owned_by_org_id",
+                      "off_chrt_org_data_id": "off_chrt_org_data_id",
+                      "org_id": "org_id",
                       "phone_number": "phone_number",
                       "schema_version": 1
                     }
@@ -162,14 +162,17 @@ import Chrt
                   "order_template": {
                     "_id": "_id",
                     "archived_at_timestamp": "2024-01-15T09:30:00Z",
+                    "contact_ids": [
+                      "contact_ids"
+                    ],
                     "coordinator_label": "coordinator_label",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_shipper_account_ids": [
+                      "coordinator_shipper_account_ids"
+                    ],
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "department_id": "department_id",
                     "description": "description",
-                    "directory_entry_ids": [
-                      "directory_entry_ids"
-                    ],
                     "driver_ids": [
                       "driver_ids"
                     ],
@@ -214,6 +217,9 @@ import Chrt
                       "coordinator_department_id": "coordinator_department_id",
                       "coordinator_label": "coordinator_label",
                       "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_shipper_account_ids": [
+                        "coordinator_shipper_account_ids"
+                      ],
                       "coordinator_task_lists_to_apply_at_order_staging": [
                         {
                           "task_list_id": "task_list_id"
@@ -260,13 +266,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = OrderTemplateExpanded1(
-            directoryEntries: Optional([
-                DirectoryEntry1(
+            contacts: Optional([
+                Contact1(
                     id: "_id",
-                    createdByUserId: "created_by_user_id",
+                    accountId: Optional("account_id"),
+                    createdByOrgId: "created_by_org_id",
                     emailAddress: Optional("email_address"),
-                    entryOffChrtOrgDataId: Optional("entry_off_chrt_org_data_id"),
-                    entryOrgId: Optional("entry_org_id"),
                     jobTitle: Optional("job_title"),
                     location: Optional(LocationFeature(
                         geometry: .geometryCollection(
@@ -275,7 +280,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -288,7 +293,8 @@ import Chrt
                     )),
                     name: "name",
                     notes: Optional("notes"),
-                    ownedByOrgId: "owned_by_org_id",
+                    offChrtOrgDataId: Optional("off_chrt_org_data_id"),
+                    orgId: Optional("org_id"),
                     phoneNumber: Optional("phone_number"),
                     schemaVersion: 1
                 )
@@ -310,7 +316,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -361,7 +367,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -391,7 +397,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -409,14 +415,17 @@ import Chrt
             orderTemplate: OrderTemplate1(
                 id: "_id",
                 archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                contactIds: Optional([
+                    "contact_ids"
+                ]),
                 coordinatorLabel: Optional("coordinator_label"),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorShipperAccountIds: Optional([
+                    "coordinator_shipper_account_ids"
+                ]),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 departmentId: Optional("department_id"),
                 description: Optional("description"),
-                directoryEntryIds: Optional([
-                    "directory_entry_ids"
-                ]),
                 driverIds: Optional([
                     "driver_ids"
                 ]),
@@ -461,6 +470,9 @@ import Chrt
                     coordinatorDepartmentId: Optional("coordinator_department_id"),
                     coordinatorLabel: Optional("coordinator_label"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorShipperAccountIds: Optional([
+                        "coordinator_shipper_account_ids"
+                    ]),
                     coordinatorTaskListsToApplyAtOrderStaging: Optional([
                         TaskListToApplyToOrder1(
                             taskListId: "task_list_id"
@@ -515,14 +527,17 @@ import Chrt
                     {
                       "_id": "_id",
                       "archived_at_timestamp": "2024-01-15T09:30:00Z",
+                      "contact_ids": [
+                        "contact_ids"
+                      ],
                       "coordinator_label": "coordinator_label",
                       "coordinator_org_id": "coordinator_org_id",
+                      "coordinator_shipper_account_ids": [
+                        "coordinator_shipper_account_ids"
+                      ],
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "department_id": "department_id",
                       "description": "description",
-                      "directory_entry_ids": [
-                        "directory_entry_ids"
-                      ],
                       "driver_ids": [
                         "driver_ids"
                       ],
@@ -569,14 +584,17 @@ import Chrt
                 OrderTemplate1(
                     id: "_id",
                     archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    contactIds: Optional([
+                        "contact_ids"
+                    ]),
                     coordinatorLabel: Optional("coordinator_label"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
+                    coordinatorShipperAccountIds: Optional([
+                        "coordinator_shipper_account_ids"
+                    ]),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     departmentId: Optional("department_id"),
                     description: Optional("description"),
-                    directoryEntryIds: Optional([
-                        "directory_entry_ids"
-                    ]),
                     driverIds: Optional([
                         "driver_ids"
                     ]),
@@ -625,7 +643,7 @@ import Chrt
             filterDepartmentId: "filter_department_id",
             filterCoordinatorLabel: "filter_coordinator_label",
             filterDriverId: "filter_driver_id",
-            filterDirectoryEntryId: "filter_directory_entry_id",
+            filterContactId: "filter_contact_id",
             filterTaskListsToApplyAtOrderCreationTaskListId: "filter_task_lists_to_apply_at_order_creation_task_list_id",
             filterTaskListsToApplyAtOrderStagingTaskListId: "filter_task_lists_to_apply_at_order_staging_task_list_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -740,14 +758,17 @@ import Chrt
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
+                  "contact_ids": [
+                    "contact_ids"
+                  ],
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
+                  "coordinator_shipper_account_ids": [
+                    "coordinator_shipper_account_ids"
+                  ],
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "department_id": "department_id",
                   "description": "description",
-                  "directory_entry_ids": [
-                    "directory_entry_ids"
-                  ],
                   "driver_ids": [
                     "driver_ids"
                   ],
@@ -793,14 +814,17 @@ import Chrt
         let expectedResponse = OrderTemplate1(
             id: "_id",
             archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            contactIds: Optional([
+                "contact_ids"
+            ]),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
+            coordinatorShipperAccountIds: Optional([
+                "coordinator_shipper_account_ids"
+            ]),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             departmentId: Optional("department_id"),
             description: Optional("description"),
-            directoryEntryIds: Optional([
-                "directory_entry_ids"
-            ]),
             driverIds: Optional([
                 "driver_ids"
             ]),

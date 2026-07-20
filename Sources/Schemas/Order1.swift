@@ -10,6 +10,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
+    public let coordinatorShipperAccountIds: [String]?
     public let coordinatorTaskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
@@ -46,6 +47,7 @@ public struct Order1: Codable, Hashable, Sendable {
         coordinatorDepartmentId: String? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
+        coordinatorShipperAccountIds: [String]? = nil,
         coordinatorTaskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
@@ -75,6 +77,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.coordinatorDepartmentId = coordinatorDepartmentId
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
+        self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.coordinatorTaskListsToApplyAtOrderStaging = coordinatorTaskListsToApplyAtOrderStaging
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
@@ -107,6 +110,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.coordinatorTaskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .coordinatorTaskListsToApplyAtOrderStaging)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
@@ -140,6 +144,7 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encodeIfPresent(self.coordinatorTaskListsToApplyAtOrderStaging, forKey: .coordinatorTaskListsToApplyAtOrderStaging)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
@@ -171,6 +176,7 @@ public struct Order1: Codable, Hashable, Sendable {
         case coordinatorDepartmentId = "coordinator_department_id"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
+        case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case coordinatorTaskListsToApplyAtOrderStaging = "coordinator_task_lists_to_apply_at_order_staging"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"

@@ -7,7 +7,7 @@ public final class OffChrtOrgDataClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Atomically creates owner-scoped off-CHRT organization data and its shipper-coordinator or coordinator-executor connection. | authz: allowed_org_types=[provider] | (CreateOffChrtOrgReq) -> (CreateOffChrtOrgRes)
+    /// Creates owner-scoped off-CHRT organization data and, for shippers or providers, its required connection. | authz: allowed_org_types=[provider] | (CreateOffChrtOrgReq) -> (CreateOffChrtOrgRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.CreateOffChrtOrgReq, requestOptions: RequestOptions? = nil) async throws -> CreateOffChrtOrgRes {
