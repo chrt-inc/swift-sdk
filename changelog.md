@@ -1,3 +1,14 @@
+## 2.0.0 - 2026-07-22
+### Breaking Changes
+* **`Contact1.accountId`** and **`ContactClientCreate1.accountId`** — renamed to `accountIds` with type changed from `String?` to `[String]?`; replace `accountId: "x"` with `accountIds: ["x"]` at all construction and access sites.
+* **`LineStringCoordinatesItem`**, **`MultiPointCoordinatesItem`**, **`PolygonCoordinatesItemItem`**, **`MultiLineStringCoordinatesItemItem`**, and **`MultiPolygonCoordinatesItemItemItem`** — consolidated into `CoordinatesItem`, `CoordinatesItemItem`, and `CoordinatesItemItemItem`; update all geometry type references.
+* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all references in `GeometryCollection` and `Geometry`.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` access sites.
+### Added
+* **`CargosClient.addV1(_:requestOptions:)`**, **`associateWithTaskV1`**, and **`unassociateWithTaskV1`** — new methods for adding cargo to a non-DRAFT order and managing cargo–task associations, backed by new request structs `CargoAddToOrderReq`, `CargoAssociateWithTaskReq`, and `CargoUnassociateWithTaskReq`.
+* **`ContactsClient.accountAddV1`** and **`ContactsClient.accountRemoveV1`** — new methods for linking and unlinking an account from an organization contact, backed by new `ContactAccountAddReq` struct.
+* **New optional filter parameters** — `filterAccountId` on accounts list, `filterDepartmentType` on department list, `filterStatus` on drivers and task-group list, and `filterRole` on org-members list endpoints.
+
 ## 4.0.1 - 2026-07-20
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
