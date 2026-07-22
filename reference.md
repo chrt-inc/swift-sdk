@@ -40349,6 +40349,596 @@ try await main()
 </dl>
 </details>
 
+## TrackingIntegrations Reelables Assets
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">getV1</a>(assetId: String, requestOptions: RequestOptions?) -> ReelablesAsset1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refreshes and retrieves a Reelables asset by its external ID. | authz: min_org_role=operator | () -> (ReelablesAsset1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.getV1(assetId: "asset_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">listV1</a>(workspaceId: String, sortBy: ReelablesAssetSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ReelablesAssetListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists cached Reelables assets for a workspace. | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.listV1(
+        workspaceId: "workspace_id",
+        sortBy: .assetId,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**workspaceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `ReelablesAssetSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">syncV1</a>(workspaceId: String, requestOptions: RequestOptions?) -> ReelablesAssetSyncRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Synchronizes all Reelables assets for a cached workspace. | authz: min_org_role=operator | () -> (ReelablesAssetSyncRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.syncV1(workspaceId: "workspace_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**workspaceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">updateV1</a>(assetId: String, request: Requests.ReelablesAssetClientUpdate1, requestOptions: RequestOptions?) -> ReelablesAsset1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a Reelables asset, applying name changes upstream before updating CHRT. | authz: min_org_role=operator | (ReelablesAssetClientUpdate1) -> (ReelablesAsset1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.updateV1(
+        assetId: "asset_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ReelablesAssetClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## TrackingIntegrations Reelables Timeseries
+<details><summary><code>client.trackingIntegrations.reelables.timeseries.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Timeseries/ReelablesTimeseriesClient.swift">dataPointsV1</a>(assetId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions?) -> ReelablesTimeseriesRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refreshes and returns Reelables location data points within the requested time range. | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.timeseries.dataPointsV1(
+        assetId: "asset_id",
+        startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## TrackingIntegrations Reelables Workspaces
+<details><summary><code>client.trackingIntegrations.reelables.workspaces.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Workspaces/WorkspacesClient.swift">listV1</a>(sortBy: ReelablesWorkspaceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ReelablesWorkspaceListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists cached Reelables workspaces for the caller's organization. | authz: min_org_role=operator | () -> (ReelablesWorkspaceListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.workspaces.listV1(
+        sortBy: .name,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `ReelablesWorkspaceSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.workspaces.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Workspaces/WorkspacesClient.swift">syncV1</a>(requestOptions: RequestOptions?) -> ReelablesWorkspaceSyncRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Synchronizes Reelables workspaces available to the caller's organization without deleting missing workspaces. | authz: min_org_role=operator | () -> (ReelablesWorkspaceSyncRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.workspaces.syncV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## TrackingIntegrations Tive Devices
 <details><summary><code>client.trackingIntegrations.tive.devices.<a href="/Sources/Resources/TrackingIntegrations/Tive/Devices/TiveDevicesClient.swift">getV1</a>(tiveDeviceId: String, requestOptions: RequestOptions?) -> TiveDevice1</code></summary>
 <dl>
