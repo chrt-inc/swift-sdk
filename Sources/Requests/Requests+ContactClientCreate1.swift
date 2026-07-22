@@ -2,7 +2,7 @@ import Foundation
 
 extension Requests {
     public struct ContactClientCreate1: Codable, Hashable, Sendable {
-        public let accountId: String?
+        public let accountIds: [String]?
         public let emailAddress: String?
         public let jobTitle: String?
         public let location: LocationFeature?
@@ -17,7 +17,7 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            accountId: String? = nil,
+            accountIds: [String]? = nil,
             emailAddress: String? = nil,
             jobTitle: String? = nil,
             location: LocationFeature? = nil,
@@ -29,7 +29,7 @@ extension Requests {
             schemaVersion: Int,
             additionalProperties: [String: JSONValue] = .init()
         ) {
-            self.accountId = accountId
+            self.accountIds = accountIds
             self.emailAddress = emailAddress
             self.jobTitle = jobTitle
             self.location = location
@@ -44,7 +44,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.accountId = try container.decodeIfPresent(String.self, forKey: .accountId)
+            self.accountIds = try container.decodeIfPresent([String].self, forKey: .accountIds)
             self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
             self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
             self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
@@ -60,7 +60,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
-            try container.encodeIfPresent(self.accountId, forKey: .accountId)
+            try container.encodeIfPresent(self.accountIds, forKey: .accountIds)
             try container.encodeIfPresent(self.emailAddress, forKey: .emailAddress)
             try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
             try container.encodeIfPresent(self.location, forKey: .location)
@@ -74,7 +74,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
-            case accountId = "account_id"
+            case accountIds = "account_ids"
             case emailAddress = "email_address"
             case jobTitle = "job_title"
             case location

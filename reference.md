@@ -17447,7 +17447,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.accounts.<a href="/Sources/Resources/Orgs/Accounts/AccountsClient.swift">listV1</a>(search: String?, filterOrgId: String?, filterOffChrtOrgDataId: String?, sortBy: AccountSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> AccountListRes</code></summary>
+<details><summary><code>client.orgs.accounts.<a href="/Sources/Resources/Orgs/Accounts/AccountsClient.swift">listV1</a>(search: String?, filterAccountId: String?, filterOrgId: String?, filterOffChrtOrgDataId: String?, sortBy: AccountSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> AccountListRes</code></summary>
 <dl>
 <dd>
 
@@ -17482,6 +17482,7 @@ private func main() async throws {
 
     _ = try await client.orgs.accounts.listV1(
         search: "search",
+        filterAccountId: "filter_account_id",
         filterOrgId: "filter_org_id",
         filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
         sortBy: .name,
@@ -17507,6 +17508,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Full-text account name search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterAccountId:** `String?` — Filter by account ID
     
 </dd>
 </dl>
@@ -19019,6 +19028,170 @@ try await main()
 </details>
 
 ## Orgs Contacts
+<details><summary><code>client.orgs.contacts.<a href="/Sources/Resources/Orgs/Contacts/ContactsClient.swift">accountAddV1</a>(contactId: String, request: Requests.ContactAccountAddReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Associates an account from the contact's organization. | authz: min_org_role=operator | (ContactAccountAddReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.contacts.accountAddV1(
+        contactId: "contact_id",
+        request: .init(accountId: "account_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contactId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ContactAccountAddReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.contacts.<a href="/Sources/Resources/Orgs/Contacts/ContactsClient.swift">accountRemoveV1</a>(contactId: String, accountId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes an account association from an organization-created contact. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.contacts.accountRemoveV1(
+        contactId: "contact_id",
+        accountId: "account_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contactId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orgs.contacts.<a href="/Sources/Resources/Orgs/Contacts/ContactsClient.swift">createV1</a>(request: Requests.ContactClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
@@ -20829,6 +21002,233 @@ try await main()
 </details>
 
 ## Shipping Cargos
+<details><summary><code>client.shipping.cargos.<a href="/Sources/Resources/Shipping/Cargos/CargosClient.swift">addV1</a>(request: Requests.CargoAddToOrderReq, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds cargo to a non-DRAFT order. Cargo added to a terminal order starts terminal; otherwise it starts STAGED. | authz_personas=[coordinator_org_operators] | (CargoAddToOrderReq) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargos.addV1(request: .init(
+        cargo: CargoClientCreate1(
+            cargoType: .spareParts,
+            schemaVersion: 1
+        ),
+        orderId: "order_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoAddToOrderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargos.<a href="/Sources/Resources/Shipping/Cargos/CargosClient.swift">associateWithTaskV1</a>(request: Requests.CargoAssociateWithTaskReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Associates cargo with a task on a non-DRAFT order, then derives cargo status from all associated tasks in the order's task sequence. | authz_personas=[coordinator_org_operators] | (CargoAssociateWithTaskReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargos.associateWithTaskV1(request: .init(
+        cargoId: "cargo_id",
+        orderId: "order_id",
+        taskId: "task_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoAssociateWithTaskReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargos.<a href="/Sources/Resources/Shipping/Cargos/CargosClient.swift">unassociateWithTaskV1</a>(request: Requests.CargoUnassociateWithTaskReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a cargo association from a task on a non-DRAFT order, then derives cargo status from the remaining associated tasks in the order's task sequence. | authz_personas=[coordinator_org_operators] | (CargoUnassociateWithTaskReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargos.unassociateWithTaskV1(request: .init(
+        cargoId: "cargo_id",
+        orderId: "order_id",
+        taskId: "task_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoUnassociateWithTaskReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.cargos.<a href="/Sources/Resources/Shipping/Cargos/CargosClient.swift">updateV1</a>(cargoId: String, request: CargoClientUpdate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>

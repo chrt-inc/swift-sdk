@@ -3,6 +3,52 @@ import Testing
 import Chrt
 
 @Suite("ContactsClient Wire Tests") struct ContactsClientWireTests {
+    @Test func accountAddV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.contacts.accountAddV1(
+            contactId: "contact_id",
+            request: .init(accountId: "account_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func accountRemoveV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.contacts.accountRemoveV1(
+            contactId: "contact_id",
+            accountId: "account_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -59,7 +105,9 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
-                      "account_id": "account_id",
+                      "account_ids": [
+                        "account_ids"
+                      ],
                       "created_by_org_id": "created_by_org_id",
                       "email_address": "email_address",
                       "job_title": "job_title",
@@ -99,7 +147,9 @@ import Chrt
             items: [
                 Contact1(
                     id: "_id",
-                    accountId: Optional("account_id"),
+                    accountIds: Optional([
+                        "account_ids"
+                    ]),
                     createdByOrgId: "created_by_org_id",
                     emailAddress: Optional("email_address"),
                     jobTitle: Optional("job_title"),
@@ -175,7 +225,9 @@ import Chrt
                 """
                 {
                   "_id": "_id",
-                  "account_id": "account_id",
+                  "account_ids": [
+                    "account_ids"
+                  ],
                   "created_by_org_id": "created_by_org_id",
                   "email_address": "email_address",
                   "job_title": "job_title",
@@ -220,7 +272,9 @@ import Chrt
         )
         let expectedResponse = Contact1(
             id: "_id",
-            accountId: Optional("account_id"),
+            accountIds: Optional([
+                "account_ids"
+            ]),
             createdByOrgId: "created_by_org_id",
             emailAddress: Optional("email_address"),
             jobTitle: Optional("job_title"),

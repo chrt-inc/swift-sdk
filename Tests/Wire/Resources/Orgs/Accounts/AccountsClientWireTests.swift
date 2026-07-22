@@ -103,6 +103,7 @@ import Chrt
         )
         let response = try await client.orgs.accounts.listV1(
             search: "search",
+            filterAccountId: "filter_account_id",
             filterOrgId: "filter_org_id",
             filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
             sortBy: .name,

@@ -3,6 +3,86 @@ import Testing
 import Chrt
 
 @Suite("CargosClient Wire Tests") struct CargosClientWireTests {
+    @Test func addV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.cargos.addV1(
+            request: .init(
+                cargo: CargoClientCreate1(
+                    cargoType: .spareParts,
+                    schemaVersion: 1
+                ),
+                orderId: "order_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func associateWithTaskV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.cargos.associateWithTaskV1(
+            request: .init(
+                cargoId: "cargo_id",
+                orderId: "order_id",
+                taskId: "task_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unassociateWithTaskV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.cargos.unassociateWithTaskV1(
+            request: .init(
+                cargoId: "cargo_id",
+                orderId: "order_id",
+                taskId: "task_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

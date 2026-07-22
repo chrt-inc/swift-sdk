@@ -34,7 +34,9 @@ import Chrt
                   "contacts": [
                     {
                       "_id": "_id",
-                      "account_id": "account_id",
+                      "account_ids": [
+                        "account_ids"
+                      ],
                       "created_by_org_id": "created_by_org_id",
                       "email_address": "email_address",
                       "job_title": "job_title",
@@ -269,7 +271,9 @@ import Chrt
             contacts: Optional([
                 Contact1(
                     id: "_id",
-                    accountId: Optional("account_id"),
+                    accountIds: Optional([
+                        "account_ids"
+                    ]),
                     createdByOrgId: "created_by_org_id",
                     emailAddress: Optional("email_address"),
                     jobTitle: Optional("job_title"),

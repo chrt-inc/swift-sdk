@@ -7,6 +7,31 @@ public final class ContactsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Associates an account from the contact's organization. | authz: min_org_role=operator | (ContactAccountAddReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func accountAddV1(contactId: String, request: Requests.ContactAccountAddReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/orgs/contacts/accounts/add/v1/\(contactId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Removes an account association from an organization-created contact. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func accountRemoveV1(contactId: String, accountId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/orgs/contacts/accounts/remove/v1/\(contactId)/\(accountId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Creates an organization-created contact. | authz: min_org_role=operator | (ContactClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

@@ -23,17 +23,19 @@ public final class AccountsClient: Sendable {
     /// Lists coordinator-created shipper accounts with association filters, name search, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (AccountListRes)
     ///
     /// - Parameter search: Full-text account name search query
+    /// - Parameter filterAccountId: Filter by account ID
     /// - Parameter filterOrgId: Filter by associated on-CHRT shipper organization
     /// - Parameter filterOffChrtOrgDataId: Filter by associated off-CHRT shipper organization data
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, filterOrgId: String? = nil, filterOffChrtOrgDataId: String? = nil, sortBy: AccountSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> AccountListRes {
+    public func listV1(search: String? = nil, filterAccountId: String? = nil, filterOrgId: String? = nil, filterOffChrtOrgDataId: String? = nil, sortBy: AccountSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> AccountListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/accounts/list/v1",
             queryParams: [
                 "search": search.map { .string($0) }, 
+                "filter_account_id": filterAccountId.map { .string($0) }, 
                 "filter_org_id": filterOrgId.map { .string($0) }, 
                 "filter_off_chrt_org_data_id": filterOffChrtOrgDataId.map { .string($0) }, 
                 "sort_by": sortBy.map { .unknown($0) }, 

@@ -2,7 +2,7 @@ import Foundation
 
 public struct Contact1: Codable, Hashable, Sendable {
     public let id: String
-    public let accountId: String?
+    public let accountIds: [String]?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     public let emailAddress: String?
@@ -20,7 +20,7 @@ public struct Contact1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
-        accountId: String? = nil,
+        accountIds: [String]? = nil,
         createdByOrgId: String,
         emailAddress: String? = nil,
         jobTitle: String? = nil,
@@ -34,7 +34,7 @@ public struct Contact1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
-        self.accountId = accountId
+        self.accountIds = accountIds
         self.createdByOrgId = createdByOrgId
         self.emailAddress = emailAddress
         self.jobTitle = jobTitle
@@ -51,7 +51,7 @@ public struct Contact1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.accountId = try container.decodeIfPresent(String.self, forKey: .accountId)
+        self.accountIds = try container.decodeIfPresent([String].self, forKey: .accountIds)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
         self.jobTitle = try container.decodeIfPresent(String.self, forKey: .jobTitle)
@@ -69,7 +69,7 @@ public struct Contact1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
-        try container.encodeIfPresent(self.accountId, forKey: .accountId)
+        try container.encodeIfPresent(self.accountIds, forKey: .accountIds)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(self.jobTitle, forKey: .jobTitle)
@@ -85,7 +85,7 @@ public struct Contact1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
-        case accountId = "account_id"
+        case accountIds = "account_ids"
         case createdByOrgId = "created_by_org_id"
         case emailAddress = "email_address"
         case jobTitle = "job_title"
