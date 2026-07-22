@@ -1,10 +1,3 @@
-## 2.1.0 - 2026-07-22
-### Added
-* **`TrackingIntegrationsClient.reelables`** — new `ReelablesClient` sub-client providing access to Reelables assets, timeseries, and workspaces.
-* **`AssetsClient`** — methods `getV1`, `listV1`, `syncV1`, and `updateV1` for retrieving, listing, syncing, and updating Reelables assets; backed by new `ReelablesAsset1`, `ReelablesAssetListRes`, `ReelablesAssetSyncRes`, and `Requests.ReelablesAssetClientUpdate1` types.
-* **`ReelablesTimeseriesClient`** — `dataPointsV1` method for fetching Reelables location data points within a time range; backed by new `ReelablesTimeseriesRes`, `ReelablesDataPoint1`, and `ReelablesDataPointMetadata1` types.
-* **`WorkspacesClient`** — `listV1` and `syncV1` methods for listing and synchronizing Reelables workspaces; backed by new `ReelablesWorkspace1`, `ReelablesWorkspaceListRes`, `ReelablesWorkspaceSyncRes`, `ReelablesLabel1`, `ReelablesAssetSortByEnum`, and `ReelablesWorkspaceSortByEnum` types.
-
 ## 2.0.0 - 2026-07-22
 ### Breaking Changes
 * **`Contact1.accountId`** and **`ContactClientCreate1.accountId`** — renamed to `accountIds` with type changed from `String?` to `[String]?`; replace `accountId: "x"` with `accountIds: ["x"]` at all construction and access sites.
