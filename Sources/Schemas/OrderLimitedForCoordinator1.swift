@@ -23,6 +23,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?
     public let inProgressAtTimestamp: Date?
+    public let invoiceIds: [String]?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
     public let offChrtShipperOrgDataId: String?
@@ -57,6 +58,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
         draftStartedAtTimestamp: Date,
         exceptionAtTimestamp: Date? = nil,
         inProgressAtTimestamp: Date? = nil,
+        invoiceIds: [String]? = nil,
         offChrtReferenceId: String? = nil,
         offChrtShipperOrgDataId: String? = nil,
         orderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil,
@@ -87,6 +89,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.inProgressAtTimestamp = inProgressAtTimestamp
+        self.invoiceIds = invoiceIds
         self.offChrtReferenceId = offChrtReferenceId
         self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orderClassificationByTaskGroupType = orderClassificationByTaskGroupType
@@ -120,6 +123,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
+        self.invoiceIds = try container.decodeIfPresent([String].self, forKey: .invoiceIds)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orderClassificationByTaskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .orderClassificationByTaskGroupType)
@@ -154,6 +158,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
+        try container.encodeIfPresent(self.invoiceIds, forKey: .invoiceIds)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encodeIfPresent(self.orderClassificationByTaskGroupType, forKey: .orderClassificationByTaskGroupType)
@@ -186,6 +191,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
+        case invoiceIds = "invoice_ids"
         case offChrtReferenceId = "off_chrt_reference_id"
         case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orderClassificationByTaskGroupType = "order_classification_by_task_group_type"

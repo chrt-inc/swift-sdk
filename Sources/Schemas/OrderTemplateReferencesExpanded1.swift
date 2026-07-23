@@ -2,6 +2,7 @@ import Foundation
 
 public struct OrderTemplateReferencesExpanded1: Codable, Hashable, Sendable {
     public let contacts: [Contact1]?
+    public let coordinatorShipperAccounts: [Account1]?
     public let drivers: [Driver1]?
     public let executorOrgs: [OrderTemplateOrgInfo1]?
     public let offChrtExecutorOrgs: [OffChrtOrgData1]?
@@ -12,6 +13,7 @@ public struct OrderTemplateReferencesExpanded1: Codable, Hashable, Sendable {
 
     public init(
         contacts: [Contact1]? = nil,
+        coordinatorShipperAccounts: [Account1]? = nil,
         drivers: [Driver1]? = nil,
         executorOrgs: [OrderTemplateOrgInfo1]? = nil,
         offChrtExecutorOrgs: [OffChrtOrgData1]? = nil,
@@ -20,6 +22,7 @@ public struct OrderTemplateReferencesExpanded1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.contacts = contacts
+        self.coordinatorShipperAccounts = coordinatorShipperAccounts
         self.drivers = drivers
         self.executorOrgs = executorOrgs
         self.offChrtExecutorOrgs = offChrtExecutorOrgs
@@ -31,6 +34,7 @@ public struct OrderTemplateReferencesExpanded1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.contacts = try container.decodeIfPresent([Contact1].self, forKey: .contacts)
+        self.coordinatorShipperAccounts = try container.decodeIfPresent([Account1].self, forKey: .coordinatorShipperAccounts)
         self.drivers = try container.decodeIfPresent([Driver1].self, forKey: .drivers)
         self.executorOrgs = try container.decodeIfPresent([OrderTemplateOrgInfo1].self, forKey: .executorOrgs)
         self.offChrtExecutorOrgs = try container.decodeIfPresent([OffChrtOrgData1].self, forKey: .offChrtExecutorOrgs)
@@ -43,6 +47,7 @@ public struct OrderTemplateReferencesExpanded1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.contacts, forKey: .contacts)
+        try container.encodeIfPresent(self.coordinatorShipperAccounts, forKey: .coordinatorShipperAccounts)
         try container.encodeIfPresent(self.drivers, forKey: .drivers)
         try container.encodeIfPresent(self.executorOrgs, forKey: .executorOrgs)
         try container.encodeIfPresent(self.offChrtExecutorOrgs, forKey: .offChrtExecutorOrgs)
@@ -53,6 +58,7 @@ public struct OrderTemplateReferencesExpanded1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case contacts
+        case coordinatorShipperAccounts = "coordinator_shipper_accounts"
         case drivers
         case executorOrgs = "executor_orgs"
         case offChrtExecutorOrgs = "off_chrt_executor_orgs"

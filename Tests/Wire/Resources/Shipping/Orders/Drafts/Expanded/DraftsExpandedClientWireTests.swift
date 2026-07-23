@@ -60,6 +60,9 @@ import Chrt
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
+                    "invoice_ids": [
+                      "invoice_ids"
+                    ],
                     "off_chrt_reference_id": "off_chrt_reference_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_classification_by_task_group_type": "chrt_ground_provider",
@@ -218,6 +221,9 @@ import Chrt
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                invoiceIds: Optional([
+                    "invoice_ids"
+                ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderClassificationByTaskGroupType: Optional(.chrtGroundProvider),
@@ -370,6 +376,9 @@ import Chrt
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
                     "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
+                    "invoice_ids": [
+                      "invoice_ids"
+                    ],
                     "off_chrt_reference_id": "off_chrt_reference_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_classification_by_task_group_type": "chrt_ground_provider",
@@ -515,6 +524,9 @@ import Chrt
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                invoiceIds: Optional([
+                    "invoice_ids"
+                ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderClassificationByTaskGroupType: Optional(.chrtGroundProvider),

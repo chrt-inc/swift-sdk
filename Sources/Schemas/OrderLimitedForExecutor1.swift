@@ -11,6 +11,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
     public let exceptionAtTimestamp: Date?
     public let executorTaskGroupDetails: [OrderTaskGroupExecutorDetails1]?
     public let inProgressAtTimestamp: Date?
+    public let invoiceIds: [String]?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
     public let orderClassificationByTaskGroupType: TaskGroupTypeEnum1?
@@ -30,6 +31,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         exceptionAtTimestamp: Date? = nil,
         executorTaskGroupDetails: [OrderTaskGroupExecutorDetails1]? = nil,
         inProgressAtTimestamp: Date? = nil,
+        invoiceIds: [String]? = nil,
         offChrtReferenceId: String? = nil,
         orderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil,
         schemaVersion: Int,
@@ -46,6 +48,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.executorTaskGroupDetails = executorTaskGroupDetails
         self.inProgressAtTimestamp = inProgressAtTimestamp
+        self.invoiceIds = invoiceIds
         self.offChrtReferenceId = offChrtReferenceId
         self.orderClassificationByTaskGroupType = orderClassificationByTaskGroupType
         self.schemaVersion = schemaVersion
@@ -65,6 +68,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.executorTaskGroupDetails = try container.decodeIfPresent([OrderTaskGroupExecutorDetails1].self, forKey: .executorTaskGroupDetails)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
+        self.invoiceIds = try container.decodeIfPresent([String].self, forKey: .invoiceIds)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.orderClassificationByTaskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .orderClassificationByTaskGroupType)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -85,6 +89,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.executorTaskGroupDetails, forKey: .executorTaskGroupDetails)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
+        try container.encodeIfPresent(self.invoiceIds, forKey: .invoiceIds)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.orderClassificationByTaskGroupType, forKey: .orderClassificationByTaskGroupType)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -103,6 +108,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         case exceptionAtTimestamp = "exception_at_timestamp"
         case executorTaskGroupDetails = "executor_task_group_details"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
+        case invoiceIds = "invoice_ids"
         case offChrtReferenceId = "off_chrt_reference_id"
         case orderClassificationByTaskGroupType = "order_classification_by_task_group_type"
         case schemaVersion = "schema_version"

@@ -18,6 +18,13 @@ public enum CargoTypeEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case hazardousMaterials = "hazardous_materials"
     case perishable
     case frozen
+    case liveAnimals = "live_animals"
+    case rodents
+    case fish
+    case birds
+    case reptiles
+    case mammals
+    case crickets
     case other
     case unspecified
 }
