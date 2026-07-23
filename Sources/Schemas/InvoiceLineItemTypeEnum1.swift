@@ -19,7 +19,7 @@ public enum InvoiceLineItemTypeEnum1: String, Codable, Hashable, CaseIterable, S
     case afterHours = "after_hours"
     case weekend
     case holiday
-    case flightCargoBooking = "flight_cargo_booking"
+    case airWaybill = "air_waybill"
     case insurance
     case offNetworkCarrier = "off_network_carrier"
     case obcDayRate = "obc_day_rate"
