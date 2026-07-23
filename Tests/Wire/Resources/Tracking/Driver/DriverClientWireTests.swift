@@ -34,10 +34,10 @@ import Chrt
                     geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                GeometryCollectionGeometriesItem.lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
-                                            LineStringCoordinatesItem.position2D(
+                                            CoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
