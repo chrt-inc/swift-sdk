@@ -309,8 +309,7 @@ import Chrt
                 currencyCode: .usd,
                 description: "description",
                 invoiceType: .accountsReceivable,
-                lineItemType: .baseRate,
-                orgId: "org_id"
+                lineItemType: .baseRate
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -347,7 +346,6 @@ import Chrt
                 ),
                 invoiceType: .accountsReceivable,
                 lineItemType: .baseRate,
-                orgId: "org_id",
                 sourceInvoiceLineItems: [
                     InvoiceLineItem1(
                         id: "_id",
