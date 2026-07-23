@@ -1108,12 +1108,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1131,13 +1125,7 @@ import Chrt
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1246,12 +1234,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1385,12 +1367,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1409,13 +1385,7 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1526,12 +1496,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

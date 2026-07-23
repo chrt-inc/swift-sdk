@@ -1,10 +1,3 @@
-## 2.0.0 - 2026-07-23
-### Breaking Changes
-* **`LineStringCoordinatesItem`**, **`MultiPointCoordinatesItem`**, **`PolygonCoordinatesItemItem`**, **`MultiLineStringCoordinatesItemItem`**, and **`MultiPolygonCoordinatesItemItemItem`** — removed and consolidated into `CoordinatesItem`, `CoordinatesItemItem`, and `CoordinatesItemItemItem`; update all geometry coordinate type references at construction and pattern-match sites.
-* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all references in `GeometryCollection`, `Geometry`, and any nested struct that holds a `geometries` property.
-* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` access and construction sites to use `LocationItem`.
-* **`InvoiceLineItemTypeEnum1.flightCargoBooking`** — renamed to `airWaybill`; replace all switch cases and references accordingly.
-
 ## 1.891.1 - 2026-07-23
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
