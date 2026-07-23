@@ -1,10 +1,3 @@
-## 2.0.0 - 2026-07-23
-### Breaking Changes
-* **`LineStringCoordinatesItem`**, **`MultiPointCoordinatesItem`**, **`PolygonCoordinatesItemItem`**, **`MultiLineStringCoordinatesItemItem`**, and **`MultiPolygonCoordinatesItemItemItem`** — removed and consolidated into **`CoordinatesItem`**, **`CoordinatesItemItem`**, and **`CoordinatesItemItemItem`**; update all geometry type references at construction and access sites.
-* **`GeometryCollectionGeometriesItem`** — renamed to **`GeometriesItem`**; update all references in `GeometryCollection` and `Geometry`.
-* **`ValidationErrorLocItem`** — renamed to **`LocationItem`**; update all `ValidationError.loc` access sites.
-* **`ApplyChrtGroundProviderRatesReq.orgId`** — required `orgId: String` field removed; replace with the new optional `counterpartyOrgId: String?` or `counterpartyOffChrtOrgDataId: String?` fields as appropriate.
-
 ## 1.891.1 - 2026-07-23
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
