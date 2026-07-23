@@ -1,10 +1,3 @@
-## 2.0.0 - 2026-07-23
-### Breaking Changes
-* **`CreateInvoiceLineItemsFromAmountReq`** — the required `orgId` property has been removed; replace `orgId: "org_..."` with `counterpartyOrgId: "org_..."` at all construction sites.
-* **`CreateInvoiceLineItemsFromLineItemsReq`** — the required `orgId` property has been removed; replace `orgId: "org_..."` with `counterpartyOrgId: "org_..."` at all construction sites.
-### Added
-* **`counterpartyOrgId`** and **`counterpartyOffChrtOrgDataId`** — new optional fields on both `CreateInvoiceLineItemsFromAmountReq` and `CreateInvoiceLineItemsFromLineItemsReq` for specifying counterparty organization identifiers.
-
 ## 1.891.1 - 2026-07-23
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
