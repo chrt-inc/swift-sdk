@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-07-25
+### Breaking Changes
+* **`LineStringCoordinatesItem`** — renamed to `CoordinatesItem`; update all references in `LineString.coordinates` and `MultiPoint.coordinates` construction and access sites.
+* **`MultiLineStringCoordinatesItemItem`** and **`PolygonCoordinatesItemItem`** — consolidated into `CoordinatesItemItem`; update all references in `MultiLineString.coordinates`, `Polygon.coordinates`, and `GeometriesItem` nested structs.
+* **`MultiPolygonCoordinatesItemItemItem`** — renamed to `CoordinatesItemItemItem`; update all references in `MultiPolygon.coordinates`.
+* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all `GeometryCollection.geometries` and `Geometry.GeometryCollection.geometries` references.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` access and construction sites.
+### Added
+* **Filter parameters on billing rates, bid threads, and listings** — `filterCurrencyCodes`, `filterCargoTypes`, `filterVehicleTypes`, `filterStatus`, and `filterType` optional filters added to the respective list endpoints.
+* **Filter parameters on operations tasks and org members** — `filterOrderIds`, `filterTaskType`, `filterStatus`, and `filterRole` optional filters added to operations tasks and org members list endpoints.
+* **Filter parameters on order schedules and orders-and-order-groups** — `filterIntendedStatus`, `filterBillingReviewStatus`, and `filterShippingStatus` optional filters added to the respective list endpoints.
+* **Filter parameters on expanded orders list** — `filterStatus`, `filterOrderClassificationByTaskGroupType`, `filterCoordinatorShipperAccountIds`, and `filterCoordinatorAssignedUserIds` optional filters added.
+
 ## 1.891.1 - 2026-07-23
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
