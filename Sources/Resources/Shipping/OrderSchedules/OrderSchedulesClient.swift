@@ -51,12 +51,13 @@ public final class OrderSchedulesClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter filterIntendedStatus: Filter by intended status(es).
     /// - Parameter filterOwnedByUserId: Filter by the user who owns the order schedule.
+    /// - Parameter filterServiceLine: Filter by the order template service line.
     /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value (inclusive).
     /// - Parameter filterCreatedAtTimestampLte: Filter created_at_timestamp <= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampLte: Filter last_edited_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderScheduleSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterIntendedStatus: OrderScheduleStatusEnum1? = nil, filterOwnedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderScheduleListRes {
+    public func listV1(sortBy: OrderScheduleSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterIntendedStatus: OrderScheduleStatusEnum1? = nil, filterOwnedByUserId: String? = nil, filterServiceLine: ServiceLineEnum? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderScheduleListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_schedules/list/v1",
@@ -67,6 +68,7 @@ public final class OrderSchedulesClient: Sendable {
                 "page_size": pageSize.map { .int($0) }, 
                 "filter_intended_status": filterIntendedStatus.map { .string($0.rawValue) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
+                "filter_service_line": filterServiceLine.map { .string($0.rawValue) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
                 "filter_last_edited_at_timestamp_gte": filterLastEditedAtTimestampGte.map { .date($0) }, 

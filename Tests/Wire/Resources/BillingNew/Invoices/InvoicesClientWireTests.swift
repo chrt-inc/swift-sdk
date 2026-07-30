@@ -302,7 +302,6 @@ import Chrt
                   "invoice_line_items": [
                     {
                       "_id": "_id",
-                      "counterparty_account_id": "counterparty_account_id",
                       "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
                       "counterparty_org_id": "counterparty_org_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -318,8 +317,12 @@ import Chrt
                       "order_id": "order_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "quantity": 1.1,
+                      "rate_sheet_id": "rate_sheet_id",
                       "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "status": "draft",
                       "task_group_id": "task_group_id",
+                      "tax_percentage": 1.1,
                       "unit": "each",
                       "unit_price": 1.1
                     }
@@ -346,7 +349,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -380,7 +383,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -413,7 +416,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -479,7 +482,6 @@ import Chrt
             invoiceLineItems: Optional([
                 InvoiceLineItem1(
                     id: "_id",
-                    counterpartyAccountId: Optional("counterparty_account_id"),
                     counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -495,8 +497,12 @@ import Chrt
                     orderId: Optional("order_id"),
                     ownedByOrgId: "owned_by_org_id",
                     quantity: 1.1,
+                    rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    status: Optional(.draft),
                     taskGroupId: Optional("task_group_id"),
+                    taxPercentage: Optional(1.1),
                     unit: Optional(.each),
                     unitPrice: 1.1
                 )
@@ -1106,15 +1112,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatuses: [
-                .draft
-            ],
-            filterInvoiceTypes: [
-                .accountsReceivable
-            ],
-            filterCurrencyCodes: [
-                .usd
-            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
             filterCounterpartyAccountId: "filter_counterparty_account_id",

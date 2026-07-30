@@ -299,6 +299,7 @@ import Chrt
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id"
                 }
                 """.utf8
@@ -315,6 +316,7 @@ import Chrt
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             orderId: "order_id",
             orderShortId: "order_short_id",
+            serviceLine: .onDemand,
             shipperOrgId: Optional("shipper_org_id")
         )
         let response = try await client.shipping.orders.drafts.updateV1(

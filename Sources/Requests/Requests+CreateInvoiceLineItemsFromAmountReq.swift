@@ -14,6 +14,7 @@ extension Requests {
         public let lineItemType: InvoiceLineItemTypeEnum1
         public let orderId: String?
         public let taskGroupId: String?
+        public let taxPercentage: Double?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -29,6 +30,7 @@ extension Requests {
             lineItemType: InvoiceLineItemTypeEnum1,
             orderId: String? = nil,
             taskGroupId: String? = nil,
+            taxPercentage: Double? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.accountIds = accountIds
@@ -42,6 +44,7 @@ extension Requests {
             self.lineItemType = lineItemType
             self.orderId = orderId
             self.taskGroupId = taskGroupId
+            self.taxPercentage = taxPercentage
             self.additionalProperties = additionalProperties
         }
 
@@ -58,6 +61,7 @@ extension Requests {
             self.lineItemType = try container.decode(InvoiceLineItemTypeEnum1.self, forKey: .lineItemType)
             self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
             self.taskGroupId = try container.decodeIfPresent(String.self, forKey: .taskGroupId)
+            self.taxPercentage = try container.decodeIfPresent(Double.self, forKey: .taxPercentage)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -75,6 +79,7 @@ extension Requests {
             try container.encode(self.lineItemType, forKey: .lineItemType)
             try container.encodeIfPresent(self.orderId, forKey: .orderId)
             try container.encodeIfPresent(self.taskGroupId, forKey: .taskGroupId)
+            try container.encodeIfPresent(self.taxPercentage, forKey: .taxPercentage)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -90,6 +95,7 @@ extension Requests {
             case lineItemType = "line_item_type"
             case orderId = "order_id"
             case taskGroupId = "task_group_id"
+            case taxPercentage = "tax_percentage"
         }
     }
 }

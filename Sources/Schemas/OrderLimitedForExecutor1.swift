@@ -16,6 +16,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
     public let offChrtReferenceId: String?
     public let orderClassificationByTaskGroupType: TaskGroupTypeEnum1?
     public let schemaVersion: Int
+    public let serviceLine: ServiceLineEnum?
     public let shortId: String
     public let stagedAtTimestamp: Date?
     public let status: OrderStatusEnum1?
@@ -35,6 +36,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         offChrtReferenceId: String? = nil,
         orderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil,
         schemaVersion: Int,
+        serviceLine: ServiceLineEnum? = nil,
         shortId: String,
         stagedAtTimestamp: Date? = nil,
         status: OrderStatusEnum1? = nil,
@@ -52,6 +54,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         self.offChrtReferenceId = offChrtReferenceId
         self.orderClassificationByTaskGroupType = orderClassificationByTaskGroupType
         self.schemaVersion = schemaVersion
+        self.serviceLine = serviceLine
         self.shortId = shortId
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
@@ -72,6 +75,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.orderClassificationByTaskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .orderClassificationByTaskGroupType)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
         self.shortId = try container.decode(String.self, forKey: .shortId)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(OrderStatusEnum1.self, forKey: .status)
@@ -93,6 +97,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.orderClassificationByTaskGroupType, forKey: .orderClassificationByTaskGroupType)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
         try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
@@ -112,6 +117,7 @@ public struct OrderLimitedForExecutor1: Codable, Hashable, Sendable {
         case offChrtReferenceId = "off_chrt_reference_id"
         case orderClassificationByTaskGroupType = "order_classification_by_task_group_type"
         case schemaVersion = "schema_version"
+        case serviceLine = "service_line"
         case shortId = "short_id"
         case stagedAtTimestamp = "staged_at_timestamp"
         case status

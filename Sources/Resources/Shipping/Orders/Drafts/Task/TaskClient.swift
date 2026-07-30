@@ -32,7 +32,7 @@ public final class TaskClient: Sendable {
         )
     }
 
-    /// Updates a task in an existing draft order. | authz_personas=[draft_creator_org_operator] | (OrderDraftUpdateTaskReq) -> (PydanticObjectId)
+    /// Updates a task in an existing draft order. Supplying coordinator_shipper_account_ids additionally requires coordinator_org_operators. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrderDraftUpdateTaskReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.OrderDraftUpdateTaskReq, requestOptions: RequestOptions? = nil) async throws -> String {

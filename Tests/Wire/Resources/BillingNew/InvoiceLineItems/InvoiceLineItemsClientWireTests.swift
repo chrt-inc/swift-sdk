@@ -3,15 +3,39 @@ import Testing
 import Chrt
 
 @Suite("InvoiceLineItemsClient Wire Tests") struct InvoiceLineItemsClientWireTests {
-    @Test func applyChrtGroundProviderRatesV11() async throws -> Void {
+    @Test func createAdHocV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                {
-                  "created_invoice_line_item_count": 1,
-                  "invoice_id": "invoice_id"
-                }
+                [
+                  {
+                    "_id": "_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "invoice_id": "invoice_id",
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "line_item_type": "base_rate",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "quantity": 1.1,
+                    "rate_sheet_id": "rate_sheet_id",
+                    "schema_version": 1,
+                    "shipper_account_id": "shipper_account_id",
+                    "status": "draft",
+                    "task_group_id": "task_group_id",
+                    "tax_percentage": 1.1,
+                    "unit": "each",
+                    "unit_price": 1.1
+                  }
+                ]
                 """.utf8
             )
         )
@@ -20,16 +44,218 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ApplyChrtGroundProviderRatesRes(
-            createdInvoiceLineItemCount: 1,
-            invoiceId: "invoice_id"
-        )
-        let response = try await client.billingNew.invoiceLineItems.applyChrtGroundProviderRatesV1(
-            request: .init(
+        let expectedResponse = [
+            InvoiceLineItem1(
+                id: "_id",
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: .usd,
+                description: "description",
+                exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                invoiceId: Optional("invoice_id"),
                 invoiceType: .accountsReceivable,
-                rateSheetId: "rate_sheet_id",
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                lineItemType: .baseRate,
+                orderId: Optional("order_id"),
+                ownedByOrgId: "owned_by_org_id",
+                quantity: 1.1,
+                rateSheetId: Optional("rate_sheet_id"),
+                schemaVersion: 1,
+                shipperAccountId: Optional("shipper_account_id"),
+                status: Optional(.draft),
+                taskGroupId: Optional("task_group_id"),
+                taxPercentage: Optional(1.1),
+                unit: Optional(.each),
+                unitPrice: 1.1
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.createAdHocV1(
+            request: AdHocInvoiceLineItemsReq(
+                adHocLineItems: [
+                    AdHocInvoiceLineItem1(
+                        invoiceLineItem: InvoiceLineItemClientCreate1(
+                            currencyCode: .usd,
+                            description: "description",
+                            invoiceType: .accountsReceivable,
+                            lineItemType: .baseRate,
+                            quantity: 1.1,
+                            schemaVersion: 1,
+                            unitPrice: 1.1
+                        )
+                    )
+                ],
                 taskGroupId: "task_group_id"
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func previewAdHocV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "invoice_id": "invoice_id",
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "line_item_type": "base_rate",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "quantity": 1.1,
+                    "rate_sheet_id": "rate_sheet_id",
+                    "schema_version": 1,
+                    "shipper_account_id": "shipper_account_id",
+                    "status": "draft",
+                    "task_group_id": "task_group_id",
+                    "tax_percentage": 1.1,
+                    "unit": "each",
+                    "unit_price": 1.1
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            InvoiceLineItemServerCreate1(
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: .usd,
+                description: "description",
+                exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                invoiceId: Optional("invoice_id"),
+                invoiceType: .accountsReceivable,
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                lineItemType: .baseRate,
+                orderId: Optional("order_id"),
+                ownedByOrgId: "owned_by_org_id",
+                quantity: 1.1,
+                rateSheetId: Optional("rate_sheet_id"),
+                schemaVersion: 1,
+                shipperAccountId: Optional("shipper_account_id"),
+                status: Optional(.draft),
+                taskGroupId: Optional("task_group_id"),
+                taxPercentage: Optional(1.1),
+                unit: Optional(.each),
+                unitPrice: 1.1
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.previewAdHocV1(
+            request: AdHocInvoiceLineItemsReq(
+                adHocLineItems: [
+                    AdHocInvoiceLineItem1(
+                        invoiceLineItem: InvoiceLineItemClientCreate1(
+                            currencyCode: .usd,
+                            description: "description",
+                            invoiceType: .accountsReceivable,
+                            lineItemType: .baseRate,
+                            quantity: 1.1,
+                            schemaVersion: 1,
+                            unitPrice: 1.1
+                        )
+                    )
+                ],
+                taskGroupId: "task_group_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func approveManyV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "_id": "_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "invoice_id": "invoice_id",
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "line_item_type": "base_rate",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "quantity": 1.1,
+                    "rate_sheet_id": "rate_sheet_id",
+                    "schema_version": 1,
+                    "shipper_account_id": "shipper_account_id",
+                    "status": "draft",
+                    "task_group_id": "task_group_id",
+                    "tax_percentage": 1.1,
+                    "unit": "each",
+                    "unit_price": 1.1
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            InvoiceLineItem1(
+                id: "_id",
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: .usd,
+                description: "description",
+                exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                invoiceId: Optional("invoice_id"),
+                invoiceType: .accountsReceivable,
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                lineItemType: .baseRate,
+                orderId: Optional("order_id"),
+                ownedByOrgId: "owned_by_org_id",
+                quantity: 1.1,
+                rateSheetId: Optional("rate_sheet_id"),
+                schemaVersion: 1,
+                shipperAccountId: Optional("shipper_account_id"),
+                status: Optional(.draft),
+                taskGroupId: Optional("task_group_id"),
+                taxPercentage: Optional(1.1),
+                unit: Optional(.each),
+                unitPrice: 1.1
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.approveManyV1(
+            request: .init(invoiceLineItemIds: [
+                "invoice_line_item_ids"
+            ]),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -41,31 +267,6 @@ import Chrt
             body: Data(
                 """
                 {
-                  "counterparty_accounts": [
-                    {
-                      "_id": "_id",
-                      "created_by_org_id": "created_by_org_id",
-                      "created_by_user_id": "created_by_user_id",
-                      "location": {
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        },
-                        "type": "Feature"
-                      },
-                      "name": "name",
-                      "off_chrt_org_data_id": "off_chrt_org_data_id",
-                      "org_id": "org_id",
-                      "schema_version": 1
-                    }
-                  ],
                   "counterparty_off_chrt_org_data": [
                     {
                       "_id": "_id",
@@ -124,7 +325,6 @@ import Chrt
                   "invoice_line_items": [
                     {
                       "_id": "_id",
-                      "counterparty_account_id": "counterparty_account_id",
                       "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
                       "counterparty_org_id": "counterparty_org_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -140,10 +340,39 @@ import Chrt
                       "order_id": "order_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "quantity": 1.1,
+                      "rate_sheet_id": "rate_sheet_id",
                       "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "status": "draft",
                       "task_group_id": "task_group_id",
+                      "tax_percentage": 1.1,
                       "unit": "each",
                       "unit_price": 1.1
+                    }
+                  ],
+                  "shipper_accounts": [
+                    {
+                      "_id": "_id",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "location": {
+                        "geometry": {
+                          "geometries": [
+                            {
+                              "coordinates": [
+                                []
+                              ],
+                              "type": "LineString"
+                            }
+                          ],
+                          "type": "GeometryCollection"
+                        },
+                        "type": "Feature"
+                      },
+                      "name": "name",
+                      "off_chrt_org_data_id": "off_chrt_org_data_id",
+                      "org_id": "org_id",
+                      "schema_version": 1
                     }
                   ]
                 }
@@ -156,35 +385,6 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = InvoiceLineItemsByOrderExpandedRes(
-            counterpartyAccounts: [
-                Account1(
-                    id: "_id",
-                    createdByOrgId: "created_by_org_id",
-                    createdByUserId: "created_by_user_id",
-                    location: Optional(LocationFeature(
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                CoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        ),
-                        type: .feature
-                    )),
-                    name: "name",
-                    offChrtOrgDataId: Optional("off_chrt_org_data_id"),
-                    orgId: Optional("org_id"),
-                    schemaVersion: 1
-                )
-            ],
             counterpartyOffChrtOrgData: [
                 OffChrtOrgData1(
                     id: "_id",
@@ -203,7 +403,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -235,7 +435,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -251,7 +451,6 @@ import Chrt
             invoiceLineItems: [
                 InvoiceLineItem1(
                     id: "_id",
-                    counterpartyAccountId: Optional("counterparty_account_id"),
                     counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -267,10 +466,43 @@ import Chrt
                     orderId: Optional("order_id"),
                     ownedByOrgId: "owned_by_org_id",
                     quantity: 1.1,
+                    rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    status: Optional(.draft),
                     taskGroupId: Optional("task_group_id"),
+                    taxPercentage: Optional(1.1),
                     unit: Optional(.each),
                     unitPrice: 1.1
+                )
+            ],
+            shipperAccounts: [
+                Account1(
+                    id: "_id",
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: "created_by_user_id",
+                    location: Optional(LocationFeature(
+                        geometry: .geometryCollection(
+                            .init(
+                                geometries: [
+                                    .lineString(
+                                        .init(
+                                            coordinates: [
+                                                LineStringCoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        ),
+                        type: .feature
+                    )),
+                    name: "name",
+                    offChrtOrgDataId: Optional("off_chrt_org_data_id"),
+                    orgId: Optional("org_id"),
+                    schemaVersion: 1
                 )
             ]
         )
@@ -400,6 +632,194 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func createFromRateSheetsV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "_id": "_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "invoice_id": "invoice_id",
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "line_item_type": "base_rate",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "quantity": 1.1,
+                    "rate_sheet_id": "rate_sheet_id",
+                    "schema_version": 1,
+                    "shipper_account_id": "shipper_account_id",
+                    "status": "draft",
+                    "task_group_id": "task_group_id",
+                    "tax_percentage": 1.1,
+                    "unit": "each",
+                    "unit_price": 1.1
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            InvoiceLineItem1(
+                id: "_id",
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: .usd,
+                description: "description",
+                exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                invoiceId: Optional("invoice_id"),
+                invoiceType: .accountsReceivable,
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                lineItemType: .baseRate,
+                orderId: Optional("order_id"),
+                ownedByOrgId: "owned_by_org_id",
+                quantity: 1.1,
+                rateSheetId: Optional("rate_sheet_id"),
+                schemaVersion: 1,
+                shipperAccountId: Optional("shipper_account_id"),
+                status: Optional(.draft),
+                taskGroupId: Optional("task_group_id"),
+                taxPercentage: Optional(1.1),
+                unit: Optional(.each),
+                unitPrice: 1.1
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.createFromRateSheetsV1(
+            request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
+                taskGroupChrtGroundProviderRateSheetIds: [
+                    TaskGroupChrtGroundProviderRateSheetIds1(
+                        rateSheetIds: [
+                            "rate_sheet_ids"
+                        ],
+                        taskGroupId: "task_group_id"
+                    )
+                ]
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func previewFromRateSheetsV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "accounts_payable_invoice_line_items": [
+                      {
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "unit_price": 1.1
+                      }
+                    ],
+                    "accounts_receivable_invoice_line_items": [
+                      {
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "unit_price": 1.1
+                      }
+                    ],
+                    "task_group_id": "task_group_id"
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1(
+                accountsPayableInvoiceLineItems: Optional([
+                    InvoiceLineItemServerCreate1(
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        currencyCode: .usd,
+                        description: "description",
+                        invoiceType: .accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        lineItemType: .baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        unitPrice: 1.1
+                    )
+                ]),
+                accountsReceivableInvoiceLineItems: Optional([
+                    InvoiceLineItemServerCreate1(
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        currencyCode: .usd,
+                        description: "description",
+                        invoiceType: .accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        lineItemType: .baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        unitPrice: 1.1
+                    )
+                ]),
+                taskGroupId: "task_group_id"
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.previewFromRateSheetsV1(
+            request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
+                taskGroupChrtGroundProviderRateSheetIds: [
+                    TaskGroupChrtGroundProviderRateSheetIds1(
+                        rateSheetIds: [
+                            "rate_sheet_ids"
+                        ],
+                        taskGroupId: "task_group_id"
+                    )
+                ]
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -409,7 +829,6 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
-                      "counterparty_account_id": "counterparty_account_id",
                       "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
                       "counterparty_org_id": "counterparty_org_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -425,8 +844,12 @@ import Chrt
                       "order_id": "order_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "quantity": 1.1,
+                      "rate_sheet_id": "rate_sheet_id",
                       "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "status": "draft",
                       "task_group_id": "task_group_id",
+                      "tax_percentage": 1.1,
                       "unit": "each",
                       "unit_price": 1.1
                     }
@@ -445,7 +868,6 @@ import Chrt
             items: [
                 InvoiceLineItem1(
                     id: "_id",
-                    counterpartyAccountId: Optional("counterparty_account_id"),
                     counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -461,8 +883,12 @@ import Chrt
                     orderId: Optional("order_id"),
                     ownedByOrgId: "owned_by_org_id",
                     quantity: 1.1,
+                    rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    status: Optional(.draft),
                     taskGroupId: Optional("task_group_id"),
+                    taxPercentage: Optional(1.1),
                     unit: Optional(.each),
                     unitPrice: 1.1
                 )
@@ -474,21 +900,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterInvoiceTypes: [
-                .accountsReceivable
-            ],
-            filterCurrencyCodes: [
-                .usd
-            ],
-            filterLineItemTypes: [
-                .baseRate
-            ],
-            filterUnits: [
-                .each
-            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
-            filterCounterpartyAccountId: "filter_counterparty_account_id",
+            filterShipperAccountId: "filter_shipper_account_id",
             filterInvoiceId: "filter_invoice_id",
             filterIsInvoiced: true,
             filterOrderId: "filter_order_id",
@@ -497,6 +911,82 @@ import Chrt
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func recalculateTaxesV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                [
+                  {
+                    "_id": "_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "invoice_id": "invoice_id",
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "line_item_type": "base_rate",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "quantity": 1.1,
+                    "rate_sheet_id": "rate_sheet_id",
+                    "schema_version": 1,
+                    "shipper_account_id": "shipper_account_id",
+                    "status": "draft",
+                    "task_group_id": "task_group_id",
+                    "tax_percentage": 1.1,
+                    "unit": "each",
+                    "unit_price": 1.1
+                  }
+                ]
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            InvoiceLineItem1(
+                id: "_id",
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: .usd,
+                description: "description",
+                exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                invoiceId: Optional("invoice_id"),
+                invoiceType: .accountsReceivable,
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                lineItemType: .baseRate,
+                orderId: Optional("order_id"),
+                ownedByOrgId: "owned_by_org_id",
+                quantity: 1.1,
+                rateSheetId: Optional("rate_sheet_id"),
+                schemaVersion: 1,
+                shipperAccountId: Optional("shipper_account_id"),
+                status: Optional(.draft),
+                taskGroupId: Optional("task_group_id"),
+                taxPercentage: Optional(1.1),
+                unit: Optional(.each),
+                unitPrice: 1.1
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.recalculateTaxesV1(
+            request: .init(orderId: "order_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

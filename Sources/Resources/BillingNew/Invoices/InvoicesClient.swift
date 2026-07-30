@@ -19,7 +19,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Creates a draft invoice owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
+    /// Returns the matching owner-counterparty-type-currency draft invoice, or creates one when absent. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.InvoiceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {

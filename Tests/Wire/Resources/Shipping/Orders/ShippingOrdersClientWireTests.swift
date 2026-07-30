@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("OrdersClient Wire Tests") struct OrdersClientWireTests {
+@Suite("ShippingOrdersClient Wire Tests") struct ShippingOrdersClientWireTests {
     @Test func assignV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -69,52 +69,6 @@ import Chrt
             request: .init(orderIds: [
                 "order_ids"
             ]),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func addCoordinatorShipperAccountIdV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orders.addCoordinatorShipperAccountIdV1(
-            orderId: "order_id",
-            coordinatorShipperAccountId: "coordinator_shipper_account_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func removeCoordinatorShipperAccountIdV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.orders.removeCoordinatorShipperAccountIdV1(
-            orderId: "order_id",
-            coordinatorShipperAccountId: "coordinator_shipper_account_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

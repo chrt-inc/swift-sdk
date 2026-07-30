@@ -20,16 +20,26 @@ extension Requests {
         public let extraStopSetToNone: Bool?
         public let flatFee: FlatFeeRate1?
         public let flatFeeSetToNone: Bool?
+        public let fromPayables: FromPayables1?
+        public let fromPayablesSetToNone: Bool?
         public let fuelSurcharge: FuelSurchargeRate1?
         public let fuelSurchargeSetToNone: Bool?
         public let holiday: HolidayRate1?
         public let holidaySetToNone: Bool?
+        public let invoiceType: InvoiceTypeEnum1?
         public let longDistanceSurcharge: LongDistanceSurchargeRate1?
         public let longDistanceSurchargeSetToNone: Bool?
         public let name: String?
         public let nameSetToNone: Bool?
         public let pickAndHold: PickAndHoldRate1?
         public let pickAndHoldSetToNone: Bool?
+        public let serviceLine: ServiceLineEnum?
+        public let tax1: TaxRate1?
+        public let tax1SetToNone: Bool?
+        public let tax2: TaxRate1?
+        public let tax2SetToNone: Bool?
+        public let tax3: TaxRate1?
+        public let tax3SetToNone: Bool?
         public let vehicleTypes: [VehicleTypeEnum]?
         public let waitTime: WaitTimeRate1?
         public let waitTimeSetToNone: Bool?
@@ -57,16 +67,26 @@ extension Requests {
             extraStopSetToNone: Bool? = nil,
             flatFee: FlatFeeRate1? = nil,
             flatFeeSetToNone: Bool? = nil,
+            fromPayables: FromPayables1? = nil,
+            fromPayablesSetToNone: Bool? = nil,
             fuelSurcharge: FuelSurchargeRate1? = nil,
             fuelSurchargeSetToNone: Bool? = nil,
             holiday: HolidayRate1? = nil,
             holidaySetToNone: Bool? = nil,
+            invoiceType: InvoiceTypeEnum1? = nil,
             longDistanceSurcharge: LongDistanceSurchargeRate1? = nil,
             longDistanceSurchargeSetToNone: Bool? = nil,
             name: String? = nil,
             nameSetToNone: Bool? = nil,
             pickAndHold: PickAndHoldRate1? = nil,
             pickAndHoldSetToNone: Bool? = nil,
+            serviceLine: ServiceLineEnum? = nil,
+            tax1: TaxRate1? = nil,
+            tax1SetToNone: Bool? = nil,
+            tax2: TaxRate1? = nil,
+            tax2SetToNone: Bool? = nil,
+            tax3: TaxRate1? = nil,
+            tax3SetToNone: Bool? = nil,
             vehicleTypes: [VehicleTypeEnum]? = nil,
             waitTime: WaitTimeRate1? = nil,
             waitTimeSetToNone: Bool? = nil,
@@ -92,16 +112,26 @@ extension Requests {
             self.extraStopSetToNone = extraStopSetToNone
             self.flatFee = flatFee
             self.flatFeeSetToNone = flatFeeSetToNone
+            self.fromPayables = fromPayables
+            self.fromPayablesSetToNone = fromPayablesSetToNone
             self.fuelSurcharge = fuelSurcharge
             self.fuelSurchargeSetToNone = fuelSurchargeSetToNone
             self.holiday = holiday
             self.holidaySetToNone = holidaySetToNone
+            self.invoiceType = invoiceType
             self.longDistanceSurcharge = longDistanceSurcharge
             self.longDistanceSurchargeSetToNone = longDistanceSurchargeSetToNone
             self.name = name
             self.nameSetToNone = nameSetToNone
             self.pickAndHold = pickAndHold
             self.pickAndHoldSetToNone = pickAndHoldSetToNone
+            self.serviceLine = serviceLine
+            self.tax1 = tax1
+            self.tax1SetToNone = tax1SetToNone
+            self.tax2 = tax2
+            self.tax2SetToNone = tax2SetToNone
+            self.tax3 = tax3
+            self.tax3SetToNone = tax3SetToNone
             self.vehicleTypes = vehicleTypes
             self.waitTime = waitTime
             self.waitTimeSetToNone = waitTimeSetToNone
@@ -130,16 +160,26 @@ extension Requests {
             self.extraStopSetToNone = try container.decodeIfPresent(Bool.self, forKey: .extraStopSetToNone)
             self.flatFee = try container.decodeIfPresent(FlatFeeRate1.self, forKey: .flatFee)
             self.flatFeeSetToNone = try container.decodeIfPresent(Bool.self, forKey: .flatFeeSetToNone)
+            self.fromPayables = try container.decodeIfPresent(FromPayables1.self, forKey: .fromPayables)
+            self.fromPayablesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .fromPayablesSetToNone)
             self.fuelSurcharge = try container.decodeIfPresent(FuelSurchargeRate1.self, forKey: .fuelSurcharge)
             self.fuelSurchargeSetToNone = try container.decodeIfPresent(Bool.self, forKey: .fuelSurchargeSetToNone)
             self.holiday = try container.decodeIfPresent(HolidayRate1.self, forKey: .holiday)
             self.holidaySetToNone = try container.decodeIfPresent(Bool.self, forKey: .holidaySetToNone)
+            self.invoiceType = try container.decodeIfPresent(InvoiceTypeEnum1.self, forKey: .invoiceType)
             self.longDistanceSurcharge = try container.decodeIfPresent(LongDistanceSurchargeRate1.self, forKey: .longDistanceSurcharge)
             self.longDistanceSurchargeSetToNone = try container.decodeIfPresent(Bool.self, forKey: .longDistanceSurchargeSetToNone)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.nameSetToNone = try container.decodeIfPresent(Bool.self, forKey: .nameSetToNone)
             self.pickAndHold = try container.decodeIfPresent(PickAndHoldRate1.self, forKey: .pickAndHold)
             self.pickAndHoldSetToNone = try container.decodeIfPresent(Bool.self, forKey: .pickAndHoldSetToNone)
+            self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
+            self.tax1 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax1)
+            self.tax1SetToNone = try container.decodeIfPresent(Bool.self, forKey: .tax1SetToNone)
+            self.tax2 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax2)
+            self.tax2SetToNone = try container.decodeIfPresent(Bool.self, forKey: .tax2SetToNone)
+            self.tax3 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax3)
+            self.tax3SetToNone = try container.decodeIfPresent(Bool.self, forKey: .tax3SetToNone)
             self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
             self.waitTime = try container.decodeIfPresent(WaitTimeRate1.self, forKey: .waitTime)
             self.waitTimeSetToNone = try container.decodeIfPresent(Bool.self, forKey: .waitTimeSetToNone)
@@ -169,16 +209,26 @@ extension Requests {
             try container.encodeIfPresent(self.extraStopSetToNone, forKey: .extraStopSetToNone)
             try container.encodeIfPresent(self.flatFee, forKey: .flatFee)
             try container.encodeIfPresent(self.flatFeeSetToNone, forKey: .flatFeeSetToNone)
+            try container.encodeIfPresent(self.fromPayables, forKey: .fromPayables)
+            try container.encodeIfPresent(self.fromPayablesSetToNone, forKey: .fromPayablesSetToNone)
             try container.encodeIfPresent(self.fuelSurcharge, forKey: .fuelSurcharge)
             try container.encodeIfPresent(self.fuelSurchargeSetToNone, forKey: .fuelSurchargeSetToNone)
             try container.encodeIfPresent(self.holiday, forKey: .holiday)
             try container.encodeIfPresent(self.holidaySetToNone, forKey: .holidaySetToNone)
+            try container.encodeIfPresent(self.invoiceType, forKey: .invoiceType)
             try container.encodeIfPresent(self.longDistanceSurcharge, forKey: .longDistanceSurcharge)
             try container.encodeIfPresent(self.longDistanceSurchargeSetToNone, forKey: .longDistanceSurchargeSetToNone)
             try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.nameSetToNone, forKey: .nameSetToNone)
             try container.encodeIfPresent(self.pickAndHold, forKey: .pickAndHold)
             try container.encodeIfPresent(self.pickAndHoldSetToNone, forKey: .pickAndHoldSetToNone)
+            try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
+            try container.encodeIfPresent(self.tax1, forKey: .tax1)
+            try container.encodeIfPresent(self.tax1SetToNone, forKey: .tax1SetToNone)
+            try container.encodeIfPresent(self.tax2, forKey: .tax2)
+            try container.encodeIfPresent(self.tax2SetToNone, forKey: .tax2SetToNone)
+            try container.encodeIfPresent(self.tax3, forKey: .tax3)
+            try container.encodeIfPresent(self.tax3SetToNone, forKey: .tax3SetToNone)
             try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
             try container.encodeIfPresent(self.waitTime, forKey: .waitTime)
             try container.encodeIfPresent(self.waitTimeSetToNone, forKey: .waitTimeSetToNone)
@@ -206,16 +256,26 @@ extension Requests {
             case extraStopSetToNone = "extra_stop__set_to_None"
             case flatFee = "flat_fee"
             case flatFeeSetToNone = "flat_fee__set_to_None"
+            case fromPayables = "from_payables"
+            case fromPayablesSetToNone = "from_payables__set_to_None"
             case fuelSurcharge = "fuel_surcharge"
             case fuelSurchargeSetToNone = "fuel_surcharge__set_to_None"
             case holiday
             case holidaySetToNone = "holiday__set_to_None"
+            case invoiceType = "invoice_type"
             case longDistanceSurcharge = "long_distance_surcharge"
             case longDistanceSurchargeSetToNone = "long_distance_surcharge__set_to_None"
             case name
             case nameSetToNone = "name__set_to_None"
             case pickAndHold = "pick_and_hold"
             case pickAndHoldSetToNone = "pick_and_hold__set_to_None"
+            case serviceLine = "service_line"
+            case tax1 = "tax_1"
+            case tax1SetToNone = "tax_1__set_to_None"
+            case tax2 = "tax_2"
+            case tax2SetToNone = "tax_2__set_to_None"
+            case tax3 = "tax_3"
+            case tax3SetToNone = "tax_3__set_to_None"
             case vehicleTypes = "vehicle_types"
             case waitTime = "wait_time"
             case waitTimeSetToNone = "wait_time__set_to_None"

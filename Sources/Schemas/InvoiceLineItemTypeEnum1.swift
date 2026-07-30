@@ -27,5 +27,8 @@ public enum InvoiceLineItemTypeEnum1: String, Codable, Hashable, CaseIterable, S
     case trackingDeviceLabel = "tracking_device_label"
     case trackingDeviceTag = "tracking_device_tag"
     case trackingDeviceOther = "tracking_device_other"
+    case tax1 = "tax_1"
+    case tax2 = "tax_2"
+    case tax3 = "tax_3"
     case other
 }

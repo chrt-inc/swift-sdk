@@ -86,9 +86,7 @@ import Chrt
                         "user_id": "user_id"
                       }
                     ],
-                    "mileage_asserted": true,
                     "mileage_estimated": 1.1,
-                    "mileage_observed": 1.1,
                     "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_id": "order_id",
@@ -195,7 +193,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -256,9 +254,7 @@ import Chrt
                         userId: "user_id"
                     )
                 ]),
-                mileageAsserted: Optional(true),
                 mileageEstimated: Optional(1.1),
-                mileageObserved: Optional(1.1),
                 offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderId: "order_id",
@@ -427,9 +423,7 @@ import Chrt
                         "user_id": "user_id"
                       }
                     ],
-                    "mileage_asserted": true,
                     "mileage_estimated": 1.1,
-                    "mileage_observed": 1.1,
                     "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_id": "order_id",
@@ -536,7 +530,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -597,9 +591,7 @@ import Chrt
                         userId: "user_id"
                     )
                 ]),
-                mileageAsserted: Optional(true),
                 mileageEstimated: Optional(1.1),
-                mileageObserved: Optional(1.1),
                 offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderId: "order_id",
@@ -768,9 +760,7 @@ import Chrt
                         "user_id": "user_id"
                       }
                     ],
-                    "mileage_asserted": true,
                     "mileage_estimated": 1.1,
-                    "mileage_observed": 1.1,
                     "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_id": "order_id",
@@ -877,7 +867,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -938,9 +928,7 @@ import Chrt
                         userId: "user_id"
                     )
                 ]),
-                mileageAsserted: Optional(true),
                 mileageEstimated: Optional(1.1),
-                mileageObserved: Optional(1.1),
                 offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderId: "order_id",
@@ -1109,9 +1097,7 @@ import Chrt
                         "user_id": "user_id"
                       }
                     ],
-                    "mileage_asserted": true,
                     "mileage_estimated": 1.1,
-                    "mileage_observed": 1.1,
                     "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_id": "order_id",
@@ -1218,7 +1204,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -1279,9 +1265,7 @@ import Chrt
                         userId: "user_id"
                     )
                 ]),
-                mileageAsserted: Optional(true),
                 mileageEstimated: Optional(1.1),
-                mileageObserved: Optional(1.1),
                 offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderId: "order_id",
@@ -1486,9 +1470,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1633,9 +1614,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

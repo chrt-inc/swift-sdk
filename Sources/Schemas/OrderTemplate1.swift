@@ -24,6 +24,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
     /// Must be a string starting with `user_`
     public let ownedByUserId: String
     public let schemaVersion: Int
+    public let serviceLine: ServiceLineEnum?
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]?
@@ -53,6 +54,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         ownedByOrgId: String,
         ownedByUserId: String,
         schemaVersion: Int,
+        serviceLine: ServiceLineEnum? = nil,
         shipperOrgId: String? = nil,
         taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
         taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
@@ -79,6 +81,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         self.ownedByOrgId = ownedByOrgId
         self.ownedByUserId = ownedByUserId
         self.schemaVersion = schemaVersion
+        self.serviceLine = serviceLine
         self.shipperOrgId = shipperOrgId
         self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
         self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
@@ -108,6 +111,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.ownedByUserId = try container.decode(String.self, forKey: .ownedByUserId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
         self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderStaging)
@@ -138,6 +142,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encode(self.ownedByUserId, forKey: .ownedByUserId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
         try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
@@ -166,6 +171,7 @@ public struct OrderTemplate1: Codable, Hashable, Sendable {
         case ownedByOrgId = "owned_by_org_id"
         case ownedByUserId = "owned_by_user_id"
         case schemaVersion = "schema_version"
+        case serviceLine = "service_line"
         case shipperOrgId = "shipper_org_id"
         case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"
         case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"

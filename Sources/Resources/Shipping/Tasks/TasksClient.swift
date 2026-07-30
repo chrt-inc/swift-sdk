@@ -59,6 +59,19 @@ public final class TasksClient: Sendable {
         )
     }
 
+    /// Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, lig_owner_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func locationFromReferenceV1(taskId: String, request: Requests.TaskLocationFromReferenceReq, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/tasks/location/from_reference/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Marks a task as SKIPPED. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -71,7 +84,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Updates a task. Operational fields (location, action, datetime_windows) require STAGED status (lig_owner_operators). order_placer_comments can be edited on any non-DRAFT task (order_creator_org_operators). contact_ids can be edited on STAGED/IN_PROGRESS orders for tasks still in STAGED status (order_creator_org_operators OR lig_owner_operators). | (TaskClientUpdate1) -> (PydanticObjectId)
+    /// Updates a task. Operational fields require lig_owner_operators, comments require order_creator_org_operators, contacts allow either, and coordinator_shipper_account_ids require coordinator_org_operators. | authz_personas=[lig_owner_operators, order_creator_org_operators, coordinator_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {

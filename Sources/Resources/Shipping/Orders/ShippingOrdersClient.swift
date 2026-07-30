@@ -1,6 +1,6 @@
 import Foundation
 
-public final class OrdersClient: Sendable {
+public final class ShippingOrdersClient: Sendable {
     public let drafts: DraftsClient
     public let expanded: ExpandedClient
     private let httpClient: HTTPClient
@@ -44,30 +44,6 @@ public final class OrdersClient: Sendable {
             method: .put,
             path: "/shipping/orders/cancel_many/v1",
             body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Adds a coordinator-owned account for the order's shipper. | authz_personas=[coordinator_org_operators] | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addCoordinatorShipperAccountIdV1(orderId: String, coordinatorShipperAccountId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/coordinator_shipper_account_ids/add/v1/\(orderId)/\(coordinatorShipperAccountId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Removes a coordinator-owned account for the order's shipper. | authz_personas=[coordinator_org_operators] | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeCoordinatorShipperAccountIdV1(orderId: String, coordinatorShipperAccountId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/coordinator_shipper_account_ids/remove/v1/\(orderId)/\(coordinatorShipperAccountId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )

@@ -175,9 +175,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterIntendedStatus: [
-                .draft
-            ],
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -334,6 +331,7 @@ import Chrt
                     ],
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "schema_version": 1,
+                    "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
                     "task_lists_to_apply_at_order_creation": [
                       {
@@ -435,6 +433,7 @@ import Chrt
                 ]),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 schemaVersion: 1,
+                serviceLine: Optional(.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
                 taskListsToApplyAtOrderCreation: Optional([
                     TaskListToApplyToOrder1(

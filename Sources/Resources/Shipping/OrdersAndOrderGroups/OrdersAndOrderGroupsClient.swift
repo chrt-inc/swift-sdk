@@ -38,15 +38,17 @@ public final class OrdersAndOrderGroupsClient: Sendable {
     /// Lists the caller's standalone orders (provider party, non-DRAFT, not in any of the caller's order groups). Filtering, sorting, and pagination use stored Order fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (UngroupedOrderListRes)
     ///
     /// - Parameter filterShippingStatus: Filter by order status(es).
+    /// - Parameter filterServiceLine: Filter by service line.
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func ungroupedOrdersListV1(filterShippingStatus: OrderStatusEnum1? = nil, sortBy: UngroupedOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> UngroupedOrderListRes {
+    public func ungroupedOrdersListV1(filterShippingStatus: OrderStatusEnum1? = nil, filterServiceLine: ServiceLineEnum? = nil, sortBy: UngroupedOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> UngroupedOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/orders_and_order_groups/ungrouped_orders/list/v1",
             queryParams: [
                 "filter_shipping_status": filterShippingStatus.map { .string($0.rawValue) }, 
+                "filter_service_line": filterServiceLine.map { .string($0.rawValue) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 

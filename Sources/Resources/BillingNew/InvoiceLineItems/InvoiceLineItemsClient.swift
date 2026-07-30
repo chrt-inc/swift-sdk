@@ -7,16 +7,42 @@ public final class InvoiceLineItemsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Applies a caller-owned CHRT-ground rate sheet to a TaskGroup and atomically creates line items on a draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (ApplyChrtGroundProviderRatesReq) -> (ApplyChrtGroundProviderRatesRes)
+    /// Creates account-split ad-hoc line items and attaches them to matching draft invoices. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func applyChrtGroundProviderRatesV1(request: Requests.ApplyChrtGroundProviderRatesReq, requestOptions: RequestOptions? = nil) async throws -> ApplyChrtGroundProviderRatesRes {
+    public func createAdHocV1(request: AdHocInvoiceLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/billing_new/invoice_line_items/apply_chrt_ground_provider_rates/v1",
+            path: "/billing_new/invoice_line_items/ad_hoc/create/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: ApplyChrtGroundProviderRatesRes.self
+            responseType: [InvoiceLineItem1].self
+        )
+    }
+
+    /// Previews account-split ad-hoc line items without persisting them. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func previewAdHocV1(request: AdHocInvoiceLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItemServerCreate1] {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoice_line_items/ad_hoc/preview/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [InvoiceLineItemServerCreate1].self
+        )
+    }
+
+    /// Atomically approves draft line items owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsApproveManyReq) -> (list[InvoiceLineItem1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func approveManyV1(request: Requests.InvoiceLineItemsApproveManyReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing_new/invoice_line_items/approve_many/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [InvoiceLineItem1].self
         )
     }
 
@@ -71,6 +97,32 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
+    /// Creates rate-sheet-derived line items and attaches them to matching draft invoices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[InvoiceLineItem1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoice_line_items/from_rate_sheets/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [InvoiceLineItem1].self
+        )
+    }
+
+    /// Previews accounts-payable, accounts-receivable, and tax line items from selected active rate sheets. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func previewFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1] {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoice_line_items/from_rate_sheets/preview/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1].self
+        )
+    }
+
     /// Lists owner-scoped invoice line items with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
@@ -81,7 +133,7 @@ public final class InvoiceLineItemsClient: Sendable {
     /// - Parameter filterUnits: Filter by one or more units.
     /// - Parameter filterCounterpartyOrgId: Filter by an on-CHRT counterparty organization.
     /// - Parameter filterCounterpartyOffChrtOrgDataId: Filter by off-CHRT counterparty organization data.
-    /// - Parameter filterCounterpartyAccountId: Filter by an associated counterparty account.
+    /// - Parameter filterShipperAccountId: Filter by an associated shipper account.
     /// - Parameter filterInvoiceId: Filter by an attached invoice.
     /// - Parameter filterIsInvoiced: Filter by whether a line item is attached to an invoice.
     /// - Parameter filterOrderId: Filter by an attributed order.
@@ -91,7 +143,7 @@ public final class InvoiceLineItemsClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter by last_edited_at_timestamp greater than or equal.
     /// - Parameter filterLastEditedAtTimestampLte: Filter by last_edited_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: InvoiceLineItemSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterLineItemTypes: InvoiceLineItemTypeEnum1? = nil, filterUnits: InvoiceLineItemUnitEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyAccountId: String? = nil, filterInvoiceId: String? = nil, filterIsInvoiced: Bool? = nil, filterOrderId: String? = nil, filterTaskGroupId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemListRes {
+    public func listV1(sortBy: InvoiceLineItemSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterLineItemTypes: InvoiceLineItemTypeEnum1? = nil, filterUnits: InvoiceLineItemUnitEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterShipperAccountId: String? = nil, filterInvoiceId: String? = nil, filterIsInvoiced: Bool? = nil, filterOrderId: String? = nil, filterTaskGroupId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/invoice_line_items/list/v1",
@@ -106,7 +158,7 @@ public final class InvoiceLineItemsClient: Sendable {
                 "filter_units": filterUnits.map { .string($0.rawValue) }, 
                 "filter_counterparty_org_id": filterCounterpartyOrgId.map { .string($0) }, 
                 "filter_counterparty_off_chrt_org_data_id": filterCounterpartyOffChrtOrgDataId.map { .string($0) }, 
-                "filter_counterparty_account_id": filterCounterpartyAccountId.map { .string($0) }, 
+                "filter_shipper_account_id": filterShipperAccountId.map { .string($0) }, 
                 "filter_invoice_id": filterInvoiceId.map { .string($0) }, 
                 "filter_is_invoiced": filterIsInvoiced.map { .bool($0) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
@@ -118,6 +170,19 @@ public final class InvoiceLineItemsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: InvoiceLineItemListRes.self
+        )
+    }
+
+    /// Recalculates existing tax line items from current non-tax items in the same billing scope. | authz: allowed_org_types=[provider], min_org_role=operator | (RecalculateOrderTaxInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func recalculateTaxesV1(request: Requests.RecalculateOrderTaxInvoiceLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoice_line_items/recalculate_taxes/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [InvoiceLineItem1].self
         )
     }
 

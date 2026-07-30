@@ -217,6 +217,7 @@ import Chrt
                     "owned_by_org_id": "owned_by_org_id",
                     "owned_by_user_id": "owned_by_user_id",
                     "schema_version": 1,
+                    "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
                     "task_lists_to_apply_at_order_creation": [
                       {
@@ -268,6 +269,7 @@ import Chrt
                       "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                       "order_template_id": "order_template_id",
                       "schema_version": 1,
+                      "service_line": "on_demand",
                       "shipper_org_id": "shipper_org_id",
                       "short_id": "short_id",
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
@@ -312,7 +314,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -343,7 +345,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -377,7 +379,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -428,7 +430,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -458,7 +460,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -504,6 +506,7 @@ import Chrt
                 ownedByOrgId: "owned_by_org_id",
                 ownedByUserId: "owned_by_user_id",
                 schemaVersion: 1,
+                serviceLine: Optional(.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
                 taskListsToApplyAtOrderCreation: Optional([
                     TaskListToApplyToOrder1(
@@ -555,6 +558,7 @@ import Chrt
                     orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                     orderTemplateId: Optional("order_template_id"),
                     schemaVersion: 1,
+                    serviceLine: Optional(.onDemand),
                     shipperOrgId: Optional("shipper_org_id"),
                     shortId: "short_id",
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -619,6 +623,7 @@ import Chrt
                       "owned_by_org_id": "owned_by_org_id",
                       "owned_by_user_id": "owned_by_user_id",
                       "schema_version": 1,
+                      "service_line": "on_demand",
                       "shipper_org_id": "shipper_org_id",
                       "task_lists_to_apply_at_order_creation": [
                         {
@@ -676,6 +681,7 @@ import Chrt
                     ownedByOrgId: "owned_by_org_id",
                     ownedByUserId: "owned_by_user_id",
                     schemaVersion: 1,
+                    serviceLine: Optional(.onDemand),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskListsToApplyAtOrderCreation: Optional([
                         TaskListToApplyToOrder1(
@@ -850,6 +856,7 @@ import Chrt
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id",
                   "task_lists_to_apply_at_order_creation": [
                     {
@@ -906,6 +913,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
+            serviceLine: Optional(.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskListsToApplyAtOrderCreation: Optional([
                 TaskListToApplyToOrder1(

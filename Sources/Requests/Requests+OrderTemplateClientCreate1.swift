@@ -16,6 +16,7 @@ extension Requests {
         public let offChrtReferenceIdStr: String?
         public let offChrtShipperOrgDataId: String?
         public let schemaVersion: Int
+        public let serviceLine: ServiceLineEnum?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]?
@@ -38,6 +39,7 @@ extension Requests {
             offChrtReferenceIdStr: String? = nil,
             offChrtShipperOrgDataId: String? = nil,
             schemaVersion: Int,
+            serviceLine: ServiceLineEnum? = nil,
             shipperOrgId: String? = nil,
             taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
             taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
@@ -57,6 +59,7 @@ extension Requests {
             self.offChrtReferenceIdStr = offChrtReferenceIdStr
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
             self.schemaVersion = schemaVersion
+            self.serviceLine = serviceLine
             self.shipperOrgId = shipperOrgId
             self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
             self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
@@ -79,6 +82,7 @@ extension Requests {
             self.offChrtReferenceIdStr = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceIdStr)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
             self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderStaging)
@@ -102,6 +106,7 @@ extension Requests {
             try container.encodeIfPresent(self.offChrtReferenceIdStr, forKey: .offChrtReferenceIdStr)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
             try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
@@ -123,6 +128,7 @@ extension Requests {
             case offChrtReferenceIdStr = "off_chrt_reference_id_str"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
             case schemaVersion = "schema_version"
+            case serviceLine = "service_line"
             case shipperOrgId = "shipper_org_id"
             case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"
             case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"

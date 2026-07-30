@@ -38,6 +38,7 @@ public final class OrderTemplatesClient: Sendable {
     /// - Parameter search: Full-text search query
     /// - Parameter filterArchived: Filter by archived (True) vs active (False) templates.
     /// - Parameter filterOwnedByUserId: Filter by the user who owns the order template.
+    /// - Parameter filterServiceLine: Filter by service line.
     /// - Parameter filterOffChrtReferenceIdStr: Filter by the off-CHRT reference ID string.
     /// - Parameter filterShipperOrgId: Filter by on-CHRT shipper org ID.
     /// - Parameter filterOffChrtShipperOrgDataId: Filter by off-CHRT shipper organization data ID.
@@ -55,7 +56,7 @@ public final class OrderTemplatesClient: Sendable {
     /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
     /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterOffChrtReferenceIdStr: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterDepartmentId: String? = nil, filterCoordinatorLabel: String? = nil, filterDriverId: String? = nil, filterContactId: String? = nil, filterTaskListsToApplyAtOrderCreationTaskListId: String? = nil, filterTaskListsToApplyAtOrderStagingTaskListId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateListRes {
+    public func listV1(sortBy: OrderTemplateSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterServiceLine: ServiceLineEnum? = nil, filterOffChrtReferenceIdStr: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterDepartmentId: String? = nil, filterCoordinatorLabel: String? = nil, filterDriverId: String? = nil, filterContactId: String? = nil, filterTaskListsToApplyAtOrderCreationTaskListId: String? = nil, filterTaskListsToApplyAtOrderStagingTaskListId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates/list/v1",
@@ -67,6 +68,7 @@ public final class OrderTemplatesClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
+                "filter_service_line": filterServiceLine.map { .string($0.rawValue) }, 
                 "filter_off_chrt_reference_id_str": filterOffChrtReferenceIdStr.map { .string($0) }, 
                 "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 
                 "filter_off_chrt_shipper_org_data_id": filterOffChrtShipperOrgDataId.map { .string($0) }, 

@@ -10,6 +10,7 @@ extension Requests {
         public let offChrtReferenceIdSetToNone: Bool?
         public let offChrtShipperOrgDataId: String?
         public let offChrtShipperOrgDataIdSetToNone: Bool?
+        public let serviceLine: ServiceLineEnum?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let shipperOrgIdSetToNone: Bool?
@@ -23,6 +24,7 @@ extension Requests {
             offChrtReferenceIdSetToNone: Bool? = nil,
             offChrtShipperOrgDataId: String? = nil,
             offChrtShipperOrgDataIdSetToNone: Bool? = nil,
+            serviceLine: ServiceLineEnum? = nil,
             shipperOrgId: String? = nil,
             shipperOrgIdSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -33,6 +35,7 @@ extension Requests {
             self.offChrtReferenceIdSetToNone = offChrtReferenceIdSetToNone
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
             self.offChrtShipperOrgDataIdSetToNone = offChrtShipperOrgDataIdSetToNone
+            self.serviceLine = serviceLine
             self.shipperOrgId = shipperOrgId
             self.shipperOrgIdSetToNone = shipperOrgIdSetToNone
             self.additionalProperties = additionalProperties
@@ -46,6 +49,7 @@ extension Requests {
             self.offChrtReferenceIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdSetToNone)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
             self.offChrtShipperOrgDataIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgDataIdSetToNone)
+            self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.shipperOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperOrgIdSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -60,6 +64,7 @@ extension Requests {
             try container.encodeIfPresent(self.offChrtReferenceIdSetToNone, forKey: .offChrtReferenceIdSetToNone)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
             try container.encodeIfPresent(self.offChrtShipperOrgDataIdSetToNone, forKey: .offChrtShipperOrgDataIdSetToNone)
+            try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.shipperOrgIdSetToNone, forKey: .shipperOrgIdSetToNone)
         }
@@ -72,6 +77,7 @@ extension Requests {
             case offChrtReferenceIdSetToNone = "off_chrt_reference_id__set_to_None"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
             case offChrtShipperOrgDataIdSetToNone = "off_chrt_shipper_org_data_id__set_to_None"
+            case serviceLine = "service_line"
             case shipperOrgId = "shipper_org_id"
             case shipperOrgIdSetToNone = "shipper_org_id__set_to_None"
         }

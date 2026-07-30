@@ -19,9 +19,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let flightSetupNotes: String?
     public let inProgressAtTimestamp: Date?
     public let messages: [TaskGroupMessage1]?
-    public let mileageAsserted: Bool?
     public let mileageEstimated: Double?
-    public let mileageObserved: Double?
     public let offChrtExecutorOrgDataId: String?
     public let offChrtShipperOrgDataId: String?
     public let orderId: String
@@ -66,9 +64,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         flightSetupNotes: String? = nil,
         inProgressAtTimestamp: Date? = nil,
         messages: [TaskGroupMessage1]? = nil,
-        mileageAsserted: Bool? = nil,
         mileageEstimated: Double? = nil,
-        mileageObserved: Double? = nil,
         offChrtExecutorOrgDataId: String? = nil,
         offChrtShipperOrgDataId: String? = nil,
         orderId: String,
@@ -109,9 +105,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.flightSetupNotes = flightSetupNotes
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.messages = messages
-        self.mileageAsserted = mileageAsserted
         self.mileageEstimated = mileageEstimated
-        self.mileageObserved = mileageObserved
         self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
         self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orderId = orderId
@@ -155,9 +149,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.flightSetupNotes = try container.decodeIfPresent(String.self, forKey: .flightSetupNotes)
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.messages = try container.decodeIfPresent([TaskGroupMessage1].self, forKey: .messages)
-        self.mileageAsserted = try container.decodeIfPresent(Bool.self, forKey: .mileageAsserted)
         self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
-        self.mileageObserved = try container.decodeIfPresent(Double.self, forKey: .mileageObserved)
         self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
         self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orderId = try container.decode(String.self, forKey: .orderId)
@@ -202,9 +194,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.flightSetupNotes, forKey: .flightSetupNotes)
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encodeIfPresent(self.messages, forKey: .messages)
-        try container.encodeIfPresent(self.mileageAsserted, forKey: .mileageAsserted)
         try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
-        try container.encodeIfPresent(self.mileageObserved, forKey: .mileageObserved)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
         try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encode(self.orderId, forKey: .orderId)
@@ -247,9 +237,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case flightSetupNotes = "flight_setup_notes"
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case messages
-        case mileageAsserted = "mileage_asserted"
         case mileageEstimated = "mileage_estimated"
-        case mileageObserved = "mileage_observed"
         case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
         case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orderId = "order_id"

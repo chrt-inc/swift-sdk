@@ -4,7 +4,6 @@ extension Requests {
     public struct OrdersOpenDraftReq: Codable, Hashable, Sendable {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
-        public let coordinatorShipperAccountIds: [String]?
         /// Optional key, unique per caller org, that makes draft creation idempotent: re-sending the same key returns the already-created draft instead of creating a duplicate.
         public let creationIdempotencyKey: String?
         public let departmentId: String?
@@ -18,6 +17,7 @@ extension Requests {
         public let orderScheduleRunIdempotencyKey: String?
         /// Saved order template that seeded this draft. Used as template-build provenance.
         public let orderTemplateId: String?
+        public let serviceLine: ServiceLineEnum?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         /// OperationsTaskList applications to materialize on the Order for the coordinator org at draft creation, each with optional department override and first-deadline pin.
@@ -29,7 +29,6 @@ extension Requests {
 
         public init(
             coordinatorOrgId: String? = nil,
-            coordinatorShipperAccountIds: [String]? = nil,
             creationIdempotencyKey: String? = nil,
             departmentId: String? = nil,
             label: String? = nil,
@@ -38,13 +37,13 @@ extension Requests {
             orderScheduleId: String? = nil,
             orderScheduleRunIdempotencyKey: String? = nil,
             orderTemplateId: String? = nil,
+            serviceLine: ServiceLineEnum? = nil,
             shipperOrgId: String? = nil,
             taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
             taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.coordinatorOrgId = coordinatorOrgId
-            self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
             self.creationIdempotencyKey = creationIdempotencyKey
             self.departmentId = departmentId
             self.label = label
@@ -53,6 +52,7 @@ extension Requests {
             self.orderScheduleId = orderScheduleId
             self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
             self.orderTemplateId = orderTemplateId
+            self.serviceLine = serviceLine
             self.shipperOrgId = shipperOrgId
             self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
             self.taskListsToApplyAtOrderStaging = taskListsToApplyAtOrderStaging
@@ -62,7 +62,6 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
-            self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
             self.creationIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .creationIdempotencyKey)
             self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.label = try container.decodeIfPresent(String.self, forKey: .label)
@@ -71,6 +70,7 @@ extension Requests {
             self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
             self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
             self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
+            self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
             self.taskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderStaging)
@@ -81,7 +81,6 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
-            try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
             try container.encodeIfPresent(self.creationIdempotencyKey, forKey: .creationIdempotencyKey)
             try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
             try container.encodeIfPresent(self.label, forKey: .label)
@@ -90,6 +89,7 @@ extension Requests {
             try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
             try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
             try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
+            try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
             try container.encodeIfPresent(self.taskListsToApplyAtOrderStaging, forKey: .taskListsToApplyAtOrderStaging)
@@ -98,7 +98,6 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorOrgId = "coordinator_org_id"
-            case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
             case creationIdempotencyKey = "creation_idempotency_key"
             case departmentId = "department_id"
             case label
@@ -107,6 +106,7 @@ extension Requests {
             case orderScheduleId = "order_schedule_id"
             case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
             case orderTemplateId = "order_template_id"
+            case serviceLine = "service_line"
             case shipperOrgId = "shipper_org_id"
             case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"
             case taskListsToApplyAtOrderStaging = "task_lists_to_apply_at_order_staging"

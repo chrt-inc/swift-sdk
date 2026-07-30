@@ -30,6 +30,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let orderScheduleRunIdempotencyKey: String?
     public let orderTemplateId: String?
     public let schemaVersion: Int
+    public let serviceLine: ServiceLineEnum?
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
     public let shortId: String
@@ -64,6 +65,7 @@ public struct Order1: Codable, Hashable, Sendable {
         orderScheduleRunIdempotencyKey: String? = nil,
         orderTemplateId: String? = nil,
         schemaVersion: Int,
+        serviceLine: ServiceLineEnum? = nil,
         shipperOrgId: String? = nil,
         shortId: String,
         stagedAtTimestamp: Date? = nil,
@@ -95,6 +97,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
         self.orderTemplateId = orderTemplateId
         self.schemaVersion = schemaVersion
+        self.serviceLine = serviceLine
         self.shipperOrgId = shipperOrgId
         self.shortId = shortId
         self.stagedAtTimestamp = stagedAtTimestamp
@@ -129,6 +132,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
         self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
         self.shortId = try container.decode(String.self, forKey: .shortId)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
@@ -164,6 +168,7 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
         try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
         try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
@@ -197,6 +202,7 @@ public struct Order1: Codable, Hashable, Sendable {
         case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
         case orderTemplateId = "order_template_id"
         case schemaVersion = "schema_version"
+        case serviceLine = "service_line"
         case shipperOrgId = "shipper_org_id"
         case shortId = "short_id"
         case stagedAtTimestamp = "staged_at_timestamp"

@@ -99,6 +99,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func locationFromReferenceV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                string
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.tasks.locationFromReferenceV1(
+            taskId: "task_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func skipV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
