@@ -8268,7 +8268,7 @@ try await main()
 <dl>
 <dd>
 
-Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
+Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. Candidates must match (a) the order's service line, (b) the TaskGroup's vehicle type, (c) a Task's coordinator shipper account, (d) the invoice type (AP or AR), and (e) the relevant counterparty (executor for AP; shipper for AR). | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
 </dd>
 </dl>
 </dd>
@@ -37629,7 +37629,7 @@ private func main() async throws {
 
     _ = try await client.shipping.orders.drafts.taskGroup.setVehicleTypeV1(
         taskGroupId: "task_group_id",
-        request: .init()
+        request: .init(vehicleType: .sedan)
     )
 }
 

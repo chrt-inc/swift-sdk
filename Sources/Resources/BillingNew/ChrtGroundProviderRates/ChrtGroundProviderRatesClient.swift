@@ -92,7 +92,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
         )
     }
 
-    /// Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
+    /// Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. Candidates must match (a) the order's service line, (b) the TaskGroup's vehicle type, (c) a Task's coordinator shipper account, (d) the invoice type (AP or AR), and (e) the relevant counterparty (executor for AP; shipper for AR). | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func resolveV1(request: Requests.ResolveChrtGroundProviderRatesReq, requestOptions: RequestOptions? = nil) async throws -> [ResolvedTaskGroupChrtGroundProviderRates1] {
