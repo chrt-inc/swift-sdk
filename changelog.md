@@ -1,3 +1,7 @@
+## 2.0.1 - 2026-07-30
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 2.0.0 - 2026-07-25
 ### Breaking Changes
 * **`LineStringCoordinatesItem`** — renamed to `CoordinatesItem`; update all references in `LineString.coordinates` and `MultiPoint.coordinates` construction and access sites.
