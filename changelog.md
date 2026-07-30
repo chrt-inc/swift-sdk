@@ -1,8 +1,3 @@
-## 3.0.0 - 2026-07-30
-### Breaking Changes
-* **`SetVehicleTypeReq.vehicleType`** — changed from `VehicleTypeEnum?` to `VehicleTypeEnum` (now required); callers that previously omitted `vehicleType` must now pass an explicit `VehicleTypeEnum` value (e.g., `.init(vehicleType: .sedan)`).
-* **`SetVehicleTypeReq.vehicleTypeSetToNone`** — removed; callers that set `vehicleTypeSetToNone` must remove that argument, as the property no longer exists.
-
 ## 2.0.1 - 2026-07-30
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
