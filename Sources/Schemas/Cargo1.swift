@@ -15,6 +15,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let deviceIds: [String]?
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?
+    public let girthInches: Double?
     public let heightInches: Double?
     public let inTransitAtTimestamp: Date?
     public let lengthInches: Double?
@@ -44,6 +45,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         deviceIds: [String]? = nil,
         draftStartedAtTimestamp: Date,
         exceptionAtTimestamp: Date? = nil,
+        girthInches: Double? = nil,
         heightInches: Double? = nil,
         inTransitAtTimestamp: Date? = nil,
         lengthInches: Double? = nil,
@@ -71,6 +73,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.deviceIds = deviceIds
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
+        self.girthInches = girthInches
         self.heightInches = heightInches
         self.inTransitAtTimestamp = inTransitAtTimestamp
         self.lengthInches = lengthInches
@@ -101,6 +104,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.deviceIds = try container.decodeIfPresent([String].self, forKey: .deviceIds)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
+        self.girthInches = try container.decodeIfPresent(Double.self, forKey: .girthInches)
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
         self.inTransitAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inTransitAtTimestamp)
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
@@ -132,6 +136,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.deviceIds, forKey: .deviceIds)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
+        try container.encodeIfPresent(self.girthInches, forKey: .girthInches)
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
         try container.encodeIfPresent(self.inTransitAtTimestamp, forKey: .inTransitAtTimestamp)
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
@@ -161,6 +166,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case deviceIds = "device_ids"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
+        case girthInches = "girth_inches"
         case heightInches = "height_inches"
         case inTransitAtTimestamp = "in_transit_at_timestamp"
         case lengthInches = "length_inches"

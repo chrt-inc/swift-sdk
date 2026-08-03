@@ -7,6 +7,8 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
     public let cargoType: CargoTypeEnum1?
     public let description: String?
     public let descriptionSetToNone: Bool?
+    public let girthInches: Double?
+    public let girthInchesSetToNone: Bool?
     public let heightInches: Double?
     public let heightInchesSetToNone: Bool?
     public let lengthInches: Double?
@@ -30,6 +32,8 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         cargoType: CargoTypeEnum1? = nil,
         description: String? = nil,
         descriptionSetToNone: Bool? = nil,
+        girthInches: Double? = nil,
+        girthInchesSetToNone: Bool? = nil,
         heightInches: Double? = nil,
         heightInchesSetToNone: Bool? = nil,
         lengthInches: Double? = nil,
@@ -51,6 +55,8 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         self.cargoType = cargoType
         self.description = description
         self.descriptionSetToNone = descriptionSetToNone
+        self.girthInches = girthInches
+        self.girthInchesSetToNone = girthInchesSetToNone
         self.heightInches = heightInches
         self.heightInchesSetToNone = heightInchesSetToNone
         self.lengthInches = lengthInches
@@ -75,6 +81,8 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         self.cargoType = try container.decodeIfPresent(CargoTypeEnum1.self, forKey: .cargoType)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
+        self.girthInches = try container.decodeIfPresent(Double.self, forKey: .girthInches)
+        self.girthInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .girthInchesSetToNone)
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
         self.heightInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .heightInchesSetToNone)
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
@@ -100,6 +108,8 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.cargoType, forKey: .cargoType)
         try container.encodeIfPresent(self.description, forKey: .description)
         try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
+        try container.encodeIfPresent(self.girthInches, forKey: .girthInches)
+        try container.encodeIfPresent(self.girthInchesSetToNone, forKey: .girthInchesSetToNone)
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
         try container.encodeIfPresent(self.heightInchesSetToNone, forKey: .heightInchesSetToNone)
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
@@ -123,6 +133,8 @@ public struct CargoClientUpdate1: Codable, Hashable, Sendable {
         case cargoType = "cargo_type"
         case description
         case descriptionSetToNone = "description__set_to_None"
+        case girthInches = "girth_inches"
+        case girthInchesSetToNone = "girth_inches__set_to_None"
         case heightInches = "height_inches"
         case heightInchesSetToNone = "height_inches__set_to_None"
         case lengthInches = "length_inches"

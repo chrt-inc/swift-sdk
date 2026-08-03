@@ -28434,6 +28434,524 @@ try await main()
 </dl>
 </details>
 
+## Shipping OrderTemplatesNew
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">resolveDateparserV1</a>(request: Requests.OrderTemplateNewDateparserResolveReq, requestOptions: RequestOptions?) -> OrderTemplateNewDateparserResolveRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Validates a natural-language date string and resolves it to a UTC timestamp. | authz: min_org_role=operator | (OrderTemplateNewDateparserResolveReq) -> (OrderTemplateNewDateparserResolveRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.resolveDateparserV1(request: .init(
+        dateparserStr: "dateparser_str",
+        timeZoneName: "America/New_York"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewDateparserResolveReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists order templates for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OrderTemplateNewListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.listV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterOwnedByUserId: "filter_owned_by_user_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `OrderTemplateNewSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOwnedByUserId:** `String?` — Filter by the user that created the template.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastEditedAtTimestampGte:** `Date?` — Filter last_edited_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastEditedAtTimestampLte:** `Date?` — Filter last_edited_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">updateV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewClientUpdate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an order template owned by the caller's organization. | authz: min_org_role=operator | (OrderTemplateNewClientUpdate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.updateV1(
+        orderTemplateId: "order_template_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">createV1</a>(request: Requests.OrderTemplateNewClientCreate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an order template owned by the caller's organization. | authz: min_org_role=operator | (OrderTemplateNewClientCreate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.createV1(request: .init(
+        name: "name",
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">getByIdV1</a>(orderTemplateId: String, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an order template by ID. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.getByIdV1(orderTemplateId: "order_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">deleteV1</a>(orderTemplateId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.deleteV1(orderTemplateId: "order_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping Orders
 <details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">assignV1</a>(orderId: String, request: Requests.OrdersAssignReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
@@ -43291,7 +43809,7 @@ try await main()
 <dl>
 <dd>
 
-Refreshes and retrieves a Reelables asset by its external ID. | authz: min_org_role=operator | () -> (ReelablesAsset1)
+Refreshes and retrieves a Reelables asset by its external ID. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAsset1)
 </dd>
 </dl>
 </dd>
@@ -43362,7 +43880,7 @@ try await main()
 <dl>
 <dd>
 
-Lists cached Reelables assets for a workspace. | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
+Lists cached Reelables assets for a workspace. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
 </dd>
 </dl>
 </dd>
@@ -43625,7 +44143,7 @@ try await main()
 <dl>
 <dd>
 
-Refreshes and returns Reelables location data points within the requested time range. | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
+Refreshes and returns Reelables location data points within the requested time range. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
 </dd>
 </dl>
 </dd>
@@ -43717,7 +44235,7 @@ try await main()
 <dl>
 <dd>
 
-Lists cached Reelables workspaces for the caller's organization. | authz: min_org_role=operator | () -> (ReelablesWorkspaceListRes)
+Lists cached Reelables workspaces for the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesWorkspaceListRes)
 </dd>
 </dl>
 </dd>
@@ -43881,7 +44399,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single Tive device by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDevice1)
+Retrieves a single Tive device by its ID. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDevice1)
 </dd>
 </dl>
 </dd>
@@ -43952,7 +44470,7 @@ try await main()
 <dl>
 <dd>
 
-Lists Tive devices with filtering, sorting, and pagination. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDeviceListRes)
+Lists Tive devices with filtering, sorting, and pagination. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDeviceListRes)
 </dd>
 </dl>
 </dd>
@@ -44089,7 +44607,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipment1)
+Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveShipment1)
 </dd>
 </dl>
 </dd>
@@ -44160,7 +44678,7 @@ try await main()
 <dl>
 <dd>
 
-Lists Tive shipments with filtering, sorting, and pagination. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipmentListRes)
+Lists Tive shipments with filtering, sorting, and pagination. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveShipmentListRes)
 </dd>
 </dl>
 </dd>
@@ -44297,7 +44815,7 @@ try await main()
 <dl>
 <dd>
 
-Returns raw Tive data points for a shipment within the given time range. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveTimeseriesRes)
+Returns raw Tive data points for a shipment within the given time range. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveTimeseriesRes)
 </dd>
 </dl>
 </dd>
@@ -44388,7 +44906,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent Tive data point for a shipment. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDataPoint1 | None)
+Returns the most recent Tive data point for a shipment. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDataPoint1 | None)
 </dd>
 </dl>
 </dd>

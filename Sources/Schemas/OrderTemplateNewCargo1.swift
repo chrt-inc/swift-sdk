@@ -1,15 +1,16 @@
 import Foundation
 
-public struct CargoClientCreate1: Codable, Hashable, Sendable {
+public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
     /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     public let awbNumber: String?
+    public let cargoKey: String
     public let cargoType: CargoTypeEnum1
     public let description: String?
     public let girthInches: Double?
     public let heightInches: Double?
     public let lengthInches: Double?
     public let quantity: Int?
-    public let schemaVersion: Int
+    public let schemaVersion: Int?
     public let stackable: Bool?
     public let turnable: Bool?
     public let weightPounds: Double?
@@ -19,13 +20,14 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
 
     public init(
         awbNumber: String? = nil,
+        cargoKey: String,
         cargoType: CargoTypeEnum1,
         description: String? = nil,
         girthInches: Double? = nil,
         heightInches: Double? = nil,
         lengthInches: Double? = nil,
         quantity: Int? = nil,
-        schemaVersion: Int,
+        schemaVersion: Int? = nil,
         stackable: Bool? = nil,
         turnable: Bool? = nil,
         weightPounds: Double? = nil,
@@ -33,6 +35,7 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.awbNumber = awbNumber
+        self.cargoKey = cargoKey
         self.cargoType = cargoType
         self.description = description
         self.girthInches = girthInches
@@ -50,13 +53,14 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
+        self.cargoKey = try container.decode(String.self, forKey: .cargoKey)
         self.cargoType = try container.decode(CargoTypeEnum1.self, forKey: .cargoType)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.girthInches = try container.decodeIfPresent(Double.self, forKey: .girthInches)
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
         self.quantity = try container.decodeIfPresent(Int.self, forKey: .quantity)
-        self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.schemaVersion = try container.decodeIfPresent(Int.self, forKey: .schemaVersion)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
         self.weightPounds = try container.decodeIfPresent(Double.self, forKey: .weightPounds)
@@ -68,13 +72,14 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
+        try container.encode(self.cargoKey, forKey: .cargoKey)
         try container.encode(self.cargoType, forKey: .cargoType)
         try container.encodeIfPresent(self.description, forKey: .description)
         try container.encodeIfPresent(self.girthInches, forKey: .girthInches)
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
-        try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
         try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
@@ -84,6 +89,7 @@ public struct CargoClientCreate1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case awbNumber = "awb_number"
+        case cargoKey = "cargo_key"
         case cargoType = "cargo_type"
         case description
         case girthInches = "girth_inches"

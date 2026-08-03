@@ -7,7 +7,7 @@ public final class WorkspacesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists cached Reelables workspaces for the caller's organization. | authz: min_org_role=operator | () -> (ReelablesWorkspaceListRes)
+    /// Lists cached Reelables workspaces for the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesWorkspaceListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)

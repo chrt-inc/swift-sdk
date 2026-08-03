@@ -7,7 +7,7 @@ public final class TiveDevicesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a single Tive device by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDevice1)
+    /// Retrieves a single Tive device by its ID. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDevice1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(tiveDeviceId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDevice1 {
@@ -22,7 +22,7 @@ public final class TiveDevicesClient: Sendable {
         )
     }
 
-    /// Lists Tive devices with filtering, sorting, and pagination. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDeviceListRes)
+    /// Lists Tive devices with filtering, sorting, and pagination. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDeviceListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)

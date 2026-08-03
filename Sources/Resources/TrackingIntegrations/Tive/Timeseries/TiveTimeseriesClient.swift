@@ -7,7 +7,7 @@ public final class TiveTimeseriesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns raw Tive data points for a shipment within the given time range. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveTimeseriesRes)
+    /// Returns raw Tive data points for a shipment within the given time range. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveTimeseriesRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsV1(tiveShipmentId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions? = nil) async throws -> TiveTimeseriesRes {
@@ -24,7 +24,7 @@ public final class TiveTimeseriesClient: Sendable {
         )
     }
 
-    /// Returns the most recent Tive data point for a shipment. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveDataPoint1 | None)
+    /// Returns the most recent Tive data point for a shipment. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDataPoint1 | None)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDataPoint1? {

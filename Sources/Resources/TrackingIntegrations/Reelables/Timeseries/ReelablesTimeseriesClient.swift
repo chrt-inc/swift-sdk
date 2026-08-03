@@ -7,7 +7,7 @@ public final class ReelablesTimeseriesClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Refreshes and returns Reelables location data points within the requested time range. | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
+    /// Refreshes and returns Reelables location data points within the requested time range. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsV1(assetId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions? = nil) async throws -> ReelablesTimeseriesRes {

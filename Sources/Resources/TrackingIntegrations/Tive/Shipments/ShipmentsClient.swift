@@ -7,7 +7,7 @@ public final class ShipmentsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipment1)
+    /// Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveShipment1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveShipment1 {
@@ -22,7 +22,7 @@ public final class ShipmentsClient: Sendable {
         )
     }
 
-    /// Lists Tive shipments with filtering, sorting, and pagination. Scoped to the caller's organization. | authz: min_org_role=operator | () -> (TiveShipmentListRes)
+    /// Lists Tive shipments with filtering, sorting, and pagination. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveShipmentListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)

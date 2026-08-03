@@ -31,6 +31,8 @@ import Chrt
                         "asset_id": "asset_id"
                       },
                       "schema_version": 1,
+                      "temperature_accuracy_degrees_celsius": 1.1,
+                      "temperature_degrees_celsius": 1.1,
                       "timestamp": "2024-01-15T09:30:00Z"
                     }
                   ]
@@ -70,6 +72,8 @@ import Chrt
                         assetId: "asset_id"
                     ),
                     schemaVersion: 1,
+                    temperatureAccuracyDegreesCelsius: Optional(1.1),
+                    temperatureDegreesCelsius: Optional(1.1),
                     timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                 )
             ]

@@ -1,6 +1,6 @@
 import Foundation
 
-/// Shared seed of an order build: the order text + long-lived references. Reused by the library template (OrderTemplateBase1) and the ad-hoc kickoff payload so the fields the builder seeds from can't drift. (Mirrors TaskCore1.)
+/// Shared seed of an order build: the order text + long-lived references. Reused by the library template (OrderTemplateBase1) and the ad-hoc kickoff payload so the fields the builder seeds from can't drift.
 /// 
 /// NOTE - some fields have multiple values and must be properly mapped to an entity by the order builder, e.g. for `driver_ids` each resolves to a single task group
 public struct OrderTemplateCore1: Codable, Hashable, Sendable {

@@ -6,6 +6,8 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
     public let location: LocationFeature
     public let metadata: ReelablesDataPointMetadata1
     public let schemaVersion: Int
+    public let temperatureAccuracyDegreesCelsius: Double?
+    public let temperatureDegreesCelsius: Double?
     public let timestamp: Date
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -16,6 +18,8 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
         location: LocationFeature,
         metadata: ReelablesDataPointMetadata1,
         schemaVersion: Int,
+        temperatureAccuracyDegreesCelsius: Double? = nil,
+        temperatureDegreesCelsius: Double? = nil,
         timestamp: Date,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -24,6 +28,8 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
         self.location = location
         self.metadata = metadata
         self.schemaVersion = schemaVersion
+        self.temperatureAccuracyDegreesCelsius = temperatureAccuracyDegreesCelsius
+        self.temperatureDegreesCelsius = temperatureDegreesCelsius
         self.timestamp = timestamp
         self.additionalProperties = additionalProperties
     }
@@ -35,6 +41,8 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
         self.location = try container.decode(LocationFeature.self, forKey: .location)
         self.metadata = try container.decode(ReelablesDataPointMetadata1.self, forKey: .metadata)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.temperatureAccuracyDegreesCelsius = try container.decodeIfPresent(Double.self, forKey: .temperatureAccuracyDegreesCelsius)
+        self.temperatureDegreesCelsius = try container.decodeIfPresent(Double.self, forKey: .temperatureDegreesCelsius)
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -47,6 +55,8 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
         try container.encode(self.location, forKey: .location)
         try container.encode(self.metadata, forKey: .metadata)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.temperatureAccuracyDegreesCelsius, forKey: .temperatureAccuracyDegreesCelsius)
+        try container.encodeIfPresent(self.temperatureDegreesCelsius, forKey: .temperatureDegreesCelsius)
         try container.encode(self.timestamp, forKey: .timestamp)
     }
 
@@ -57,6 +67,8 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
         case location
         case metadata
         case schemaVersion = "schema_version"
+        case temperatureAccuracyDegreesCelsius = "temperature_accuracy_degrees_celsius"
+        case temperatureDegreesCelsius = "temperature_degrees_celsius"
         case timestamp
     }
 }

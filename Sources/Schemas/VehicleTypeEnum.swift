@@ -7,4 +7,5 @@ public enum VehicleTypeEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case boxTruck = "box_truck"
     case flatbed
     case semiTruck = "semi_truck"
+    case airplane
 }

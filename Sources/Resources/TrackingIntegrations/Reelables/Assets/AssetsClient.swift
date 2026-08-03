@@ -7,7 +7,7 @@ public final class AssetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Refreshes and retrieves a Reelables asset by its external ID. | authz: min_org_role=operator | () -> (ReelablesAsset1)
+    /// Refreshes and retrieves a Reelables asset by its external ID. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAsset1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(assetId: String, requestOptions: RequestOptions? = nil) async throws -> ReelablesAsset1 {
@@ -19,7 +19,7 @@ public final class AssetsClient: Sendable {
         )
     }
 
-    /// Lists cached Reelables assets for a workspace. | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
+    /// Lists cached Reelables assets for a workspace. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
