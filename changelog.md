@@ -1,3 +1,17 @@
+## 2.0.0 - 2026-08-03
+### Breaking Changes
+* **`LineStringCoordinatesItem`** — renamed to `CoordinatesItem`; update all `LineString.coordinates` and `MultiPoint.coordinates` references.
+* **`MultiLineStringCoordinatesItemItem` / `PolygonCoordinatesItemItem`** — consolidated into `CoordinatesItemItem`; update all `MultiLineString.coordinates` and `Polygon.coordinates` references.
+* **`MultiPolygonCoordinatesItemItemItem`** — renamed to `CoordinatesItemItemItem`; update all `MultiPolygon.coordinates` references.
+* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all `GeometryCollection.geometries` references.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` access and construction sites. **`VehicleTypeEnum`** gains a new `airplane` case — add `case .airplane:` or a `default:` fallthrough to any exhaustive `switch`.
+### Added
+* **`OrderTemplatesNewClient`** — new client accessible via `client.shipping.orderTemplatesNew` supporting `createV1`, `updateV1`, `getByIdV1`, `listV1`, `deleteV1`, and `resolveDateparserV1` operations.
+* **`OrderTemplateNew1`** and supporting schemas — new types covering full order template structure including cargos (`OrderTemplateNewCargo1`), task groups (`OrderTemplateNewTaskGroup1`), tasks, artifacts, date-time windows, and paginated list response (`OrderTemplateNewListRes`).
+* **`girthInches`** — new optional `Double` field added to `Cargo1`, `CargoClientCreate1`, `CargoClientUpdate1`, and expanded-order cargo response types (update schema also includes `girthInchesSetToNone`).
+* **New filter parameters** — `filterStatus`, `filterServiceLine`, `filterOrderClassificationByTaskGroupType`, `filterCoordinatorShipperAccountIds`, `filterCoordinatorAssignedUserIds`, `filterBillingReviewStatus`, and `filterShippingStatus` added to expanded-orders list and ungrouped-orders list endpoints.
+* **`temperatureDegreesCelsius` / `temperatureAccuracyDegreesCelsius`** — new optional fields added to `ReelablesDataPoint1` timeseries response type.
+
 ## 2.0.1 - 2026-07-30
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

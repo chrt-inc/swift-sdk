@@ -59,13 +59,13 @@ public enum Geometry: Codable, Hashable, Sendable {
     public struct GeometryCollection: Codable, Hashable, Sendable {
         public let type: String = "GeometryCollection"
         public let bbox: [JSONValue]?
-        public let geometries: [GeometryCollectionGeometriesItem]
+        public let geometries: [GeometriesItem]
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             bbox: [JSONValue]? = nil,
-            geometries: [GeometryCollectionGeometriesItem],
+            geometries: [GeometriesItem],
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.bbox = bbox
@@ -76,7 +76,7 @@ public enum Geometry: Codable, Hashable, Sendable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-            self.geometries = try container.decode([GeometryCollectionGeometriesItem].self, forKey: .geometries)
+            self.geometries = try container.decode([GeometriesItem].self, forKey: .geometries)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -99,13 +99,13 @@ public enum Geometry: Codable, Hashable, Sendable {
     public struct LineString: Codable, Hashable, Sendable {
         public let type: String = "LineString"
         public let bbox: [JSONValue]?
-        public let coordinates: [LineStringCoordinatesItem]
+        public let coordinates: [CoordinatesItem]
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             bbox: [JSONValue]? = nil,
-            coordinates: [LineStringCoordinatesItem],
+            coordinates: [CoordinatesItem],
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.bbox = bbox
@@ -116,7 +116,7 @@ public enum Geometry: Codable, Hashable, Sendable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-            self.coordinates = try container.decode([LineStringCoordinatesItem].self, forKey: .coordinates)
+            self.coordinates = try container.decode([CoordinatesItem].self, forKey: .coordinates)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -139,13 +139,13 @@ public enum Geometry: Codable, Hashable, Sendable {
     public struct MultiLineString: Codable, Hashable, Sendable {
         public let type: String = "MultiLineString"
         public let bbox: [JSONValue]?
-        public let coordinates: [[MultiLineStringCoordinatesItemItem]]
+        public let coordinates: [[CoordinatesItemItem]]
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             bbox: [JSONValue]? = nil,
-            coordinates: [[MultiLineStringCoordinatesItemItem]],
+            coordinates: [[CoordinatesItemItem]],
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.bbox = bbox
@@ -156,7 +156,7 @@ public enum Geometry: Codable, Hashable, Sendable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-            self.coordinates = try container.decode([[MultiLineStringCoordinatesItemItem]].self, forKey: .coordinates)
+            self.coordinates = try container.decode([[CoordinatesItemItem]].self, forKey: .coordinates)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -179,13 +179,13 @@ public enum Geometry: Codable, Hashable, Sendable {
     public struct MultiPoint: Codable, Hashable, Sendable {
         public let type: String = "MultiPoint"
         public let bbox: [JSONValue]?
-        public let coordinates: [MultiPointCoordinatesItem]
+        public let coordinates: [CoordinatesItem]
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             bbox: [JSONValue]? = nil,
-            coordinates: [MultiPointCoordinatesItem],
+            coordinates: [CoordinatesItem],
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.bbox = bbox
@@ -196,7 +196,7 @@ public enum Geometry: Codable, Hashable, Sendable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-            self.coordinates = try container.decode([MultiPointCoordinatesItem].self, forKey: .coordinates)
+            self.coordinates = try container.decode([CoordinatesItem].self, forKey: .coordinates)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -219,13 +219,13 @@ public enum Geometry: Codable, Hashable, Sendable {
     public struct MultiPolygon: Codable, Hashable, Sendable {
         public let type: String = "MultiPolygon"
         public let bbox: [JSONValue]?
-        public let coordinates: [[[MultiPolygonCoordinatesItemItemItem]]]
+        public let coordinates: [[[CoordinatesItemItemItem]]]
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             bbox: [JSONValue]? = nil,
-            coordinates: [[[MultiPolygonCoordinatesItemItemItem]]],
+            coordinates: [[[CoordinatesItemItemItem]]],
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.bbox = bbox
@@ -236,7 +236,7 @@ public enum Geometry: Codable, Hashable, Sendable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-            self.coordinates = try container.decode([[[MultiPolygonCoordinatesItemItemItem]]].self, forKey: .coordinates)
+            self.coordinates = try container.decode([[[CoordinatesItemItemItem]]].self, forKey: .coordinates)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -299,13 +299,13 @@ public enum Geometry: Codable, Hashable, Sendable {
     public struct Polygon: Codable, Hashable, Sendable {
         public let type: String = "Polygon"
         public let bbox: [JSONValue]?
-        public let coordinates: [[PolygonCoordinatesItemItem]]
+        public let coordinates: [[CoordinatesItemItem]]
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             bbox: [JSONValue]? = nil,
-            coordinates: [[PolygonCoordinatesItemItem]],
+            coordinates: [[CoordinatesItemItem]],
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.bbox = bbox
@@ -316,7 +316,7 @@ public enum Geometry: Codable, Hashable, Sendable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-            self.coordinates = try container.decode([[PolygonCoordinatesItemItem]].self, forKey: .coordinates)
+            self.coordinates = try container.decode([[CoordinatesItemItem]].self, forKey: .coordinates)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
