@@ -1,5 +1,5 @@
 {
-  "cliVersion": "3.90.3",
+  "cliVersion": "5.89.4",
   "generatorName": "fernapi/fern-swift-sdk",
   "generatorVersion": "0.23.2",
   "generatorConfig": {
@@ -7,5 +7,6 @@
     "clientClassName": "ChrtClient",
     "environmentEnumName": "ChrtEnvironment",
     "nullableAsOptional": true
-  }
+  },
+  "originGitCommit": "3cd839aa6f30542e41c4f451bc044a47565e8d27"
 }
