@@ -1,14 +1,14 @@
 import Foundation
 
 public struct ListingTaskForBidder1: Codable, Hashable, Sendable {
-    public let action: Action?
+    public let action: ActionType?
     public let location: LocationFeature?
     public let taskId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        action: Action? = nil,
+        action: ActionType? = nil,
         location: LocationFeature? = nil,
         taskId: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -21,7 +21,7 @@ public struct ListingTaskForBidder1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.action = try container.decodeIfPresent(ActionType.self, forKey: .action)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.taskId = try container.decode(String.self, forKey: .taskId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)

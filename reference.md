@@ -174,9 +174,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -738,9 +735,6 @@ private func main() async throws {
         pageSize: 1,
         filterBillingLedgerId: "filter_billing_ledger_id",
         filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStatus: [
-            .open
-        ],
         filterStatementId: "filter_statement_id",
         filterAttachedToStatement: true,
         filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1282,9 +1276,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .active
-        ],
         filterTaskGroupType: .chrtGroundProvider,
         filterPaymentOriginOrgId: "filter_payment_origin_org_id",
         filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
@@ -3604,9 +3595,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -5878,9 +5866,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -6204,9 +6189,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
         filterSettlementType: .stripeConnect,
         filterOrderId: "filter_order_id",
         filterOrderShortId: "filter_order_short_id",
@@ -8059,25 +8041,10 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterShipperAccountId: "filter_shipper_account_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
-        filterCargoTypes: [
-            .spareParts
-        ],
-        filterVehicleTypes: [
-            .sedan
-        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -9170,18 +9137,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
-        filterLineItemTypes: [
-            .baseRate
-        ],
-        filterUnits: [
-            .each
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterShipperAccountId: "filter_shipper_account_id",
@@ -10188,15 +10143,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatuses: [
-            .draft
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyAccountId: "filter_counterparty_account_id",
@@ -10629,15 +10575,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterAwbNumber: "filter_awb_number",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterExecutorOrgId: "filter_executor_org_id",
         filterCoordinatorLabel: "filter_coordinator_label",
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -12415,9 +12355,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -12590,9 +12527,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13999,12 +13933,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -14201,12 +14129,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -14395,12 +14317,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -17431,10 +17347,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -19172,18 +19085,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -19368,18 +19272,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -24705,10 +24600,7 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         filterAvailableAccordingToDriver: true,
-        filterAvailableAccordingToOperators: true,
-        filterStatus: [
-            .unassigned
-        ]
+        filterAvailableAccordingToOperators: true
     )
 }
 
@@ -24830,9 +24722,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -27123,13 +27012,7 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterIntendedStatus: [
-            .draft
-        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
-        filterServiceLine: [
-            .onDemand
-        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -27862,9 +27745,6 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
-        filterServiceLine: [
-            .onDemand
-        ],
         filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
@@ -28555,6 +28435,159 @@ try await main()
 </details>
 
 ## Shipping OrderTemplatesNew
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">postArchiveV1</a>(orderTemplateId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives an order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.postArchiveV1(orderTemplateId: "order_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">putReplaceCoreV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewCore1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Atomically replaces an active order template core. | authz: min_org_role=operator | (OrderTemplateNewCore1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.putReplaceCoreV1(
+        orderTemplateId: "order_template_id",
+        request: .init(schemaVersion: 1)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewCore1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">resolveDateparserV1</a>(request: Requests.OrderTemplateNewDateparserResolveReq, requestOptions: RequestOptions?) -> OrderTemplateNewDateparserResolveRes</code></summary>
 <dl>
 <dd>
@@ -28629,7 +28662,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterArchived: Bool?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
 <dl>
 <dd>
 
@@ -28667,11 +28700,14 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
 
@@ -28722,6 +28758,14 @@ try await main()
 <dl>
 <dd>
 
+**filterArchived:** `Bool?` — Include archived templates instead of active templates.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterOwnedByUserId:** `String?` — Filter by the user that created the template.
     
 </dd>
@@ -28755,6 +28799,93 @@ try await main()
 <dd>
 
 **filterLastEditedAtTimestampLte:** `Date?` — Filter last_edited_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastUsedAtTimestampGte:** `Date?` — Filter last_used_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastUsedAtTimestampLte:** `Date?` — Filter last_used_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">postUnarchiveV1</a>(orderTemplateId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Restores an archived order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.postUnarchiveV1(orderTemplateId: "order_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
     
 </dd>
 </dl>
@@ -29894,9 +30025,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterBillingReviewStatus: [
-            .notStarted
-        ],
         filterOrderId: "filter_order_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -30028,12 +30156,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
-        filterShippingStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
         sortBy: .draftStartedAtTimestamp,
         sortOrder: .asc,
         page: 1,
@@ -33993,6 +34115,1667 @@ try await main()
 </dl>
 </details>
 
+## Shipping OrderTemplatesNew Cargos
+<details><summary><code>client.shipping.orderTemplatesNew.cargos.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Cargos/OrderTemplatesNewCargosClient.swift">putReorderV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewCargoReorderReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reorders cargo in an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoReorderReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.cargos.putReorderV1(
+        orderTemplateId: "order_template_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewCargoReorderReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.cargos.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Cargos/OrderTemplatesNewCargosClient.swift">postCreateV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewCargoClientCreate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds cargo to an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoClientCreate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.cargos.postCreateV1(
+        orderTemplateId: "order_template_id",
+        request: .init(cargoType: .spareParts)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewCargoClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.cargos.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Cargos/OrderTemplatesNewCargosClient.swift">deleteV1</a>(orderTemplateId: String, cargoKey: String, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes cargo and its task associations from an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.cargos.deleteV1(
+        orderTemplateId: "order_template_id",
+        cargoKey: "cargo_key"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cargoKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.cargos.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Cargos/OrderTemplatesNewCargosClient.swift">patchUpdateV1</a>(orderTemplateId: String, cargoKey: String, request: Requests.OrderTemplateNewCargoClientUpdate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates cargo in an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoClientUpdate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.cargos.patchUpdateV1(
+        orderTemplateId: "order_template_id",
+        cargoKey: "cargo_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cargoKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewCargoClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping OrderTemplatesNew TaskArtifacts
+<details><summary><code>client.shipping.orderTemplatesNew.taskArtifacts.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskArtifacts/OrderTemplatesNewTaskArtifactsClient.swift">putMoveV1</a>(orderTemplateId: String, taskArtifactKey: String, request: Requests.OrderTemplateNewTaskArtifactMoveReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Moves a task artifact to the end of another task. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactMoveReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskArtifacts.putMoveV1(
+        orderTemplateId: "order_template_id",
+        taskArtifactKey: "task_artifact_key",
+        request: .init(targetTaskKey: "target_task_key")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskArtifactKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskArtifactMoveReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskArtifacts.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskArtifacts/OrderTemplatesNewTaskArtifactsClient.swift">putReorderV1</a>(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskArtifactReorderReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reorders artifacts within one task. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactReorderReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskArtifacts.putReorderV1(
+        orderTemplateId: "order_template_id",
+        taskKey: "task_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskArtifactReorderReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskArtifacts.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskArtifacts/OrderTemplatesNewTaskArtifactsClient.swift">deleteV1</a>(orderTemplateId: String, taskArtifactKey: String, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a task artifact from an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskArtifacts.deleteV1(
+        orderTemplateId: "order_template_id",
+        taskArtifactKey: "task_artifact_key"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskArtifactKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskArtifacts.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskArtifacts/OrderTemplatesNewTaskArtifactsClient.swift">patchUpdateV1</a>(orderTemplateId: String, taskArtifactKey: String, request: Requests.OrderTemplateNewTaskArtifactClientUpdate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a task artifact in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactClientUpdate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskArtifacts.patchUpdateV1(
+        orderTemplateId: "order_template_id",
+        taskArtifactKey: "task_artifact_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskArtifactKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskArtifactClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskArtifacts.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskArtifacts/OrderTemplatesNewTaskArtifactsClient.swift">postCreateV1</a>(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskArtifactClientCreate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds an artifact to a task in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactClientCreate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskArtifacts.postCreateV1(
+        orderTemplateId: "order_template_id",
+        taskKey: "task_key",
+        request: .init(type: .image)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskArtifactClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping OrderTemplatesNew TaskGroups
+<details><summary><code>client.shipping.orderTemplatesNew.taskGroups.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskGroups/OrderTemplatesNewTaskGroupsClient.swift">putReorderV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewTaskGroupReorderReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reorders task groups in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskGroupReorderReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskGroups.putReorderV1(
+        orderTemplateId: "order_template_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskGroupReorderReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskGroups.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskGroups/OrderTemplatesNewTaskGroupsClient.swift">postCreateV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewTaskGroupClientCreate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a task group to an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskGroupClientCreate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskGroups.postCreateV1(
+        orderTemplateId: "order_template_id",
+        request: .init(taskGroupType: .chrtGroundProvider)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskGroupClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskGroups.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskGroups/OrderTemplatesNewTaskGroupsClient.swift">deleteV1</a>(orderTemplateId: String, taskGroupKey: String, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a task group and its embedded tasks from an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskGroups.deleteV1(
+        orderTemplateId: "order_template_id",
+        taskGroupKey: "task_group_key"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.taskGroups.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/TaskGroups/OrderTemplatesNewTaskGroupsClient.swift">patchUpdateV1</a>(orderTemplateId: String, taskGroupKey: String, request: Requests.OrderTemplateNewTaskGroupClientUpdate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a task group in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskGroupClientUpdate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.taskGroups.patchUpdateV1(
+        orderTemplateId: "order_template_id",
+        taskGroupKey: "task_group_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskGroupClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping OrderTemplatesNew Tasks
+<details><summary><code>client.shipping.orderTemplatesNew.tasks.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Tasks/OrderTemplatesNewTasksClient.swift">putCargoAssociationsV1</a>(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskCargoAssociationsReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces a task's cargo associations. | authz: min_org_role=operator | (OrderTemplateNewTaskCargoAssociationsReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.tasks.putCargoAssociationsV1(
+        orderTemplateId: "order_template_id",
+        taskKey: "task_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskCargoAssociationsReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.tasks.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Tasks/OrderTemplatesNewTasksClient.swift">putMoveV1</a>(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskMoveReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Moves a task to the end of another task group. | authz: min_org_role=operator | (OrderTemplateNewTaskMoveReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.tasks.putMoveV1(
+        orderTemplateId: "order_template_id",
+        taskKey: "task_key",
+        request: .init(targetTaskGroupKey: "target_task_group_key")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskMoveReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.tasks.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Tasks/OrderTemplatesNewTasksClient.swift">putReorderV1</a>(orderTemplateId: String, taskGroupKey: String, request: Requests.OrderTemplateNewTaskReorderReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reorders tasks within one task group. | authz: min_org_role=operator | (OrderTemplateNewTaskReorderReq1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.tasks.putReorderV1(
+        orderTemplateId: "order_template_id",
+        taskGroupKey: "task_group_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskReorderReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.tasks.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Tasks/OrderTemplatesNewTasksClient.swift">postCreateV1</a>(orderTemplateId: String, taskGroupKey: String, request: Requests.OrderTemplateNewTaskClientCreate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a task to a task group in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskClientCreate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.tasks.postCreateV1(
+        orderTemplateId: "order_template_id",
+        taskGroupKey: "task_group_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.tasks.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Tasks/OrderTemplatesNewTasksClient.swift">deleteV1</a>(orderTemplateId: String, taskKey: String, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a task and its embedded artifacts from an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.tasks.deleteV1(
+        orderTemplateId: "order_template_id",
+        taskKey: "task_key"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.tasks.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Tasks/OrderTemplatesNewTasksClient.swift">patchUpdateV1</a>(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskClientUpdate1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a task in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskClientUpdate1) -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.tasks.patchUpdateV1(
+        orderTemplateId: "order_template_id",
+        taskKey: "task_key",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderTemplateNewTaskClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping Orders Drafts
 <details><summary><code>client.shipping.orders.drafts.<a href="/Sources/Resources/Shipping/Orders/Drafts/DraftsClient.swift">buildV1</a>(request: OrderBuilderReq, requestOptions: RequestOptions?) -> OrderBuilderRes</code></summary>
 <dl>
@@ -34376,6 +36159,88 @@ try await main()
 <dd>
 
 **taskListId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orders.drafts.<a href="/Sources/Resources/Shipping/Orders/Drafts/DraftsClient.swift">createFromOrderTemplateNewV1</a>(orderTemplateId: String, request: Requests.OrdersCreateDraftFromOrderTemplateNewReq, requestOptions: RequestOptions?) -> OrdersOpenDraftRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a draft Order and its related records from an active OrderTemplateNew. | authz: min_org_role=operator | (OrdersCreateDraftFromOrderTemplateNewReq) -> (OrdersOpenDraftRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.drafts.createFromOrderTemplateNewV1(
+        orderTemplateId: "order_template_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrdersCreateDraftFromOrderTemplateNewReq` 
     
 </dd>
 </dl>
@@ -35294,15 +37159,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -35320,13 +37176,7 @@ private func main() async throws {
         filterExecutorOrgId: "filter_executor_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -35640,15 +37490,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -35947,15 +37788,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -35974,13 +37806,7 @@ private func main() async throws {
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -36310,15 +38136,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -39227,9 +41044,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -39511,9 +41325,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -41164,10 +42975,10 @@ private func main() async throws {
             geometry: Geometry.geometryCollection(
                 .init(
                     geometries: [
-                        GeometriesItem.lineString(
+                        GeometryCollectionGeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    CoordinatesItem.position2D(
+                                    LineStringCoordinatesItem.position2D(
                                         []
                                     )
                                 ]

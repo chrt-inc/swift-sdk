@@ -8,7 +8,6 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
     public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
-    public let coordinatorShipperAccountIds: [String]?
     public let createdAtTimestamp: Date
     public let description: String?
     public let lastEditedAtTimestamp: Date
@@ -37,7 +36,6 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         coordinatorDepartmentId: String? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
-        coordinatorShipperAccountIds: [String]? = nil,
         createdAtTimestamp: Date,
         description: String? = nil,
         lastEditedAtTimestamp: Date,
@@ -60,7 +58,6 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         self.coordinatorDepartmentId = coordinatorDepartmentId
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
-        self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.createdAtTimestamp = createdAtTimestamp
         self.description = description
         self.lastEditedAtTimestamp = lastEditedAtTimestamp
@@ -86,7 +83,6 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
-        self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
@@ -113,7 +109,6 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
-        try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.description, forKey: .description)
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
@@ -138,7 +133,6 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         case coordinatorDepartmentId = "coordinator_department_id"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
-        case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case createdAtTimestamp = "created_at_timestamp"
         case description
         case lastEditedAtTimestamp = "last_edited_at_timestamp"

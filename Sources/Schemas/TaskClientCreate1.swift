@@ -1,7 +1,7 @@
 import Foundation
 
 public struct TaskClientCreate1: Codable, Hashable, Sendable {
-    public let action: Action?
+    public let action: ActionType?
     public let contactIds: [String]?
     public let coordinatorShipperAccountIds: [String]?
     public let datetimeWindows: [DateTimeWindow1]?
@@ -13,7 +13,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        action: Action? = nil,
+        action: ActionType? = nil,
         contactIds: [String]? = nil,
         coordinatorShipperAccountIds: [String]? = nil,
         datetimeWindows: [DateTimeWindow1]? = nil,
@@ -36,7 +36,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.action = try container.decodeIfPresent(ActionType.self, forKey: .action)
         self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)

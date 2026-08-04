@@ -67,6 +67,7 @@ import Chrt
                     "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_setup_notes": "coordinator_setup_notes",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
@@ -193,7 +194,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -235,6 +236,7 @@ import Chrt
                 cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: Optional("created_by_user_id"),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -404,6 +406,7 @@ import Chrt
                     "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_setup_notes": "coordinator_setup_notes",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
@@ -530,7 +533,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -572,6 +575,7 @@ import Chrt
                 cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: Optional("created_by_user_id"),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -741,6 +745,7 @@ import Chrt
                     "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_setup_notes": "coordinator_setup_notes",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
@@ -867,7 +872,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -909,6 +914,7 @@ import Chrt
                 cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: Optional("created_by_user_id"),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1078,6 +1084,7 @@ import Chrt
                     "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                     "completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "coordinator_org_id": "coordinator_org_id",
+                    "coordinator_setup_notes": "coordinator_setup_notes",
                     "created_by_org_id": "created_by_org_id",
                     "created_by_user_id": "created_by_user_id",
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
@@ -1204,7 +1211,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -1246,6 +1253,7 @@ import Chrt
                 cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 coordinatorOrgId: Optional("coordinator_org_id"),
+                coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: Optional("created_by_user_id"),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1470,9 +1478,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1617,9 +1622,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

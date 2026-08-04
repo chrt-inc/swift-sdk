@@ -1,10 +1,43 @@
 import Foundation
 
 public final class OrderTemplatesNewClient: Sendable {
+    public let cargos: OrderTemplatesNewCargosClient
+    public let taskArtifacts: OrderTemplatesNewTaskArtifactsClient
+    public let taskGroups: OrderTemplatesNewTaskGroupsClient
+    public let tasks: OrderTemplatesNewTasksClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.cargos = OrderTemplatesNewCargosClient(config: config)
+        self.taskArtifacts = OrderTemplatesNewTaskArtifactsClient(config: config)
+        self.taskGroups = OrderTemplatesNewTaskGroupsClient(config: config)
+        self.tasks = OrderTemplatesNewTasksClient(config: config)
         self.httpClient = HTTPClient(config: config)
+    }
+
+    /// Archives an order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postArchiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates_new/archive/v1/\(orderTemplateId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Atomically replaces an active order template core. | authz: min_org_role=operator | (OrderTemplateNewCore1) -> (OrderTemplateNew1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func putReplaceCoreV1(orderTemplateId: String, request: Requests.OrderTemplateNewCore1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/order_templates_new/core/v1/\(orderTemplateId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderTemplateNew1.self
+        )
     }
 
     /// Validates a natural-language date string and resolves it to a UTC timestamp. | authz: min_org_role=operator | (OrderTemplateNewDateparserResolveReq) -> (OrderTemplateNewDateparserResolveRes)
@@ -24,13 +57,16 @@ public final class OrderTemplatesNewClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
+    /// - Parameter filterArchived: Include archived templates instead of active templates.
     /// - Parameter filterOwnedByUserId: Filter by the user that created the template.
     /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value (inclusive).
     /// - Parameter filterCreatedAtTimestampLte: Filter created_at_timestamp <= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampLte: Filter last_edited_at_timestamp <= value (inclusive).
+    /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
+    /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterOwnedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
+    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates_new/list/v1",
@@ -39,14 +75,29 @@ public final class OrderTemplatesNewClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
                 "filter_last_edited_at_timestamp_gte": filterLastEditedAtTimestampGte.map { .date($0) }, 
-                "filter_last_edited_at_timestamp_lte": filterLastEditedAtTimestampLte.map { .date($0) }
+                "filter_last_edited_at_timestamp_lte": filterLastEditedAtTimestampLte.map { .date($0) }, 
+                "filter_last_used_at_timestamp_gte": filterLastUsedAtTimestampGte.map { .date($0) }, 
+                "filter_last_used_at_timestamp_lte": filterLastUsedAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: OrderTemplateNewListRes.self
+        )
+    }
+
+    /// Restores an archived order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postUnarchiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates_new/unarchive/v1/\(orderTemplateId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 

@@ -69,6 +69,7 @@ import Chrt
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "order_template_id": "order_template_id",
+                    "order_template_new_id": "order_template_new_id",
                     "schema_version": 1,
                     "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
@@ -186,7 +187,7 @@ import Chrt
                     )
                 ]),
                 createdByOrgId: "created_by_org_id",
-                createdByUserId: Optional("created_by_user_id"),
+                createdByUserId: "created_by_user_id",
                 creationIdempotencyKey: Optional("creation_idempotency_key"),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -200,6 +201,7 @@ import Chrt
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateId: Optional("order_template_id"),
+                orderTemplateNewId: Optional("order_template_new_id"),
                 schemaVersion: 1,
                 serviceLine: Optional(.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
@@ -563,6 +565,7 @@ import Chrt
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "order_template_id": "order_template_id",
+                    "order_template_new_id": "order_template_new_id",
                     "schema_version": 1,
                     "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
@@ -697,6 +700,7 @@ import Chrt
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateId: Optional("order_template_id"),
+                orderTemplateNewId: Optional("order_template_new_id"),
                 schemaVersion: 1,
                 serviceLine: Optional(.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
@@ -825,6 +829,7 @@ import Chrt
                     "order_schedule_id": "order_schedule_id",
                     "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                     "order_template_id": "order_template_id",
+                    "order_template_new_id": "order_template_new_id",
                     "schema_version": 1,
                     "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
@@ -929,7 +934,7 @@ import Chrt
                 completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 coordinatorOrgId: Optional("coordinator_org_id"),
                 createdByOrgId: "created_by_org_id",
-                createdByUserId: Optional("created_by_user_id"),
+                createdByUserId: "created_by_user_id",
                 creationIdempotencyKey: Optional("creation_idempotency_key"),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -943,6 +948,7 @@ import Chrt
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateId: Optional("order_template_id"),
+                orderTemplateNewId: Optional("order_template_new_id"),
                 schemaVersion: 1,
                 serviceLine: Optional(.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
@@ -1039,6 +1045,7 @@ import Chrt
                       "order": {
                         "_id": "_id",
                         "created_by_org_id": "created_by_org_id",
+                        "created_by_user_id": "created_by_user_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1,
                         "short_id": "short_id"
@@ -1088,6 +1095,7 @@ import Chrt
                     order: OrderLimitedForCoordinator1(
                         id: "_id",
                         createdByOrgId: "created_by_org_id",
+                        createdByUserId: "created_by_user_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1,
                         shortId: "short_id"
@@ -1116,15 +1124,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1142,13 +1141,7 @@ import Chrt
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1257,15 +1250,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1399,15 +1383,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1426,13 +1401,7 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1466,6 +1435,7 @@ import Chrt
                       "order": {
                         "_id": "_id",
                         "created_by_org_id": "created_by_org_id",
+                        "created_by_user_id": "created_by_user_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1,
                         "short_id": "short_id"
@@ -1515,6 +1485,7 @@ import Chrt
                     order: OrderLimitedForShipper1(
                         id: "_id",
                         createdByOrgId: "created_by_org_id",
+                        createdByUserId: "created_by_user_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1,
                         shortId: "short_id"
@@ -1543,15 +1514,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

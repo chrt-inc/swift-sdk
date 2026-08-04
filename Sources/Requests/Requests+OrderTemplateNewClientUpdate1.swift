@@ -9,7 +9,6 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?
-        public let coordinatorShipperAccountIds: [String]?
         public let description: String?
         public let descriptionSetToNone: Bool?
         public let name: String?
@@ -33,7 +32,6 @@ extension Requests {
             coordinatorLabelSetToNone: Bool? = nil,
             coordinatorOrgId: String? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
-            coordinatorShipperAccountIds: [String]? = nil,
             description: String? = nil,
             descriptionSetToNone: Bool? = nil,
             name: String? = nil,
@@ -53,7 +51,6 @@ extension Requests {
             self.coordinatorLabelSetToNone = coordinatorLabelSetToNone
             self.coordinatorOrgId = coordinatorOrgId
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
-            self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
             self.description = description
             self.descriptionSetToNone = descriptionSetToNone
             self.name = name
@@ -76,7 +73,6 @@ extension Requests {
             self.coordinatorLabelSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorLabelSetToNone)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
-            self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -100,7 +96,6 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorLabelSetToNone, forKey: .coordinatorLabelSetToNone)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
-            try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
             try container.encodeIfPresent(self.description, forKey: .description)
             try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
             try container.encodeIfPresent(self.name, forKey: .name)
@@ -122,7 +117,6 @@ extension Requests {
             case coordinatorLabelSetToNone = "coordinator_label__set_to_None"
             case coordinatorOrgId = "coordinator_org_id"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
-            case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
             case description
             case descriptionSetToNone = "description__set_to_None"
             case name

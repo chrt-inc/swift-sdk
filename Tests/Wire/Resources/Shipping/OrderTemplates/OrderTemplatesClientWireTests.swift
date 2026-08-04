@@ -268,6 +268,7 @@ import Chrt
                       "order_schedule_id": "order_schedule_id",
                       "order_schedule_run_idempotency_key": "order_schedule_run_idempotency_key",
                       "order_template_id": "order_template_id",
+                      "order_template_new_id": "order_template_new_id",
                       "schema_version": 1,
                       "service_line": "on_demand",
                       "shipper_org_id": "shipper_org_id",
@@ -314,7 +315,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -345,7 +346,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -379,7 +380,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -430,7 +431,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -460,7 +461,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -543,7 +544,7 @@ import Chrt
                         )
                     ]),
                     createdByOrgId: "created_by_org_id",
-                    createdByUserId: Optional("created_by_user_id"),
+                    createdByUserId: "created_by_user_id",
                     creationIdempotencyKey: Optional("creation_idempotency_key"),
                     draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -557,6 +558,7 @@ import Chrt
                     orderScheduleId: Optional("order_schedule_id"),
                     orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                     orderTemplateId: Optional("order_template_id"),
+                    orderTemplateNewId: Optional("order_template_new_id"),
                     schemaVersion: 1,
                     serviceLine: Optional(.onDemand),
                     shipperOrgId: Optional("shipper_org_id"),
@@ -706,9 +708,6 @@ import Chrt
             search: "search",
             filterArchived: true,
             filterOwnedByUserId: "filter_owned_by_user_id",
-            filterServiceLine: [
-                .onDemand
-            ],
             filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",

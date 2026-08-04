@@ -84,6 +84,19 @@ public final class DraftsClient: Sendable {
         )
     }
 
+    /// Creates a draft Order and its related records from an active OrderTemplateNew. | authz: min_org_role=operator | (OrdersCreateDraftFromOrderTemplateNewReq) -> (OrdersOpenDraftRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createFromOrderTemplateNewV1(orderTemplateId: String, request: Requests.OrdersCreateDraftFromOrderTemplateNewReq, requestOptions: RequestOptions? = nil) async throws -> OrdersOpenDraftRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/orders/drafts/create_from_order_template_new/v1/\(orderTemplateId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrdersOpenDraftRes.self
+        )
+    }
+
     /// Deletes a draft order and all associated entities. | authz_personas=[draft_creator_org_operator] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

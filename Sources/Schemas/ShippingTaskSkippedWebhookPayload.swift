@@ -2,7 +2,7 @@ import Foundation
 
 public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
     /// The task action type (e.g., PICKUP, DELIVER)
-    public let action: Action?
+    public let action: ActionType?
     /// UTC timestamp when the event occurred
     public let eventTimestamp: Date
     public let eventType: ShippingTaskSkipped?
@@ -18,7 +18,7 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        action: Action? = nil,
+        action: ActionType? = nil,
         eventTimestamp: Date,
         eventType: ShippingTaskSkipped? = nil,
         location: LocationFeature? = nil,
@@ -39,7 +39,7 @@ public struct ShippingTaskSkippedWebhookPayload: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.action = try container.decodeIfPresent(Action.self, forKey: .action)
+        self.action = try container.decodeIfPresent(ActionType.self, forKey: .action)
         self.eventTimestamp = try container.decode(Date.self, forKey: .eventTimestamp)
         self.eventType = try container.decodeIfPresent(ShippingTaskSkipped.self, forKey: .eventType)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)

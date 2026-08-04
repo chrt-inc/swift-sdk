@@ -7,7 +7,6 @@ extension Requests {
         public let coordinatorLabel: String?
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
-        public let coordinatorShipperAccountIds: [String]?
         public let description: String?
         public let name: String
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
@@ -27,7 +26,6 @@ extension Requests {
             coordinatorDepartmentId: String? = nil,
             coordinatorLabel: String? = nil,
             coordinatorOrgId: String? = nil,
-            coordinatorShipperAccountIds: [String]? = nil,
             description: String? = nil,
             name: String,
             offChrtReferenceId: String? = nil,
@@ -43,7 +41,6 @@ extension Requests {
             self.coordinatorDepartmentId = coordinatorDepartmentId
             self.coordinatorLabel = coordinatorLabel
             self.coordinatorOrgId = coordinatorOrgId
-            self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
             self.description = description
             self.name = name
             self.offChrtReferenceId = offChrtReferenceId
@@ -62,7 +59,6 @@ extension Requests {
             self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
             self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
-            self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.name = try container.decode(String.self, forKey: .name)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
@@ -82,7 +78,6 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
             try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
-            try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
             try container.encodeIfPresent(self.description, forKey: .description)
             try container.encode(self.name, forKey: .name)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
@@ -100,7 +95,6 @@ extension Requests {
             case coordinatorDepartmentId = "coordinator_department_id"
             case coordinatorLabel = "coordinator_label"
             case coordinatorOrgId = "coordinator_org_id"
-            case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
             case description
             case name
             case offChrtReferenceId = "off_chrt_reference_id"

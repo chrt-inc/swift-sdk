@@ -31,6 +31,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
     public let orderScheduleId: String?
     public let orderScheduleRunIdempotencyKey: String?
     public let orderTemplateId: String?
+    public let orderTemplateNewId: String?
     public let schemaVersion: Int
     public let serviceLine: ServiceLineEnum?
     /// Must be a string starting with `org_`
@@ -66,6 +67,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         orderScheduleId: String? = nil,
         orderScheduleRunIdempotencyKey: String? = nil,
         orderTemplateId: String? = nil,
+        orderTemplateNewId: String? = nil,
         schemaVersion: Int,
         serviceLine: ServiceLineEnum? = nil,
         shipperOrgId: String? = nil,
@@ -98,6 +100,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         self.orderScheduleId = orderScheduleId
         self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
         self.orderTemplateId = orderTemplateId
+        self.orderTemplateNewId = orderTemplateNewId
         self.schemaVersion = schemaVersion
         self.serviceLine = serviceLine
         self.shipperOrgId = shipperOrgId
@@ -133,6 +136,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
         self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
         self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
+        self.orderTemplateNewId = try container.decodeIfPresent(String.self, forKey: .orderTemplateNewId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
@@ -169,6 +173,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
         try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
         try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
+        try container.encodeIfPresent(self.orderTemplateNewId, forKey: .orderTemplateNewId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
@@ -203,6 +208,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         case orderScheduleId = "order_schedule_id"
         case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
         case orderTemplateId = "order_template_id"
+        case orderTemplateNewId = "order_template_new_id"
         case schemaVersion = "schema_version"
         case serviceLine = "service_line"
         case shipperOrgId = "shipper_org_id"

@@ -6,6 +6,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let completedAtTimestamp: Date?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
+    public let coordinatorSetupNotes: String?
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
@@ -54,6 +55,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         cancelledAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
         coordinatorOrgId: String? = nil,
+        coordinatorSetupNotes: String? = nil,
         createdByOrgId: String,
         createdByUserId: String? = nil,
         draftStartedAtTimestamp: Date,
@@ -95,6 +97,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.cancelledAtTimestamp = cancelledAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
         self.coordinatorOrgId = coordinatorOrgId
+        self.coordinatorSetupNotes = coordinatorSetupNotes
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
@@ -139,6 +142,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.coordinatorSetupNotes = try container.decodeIfPresent(String.self, forKey: .coordinatorSetupNotes)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
@@ -184,6 +188,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.coordinatorSetupNotes, forKey: .coordinatorSetupNotes)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
@@ -227,6 +232,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case cancelledAtTimestamp = "cancelled_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
         case coordinatorOrgId = "coordinator_org_id"
+        case coordinatorSetupNotes = "coordinator_setup_notes"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
