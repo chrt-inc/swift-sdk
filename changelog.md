@@ -1,12 +1,3 @@
-## 3.0.0 - 2026-08-04
-### Breaking Changes
-* **`DraftsClient.createFromOrderTemplateNewV1`** — the `orderTemplateId: String` parameter has been removed and the endpoint path no longer includes the template ID; migrate by removing the `orderTemplateId` argument and instead passing `orderTemplateNewId` and/or `orderTemplateNewCore` inside the `OrdersCreateDraftFromOrderTemplateNewReq` request body.
-* **`Requests.OrderTemplateNewCore1`** — removed; the type is now a top-level `OrderTemplateNewCore1` schema (no longer nested under `Requests`); update all references from `Requests.OrderTemplateNewCore1` to `OrderTemplateNewCore1`.
-* **`OrderTemplatesNewClient.putReplaceCoreV1`** — `request` parameter type changed from `Requests.OrderTemplateNewCore1` to the new top-level `OrderTemplateNewCore1`; update call sites accordingly.
-### Added
-* **`serviceLine: ServiceLineEnum?`** — new optional field added to `OrderTemplateNew1`, `OrderTemplateNewCore1`, `Requests.OrderTemplateNewClientCreate1`, and `Requests.OrderTemplateNewClientUpdate1`.
-* **`OrdersCreateDraftFromOrderTemplateNewReq`** — gains optional `orderTemplateNewId: String?` and `orderTemplateNewCore: OrderTemplateNewCore1?` body fields, enabling three draft-creation paths: template-only, ad-hoc core, or both.
-
 ## 2.0.1 - 2026-08-04
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
