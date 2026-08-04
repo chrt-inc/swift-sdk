@@ -41,6 +41,7 @@ import Chrt
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id",
                   "task_groups": [
                     {
@@ -119,6 +120,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
+            serviceLine: Optional(.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -203,6 +205,7 @@ import Chrt
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id",
                   "task_groups": [
                     {
@@ -281,6 +284,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
+            serviceLine: Optional(.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -365,6 +369,7 @@ import Chrt
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id",
                   "task_groups": [
                     {
@@ -443,6 +448,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
+            serviceLine: Optional(.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -526,6 +532,7 @@ import Chrt
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id",
                   "task_groups": [
                     {
@@ -604,6 +611,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
+            serviceLine: Optional(.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -688,6 +696,7 @@ import Chrt
                   "owned_by_org_id": "owned_by_org_id",
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1,
+                  "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id",
                   "task_groups": [
                     {
@@ -766,6 +775,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
+            serviceLine: Optional(.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(

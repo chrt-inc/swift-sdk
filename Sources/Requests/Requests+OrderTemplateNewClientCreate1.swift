@@ -13,6 +13,7 @@ extension Requests {
         public let offChrtReferenceId: String?
         public let offChrtShipperOrgDataId: String?
         public let schemaVersion: Int
+        public let serviceLine: ServiceLineEnum?
         /// Must be a string starting with `org_`
         public let shipperOrgId: String?
         public let taskGroups: [OrderTemplateNewTaskGroup1]?
@@ -31,6 +32,7 @@ extension Requests {
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgDataId: String? = nil,
             schemaVersion: Int,
+            serviceLine: ServiceLineEnum? = nil,
             shipperOrgId: String? = nil,
             taskGroups: [OrderTemplateNewTaskGroup1]? = nil,
             taskListsToApplyAtOrderCreation: [TaskListToApplyToOrder1]? = nil,
@@ -46,6 +48,7 @@ extension Requests {
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
             self.schemaVersion = schemaVersion
+            self.serviceLine = serviceLine
             self.shipperOrgId = shipperOrgId
             self.taskGroups = taskGroups
             self.taskListsToApplyAtOrderCreation = taskListsToApplyAtOrderCreation
@@ -64,6 +67,7 @@ extension Requests {
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
             self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
             self.taskGroups = try container.decodeIfPresent([OrderTemplateNewTaskGroup1].self, forKey: .taskGroups)
             self.taskListsToApplyAtOrderCreation = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .taskListsToApplyAtOrderCreation)
@@ -83,6 +87,7 @@ extension Requests {
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
             try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
             try container.encodeIfPresent(self.taskGroups, forKey: .taskGroups)
             try container.encodeIfPresent(self.taskListsToApplyAtOrderCreation, forKey: .taskListsToApplyAtOrderCreation)
@@ -100,6 +105,7 @@ extension Requests {
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
             case schemaVersion = "schema_version"
+            case serviceLine = "service_line"
             case shipperOrgId = "shipper_org_id"
             case taskGroups = "task_groups"
             case taskListsToApplyAtOrderCreation = "task_lists_to_apply_at_order_creation"

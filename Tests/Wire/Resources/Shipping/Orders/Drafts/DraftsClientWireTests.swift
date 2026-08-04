@@ -175,7 +175,6 @@ import Chrt
             orderShortId: "order_short_id"
         )
         let response = try await client.shipping.orders.drafts.createFromOrderTemplateNewV1(
-            orderTemplateId: "order_template_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

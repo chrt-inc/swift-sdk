@@ -84,13 +84,13 @@ public final class DraftsClient: Sendable {
         )
     }
 
-    /// Creates a draft Order and its related records from an active OrderTemplateNew. | authz: min_org_role=operator | (OrdersCreateDraftFromOrderTemplateNewReq) -> (OrdersOpenDraftRes)
+    /// Creates a draft Order through one of three paths: (1) provide only order_template_new_id to load the saved template's core and record that template as the Order's provenance; (2) provide only order_template_new_core to materialize an ad hoc submitted core without template provenance; (3) provide both to record and validate the saved template as provenance while materializing the submitted core, without modifying the saved template. | authz: min_org_role=operator | (OrdersCreateDraftFromOrderTemplateNewReq) -> (OrdersOpenDraftRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createFromOrderTemplateNewV1(orderTemplateId: String, request: Requests.OrdersCreateDraftFromOrderTemplateNewReq, requestOptions: RequestOptions? = nil) async throws -> OrdersOpenDraftRes {
+    public func createFromOrderTemplateNewV1(request: Requests.OrdersCreateDraftFromOrderTemplateNewReq, requestOptions: RequestOptions? = nil) async throws -> OrdersOpenDraftRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping/orders/drafts/create_from_order_template_new/v1/\(orderTemplateId)",
+            path: "/shipping/orders/drafts/create_from_order_template_new/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: OrdersOpenDraftRes.self

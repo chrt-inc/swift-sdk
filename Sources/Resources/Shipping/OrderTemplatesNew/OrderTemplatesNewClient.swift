@@ -30,7 +30,7 @@ public final class OrderTemplatesNewClient: Sendable {
     /// Atomically replaces an active order template core. | authz: min_org_role=operator | (OrderTemplateNewCore1) -> (OrderTemplateNew1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func putReplaceCoreV1(orderTemplateId: String, request: Requests.OrderTemplateNewCore1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
+    public func putReplaceCoreV1(orderTemplateId: String, request: OrderTemplateNewCore1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/order_templates_new/core/v1/\(orderTemplateId)",

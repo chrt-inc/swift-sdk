@@ -28626,7 +28626,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">putReplaceCoreV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewCore1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">putReplaceCoreV1</a>(orderTemplateId: String, request: OrderTemplateNewCore1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
 <dl>
 <dd>
 
@@ -28661,7 +28661,9 @@ private func main() async throws {
 
     _ = try await client.shipping.orderTemplatesNew.putReplaceCoreV1(
         orderTemplateId: "order_template_id",
-        request: .init(schemaVersion: 1)
+        request: OrderTemplateNewCore1(
+            schemaVersion: 1
+        )
     )
 }
 
@@ -28688,7 +28690,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OrderTemplateNewCore1` 
+**request:** `OrderTemplateNewCore1` 
     
 </dd>
 </dl>
@@ -36307,7 +36309,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.drafts.<a href="/Sources/Resources/Shipping/Orders/Drafts/DraftsClient.swift">createFromOrderTemplateNewV1</a>(orderTemplateId: String, request: Requests.OrdersCreateDraftFromOrderTemplateNewReq, requestOptions: RequestOptions?) -> OrdersOpenDraftRes</code></summary>
+<details><summary><code>client.shipping.orders.drafts.<a href="/Sources/Resources/Shipping/Orders/Drafts/DraftsClient.swift">createFromOrderTemplateNewV1</a>(request: Requests.OrdersCreateDraftFromOrderTemplateNewReq, requestOptions: RequestOptions?) -> OrdersOpenDraftRes</code></summary>
 <dl>
 <dd>
 
@@ -36319,7 +36321,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a draft Order and its related records from an active OrderTemplateNew. | authz: min_org_role=operator | (OrdersCreateDraftFromOrderTemplateNewReq) -> (OrdersOpenDraftRes)
+Creates a draft Order through one of three paths: (1) provide only order_template_new_id to load the saved template's core and record that template as the Order's provenance; (2) provide only order_template_new_core to materialize an ad hoc submitted core without template provenance; (3) provide both to record and validate the saved template as provenance while materializing the submitted core, without modifying the saved template. | authz: min_org_role=operator | (OrdersCreateDraftFromOrderTemplateNewReq) -> (OrdersOpenDraftRes)
 </dd>
 </dl>
 </dd>
@@ -36340,10 +36342,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orders.drafts.createFromOrderTemplateNewV1(
-        orderTemplateId: "order_template_id",
-        request: .init()
-    )
+    _ = try await client.shipping.orders.drafts.createFromOrderTemplateNewV1(request: .init())
 }
 
 try await main()
@@ -36357,14 +36356,6 @@ try await main()
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**orderTemplateId:** `String` 
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
