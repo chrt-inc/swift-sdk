@@ -2,6 +2,7 @@ import Foundation
 
 extension Requests {
     public struct OrderTemplateNewClientUpdate1: Codable, Hashable, Sendable {
+        public let coordinatorAssignedUserIds: [String]?
         public let coordinatorDepartmentId: String?
         public let coordinatorDepartmentIdSetToNone: Bool?
         public let coordinatorLabel: String?
@@ -27,6 +28,7 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            coordinatorAssignedUserIds: [String]? = nil,
             coordinatorDepartmentId: String? = nil,
             coordinatorDepartmentIdSetToNone: Bool? = nil,
             coordinatorLabel: String? = nil,
@@ -47,6 +49,7 @@ extension Requests {
             taskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
             self.coordinatorDepartmentId = coordinatorDepartmentId
             self.coordinatorDepartmentIdSetToNone = coordinatorDepartmentIdSetToNone
             self.coordinatorLabel = coordinatorLabel
@@ -70,6 +73,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
             self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
             self.coordinatorDepartmentIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorDepartmentIdSetToNone)
             self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
@@ -94,6 +98,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
             try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
             try container.encodeIfPresent(self.coordinatorDepartmentIdSetToNone, forKey: .coordinatorDepartmentIdSetToNone)
             try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
@@ -116,6 +121,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
             case coordinatorDepartmentId = "coordinator_department_id"
             case coordinatorDepartmentIdSetToNone = "coordinator_department_id__set_to_None"
             case coordinatorLabel = "coordinator_label"

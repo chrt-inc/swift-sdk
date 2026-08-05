@@ -50,6 +50,9 @@ import Chrt
                       "width_inches": 1.1
                     }
                   ],
+                  "coordinator_assigned_user_ids": [
+                    "coordinator_assigned_user_ids"
+                  ],
                   "coordinator_department_id": "coordinator_department_id",
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
@@ -69,6 +72,9 @@ import Chrt
                     {
                       "coordinator_setup_notes": "coordinator_setup_notes",
                       "driver_id": "driver_id",
+                      "executor_assigned_user_ids": [
+                        "executor_assigned_user_ids"
+                      ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "task_group_key": "task_group_key",
@@ -129,6 +135,9 @@ import Chrt
                     widthInches: Optional(1.1)
                 )
             ]),
+            coordinatorAssignedUserIds: Optional([
+                "coordinator_assigned_user_ids"
+            ]),
             coordinatorDepartmentId: Optional("coordinator_department_id"),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
@@ -148,6 +157,9 @@ import Chrt
                 OrderTemplateNewTaskGroup1(
                     coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                     driverId: Optional("driver_id"),
+                    executorAssignedUserIds: Optional([
+                        "executor_assigned_user_ids"
+                    ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
@@ -243,6 +255,9 @@ import Chrt
                           "cargo_type": "spare_parts"
                         }
                       ],
+                      "coordinator_assigned_user_ids": [
+                        "coordinator_assigned_user_ids"
+                      ],
                       "coordinator_department_id": "coordinator_department_id",
                       "coordinator_label": "coordinator_label",
                       "coordinator_org_id": "coordinator_org_id",
@@ -306,6 +321,9 @@ import Chrt
                             cargoKey: "cargo_key",
                             cargoType: .spareParts
                         )
+                    ]),
+                    coordinatorAssignedUserIds: Optional([
+                        "coordinator_assigned_user_ids"
                     ]),
                     coordinatorDepartmentId: Optional("coordinator_department_id"),
                     coordinatorLabel: Optional("coordinator_label"),
@@ -417,6 +435,9 @@ import Chrt
                       "width_inches": 1.1
                     }
                   ],
+                  "coordinator_assigned_user_ids": [
+                    "coordinator_assigned_user_ids"
+                  ],
                   "coordinator_department_id": "coordinator_department_id",
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
@@ -436,6 +457,9 @@ import Chrt
                     {
                       "coordinator_setup_notes": "coordinator_setup_notes",
                       "driver_id": "driver_id",
+                      "executor_assigned_user_ids": [
+                        "executor_assigned_user_ids"
+                      ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "task_group_key": "task_group_key",
@@ -496,6 +520,9 @@ import Chrt
                     widthInches: Optional(1.1)
                 )
             ]),
+            coordinatorAssignedUserIds: Optional([
+                "coordinator_assigned_user_ids"
+            ]),
             coordinatorDepartmentId: Optional("coordinator_department_id"),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
@@ -515,6 +542,9 @@ import Chrt
                 OrderTemplateNewTaskGroup1(
                     coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                     driverId: Optional("driver_id"),
+                    executorAssignedUserIds: Optional([
+                        "executor_assigned_user_ids"
+                    ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
@@ -580,6 +610,9 @@ import Chrt
                       "width_inches": 1.1
                     }
                   ],
+                  "coordinator_assigned_user_ids": [
+                    "coordinator_assigned_user_ids"
+                  ],
                   "coordinator_department_id": "coordinator_department_id",
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
@@ -599,6 +632,9 @@ import Chrt
                     {
                       "coordinator_setup_notes": "coordinator_setup_notes",
                       "driver_id": "driver_id",
+                      "executor_assigned_user_ids": [
+                        "executor_assigned_user_ids"
+                      ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "task_group_key": "task_group_key",
@@ -659,6 +695,9 @@ import Chrt
                     widthInches: Optional(1.1)
                 )
             ]),
+            coordinatorAssignedUserIds: Optional([
+                "coordinator_assigned_user_ids"
+            ]),
             coordinatorDepartmentId: Optional("coordinator_department_id"),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
@@ -678,6 +717,9 @@ import Chrt
                 OrderTemplateNewTaskGroup1(
                     coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                     driverId: Optional("driver_id"),
+                    executorAssignedUserIds: Optional([
+                        "executor_assigned_user_ids"
+                    ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
@@ -745,6 +787,9 @@ import Chrt
                       "width_inches": 1.1
                     }
                   ],
+                  "coordinator_assigned_user_ids": [
+                    "coordinator_assigned_user_ids"
+                  ],
                   "coordinator_department_id": "coordinator_department_id",
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
@@ -764,6 +809,9 @@ import Chrt
                     {
                       "coordinator_setup_notes": "coordinator_setup_notes",
                       "driver_id": "driver_id",
+                      "executor_assigned_user_ids": [
+                        "executor_assigned_user_ids"
+                      ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "task_group_key": "task_group_key",
@@ -824,6 +872,9 @@ import Chrt
                     widthInches: Optional(1.1)
                 )
             ]),
+            coordinatorAssignedUserIds: Optional([
+                "coordinator_assigned_user_ids"
+            ]),
             coordinatorDepartmentId: Optional("coordinator_department_id"),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
@@ -843,6 +894,9 @@ import Chrt
                 OrderTemplateNewTaskGroup1(
                     coordinatorSetupNotes: Optional("coordinator_setup_notes"),
                     driverId: Optional("driver_id"),
+                    executorAssignedUserIds: Optional([
+                        "executor_assigned_user_ids"
+                    ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",

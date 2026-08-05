@@ -217,7 +217,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateDepartmentAndLabelV11() async throws -> Void {
+    @Test func updateDepartmentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
@@ -232,7 +232,30 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orders.updateDepartmentAndLabelV1(
+        let response = try await client.shipping.orders.updateDepartmentV1(
+            orderId: "order_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateLabelV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.orders.updateLabelV1(
             orderId: "order_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

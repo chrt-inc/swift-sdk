@@ -4,6 +4,7 @@ extension Requests {
     public struct OrderTemplateNewTaskGroupClientCreate1: Codable, Hashable, Sendable {
         public let coordinatorSetupNotes: String?
         public let driverId: String?
+        public let executorAssignedUserIds: [String]?
         /// Must be a string starting with `org_`
         public let executorOrgId: String?
         public let offChrtExecutorOrgDataId: String?
@@ -15,6 +16,7 @@ extension Requests {
         public init(
             coordinatorSetupNotes: String? = nil,
             driverId: String? = nil,
+            executorAssignedUserIds: [String]? = nil,
             executorOrgId: String? = nil,
             offChrtExecutorOrgDataId: String? = nil,
             taskGroupType: TaskGroupTypeEnum1,
@@ -23,6 +25,7 @@ extension Requests {
         ) {
             self.coordinatorSetupNotes = coordinatorSetupNotes
             self.driverId = driverId
+            self.executorAssignedUserIds = executorAssignedUserIds
             self.executorOrgId = executorOrgId
             self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
             self.taskGroupType = taskGroupType
@@ -34,6 +37,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorSetupNotes = try container.decodeIfPresent(String.self, forKey: .coordinatorSetupNotes)
             self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
+            self.executorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .executorAssignedUserIds)
             self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
             self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
             self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
@@ -46,6 +50,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorSetupNotes, forKey: .coordinatorSetupNotes)
             try container.encodeIfPresent(self.driverId, forKey: .driverId)
+            try container.encodeIfPresent(self.executorAssignedUserIds, forKey: .executorAssignedUserIds)
             try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
             try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
             try container.encode(self.taskGroupType, forKey: .taskGroupType)
@@ -56,6 +61,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorSetupNotes = "coordinator_setup_notes"
             case driverId = "driver_id"
+            case executorAssignedUserIds = "executor_assigned_user_ids"
             case executorOrgId = "executor_org_id"
             case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
             case taskGroupType = "task_group_type"

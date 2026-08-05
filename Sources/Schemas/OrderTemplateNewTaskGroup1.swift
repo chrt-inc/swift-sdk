@@ -3,6 +3,7 @@ import Foundation
 public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
     public let coordinatorSetupNotes: String?
     public let driverId: String?
+    public let executorAssignedUserIds: [String]?
     /// Must be a string starting with `org_`
     public let executorOrgId: String?
     public let offChrtExecutorOrgDataId: String?
@@ -16,6 +17,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
     public init(
         coordinatorSetupNotes: String? = nil,
         driverId: String? = nil,
+        executorAssignedUserIds: [String]? = nil,
         executorOrgId: String? = nil,
         offChrtExecutorOrgDataId: String? = nil,
         taskGroupKey: String,
@@ -26,6 +28,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
     ) {
         self.coordinatorSetupNotes = coordinatorSetupNotes
         self.driverId = driverId
+        self.executorAssignedUserIds = executorAssignedUserIds
         self.executorOrgId = executorOrgId
         self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
         self.taskGroupKey = taskGroupKey
@@ -39,6 +42,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.coordinatorSetupNotes = try container.decodeIfPresent(String.self, forKey: .coordinatorSetupNotes)
         self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
+        self.executorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .executorAssignedUserIds)
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
         self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
         self.taskGroupKey = try container.decode(String.self, forKey: .taskGroupKey)
@@ -53,6 +57,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.coordinatorSetupNotes, forKey: .coordinatorSetupNotes)
         try container.encodeIfPresent(self.driverId, forKey: .driverId)
+        try container.encodeIfPresent(self.executorAssignedUserIds, forKey: .executorAssignedUserIds)
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
         try container.encode(self.taskGroupKey, forKey: .taskGroupKey)
@@ -65,6 +70,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case coordinatorSetupNotes = "coordinator_setup_notes"
         case driverId = "driver_id"
+        case executorAssignedUserIds = "executor_assigned_user_ids"
         case executorOrgId = "executor_org_id"
         case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
         case taskGroupKey = "task_group_key"

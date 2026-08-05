@@ -29824,7 +29824,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">updateDepartmentAndLabelV1</a>(orderId: String, request: Requests.OrdersUpdateDepartmentAndLabelReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">updateDepartmentV1</a>(orderId: String, request: Requests.OrdersUpdateDepartmentReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -29836,7 +29836,7 @@ try await main()
 <dl>
 <dd>
 
-Updates department_id and/or label for the caller's role on the order. Coordinator writes coordinator_* fields; executor writes executor_* fields on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentAndLabelReq) -> (bool)
+Updates department_id for the caller's role on the order. Coordinator writes coordinator_department_id; executor writes executor_department_id on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -29857,7 +29857,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orders.updateDepartmentAndLabelV1(
+    _ = try await client.shipping.orders.updateDepartmentV1(
         orderId: "order_id",
         request: .init()
     )
@@ -29886,7 +29886,89 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OrdersUpdateDepartmentAndLabelReq` 
+**request:** `Requests.OrdersUpdateDepartmentReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">updateLabelV1</a>(orderId: String, request: Requests.OrdersUpdateLabelReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates label for the caller's role on the order. Coordinator writes coordinator_label; executor writes executor_label on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateLabelReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.updateLabelV1(
+        orderId: "order_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrdersUpdateLabelReq` 
     
 </dd>
 </dl>

@@ -6,6 +6,7 @@ extension Requests {
         public let coordinatorSetupNotesSetToNone: Bool?
         public let driverId: String?
         public let driverIdSetToNone: Bool?
+        public let executorAssignedUserIds: [String]?
         /// Must be a string starting with `org_`
         public let executorOrgId: String?
         public let executorOrgIdSetToNone: Bool?
@@ -22,6 +23,7 @@ extension Requests {
             coordinatorSetupNotesSetToNone: Bool? = nil,
             driverId: String? = nil,
             driverIdSetToNone: Bool? = nil,
+            executorAssignedUserIds: [String]? = nil,
             executorOrgId: String? = nil,
             executorOrgIdSetToNone: Bool? = nil,
             offChrtExecutorOrgDataId: String? = nil,
@@ -35,6 +37,7 @@ extension Requests {
             self.coordinatorSetupNotesSetToNone = coordinatorSetupNotesSetToNone
             self.driverId = driverId
             self.driverIdSetToNone = driverIdSetToNone
+            self.executorAssignedUserIds = executorAssignedUserIds
             self.executorOrgId = executorOrgId
             self.executorOrgIdSetToNone = executorOrgIdSetToNone
             self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
@@ -51,6 +54,7 @@ extension Requests {
             self.coordinatorSetupNotesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorSetupNotesSetToNone)
             self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
             self.driverIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .driverIdSetToNone)
+            self.executorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .executorAssignedUserIds)
             self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
             self.executorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .executorOrgIdSetToNone)
             self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
@@ -68,6 +72,7 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorSetupNotesSetToNone, forKey: .coordinatorSetupNotesSetToNone)
             try container.encodeIfPresent(self.driverId, forKey: .driverId)
             try container.encodeIfPresent(self.driverIdSetToNone, forKey: .driverIdSetToNone)
+            try container.encodeIfPresent(self.executorAssignedUserIds, forKey: .executorAssignedUserIds)
             try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
             try container.encodeIfPresent(self.executorOrgIdSetToNone, forKey: .executorOrgIdSetToNone)
             try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
@@ -83,6 +88,7 @@ extension Requests {
             case coordinatorSetupNotesSetToNone = "coordinator_setup_notes__set_to_None"
             case driverId = "driver_id"
             case driverIdSetToNone = "driver_id__set_to_None"
+            case executorAssignedUserIds = "executor_assigned_user_ids"
             case executorOrgId = "executor_org_id"
             case executorOrgIdSetToNone = "executor_org_id__set_to_None"
             case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"

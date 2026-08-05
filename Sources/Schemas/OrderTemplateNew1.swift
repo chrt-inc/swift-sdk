@@ -4,6 +4,7 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
     public let id: String
     public let archivedAtTimestamp: Date?
     public let cargos: [OrderTemplateNewCargo1]?
+    public let coordinatorAssignedUserIds: [String]?
     public let coordinatorDepartmentId: String?
     public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
@@ -34,6 +35,7 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         id: String,
         archivedAtTimestamp: Date? = nil,
         cargos: [OrderTemplateNewCargo1]? = nil,
+        coordinatorAssignedUserIds: [String]? = nil,
         coordinatorDepartmentId: String? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
@@ -57,6 +59,7 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         self.id = id
         self.archivedAtTimestamp = archivedAtTimestamp
         self.cargos = cargos
+        self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
         self.coordinatorDepartmentId = coordinatorDepartmentId
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
@@ -83,6 +86,7 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.archivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .archivedAtTimestamp)
         self.cargos = try container.decodeIfPresent([OrderTemplateNewCargo1].self, forKey: .cargos)
+        self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
         self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
@@ -110,6 +114,7 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.archivedAtTimestamp, forKey: .archivedAtTimestamp)
         try container.encodeIfPresent(self.cargos, forKey: .cargos)
+        try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
         try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
@@ -135,6 +140,7 @@ public struct OrderTemplateNew1: Codable, Hashable, Sendable {
         case id = "_id"
         case archivedAtTimestamp = "archived_at_timestamp"
         case cargos
+        case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
         case coordinatorDepartmentId = "coordinator_department_id"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"

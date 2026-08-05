@@ -122,13 +122,26 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Updates department_id and/or label for the caller's role on the order. Coordinator writes coordinator_* fields; executor writes executor_* fields on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentAndLabelReq) -> (bool)
+    /// Updates department_id for the caller's role on the order. Coordinator writes coordinator_department_id; executor writes executor_department_id on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateDepartmentAndLabelV1(orderId: String, request: Requests.OrdersUpdateDepartmentAndLabelReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateDepartmentV1(orderId: String, request: Requests.OrdersUpdateDepartmentReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/shipping/orders/update_department_and_label/v1/\(orderId)",
+            path: "/shipping/orders/update_department/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates label for the caller's role on the order. Coordinator writes coordinator_label; executor writes executor_label on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateLabelReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateLabelV1(orderId: String, request: Requests.OrdersUpdateLabelReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/update_label/v1/\(orderId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

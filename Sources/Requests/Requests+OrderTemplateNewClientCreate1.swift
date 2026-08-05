@@ -3,6 +3,7 @@ import Foundation
 extension Requests {
     public struct OrderTemplateNewClientCreate1: Codable, Hashable, Sendable {
         public let cargos: [OrderTemplateNewCargo1]?
+        public let coordinatorAssignedUserIds: [String]?
         public let coordinatorDepartmentId: String?
         public let coordinatorLabel: String?
         /// Must be a string starting with `org_`
@@ -24,6 +25,7 @@ extension Requests {
 
         public init(
             cargos: [OrderTemplateNewCargo1]? = nil,
+            coordinatorAssignedUserIds: [String]? = nil,
             coordinatorDepartmentId: String? = nil,
             coordinatorLabel: String? = nil,
             coordinatorOrgId: String? = nil,
@@ -40,6 +42,7 @@ extension Requests {
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.cargos = cargos
+            self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
             self.coordinatorDepartmentId = coordinatorDepartmentId
             self.coordinatorLabel = coordinatorLabel
             self.coordinatorOrgId = coordinatorOrgId
@@ -59,6 +62,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.cargos = try container.decodeIfPresent([OrderTemplateNewCargo1].self, forKey: .cargos)
+            self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
             self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
             self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
@@ -79,6 +83,7 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.cargos, forKey: .cargos)
+            try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
             try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
             try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
@@ -97,6 +102,7 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case cargos
+            case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
             case coordinatorDepartmentId = "coordinator_department_id"
             case coordinatorLabel = "coordinator_label"
             case coordinatorOrgId = "coordinator_org_id"
