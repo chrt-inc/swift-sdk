@@ -79,6 +79,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterBillingReviewStatus: [
+                .notStarted
+            ],
             filterOrderId: "filter_order_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -131,6 +134,12 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
+            filterShippingStatus: [
+                .draft
+            ],
+            filterServiceLine: [
+                .onDemand
+            ],
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,

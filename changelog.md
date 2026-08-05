@@ -1,3 +1,15 @@
+## 2.0.0 - 2026-08-05
+### Breaking Changes
+* **`LineStringCoordinatesItem`**, **`MultiLineStringCoordinatesItemItem`**, **`PolygonCoordinatesItemItem`**, **`MultiPolygonCoordinatesItemItemItem`**, and **`GeometryCollectionGeometriesItem`** — renamed to `CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`, and `GeometriesItem` respectively; update all geometry coordinate and collection references.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` access and construction sites.
+* **`updateDepartmentAndLabelV1()`** on `ShippingOrdersClient` — removed and split into `updateDepartmentV1()` and `updateLabelV1()`; migrate callers to the appropriate new method.
+### Added
+* **`updateLabelV1()`** — new method on `ShippingOrdersClient` for updating an order's label independently via `PATCH /shipping/orders/update_label/v1/{orderId}`.
+* **`Requests.OrdersUpdateLabelReq`** — new request struct with `label` and `labelSetToNone` fields used by `updateLabelV1()`.
+* **`coordinatorAssignedUserIds`** and **`executorAssignedUserIds`** — new optional `[String]` fields added to order template and task group types for specifying assigned user IDs.
+* **`filterStatus`**, **`filterServiceLine`**, and several other filter parameters — new optional filters added to list endpoints across `BillingLedgerPeriods`, `BillingLedgers`, `LineItemGroups`, `Statements`, `BillingNew Orders`, `BidThreads`, `Listings`, `OperationsTasks`, `OrderSchedules`, `ChrtGroundProviderRates`, and expanded/ungrouped orders endpoints.
+* See full changelog for all changes
+
 ## 2.0.1 - 2026-08-04
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

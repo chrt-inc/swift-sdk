@@ -57,7 +57,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                LineStringCoordinatesItem.position2D(
+                                                CoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
