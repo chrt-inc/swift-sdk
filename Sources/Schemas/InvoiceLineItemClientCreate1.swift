@@ -1,6 +1,9 @@
 import Foundation
 
 public struct InvoiceLineItemClientCreate1: Codable, Hashable, Sendable {
+    /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+    public let awbNumber: String?
+    public let counterpartyDriverId: String?
     public let counterpartyOffChrtOrgDataId: String?
     /// Must be a string starting with `org_`
     public let counterpartyOrgId: String?
@@ -19,6 +22,8 @@ public struct InvoiceLineItemClientCreate1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        awbNumber: String? = nil,
+        counterpartyDriverId: String? = nil,
         counterpartyOffChrtOrgDataId: String? = nil,
         counterpartyOrgId: String? = nil,
         currencyCode: BillingCurrencyCodeEnum1,
@@ -34,6 +39,8 @@ public struct InvoiceLineItemClientCreate1: Codable, Hashable, Sendable {
         unitPrice: Double,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.awbNumber = awbNumber
+        self.counterpartyDriverId = counterpartyDriverId
         self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
         self.counterpartyOrgId = counterpartyOrgId
         self.currencyCode = currencyCode
@@ -52,6 +59,8 @@ public struct InvoiceLineItemClientCreate1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
+        self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
         self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
         self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
         self.currencyCode = try container.decode(BillingCurrencyCodeEnum1.self, forKey: .currencyCode)
@@ -71,6 +80,8 @@ public struct InvoiceLineItemClientCreate1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
+        try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
         try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
         try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
         try container.encode(self.currencyCode, forKey: .currencyCode)
@@ -88,6 +99,8 @@ public struct InvoiceLineItemClientCreate1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case awbNumber = "awb_number"
+        case counterpartyDriverId = "counterparty_driver_id"
         case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
         case counterpartyOrgId = "counterparty_org_id"
         case currencyCode = "currency_code"

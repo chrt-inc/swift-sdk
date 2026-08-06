@@ -57,7 +57,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Clears the executor, driver, and PPP/PPD billing attachments from a draft task group. Coordinator-only. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+    /// Clears the executor and driver from a draft task group. Coordinator-only. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeExecutorV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -76,19 +76,6 @@ public final class TaskGroupClient: Sendable {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/shipping/orders/drafts/task_group/set_flight_info/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Sets rate sheet IDs on a draft task group. Forwarder mode (SPF/FPC) and direct shipper mode (SPC) are mutually exclusive. CPD is independent. | (SetRateSheetsReq) -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func setRateSheetsV1(taskGroupId: String, request: Requests.SetRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/orders/drafts/task_group/set_rate_sheets/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

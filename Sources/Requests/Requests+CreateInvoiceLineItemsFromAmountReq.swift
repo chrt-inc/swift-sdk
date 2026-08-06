@@ -4,6 +4,9 @@ extension Requests {
     public struct CreateInvoiceLineItemsFromAmountReq: Codable, Hashable, Sendable {
         public let accountIds: [String]?
         public let amount: Double
+        /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+        public let awbNumber: String?
+        public let counterpartyDriverId: String?
         public let counterpartyOffChrtOrgDataId: String?
         /// Must be a string starting with `org_`
         public let counterpartyOrgId: String?
@@ -21,6 +24,8 @@ extension Requests {
         public init(
             accountIds: [String]? = nil,
             amount: Double,
+            awbNumber: String? = nil,
+            counterpartyDriverId: String? = nil,
             counterpartyOffChrtOrgDataId: String? = nil,
             counterpartyOrgId: String? = nil,
             currencyCode: BillingCurrencyCodeEnum1,
@@ -35,6 +40,8 @@ extension Requests {
         ) {
             self.accountIds = accountIds
             self.amount = amount
+            self.awbNumber = awbNumber
+            self.counterpartyDriverId = counterpartyDriverId
             self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
             self.counterpartyOrgId = counterpartyOrgId
             self.currencyCode = currencyCode
@@ -52,6 +59,8 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.accountIds = try container.decodeIfPresent([String].self, forKey: .accountIds)
             self.amount = try container.decode(Double.self, forKey: .amount)
+            self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
+            self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
             self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
             self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
             self.currencyCode = try container.decode(BillingCurrencyCodeEnum1.self, forKey: .currencyCode)
@@ -70,6 +79,8 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.accountIds, forKey: .accountIds)
             try container.encode(self.amount, forKey: .amount)
+            try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
+            try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
             try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
             try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
             try container.encode(self.currencyCode, forKey: .currencyCode)
@@ -86,6 +97,8 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case accountIds = "account_ids"
             case amount
+            case awbNumber = "awb_number"
+            case counterpartyDriverId = "counterparty_driver_id"
             case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
             case counterpartyOrgId = "counterparty_org_id"
             case currencyCode = "currency_code"

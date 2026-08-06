@@ -136,6 +136,7 @@ import Chrt
                   "off_chrt_executor_orgs": [
                     {
                       "_id": "_id",
+                      "air_waybill_prefix": "air_waybill_prefix",
                       "created_by_user_id": "created_by_user_id",
                       "email_address": "email_address",
                       "industry": "industry",
@@ -162,6 +163,7 @@ import Chrt
                   ],
                   "off_chrt_shipper_org": {
                     "_id": "_id",
+                    "air_waybill_prefix": "air_waybill_prefix",
                     "created_by_user_id": "created_by_user_id",
                     "email_address": "email_address",
                     "industry": "industry",
@@ -315,7 +317,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -346,7 +348,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -380,7 +382,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -416,6 +418,7 @@ import Chrt
             offChrtExecutorOrgs: Optional([
                 OffChrtOrgData1(
                     id: "_id",
+                    airWaybillPrefix: Optional("air_waybill_prefix"),
                     createdByUserId: "created_by_user_id",
                     emailAddress: Optional("email_address"),
                     industry: Optional("industry"),
@@ -431,7 +434,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -446,6 +449,7 @@ import Chrt
             ]),
             offChrtShipperOrg: Optional(OffChrtOrgData1(
                 id: "_id",
+                airWaybillPrefix: Optional("air_waybill_prefix"),
                 createdByUserId: "created_by_user_id",
                 emailAddress: Optional("email_address"),
                 industry: Optional("industry"),
@@ -461,7 +465,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -708,9 +712,6 @@ import Chrt
             search: "search",
             filterArchived: true,
             filterOwnedByUserId: "filter_owned_by_user_id",
-            filterServiceLine: [
-                .onDemand
-            ],
             filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",

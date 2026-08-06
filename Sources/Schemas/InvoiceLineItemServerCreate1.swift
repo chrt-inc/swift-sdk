@@ -1,6 +1,10 @@
 import Foundation
 
 public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
+    /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+    public let awbNumber: String?
+    public let billingPeriodId: String?
+    public let counterpartyDriverId: String?
     public let counterpartyOffChrtOrgDataId: String?
     /// Must be a string starting with `org_`
     public let counterpartyOrgId: String?
@@ -32,6 +36,9 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        awbNumber: String? = nil,
+        billingPeriodId: String? = nil,
+        counterpartyDriverId: String? = nil,
         counterpartyOffChrtOrgDataId: String? = nil,
         counterpartyOrgId: String? = nil,
         createdAtTimestamp: Date,
@@ -57,6 +64,9 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         unitPrice: Double,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.awbNumber = awbNumber
+        self.billingPeriodId = billingPeriodId
+        self.counterpartyDriverId = counterpartyDriverId
         self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
         self.counterpartyOrgId = counterpartyOrgId
         self.createdAtTimestamp = createdAtTimestamp
@@ -85,6 +95,9 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
+        self.billingPeriodId = try container.decodeIfPresent(String.self, forKey: .billingPeriodId)
+        self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
         self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
         self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
@@ -114,6 +127,9 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
+        try container.encodeIfPresent(self.billingPeriodId, forKey: .billingPeriodId)
+        try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
         try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
         try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
@@ -141,6 +157,9 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case awbNumber = "awb_number"
+        case billingPeriodId = "billing_period_id"
+        case counterpartyDriverId = "counterparty_driver_id"
         case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
         case counterpartyOrgId = "counterparty_org_id"
         case createdAtTimestamp = "created_at_timestamp"

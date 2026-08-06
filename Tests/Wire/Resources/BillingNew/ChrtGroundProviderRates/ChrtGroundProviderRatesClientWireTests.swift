@@ -82,6 +82,7 @@ import Chrt
                     "spare_parts"
                   ],
                   "comments": "comments",
+                  "counterparty_driver_id": "counterparty_driver_id",
                   "counterparty_driver_ids": [
                     "counterparty_driver_ids"
                   ],
@@ -196,6 +197,7 @@ import Chrt
                 .spareParts
             ]),
             comments: Optional("comments"),
+            counterpartyDriverId: Optional("counterparty_driver_id"),
             counterpartyDriverIds: Optional([
                 "counterparty_driver_ids"
             ]),
@@ -312,6 +314,7 @@ import Chrt
                         "spare_parts"
                       ],
                       "comments": "comments",
+                      "counterparty_driver_id": "counterparty_driver_id",
                       "counterparty_driver_ids": [
                         "counterparty_driver_ids"
                       ],
@@ -406,6 +409,7 @@ import Chrt
                         .spareParts
                     ]),
                     comments: Optional("comments"),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
                     counterpartyDriverIds: Optional([
                         "counterparty_driver_ids"
                     ]),
@@ -474,25 +478,11 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterInvoiceTypes: [
-                .accountsReceivable
-            ],
-            filterCurrencyCodes: [
-                .usd
-            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
             filterShipperAccountId: "filter_shipper_account_id",
             filterCounterpartyDriverId: "filter_counterparty_driver_id",
-            filterCargoTypes: [
-                .spareParts
-            ],
-            filterVehicleTypes: [
-                .sedan
-            ],
+            filterCounterpartyScopeDriverId: "filter_counterparty_scope_driver_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -562,17 +552,8 @@ import Chrt
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                       "order_short_id": "order_short_id",
-                      "provider_pay_driver_billing_ledger_period_id": "provider_pay_driver_billing_ledger_period_id",
-                      "provider_pay_driver_line_item_group_id": "provider_pay_driver_line_item_group_id",
-                      "provider_pay_driver_rate_sheet_id": "provider_pay_driver_rate_sheet_id",
-                      "provider_pay_provider_billing_ledger_period_id": "provider_pay_provider_billing_ledger_period_id",
-                      "provider_pay_provider_line_item_group_id": "provider_pay_provider_line_item_group_id",
-                      "provider_pay_provider_rate_sheet_id": "provider_pay_provider_rate_sheet_id",
                       "schema_version": 1,
                       "shipper_org_id": "shipper_org_id",
-                      "shipper_pay_provider_billing_ledger_period_id": "shipper_pay_provider_billing_ledger_period_id",
-                      "shipper_pay_provider_line_item_group_id": "shipper_pay_provider_line_item_group_id",
-                      "shipper_pay_provider_rate_sheet_id": "shipper_pay_provider_rate_sheet_id",
                       "skipped_at_timestamp": "2024-01-15T09:30:00Z",
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "status": "draft",
@@ -651,17 +632,8 @@ import Chrt
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                     orderShortId: "order_short_id",
-                    providerPayDriverBillingLedgerPeriodId: Optional("provider_pay_driver_billing_ledger_period_id"),
-                    providerPayDriverLineItemGroupId: Optional("provider_pay_driver_line_item_group_id"),
-                    providerPayDriverRateSheetId: Optional("provider_pay_driver_rate_sheet_id"),
-                    providerPayProviderBillingLedgerPeriodId: Optional("provider_pay_provider_billing_ledger_period_id"),
-                    providerPayProviderLineItemGroupId: Optional("provider_pay_provider_line_item_group_id"),
-                    providerPayProviderRateSheetId: Optional("provider_pay_provider_rate_sheet_id"),
                     schemaVersion: 1,
                     shipperOrgId: Optional("shipper_org_id"),
-                    shipperPayProviderBillingLedgerPeriodId: Optional("shipper_pay_provider_billing_ledger_period_id"),
-                    shipperPayProviderLineItemGroupId: Optional("shipper_pay_provider_line_item_group_id"),
-                    shipperPayProviderRateSheetId: Optional("shipper_pay_provider_rate_sheet_id"),
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     status: Optional(.draft),

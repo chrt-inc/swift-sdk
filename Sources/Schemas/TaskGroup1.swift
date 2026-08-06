@@ -27,18 +27,9 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
     public let orderShortId: String
-    public let providerPayDriverBillingLedgerPeriodId: String?
-    public let providerPayDriverLineItemGroupId: String?
-    public let providerPayDriverRateSheetId: String?
-    public let providerPayProviderBillingLedgerPeriodId: String?
-    public let providerPayProviderLineItemGroupId: String?
-    public let providerPayProviderRateSheetId: String?
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
-    public let shipperPayProviderBillingLedgerPeriodId: String?
-    public let shipperPayProviderLineItemGroupId: String?
-    public let shipperPayProviderRateSheetId: String?
     public let skippedAtTimestamp: Date?
     public let stagedAtTimestamp: Date?
     public let status: TaskGroupStatusEnum1?
@@ -72,17 +63,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         orderId: String,
         orderOffChrtReferenceId: String? = nil,
         orderShortId: String,
-        providerPayDriverBillingLedgerPeriodId: String? = nil,
-        providerPayDriverLineItemGroupId: String? = nil,
-        providerPayDriverRateSheetId: String? = nil,
-        providerPayProviderBillingLedgerPeriodId: String? = nil,
-        providerPayProviderLineItemGroupId: String? = nil,
-        providerPayProviderRateSheetId: String? = nil,
         schemaVersion: Int,
         shipperOrgId: String? = nil,
-        shipperPayProviderBillingLedgerPeriodId: String? = nil,
-        shipperPayProviderLineItemGroupId: String? = nil,
-        shipperPayProviderRateSheetId: String? = nil,
         skippedAtTimestamp: Date? = nil,
         stagedAtTimestamp: Date? = nil,
         status: TaskGroupStatusEnum1? = nil,
@@ -114,17 +96,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
         self.orderShortId = orderShortId
-        self.providerPayDriverBillingLedgerPeriodId = providerPayDriverBillingLedgerPeriodId
-        self.providerPayDriverLineItemGroupId = providerPayDriverLineItemGroupId
-        self.providerPayDriverRateSheetId = providerPayDriverRateSheetId
-        self.providerPayProviderBillingLedgerPeriodId = providerPayProviderBillingLedgerPeriodId
-        self.providerPayProviderLineItemGroupId = providerPayProviderLineItemGroupId
-        self.providerPayProviderRateSheetId = providerPayProviderRateSheetId
         self.schemaVersion = schemaVersion
         self.shipperOrgId = shipperOrgId
-        self.shipperPayProviderBillingLedgerPeriodId = shipperPayProviderBillingLedgerPeriodId
-        self.shipperPayProviderLineItemGroupId = shipperPayProviderLineItemGroupId
-        self.shipperPayProviderRateSheetId = shipperPayProviderRateSheetId
         self.skippedAtTimestamp = skippedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
@@ -159,17 +132,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
-        self.providerPayDriverBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverBillingLedgerPeriodId)
-        self.providerPayDriverLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverLineItemGroupId)
-        self.providerPayDriverRateSheetId = try container.decodeIfPresent(String.self, forKey: .providerPayDriverRateSheetId)
-        self.providerPayProviderBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .providerPayProviderBillingLedgerPeriodId)
-        self.providerPayProviderLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .providerPayProviderLineItemGroupId)
-        self.providerPayProviderRateSheetId = try container.decodeIfPresent(String.self, forKey: .providerPayProviderRateSheetId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
-        self.shipperPayProviderBillingLedgerPeriodId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderBillingLedgerPeriodId)
-        self.shipperPayProviderLineItemGroupId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderLineItemGroupId)
-        self.shipperPayProviderRateSheetId = try container.decodeIfPresent(String.self, forKey: .shipperPayProviderRateSheetId)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(TaskGroupStatusEnum1.self, forKey: .status)
@@ -205,17 +169,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
-        try container.encodeIfPresent(self.providerPayDriverBillingLedgerPeriodId, forKey: .providerPayDriverBillingLedgerPeriodId)
-        try container.encodeIfPresent(self.providerPayDriverLineItemGroupId, forKey: .providerPayDriverLineItemGroupId)
-        try container.encodeIfPresent(self.providerPayDriverRateSheetId, forKey: .providerPayDriverRateSheetId)
-        try container.encodeIfPresent(self.providerPayProviderBillingLedgerPeriodId, forKey: .providerPayProviderBillingLedgerPeriodId)
-        try container.encodeIfPresent(self.providerPayProviderLineItemGroupId, forKey: .providerPayProviderLineItemGroupId)
-        try container.encodeIfPresent(self.providerPayProviderRateSheetId, forKey: .providerPayProviderRateSheetId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
-        try container.encodeIfPresent(self.shipperPayProviderBillingLedgerPeriodId, forKey: .shipperPayProviderBillingLedgerPeriodId)
-        try container.encodeIfPresent(self.shipperPayProviderLineItemGroupId, forKey: .shipperPayProviderLineItemGroupId)
-        try container.encodeIfPresent(self.shipperPayProviderRateSheetId, forKey: .shipperPayProviderRateSheetId)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
@@ -249,17 +204,8 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
         case orderShortId = "order_short_id"
-        case providerPayDriverBillingLedgerPeriodId = "provider_pay_driver_billing_ledger_period_id"
-        case providerPayDriverLineItemGroupId = "provider_pay_driver_line_item_group_id"
-        case providerPayDriverRateSheetId = "provider_pay_driver_rate_sheet_id"
-        case providerPayProviderBillingLedgerPeriodId = "provider_pay_provider_billing_ledger_period_id"
-        case providerPayProviderLineItemGroupId = "provider_pay_provider_line_item_group_id"
-        case providerPayProviderRateSheetId = "provider_pay_provider_rate_sheet_id"
         case schemaVersion = "schema_version"
         case shipperOrgId = "shipper_org_id"
-        case shipperPayProviderBillingLedgerPeriodId = "shipper_pay_provider_billing_ledger_period_id"
-        case shipperPayProviderLineItemGroupId = "shipper_pay_provider_line_item_group_id"
-        case shipperPayProviderRateSheetId = "shipper_pay_provider_rate_sheet_id"
         case skippedAtTimestamp = "skipped_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case status

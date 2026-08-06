@@ -211,9 +211,6 @@ import Chrt
                 {
                   "deleted_order_ids": [
                     "deleted_order_ids"
-                  ],
-                  "order_ids_skipped_due_to_billing_links": [
-                    "order_ids_skipped_due_to_billing_links"
                   ]
                 }
                 """.utf8
@@ -227,9 +224,6 @@ import Chrt
         let expectedResponse = OrdersDraftDeleteManyRes(
             deletedOrderIds: [
                 "deleted_order_ids"
-            ],
-            orderIdsSkippedDueToBillingLinks: [
-                "order_ids_skipped_due_to_billing_links"
             ]
         )
         let response = try await client.shipping.orders.drafts.deleteManyV1(

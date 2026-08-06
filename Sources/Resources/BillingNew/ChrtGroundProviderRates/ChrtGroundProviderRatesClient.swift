@@ -55,7 +55,8 @@ public final class ChrtGroundProviderRatesClient: Sendable {
     /// - Parameter filterCounterpartyOrgId: Filter by an associated on-CHRT organization.
     /// - Parameter filterCounterpartyOffChrtOrgDataId: Filter by associated off-CHRT organization data.
     /// - Parameter filterShipperAccountId: Filter by an associated shipper account.
-    /// - Parameter filterCounterpartyDriverId: Filter by an associated driver.
+    /// - Parameter filterCounterpartyDriverId: Filter by a driver counterparty.
+    /// - Parameter filterCounterpartyScopeDriverId: Filter by a driver included in rate-sheet scope.
     /// - Parameter filterCargoTypes: Filter by one or more cargo types.
     /// - Parameter filterVehicleTypes: Filter by one or more vehicle types.
     /// - Parameter filterCreatedAtTimestampGte: Filter by created_at_timestamp greater than or equal.
@@ -63,7 +64,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter by updated_at_timestamp greater than or equal.
     /// - Parameter filterUpdatedAtTimestampLte: Filter by updated_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, sortBy: ChrtGroundProviderRatesSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterServiceLine: ServiceLineEnum? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterShipperAccountId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCargoTypes: CargoTypeEnum1? = nil, filterVehicleTypes: VehicleTypeEnum? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ChrtGroundProviderRatesListRes {
+    public func listV1(search: String? = nil, sortBy: ChrtGroundProviderRatesSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterServiceLine: ServiceLineEnum? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterShipperAccountId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCounterpartyScopeDriverId: String? = nil, filterCargoTypes: CargoTypeEnum1? = nil, filterVehicleTypes: VehicleTypeEnum? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ChrtGroundProviderRatesListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/chrt_ground_provider_rates/list/v1",
@@ -80,6 +81,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
                 "filter_counterparty_off_chrt_org_data_id": filterCounterpartyOffChrtOrgDataId.map { .string($0) }, 
                 "filter_shipper_account_id": filterShipperAccountId.map { .string($0) }, 
                 "filter_counterparty_driver_id": filterCounterpartyDriverId.map { .string($0) }, 
+                "filter_counterparty_scope_driver_id": filterCounterpartyScopeDriverId.map { .string($0) }, 
                 "filter_cargo_types": filterCargoTypes.map { .string($0.rawValue) }, 
                 "filter_vehicle_types": filterVehicleTypes.map { .string($0.rawValue) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
@@ -92,7 +94,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
         )
     }
 
-    /// Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. Candidates must match (a) the order's service line, (b) the TaskGroup's vehicle type, (c) a Task's coordinator shipper account, (d) the invoice type (AP or AR), and (e) the relevant counterparty (executor for AP; shipper for AR). | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
+    /// Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. AP candidates target a distinct executor, or the assigned driver when the coordinator is also the executor; AR candidates target the shipper. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func resolveV1(request: Requests.ResolveChrtGroundProviderRatesReq, requestOptions: RequestOptions? = nil) async throws -> [ResolvedTaskGroupChrtGroundProviderRates1] {

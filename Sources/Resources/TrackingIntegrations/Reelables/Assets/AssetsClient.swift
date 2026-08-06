@@ -7,7 +7,20 @@ public final class AssetsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Refreshes and retrieves a Reelables asset by its external ID. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAsset1)
+    /// Creates and links a labeled Reelables asset for the caller's organization. | authz: min_org_role=operator | (ReelablesAssetClientCreate1) -> (ReelablesAsset1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: Requests.ReelablesAssetClientCreate1, requestOptions: RequestOptions? = nil) async throws -> ReelablesAsset1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking_integrations/reelables/assets/create/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ReelablesAsset1.self
+        )
+    }
+
+    /// Retrieves a Reelables asset owned by the caller's organization from CHRT. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAsset1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(assetId: String, requestOptions: RequestOptions? = nil) async throws -> ReelablesAsset1 {
@@ -19,15 +32,40 @@ public final class AssetsClient: Sendable {
         )
     }
 
-    /// Lists cached Reelables assets for a workspace. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
+    /// Links a label to an unlinked Reelables asset and starts tracking. Existing labels must be unlinked first. | authz: min_org_role=operator | (ReelablesAssetLabelLinkReq) -> (ReelablesAsset1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func linkLabelV1(assetId: String, request: Requests.ReelablesAssetLabelLinkReq, requestOptions: RequestOptions? = nil) async throws -> ReelablesAsset1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking_integrations/reelables/assets/labels/link/v1/\(assetId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ReelablesAsset1.self
+        )
+    }
+
+    /// Unlinks the current label from a Reelables asset and stops tracking while retaining the asset and its history. | authz: min_org_role=operator | (None) -> (ReelablesAsset1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unlinkLabelV1(assetId: String, requestOptions: RequestOptions? = nil) async throws -> ReelablesAsset1 {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/tracking_integrations/reelables/assets/labels/unlink/v1/\(assetId)",
+            requestOptions: requestOptions,
+            responseType: ReelablesAsset1.self
+        )
+    }
+
+    /// Lists Reelables assets owned by the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(workspaceId: String, sortBy: ReelablesAssetSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ReelablesAssetListRes {
+    public func listV1(sortBy: ReelablesAssetSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ReelablesAssetListRes {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/tracking_integrations/reelables/assets/list/v1/\(workspaceId)",
+            path: "/tracking_integrations/reelables/assets/list/v1",
             queryParams: [
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
@@ -36,18 +74,6 @@ public final class AssetsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: ReelablesAssetListRes.self
-        )
-    }
-
-    /// Synchronizes all Reelables assets for a cached workspace. | authz: min_org_role=operator | () -> (ReelablesAssetSyncRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func syncV1(workspaceId: String, requestOptions: RequestOptions? = nil) async throws -> ReelablesAssetSyncRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/tracking_integrations/reelables/assets/sync/v1/\(workspaceId)",
-            requestOptions: requestOptions,
-            responseType: ReelablesAssetSyncRes.self
         )
     }
 

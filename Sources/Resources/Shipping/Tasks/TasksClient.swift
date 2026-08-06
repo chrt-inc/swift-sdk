@@ -9,7 +9,7 @@ public final class TasksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a new task to a task group at a specific index. | authz_personas=[lig_owner_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
+    /// Adds a new task to a task group at a specific index. | authz_personas=[task_group_operating_org_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addToTaskGroupV1(taskGroupId: String, request: Requests.AddTaskToGroupReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -47,7 +47,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Deletes a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | () -> (bool)
+    /// Deletes a task. Task must be in STAGED status. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -59,7 +59,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, lig_owner_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
+    /// Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func locationFromReferenceV1(taskId: String, request: Requests.TaskLocationFromReferenceReq, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -84,7 +84,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Updates a task. Operational fields require lig_owner_operators, comments require order_creator_org_operators, contacts allow either, and coordinator_shipper_account_ids require coordinator_org_operators. | authz_personas=[lig_owner_operators, order_creator_org_operators, coordinator_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
+    /// Updates a task. Operational fields require task_group_operating_org_operators, comments require order_creator_org_operators, contacts allow either, and coordinator_shipper_account_ids require coordinator_org_operators. | authz_personas=[task_group_operating_org_operators, order_creator_org_operators, coordinator_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {

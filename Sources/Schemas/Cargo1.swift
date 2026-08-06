@@ -4,6 +4,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let id: String
     /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     public let awbNumber: String?
+    public let awbNumberLineItemsGenerated: Bool?
     public let cancelledAtTimestamp: Date?
     public let cargoType: CargoTypeEnum1
     /// Must be a string starting with `org_`
@@ -36,6 +37,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public init(
         id: String,
         awbNumber: String? = nil,
+        awbNumberLineItemsGenerated: Bool? = nil,
         cancelledAtTimestamp: Date? = nil,
         cargoType: CargoTypeEnum1,
         createdByOrgId: String,
@@ -64,6 +66,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     ) {
         self.id = id
         self.awbNumber = awbNumber
+        self.awbNumberLineItemsGenerated = awbNumberLineItemsGenerated
         self.cancelledAtTimestamp = cancelledAtTimestamp
         self.cargoType = cargoType
         self.createdByOrgId = createdByOrgId
@@ -95,6 +98,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
+        self.awbNumberLineItemsGenerated = try container.decodeIfPresent(Bool.self, forKey: .awbNumberLineItemsGenerated)
         self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.cargoType = try container.decode(CargoTypeEnum1.self, forKey: .cargoType)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
@@ -127,6 +131,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
+        try container.encodeIfPresent(self.awbNumberLineItemsGenerated, forKey: .awbNumberLineItemsGenerated)
         try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encode(self.cargoType, forKey: .cargoType)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
@@ -157,6 +162,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
         case awbNumber = "awb_number"
+        case awbNumberLineItemsGenerated = "awb_number_line_items_generated"
         case cancelledAtTimestamp = "cancelled_at_timestamp"
         case cargoType = "cargo_type"
         case createdByOrgId = "created_by_org_id"

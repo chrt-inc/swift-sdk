@@ -1,11 +1,11 @@
 import Foundation
 
 public final class OrderInternalMessagesClient: Sendable {
-    public let s3Objects: OrderInternalMessagesS3ObjectsClient
+    public let s3Objects: S3ObjectsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.s3Objects = OrderInternalMessagesS3ObjectsClient(config: config)
+        self.s3Objects = S3ObjectsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

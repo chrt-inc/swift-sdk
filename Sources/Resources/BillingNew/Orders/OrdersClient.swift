@@ -7,6 +7,22 @@ public final class OrdersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Lists completed, unbilled AWBs with delivery account allocations. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderAwbBillingListRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listAwbBillingForCoordinatorOperatorsV1(page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderAwbBillingListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/orders/awb_billing/list/for_coordinator_operators/v1",
+            queryParams: [
+                "page": page.map { .int($0) }, 
+                "page_size": pageSize.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: OrderAwbBillingListRes.self
+        )
+    }
+
     /// Lists coordinator orders with billing summaries and optional party-name expansion. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderBillingExpandedListReq) -> (OrderBillingExpandedListRes)
     ///
     /// - Parameter sortBy: Order lifecycle timestamp used for sorting.

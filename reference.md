@@ -174,9 +174,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -555,1973 +552,6 @@ try await main()
 </dl>
 </details>
 
-## Billing BillingLedgerPeriods
-<details><summary><code>client.billing.billingLedgerPeriods.<a href="/Sources/Resources/Billing/BillingLedgerPeriods/BillingLedgerPeriodsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> BillingLedgerPeriod1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a billing ledger period the caller's org owns or is a payment counterparty on. | authz_personas=[billing_ledger_period_org_operators] | () -> (BillingLedgerPeriod1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgerPeriods.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgerPeriods.<a href="/Sources/Resources/Billing/BillingLedgerPeriods/BillingLedgerPeriodsClient.swift">closeV1</a>(billingLedgerPeriodId: String, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Closes an OPEN billing ledger period. 400 if the period is already CLOSED. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_period_owner_operators] | () -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgerPeriods.closeV1(billingLedgerPeriodId: "billing_ledger_period_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**billingLedgerPeriodId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgerPeriods.<a href="/Sources/Resources/Billing/BillingLedgerPeriods/BillingLedgerPeriodsClient.swift">listV1</a>(sortBy: BillingLedgerPeriodSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterBillingLedgerId: String?, filterOwnedByOrgId: String?, filterStatus: BillingLedgerPeriodStatusEnum?, filterStatementId: String?, filterAttachedToStatement: Bool?, filterPeriodEndAtTimestampBefore: Date?, filterPeriodEndAtTimestampAfter: Date?, requestOptions: RequestOptions?) -> BillingLedgerPeriodListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists billing ledger periods the caller's org owns or is a payment counterparty on. | authz_personas=[billing_ledger_period_org_operators] | () -> (BillingLedgerPeriodListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgerPeriods.listV1(
-        sortBy: .periodEndAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterBillingLedgerId: "filter_billing_ledger_id",
-        filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStatus: [
-            .open
-        ],
-        filterStatementId: "filter_statement_id",
-        filterAttachedToStatement: true,
-        filterPeriodEndAtTimestampBefore: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterPeriodEndAtTimestampAfter: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `BillingLedgerPeriodSortByEnum?` — Field to sort by.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterBillingLedgerId:** `String?` — Filter by parent billing ledger id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOwnedByOrgId:** `String?` — Filter by owner org id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `BillingLedgerPeriodStatusEnum?` — Filter by status(es). Multi-select.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatementId:** `String?` — Filter to periods rolled into this statement.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterAttachedToStatement:** `Bool?` — Filter by whether the period is bundled into a statement (`statement_id is not None` if true, `is None` if false). Used by the statement-bundling worklist to find unbundled periods.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPeriodEndAtTimestampBefore:** `Date?` — Filter to periods whose `period_end_at_timestamp` is strictly before this instant. Combined with `filter_status=open` this yields the 'needs cycling' worklist.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPeriodEndAtTimestampAfter:** `Date?` — Filter to periods whose `period_end_at_timestamp` is strictly after this instant.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgerPeriods.<a href="/Sources/Resources/Billing/BillingLedgerPeriods/BillingLedgerPeriodsClient.swift">openV1</a>(billingLedgerId: String, request: Requests.OpenPeriodReq, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Opens a new period on an ACTIVE billing ledger. Operator supplies `cycle`, `rate_usd`, and at least one of `(period_start_at_timestamp, period_end_at_timestamp)` — the other is derived from `cycle` (calendar-aware). A period spans exactly one cycle. Multiple OPEN periods per ledger are allowed and may overlap. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | (OpenPeriodReq) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgerPeriods.openV1(
-        billingLedgerId: "billing_ledger_id",
-        request: .init(
-            cycle: .daily,
-            rateUsd: 1.1
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**billingLedgerId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OpenPeriodReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgerPeriods.<a href="/Sources/Resources/Billing/BillingLedgerPeriods/BillingLedgerPeriodsClient.swift">updateV1</a>(billingLedgerPeriodId: String, request: Requests.BillingLedgerPeriodClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an OPEN billing ledger period's bounds, cycle, and/or rate_usd. Lenient: only `end > start` is enforced after the patch — span need not equal cycle. CLOSED periods are immutable. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_period_owner_operators] | (BillingLedgerPeriodClientUpdate1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgerPeriods.updateV1(
-        billingLedgerPeriodId: "billing_ledger_period_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**billingLedgerPeriodId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.BillingLedgerPeriodClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing BillingLedgers
-<details><summary><code>client.billing.billingLedgers.<a href="/Sources/Resources/Billing/BillingLedgers/BillingLedgersClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> BillingLedger1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a billing ledger the caller's org owns or is a payment counterparty on. | authz_personas=[billing_ledger_org_operators] | () -> (BillingLedger1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgers.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgers.<a href="/Sources/Resources/Billing/BillingLedgers/BillingLedgersClient.swift">createV1</a>(request: Requests.BillingLedgerClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a billing ledger owned by the caller's org. Caller must be the receiving provider for shipper-pay-provider, or the paying provider for provider-pay-provider/driver. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingLedgerClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgers.createV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.BillingLedgerClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgers.<a href="/Sources/Resources/Billing/BillingLedgers/BillingLedgersClient.swift">deactivateV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Flips a billing ledger to INACTIVE and stamps `inactive_at_timestamp`. Idempotent; the current OPEN period is left untouched. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgers.deactivateV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgers.<a href="/Sources/Resources/Billing/BillingLedgers/BillingLedgersClient.swift">listV1</a>(sortBy: BillingLedgerSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: BillingLedgerStatusEnum?, filterTaskGroupType: TaskGroupTypeEnum1?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, requestOptions: RequestOptions?) -> BillingLedgerListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists billing ledgers the caller's org owns or is a payment counterparty on. | authz_personas=[billing_ledger_org_operators] | () -> (BillingLedgerListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgers.listV1(
-        sortBy: .createdAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterStatus: [
-            .active
-        ],
-        filterTaskGroupType: .chrtGroundProvider,
-        filterPaymentOriginOrgId: "filter_payment_origin_org_id",
-        filterPaymentDestinationOrgId: "filter_payment_destination_org_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `BillingLedgerSortByEnum?` — Field to sort by.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `BillingLedgerStatusEnum?` — Filter by status(es). Multi-select.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterTaskGroupType:** `TaskGroupTypeEnum1?` — Filter to ledgers scoped to this TaskGroup type. Omit to include both type-scoped and type-agnostic ledgers.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentOriginOrgId:** `String?` — Filter by payment origin on-chrt org id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentDestinationOrgId:** `String?` — Filter by payment destination on-chrt org id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.billingLedgers.<a href="/Sources/Resources/Billing/BillingLedgers/BillingLedgersClient.swift">updateV1</a>(id: String, request: Requests.BillingLedgerClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a billing ledger's `name` and `comments`. Cycle and rate are per-period values supplied at `billing_ledger_periods/open/v1` time; the ledger does not carry them. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[billing_ledger_owner_operators] | (BillingLedgerClientUpdate1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.billingLedgers.updateV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.BillingLedgerClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing CargoOnFlightRateSheets
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">archiveV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Archives a CargoOnFlight rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.archiveV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> CargoOnFlightRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific CargoOnFlight rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (CargoOnFlightRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">createV1</a>(request: Requests.CargoOnFlightRateSheetClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a CargoOnFlight rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (CargoOnFlightRateSheetClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.createV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CargoOnFlightRateSheetClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">deleteV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Hard-deletes a CargoOnFlight rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.deleteV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">listV1</a>(includeArchived: Bool?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightRateSheetListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all CargoOnFlight rate sheets owned by the caller's organization. Pagination only — no search/filter. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (CargoOnFlightRateSheetListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.listV1(
-        includeArchived: true,
-        page: 1,
-        pageSize: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeArchived:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">unarchiveV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Unarchives a CargoOnFlight rate sheet (sets archived=False). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.unarchiveV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.cargoOnFlightRateSheets.<a href="/Sources/Resources/Billing/CargoOnFlightRateSheets/CargoOnFlightRateSheetsClient.swift">updateV1</a>(id: String, request: Requests.CargoOnFlightRateSheetClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a CargoOnFlight rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (CargoOnFlightRateSheetClientUpdate1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.cargoOnFlightRateSheets.updateV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.CargoOnFlightRateSheetClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing ChrtGroundProviderRateSheets
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">archiveV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Archives a ChrtGroundProvider rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.archiveV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> ChrtGroundProviderRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific ChrtGroundProvider rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ChrtGroundProviderRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">createV1</a>(request: Requests.ChrtGroundProviderRateSheetClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a ChrtGroundProvider rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (ChrtGroundProviderRateSheetClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.createV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.ChrtGroundProviderRateSheetClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">deleteV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Hard-deletes a ChrtGroundProvider rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.deleteV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">listV1</a>(includeArchived: Bool?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ChrtGroundProviderRateSheetListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all ChrtGroundProvider rate sheets owned by the caller's organization. Pagination only — no search/filter. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ChrtGroundProviderRateSheetListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.listV1(
-        includeArchived: true,
-        page: 1,
-        pageSize: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeArchived:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">unarchiveV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Unarchives a ChrtGroundProvider rate sheet (sets archived=False). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.unarchiveV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.chrtGroundProviderRateSheets.<a href="/Sources/Resources/Billing/ChrtGroundProviderRateSheets/ChrtGroundProviderRateSheetsClient.swift">updateV1</a>(id: String, request: Requests.ChrtGroundProviderRateSheetClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a ChrtGroundProvider rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (ChrtGroundProviderRateSheetClientUpdate1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.chrtGroundProviderRateSheets.updateV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.ChrtGroundProviderRateSheetClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Billing Stripe
 <details><summary><code>client.billing.stripe.<a href="/Sources/Resources/Billing/Stripe/StripeClient.swift">createCheckoutSessionV1</a>(request: Requests.CreateCheckoutSessionReq, requestOptions: RequestOptions?) -> CreateCheckoutSessionRes</code></summary>
 <dl>
@@ -2644,4346 +674,6 @@ try await main()
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing LineItemGroups
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">adHocAddLineItemV1</a>(lineItemGroupId: String, request: LineItemClientCreate1, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Appends an owner-direct AD_HOC LineItem to the amendment bucket of a LineItemGroup that has not yet been finalized. The agreement bucket is reserved for the original deal at creation; everything added after lands in amendment. | authz_personas=[lig_org_operators] | (LineItemClientCreate1) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.adHocAddLineItemV1(
-        lineItemGroupId: "line_item_group_id",
-        request: LineItemClientCreate1(
-            item: .baseRate,
-            quantity: 1.1,
-            rate: 1.1
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `LineItemClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">adHocCreateV1</a>(request: Requests.LineItemGroupAdHocCreateClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a detached ad-hoc LineItemGroup. The LIG is not linked to any TaskGroup at create time — operator follows up with `/shipping/task_groups/attach_lig_to_<vector>/v1` to populate the TG vector link field and the `task_group_id` back-ref together (one txn). | authz: allowed_org_types=[provider, shipper], min_org_role=operator | (LineItemGroupAdHocCreateClientReq) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.adHocCreateV1(request: .init(ownedByOrgId: "owned_by_org_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.LineItemGroupAdHocCreateClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">adHocRemoveLineItemV1</a>(lineItemGroupId: String, lineItemId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Removes an AD_HOC LineItem from a LineItemGroup that has not yet been finalized. | authz_personas=[lig_org_operators] | () -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.adHocRemoveLineItemV1(
-        lineItemGroupId: "line_item_group_id",
-        lineItemId: "line_item_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lineItemId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">approveLineItemV1</a>(lineItemGroupId: String, lineItemId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Owner approves a counterparty-proposed LineItem on a non-FINALIZED LineItemGroup, moving it from pending_line_item_ids to amendment_line_item_ids and stamping ad_hoc__status=APPROVED. The agreement bucket is reserved for the original deal at creation; counterparty additions land in amendment by construction. | authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.approveLineItemV1(
-        lineItemGroupId: "line_item_group_id",
-        lineItemId: "line_item_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lineItemId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a LineItemGroup the caller owns, is a payment counterparty on, or is the destination driver for. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">deleteV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Owner-only operator cleanup: deletes a STAGED LineItemGroup and cascades. Cascades: (1) deletes every LineItem referenced across the four buckets (agreement / amendment / pending / denied); (2) if the LIG is attached to a parent TaskGroup vector, clears that vector's `_line_item_group_id` and `_rate_sheet_id` (the LIG's `task_group_id` back-ref disappears with the LIG itself). Refuses if the LIG is already attached to a Statement (defense-in-depth — should be unreachable since attach requires FINALIZED). FINALIZED-or-beyond LIGs cannot be deleted (audit records). | authz_personas=[lig_owner_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.deleteV1(lineItemGroupId: "line_item_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">denyLineItemV1</a>(lineItemGroupId: String, lineItemId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Owner denies a counterparty-proposed LineItem on a non-FINALIZED LineItemGroup, moving it from pending_line_item_ids to denied_line_item_ids and stamping ad_hoc__status=DENIED. | authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.denyLineItemV1(
-        lineItemGroupId: "line_item_group_id",
-        lineItemId: "line_item_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lineItemId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">finalizeV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Locks a LineItemGroup, transitioning STAGED → FINALIZED. Required precondition for attaching to a Statement. Owner-only. Rejects if the LIG has no items in agreement_line_item_ids ∪ amendment_line_item_ids, or if pending_line_item_ids is non-empty (counterparty proposals must be resolved first). | authz: allowed_org_types=[provider, shipper], min_org_role=operator, authz_personas=[lig_owner_operators] | () -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.finalizeV1(lineItemGroupId: "line_item_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">fromRateSheetCreateForProviderPayDriverV1</a>(request: CreateLigFromRateSheetForVectorClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Atomically materialises a STAGED LineItemGroup from a rate sheet AND attaches it to the PPD vector of the named TaskGroup (one transaction; both sides of the LIG ↔ TG link populated together). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. Rejects if the PPD vector already has a LIG attached, or if a billing ledger period is attached (rate-sheet/ledger exclusivity). | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (CreateLigFromRateSheetForVectorClientReq) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.fromRateSheetCreateForProviderPayDriverV1(request: CreateLigFromRateSheetForVectorClientReq(
-        taskGroupId: "task_group_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateLigFromRateSheetForVectorClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">fromRateSheetCreateForProviderPayProviderV1</a>(request: CreateLigFromRateSheetForVectorClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Atomically materialises a STAGED LineItemGroup from a rate sheet AND attaches it to the PPP vector of the named TaskGroup (one transaction; both sides of the LIG ↔ TG link populated together). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. Rejects if the PPP vector already has a LIG attached, or if a billing ledger period is attached (rate-sheet/ledger exclusivity). | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (CreateLigFromRateSheetForVectorClientReq) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.fromRateSheetCreateForProviderPayProviderV1(request: CreateLigFromRateSheetForVectorClientReq(
-        taskGroupId: "task_group_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateLigFromRateSheetForVectorClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">fromRateSheetCreateForShipperPayProviderV1</a>(request: CreateLigFromRateSheetForVectorClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Atomically materialises a STAGED LineItemGroup from a rate sheet AND attaches it to the SPP vector of the named TaskGroup (one transaction; both sides of the LIG ↔ TG link populated together). Auto-resolves the rate sheet via RateSheetMapping1 unless body.rate_sheet_id is provided. Rejects if the SPP vector already has a LIG attached, or if a billing ledger period is attached (rate-sheet/ledger exclusivity). | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (CreateLigFromRateSheetForVectorClientReq) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.fromRateSheetCreateForShipperPayProviderV1(request: CreateLigFromRateSheetForVectorClientReq(
-        taskGroupId: "task_group_id"
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateLigFromRateSheetForVectorClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">getLineItemsV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> LineItemGroupLineItemsRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves all LineItems referenced by a LineItemGroup the caller can access. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupLineItemsRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.getLineItemsV1(lineItemGroupId: "line_item_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">listV1</a>(sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: LineItemGroupStatusEnum1?, filterTaskGroupId: String?, filterOrderId: String?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterOwnedByOrgId: String?, filterPaymentOriginOrgId: String?, filterPaymentDestinationOrgId: String?, filterPaymentDestinationDriverId: String?, filterRateSheetId: String?, filterStatementId: String?, filterAttachedToStatement: Bool?, requestOptions: RequestOptions?) -> LineItemGroupListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists LineItemGroups the caller owns, is a payment counterparty on, or is the destination driver for. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.listV1(
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
-        filterTaskGroupId: "filter_task_group_id",
-        filterOrderId: "filter_order_id",
-        filterOrderShortId: "filter_order_short_id",
-        filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
-        filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterPaymentOriginOrgId: "filter_payment_origin_org_id",
-        filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
-        filterPaymentDestinationDriverId: "filter_payment_destination_driver_id",
-        filterRateSheetId: "filter_rate_sheet_id",
-        filterStatementId: "filter_statement_id",
-        filterAttachedToStatement: true
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order on `_id` (proxy for creation order; LIGs have no user-facing timestamps to sort by).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `LineItemGroupStatusEnum1?` — Filter by LineItemGroup status(es). Multi-select.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterTaskGroupId:** `String?` — Filter by parent task group id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderId:** `String?` — Filter by parent order id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderShortId:** `String?` — Filter by order short id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderOffChrtReferenceId:** `String?` — Filter by order off-chrt reference id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOwnedByOrgId:** `String?` — Filter by owner org id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentOriginOrgId:** `String?` — Filter by payment origin org id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentDestinationOrgId:** `String?` — Filter by payment destination org id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentDestinationDriverId:** `String?` — Filter by payment destination driver id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterRateSheetId:** `String?` — Filter by source rate sheet id (None for ad-hoc/pro-forma LIGs).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatementId:** `String?` — Filter to LineItemGroups bundled into this statement.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterAttachedToStatement:** `Bool?` — Filter by whether the LineItemGroup is bundled into a statement (`statement_id is not None` if true, `is None` if false). Used by the statement-bundling worklist to find unbundled LIGs.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">proposeLineItemV1</a>(lineItemGroupId: String, request: LineItemClientCreate1, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Counterparty proposes a draft AD_HOC LineItem on a non-FINALIZED LineItemGroup. The item lands in pending_line_item_ids with ad_hoc__status=PENDING; the owner resolves it via approve/deny. Caller must be on the LIG (origin or destination) but not the owner. | authz_personas=[lig_org_operators] | (LineItemClientCreate1) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.proposeLineItemV1(
-        lineItemGroupId: "line_item_group_id",
-        request: LineItemClientCreate1(
-            item: .baseRate,
-            quantity: 1.1,
-            rate: 1.1
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `LineItemClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">sharedTaskGroupMileageCreateV1</a>(request: Requests.SharedTaskGroupMileageCreateForProviderPayDriverClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Prices a single driver's combined trip across several task groups once. Recomputes route mileage from the ordered task locations (plus optional start/end legs), applies the CHRT-ground rate sheet, and atomically creates an OrderGroup-anchored LineItemGroup, its mileage LineItems, and the LineItemCalculation that records how the charges were derived. The LIG is detached on create (task_group_id is None) — attach to a Statement afterwards. | authz: allowed_org_types=[provider], min_org_role=operator | (SharedTaskGroupMileageCreateForProviderPayDriverClientReq) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.sharedTaskGroupMileageCreateV1(request: .init(
-        orderGroupId: "order_group_id",
-        paymentDestinationDriverId: "payment_destination_driver_id",
-        rateSheetId: "rate_sheet_id",
-        taskIds: [
-            "task_ids"
-        ]
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.SharedTaskGroupMileageCreateForProviderPayDriverClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">sharedTaskGroupMileageCreateForProviderPayProviderV1</a>(request: Requests.SharedTaskGroupMileageCreateForProviderPayProviderClientReq, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Prices a single agent's combined trip across several task groups once, on the provider_pay_provider vector — a coordinator paying the executor (commonly an off-chrt agent) that ran the route. Recomputes route mileage from the ordered task locations (plus optional start/end legs), applies the CHRT-ground rate sheet, and atomically creates an OrderGroup-anchored LineItemGroup, its mileage LineItems, and the LineItemCalculation that records how the charges were derived. The LIG is detached on create (task_group_id is None) — attach to a Statement afterwards. | authz: allowed_org_types=[provider], min_org_role=operator | (SharedTaskGroupMileageCreateForProviderPayProviderClientReq) -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.sharedTaskGroupMileageCreateForProviderPayProviderV1(request: .init(
-        orderGroupId: "order_group_id",
-        rateSheetId: "rate_sheet_id",
-        taskIds: [
-            "task_ids"
-        ]
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.SharedTaskGroupMileageCreateForProviderPayProviderClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.<a href="/Sources/Resources/Billing/LineItemGroups/LineItemGroupsClient.swift">withdrawLineItemV1</a>(lineItemGroupId: String, lineItemId: String, requestOptions: RequestOptions?) -> LineItemGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Counterparty pulls back their own pending LineItem on a non-FINALIZED LineItemGroup. Only the proposing org can withdraw; the LineItem doc is deleted (no breadcrumb). | authz_personas=[lig_org_operators] | () -> (LineItemGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.withdrawLineItemV1(
-        lineItemGroupId: "line_item_group_id",
-        lineItemId: "line_item_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lineItemId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing OnboardCourierRateSheets
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">archiveV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Archives an OnboardCourier rate sheet (sets archived=True). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.archiveV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> OnboardCourierRateSheet1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific OnboardCourier rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OnboardCourierRateSheet1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">createV1</a>(request: Requests.OnboardCourierRateSheetClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an OnboardCourier rate sheet owned by the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | (OnboardCourierRateSheetClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.createV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.OnboardCourierRateSheetClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">deleteV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Hard-deletes an OnboardCourier rate sheet owned by the caller's org. Prefer archiving when the sheet has historical references. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.deleteV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">listV1</a>(includeArchived: Bool?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OnboardCourierRateSheetListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists all OnboardCourier rate sheets owned by the caller's organization. Pagination only — no search/filter. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OnboardCourierRateSheetListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.listV1(
-        includeArchived: true,
-        page: 1,
-        pageSize: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**includeArchived:** `Bool?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">unarchiveV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Unarchives an OnboardCourier rate sheet (sets archived=False). Idempotent. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.unarchiveV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.onboardCourierRateSheets.<a href="/Sources/Resources/Billing/OnboardCourierRateSheets/OnboardCourierRateSheetsClient.swift">updateV1</a>(id: String, request: Requests.OnboardCourierRateSheetClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an OnboardCourier rate sheet owned by the caller's org. Use the archive/unarchive routes to toggle the `archived` flag. | authz: allowed_org_types=[provider], min_org_role=operator | (OnboardCourierRateSheetClientUpdate1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.onboardCourierRateSheets.updateV1(
-        id: "id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OnboardCourierRateSheetClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing RateSheetMappings
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">appendRateSheetV1</a>(id: String, tgType: String, rateSheetId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Appends `rate_sheet_id` to the per-TG-type list on a mapping. Idempotent — already-present ids are a no-op. The 0-index entry remains the default; use the set_default route to promote a different sheet. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.appendRateSheetV1(
-        id: "id",
-        tgType: .chrtGroundProvider,
-        rateSheetId: "rate_sheet_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tgType:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**rateSheetId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">getByIdV1</a>(id: String, requestOptions: RequestOptions?) -> RateSheetMapping1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a specific rate sheet mapping owned by the caller's org (`owned_by_org_id == caller.org_id`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetMapping1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.getByIdV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">createV1</a>(request: Requests.RateSheetMappingClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a rate sheet mapping owned by the caller's org. The caller becomes `owned_by_org_id`. Body must set exactly one of `counterparty_org_id` / `counterparty_driver_id` (XOR). | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetMappingClientCreate1) -> (PydanticObjectId)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.createV1(request: .init(schemaVersion: 1))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.RateSheetMappingClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">deleteV1</a>(id: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a rate sheet mapping owned by the caller's org. Does not cascade — rate sheet documents themselves are untouched. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.deleteV1(id: "id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">listV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> RateSheetMappingListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists rate sheet mappings owned by the caller's org. Pagination only — no search/filter. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetMappingListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.listV1(
-        page: 1,
-        pageSize: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">listRateSheetIdsByCounterpartyV1</a>(tgType: String, counterpartyOrgId: String?, counterpartyDriverId: String?, counterpartyOffChrtProviderOrgDataId: String?, counterpartyOffChrtShipperOrgDataId: String?, requestOptions: RequestOptions?) -> [String]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists rate sheet IDs mapped to a counterparty for the requested task group type. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[PydanticObjectId])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.listRateSheetIdsByCounterpartyV1(
-        tgType: .chrtGroundProvider,
-        counterpartyOrgId: "counterparty_org_id",
-        counterpartyDriverId: "counterparty_driver_id",
-        counterpartyOffChrtProviderOrgDataId: "counterparty_off_chrt_provider_org_data_id",
-        counterpartyOffChrtShipperOrgDataId: "counterparty_off_chrt_shipper_org_data_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**tgType:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**counterpartyOrgId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**counterpartyDriverId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**counterpartyOffChrtProviderOrgDataId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**counterpartyOffChrtShipperOrgDataId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">removeRateSheetV1</a>(id: String, tgType: String, rateSheetId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Removes `rate_sheet_id` from the per-TG-type list on a mapping. Idempotent — absent ids are a no-op. If the removed id was the 0-index default, the next id (if any) becomes the new default. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.removeRateSheetV1(
-        id: "id",
-        tgType: .chrtGroundProvider,
-        rateSheetId: "rate_sheet_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tgType:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**rateSheetId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.rateSheetMappings.<a href="/Sources/Resources/Billing/RateSheetMappings/RateSheetMappingsClient.swift">setDefaultRateSheetV1</a>(id: String, tgType: String, rateSheetId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Promotes `rate_sheet_id` to the 0-index (default) slot of the per-TG-type list, preserving the relative order of the other ids. If the id isn't already in the list it is added at index 0. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.rateSheetMappings.setDefaultRateSheetV1(
-        id: "id",
-        tgType: .chrtGroundProvider,
-        rateSheetId: "rate_sheet_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**tgType:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**rateSheetId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing Statements
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">attachBillingLedgerPeriodV1</a>(statementId: String, billingLedgerPeriodId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Attaches a CLOSED, unbundled BillingLedgerPeriod to a STAGED Statement. Parties must match. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.attachBillingLedgerPeriodV1(
-        statementId: "statement_id",
-        billingLedgerPeriodId: "billing_ledger_period_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**billingLedgerPeriodId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">attachLineItemGroupV1</a>(statementId: String, lineItemGroupId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Attaches a FINALIZED, unbundled LineItemGroup to a STAGED Statement. Parties must match; the Statement's settlement_type is written onto the LIG (or matched if previously stamped). | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.attachLineItemGroupV1(
-        statementId: "statement_id",
-        lineItemGroupId: "line_item_group_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">getByLigIdV1</a>(lineItemGroupId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a statement by its associated LineItemGroup ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.getByLigIdV1(lineItemGroupId: "line_item_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">createV1</a>(request: Requests.StatementCreateClientReq, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an empty STAGED Statement carrying payment parties + settlement_type. Items are attached via the attach_* routes. | authz: allowed_org_types=[provider], min_org_role=operator | (StatementCreateClientReq) -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.createV1(request: .init(settlementType: .stripeConnect))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.StatementCreateClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">deleteV1</a>(statementId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a STAGED Statement that has no attached LineItemGroups or BillingLedgerPeriods. Detach all children first via the detach_* routes. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.deleteV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">detachBillingLedgerPeriodV1</a>(statementId: String, billingLedgerPeriodId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Detaches a BillingLedgerPeriod from a STAGED Statement, freeing it for re-bundling. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.detachBillingLedgerPeriodV1(
-        statementId: "statement_id",
-        billingLedgerPeriodId: "billing_ledger_period_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**billingLedgerPeriodId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">detachLineItemGroupV1</a>(statementId: String, lineItemGroupId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Detaches a LineItemGroup from a STAGED Statement and recomputes order denormalization. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.detachLineItemGroupV1(
-        statementId: "statement_id",
-        lineItemGroupId: "line_item_group_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**lineItemGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">expandedListV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterPaymentOriginOrgId: String?, filterPaymentOriginOffChrtShipperOrgDataId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterUncollectibleAtTimestampGte: Date?, filterUncollectibleAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsExpandedListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists statements with expanded LIGs and task groups, using filtering, sorting, and pagination. | authz_personas=[statement_org_operators, statement_driver] | () -> (StatementsExpandedListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.expandedListV1(
-        sortBy: .amount,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
-        filterSettlementType: .stripeConnect,
-        filterOrderId: "filter_order_id",
-        filterOrderShortId: "filter_order_short_id",
-        filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
-        filterPaymentOriginOrgId: "filter_payment_origin_org_id",
-        filterPaymentOriginOffChrtShipperOrgDataId: "filter_payment_origin_off_chrt_shipper_org_data_id",
-        filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
-        filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOpenedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUncollectibleAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUncollectibleAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `StatementSortByEnum?` — Field to sort by
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (ascending or descending)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `StatementStatusEnum1?` — Filter by statement status(es)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterSettlementType:** `SettlementTypeEnum1?` — Filter by settlement type
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderId:** `String?` — [DEPRECATED — use filter_order_short_id] Filter by order ID (returns statements whose order_ids list contains this value)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderShortId:** `String?` — Filter by order short ID (returns statements whose order_short_ids list contains this value)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderOffChrtReferenceId:** `String?` — Filter by order off-chrt reference ID (returns statements whose order_off_chrt_reference_ids list contains this value)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentOriginOrgId:** `String?` — Filter by payment origin org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentOriginOffChrtShipperOrgDataId:** `String?` — Filter by payment origin off-chrt shipper org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentDestinationOrgId:** `String?` — Filter by payment destination org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOwnedByOrgId:** `String?` — Filter by owned by org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampGte:** `Date?` — Filter by staged_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampLte:** `Date?` — Filter by staged_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOpenedAtTimestampGte:** `Date?` — Filter by opened_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOpenedAtTimestampLte:** `Date?` — Filter by opened_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaidAtTimestampGte:** `Date?` — Filter by paid_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaidAtTimestampLte:** `Date?` — Filter by paid_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUncollectibleAtTimestampGte:** `Date?` — Filter by uncollectible_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUncollectibleAtTimestampLte:** `Date?` — Filter by uncollectible_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">expandedRetrieveV1</a>(request: Requests.StatementExpandedRetrieveReq, requestOptions: RequestOptions?) -> StatementExpandedRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a statement with its associated LineItemGroups expanded. | authz_personas=[statement_org_operators, statement_driver] | (StatementExpandedRetrieveReq) -> (StatementExpandedRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.expandedRetrieveV1(request: .init(statementId: "statement_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.StatementExpandedRetrieveReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">listV1</a>(sortBy: StatementSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: StatementStatusEnum1?, filterSettlementType: SettlementTypeEnum1?, filterOrderId: String?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterPaymentOriginOrgId: String?, filterPaymentOriginOffChrtShipperOrgDataId: String?, filterPaymentDestinationOrgId: String?, filterOwnedByOrgId: String?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterOpenedAtTimestampGte: Date?, filterOpenedAtTimestampLte: Date?, filterPaidAtTimestampGte: Date?, filterPaidAtTimestampLte: Date?, filterUncollectibleAtTimestampGte: Date?, filterUncollectibleAtTimestampLte: Date?, requestOptions: RequestOptions?) -> StatementsListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists statements with filtering, sorting, and pagination. | authz_personas=[statement_org_operators, statement_driver] | () -> (StatementsListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.listV1(
-        sortBy: .amount,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterStatus: [
-            .staged
-        ],
-        filterSettlementType: .stripeConnect,
-        filterOrderId: "filter_order_id",
-        filterOrderShortId: "filter_order_short_id",
-        filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
-        filterPaymentOriginOrgId: "filter_payment_origin_org_id",
-        filterPaymentOriginOffChrtShipperOrgDataId: "filter_payment_origin_off_chrt_shipper_org_data_id",
-        filterPaymentDestinationOrgId: "filter_payment_destination_org_id",
-        filterOwnedByOrgId: "filter_owned_by_org_id",
-        filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOpenedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterOpenedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterPaidAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterPaidAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUncollectibleAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUncollectibleAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `StatementSortByEnum?` — Field to sort by
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (ascending or descending)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `StatementStatusEnum1?` — Filter by statement status(es)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterSettlementType:** `SettlementTypeEnum1?` — Filter by settlement type
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderId:** `String?` — [DEPRECATED — use filter_order_short_id] Filter by order ID (returns statements whose order_ids list contains this value)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderShortId:** `String?` — Filter by order short ID (returns statements whose order_short_ids list contains this value)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderOffChrtReferenceId:** `String?` — Filter by order off-chrt reference ID (returns statements whose order_off_chrt_reference_ids list contains this value)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentOriginOrgId:** `String?` — Filter by payment origin org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentOriginOffChrtShipperOrgDataId:** `String?` — Filter by payment origin off-chrt shipper org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaymentDestinationOrgId:** `String?` — Filter by payment destination org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOwnedByOrgId:** `String?` — Filter by owned by org ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampGte:** `Date?` — Filter by staged_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampLte:** `Date?` — Filter by staged_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOpenedAtTimestampGte:** `Date?` — Filter by opened_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOpenedAtTimestampLte:** `Date?` — Filter by opened_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaidAtTimestampGte:** `Date?` — Filter by paid_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterPaidAtTimestampLte:** `Date?` — Filter by paid_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUncollectibleAtTimestampGte:** `Date?` — Filter by uncollectible_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUncollectibleAtTimestampLte:** `Date?` — Filter by uncollectible_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">markPaidOffChrtV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Off-chrt manual transition: OPEN → PAID. Cascades attached LineItemGroups OPEN → PAID. Stripe-Connect statements transition via Stripe webhook + sync, not this route. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.markPaidOffChrtV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">markUncollectibleOffChrtV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Off-chrt manual write-off: OPEN → UNCOLLECTIBLE. Cascades attached LineItemGroups OPEN → UNCOLLECTIBLE. Stripe-Connect statements transition via Stripe webhook + sync_invoice/v1, not this route. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.markUncollectibleOffChrtV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">openInvoiceV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Stripe-Connect transition: STAGED → OPEN. Creates and finalizes a Stripe invoice for the Statement; cascades attached LineItemGroups FINALIZED → OPEN. Requires settlement_type=STRIPE_CONNECT and at least one bundled FINALIZED LIG. Off-chrt statements take open_off_chrt/v1 instead. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.openInvoiceV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">openOffChrtV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Off-chrt manual transition: STAGED → OPEN. Cascades attached LineItemGroups FINALIZED → OPEN. Stripe-Connect statements take a separate Stripe-invoice path. Requires settlement_type=OFF_CHRT and at least one bundled LIG or period. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.openOffChrtV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">syncInvoiceV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Stripe-Connect manual reconciliation: pulls the live Stripe invoice status and updates the Statement (and cascaded LIG statuses) accordingly. Same backend as the Stripe webhook handler — idempotent, no-op when already in sync. Handles PAID, UNCOLLECTIBLE, and VOID/DELETED transitions. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.syncInvoiceV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">updateSettlementTypeV1</a>(statementId: String, request: Requests.StatementUpdateSettlementTypeReq, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Flips a STAGED Statement's settlement_type between STRIPE_CONNECT and OFF_CHRT and cascades the new value onto every attached LineItemGroup. Rejects if the new value matches the current value. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | (StatementUpdateSettlementTypeReq) -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.updateSettlementTypeV1(
-        statementId: "statement_id",
-        request: .init(settlementType: .stripeConnect)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.StatementUpdateSettlementTypeReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">getV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a statement by ID. | authz_personas=[statement_org_operators, statement_driver] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.getV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.statements.<a href="/Sources/Resources/Billing/Statements/StatementsClient.swift">voidInvoiceV1</a>(statementId: String, requestOptions: RequestOptions?) -> Statement1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Stripe-Connect transition: OPEN → STAGED. Voids the Stripe invoice, clears stripe_* fields on the Statement, and cascades attached LineItemGroups OPEN → FINALIZED so they remain re-bundleable into a new Statement. Reversible — the Statement can be re-opened with a fresh open_invoice/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[statement_owner_operators] | () -> (Statement1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.statements.voidInvoiceV1(statementId: "statement_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**statementId:** `String` 
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -7127,8 +817,8 @@ try await main()
 </dl>
 </details>
 
-## Billing LineItemGroups Messages
-<details><summary><code>client.billing.lineItemGroups.messages.<a href="/Sources/Resources/Billing/LineItemGroups/Messages/MessagesClient.swift">addV1</a>(lineItemGroupId: String, request: Requests.AddLineItemGroupMessageReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+## BillingNew BillingPeriods
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">closeV1</a>(billingPeriodId: String, requestOptions: RequestOptions?) -> BillingPeriodExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -7140,7 +830,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a message to a line item group's message log. | authz_personas=[lig_org_operators, lig_driver] | (AddLineItemGroupMessageReq) -> (bool)
+Closes an open billing period and creates one approved line item on the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodExpanded1)
 </dd>
 </dl>
 </dd>
@@ -7161,9 +851,313 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billing.lineItemGroups.messages.addV1(
-        lineItemGroupId: "line_item_group_id",
-        request: .init(message: "message")
+    _ = try await client.billingNew.billingPeriods.closeV1(billingPeriodId: "billing_period_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingPeriodId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">createV1</a>(request: Requests.BillingPeriodClientCreate1, requestOptions: RequestOptions?) -> BillingPeriod1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodClientCreate1) -> (BillingPeriod1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.billingPeriods.createV1(request: .init(
+        amount: 1.1,
+        currencyCode: .usd,
+        cycle: .daily,
+        description: "description",
+        invoiceType: .accountsReceivable,
+        periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.BillingPeriodClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">deleteV1</a>(billingPeriodId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.billingPeriods.deleteV1(billingPeriodId: "billing_period_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingPeriodId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">getExpandedV1</a>(billingPeriodId: String, requestOptions: RequestOptions?) -> BillingPeriodExpanded1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets an owner-scoped billing period with its generated line item and invoice when present. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodExpanded1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.billingPeriods.getExpandedV1(billingPeriodId: "billing_period_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingPeriodId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">listV1</a>(sortBy: BillingPeriodSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatuses: BillingPeriodStatusEnum1?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterShipperAccountId: String?, filterTaskGroupId: String?, filterPeriodStartAtTimestampGte: Date?, filterPeriodStartAtTimestampLte: Date?, filterPeriodEndAtTimestampGte: Date?, filterPeriodEndAtTimestampLte: Date?, requestOptions: RequestOptions?) -> BillingPeriodListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists owner-scoped billing periods with generated line items and invoices. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.billingPeriods.listV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterCounterpartyOrgId: "filter_counterparty_org_id",
+        filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+        filterCounterpartyDriverId: "filter_counterparty_driver_id",
+        filterShipperAccountId: "filter_shipper_account_id",
+        filterTaskGroupId: "filter_task_group_id",
+        filterPeriodStartAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPeriodStartAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPeriodEndAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterPeriodEndAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
 
@@ -7182,7 +1176,7 @@ try await main()
 <dl>
 <dd>
 
-**lineItemGroupId:** `String` 
+**sortBy:** `BillingPeriodSortByEnum?` — Field to sort by.
     
 </dd>
 </dl>
@@ -7190,7 +1184,119 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.AddLineItemGroupMessageReq` 
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatuses:** `BillingPeriodStatusEnum1?` — Filter by one or more billing-period statuses.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterInvoiceTypes:** `InvoiceTypeEnum1?` — Filter by one or more invoice types.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCurrencyCodes:** `BillingCurrencyCodeEnum1?` — Filter by one or more currency codes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOrgId:** `String?` — Filter by an on-CHRT counterparty organization.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOffChrtOrgDataId:** `String?` — Filter by an off-CHRT counterparty organization.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyDriverId:** `String?` — Filter by a driver counterparty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShipperAccountId:** `String?` — Filter by an associated shipper account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTaskGroupId:** `String?` — Filter by an attributed TaskGroup.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPeriodStartAtTimestampGte:** `Date?` — Filter by period start greater than or equal.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPeriodStartAtTimestampLte:** `Date?` — Filter by period start less than or equal.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPeriodEndAtTimestampGte:** `Date?` — Filter by period end greater than or equal.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterPeriodEndAtTimestampLte:** `Date?` — Filter by period end less than or equal.
     
 </dd>
 </dl>
@@ -7210,8 +1316,7 @@ try await main()
 </dl>
 </details>
 
-## Billing LineItemGroups S3Objects
-<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">addV1</a>(lineItemGroupId: String, request: Requests.BodyLineItemGroupsS3ObjectPostAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">addTaskGroupsV1</a>(billingPeriodId: String, request: BillingPeriodTaskGroupsReq, requestOptions: RequestOptions?) -> BillingPeriod1</code></summary>
 <dl>
 <dd>
 
@@ -7223,7 +1328,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file (image, PDF, etc.) to a line item group. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
+Adds visible TaskGroups to an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodTaskGroupsReq) -> (BillingPeriod1)
 </dd>
 </dl>
 </dd>
@@ -7244,9 +1349,13 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billing.lineItemGroups.s3Objects.addV1(
-        lineItemGroupId: "line_item_group_id",
-        request: .init(file: .init(data: Data("".utf8)))
+    _ = try await client.billingNew.billingPeriods.addTaskGroupsV1(
+        billingPeriodId: "billing_period_id",
+        request: BillingPeriodTaskGroupsReq(
+            taskGroupIds: [
+                "task_group_ids"
+            ]
+        )
     )
 }
 
@@ -7265,7 +1374,7 @@ try await main()
 <dl>
 <dd>
 
-**lineItemGroupId:** `String` 
+**billingPeriodId:** `String` 
     
 </dd>
 </dl>
@@ -7273,7 +1382,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyLineItemGroupsS3ObjectPostAddV1` 
+**request:** `BillingPeriodTaskGroupsReq` 
     
 </dd>
 </dl>
@@ -7293,7 +1402,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">deleteV1</a>(lineItemGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">removeTaskGroupsV1</a>(billingPeriodId: String, request: BillingPeriodTaskGroupsReq, requestOptions: RequestOptions?) -> BillingPeriod1</code></summary>
 <dl>
 <dd>
 
@@ -7305,7 +1414,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes an S3 object metadata and the associated S3 object from a line item group. | authz_personas=[lig_org_operators, lig_driver] | () -> (bool)
+Removes linked TaskGroups from an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodTaskGroupsReq) -> (BillingPeriod1)
 </dd>
 </dl>
 </dd>
@@ -7326,223 +1435,13 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billing.lineItemGroups.s3Objects.deleteV1(lineItemGroupS3ObjectMetadataId: "line_item_group_s3_object_metadata_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">getS3ObjectMetadataV1</a>(lineItemGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> LineItemGroupS3ObjectMetadata1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves the metadata for a line item group S3 object, including blurhash for placeholder loading. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemGroupS3ObjectMetadata1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.s3Objects.getS3ObjectMetadataV1(lineItemGroupS3ObjectMetadataId: "line_item_group_s3_object_metadata_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItemGroups.s3Objects.<a href="/Sources/Resources/Billing/LineItemGroups/S3Objects/S3ObjectsClient.swift">getV1</a>(lineItemGroupS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Streams a line item group S3 object file from storage. | authz_personas=[lig_org_operators, lig_driver] | () -> (binary)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItemGroups.s3Objects.getV1(lineItemGroupS3ObjectMetadataId: "line_item_group_s3_object_metadata_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemGroupS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Billing LineItems S3Objects
-<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">addV1</a>(lineItemId: String, request: Requests.BodyLineItemsS3ObjectPostAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Uploads a file to a line item. Automatic blurhash generation for images. | authz_personas=[lig_org_operators, lig_driver] | (UploadFile) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItems.s3Objects.addV1(
-        lineItemId: "line_item_id",
-        request: .init(file: .init(data: Data("".utf8)))
+    _ = try await client.billingNew.billingPeriods.removeTaskGroupsV1(
+        billingPeriodId: "billing_period_id",
+        request: BillingPeriodTaskGroupsReq(
+            taskGroupIds: [
+                "task_group_ids"
+            ]
+        )
     )
 }
 
@@ -7561,7 +1460,7 @@ try await main()
 <dl>
 <dd>
 
-**lineItemId:** `String` 
+**billingPeriodId:** `String` 
     
 </dd>
 </dl>
@@ -7569,7 +1468,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.BodyLineItemsS3ObjectPostAddV1` 
+**request:** `BillingPeriodTaskGroupsReq` 
     
 </dd>
 </dl>
@@ -7589,7 +1488,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">deleteV1</a>(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">updateV1</a>(billingPeriodId: String, request: Requests.BillingPeriodClientUpdate1, requestOptions: RequestOptions?) -> BillingPeriod1</code></summary>
 <dl>
 <dd>
 
@@ -7601,7 +1500,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes an S3 object metadata and the associated S3 object from a line item. | authz_personas=[lig_org_operators, lig_driver] | () -> (bool)
+Updates an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodClientUpdate1) -> (BillingPeriod1)
 </dd>
 </dl>
 </dd>
@@ -7622,7 +1521,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billing.lineItems.s3Objects.deleteV1(lineItemS3ObjectMetadataId: "line_item_s3_object_metadata_id")
+    _ = try await client.billingNew.billingPeriods.updateV1(
+        billingPeriodId: "billing_period_id",
+        request: .init()
+    )
 }
 
 try await main()
@@ -7640,7 +1542,7 @@ try await main()
 <dl>
 <dd>
 
-**lineItemS3ObjectMetadataId:** `String` 
+**billingPeriodId:** `String` 
     
 </dd>
 </dl>
@@ -7648,141 +1550,7 @@ try await main()
 <dl>
 <dd>
 
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">getS3ObjectMetadataV1</a>(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> LineItemS3ObjectMetadata1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves metadata for a line item S3 object. | authz_personas=[lig_org_operators, lig_driver] | () -> (LineItemS3ObjectMetadata1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItems.s3Objects.getS3ObjectMetadataV1(lineItemS3ObjectMetadataId: "line_item_s3_object_metadata_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.lineItems.s3Objects.<a href="/Sources/Resources/Billing/LineItems/S3Objects/LineItemsS3ObjectsClient.swift">getV1</a>(lineItemS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Streams a line item S3 object file from storage. | authz_personas=[lig_org_operators, lig_driver] | () -> (binary)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billing.lineItems.s3Objects.getV1(lineItemS3ObjectMetadataId: "line_item_s3_object_metadata_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**lineItemS3ObjectMetadataId:** `String` 
+**request:** `Requests.BillingPeriodClientUpdate1` 
     
 </dd>
 </dl>
@@ -8020,7 +1788,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">listV1</a>(search: String?, sortBy: ChrtGroundProviderRatesSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterServiceLine: ServiceLineEnum?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterCounterpartyDriverId: String?, filterCargoTypes: CargoTypeEnum1?, filterVehicleTypes: VehicleTypeEnum?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ChrtGroundProviderRatesListRes</code></summary>
+<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">listV1</a>(search: String?, sortBy: ChrtGroundProviderRatesSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterServiceLine: ServiceLineEnum?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterCounterpartyDriverId: String?, filterCounterpartyScopeDriverId: String?, filterCargoTypes: CargoTypeEnum1?, filterVehicleTypes: VehicleTypeEnum?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ChrtGroundProviderRatesListRes</code></summary>
 <dl>
 <dd>
 
@@ -8059,25 +1827,11 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterShipperAccountId: "filter_shipper_account_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
-        filterCargoTypes: [
-            .spareParts
-        ],
-        filterVehicleTypes: [
-            .sedan
-        ],
+        filterCounterpartyScopeDriverId: "filter_counterparty_scope_driver_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -8188,7 +1942,15 @@ try await main()
 <dl>
 <dd>
 
-**filterCounterpartyDriverId:** `String?` — Filter by an associated driver.
+**filterCounterpartyDriverId:** `String?` — Filter by a driver counterparty.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyScopeDriverId:** `String?` — Filter by a driver included in rate-sheet scope.
     
 </dd>
 </dl>
@@ -8268,7 +2030,7 @@ try await main()
 <dl>
 <dd>
 
-Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. Candidates must match (a) the order's service line, (b) the TaskGroup's vehicle type, (c) a Task's coordinator shipper account, (d) the invoice type (AP or AR), and (e) the relevant counterparty (executor for AP; shipper for AR). | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
+Returns accounts-payable and accounts-receivable CHRT-ground provider-rate candidates for each eligible TaskGroup. AP candidates target a distinct executor, or the assigned driver when the coordinator is also the executor; AR candidates target the shipper. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (ResolveChrtGroundProviderRatesReq) -> (list[ResolvedTaskGroupChrtGroundProviderRates1])
 </dd>
 </dl>
 </dd>
@@ -8667,7 +2429,7 @@ try await main()
 <dl>
 <dd>
 
-Lists owner-scoped line items for an order with counterparties and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemsByOrderExpandedRes)
+Lists owner-scoped line items and attributed billing periods for an order with counterparties and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemsByOrderExpandedRes)
 </dd>
 </dl>
 </dd>
@@ -8784,6 +2546,85 @@ try await main()
 <dd>
 
 **request:** `Requests.CreateInvoiceLineItemsFromAmountReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">createFromAwbCostsV1</a>(request: Requests.CreateInvoiceLineItemsFromAwbCostsReq, requestOptions: RequestOptions?) -> CreateInvoiceLineItemsFromAwbCostsRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoiceLineItems.createFromAwbCostsV1(request: .init(awbCosts: [
+        CreateInvoiceLineItemsFromAwbCostsItem1(
+            awbNumber: "awb_number",
+            cost: Cost.double(
+                1.1
+            ),
+            currencyCode: .usd
+        )
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CreateInvoiceLineItemsFromAwbCostsReq` 
     
 </dd>
 </dl>
@@ -9132,7 +2973,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">listV1</a>(sortBy: InvoiceLineItemSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterLineItemTypes: InvoiceLineItemTypeEnum1?, filterUnits: InvoiceLineItemUnitEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterInvoiceId: String?, filterIsInvoiced: Bool?, filterOrderId: String?, filterTaskGroupId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> InvoiceLineItemListRes</code></summary>
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">listV1</a>(sortBy: InvoiceLineItemSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterLineItemTypes: InvoiceLineItemTypeEnum1?, filterUnits: InvoiceLineItemUnitEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterShipperAccountId: String?, filterInvoiceId: String?, filterIsInvoiced: Bool?, filterOrderId: String?, filterTaskGroupId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> InvoiceLineItemListRes</code></summary>
 <dl>
 <dd>
 
@@ -9170,20 +3011,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
-        filterLineItemTypes: [
-            .baseRate
-        ],
-        filterUnits: [
-            .each
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+        filterCounterpartyDriverId: "filter_counterparty_driver_id",
         filterShipperAccountId: "filter_shipper_account_id",
         filterInvoiceId: "filter_invoice_id",
         filterIsInvoiced: true,
@@ -9284,6 +3114,14 @@ try await main()
 <dd>
 
 **filterCounterpartyOffChrtOrgDataId:** `String?` — Filter by off-CHRT counterparty organization data.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyDriverId:** `String?` — Filter by a driver counterparty.
     
 </dd>
 </dl>
@@ -10149,7 +3987,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">listV1</a>(search: String?, sortBy: InvoiceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatuses: InvoiceStatusEnum1?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyAccountId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> InvoiceListRes</code></summary>
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">listV1</a>(search: String?, sortBy: InvoiceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatuses: InvoiceStatusEnum1?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterCounterpartyAccountId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> InvoiceListRes</code></summary>
 <dl>
 <dd>
 
@@ -10188,17 +4026,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatuses: [
-            .draft
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+        filterCounterpartyDriverId: "filter_counterparty_driver_id",
         filterCounterpartyAccountId: "filter_counterparty_account_id",
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -10295,6 +4125,14 @@ try await main()
 <dd>
 
 **filterCounterpartyOffChrtOrgDataId:** `String?` — Filter by off-CHRT counterparty organization data.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyDriverId:** `String?` — Filter by a driver counterparty.
     
 </dd>
 </dl>
@@ -10590,6 +4428,88 @@ try await main()
 </details>
 
 ## BillingNew Orders
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listAwbBillingForCoordinatorOperatorsV1</a>(page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrderAwbBillingListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists completed, unbilled AWBs with delivery account allocations. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderAwbBillingListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.listAwbBillingForCoordinatorOperatorsV1(
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: String?, filterExecutorOrgId: String?, filterCoordinatorLabel: String?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
 <dl>
 <dd>
@@ -10629,15 +4549,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterAwbNumber: "filter_awb_number",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterExecutorOrgId: "filter_executor_org_id",
         filterCoordinatorLabel: "filter_coordinator_label",
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -11515,7 +5429,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+**awb:** `String` 
     
 </dd>
 </dl>
@@ -11657,7 +5571,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+**awb:** `String` 
     
 </dd>
 </dl>
@@ -11921,7 +5835,7 @@ try await main()
 <dl>
 <dd>
 
-Pushes a bidder-side ACCEPT onto an OPEN thread. References the most recent lister-side pro_forma (or the listing's opening for DISPATCH). On `auto_award_first_accept=True` listings, fires the full cascade immediately (thread ACCEPTED, listing AWARDED, shipping + billing side-effects). Otherwise leaves the thread OPEN for the lister to finalise via confirm_accept. Lister-side finalisation lives on confirm_accept; calling /accept/v1 from the lister side is rejected (400). | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+Pushes a bidder-side ACCEPT onto an OPEN thread. References the most recent lister-side pro_forma (or the listing's opening for DISPATCH). On `auto_award_first_accept=True` listings, fires the full cascade immediately (thread ACCEPTED, listing AWARDED, shipping and BillingNew side-effects). Otherwise leaves the thread OPEN for the lister to finalise via confirm_accept. Lister-side finalisation lives on confirm_accept; calling /accept/v1 from the lister side is rejected (400). | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12076,7 +5990,7 @@ try await main()
 <dl>
 <dd>
 
-Lister confirmation of a bidder's ACCEPT on this thread, used when `listing.auto_award_first_accept == False`. Runs the full award cascade: thread ACCEPTED, listing AWARDED, sibling threads / listings cancelled, shipping + billing side-effects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+Lister confirmation of a bidder's ACCEPT on this thread, used when `listing.auto_award_first_accept == False`. Runs the full award cascade: thread ACCEPTED, listing AWARDED, sibling threads / listings cancelled, and shipping and BillingNew side-effects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -12415,9 +6329,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -12590,9 +6501,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -13825,7 +7733,7 @@ try await main()
 <dl>
 <dd>
 
-Cancels an OPEN listing. All OPEN BidThreads on this listing are system-rejected. No shipping or billing side-effects. Idempotent: no-op on an already-terminal listing. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+Cancels an OPEN listing. All OPEN BidThreads on this listing are system-rejected. No shipping side-effects. Idempotent: no-op on an already-terminal listing. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -13999,12 +7907,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -14201,12 +8103,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -14395,12 +8291,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -14860,7 +8750,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — Must be a string starting with `org_`
+**providerOrgId:** `String` 
     
 </dd>
 </dl>
@@ -15312,7 +9202,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — Must be a string starting with `org_`
+**providerOrgId:** `String` 
     
 </dd>
 </dl>
@@ -15992,7 +9882,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -16616,7 +10506,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -17374,7 +11264,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -17431,10 +11321,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -17567,7 +11454,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -19172,18 +13059,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -19368,18 +13246,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -20221,7 +14090,7 @@ try await main()
 </details>
 
 ## Operations OrderInternalMessages S3Objects
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -20303,7 +14172,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">deleteV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">deleteV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -20374,7 +14243,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">getS3ObjectMetadataV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">getS3ObjectMetadataV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -20445,7 +14314,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">getV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">getV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
 <dl>
 <dd>
 
@@ -21305,7 +15174,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -23233,7 +17102,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -23304,7 +17173,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -23375,7 +17244,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -23580,7 +17449,7 @@ try await main()
 <dl>
 <dd>
 
-**orgId:** `String` — Must be a string starting with `org_`
+**orgId:** `String` 
     
 </dd>
 </dl>
@@ -24385,7 +18254,7 @@ try await main()
 <dl>
 <dd>
 
-Updates cargo details and synchronizes its parent order's AWB list. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, SKIPPED, or EXCEPTION status. | authz_personas=[lig_owner_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
+Updates cargo details and synchronizes its parent order's AWB list. Cargo must be in STAGED, IN_TRANSIT, DELIVERED, SKIPPED, or EXCEPTION status. | authz_personas=[task_group_operating_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -24705,10 +18574,7 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         filterAvailableAccordingToDriver: true,
-        filterAvailableAccordingToOperators: true,
-        filterStatus: [
-            .unassigned
-        ]
+        filterAvailableAccordingToOperators: true
     )
 }
 
@@ -24830,9 +18696,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -26270,607 +20133,6 @@ try await main()
 </dl>
 </details>
 
-## Shipping OrderGroups
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">addOrderV1</a>(orderGroupId: String, orderId: String, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Adds an order to an order group. The caller's org must be the coordinator or an executor on the order, and the order must not already belong to another of the caller's groups. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.addOrderV1(
-        orderGroupId: "order_group_id",
-        orderId: "order_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**orderId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">listV1</a>(sortBy: OrderGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterOrderId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderGroupListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists order groups for the caller's organization with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroupListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.listV1(
-        sortBy: .createdAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterOrderId: "filter_order_id",
-        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `OrderGroupSortByEnum?` — Field to sort by.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderId:** `String?` — Filter to groups containing this order id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">newV1</a>(request: Requests.OrderGroupClientCreate1, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates an order group owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderGroupClientCreate1) -> (OrderGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.newV1(request: .init(
-        name: "name",
-        schemaVersion: 1
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderGroupClientCreate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">removeOrderV1</a>(orderGroupId: String, orderId: String, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Removes an order from an order group. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.removeOrderV1(
-        orderGroupId: "order_group_id",
-        orderId: "order_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**orderId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">setBillingReviewStatusV1</a>(orderGroupId: String, request: Requests.OrderGroupSetBillingReviewStatusReq, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Sets the order group's operator billing-review status. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderGroupSetBillingReviewStatusReq) -> (OrderGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.setBillingReviewStatusV1(
-        orderGroupId: "order_group_id",
-        request: .init(billingReviewStatus: .notStarted)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderGroupSetBillingReviewStatusReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">updateV1</a>(orderGroupId: String, request: Requests.OrderGroupClientUpdate1, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an order group's name or description. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderGroupClientUpdate1) -> (OrderGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.updateV1(
-        orderGroupId: "order_group_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderGroupClientUpdate1` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orderGroups.<a href="/Sources/Resources/Shipping/OrderGroups/OrderGroupsClient.swift">getByIdV1</a>(orderGroupId: String, requestOptions: RequestOptions?) -> OrderGroup1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves an order group by ID. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroup1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orderGroups.getByIdV1(orderGroupId: "order_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Shipping OrderSchedules
 <details><summary><code>client.shipping.orderSchedules.<a href="/Sources/Resources/Shipping/OrderSchedules/OrderSchedulesClient.swift">aboutV1</a>(orderScheduleId: String, requestOptions: RequestOptions?) -> OrderScheduleAboutRes</code></summary>
 <dl>
@@ -27123,13 +20385,7 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterIntendedStatus: [
-            .draft
-        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
-        filterServiceLine: [
-            .onDemand
-        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -27862,9 +21118,6 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
-        filterServiceLine: [
-            .onDemand
-        ],
         filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
@@ -29422,7 +22675,7 @@ try await main()
 <dl>
 <dd>
 
-Cancels an order and non-terminal child entities in a transaction. | authz_personas=[lig_owner_operators] | () -> (bool)
+Cancels an order and non-terminal child entities in a transaction. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -29493,7 +22746,7 @@ try await main()
 <dl>
 <dd>
 
-Cancels multiple orders and their non-terminal child entities in a transaction. | authz_personas=[lig_owner_operators] | (OrdersCancelManyReq) -> (bool)
+Cancels multiple orders and their non-terminal child entities in a transaction. | authz_personas=[task_group_operating_org_operators] | (OrdersCancelManyReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -30190,267 +23443,6 @@ try await main()
 </dl>
 </details>
 
-## Shipping OrdersAndOrderGroups
-<details><summary><code>client.shipping.ordersAndOrderGroups.<a href="/Sources/Resources/Shipping/OrdersAndOrderGroups/OrdersAndOrderGroupsClient.swift">orderGroupsListV1</a>(sortBy: OrderGroupExpandedSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterBillingReviewStatus: BillingReviewStatusEnum?, filterOrderId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderGroupExpandedListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists the caller's order groups with member orders nested and a derived shipping-status rollup. Filtering, sorting, and pagination use stored group fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderGroupExpandedListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.ordersAndOrderGroups.orderGroupsListV1(
-        sortBy: .createdAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        filterBillingReviewStatus: [
-            .notStarted
-        ],
-        filterOrderId: "filter_order_id",
-        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `OrderGroupExpandedSortByEnum?` — Field to sort by.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterBillingReviewStatus:** `BillingReviewStatusEnum?` — Filter by the group's billing-review status(es).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderId:** `String?` — Filter to groups containing this order id.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.ordersAndOrderGroups.<a href="/Sources/Resources/Shipping/OrdersAndOrderGroups/OrdersAndOrderGroupsClient.swift">ungroupedOrdersListV1</a>(filterShippingStatus: OrderStatusEnum1?, filterServiceLine: ServiceLineEnum?, sortBy: UngroupedOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> UngroupedOrderListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists the caller's standalone orders (provider party, non-DRAFT, not in any of the caller's order groups). Filtering, sorting, and pagination use stored Order fields. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (UngroupedOrderListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.ordersAndOrderGroups.ungroupedOrdersListV1(
-        filterShippingStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        sortBy: .draftStartedAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**filterShippingStatus:** `OrderStatusEnum1?` — Filter by order status(es).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterServiceLine:** `ServiceLineEnum?` — Filter by service line.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortBy:** `UngroupedOrderSortByEnum?` — Field to sort by.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Shipping TaskArtifacts
 <details><summary><code>client.shipping.taskArtifacts.<a href="/Sources/Resources/Shipping/TaskArtifacts/TaskArtifactsClient.swift">addToTaskV1</a>(taskId: String, request: Requests.AddTaskArtifactReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
@@ -30623,7 +23615,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task artifact. | authz_personas=[lig_owner_operators] | () -> (bool)
+Deletes a task artifact. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -30918,1182 +23910,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">attachBillingLedgerPeriodToProviderPayDriverV1</a>(taskGroupId: String, request: AttachBillingLedgerPeriodReq, requestOptions: RequestOptions?) -> BillingLedgerPeriod1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Links the operator-supplied OPEN BillingLedgerPeriod to this TaskGroup's PPD vector. Period parties must match the TG's PPD parties. The PPD vector must have no ledger attached and no rate sheet (rate-sheet/ledger exclusivity). Ad-hoc LIGs without a rate sheet may coexist. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (AttachBillingLedgerPeriodReq) -> (BillingLedgerPeriod1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.attachBillingLedgerPeriodToProviderPayDriverV1(
-        taskGroupId: "task_group_id",
-        request: AttachBillingLedgerPeriodReq(
-            billingLedgerPeriodId: "billing_ledger_period_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `AttachBillingLedgerPeriodReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">attachBillingLedgerPeriodToProviderPayProviderV1</a>(taskGroupId: String, request: AttachBillingLedgerPeriodReq, requestOptions: RequestOptions?) -> BillingLedgerPeriod1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Links the operator-supplied OPEN BillingLedgerPeriod to this TaskGroup's PPP vector. Period parties must match the TG's PPP parties. The PPP vector must have no ledger attached and no rate sheet (rate-sheet/ledger exclusivity). Ad-hoc LIGs without a rate sheet may coexist. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (AttachBillingLedgerPeriodReq) -> (BillingLedgerPeriod1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.attachBillingLedgerPeriodToProviderPayProviderV1(
-        taskGroupId: "task_group_id",
-        request: AttachBillingLedgerPeriodReq(
-            billingLedgerPeriodId: "billing_ledger_period_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `AttachBillingLedgerPeriodReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">attachBillingLedgerPeriodToShipperPayProviderV1</a>(taskGroupId: String, request: AttachBillingLedgerPeriodReq, requestOptions: RequestOptions?) -> BillingLedgerPeriod1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Links the operator-supplied OPEN BillingLedgerPeriod to this TaskGroup's SPP vector. Period parties must match the TG's SPP parties. The SPP vector must have no ledger attached and no rate sheet (rate-sheet/ledger exclusivity). Ad-hoc LIGs without a rate sheet may coexist. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (AttachBillingLedgerPeriodReq) -> (BillingLedgerPeriod1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.attachBillingLedgerPeriodToShipperPayProviderV1(
-        taskGroupId: "task_group_id",
-        request: AttachBillingLedgerPeriodReq(
-            billingLedgerPeriodId: "billing_ledger_period_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `AttachBillingLedgerPeriodReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">attachLigToProviderPayDriverV1</a>(taskGroupId: String, request: AttachLigToVectorClientReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Attaches a STAGED, detached LineItemGroup to the PPD vector AND sets `LineItemGroup1.task_group_id` (one txn). The LIG must have `task_group_id is None`, be owned by the executor, and be party-matched to PPD. The PPD vector must have no LIG attached; if the LIG carries `rate_sheet_id`, no billing ledger period may be attached either (rate-sheet/ledger exclusivity). The LIG's `rate_sheet_id` is stamped onto `provider_pay_driver_rate_sheet_id` as a breadcrumb. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (AttachLigToVectorClientReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.attachLigToProviderPayDriverV1(
-        taskGroupId: "task_group_id",
-        request: AttachLigToVectorClientReq(
-            lineItemGroupId: "line_item_group_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `AttachLigToVectorClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">attachLigToProviderPayProviderV1</a>(taskGroupId: String, request: AttachLigToVectorClientReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Attaches a STAGED, detached LineItemGroup to the PPP vector AND sets `LineItemGroup1.task_group_id` (one txn). The LIG must have `task_group_id is None`, be owned by the coordinator, and be party-matched to PPP. The PPP vector must have no LIG attached; if the LIG carries `rate_sheet_id`, no billing ledger period may be attached either (rate-sheet/ledger exclusivity). The LIG's `rate_sheet_id` is stamped onto `provider_pay_provider_rate_sheet_id` as a breadcrumb. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (AttachLigToVectorClientReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.attachLigToProviderPayProviderV1(
-        taskGroupId: "task_group_id",
-        request: AttachLigToVectorClientReq(
-            lineItemGroupId: "line_item_group_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `AttachLigToVectorClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">attachLigToShipperPayProviderV1</a>(taskGroupId: String, request: AttachLigToVectorClientReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Attaches a STAGED, detached LineItemGroup to the SPP vector AND sets `LineItemGroup1.task_group_id` (one txn). The LIG must have `task_group_id is None`, be owned by the coordinator, and be party-matched to SPP. The SPP vector must have no LIG attached; if the LIG carries `rate_sheet_id`, no billing ledger period may be attached either (rate-sheet/ledger exclusivity). The LIG's `rate_sheet_id` is stamped onto `shipper_pay_provider_rate_sheet_id` as a breadcrumb. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (AttachLigToVectorClientReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.attachLigToShipperPayProviderV1(
-        taskGroupId: "task_group_id",
-        request: AttachLigToVectorClientReq(
-            lineItemGroupId: "line_item_group_id"
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `AttachLigToVectorClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">detachBillingLedgerPeriodFromProviderPayDriverV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Detaches the PPD billing ledger period from this TaskGroup. Reverses attach_billing_ledger_period_to_provider_pay_driver/v1. Linked period must be OPEN. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.detachBillingLedgerPeriodFromProviderPayDriverV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">detachBillingLedgerPeriodFromProviderPayProviderV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Detaches the PPP billing ledger period from this TaskGroup. Reverses attach_billing_ledger_period_to_provider_pay_provider/v1. Linked period must be OPEN. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.detachBillingLedgerPeriodFromProviderPayProviderV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">detachBillingLedgerPeriodFromShipperPayProviderV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Detaches the SPP billing ledger period from this TaskGroup. Reverses attach_billing_ledger_period_to_shipper_pay_provider/v1. Linked period must be OPEN. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.detachBillingLedgerPeriodFromShipperPayProviderV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">detachLigFromProviderPayDriverV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Clears the PPD vector's `_line_item_group_id` and `_rate_sheet_id` AND clears the LIG's `task_group_id` back-ref (one txn). The LIG document and its line items remain alive but fully detached on both sides. The PPD vector must currently have a LIG attached. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.detachLigFromProviderPayDriverV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">detachLigFromProviderPayProviderV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Clears the PPP vector's `_line_item_group_id` and `_rate_sheet_id` AND clears the LIG's `task_group_id` back-ref (one txn). The LIG document and its line items remain alive but fully detached on both sides. The PPP vector must currently have a LIG attached. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.detachLigFromProviderPayProviderV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">detachLigFromShipperPayProviderV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Clears the SPP vector's `_line_item_group_id` and `_rate_sheet_id` AND clears the LIG's `task_group_id` back-ref (one txn). The LIG document and its line items remain alive but fully detached on both sides. The SPP vector must currently have a LIG attached. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | () -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.detachLigFromShipperPayProviderV1(taskGroupId: "task_group_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForProviderPayDriverV1</a>(taskGroupId: String, request: Requests.TaskGroupQuoteForProviderPayDriverClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Preview the LineItem materialization that would result from applying a rate sheet to the PPD vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (executor -> driver). Auto-resolves the rate sheet via RateSheetMapping1 for the requested driver unless body.rate_sheet_id is provided. PPD is on-chrt-executor only — TGs with an off-chrt executor are 400'd. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_driver/v1 then attach_lig_to_provider_pay_driver/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[executor_org_operators] | (TaskGroupQuoteForProviderPayDriverClientReq) -> (TaskGroupQuoteResp)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.quoteForProviderPayDriverV1(
-        taskGroupId: "task_group_id",
-        request: .init(driverId: "driver_id")
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskGroupQuoteForProviderPayDriverClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForProviderPayProviderV1</a>(taskGroupId: String, request: Requests.TaskGroupQuoteForProviderPayProviderClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Preview the LineItem materialization that would result from applying a rate sheet to the PPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (coordinator -> executor). Auto-resolves the rate sheet via RateSheetMapping1 for the requested executor unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_provider_pay_provider/v1 then attach_lig_to_provider_pay_provider/v1. | authz: allowed_org_types=[provider], min_org_role=operator, authz_personas=[task_group_coordinator_operators] | (TaskGroupQuoteForProviderPayProviderClientReq) -> (TaskGroupQuoteResp)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.quoteForProviderPayProviderV1(
-        taskGroupId: "task_group_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskGroupQuoteForProviderPayProviderClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">quoteForShipperPayProviderV1</a>(taskGroupId: String, request: Requests.TaskGroupQuoteForShipperPayProviderClientReq, requestOptions: RequestOptions?) -> TaskGroupQuoteResp</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Preview the LineItem materialization that would result from applying a rate sheet to the SPP vector of the named TaskGroup. Returns the resolved rate sheet, materialized LineItems (NOT inserted), the pre-adjustment total, and the requested parties (shipper -> coordinator). Auto-resolves the rate sheet via RateSheetMapping1 for the requested shipper unless body.rate_sheet_id is provided. No DB writes — operator can iterate freely. To commit, call from_rate_sheet/create_for_shipper_pay_provider/v1 then attach_lig_to_shipper_pay_provider/v1. | authz: allowed_org_types=[provider, shipper], min_org_role=operator, authz_personas=[task_group_coordinator_operators, shipper_org_operators] | (TaskGroupQuoteForShipperPayProviderClientReq) -> (TaskGroupQuoteResp)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.quoteForShipperPayProviderV1(
-        taskGroupId: "task_group_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.TaskGroupQuoteForShipperPayProviderClientReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.shipping.taskGroups.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupsClient.swift">removeDriverV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -32177,7 +23993,7 @@ try await main()
 <dl>
 <dd>
 
-Clears the executor and assigned driver on a task group. Refuses while PPP or PPD billing is attached; detach billing explicitly first. | authz_personas=[coordinator_org_operators] | () -> (bool)
+Clears the executor and assigned driver on a task group. | authz_personas=[coordinator_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -32248,7 +24064,7 @@ try await main()
 <dl>
 <dd>
 
-Replaces the ordered list of flights on a task group. | authz_personas=[lig_owner_operators] | (SetFlightInfoReq) -> (bool)
+Replaces the ordered list of flights on a task group. | authz_personas=[task_group_operating_org_operators] | (SetFlightInfoReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -32342,7 +24158,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the ordering of tasks within a task group. Requires complete list of task IDs in desired order. Completed tasks must be before staged tasks. | authz_personas=[lig_owner_operators] | (SetTaskOrderingReq) -> (bool)
+Sets the ordering of tasks within a task group. Requires complete list of task IDs in desired order. Completed tasks must be before staged tasks. | authz_personas=[task_group_operating_org_operators] | (SetTaskOrderingReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -32662,7 +24478,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a new task to a task group at a specific index. | authz_personas=[lig_owner_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
+Adds a new task to a task group at a specific index. | authz_personas=[task_group_operating_org_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -32903,7 +24719,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task. Task must be in STAGED status. | authz_personas=[lig_owner_operators] | () -> (bool)
+Deletes a task. Task must be in STAGED status. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -32974,7 +24790,7 @@ try await main()
 <dl>
 <dd>
 
-Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, lig_owner_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
+Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -33127,7 +24943,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a task. Operational fields require lig_owner_operators, comments require order_creator_org_operators, contacts allow either, and coordinator_shipper_account_ids require coordinator_org_operators. | authz_personas=[lig_owner_operators, order_creator_org_operators, coordinator_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
+Updates a task. Operational fields require task_group_operating_org_operators, comments require order_creator_org_operators, contacts allow either, and coordinator_shipper_account_ids require coordinator_org_operators. | authz_personas=[task_group_operating_org_operators, order_creator_org_operators, coordinator_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -36545,7 +28361,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes multiple draft orders and associated entities, skipping drafts with billing links. | authz_personas=[draft_creator_org_operator] | (OrdersDraftDeleteManyReq) -> (OrdersDraftDeleteManyRes)
+Deletes multiple draft orders and associated entities. | authz_personas=[draft_creator_org_operator] | (OrdersDraftDeleteManyReq) -> (OrdersDraftDeleteManyRes)
 </dd>
 </dl>
 </dd>
@@ -37361,15 +29177,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -37387,13 +29194,7 @@ private func main() async throws {
         filterExecutorOrgId: "filter_executor_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -37707,15 +29508,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -38014,15 +29806,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -38041,13 +29824,7 @@ private func main() async throws {
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -38377,15 +30154,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -39860,7 +31628,7 @@ try await main()
 <dl>
 <dd>
 
-Clears the executor, driver, and PPP/PPD billing attachments from a draft task group. Coordinator-only. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+Clears the executor and driver from a draft task group. Coordinator-only. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -39994,88 +31762,6 @@ try await main()
 <dd>
 
 **request:** `SetFlightInfoReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orders.drafts.taskGroup.<a href="/Sources/Resources/Shipping/Orders/Drafts/TaskGroup/TaskGroupClient.swift">setRateSheetsV1</a>(taskGroupId: String, request: Requests.SetRateSheetsReq, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Sets rate sheet IDs on a draft task group. Forwarder mode (SPF/FPC) and direct shipper mode (SPC) are mutually exclusive. CPD is independent. | (SetRateSheetsReq) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orders.drafts.taskGroup.setRateSheetsV1(
-        taskGroupId: "task_group_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.SetRateSheetsReq` 
     
 </dd>
 </dl>
@@ -41294,9 +32980,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -41578,9 +33261,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -43231,10 +34911,10 @@ private func main() async throws {
             geometry: Geometry.geometryCollection(
                 .init(
                     geometries: [
-                        GeometriesItem.lineString(
+                        GeometryCollectionGeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    CoordinatesItem.position2D(
+                                    LineStringCoordinatesItem.position2D(
                                         []
                                     )
                                 ]
@@ -46047,6 +37727,81 @@ try await main()
 </details>
 
 ## TrackingIntegrations Reelables Assets
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">createV1</a>(request: Requests.ReelablesAssetClientCreate1, requestOptions: RequestOptions?) -> ReelablesAsset1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates and links a labeled Reelables asset for the caller's organization. | authz: min_org_role=operator | (ReelablesAssetClientCreate1) -> (ReelablesAsset1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.createV1(request: .init(
+        name: "name",
+        nfcId: "nfc_id",
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ReelablesAssetClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">getV1</a>(assetId: String, requestOptions: RequestOptions?) -> ReelablesAsset1</code></summary>
 <dl>
 <dd>
@@ -46059,7 +37814,7 @@ try await main()
 <dl>
 <dd>
 
-Refreshes and retrieves a Reelables asset by its external ID. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAsset1)
+Retrieves a Reelables asset owned by the caller's organization from CHRT. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAsset1)
 </dd>
 </dl>
 </dd>
@@ -46118,7 +37873,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">listV1</a>(workspaceId: String, sortBy: ReelablesAssetSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ReelablesAssetListRes</code></summary>
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">linkLabelV1</a>(assetId: String, request: Requests.ReelablesAssetLabelLinkReq, requestOptions: RequestOptions?) -> ReelablesAsset1</code></summary>
 <dl>
 <dd>
 
@@ -46130,7 +37885,160 @@ try await main()
 <dl>
 <dd>
 
-Lists cached Reelables assets for a workspace. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
+Links a label to an unlinked Reelables asset and starts tracking. Existing labels must be unlinked first. | authz: min_org_role=operator | (ReelablesAssetLabelLinkReq) -> (ReelablesAsset1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.linkLabelV1(
+        assetId: "asset_id",
+        request: .init(nfcId: "nfc_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ReelablesAssetLabelLinkReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">unlinkLabelV1</a>(assetId: String, requestOptions: RequestOptions?) -> ReelablesAsset1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unlinks the current label from a Reelables asset and stops tracking while retaining the asset and its history. | authz: min_org_role=operator | (None) -> (ReelablesAsset1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.unlinkLabelV1(assetId: "asset_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">listV1</a>(sortBy: ReelablesAssetSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ReelablesAssetListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists Reelables assets owned by the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesAssetListRes)
 </dd>
 </dl>
 </dd>
@@ -46152,7 +38060,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.trackingIntegrations.reelables.assets.listV1(
-        workspaceId: "workspace_id",
         sortBy: .assetId,
         sortOrder: .asc,
         page: 1,
@@ -46171,14 +38078,6 @@ try await main()
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**workspaceId:** `String` 
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -46208,77 +38107,6 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">syncV1</a>(workspaceId: String, requestOptions: RequestOptions?) -> ReelablesAssetSyncRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Synchronizes all Reelables assets for a cached workspace. | authz: min_org_role=operator | () -> (ReelablesAssetSyncRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.trackingIntegrations.reelables.assets.syncV1(workspaceId: "workspace_id")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**workspaceId:** `String` 
     
 </dd>
 </dl>
@@ -46381,6 +38209,97 @@ try await main()
 </details>
 
 ## TrackingIntegrations Reelables Timeseries
+<details><summary><code>client.trackingIntegrations.reelables.timeseries.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Timeseries/ReelablesTimeseriesClient.swift">refreshV1</a>(assetId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions?) -> ReelablesTimeseriesRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refreshes and returns Reelables location data points within the requested time range. | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.timeseries.refreshV1(
+        assetId: "asset_id",
+        startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**startTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endTimestamp:** `Date` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.trackingIntegrations.reelables.timeseries.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Timeseries/ReelablesTimeseriesClient.swift">dataPointsV1</a>(assetId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions?) -> ReelablesTimeseriesRes</code></summary>
 <dl>
 <dd>
@@ -46393,7 +38312,7 @@ try await main()
 <dl>
 <dd>
 
-Refreshes and returns Reelables location data points within the requested time range. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
+Returns stored Reelables location data points within the requested time range without refreshing from Reelables. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
 </dd>
 </dl>
 </dd>
@@ -46456,170 +38375,6 @@ try await main()
     
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## TrackingIntegrations Reelables Workspaces
-<details><summary><code>client.trackingIntegrations.reelables.workspaces.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Workspaces/WorkspacesClient.swift">listV1</a>(sortBy: ReelablesWorkspaceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ReelablesWorkspaceListRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists cached Reelables workspaces for the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesWorkspaceListRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.trackingIntegrations.reelables.workspaces.listV1(
-        sortBy: .name,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `ReelablesWorkspaceSortByEnum?` — Field to sort by
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.trackingIntegrations.reelables.workspaces.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Workspaces/WorkspacesClient.swift">syncV1</a>(requestOptions: RequestOptions?) -> ReelablesWorkspaceSyncRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Synchronizes Reelables workspaces available to the caller's organization without deleting missing workspaces. | authz: min_org_role=operator | () -> (ReelablesWorkspaceSyncRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.trackingIntegrations.reelables.workspaces.syncV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
 
 <dl>
 <dd>

@@ -1,6 +1,7 @@
 import Foundation
 
 public struct OffChrtOrgDataClientCreate1: Codable, Hashable, Sendable {
+    public let airWaybillPrefix: String?
     public let emailAddress: String?
     public let industry: String?
     public let name: String
@@ -12,6 +13,7 @@ public struct OffChrtOrgDataClientCreate1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        airWaybillPrefix: String? = nil,
         emailAddress: String? = nil,
         industry: String? = nil,
         name: String,
@@ -21,6 +23,7 @@ public struct OffChrtOrgDataClientCreate1: Codable, Hashable, Sendable {
         streetAddress: LocationFeature? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.airWaybillPrefix = airWaybillPrefix
         self.emailAddress = emailAddress
         self.industry = industry
         self.name = name
@@ -33,6 +36,7 @@ public struct OffChrtOrgDataClientCreate1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.airWaybillPrefix = try container.decodeIfPresent(String.self, forKey: .airWaybillPrefix)
         self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
         self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
         self.name = try container.decode(String.self, forKey: .name)
@@ -46,6 +50,7 @@ public struct OffChrtOrgDataClientCreate1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.airWaybillPrefix, forKey: .airWaybillPrefix)
         try container.encodeIfPresent(self.emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(self.industry, forKey: .industry)
         try container.encode(self.name, forKey: .name)
@@ -57,6 +62,7 @@ public struct OffChrtOrgDataClientCreate1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case airWaybillPrefix = "air_waybill_prefix"
         case emailAddress = "email_address"
         case industry
         case name

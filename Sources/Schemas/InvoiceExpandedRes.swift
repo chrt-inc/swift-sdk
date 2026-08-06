@@ -2,6 +2,7 @@ import Foundation
 
 public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
     public let counterpartyAccounts: [Account1]?
+    public let counterpartyDriver: Driver1?
     public let counterpartyOffChrtOrgData: OffChrtOrgData1?
     public let counterpartyOrg: OrgPublicData1?
     public let invoice: Invoice1
@@ -11,6 +12,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
 
     public init(
         counterpartyAccounts: [Account1]? = nil,
+        counterpartyDriver: Driver1? = nil,
         counterpartyOffChrtOrgData: OffChrtOrgData1? = nil,
         counterpartyOrg: OrgPublicData1? = nil,
         invoice: Invoice1,
@@ -18,6 +20,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.counterpartyAccounts = counterpartyAccounts
+        self.counterpartyDriver = counterpartyDriver
         self.counterpartyOffChrtOrgData = counterpartyOffChrtOrgData
         self.counterpartyOrg = counterpartyOrg
         self.invoice = invoice
@@ -28,6 +31,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.counterpartyAccounts = try container.decodeIfPresent([Account1].self, forKey: .counterpartyAccounts)
+        self.counterpartyDriver = try container.decodeIfPresent(Driver1.self, forKey: .counterpartyDriver)
         self.counterpartyOffChrtOrgData = try container.decodeIfPresent(OffChrtOrgData1.self, forKey: .counterpartyOffChrtOrgData)
         self.counterpartyOrg = try container.decodeIfPresent(OrgPublicData1.self, forKey: .counterpartyOrg)
         self.invoice = try container.decode(Invoice1.self, forKey: .invoice)
@@ -39,6 +43,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.counterpartyAccounts, forKey: .counterpartyAccounts)
+        try container.encodeIfPresent(self.counterpartyDriver, forKey: .counterpartyDriver)
         try container.encodeIfPresent(self.counterpartyOffChrtOrgData, forKey: .counterpartyOffChrtOrgData)
         try container.encodeIfPresent(self.counterpartyOrg, forKey: .counterpartyOrg)
         try container.encode(self.invoice, forKey: .invoice)
@@ -48,6 +53,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case counterpartyAccounts = "counterparty_accounts"
+        case counterpartyDriver = "counterparty_driver"
         case counterpartyOffChrtOrgData = "counterparty_off_chrt_org_data"
         case counterpartyOrg = "counterparty_org"
         case invoice

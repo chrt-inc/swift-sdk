@@ -69,7 +69,7 @@ public final class ListingsClient: Sendable {
         )
     }
 
-    /// Cancels an OPEN listing. All OPEN BidThreads on this listing are system-rejected. No shipping or billing side-effects. Idempotent: no-op on an already-terminal listing. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    /// Cancels an OPEN listing. All OPEN BidThreads on this listing are system-rejected. No shipping side-effects. Idempotent: no-op on an already-terminal listing. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func cancelV1(listingId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

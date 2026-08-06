@@ -83,10 +83,12 @@ import Chrt
                     ],
                     "pro_forma_line_items": [
                       {
-                        "item": "base_rate",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "line_item_type": "base_rate",
                         "provenance": "rate_sheet",
                         "quantity": 1.1,
-                        "rate": 1.1
+                        "unit_price": 1.1
                       }
                     ],
                     "schema_version": 1,
@@ -142,10 +144,12 @@ import Chrt
                 ]),
                 proFormaLineItems: Optional([
                     ProFormaLineItem1(
-                        item: .baseRate,
+                        currencyCode: .usd,
+                        description: "description",
+                        lineItemType: .baseRate,
                         provenance: .rateSheet,
                         quantity: 1.1,
-                        rate: 1.1
+                        unitPrice: 1.1
                     )
                 ]),
                 schemaVersion: Optional(1),
@@ -205,17 +209,18 @@ import Chrt
                   ],
                   "pro_forma_line_items": [
                     {
-                      "adjustment": 1.1,
-                      "adjustment_comments": "adjustment_comments",
-                      "comments": "comments",
+                      "awb_number": "awb_number",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "item": "base_rate",
+                      "currency_code": "USD",
+                      "description": "description",
+                      "line_item_type": "base_rate",
                       "provenance": "rate_sheet",
                       "quantity": 1.1,
-                      "rate": 1.1,
                       "rate_sheet_id": "rate_sheet_id",
                       "schema_version": 1,
-                      "units": "usd"
+                      "tax_percentage": 1.1,
+                      "unit": "each",
+                      "unit_price": 1.1
                     }
                   ],
                   "schema_version": 1,
@@ -262,17 +267,18 @@ import Chrt
             ]),
             proFormaLineItems: Optional([
                 ProFormaLineItem1(
-                    adjustment: Optional(1.1),
-                    adjustmentComments: Optional("adjustment_comments"),
-                    comments: Optional("comments"),
+                    awbNumber: Optional("awb_number"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    item: .baseRate,
+                    currencyCode: .usd,
+                    description: "description",
+                    lineItemType: .baseRate,
                     provenance: .rateSheet,
                     quantity: 1.1,
-                    rate: 1.1,
                     rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: Optional(1),
-                    units: Optional(.usd)
+                    taxPercentage: Optional(1.1),
+                    unit: Optional(.each),
+                    unitPrice: 1.1
                 )
             ]),
             schemaVersion: Optional(1),
@@ -324,10 +330,12 @@ import Chrt
                     ],
                     "pro_forma_line_items": [
                       {
-                        "item": "base_rate",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "line_item_type": "base_rate",
                         "provenance": "rate_sheet",
                         "quantity": 1.1,
-                        "rate": 1.1
+                        "unit_price": 1.1
                       }
                     ],
                     "schema_version": 1,
@@ -376,10 +384,12 @@ import Chrt
                 ]),
                 proFormaLineItems: Optional([
                     ProFormaLineItem1(
-                        item: .baseRate,
+                        currencyCode: .usd,
+                        description: "description",
+                        lineItemType: .baseRate,
                         provenance: .rateSheet,
                         quantity: 1.1,
-                        rate: 1.1
+                        unitPrice: 1.1
                     )
                 ]),
                 schemaVersion: Optional(1),
@@ -482,10 +492,12 @@ import Chrt
                       ],
                       "pro_forma_line_items": [
                         {
-                          "item": "base_rate",
+                          "currency_code": "USD",
+                          "description": "description",
+                          "line_item_type": "base_rate",
                           "provenance": "rate_sheet",
                           "quantity": 1.1,
-                          "rate": 1.1
+                          "unit_price": 1.1
                         }
                       ],
                       "schema_version": 1,
@@ -537,10 +549,12 @@ import Chrt
                     ]),
                     proFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            item: .baseRate,
+                            currencyCode: .usd,
+                            description: "description",
+                            lineItemType: .baseRate,
                             provenance: .rateSheet,
                             quantity: 1.1,
-                            rate: 1.1
+                            unitPrice: 1.1
                         )
                     ]),
                     schemaVersion: Optional(1),
@@ -559,12 +573,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
-            filterType: [
-                .dispatch
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterCreatedByOrgId: "filter_created_by_org_id",
@@ -642,12 +650,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
-            filterType: [
-                .dispatch
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterCreatedByOrgId: "filter_created_by_org_id",
@@ -725,12 +727,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
-            filterType: [
-                .dispatch
-            ],
             filterTaskGroupId: "filter_task_group_id",
             filterOrderId: "filter_order_id",
             filterCreatedByOrgId: "filter_created_by_org_id",

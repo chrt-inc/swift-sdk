@@ -44,6 +44,7 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "air_waybill_prefix": "air_waybill_prefix",
                       "created_by_user_id": "created_by_user_id",
                       "email_address": "email_address",
                       "industry": "industry",
@@ -82,6 +83,7 @@ import Chrt
             items: [
                 OffChrtOrgData1(
                     id: "_id",
+                    airWaybillPrefix: Optional("air_waybill_prefix"),
                     createdByUserId: "created_by_user_id",
                     emailAddress: Optional("email_address"),
                     industry: Optional("industry"),
@@ -97,7 +99,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -131,6 +133,7 @@ import Chrt
                 """
                 {
                   "_id": "_id",
+                  "air_waybill_prefix": "air_waybill_prefix",
                   "created_by_user_id": "created_by_user_id",
                   "email_address": "email_address",
                   "industry": "industry",
@@ -174,6 +177,7 @@ import Chrt
         )
         let expectedResponse = OffChrtOrgData1(
             id: "_id",
+            airWaybillPrefix: Optional("air_waybill_prefix"),
             createdByUserId: "created_by_user_id",
             emailAddress: Optional("email_address"),
             industry: Optional("industry"),
@@ -196,7 +200,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]

@@ -6,6 +6,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
     /// Must be a string starting with `user_`
     public let approvedByUserId: String?
     public let counterpartyAccountIds: [String]?
+    public let counterpartyDriverId: String?
     public let counterpartyOffChrtOrgDataId: String?
     /// Must be a string starting with `org_`
     public let counterpartyOrgId: String?
@@ -60,6 +61,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         approvedAtTimestamp: Date? = nil,
         approvedByUserId: String? = nil,
         counterpartyAccountIds: [String]? = nil,
+        counterpartyDriverId: String? = nil,
         counterpartyOffChrtOrgDataId: String? = nil,
         counterpartyOrgId: String? = nil,
         createdAtTimestamp: Date,
@@ -104,6 +106,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         self.approvedAtTimestamp = approvedAtTimestamp
         self.approvedByUserId = approvedByUserId
         self.counterpartyAccountIds = counterpartyAccountIds
+        self.counterpartyDriverId = counterpartyDriverId
         self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
         self.counterpartyOrgId = counterpartyOrgId
         self.createdAtTimestamp = createdAtTimestamp
@@ -151,6 +154,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         self.approvedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .approvedAtTimestamp)
         self.approvedByUserId = try container.decodeIfPresent(String.self, forKey: .approvedByUserId)
         self.counterpartyAccountIds = try container.decodeIfPresent([String].self, forKey: .counterpartyAccountIds)
+        self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
         self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
         self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
@@ -199,6 +203,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.approvedAtTimestamp, forKey: .approvedAtTimestamp)
         try container.encodeIfPresent(self.approvedByUserId, forKey: .approvedByUserId)
         try container.encodeIfPresent(self.counterpartyAccountIds, forKey: .counterpartyAccountIds)
+        try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
         try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
         try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
@@ -245,6 +250,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         case approvedAtTimestamp = "approved_at_timestamp"
         case approvedByUserId = "approved_by_user_id"
         case counterpartyAccountIds = "counterparty_account_ids"
+        case counterpartyDriverId = "counterparty_driver_id"
         case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
         case counterpartyOrgId = "counterparty_org_id"
         case createdAtTimestamp = "created_at_timestamp"

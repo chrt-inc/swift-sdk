@@ -37,17 +37,18 @@ import Chrt
                   "_id": "_id",
                   "accepted_pro_forma_line_items": [
                     {
-                      "adjustment": 1.1,
-                      "adjustment_comments": "adjustment_comments",
-                      "comments": "comments",
+                      "awb_number": "awb_number",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "item": "base_rate",
+                      "currency_code": "USD",
+                      "description": "description",
+                      "line_item_type": "base_rate",
                       "provenance": "rate_sheet",
                       "quantity": 1.1,
-                      "rate": 1.1,
                       "rate_sheet_id": "rate_sheet_id",
                       "schema_version": 1,
-                      "units": "usd"
+                      "tax_percentage": 1.1,
+                      "unit": "each",
+                      "unit_price": 1.1
                     }
                   ],
                   "bidder_driver_id": "bidder_driver_id",
@@ -61,10 +62,12 @@ import Chrt
                       "from_lister": true,
                       "pro_forma_line_items": [
                         {
-                          "item": "base_rate",
+                          "currency_code": "USD",
+                          "description": "description",
+                          "line_item_type": "base_rate",
                           "provenance": "rate_sheet",
                           "quantity": 1.1,
-                          "rate": 1.1
+                          "unit_price": 1.1
                         }
                       ]
                     }
@@ -87,17 +90,18 @@ import Chrt
             id: "_id",
             acceptedProFormaLineItems: Optional([
                 ProFormaLineItem1(
-                    adjustment: Optional(1.1),
-                    adjustmentComments: Optional("adjustment_comments"),
-                    comments: Optional("comments"),
+                    awbNumber: Optional("awb_number"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    item: .baseRate,
+                    currencyCode: .usd,
+                    description: "description",
+                    lineItemType: .baseRate,
                     provenance: .rateSheet,
                     quantity: 1.1,
-                    rate: 1.1,
                     rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: Optional(1),
-                    units: Optional(.usd)
+                    taxPercentage: Optional(1.1),
+                    unit: Optional(.each),
+                    unitPrice: 1.1
                 )
             ]),
             bidderDriverId: Optional("bidder_driver_id"),
@@ -111,10 +115,12 @@ import Chrt
                     fromLister: true,
                     proFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            item: .baseRate,
+                            currencyCode: .usd,
+                            description: "description",
+                            lineItemType: .baseRate,
                             provenance: .rateSheet,
                             quantity: 1.1,
-                            rate: 1.1
+                            unitPrice: 1.1
                         )
                     ])
                 )
@@ -240,10 +246,12 @@ import Chrt
                       "_id": "_id",
                       "accepted_pro_forma_line_items": [
                         {
-                          "item": "base_rate",
+                          "currency_code": "USD",
+                          "description": "description",
+                          "line_item_type": "base_rate",
                           "provenance": "rate_sheet",
                           "quantity": 1.1,
-                          "rate": 1.1
+                          "unit_price": 1.1
                         }
                       ],
                       "bidder_driver_id": "bidder_driver_id",
@@ -279,10 +287,12 @@ import Chrt
                     id: "_id",
                     acceptedProFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            item: .baseRate,
+                            currencyCode: .usd,
+                            description: "description",
+                            lineItemType: .baseRate,
                             provenance: .rateSheet,
                             quantity: 1.1,
-                            rate: 1.1
+                            unitPrice: 1.1
                         )
                     ]),
                     bidderDriverId: Optional("bidder_driver_id"),
@@ -309,9 +319,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
             filterListingId: "filter_listing_id",
             filterBidderProviderOrgId: "filter_bidder_provider_org_id",
             filterBidderDriverId: "filter_bidder_driver_id",
@@ -335,10 +342,12 @@ import Chrt
                       "_id": "_id",
                       "accepted_pro_forma_line_items": [
                         {
-                          "item": "base_rate",
+                          "currency_code": "USD",
+                          "description": "description",
+                          "line_item_type": "base_rate",
                           "provenance": "rate_sheet",
                           "quantity": 1.1,
-                          "rate": 1.1
+                          "unit_price": 1.1
                         }
                       ],
                       "bidder_driver_id": "bidder_driver_id",
@@ -374,10 +383,12 @@ import Chrt
                     id: "_id",
                     acceptedProFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            item: .baseRate,
+                            currencyCode: .usd,
+                            description: "description",
+                            lineItemType: .baseRate,
                             provenance: .rateSheet,
                             quantity: 1.1,
-                            rate: 1.1
+                            unitPrice: 1.1
                         )
                     ]),
                     bidderDriverId: Optional("bidder_driver_id"),
@@ -405,9 +416,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatus: [
-                .open
-            ],
             filterListingId: "filter_listing_id",
             filterBidderProviderOrgId: "filter_bidder_provider_org_id",
             filterBidderDriverId: "filter_bidder_driver_id",

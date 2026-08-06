@@ -116,13 +116,14 @@ public final class InvoicesClient: Sendable {
     /// - Parameter filterCurrencyCodes: Filter by one or more currency codes.
     /// - Parameter filterCounterpartyOrgId: Filter by an on-CHRT counterparty organization.
     /// - Parameter filterCounterpartyOffChrtOrgDataId: Filter by off-CHRT counterparty organization data.
+    /// - Parameter filterCounterpartyDriverId: Filter by a driver counterparty.
     /// - Parameter filterCounterpartyAccountId: Filter by an associated counterparty account.
     /// - Parameter filterCreatedAtTimestampGte: Filter by created_at_timestamp greater than or equal.
     /// - Parameter filterCreatedAtTimestampLte: Filter by created_at_timestamp less than or equal.
     /// - Parameter filterLastEditedAtTimestampGte: Filter by last_edited_at_timestamp greater than or equal.
     /// - Parameter filterLastEditedAtTimestampLte: Filter by last_edited_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, sortBy: InvoiceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatuses: InvoiceStatusEnum1? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyAccountId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceListRes {
+    public func listV1(search: String? = nil, sortBy: InvoiceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatuses: InvoiceStatusEnum1? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCounterpartyAccountId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/invoices/list/v1",
@@ -137,6 +138,7 @@ public final class InvoicesClient: Sendable {
                 "filter_currency_codes": filterCurrencyCodes.map { .string($0.rawValue) }, 
                 "filter_counterparty_org_id": filterCounterpartyOrgId.map { .string($0) }, 
                 "filter_counterparty_off_chrt_org_data_id": filterCounterpartyOffChrtOrgDataId.map { .string($0) }, 
+                "filter_counterparty_driver_id": filterCounterpartyDriverId.map { .string($0) }, 
                 "filter_counterparty_account_id": filterCounterpartyAccountId.map { .string($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 

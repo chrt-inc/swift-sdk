@@ -34,6 +34,7 @@ import Chrt
                   "active_cargo": {
                     "_id": "_id",
                     "awb_number": "awb_number",
+                    "awb_number_line_items_generated": true,
                     "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                     "cargo_type": "spare_parts",
                     "created_by_org_id": "created_by_org_id",
@@ -174,6 +175,7 @@ import Chrt
                     {
                       "_id": "_id",
                       "awb_number": "awb_number",
+                      "awb_number_line_items_generated": true,
                       "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
                       "cargo_type": "spare_parts",
                       "created_by_org_id": "created_by_org_id",
@@ -277,6 +279,7 @@ import Chrt
             activeCargo: Optional(Cargo1(
                 id: "_id",
                 awbNumber: Optional("awb_number"),
+                awbNumberLineItemsGenerated: Optional(true),
                 cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 cargoType: .spareParts,
                 createdByOrgId: "created_by_org_id",
@@ -316,7 +319,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -352,7 +355,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -397,7 +400,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -435,6 +438,7 @@ import Chrt
                 Cargo1(
                     id: "_id",
                     awbNumber: Optional("awb_number"),
+                    awbNumberLineItemsGenerated: Optional(true),
                     cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     cargoType: .spareParts,
                     createdByOrgId: "created_by_org_id",
@@ -476,7 +480,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -506,7 +510,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -620,7 +624,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]

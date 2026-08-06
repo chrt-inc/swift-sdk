@@ -46,7 +46,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Lists owner-scoped line items for an order with counterparties and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemsByOrderExpandedRes)
+    /// Lists owner-scoped line items and attributed billing periods for an order with counterparties and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemsByOrderExpandedRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByOrderV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemsByOrderExpandedRes {
@@ -68,6 +68,19 @@ public final class InvoiceLineItemsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: CreateInvoiceLineItemsFromAmountRes.self
+        )
+    }
+
+    /// Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createFromAwbCostsV1(request: Requests.CreateInvoiceLineItemsFromAwbCostsReq, requestOptions: RequestOptions? = nil) async throws -> CreateInvoiceLineItemsFromAwbCostsRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoice_line_items/create_from_awb_costs/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: CreateInvoiceLineItemsFromAwbCostsRes.self
         )
     }
 
@@ -133,6 +146,7 @@ public final class InvoiceLineItemsClient: Sendable {
     /// - Parameter filterUnits: Filter by one or more units.
     /// - Parameter filterCounterpartyOrgId: Filter by an on-CHRT counterparty organization.
     /// - Parameter filterCounterpartyOffChrtOrgDataId: Filter by off-CHRT counterparty organization data.
+    /// - Parameter filterCounterpartyDriverId: Filter by a driver counterparty.
     /// - Parameter filterShipperAccountId: Filter by an associated shipper account.
     /// - Parameter filterInvoiceId: Filter by an attached invoice.
     /// - Parameter filterIsInvoiced: Filter by whether a line item is attached to an invoice.
@@ -143,7 +157,7 @@ public final class InvoiceLineItemsClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter by last_edited_at_timestamp greater than or equal.
     /// - Parameter filterLastEditedAtTimestampLte: Filter by last_edited_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: InvoiceLineItemSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterLineItemTypes: InvoiceLineItemTypeEnum1? = nil, filterUnits: InvoiceLineItemUnitEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterShipperAccountId: String? = nil, filterInvoiceId: String? = nil, filterIsInvoiced: Bool? = nil, filterOrderId: String? = nil, filterTaskGroupId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemListRes {
+    public func listV1(sortBy: InvoiceLineItemSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterLineItemTypes: InvoiceLineItemTypeEnum1? = nil, filterUnits: InvoiceLineItemUnitEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterShipperAccountId: String? = nil, filterInvoiceId: String? = nil, filterIsInvoiced: Bool? = nil, filterOrderId: String? = nil, filterTaskGroupId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/invoice_line_items/list/v1",
@@ -158,6 +172,7 @@ public final class InvoiceLineItemsClient: Sendable {
                 "filter_units": filterUnits.map { .string($0.rawValue) }, 
                 "filter_counterparty_org_id": filterCounterpartyOrgId.map { .string($0) }, 
                 "filter_counterparty_off_chrt_org_data_id": filterCounterpartyOffChrtOrgDataId.map { .string($0) }, 
+                "filter_counterparty_driver_id": filterCounterpartyDriverId.map { .string($0) }, 
                 "filter_shipper_account_id": filterShipperAccountId.map { .string($0) }, 
                 "filter_invoice_id": filterInvoiceId.map { .string($0) }, 
                 "filter_is_invoiced": filterIsInvoiced.map { .bool($0) }, 

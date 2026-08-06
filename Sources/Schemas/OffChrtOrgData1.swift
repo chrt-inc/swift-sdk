@@ -2,6 +2,7 @@ import Foundation
 
 public struct OffChrtOrgData1: Codable, Hashable, Sendable {
     public let id: String
+    public let airWaybillPrefix: String?
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     public let emailAddress: String?
@@ -18,6 +19,7 @@ public struct OffChrtOrgData1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        airWaybillPrefix: String? = nil,
         createdByUserId: String,
         emailAddress: String? = nil,
         industry: String? = nil,
@@ -30,6 +32,7 @@ public struct OffChrtOrgData1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.airWaybillPrefix = airWaybillPrefix
         self.createdByUserId = createdByUserId
         self.emailAddress = emailAddress
         self.industry = industry
@@ -45,6 +48,7 @@ public struct OffChrtOrgData1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.airWaybillPrefix = try container.decodeIfPresent(String.self, forKey: .airWaybillPrefix)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
         self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
@@ -61,6 +65,7 @@ public struct OffChrtOrgData1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.airWaybillPrefix, forKey: .airWaybillPrefix)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.emailAddress, forKey: .emailAddress)
         try container.encodeIfPresent(self.industry, forKey: .industry)
@@ -75,6 +80,7 @@ public struct OffChrtOrgData1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case airWaybillPrefix = "air_waybill_prefix"
         case createdByUserId = "created_by_user_id"
         case emailAddress = "email_address"
         case industry

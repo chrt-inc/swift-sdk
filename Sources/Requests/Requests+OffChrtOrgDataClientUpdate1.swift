@@ -2,6 +2,8 @@ import Foundation
 
 extension Requests {
     public struct OffChrtOrgDataClientUpdate1: Codable, Hashable, Sendable {
+        public let airWaybillPrefix: String?
+        public let airWaybillPrefixSetToNone: Bool?
         public let emailAddress: String?
         public let emailAddressSetToNone: Bool?
         public let industry: String?
@@ -15,6 +17,8 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            airWaybillPrefix: String? = nil,
+            airWaybillPrefixSetToNone: Bool? = nil,
             emailAddress: String? = nil,
             emailAddressSetToNone: Bool? = nil,
             industry: String? = nil,
@@ -26,6 +30,8 @@ extension Requests {
             streetAddressSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.airWaybillPrefix = airWaybillPrefix
+            self.airWaybillPrefixSetToNone = airWaybillPrefixSetToNone
             self.emailAddress = emailAddress
             self.emailAddressSetToNone = emailAddressSetToNone
             self.industry = industry
@@ -40,6 +46,8 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.airWaybillPrefix = try container.decodeIfPresent(String.self, forKey: .airWaybillPrefix)
+            self.airWaybillPrefixSetToNone = try container.decodeIfPresent(Bool.self, forKey: .airWaybillPrefixSetToNone)
             self.emailAddress = try container.decodeIfPresent(String.self, forKey: .emailAddress)
             self.emailAddressSetToNone = try container.decodeIfPresent(Bool.self, forKey: .emailAddressSetToNone)
             self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
@@ -55,6 +63,8 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encodeIfPresent(self.airWaybillPrefix, forKey: .airWaybillPrefix)
+            try container.encodeIfPresent(self.airWaybillPrefixSetToNone, forKey: .airWaybillPrefixSetToNone)
             try container.encodeIfPresent(self.emailAddress, forKey: .emailAddress)
             try container.encodeIfPresent(self.emailAddressSetToNone, forKey: .emailAddressSetToNone)
             try container.encodeIfPresent(self.industry, forKey: .industry)
@@ -68,6 +78,8 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case airWaybillPrefix = "air_waybill_prefix"
+            case airWaybillPrefixSetToNone = "air_waybill_prefix__set_to_None"
             case emailAddress = "email_address"
             case emailAddressSetToNone = "email_address__set_to_None"
             case industry
