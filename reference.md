@@ -174,6 +174,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
+        filterRole: [
+            .owner
+        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -1149,6 +1152,15 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatuses: [
+            .open
+        ],
+        filterInvoiceTypes: [
+            .accountsReceivable
+        ],
+        filterCurrencyCodes: [
+            .usd
+        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -1827,11 +1839,26 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterServiceLine: [
+            .onDemand
+        ],
+        filterInvoiceTypes: [
+            .accountsReceivable
+        ],
+        filterCurrencyCodes: [
+            .usd
+        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterShipperAccountId: "filter_shipper_account_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
         filterCounterpartyScopeDriverId: "filter_counterparty_scope_driver_id",
+        filterCargoTypes: [
+            .spareParts
+        ],
+        filterVehicleTypes: [
+            .sedan
+        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -3011,6 +3038,18 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterInvoiceTypes: [
+            .accountsReceivable
+        ],
+        filterCurrencyCodes: [
+            .usd
+        ],
+        filterLineItemTypes: [
+            .baseRate
+        ],
+        filterUnits: [
+            .each
+        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -4026,6 +4065,15 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatuses: [
+            .draft
+        ],
+        filterInvoiceTypes: [
+            .accountsReceivable
+        ],
+        filterCurrencyCodes: [
+            .usd
+        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -4549,9 +4597,15 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterAwbNumber: "filter_awb_number",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+        filterCoordinatorShipperAccountIds: [
+            "filter_coordinator_shipper_account_ids"
+        ],
         filterExecutorOrgId: "filter_executor_org_id",
         filterCoordinatorLabel: "filter_coordinator_label",
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -5429,7 +5483,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` 
+**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     
 </dd>
 </dl>
@@ -5571,7 +5625,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` 
+**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     
 </dd>
 </dl>
@@ -6329,6 +6383,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -6501,6 +6558,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -7907,6 +7967,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8103,6 +8169,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8291,6 +8363,12 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterType: [
+            .dispatch
+        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8750,7 +8828,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` 
+**providerOrgId:** `String` — Must be a string starting with `org_`
     
 </dd>
 </dl>
@@ -9202,7 +9280,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` 
+**providerOrgId:** `String` — Must be a string starting with `org_`
     
 </dd>
 </dl>
@@ -9882,7 +9960,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` 
+**userId:** `String` — Must be a string starting with `user_`
     
 </dd>
 </dl>
@@ -10506,7 +10584,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` 
+**userId:** `String` — Must be a string starting with `user_`
     
 </dd>
 </dl>
@@ -11264,7 +11342,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` 
+**userId:** `String` — Must be a string starting with `user_`
     
 </dd>
 </dl>
@@ -11321,7 +11399,10 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        filterDepartmentType: [
+            .aerospace
+        ]
     )
 }
 
@@ -11454,7 +11535,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` 
+**userId:** `String` — Must be a string starting with `user_`
     
 </dd>
 </dl>
@@ -13059,9 +13140,18 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
+        filterTaskType: [
+            .reviewOrderDetails
+        ],
+        filterStatus: [
+            .notStarted
+        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -13246,9 +13336,18 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
+        filterTaskType: [
+            .reviewOrderDetails
+        ],
+        filterStatus: [
+            .notStarted
+        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -15174,7 +15273,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` 
+**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     
 </dd>
 </dl>
@@ -17102,7 +17201,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` 
+**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     
 </dd>
 </dl>
@@ -17173,7 +17272,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` 
+**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     
 </dd>
 </dl>
@@ -17244,7 +17343,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` 
+**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     
 </dd>
 </dl>
@@ -17449,7 +17548,7 @@ try await main()
 <dl>
 <dd>
 
-**orgId:** `String` 
+**orgId:** `String` — Must be a string starting with `org_`
     
 </dd>
 </dl>
@@ -18574,7 +18673,10 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         filterAvailableAccordingToDriver: true,
-        filterAvailableAccordingToOperators: true
+        filterAvailableAccordingToOperators: true,
+        filterStatus: [
+            .unassigned
+        ]
     )
 }
 
@@ -18696,6 +18798,9 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
+        filterRole: [
+            .owner
+        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -20385,7 +20490,13 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterIntendedStatus: [
+            .draft
+        ],
         filterOwnedByUserId: "filter_owned_by_user_id",
+        filterServiceLine: [
+            .onDemand
+        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -21118,6 +21229,9 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
+        filterServiceLine: [
+            .onDemand
+        ],
         filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
@@ -29177,6 +29291,15 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
+        filterServiceLine: [
+            .onDemand
+        ],
+        filterOrderClassificationByTaskGroupType: [
+            .chrtGroundProvider
+        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -29194,7 +29317,13 @@ private func main() async throws {
         filterExecutorOrgId: "filter_executor_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+        filterCoordinatorShipperAccountIds: [
+            "filter_coordinator_shipper_account_ids"
+        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
+        filterCoordinatorAssignedUserIds: [
+            "filter_coordinator_assigned_user_ids"
+        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -29508,6 +29637,15 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
+        filterServiceLine: [
+            .onDemand
+        ],
+        filterOrderClassificationByTaskGroupType: [
+            .chrtGroundProvider
+        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -29806,6 +29944,15 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
+        filterServiceLine: [
+            .onDemand
+        ],
+        filterOrderClassificationByTaskGroupType: [
+            .chrtGroundProvider
+        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -29824,7 +29971,13 @@ private func main() async throws {
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+        filterCoordinatorShipperAccountIds: [
+            "filter_coordinator_shipper_account_ids"
+        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
+        filterCoordinatorAssignedUserIds: [
+            "filter_coordinator_assigned_user_ids"
+        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -30154,6 +30307,15 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
+        filterServiceLine: [
+            .onDemand
+        ],
+        filterOrderClassificationByTaskGroupType: [
+            .chrtGroundProvider
+        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -32980,6 +33142,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -33261,6 +33426,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterStatus: [
+            .draft
+        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -34911,10 +35079,10 @@ private func main() async throws {
             geometry: Geometry.geometryCollection(
                 .init(
                     geometries: [
-                        GeometryCollectionGeometriesItem.lineString(
+                        GeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    LineStringCoordinatesItem.position2D(
+                                    CoordinatesItem.position2D(
                                         []
                                     )
                                 ]

@@ -1,3 +1,7 @@
+## 2.0.1 - 2026-08-06
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 2.0.0 - 2026-08-05
 ### Breaking Changes
 * **`LineStringCoordinatesItem`**, **`MultiLineStringCoordinatesItemItem`**, **`PolygonCoordinatesItemItem`**, **`MultiPolygonCoordinatesItemItemItem`**, and **`GeometryCollectionGeometriesItem`** — renamed to `CoordinatesItem`, `CoordinatesItemItem`, `CoordinatesItemItemItem`, and `GeometriesItem` respectively; update all geometry coordinate and collection references.
