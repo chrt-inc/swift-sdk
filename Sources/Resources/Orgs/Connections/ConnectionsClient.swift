@@ -15,6 +15,7 @@ public final class ConnectionsClient: Sendable {
 
     /// Gets the connection between caller's org and the org with the specified handle. | () -> (ShipperCoordinatorConnection1 | CoordinatorExecutorConnection1 | None)
     ///
+    /// - Parameter handle: Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> ConnectionsGetByHandleV1Response? {
         return try await httpClient.performRequest(

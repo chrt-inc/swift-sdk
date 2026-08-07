@@ -9,6 +9,7 @@ public final class OrgBiddingGroupsClient: Sendable {
 
     /// Adds an on-chrt provider org to a bidding group. The provider must have a live provider -> provider connection to the caller's org. Duplicate adds are idempotent ($addToSet). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addProviderMemberV1(groupId: String, providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -90,6 +91,7 @@ public final class OrgBiddingGroupsClient: Sendable {
 
     /// Removes an on-chrt provider org from a bidding group. No-op if not a member. Live Listings retain their snapshotted members. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeProviderMemberV1(groupId: String, providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(

@@ -3,13 +3,13 @@ import Foundation
 extension Requests {
     public struct OrdersAddTaskArtifactReq: Codable, Hashable, Sendable {
         /// Initial status for a non-draft task artifact. Defaults to STAGED. Omit for draft orders.
-        public let status: OrdersAddTaskArtifactReqStatus?
+        public let status: Status?
         public let taskArtifact: TaskArtifactClientCreate1
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
-            status: OrdersAddTaskArtifactReqStatus? = nil,
+            status: Status? = nil,
             taskArtifact: TaskArtifactClientCreate1,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -20,7 +20,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.status = try container.decodeIfPresent(OrdersAddTaskArtifactReqStatus.self, forKey: .status)
+            self.status = try container.decodeIfPresent(Status.self, forKey: .status)
             self.taskArtifact = try container.decode(TaskArtifactClientCreate1.self, forKey: .taskArtifact)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
