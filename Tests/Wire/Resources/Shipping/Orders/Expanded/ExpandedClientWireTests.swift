@@ -130,6 +130,39 @@ import Chrt
                         }
                       ]
                     }
+                  ],
+                  "unassigned_cargos": [
+                    {
+                      "_id": "_id",
+                      "awb_number": "awb_number",
+                      "awb_number_line_items_generated": true,
+                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
+                      "cargo_type": "spare_parts",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "delivered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "description": "description",
+                      "device_ids": [
+                        "device_ids"
+                      ],
+                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                      "exception_at_timestamp": "2024-01-15T09:30:00Z",
+                      "girth_inches": 1.1,
+                      "height_inches": 1.1,
+                      "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
+                      "length_inches": 1.1,
+                      "order_id": "order_id",
+                      "order_short_id": "order_short_id",
+                      "quantity": 1,
+                      "schema_version": 1,
+                      "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                      "stackable": true,
+                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
+                      "status": "draft",
+                      "turnable": true,
+                      "weight_pounds": 1.1,
+                      "width_inches": 1.1
+                    }
                   ]
                 }
                 """.utf8
@@ -261,6 +294,39 @@ import Chrt
                             )
                         )
                     ])
+                )
+            ]),
+            unassignedCargos: Optional([
+                Cargo1(
+                    id: "_id",
+                    awbNumber: Optional("awb_number"),
+                    awbNumberLineItemsGenerated: Optional(true),
+                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    cargoType: .spareParts,
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: Optional("created_by_user_id"),
+                    deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    description: Optional("description"),
+                    deviceIds: Optional([
+                        "device_ids"
+                    ]),
+                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    girthInches: Optional(1.1),
+                    heightInches: Optional(1.1),
+                    inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lengthInches: Optional(1.1),
+                    orderId: "order_id",
+                    orderShortId: "order_short_id",
+                    quantity: Optional(1),
+                    schemaVersion: 1,
+                    skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    stackable: Optional(true),
+                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    status: Optional(.draft),
+                    turnable: Optional(true),
+                    weightPounds: Optional(1.1),
+                    widthInches: Optional(1.1)
                 )
             ])
         )
@@ -890,6 +956,39 @@ import Chrt
                         }
                       ]
                     }
+                  ],
+                  "unassigned_cargos": [
+                    {
+                      "_id": "_id",
+                      "awb_number": "awb_number",
+                      "awb_number_line_items_generated": true,
+                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
+                      "cargo_type": "spare_parts",
+                      "created_by_org_id": "created_by_org_id",
+                      "created_by_user_id": "created_by_user_id",
+                      "delivered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "description": "description",
+                      "device_ids": [
+                        "device_ids"
+                      ],
+                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                      "exception_at_timestamp": "2024-01-15T09:30:00Z",
+                      "girth_inches": 1.1,
+                      "height_inches": 1.1,
+                      "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
+                      "length_inches": 1.1,
+                      "order_id": "order_id",
+                      "order_short_id": "order_short_id",
+                      "quantity": 1,
+                      "schema_version": 1,
+                      "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                      "stackable": true,
+                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
+                      "status": "draft",
+                      "turnable": true,
+                      "weight_pounds": 1.1,
+                      "width_inches": 1.1
+                    }
                   ]
                 }
                 """.utf8
@@ -1009,6 +1108,39 @@ import Chrt
                         )
                     ])
                 )
+            ]),
+            unassignedCargos: Optional([
+                Cargo1(
+                    id: "_id",
+                    awbNumber: Optional("awb_number"),
+                    awbNumberLineItemsGenerated: Optional(true),
+                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    cargoType: .spareParts,
+                    createdByOrgId: "created_by_org_id",
+                    createdByUserId: Optional("created_by_user_id"),
+                    deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    description: Optional("description"),
+                    deviceIds: Optional([
+                        "device_ids"
+                    ]),
+                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    girthInches: Optional(1.1),
+                    heightInches: Optional(1.1),
+                    inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    lengthInches: Optional(1.1),
+                    orderId: "order_id",
+                    orderShortId: "order_short_id",
+                    quantity: Optional(1),
+                    schemaVersion: 1,
+                    skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    stackable: Optional(true),
+                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    status: Optional(.draft),
+                    turnable: Optional(true),
+                    weightPounds: Optional(1.1),
+                    widthInches: Optional(1.1)
+                )
             ])
         )
         let response = try await client.shipping.orders.expanded.forShipperOperatorsV1(
@@ -1063,6 +1195,17 @@ import Chrt
                             "task_group_type": "chrt_ground_provider"
                           }
                         }
+                      ],
+                      "unassigned_cargos": [
+                        {
+                          "_id": "_id",
+                          "cargo_type": "spare_parts",
+                          "created_by_org_id": "created_by_org_id",
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                          "order_id": "order_id",
+                          "order_short_id": "order_short_id",
+                          "schema_version": 1
+                        }
                       ]
                     }
                   ],
@@ -1113,6 +1256,17 @@ import Chrt
                                 taskGroupType: .chrtGroundProvider
                             )
                         )
+                    ]),
+                    unassignedCargos: Optional([
+                        Cargo1(
+                            id: "_id",
+                            cargoType: .spareParts,
+                            createdByOrgId: "created_by_org_id",
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            orderId: "order_id",
+                            orderShortId: "order_short_id",
+                            schemaVersion: 1
+                        )
                     ])
                 )
             ],
@@ -1124,15 +1278,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1150,13 +1295,7 @@ import Chrt
             filterExecutorOrgId: "filter_executor_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1265,15 +1404,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1407,15 +1537,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1434,13 +1555,7 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1492,6 +1607,17 @@ import Chrt
                             "task_group_type": "chrt_ground_provider"
                           }
                         }
+                      ],
+                      "unassigned_cargos": [
+                        {
+                          "_id": "_id",
+                          "cargo_type": "spare_parts",
+                          "created_by_org_id": "created_by_org_id",
+                          "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                          "order_id": "order_id",
+                          "order_short_id": "order_short_id",
+                          "schema_version": 1
+                        }
                       ]
                     }
                   ],
@@ -1542,6 +1668,17 @@ import Chrt
                                 taskGroupType: .chrtGroundProvider
                             )
                         )
+                    ]),
+                    unassignedCargos: Optional([
+                        Cargo1(
+                            id: "_id",
+                            cargoType: .spareParts,
+                            createdByOrgId: "created_by_org_id",
+                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            orderId: "order_id",
+                            orderShortId: "order_short_id",
+                            schemaVersion: 1
+                        )
                     ])
                 )
             ],
@@ -1553,15 +1690,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

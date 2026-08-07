@@ -24,6 +24,7 @@ public enum CargoTypeEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case birds
     case reptiles
     case mammals
+    case insects
     case crickets
     case other
     case unspecified

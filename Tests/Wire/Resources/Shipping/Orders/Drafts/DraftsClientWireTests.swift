@@ -3,108 +3,6 @@ import Testing
 import Chrt
 
 @Suite("DraftsClient Wire Tests") struct DraftsClientWireTests {
-    @Test func buildV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "notes": [
-                    "notes"
-                  ],
-                  "order_id": "order_id",
-                  "order_short_id": "order_short_id",
-                  "summary": "summary",
-                  "validation_issues": [
-                    "validation_issues"
-                  ],
-                  "validation_passed": true
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrderBuilderRes(
-            notes: Optional([
-                "notes"
-            ]),
-            orderId: Optional("order_id"),
-            orderShortId: Optional("order_short_id"),
-            summary: "summary",
-            validationIssues: Optional([
-                "validation_issues"
-            ]),
-            validationPassed: Optional(true)
-        )
-        let response = try await client.shipping.orders.drafts.buildV1(
-            request: OrderBuilderReq(
-
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func buildPrecheckV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                {
-                  "unresolvable_contact_ids": [
-                    "unresolvable_contact_ids"
-                  ],
-                  "unresolvable_coordinator": true,
-                  "unresolvable_coordinator_shipper_account_ids": [
-                    "unresolvable_coordinator_shipper_account_ids"
-                  ],
-                  "unresolvable_driver_ids": [
-                    "unresolvable_driver_ids"
-                  ],
-                  "unresolvable_off_chrt_executor_org_data_ids": [
-                    "unresolvable_off_chrt_executor_org_data_ids"
-                  ],
-                  "unresolvable_off_chrt_shipper": true,
-                  "valid": true
-                }
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = OrderTemplateResolvabilityRes(
-            unresolvableContactIds: Optional([
-                "unresolvable_contact_ids"
-            ]),
-            unresolvableCoordinator: Optional(true),
-            unresolvableCoordinatorShipperAccountIds: Optional([
-                "unresolvable_coordinator_shipper_account_ids"
-            ]),
-            unresolvableDriverIds: Optional([
-                "unresolvable_driver_ids"
-            ]),
-            unresolvableOffChrtExecutorOrgDataIds: Optional([
-                "unresolvable_off_chrt_executor_org_data_ids"
-            ]),
-            unresolvableOffChrtShipper: Optional(true),
-            valid: true
-        )
-        let response = try await client.shipping.orders.drafts.buildPrecheckV1(
-            request: OrderBuilderReq(
-
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func addCoordinatorTaskListToApplyAtOrderStagingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -235,28 +133,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func imageToTextV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.shipping.orders.drafts.imageToTextV1(
-            request: .init(file: .init(data: Data("".utf8))),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func openV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -317,7 +193,6 @@ import Chrt
                 """
                 {
                   "coordinator_org_id": "coordinator_org_id",
-                  "off_chrt_reference_id": "off_chrt_reference_id",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "order_id": "order_id",
                   "order_short_id": "order_short_id",
@@ -334,7 +209,6 @@ import Chrt
         )
         let expectedResponse = OrdersDraftUpdateRes(
             coordinatorOrgId: Optional("coordinator_org_id"),
-            offChrtReferenceId: Optional("off_chrt_reference_id"),
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             orderId: "order_id",
             orderShortId: "order_short_id",

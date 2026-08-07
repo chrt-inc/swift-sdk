@@ -1,13 +1,23 @@
 import Foundation
 
 public final class ShippingOrdersClient: Sendable {
+    public let cargo: CargoClient
     public let drafts: DraftsClient
     public let expanded: ExpandedClient
+    public let task: TaskClient
+    public let taskArtifact: TaskArtifactClient
+    public let taskGroup: TaskGroupClient
+    public let utils: OrdersUtilsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.cargo = CargoClient(config: config)
         self.drafts = DraftsClient(config: config)
         self.expanded = ExpandedClient(config: config)
+        self.task = TaskClient(config: config)
+        self.taskArtifact = TaskArtifactClient(config: config)
+        self.taskGroup = TaskGroupClient(config: config)
+        self.utils = OrdersUtilsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -148,7 +158,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Updates off_chrt_reference_id on a non-draft order. | authz_personas=[order_creator_org_operators] | (OrdersUpdateOffChrtReferenceIdReq) -> (OrdersUpdateOffChrtReferenceIdRes)
+    /// Updates off_chrt_reference_id on an order. Drafts require the creating org's operator; operational orders require the order creator org's operator. | authz_personas=[draft_creator_org_operator, order_creator_org_operators] | (OrdersUpdateOffChrtReferenceIdReq) -> (OrdersUpdateOffChrtReferenceIdRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateOffChrtReferenceIdV1(orderId: String, request: Requests.OrdersUpdateOffChrtReferenceIdReq, requestOptions: RequestOptions? = nil) async throws -> OrdersUpdateOffChrtReferenceIdRes {

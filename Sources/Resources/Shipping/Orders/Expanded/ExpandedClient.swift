@@ -7,7 +7,7 @@ public final class ExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves an expanded order with optional related data for coordinator operators (the provider org coordinating the order). | authz_personas=[coordinator_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForCoordinator)
+    /// Retrieves an expanded order with optional related data for coordinator operators. Drafts are visible only to operators in the creating provider org; when expand_cargos is requested, the response includes unassigned_cargos. | authz_personas=[coordinator_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForCoordinator)
     ///
     /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -49,7 +49,7 @@ public final class ExpandedClient: Sendable {
         )
     }
 
-    /// Retrieves an expanded order with optional related data for shipper operators. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForShipper)
+    /// Retrieves an expanded order with optional related data for shipper operators. Drafts are visible only to operators in the creating shipper org; when expand_cargos is requested, the response includes unassigned_cargos. | authz_personas=[shipper_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForShipper)
     ///
     /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

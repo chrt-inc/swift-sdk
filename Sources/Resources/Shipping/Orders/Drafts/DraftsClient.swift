@@ -1,59 +1,14 @@
 import Foundation
 
 public final class DraftsClient: Sendable {
-    public let cargo: CargoClient
-    public let expanded: DraftsExpandedClient
-    public let task: TaskClient
-    public let taskArtifact: TaskArtifactClient
-    public let taskGroup: TaskGroupClient
+    public let cargo: DraftsCargoClient
+    public let taskGroup: DraftsTaskGroupClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.cargo = CargoClient(config: config)
-        self.expanded = DraftsExpandedClient(config: config)
-        self.task = TaskClient(config: config)
-        self.taskArtifact = TaskArtifactClient(config: config)
-        self.taskGroup = TaskGroupClient(config: config)
+        self.cargo = DraftsCargoClient(config: config)
+        self.taskGroup = DraftsTaskGroupClient(config: config)
         self.httpClient = HTTPClient(config: config)
-    }
-
-    /// Creates a draft order from an ad-hoc core or saved template. When both a core and template ID are supplied, the core drives the build and the template ID is recorded as provenance. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func buildV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderBuilderRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/drafts/build/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrderBuilderRes.self
-        )
-    }
-
-    /// Reports whether an order builder request's references resolve. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderTemplateResolvabilityRes)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func buildPrecheckV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateResolvabilityRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/drafts/build_precheck/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: OrderTemplateResolvabilityRes.self
-        )
-    }
-
-    /// Creates a draft order from an ad-hoc core or saved template and streams progress events via SSE. When both a core and template ID are supplied, the core drives the build and the template ID is recorded as provenance. | authz: min_org_role=operator | (OrderBuilderReq) -> (OrderBuilderStreamEvent)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func buildWithStreamingV1(request: OrderBuilderReq, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/drafts/build_with_streaming/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: JSONValue.self
-        )
     }
 
     /// Adds a coordinator task list with an optional department override to apply when the draft order is staged. | authz_personas=[coordinator_org_operators] | (UTCDatetime | None) -> (bool)
@@ -119,20 +74,6 @@ public final class DraftsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OrdersDraftDeleteManyRes.self
-        )
-    }
-
-    /// Converts an order screenshot into lightly structured text for the AI order builder. | authz: min_org_role=operator | (UploadFile) -> (str)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func imageToTextV1(request: Requests.BodyPostShippingOrdersDraftsImageToTextV1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/orders/drafts/image_to_text/v1",
-            contentType: .multipartFormData,
-            body: request.asMultipartFormData(),
-            requestOptions: requestOptions,
-            responseType: String.self
         )
     }
 

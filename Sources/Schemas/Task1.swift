@@ -2,7 +2,7 @@ import Foundation
 
 public struct Task1: Codable, Hashable, Sendable {
     public let id: String
-    public let action: ActionType?
+    public let action: ActionModel?
     public let attemptedAtTimestamp: Date?
     public let cancelledAtTimestamp: Date?
     public let cargoIds: [String]?
@@ -43,7 +43,7 @@ public struct Task1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
-        action: ActionType? = nil,
+        action: ActionModel? = nil,
         attemptedAtTimestamp: Date? = nil,
         cancelledAtTimestamp: Date? = nil,
         cargoIds: [String]? = nil,
@@ -114,7 +114,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.action = try container.decodeIfPresent(ActionType.self, forKey: .action)
+        self.action = try container.decodeIfPresent(ActionModel.self, forKey: .action)
         self.attemptedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .attemptedAtTimestamp)
         self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)

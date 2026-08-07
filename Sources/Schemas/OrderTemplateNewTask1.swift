@@ -1,7 +1,7 @@
 import Foundation
 
 public struct OrderTemplateNewTask1: Codable, Hashable, Sendable {
-    public let action: ActionType?
+    public let action: ActionModel?
     public let cargoKeys: [String]?
     public let contactIds: [String]?
     public let coordinatorShipperAccountIds: [String]?
@@ -16,7 +16,7 @@ public struct OrderTemplateNewTask1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        action: ActionType? = nil,
+        action: ActionModel? = nil,
         cargoKeys: [String]? = nil,
         contactIds: [String]? = nil,
         coordinatorShipperAccountIds: [String]? = nil,
@@ -45,7 +45,7 @@ public struct OrderTemplateNewTask1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.action = try container.decodeIfPresent(ActionType.self, forKey: .action)
+        self.action = try container.decodeIfPresent(ActionModel.self, forKey: .action)
         self.cargoKeys = try container.decodeIfPresent([String].self, forKey: .cargoKeys)
         self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)

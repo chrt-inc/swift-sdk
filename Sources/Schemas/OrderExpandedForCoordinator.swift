@@ -9,6 +9,7 @@ public struct OrderExpandedForCoordinator: Codable, Hashable, Sendable {
     public let order: OrderLimitedForCoordinator1
     public let shipperOrgCompanyName: String?
     public let taskGroupsExpanded: [TaskGroupExpanded]?
+    public let unassignedCargos: [Cargo1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -20,6 +21,7 @@ public struct OrderExpandedForCoordinator: Codable, Hashable, Sendable {
         order: OrderLimitedForCoordinator1,
         shipperOrgCompanyName: String? = nil,
         taskGroupsExpanded: [TaskGroupExpanded]? = nil,
+        unassignedCargos: [Cargo1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.coordinatorOrgCompanyName = coordinatorOrgCompanyName
@@ -29,6 +31,7 @@ public struct OrderExpandedForCoordinator: Codable, Hashable, Sendable {
         self.order = order
         self.shipperOrgCompanyName = shipperOrgCompanyName
         self.taskGroupsExpanded = taskGroupsExpanded
+        self.unassignedCargos = unassignedCargos
         self.additionalProperties = additionalProperties
     }
 
@@ -41,6 +44,7 @@ public struct OrderExpandedForCoordinator: Codable, Hashable, Sendable {
         self.order = try container.decode(OrderLimitedForCoordinator1.self, forKey: .order)
         self.shipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .shipperOrgCompanyName)
         self.taskGroupsExpanded = try container.decodeIfPresent([TaskGroupExpanded].self, forKey: .taskGroupsExpanded)
+        self.unassignedCargos = try container.decodeIfPresent([Cargo1].self, forKey: .unassignedCargos)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -54,6 +58,7 @@ public struct OrderExpandedForCoordinator: Codable, Hashable, Sendable {
         try container.encode(self.order, forKey: .order)
         try container.encodeIfPresent(self.shipperOrgCompanyName, forKey: .shipperOrgCompanyName)
         try container.encodeIfPresent(self.taskGroupsExpanded, forKey: .taskGroupsExpanded)
+        try container.encodeIfPresent(self.unassignedCargos, forKey: .unassignedCargos)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -65,5 +70,6 @@ public struct OrderExpandedForCoordinator: Codable, Hashable, Sendable {
         case order
         case shipperOrgCompanyName = "shipper_org_company_name"
         case taskGroupsExpanded = "task_groups_expanded"
+        case unassignedCargos = "unassigned_cargos"
     }
 }

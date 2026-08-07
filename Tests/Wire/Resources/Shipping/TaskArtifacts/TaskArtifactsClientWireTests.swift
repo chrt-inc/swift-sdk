@@ -3,35 +3,6 @@ import Testing
 import Chrt
 
 @Suite("TaskArtifactsClient Wire Tests") struct TaskArtifactsClientWireTests {
-    @Test func addToTaskV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = "string"
-        let response = try await client.shipping.taskArtifacts.addToTaskV1(
-            taskId: "task_id",
-            request: .init(
-                status: .draft,
-                taskArtifact: TaskArtifactClientCreate1(
-                    schemaVersion: 1,
-                    type: .image
-                )
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func completeV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -48,28 +19,6 @@ import Chrt
         )
         let expectedResponse = true
         let response = try await client.shipping.taskArtifacts.completeV1(
-            taskArtifactId: "task_artifact_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func deleteV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Data(
-                """
-                true
-                """.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.shipping.taskArtifacts.deleteV1(
             taskArtifactId: "task_artifact_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

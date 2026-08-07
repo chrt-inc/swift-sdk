@@ -18,7 +18,7 @@ public struct OrderLimitedForCoordinator1: Codable, Hashable, Sendable {
     public let createdByOrgId: String
     /// Must be a string starting with `user_`
     public let createdByUserId: String
-    /// Client-supplied key for use by agentic order builder
+    /// Client-supplied key for idempotent draft creation
     public let creationIdempotencyKey: String?
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?

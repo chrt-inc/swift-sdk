@@ -9,19 +9,6 @@ public final class TasksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a new task to a task group at a specific index. | authz_personas=[task_group_operating_org_operators] | (AddTaskToGroupReq) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addToTaskGroupV1(taskGroupId: String, request: Requests.AddTaskToGroupReq, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .put,
-            path: "/shipping/tasks/add_to_task_group/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
-        )
-    }
-
     /// Marks a task as ATTEMPT with an optional executor organization note. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (AttemptTaskReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -42,18 +29,6 @@ public final class TasksClient: Sendable {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/complete/v1/\(taskId)",
-            requestOptions: requestOptions,
-            responseType: Bool.self
-        )
-    }
-
-    /// Deletes a task. Task must be in STAGED status. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func deleteV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/shipping/tasks/delete/v1/\(taskId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
@@ -81,19 +56,6 @@ public final class TasksClient: Sendable {
             path: "/shipping/tasks/skip/v1/\(taskId)",
             requestOptions: requestOptions,
             responseType: Bool.self
-        )
-    }
-
-    /// Updates a task. Operational fields require task_group_operating_org_operators, comments require order_creator_org_operators, contacts allow either, and coordinator_shipper_account_ids require coordinator_org_operators. | authz_personas=[task_group_operating_org_operators, order_creator_org_operators, coordinator_org_operators] | (TaskClientUpdate1) -> (PydanticObjectId)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(taskId: String, request: TaskClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> String {
-        return try await httpClient.performRequest(
-            method: .patch,
-            path: "/shipping/tasks/update/v1/\(taskId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: String.self
         )
     }
 

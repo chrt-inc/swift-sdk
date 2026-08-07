@@ -22,7 +22,6 @@ public final class CargoaiTrackAndTraceClient: Sendable {
 
     /// Retrieves the stored CargoAi tracking subscription for an AWB. | authz: order participant | () -> (CargoAiTrackAndTraceSubscription1)
     ///
-    /// - Parameter awb: IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func subscriptionV1(awb: String, requestOptions: RequestOptions? = nil) async throws -> CargoAiTrackAndTraceSubscription1 {
         return try await httpClient.performRequest(
@@ -47,7 +46,6 @@ public final class CargoaiTrackAndTraceClient: Sendable {
 
     /// Retrieves stored CargoAi tracking updates for an AWB, latest first (the first item is the current state). | authz: order participant | () -> (list[CargoAiTrackAndTraceUpdate1])
     ///
-    /// - Parameter awb: IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updatesV1(awb: String, requestOptions: RequestOptions? = nil) async throws -> [CargoAiTrackAndTraceUpdate1] {
         return try await httpClient.performRequest(

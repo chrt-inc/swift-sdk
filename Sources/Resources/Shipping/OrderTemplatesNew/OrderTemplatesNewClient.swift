@@ -1,14 +1,14 @@
 import Foundation
 
 public final class OrderTemplatesNewClient: Sendable {
-    public let cargos: OrderTemplatesNewCargosClient
+    public let cargos: CargosClient
     public let taskArtifacts: OrderTemplatesNewTaskArtifactsClient
     public let taskGroups: OrderTemplatesNewTaskGroupsClient
     public let tasks: OrderTemplatesNewTasksClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.cargos = OrderTemplatesNewCargosClient(config: config)
+        self.cargos = CargosClient(config: config)
         self.taskArtifacts = OrderTemplatesNewTaskArtifactsClient(config: config)
         self.taskGroups = OrderTemplatesNewTaskGroupsClient(config: config)
         self.tasks = OrderTemplatesNewTasksClient(config: config)

@@ -5,9 +5,6 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?
-        /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
-        public let offChrtReferenceId: String?
-        public let offChrtReferenceIdSetToNone: Bool?
         public let offChrtShipperOrgDataId: String?
         public let offChrtShipperOrgDataIdSetToNone: Bool?
         public let serviceLine: ServiceLineEnum?
@@ -20,8 +17,6 @@ extension Requests {
         public init(
             coordinatorOrgId: String? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
-            offChrtReferenceId: String? = nil,
-            offChrtReferenceIdSetToNone: Bool? = nil,
             offChrtShipperOrgDataId: String? = nil,
             offChrtShipperOrgDataIdSetToNone: Bool? = nil,
             serviceLine: ServiceLineEnum? = nil,
@@ -31,8 +26,6 @@ extension Requests {
         ) {
             self.coordinatorOrgId = coordinatorOrgId
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
-            self.offChrtReferenceId = offChrtReferenceId
-            self.offChrtReferenceIdSetToNone = offChrtReferenceIdSetToNone
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
             self.offChrtShipperOrgDataIdSetToNone = offChrtShipperOrgDataIdSetToNone
             self.serviceLine = serviceLine
@@ -45,8 +38,6 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
-            self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
-            self.offChrtReferenceIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdSetToNone)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
             self.offChrtShipperOrgDataIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtShipperOrgDataIdSetToNone)
             self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
@@ -60,8 +51,6 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
-            try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
-            try container.encodeIfPresent(self.offChrtReferenceIdSetToNone, forKey: .offChrtReferenceIdSetToNone)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
             try container.encodeIfPresent(self.offChrtShipperOrgDataIdSetToNone, forKey: .offChrtShipperOrgDataIdSetToNone)
             try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
@@ -73,8 +62,6 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorOrgId = "coordinator_org_id"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
-            case offChrtReferenceId = "off_chrt_reference_id"
-            case offChrtReferenceIdSetToNone = "off_chrt_reference_id__set_to_None"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
             case offChrtShipperOrgDataIdSetToNone = "off_chrt_shipper_org_data_id__set_to_None"
             case serviceLine = "service_line"

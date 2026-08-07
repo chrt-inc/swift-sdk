@@ -3,8 +3,6 @@ import Foundation
 public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
-    /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
-    public let offChrtReferenceId: String?
     public let offChrtShipperOrgDataId: String?
     public let orderId: String
     public let orderShortId: String
@@ -16,7 +14,6 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
 
     public init(
         coordinatorOrgId: String? = nil,
-        offChrtReferenceId: String? = nil,
         offChrtShipperOrgDataId: String? = nil,
         orderId: String,
         orderShortId: String,
@@ -25,7 +22,6 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.coordinatorOrgId = coordinatorOrgId
-        self.offChrtReferenceId = offChrtReferenceId
         self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.orderId = orderId
         self.orderShortId = orderShortId
@@ -37,7 +33,6 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
-        self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -50,7 +45,6 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
-        try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -61,7 +55,6 @@ public struct OrdersDraftUpdateRes: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case coordinatorOrgId = "coordinator_org_id"
-        case offChrtReferenceId = "off_chrt_reference_id"
         case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
