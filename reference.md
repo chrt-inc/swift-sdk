@@ -14189,7 +14189,7 @@ try await main()
 </details>
 
 ## Operations OrderInternalMessages S3Objects
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -14201,7 +14201,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (bool)
+Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -17569,7 +17569,7 @@ try await main()
 </details>
 
 ## Orgs ComplianceDocuments S3Object
-<details><summary><code>client.orgs.complianceDocuments.s3Object.<a href="/Sources/Resources/Orgs/ComplianceDocuments/S3Object/S3ObjectClient.swift">addV1</a>(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.orgs.complianceDocuments.s3Object.<a href="/Sources/Resources/Orgs/ComplianceDocuments/S3Object/S3ObjectClient.swift">addV1</a>(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions?) -> OrgComplianceDocumentS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -17581,7 +17581,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (bool)
+Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -23801,7 +23801,7 @@ try await main()
 </details>
 
 ## Shipping Drivers ComplianceDocuments S3Object
-<details><summary><code>client.shipping.drivers.complianceDocuments.s3Object.<a href="/Sources/Resources/Shipping/Drivers/ComplianceDocuments/S3Object/ComplianceDocumentsS3ObjectClient.swift">addV1</a>(driverComplianceDocumentId: String, request: Requests.BodyPostDriverComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.drivers.complianceDocuments.s3Object.<a href="/Sources/Resources/Shipping/Drivers/ComplianceDocuments/S3Object/ComplianceDocumentsS3ObjectClient.swift">addV1</a>(driverComplianceDocumentId: String, request: Requests.BodyPostDriverComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions?) -> DriverComplianceDocumentS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -23813,7 +23813,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file to a driver compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (bool)
+Uploads a file to a driver compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (DriverComplianceDocumentS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -29666,7 +29666,7 @@ try await main()
 </details>
 
 ## Shipping TaskArtifacts S3Object
-<details><summary><code>client.shipping.taskArtifacts.s3Object.<a href="/Sources/Resources/Shipping/TaskArtifacts/S3Object/TaskArtifactsS3ObjectClient.swift">addV1</a>(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.taskArtifacts.s3Object.<a href="/Sources/Resources/Shipping/TaskArtifacts/S3Object/TaskArtifactsS3ObjectClient.swift">addV1</a>(taskArtifactId: String, request: Requests.BodyPostTaskArtifactsS3ObjectAddV1, requestOptions: RequestOptions?) -> TaskArtifactS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -29678,7 +29678,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (TaskArtifactS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -31155,7 +31155,7 @@ try await main()
 </details>
 
 ## Shipping TaskGroups S3Object
-<details><summary><code>client.shipping.taskGroups.s3Object.<a href="/Sources/Resources/Shipping/TaskGroups/S3Object/TaskGroupsS3ObjectClient.swift">addV1</a>(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.taskGroups.s3Object.<a href="/Sources/Resources/Shipping/TaskGroups/S3Object/TaskGroupsS3ObjectClient.swift">addV1</a>(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1, requestOptions: RequestOptions?) -> TaskGroupS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -31167,7 +31167,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (TaskGroupS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>

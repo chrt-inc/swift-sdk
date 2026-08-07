@@ -7,17 +7,17 @@ public final class S3ObjectsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (bool)
+    /// Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addV1(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addV1(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions? = nil) async throws -> OrderInternalMessageS3ObjectMetadata1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/operations/order_internal_messages/s3_objects/add/v1/\(orderId)",
             contentType: .multipartFormData,
             body: request.asMultipartFormData(),
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: OrderInternalMessageS3ObjectMetadata1.self
         )
     }
 

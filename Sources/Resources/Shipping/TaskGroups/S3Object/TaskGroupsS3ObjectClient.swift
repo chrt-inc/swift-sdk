@@ -7,17 +7,17 @@ public final class TaskGroupsS3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (bool)
+    /// Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (TaskGroupS3ObjectMetadata1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addV1(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addV1(taskGroupId: String, request: Requests.BodyPostTaskGroupsS3ObjectAddV1, requestOptions: RequestOptions? = nil) async throws -> TaskGroupS3ObjectMetadata1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/s3_object/add/v1/\(taskGroupId)",
             contentType: .multipartFormData,
             body: request.asMultipartFormData(),
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: TaskGroupS3ObjectMetadata1.self
         )
     }
 

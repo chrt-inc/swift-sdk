@@ -1,3 +1,11 @@
+## 3.0.0 - 2026-08-07
+### Breaking Changes
+* **`S3ObjectsClient.addV1()`** (OrderInternalMessages) now returns `OrderInternalMessageS3ObjectMetadata1` instead of `Bool`; update callers to handle the new metadata struct.
+* **`S3ObjectClient.addV1()`** (OrgComplianceDocuments) now returns `OrgComplianceDocumentS3ObjectMetadata1` instead of `Bool`; update callers to handle the new metadata struct.
+* **`ComplianceDocumentsS3ObjectClient.addV1()`** (Drivers) now returns `DriverComplianceDocumentS3ObjectMetadata1` instead of `Bool`; update callers to handle the new metadata struct.
+* **`TaskArtifactsS3ObjectClient.addV1()`** now returns `TaskArtifactS3ObjectMetadata1` instead of `Bool`; update callers to handle the new metadata struct.
+* **`TaskGroupsS3ObjectClient.addV1()`** now returns `TaskGroupS3ObjectMetadata1` instead of `Bool`; update callers to handle the new metadata struct.
+
 ## 2.0.2 - 2026-08-07
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

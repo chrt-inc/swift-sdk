@@ -7,17 +7,17 @@ public final class S3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (bool)
+    /// Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addV1(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addV1(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions? = nil) async throws -> OrgComplianceDocumentS3ObjectMetadata1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/orgs/compliance_documents/s3_object/add/v1/\(orgComplianceDocumentId)",
             contentType: .multipartFormData,
             body: request.asMultipartFormData(),
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: OrgComplianceDocumentS3ObjectMetadata1.self
         )
     }
 
