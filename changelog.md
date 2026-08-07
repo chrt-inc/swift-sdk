@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-08-07
+### Breaking Changes
+* **`MultiPointCoordinatesItem`**, **`LineStringCoordinatesItem`**, and related per-geometry coordinate types — removed and consolidated into `CoordinatesItem`, `CoordinatesItemItem`, and `CoordinatesItemItemItem`; update all geometry coordinate references to the new names.
+* **`GeometryCollectionGeometriesItem`** — renamed to `GeometriesItem`; update all `GeometryCollection.geometries` references.
+* **`ValidationErrorLocItem`** — renamed to `LocationItem`; update all `ValidationError.loc` access and construction sites.
+* **`LlmModelEnum`** — renamed to `ArchivedModel`; the `model` field on `AiImageDescription` now uses `StoredModel` — update all model type references accordingly.
+* **`OrdersAddTaskArtifactReqStatus`** — removed; `Requests.OrdersAddTaskArtifactReq.status` now uses a nested `Status` type — update all construction and switch sites.
+### Added
+* **`AgentClient`** and **`OrderInformationClient`** — new clients accessible via `ChrtClient.agent` for AI-powered order-information conversations, exposing `startV1()`, `messageV1()`, and `updateV1()` methods.
+* **`OrderInformationConversationRes`** — new response struct with `conversationId` and `responseText` returned by conversation endpoints.
+* **`Model`** and **`StoredModel`** — new enums representing approved AI model identifiers and a union of active/archived models.
+* **New optional filter parameters** — added across `BillingNew.Orders`, `Shipping.Orders.Expanded`, `ChrtGroundProviderRates`, `Listings`, `BidThreads`, `OperationsTasks`, and `Orgs.listMembersV1` list methods, including `filterStatus`, `filterServiceLine`, `filterInvoiceTypes`, `filterCurrencyCodes`, `filterCargoTypes`, `filterVehicleTypes`, `filterRole`, and others.
+
 ## 2.0.2 - 2026-08-07
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

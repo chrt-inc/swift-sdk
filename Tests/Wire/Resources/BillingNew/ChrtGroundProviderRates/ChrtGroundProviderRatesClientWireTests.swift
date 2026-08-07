@@ -478,11 +478,26 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterServiceLine: [
+                .onDemand
+            ],
+            filterInvoiceTypes: [
+                .accountsReceivable
+            ],
+            filterCurrencyCodes: [
+                .usd
+            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
             filterShipperAccountId: "filter_shipper_account_id",
             filterCounterpartyDriverId: "filter_counterparty_driver_id",
             filterCounterpartyScopeDriverId: "filter_counterparty_scope_driver_id",
+            filterCargoTypes: [
+                .spareParts
+            ],
+            filterVehicleTypes: [
+                .sedan
+            ],
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
