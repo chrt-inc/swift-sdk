@@ -1,6 +1,7 @@
 import Foundation
 
-public enum LlmModelEnum: String, Codable, Hashable, CaseIterable, Sendable {
+/// Append-only model identifiers accepted when reading persisted data.
+public enum ArchivedModel: String, Codable, Hashable, CaseIterable, Sendable {
     case gpt55 = "gpt-5.5"
     case gpt54 = "gpt-5.4"
     case gpt54Mini = "gpt-5.4-mini"

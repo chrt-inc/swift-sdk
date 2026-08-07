@@ -13,7 +13,7 @@ public struct AiImageDescription: Codable, Hashable, Sendable {
     public let disputeDefensibility: String
     public let locationDescription: String
     public let locationIdentifiers: [String]
-    public let model: LlmModelEnum
+    public let model: StoredModel
     public let packageAppearance: String
     public let packageCount: Int?
     public let packageTypes: [String]
@@ -32,7 +32,7 @@ public struct AiImageDescription: Codable, Hashable, Sendable {
         disputeDefensibility: String,
         locationDescription: String,
         locationIdentifiers: [String],
-        model: LlmModelEnum,
+        model: StoredModel,
         packageAppearance: String,
         packageCount: Int? = nil,
         packageTypes: [String],
@@ -69,7 +69,7 @@ public struct AiImageDescription: Codable, Hashable, Sendable {
         self.disputeDefensibility = try container.decode(String.self, forKey: .disputeDefensibility)
         self.locationDescription = try container.decode(String.self, forKey: .locationDescription)
         self.locationIdentifiers = try container.decode([String].self, forKey: .locationIdentifiers)
-        self.model = try container.decode(LlmModelEnum.self, forKey: .model)
+        self.model = try container.decode(StoredModel.self, forKey: .model)
         self.packageAppearance = try container.decode(String.self, forKey: .packageAppearance)
         self.packageCount = try container.decodeIfPresent(Int.self, forKey: .packageCount)
         self.packageTypes = try container.decode([String].self, forKey: .packageTypes)

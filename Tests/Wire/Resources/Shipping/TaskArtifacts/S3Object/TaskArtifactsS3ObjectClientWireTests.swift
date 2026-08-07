@@ -18,7 +18,7 @@ import Chrt
                     "location_identifiers": [
                       "location_identifiers"
                     ],
-                    "model": "gpt-5.5",
+                    "model": "gpt-5.6-terra",
                     "package_appearance": "package_appearance",
                     "package_count": 1,
                     "package_types": [
@@ -67,7 +67,9 @@ import Chrt
                 locationIdentifiers: [
                     "location_identifiers"
                 ],
-                model: .gpt55,
+                model: StoredModel.model(
+                    .gpt56Terra
+                ),
                 packageAppearance: "package_appearance",
                 packageCount: Optional(1),
                 packageTypes: [
@@ -131,7 +133,9 @@ import Chrt
                 locationIdentifiers: [
                     "location_identifiers"
                 ],
-                model: .gpt55,
+                model: StoredModel.model(
+                    .gpt56Terra
+                ),
                 packageAppearance: "package_appearance",
                 packageTypes: [
                     "package_types"
@@ -186,7 +190,7 @@ import Chrt
                     "location_identifiers": [
                       "location_identifiers"
                     ],
-                    "model": "gpt-5.5",
+                    "model": "gpt-5.6-terra",
                     "package_appearance": "package_appearance",
                     "package_count": 1,
                     "package_types": [
@@ -235,7 +239,9 @@ import Chrt
                 locationIdentifiers: [
                     "location_identifiers"
                 ],
-                model: .gpt55,
+                model: StoredModel.model(
+                    .gpt56Terra
+                ),
                 packageAppearance: "package_appearance",
                 packageCount: Optional(1),
                 packageTypes: [

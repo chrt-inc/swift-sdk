@@ -477,6 +477,242 @@ try await main()
 </dl>
 </details>
 
+## Agent OrderInformation
+<details><summary><code>client.agent.orderInformation.<a href="/Sources/Resources/Agent/OrderInformation/OrderInformationClient.swift">messageV1</a>(conversationId: String, request: Requests.OrderInformationConversationMessageReq, requestOptions: RequestOptions?) -> OrderInformationConversationRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a message to an existing order-information conversation for its owner. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationMessageReq) -> (OrderInformationConversationRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.agent.orderInformation.messageV1(
+        conversationId: "conversation_id",
+        request: .init(message: "message")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderInformationConversationMessageReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agent.orderInformation.<a href="/Sources/Resources/Agent/OrderInformation/OrderInformationClient.swift">startV1</a>(request: Requests.OrderInformationConversationStartReq, requestOptions: RequestOptions?) -> OrderInformationConversationRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Starts an order-information conversation for the authenticated operator. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationStartReq) -> (OrderInformationConversationRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.agent.orderInformation.startV1(request: .init(message: "message"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderInformationConversationStartReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agent.orderInformation.<a href="/Sources/Resources/Agent/OrderInformation/OrderInformationClient.swift">updateV1</a>(conversationId: String, request: Requests.OrderInformationConversationClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an order-information conversation's title for its owner. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.agent.orderInformation.updateV1(
+        conversationId: "conversation_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderInformationConversationClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Analytics Shipping
 <details><summary><code>client.analytics.shipping.<a href="/Sources/Resources/Analytics/Shipping/ShippingClient.swift">retrieveOrdersCountV1</a>(request: Requests.AnalyticsTimePeriodReq, requestOptions: RequestOptions?) -> AnalyticsTimeBucketRes</code></summary>
 <dl>
@@ -29635,7 +29871,9 @@ private func main() async throws {
             locationIdentifiers: [
                 "location_identifiers"
             ],
-            model: .gpt55,
+            model: StoredModel.model(
+                .gpt56Terra
+            ),
             packageAppearance: "package_appearance",
             packageTypes: [
                 "package_types"
