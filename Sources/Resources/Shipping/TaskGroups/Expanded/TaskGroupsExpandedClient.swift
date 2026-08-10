@@ -7,39 +7,26 @@ public final class TaskGroupsExpandedClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves an expanded task group with optional related data for coordinator operators (the provider org coordinating the order). | authz_personas=[coordinator_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+    /// Retrieves an expanded task group with optional related data for its assigned driver. | authz_personas=[driver_for_executor] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func forCoordinatorOperatorsV1(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
+    public func forDriverV1(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping/task_groups/expanded/for_coordinator_operators/v1/\(taskGroupId)",
+            path: "/shipping/task_groups/expanded/for_driver/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: TaskGroupExpanded.self
         )
     }
 
-    /// Retrieves an expanded task group with optional related data for the driver assigned to it (a driver of the executor provider org). | authz_personas=[driver_for_executor] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+    /// Retrieves an expanded task group when the caller's provider org is its coordinator, executor, or both. Coordinator-only callers receive empty executor_org_notes; executor-only callers receive empty coordinator_shipper_account_ids. Executor notes are limited to the caller's org. | authz_personas=[coordinator_org_operators, executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func forDriverForExecutorV1(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
+    public func forProviderOperatorsV1(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping/task_groups/expanded/for_driver_for_executor/v1/\(taskGroupId)",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: TaskGroupExpanded.self
-        )
-    }
-
-    /// Retrieves an expanded task group with optional related data for executor operators (the provider org doing the work on this task group). | authz_personas=[executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func forExecutorOperatorsV1(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpanded {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/shipping/task_groups/expanded/for_executor_operators/v1/\(taskGroupId)",
+            path: "/shipping/task_groups/expanded/for_provider_operators/v1/\(taskGroupId)",
             body: request,
             requestOptions: requestOptions,
             responseType: TaskGroupExpanded.self
@@ -64,10 +51,10 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForDriverForExecutorV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping/task_groups/expanded/list/for_driver_for_executor/v1",
+            path: "/shipping/task_groups/expanded/list/for_driver/v1",
             queryParams: [
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
@@ -99,16 +86,17 @@ public final class TaskGroupsExpandedClient: Sendable {
         )
     }
 
-    /// Lists expanded task groups where the caller's provider org is the executor. Filtering, sorting, pagination, optional full-text search. | authz_personas=[executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
+    /// Lists expanded task groups where the caller's provider org is the coordinator, executor, or both. Filtering, sorting, pagination, optional full-text search. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForExecutorOperatorsV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterDriverId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForProviderOperatorsV1(providerRole: TaskGroupProviderRoleFilterEnum? = nil, sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: TaskGroupStatusEnum1? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterDriverId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping/task_groups/expanded/list/for_executor_operators/v1",
+            path: "/shipping/task_groups/expanded/list/for_provider_operators/v1",
             queryParams: [
+                "provider_role": providerRole.map { .string($0.rawValue) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 

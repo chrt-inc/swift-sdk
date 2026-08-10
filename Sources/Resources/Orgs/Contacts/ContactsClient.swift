@@ -57,7 +57,7 @@ public final class ContactsClient: Sendable {
         )
     }
 
-    /// Lists organization-created contacts with association filters and search. | authz: min_org_role=operator | () -> (ContactListRes)
+    /// Lists organization-created contacts with associated organizations and accounts expanded. | authz: min_org_role=operator | () -> (ContactListRes)
     ///
     /// - Parameter search: Full-text search query
     /// - Parameter filterOrgId: Filter by associated on-CHRT organization

@@ -1,6 +1,7 @@
 import Foundation
 
 public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
+    public let expandAccounts: Bool?
     public let expandCargos: Bool?
     public let expandContacts: Bool?
     public let expandCoordinatorOrgCompanyName: Bool?
@@ -17,6 +18,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        expandAccounts: Bool? = nil,
         expandCargos: Bool? = nil,
         expandContacts: Bool? = nil,
         expandCoordinatorOrgCompanyName: Bool? = nil,
@@ -31,6 +33,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         expandTasks: Bool? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.expandAccounts = expandAccounts
         self.expandCargos = expandCargos
         self.expandContacts = expandContacts
         self.expandCoordinatorOrgCompanyName = expandCoordinatorOrgCompanyName
@@ -48,6 +51,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.expandAccounts = try container.decodeIfPresent(Bool.self, forKey: .expandAccounts)
         self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
         self.expandContacts = try container.decodeIfPresent(Bool.self, forKey: .expandContacts)
         self.expandCoordinatorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgCompanyName)
@@ -66,6 +70,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.expandAccounts, forKey: .expandAccounts)
         try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
         try container.encodeIfPresent(self.expandContacts, forKey: .expandContacts)
         try container.encodeIfPresent(self.expandCoordinatorOrgCompanyName, forKey: .expandCoordinatorOrgCompanyName)
@@ -82,6 +87,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case expandAccounts = "expand_accounts"
         case expandCargos = "expand_cargos"
         case expandContacts = "expand_contacts"
         case expandCoordinatorOrgCompanyName = "expand_coordinator_org_company_name"

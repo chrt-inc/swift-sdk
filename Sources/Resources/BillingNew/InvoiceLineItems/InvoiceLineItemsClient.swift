@@ -136,7 +136,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Lists owner-scoped invoice line items with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemListRes)
+    /// Lists owner-scoped invoice line items with attached invoices expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order.

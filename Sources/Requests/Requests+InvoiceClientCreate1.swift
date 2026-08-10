@@ -12,6 +12,8 @@ extension Requests {
         public let exportRefSageDepartmentId: String?
         public let invoiceType: InvoiceTypeEnum1
         public let name: String?
+        public let periodEndAtTimestamp: Date?
+        public let periodStartAtTimestamp: Date?
         public let schemaVersion: Int
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
@@ -26,6 +28,8 @@ extension Requests {
             exportRefSageDepartmentId: String? = nil,
             invoiceType: InvoiceTypeEnum1,
             name: String? = nil,
+            periodEndAtTimestamp: Date? = nil,
+            periodStartAtTimestamp: Date? = nil,
             schemaVersion: Int,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -38,6 +42,8 @@ extension Requests {
             self.exportRefSageDepartmentId = exportRefSageDepartmentId
             self.invoiceType = invoiceType
             self.name = name
+            self.periodEndAtTimestamp = periodEndAtTimestamp
+            self.periodStartAtTimestamp = periodStartAtTimestamp
             self.schemaVersion = schemaVersion
             self.additionalProperties = additionalProperties
         }
@@ -53,6 +59,8 @@ extension Requests {
             self.exportRefSageDepartmentId = try container.decodeIfPresent(String.self, forKey: .exportRefSageDepartmentId)
             self.invoiceType = try container.decode(InvoiceTypeEnum1.self, forKey: .invoiceType)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
+            self.periodEndAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .periodEndAtTimestamp)
+            self.periodStartAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .periodStartAtTimestamp)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
@@ -69,6 +77,8 @@ extension Requests {
             try container.encodeIfPresent(self.exportRefSageDepartmentId, forKey: .exportRefSageDepartmentId)
             try container.encode(self.invoiceType, forKey: .invoiceType)
             try container.encodeIfPresent(self.name, forKey: .name)
+            try container.encodeIfPresent(self.periodEndAtTimestamp, forKey: .periodEndAtTimestamp)
+            try container.encodeIfPresent(self.periodStartAtTimestamp, forKey: .periodStartAtTimestamp)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
         }
 
@@ -83,6 +93,8 @@ extension Requests {
             case exportRefSageDepartmentId = "export_ref__sage__department_id"
             case invoiceType = "invoice_type"
             case name
+            case periodEndAtTimestamp = "period_end_at_timestamp"
+            case periodStartAtTimestamp = "period_start_at_timestamp"
             case schemaVersion = "schema_version"
         }
     }

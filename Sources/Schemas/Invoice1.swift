@@ -38,6 +38,8 @@ public struct Invoice1: Codable, Hashable, Sendable {
     public let name: String?
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
+    public let periodEndAtTimestamp: Date
+    public let periodStartAtTimestamp: Date
     public let schemaVersion: Int
     public let status: InvoiceStatusEnum1?
     public let stripeExportedAtTimestamp: Date?
@@ -87,6 +89,8 @@ public struct Invoice1: Codable, Hashable, Sendable {
         mergeStatus: InvoiceMergeStatusEnum1? = nil,
         name: String? = nil,
         ownedByOrgId: String,
+        periodEndAtTimestamp: Date,
+        periodStartAtTimestamp: Date,
         schemaVersion: Int,
         status: InvoiceStatusEnum1? = nil,
         stripeExportedAtTimestamp: Date? = nil,
@@ -132,6 +136,8 @@ public struct Invoice1: Codable, Hashable, Sendable {
         self.mergeStatus = mergeStatus
         self.name = name
         self.ownedByOrgId = ownedByOrgId
+        self.periodEndAtTimestamp = periodEndAtTimestamp
+        self.periodStartAtTimestamp = periodStartAtTimestamp
         self.schemaVersion = schemaVersion
         self.status = status
         self.stripeExportedAtTimestamp = stripeExportedAtTimestamp
@@ -180,6 +186,8 @@ public struct Invoice1: Codable, Hashable, Sendable {
         self.mergeStatus = try container.decodeIfPresent(InvoiceMergeStatusEnum1.self, forKey: .mergeStatus)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
+        self.periodEndAtTimestamp = try container.decode(Date.self, forKey: .periodEndAtTimestamp)
+        self.periodStartAtTimestamp = try container.decode(Date.self, forKey: .periodStartAtTimestamp)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.status = try container.decodeIfPresent(InvoiceStatusEnum1.self, forKey: .status)
         self.stripeExportedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stripeExportedAtTimestamp)
@@ -229,6 +237,8 @@ public struct Invoice1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.mergeStatus, forKey: .mergeStatus)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
+        try container.encode(self.periodEndAtTimestamp, forKey: .periodEndAtTimestamp)
+        try container.encode(self.periodStartAtTimestamp, forKey: .periodStartAtTimestamp)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.stripeExportedAtTimestamp, forKey: .stripeExportedAtTimestamp)
@@ -276,6 +286,8 @@ public struct Invoice1: Codable, Hashable, Sendable {
         case mergeStatus = "merge_status"
         case name
         case ownedByOrgId = "owned_by_org_id"
+        case periodEndAtTimestamp = "period_end_at_timestamp"
+        case periodStartAtTimestamp = "period_start_at_timestamp"
         case schemaVersion = "schema_version"
         case status
         case stripeExportedAtTimestamp = "stripe_exported_at_timestamp"

@@ -45,7 +45,7 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Lists OperationsTasks with department and assigned-user details. | authz: min_org_role=operator | () -> (OperationsTaskExpandedListRes)
+    /// Lists OperationsTasks with task-list, department, and assigned-user details. | authz: min_org_role=operator | () -> (OperationsTaskExpandedListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
@@ -138,16 +138,16 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Sets an OperationsTask's status (not_started / in_progress / completed / skipped / cancelled). Setting COMPLETED stamps completed_at/by; any other status clears them. | authz: min_org_role=operator | (OperationsTaskStatusReq) -> (bool)
+    /// Sets the same status on each selected OperationsTask. Completing tasks stamps completed_at/by while other statuses clear them; missing or cross-org ids are skipped. | authz: min_org_role=operator | (OperationsTasksSetStatusReq1) -> (OperationsTasksStatusUpdateRes1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateStatusV1(taskId: String, request: Requests.OperationsTaskStatusReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func setStatusV1(request: Requests.OperationsTasksSetStatusReq1, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksStatusUpdateRes1 {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/operations/operations_tasks/status/v1/\(taskId)",
+            path: "/operations/operations_tasks/set_status/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: OperationsTasksStatusUpdateRes1.self
         )
     }
 

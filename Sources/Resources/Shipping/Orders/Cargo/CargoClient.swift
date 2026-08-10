@@ -33,6 +33,18 @@ public final class CargoClient: Sendable {
         )
     }
 
+    /// Duplicates cargo and all of its task associations within an order. | () -> (PydanticObjectId)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func duplicateV1(cargoId: String, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/orders/cargo/duplicate/v1/\(cargoId)",
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
     /// Removes cargo from an order task and updates operational cargo status when applicable. | (OrdersUnassociateCargoWithTaskReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

@@ -10,7 +10,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
     public let cargoTypes: [CargoTypeEnum1]?
     public let comments: String?
     public let counterpartyDriverId: String?
-    public let counterpartyDriverIds: [String]?
     public let counterpartyOffChrtOrgDataId: String?
     /// Must be a string starting with `org_`
     public let counterpartyOrgId: String?
@@ -51,7 +50,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         cargoTypes: [CargoTypeEnum1]? = nil,
         comments: String? = nil,
         counterpartyDriverId: String? = nil,
-        counterpartyDriverIds: [String]? = nil,
         counterpartyOffChrtOrgDataId: String? = nil,
         counterpartyOrgId: String? = nil,
         createdAtTimestamp: Date,
@@ -88,7 +86,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         self.cargoTypes = cargoTypes
         self.comments = comments
         self.counterpartyDriverId = counterpartyDriverId
-        self.counterpartyDriverIds = counterpartyDriverIds
         self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
         self.counterpartyOrgId = counterpartyOrgId
         self.createdAtTimestamp = createdAtTimestamp
@@ -128,7 +125,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         self.cargoTypes = try container.decodeIfPresent([CargoTypeEnum1].self, forKey: .cargoTypes)
         self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
-        self.counterpartyDriverIds = try container.decodeIfPresent([String].self, forKey: .counterpartyDriverIds)
         self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
         self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
@@ -169,7 +165,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.cargoTypes, forKey: .cargoTypes)
         try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
-        try container.encodeIfPresent(self.counterpartyDriverIds, forKey: .counterpartyDriverIds)
         try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
         try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
@@ -208,7 +203,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         case cargoTypes = "cargo_types"
         case comments
         case counterpartyDriverId = "counterparty_driver_id"
-        case counterpartyDriverIds = "counterparty_driver_ids"
         case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
         case counterpartyOrgId = "counterparty_org_id"
         case createdAtTimestamp = "created_at_timestamp"

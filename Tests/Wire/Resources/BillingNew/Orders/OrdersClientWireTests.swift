@@ -191,15 +191,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
             filterAwbNumber: "filter_awb_number",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterExecutorOrgId: "filter_executor_org_id",
             filterCoordinatorLabel: "filter_coordinator_label",
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

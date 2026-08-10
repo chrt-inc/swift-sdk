@@ -115,6 +115,15 @@ import Chrt
                         "schema_version": 1,
                         "task_type": "review_order_details",
                         "title": "title"
+                      },
+                      "operations_task_list": {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "updated_at_timestamp": "2024-01-15T09:30:00Z"
                       }
                     }
                   ],
@@ -158,7 +167,16 @@ import Chrt
                         schemaVersion: 1,
                         taskType: .reviewOrderDetails,
                         title: "title"
-                    )
+                    ),
+                    operationsTaskList: Optional(OperationsTaskList1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    ))
                 )
             ],
             totalCount: 1
@@ -169,18 +187,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -272,18 +281,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterOrderIds: [
-                "filter_order_ids"
-            ],
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
-            filterTaskType: [
-                .reviewOrderDetails
-            ],
-            filterStatus: [
-                .notStarted
-            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -323,12 +323,14 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateStatusV11() async throws -> Void {
+    @Test func setStatusV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Data(
                 """
-                true
+                {
+                  "updated_count": 1
+                }
                 """.utf8
             )
         )
@@ -337,10 +339,16 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = true
-        let response = try await client.operations.operationsTasks.updateStatusV1(
-            taskId: "task_id",
-            request: .init(status: .notStarted),
+        let expectedResponse = OperationsTasksStatusUpdateRes1(
+            updatedCount: 1
+        )
+        let response = try await client.operations.operationsTasks.setStatusV1(
+            request: .init(
+                operationsTaskIds: [
+                    "operations_task_ids"
+                ],
+                status: .notStarted
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

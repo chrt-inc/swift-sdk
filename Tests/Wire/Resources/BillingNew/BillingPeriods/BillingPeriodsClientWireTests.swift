@@ -71,6 +71,8 @@ import Chrt
                     "merge_status": "draft",
                     "name": "name",
                     "owned_by_org_id": "owned_by_org_id",
+                    "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                    "period_start_at_timestamp": "2024-01-15T09:30:00Z",
                     "schema_version": 1,
                     "status": "draft",
                     "stripe_exported_at_timestamp": "2024-01-15T09:30:00Z",
@@ -186,6 +188,8 @@ import Chrt
                 mergeStatus: Optional(.draft),
                 name: Optional("name"),
                 ownedByOrgId: "owned_by_org_id",
+                periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 schemaVersion: 1,
                 status: Optional(.draft),
                 stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -410,6 +414,8 @@ import Chrt
                     "merge_status": "draft",
                     "name": "name",
                     "owned_by_org_id": "owned_by_org_id",
+                    "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                    "period_start_at_timestamp": "2024-01-15T09:30:00Z",
                     "schema_version": 1,
                     "status": "draft",
                     "stripe_exported_at_timestamp": "2024-01-15T09:30:00Z",
@@ -525,6 +531,8 @@ import Chrt
                 mergeStatus: Optional(.draft),
                 name: Optional("name"),
                 ownedByOrgId: "owned_by_org_id",
+                periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 schemaVersion: 1,
                 status: Optional(.draft),
                 stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -609,6 +617,8 @@ import Chrt
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                         "last_edited_by_user_id": "last_edited_by_user_id",
                         "owned_by_org_id": "owned_by_org_id",
+                        "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                        "period_start_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1
                       },
                       "invoice_line_item": {
@@ -666,6 +676,8 @@ import Chrt
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
                         ownedByOrgId: "owned_by_org_id",
+                        periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1
                     )),
                     invoiceLineItem: Optional(InvoiceLineItem1(
@@ -692,15 +704,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterStatuses: [
-                .open
-            ],
-            filterInvoiceTypes: [
-                .accountsReceivable
-            ],
-            filterCurrencyCodes: [
-                .usd
-            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
             filterCounterpartyDriverId: "filter_counterparty_driver_id",

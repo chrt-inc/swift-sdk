@@ -312,6 +312,8 @@ import Chrt
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                         "last_edited_by_user_id": "last_edited_by_user_id",
                         "owned_by_org_id": "owned_by_org_id",
+                        "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                        "period_start_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1
                       },
                       "invoice_line_item": {
@@ -519,6 +521,8 @@ import Chrt
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
                         ownedByOrgId: "owned_by_org_id",
+                        periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1
                     )),
                     invoiceLineItem: Optional(InvoiceLineItem1(
@@ -555,7 +559,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -600,7 +604,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -632,7 +636,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -688,7 +692,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -1112,33 +1116,34 @@ import Chrt
                 {
                   "items": [
                     {
-                      "_id": "_id",
-                      "awb_number": "awb_number",
-                      "billing_period_id": "billing_period_id",
-                      "counterparty_driver_id": "counterparty_driver_id",
-                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
-                      "counterparty_org_id": "counterparty_org_id",
-                      "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "created_by_user_id": "created_by_user_id",
-                      "currency_code": "USD",
-                      "description": "description",
-                      "export_ref__sage__item_id": "export_ref__sage__item_id",
-                      "invoice_id": "invoice_id",
-                      "invoice_type": "accounts_receivable",
-                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                      "last_edited_by_user_id": "last_edited_by_user_id",
-                      "line_item_type": "base_rate",
-                      "order_id": "order_id",
-                      "owned_by_org_id": "owned_by_org_id",
-                      "quantity": 1.1,
-                      "rate_sheet_id": "rate_sheet_id",
-                      "schema_version": 1,
-                      "shipper_account_id": "shipper_account_id",
-                      "status": "draft",
-                      "task_group_id": "task_group_id",
-                      "tax_percentage": 1.1,
-                      "unit": "each",
-                      "unit_price": 1.1
+                      "invoice": {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "currency_code": "USD",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                        "period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                        "schema_version": 1
+                      },
+                      "invoice_line_item": {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "unit_price": 1.1
+                      }
                     }
                   ],
                   "total_count": 1
@@ -1153,34 +1158,35 @@ import Chrt
         )
         let expectedResponse = InvoiceLineItemListRes(
             items: [
-                InvoiceLineItem1(
-                    id: "_id",
-                    awbNumber: Optional("awb_number"),
-                    billingPeriodId: Optional("billing_period_id"),
-                    counterpartyDriverId: Optional("counterparty_driver_id"),
-                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
-                    counterpartyOrgId: Optional("counterparty_org_id"),
-                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    createdByUserId: "created_by_user_id",
-                    currencyCode: .usd,
-                    description: "description",
-                    exportRefSageItemId: Optional("export_ref__sage__item_id"),
-                    invoiceId: Optional("invoice_id"),
-                    invoiceType: .accountsReceivable,
-                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    lastEditedByUserId: "last_edited_by_user_id",
-                    lineItemType: .baseRate,
-                    orderId: Optional("order_id"),
-                    ownedByOrgId: "owned_by_org_id",
-                    quantity: 1.1,
-                    rateSheetId: Optional("rate_sheet_id"),
-                    schemaVersion: 1,
-                    shipperAccountId: Optional("shipper_account_id"),
-                    status: Optional(.draft),
-                    taskGroupId: Optional("task_group_id"),
-                    taxPercentage: Optional(1.1),
-                    unit: Optional(.each),
-                    unitPrice: 1.1
+                InvoiceLineItemExpandedListItem(
+                    invoice: Optional(Invoice1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        currencyCode: .usd,
+                        invoiceType: .accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        ownedByOrgId: "owned_by_org_id",
+                        periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        schemaVersion: 1
+                    )),
+                    invoiceLineItem: InvoiceLineItem1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        currencyCode: .usd,
+                        description: "description",
+                        invoiceType: .accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        lineItemType: .baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        unitPrice: 1.1
+                    )
                 )
             ],
             totalCount: 1
@@ -1190,18 +1196,6 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
-            filterInvoiceTypes: [
-                .accountsReceivable
-            ],
-            filterCurrencyCodes: [
-                .usd
-            ],
-            filterLineItemTypes: [
-                .baseRate
-            ],
-            filterUnits: [
-                .each
-            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
             filterCounterpartyDriverId: "filter_counterparty_driver_id",

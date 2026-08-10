@@ -19,7 +19,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Returns the matching owner-counterparty-type-currency draft invoice, or creates one when absent. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
+    /// Returns the matching draft invoice period, or creates one with an optional rolling-month default. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.InvoiceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -106,7 +106,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Lists owner-scoped invoices with search, filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceListRes)
+    /// Lists owner-scoped invoices with related orders, counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceListRes)
     ///
     /// - Parameter search: Search invoice names and descriptions.
     /// - Parameter sortBy: Field to sort by.
@@ -157,6 +157,19 @@ public final class InvoicesClient: Sendable {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/billing_new/invoices/update/v1/\(invoiceId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Updates the period of a draft invoice without changing its attached line items. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoicePeriodUpdateReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updatePeriodV1(invoiceId: String, request: Requests.InvoicePeriodUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing_new/invoices/update_period/v1/\(invoiceId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

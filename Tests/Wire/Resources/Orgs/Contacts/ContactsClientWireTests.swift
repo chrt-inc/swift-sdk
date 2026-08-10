@@ -104,33 +104,36 @@ import Chrt
                 {
                   "items": [
                     {
-                      "_id": "_id",
-                      "account_ids": [
-                        "account_ids"
+                      "accounts": [
+                        {
+                          "_id": "_id",
+                          "created_by_org_id": "created_by_org_id",
+                          "created_by_user_id": "created_by_user_id",
+                          "name": "name",
+                          "schema_version": 1
+                        }
                       ],
-                      "created_by_org_id": "created_by_org_id",
-                      "email_address": "email_address",
-                      "job_title": "job_title",
-                      "location": {
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        },
-                        "type": "Feature"
+                      "contact": {
+                        "_id": "_id",
+                        "created_by_org_id": "created_by_org_id",
+                        "name": "name",
+                        "schema_version": 1
                       },
-                      "name": "name",
-                      "notes": "notes",
-                      "off_chrt_org_data_id": "off_chrt_org_data_id",
-                      "org_id": "org_id",
-                      "phone_number": "phone_number",
-                      "schema_version": 1
+                      "off_chrt_org_data": {
+                        "_id": "_id",
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_type": "provider",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "schema_version": 1
+                      },
+                      "org_public_data": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      }
                     }
                   ],
                   "total_count": 1
@@ -145,38 +148,37 @@ import Chrt
         )
         let expectedResponse = ContactListRes(
             items: [
-                Contact1(
-                    id: "_id",
-                    accountIds: Optional([
-                        "account_ids"
+                ContactExpandedListItem(
+                    accounts: Optional([
+                        Account1(
+                            id: "_id",
+                            createdByOrgId: "created_by_org_id",
+                            createdByUserId: "created_by_user_id",
+                            name: "name",
+                            schemaVersion: 1
+                        )
                     ]),
-                    createdByOrgId: "created_by_org_id",
-                    emailAddress: Optional("email_address"),
-                    jobTitle: Optional("job_title"),
-                    location: Optional(LocationFeature(
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                CoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        ),
-                        type: .feature
+                    contact: Contact1(
+                        id: "_id",
+                        createdByOrgId: "created_by_org_id",
+                        name: "name",
+                        schemaVersion: 1
+                    ),
+                    offChrtOrgData: Optional(OffChrtOrgData1(
+                        id: "_id",
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgType: .provider,
+                        ownedByOrgId: "owned_by_org_id",
+                        schemaVersion: 1
                     )),
-                    name: "name",
-                    notes: Optional("notes"),
-                    offChrtOrgDataId: Optional("off_chrt_org_data_id"),
-                    orgId: Optional("org_id"),
-                    phoneNumber: Optional("phone_number"),
-                    schemaVersion: 1
+                    orgPublicData: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    ))
                 )
             ],
             totalCount: 1
@@ -292,7 +294,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]

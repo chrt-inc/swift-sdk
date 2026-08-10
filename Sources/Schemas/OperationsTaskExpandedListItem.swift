@@ -4,6 +4,7 @@ public struct OperationsTaskExpandedListItem: Codable, Hashable, Sendable {
     public let assignedUsers: [OrgMemberDetails]
     public let department: Department1?
     public let operationsTask: OperationsTask1
+    public let operationsTaskList: OperationsTaskList1?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -11,11 +12,13 @@ public struct OperationsTaskExpandedListItem: Codable, Hashable, Sendable {
         assignedUsers: [OrgMemberDetails],
         department: Department1? = nil,
         operationsTask: OperationsTask1,
+        operationsTaskList: OperationsTaskList1? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.assignedUsers = assignedUsers
         self.department = department
         self.operationsTask = operationsTask
+        self.operationsTaskList = operationsTaskList
         self.additionalProperties = additionalProperties
     }
 
@@ -24,6 +27,7 @@ public struct OperationsTaskExpandedListItem: Codable, Hashable, Sendable {
         self.assignedUsers = try container.decode([OrgMemberDetails].self, forKey: .assignedUsers)
         self.department = try container.decodeIfPresent(Department1.self, forKey: .department)
         self.operationsTask = try container.decode(OperationsTask1.self, forKey: .operationsTask)
+        self.operationsTaskList = try container.decodeIfPresent(OperationsTaskList1.self, forKey: .operationsTaskList)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -33,6 +37,7 @@ public struct OperationsTaskExpandedListItem: Codable, Hashable, Sendable {
         try container.encode(self.assignedUsers, forKey: .assignedUsers)
         try container.encodeIfPresent(self.department, forKey: .department)
         try container.encode(self.operationsTask, forKey: .operationsTask)
+        try container.encodeIfPresent(self.operationsTaskList, forKey: .operationsTaskList)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -40,5 +45,6 @@ public struct OperationsTaskExpandedListItem: Codable, Hashable, Sendable {
         case assignedUsers = "assigned_users"
         case department
         case operationsTask = "operations_task"
+        case operationsTaskList = "operations_task_list"
     }
 }

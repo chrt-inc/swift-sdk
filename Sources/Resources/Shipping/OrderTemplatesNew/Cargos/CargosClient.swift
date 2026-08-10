@@ -7,6 +7,18 @@ public final class CargosClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Duplicates cargo and its task associations in an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func postDuplicateV1(orderTemplateId: String, cargoKey: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/order_templates_new/cargos/duplicate/v1/\(orderTemplateId)/\(cargoKey)",
+            requestOptions: requestOptions,
+            responseType: OrderTemplateNew1.self
+        )
+    }
+
     /// Reorders cargo in an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoReorderReq1) -> (OrderTemplateNew1)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

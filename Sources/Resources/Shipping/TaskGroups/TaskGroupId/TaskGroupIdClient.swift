@@ -11,23 +11,26 @@ public final class TaskGroupIdClient: Sendable {
     ///
     /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func forDriverForExecutorV1(orderRef: String, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func forDriverV1(orderRef: String, requestOptions: RequestOptions? = nil) async throws -> [String] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping/task_groups/task_group_id/for_driver_for_executor/v1/\(orderRef)",
+            path: "/shipping/task_groups/task_group_id/for_driver/v1/\(orderRef)",
             requestOptions: requestOptions,
             responseType: [String].self
         )
     }
 
-    /// Retrieves the task group IDs where the caller's provider org is the executor for an order's task groups. | authz_personas=[executor_org_operators] | () -> (list[PydanticObjectId])
+    /// Retrieves task group IDs where the caller's provider org is the coordinator, executor, or both. | authz_personas=[coordinator_org_operators, executor_org_operators] | () -> (list[PydanticObjectId])
     ///
     /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func forExecutorOperatorsV1(orderRef: String, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func forProviderOperatorsV1(orderRef: String, providerRole: TaskGroupProviderRoleFilterEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping/task_groups/task_group_id/for_executor_operators/v1/\(orderRef)",
+            path: "/shipping/task_groups/task_group_id/for_provider_operators/v1/\(orderRef)",
+            queryParams: [
+                "provider_role": providerRole.map { .string($0.rawValue) }
+            ],
             requestOptions: requestOptions,
             responseType: [String].self
         )

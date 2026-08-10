@@ -1,9 +1,11 @@
 import Foundation
 
 public final class OrdersClient: Sendable {
+    public let rateSheetLineItems: RateSheetLineItemsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.rateSheetLineItems = RateSheetLineItemsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

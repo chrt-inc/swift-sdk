@@ -174,9 +174,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -1388,15 +1385,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatuses: [
-            .open
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -2036,7 +2024,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">listV1</a>(search: String?, sortBy: ChrtGroundProviderRatesSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterServiceLine: ServiceLineEnum?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterCounterpartyDriverId: String?, filterCounterpartyScopeDriverId: String?, filterCargoTypes: CargoTypeEnum1?, filterVehicleTypes: VehicleTypeEnum?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ChrtGroundProviderRatesListRes</code></summary>
+<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">listV1</a>(search: String?, sortBy: ChrtGroundProviderRatesSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterServiceLine: ServiceLineEnum?, filterInvoiceTypes: InvoiceTypeEnum1?, filterCurrencyCodes: BillingCurrencyCodeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterCounterpartyDriverId: String?, filterCargoTypes: CargoTypeEnum1?, filterVehicleTypes: VehicleTypeEnum?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ChrtGroundProviderRatesListRes</code></summary>
 <dl>
 <dd>
 
@@ -2075,26 +2063,10 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterShipperAccountId: "filter_shipper_account_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
-        filterCounterpartyScopeDriverId: "filter_counterparty_scope_driver_id",
-        filterCargoTypes: [
-            .spareParts
-        ],
-        filterVehicleTypes: [
-            .sedan
-        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -2206,14 +2178,6 @@ try await main()
 <dd>
 
 **filterCounterpartyDriverId:** `String?` — Filter by a driver counterparty.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCounterpartyScopeDriverId:** `String?` — Filter by a driver included in rate-sheet scope.
     
 </dd>
 </dl>
@@ -3248,7 +3212,7 @@ try await main()
 <dl>
 <dd>
 
-Lists owner-scoped invoice line items with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemListRes)
+Lists owner-scoped invoice line items with attached invoices expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemListRes)
 </dd>
 </dl>
 </dd>
@@ -3274,18 +3238,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
-        filterLineItemTypes: [
-            .baseRate
-        ],
-        filterUnits: [
-            .each
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -3725,7 +3677,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the matching owner-counterparty-type-currency draft invoice, or creates one when absent. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
+Returns the matching draft invoice period, or creates one with an optional rolling-month default. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -4274,7 +4226,7 @@ try await main()
 <dl>
 <dd>
 
-Lists owner-scoped invoices with search, filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceListRes)
+Lists owner-scoped invoices with related orders, counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceListRes)
 </dd>
 </dl>
 </dd>
@@ -4301,15 +4253,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatuses: [
-            .draft
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -4539,6 +4482,91 @@ try await main()
 <dd>
 
 **request:** `Requests.InvoiceClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">updatePeriodV1</a>(invoiceId: String, request: Requests.InvoicePeriodUpdateReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the period of a draft invoice without changing its attached line items. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoicePeriodUpdateReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoices.updatePeriodV1(
+        invoiceId: "invoice_id",
+        request: .init(
+            periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.InvoicePeriodUpdateReq` 
     
 </dd>
 </dl>
@@ -4833,15 +4861,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterAwbNumber: "filter_awb_number",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterExecutorOrgId: "filter_executor_org_id",
         filterCoordinatorLabel: "filter_coordinator_label",
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -5068,6 +5090,80 @@ try await main()
 <dd>
 
 **request:** `Requests.OrderBillingExpandedListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## BillingNew Orders RateSheetLineItems
+<details><summary><code>client.billingNew.orders.rateSheetLineItems.<a href="/Sources/Resources/BillingNew/Orders/RateSheetLineItems/RateSheetLineItemsClient.swift">generateManyV1</a>(request: Requests.OrderRateSheetLineItemsGenerateManyReq, requestOptions: RequestOptions?) -> OrderRateSheetLineItemsGenerateManyRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves all matching CHRT-ground provider rate sheets for each unique Order and independently replaces that Order's rate-sheet-derived line items on draft invoices. Orders without matching rate sheets are skipped, expected per-Order failures are returned without stopping later Orders, and invoice approval or finalization is not performed. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderRateSheetLineItemsGenerateManyReq) -> (OrderRateSheetLineItemsGenerateManyRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.rateSheetLineItems.generateManyV1(request: .init(orderIds: [
+        "order_ids"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderRateSheetLineItemsGenerateManyReq` 
     
 </dd>
 </dl>
@@ -5719,7 +5815,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+**awb:** `String` 
     
 </dd>
 </dl>
@@ -5861,7 +5957,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+**awb:** `String` 
     
 </dd>
 </dl>
@@ -6619,9 +6715,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -6794,9 +6887,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -8203,12 +8293,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8405,12 +8489,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8599,12 +8677,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -9064,7 +9136,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — Must be a string starting with `org_`
+**providerOrgId:** `String` 
     
 </dd>
 </dl>
@@ -9516,7 +9588,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — Must be a string starting with `org_`
+**providerOrgId:** `String` 
     
 </dd>
 </dl>
@@ -10196,7 +10268,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -10820,7 +10892,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -11578,7 +11650,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -11635,10 +11707,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -11771,7 +11840,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -13349,7 +13418,7 @@ try await main()
 <dl>
 <dd>
 
-Lists OperationsTasks with department and assigned-user details. | authz: min_org_role=operator | () -> (OperationsTaskExpandedListRes)
+Lists OperationsTasks with task-list, department, and assigned-user details. | authz: min_org_role=operator | () -> (OperationsTaskExpandedListRes)
 </dd>
 </dl>
 </dd>
@@ -13376,18 +13445,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -13572,18 +13632,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -13805,7 +13856,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">updateStatusV1</a>(taskId: String, request: Requests.OperationsTaskStatusReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">setStatusV1</a>(request: Requests.OperationsTasksSetStatusReq1, requestOptions: RequestOptions?) -> OperationsTasksStatusUpdateRes1</code></summary>
 <dl>
 <dd>
 
@@ -13817,7 +13868,7 @@ try await main()
 <dl>
 <dd>
 
-Sets an OperationsTask's status (not_started / in_progress / completed / skipped / cancelled). Setting COMPLETED stamps completed_at/by; any other status clears them. | authz: min_org_role=operator | (OperationsTaskStatusReq) -> (bool)
+Sets the same status on each selected OperationsTask. Completing tasks stamps completed_at/by while other statuses clear them; missing or cross-org ids are skipped. | authz: min_org_role=operator | (OperationsTasksSetStatusReq1) -> (OperationsTasksStatusUpdateRes1)
 </dd>
 </dl>
 </dd>
@@ -13838,10 +13889,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.operations.operationsTasks.updateStatusV1(
-        taskId: "task_id",
-        request: .init(status: .notStarted)
-    )
+    _ = try await client.operations.operationsTasks.setStatusV1(request: .init(
+        operationsTaskIds: [
+            "operations_task_ids"
+        ],
+        status: .notStarted
+    ))
 }
 
 try await main()
@@ -13859,15 +13912,7 @@ try await main()
 <dl>
 <dd>
 
-**taskId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OperationsTaskStatusReq` 
+**request:** `Requests.OperationsTasksSetStatusReq1` 
     
 </dd>
 </dl>
@@ -15509,7 +15554,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -16697,7 +16742,7 @@ try await main()
 <dl>
 <dd>
 
-Lists organization-created contacts with association filters and search. | authz: min_org_role=operator | () -> (ContactListRes)
+Lists organization-created contacts with associated organizations and accounts expanded. | authz: min_org_role=operator | () -> (ContactListRes)
 </dd>
 </dl>
 </dd>
@@ -17437,7 +17482,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17508,7 +17553,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17579,7 +17624,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17784,7 +17829,7 @@ try await main()
 <dl>
 <dd>
 
-**orgId:** `String` — Must be a string starting with `org_`
+**orgId:** `String` 
     
 </dd>
 </dl>
@@ -18597,10 +18642,7 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         filterAvailableAccordingToDriver: true,
-        filterAvailableAccordingToOperators: true,
-        filterStatus: [
-            .unassigned
-        ]
+        filterAvailableAccordingToOperators: true
     )
 }
 
@@ -18722,9 +18764,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -20346,9 +20385,6 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
-        filterServiceLine: [
-            .onDemand
-        ],
         filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
@@ -24333,6 +24369,88 @@ try await main()
 </details>
 
 ## Shipping OrderTemplatesNew Cargos
+<details><summary><code>client.shipping.orderTemplatesNew.cargos.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Cargos/CargosClient.swift">postDuplicateV1</a>(orderTemplateId: String, cargoKey: String, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Duplicates cargo and its task associations in an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.cargos.postDuplicateV1(
+        orderTemplateId: "order_template_id",
+        cargoKey: "cargo_key"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cargoKey:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.orderTemplatesNew.cargos.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/Cargos/CargosClient.swift">putReorderV1</a>(orderTemplateId: String, request: Requests.OrderTemplateNewCargoReorderReq1, requestOptions: RequestOptions?) -> OrderTemplateNew1</code></summary>
 <dl>
 <dd>
@@ -26146,6 +26264,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shipping.orders.cargo.<a href="/Sources/Resources/Shipping/Orders/Cargo/CargoClient.swift">duplicateV1</a>(cargoId: String, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Duplicates cargo and all of its task associations within an order. | () -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.cargo.duplicateV1(cargoId: "cargo_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.orders.cargo.<a href="/Sources/Resources/Shipping/Orders/Cargo/CargoClient.swift">unassociateWithTaskV1</a>(request: Requests.OrdersUnassociateCargoWithTaskReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -27010,174 +27199,6 @@ try await main()
 </details>
 
 ## Shipping Orders Expanded
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">forCoordinatorOperatorsV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpandedForCoordinator</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves an expanded order with optional related data for coordinator operators. Drafts are visible only to operators in the creating provider org; when expand_cargos is requested, the response includes unassigned_cargos. | authz_personas=[coordinator_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForCoordinator)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orders.expanded.forCoordinatorOperatorsV1(
-        orderRef: "order_ref",
-        request: OrderAndTaskGroupExpandedReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderAndTaskGroupExpandedReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">forExecutorOperatorsV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpandedForExecutor</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves an expanded order containing only task groups executed by the caller's provider org. | authz_personas=[order_executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForExecutor)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orders.expanded.forExecutorOperatorsV1(
-        orderRef: "order_ref",
-        request: OrderAndTaskGroupExpandedReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderAndTaskGroupExpandedReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">forProviderOperatorsV1</a>(orderRef: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrderExpandedForProvider</code></summary>
 <dl>
 <dd>
@@ -27190,7 +27211,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an expanded order for a provider org that is the coordinator, an executor, or both, with role-filtered task-group details. Mirrors the per-item projection of the for_provider_operators list route. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForProvider)
+Retrieves an expanded order for a provider org that is the coordinator, an executor, or both. Executor-only callers receive only their task groups. Drafts are visible only to operators in the creating provider org; coordinator responses include unassigned_cargos when expand_cargos is requested. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (OrderExpandedForProvider)
 </dd>
 </dl>
 </dd>
@@ -27346,659 +27367,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForCoordinatorOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterServiceLine: ServiceLineEnum?, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: String?, filterCoordinatorDepartmentId: String?, filterCoordinatorAssignedUserIds: String?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForCoordinatorRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists expanded orders where the caller's provider org is the coordinator. Filtering, sorting, pagination, optional search. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListForCoordinatorRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orders.expanded.listForCoordinatorOperatorsV1(
-        sortBy: .draftStartedAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
-        filterAwbNumber: "filter_awb_number",
-        filterHasInvoice: true,
-        filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterInProgressAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterExecutorOrgId: "filter_executor_org_id",
-        filterShipperOrgId: "filter_shipper_org_id",
-        filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
-        filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
-        filterCoordinatorLabel: "filter_coordinator_label",
-        request: .init(body: OrderAndTaskGroupExpandedReq(
-
-        ))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `OrderSortByEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**search:** `String?` — Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `OrderStatusEnum1?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterServiceLine:** `ServiceLineEnum?` — Filter by service line
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderClassificationByTaskGroupType:** `TaskGroupTypeEnum1?` — Filter by global order classification (OBC takes precedence over flight, then ground)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterAwbNumber:** `String?` — Filter by exact AWB number
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterHasInvoice:** `Bool?` — Filter by whether the order has any invoice
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterInProgressAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterInProgressAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCancelledAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCancelledAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterExceptionAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterExceptionAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterExecutorOrgId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterShipperOrgId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOffChrtShipperOrgDataId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCoordinatorShipperAccountIds:** `String?` — Filter by coordinator shipper account IDs
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCoordinatorDepartmentId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCoordinatorAssignedUserIds:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCoordinatorLabel:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderAndTaskGroupExpandedReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForExecutorOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterServiceLine: ServiceLineEnum?, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForExecutorRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Lists expanded orders where the caller's provider org executes at least one task group. Each result contains only that org's task groups. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListForExecutorRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.orders.expanded.listForExecutorOperatorsV1(
-        sortBy: .draftStartedAtTimestamp,
-        sortOrder: .asc,
-        page: 1,
-        pageSize: 1,
-        search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
-        filterAwbNumber: "filter_awb_number",
-        filterHasInvoice: true,
-        filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterInProgressAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCoordinatorOrgId: "filter_coordinator_org_id",
-        filterShipperOrgId: "filter_shipper_org_id",
-        filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        request: .init(body: OrderAndTaskGroupExpandedReq(
-
-        ))
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**sortBy:** `OrderSortByEnum?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**search:** `String?` — Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStatus:** `OrderStatusEnum1?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterServiceLine:** `ServiceLineEnum?` — Filter by service line
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOrderClassificationByTaskGroupType:** `TaskGroupTypeEnum1?` — Filter by global order classification (OBC takes precedence over flight, then ground)
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterAwbNumber:** `String?` — Filter by exact AWB number
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterHasInvoice:** `Bool?` — Filter by whether the order has any invoice
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterDraftStartedAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterStagedAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterInProgressAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterInProgressAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCompletedAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCancelledAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCancelledAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterExceptionAtTimestampLte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterExceptionAtTimestampGte:** `Date?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterCoordinatorOrgId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterShipperOrgId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterOffChrtShipperOrgDataId:** `String?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderAndTaskGroupExpandedReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterServiceLine: ServiceLineEnum?, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: String?, filterCoordinatorDepartmentId: String?, filterCoordinatorAssignedUserIds: String?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: OrderStatusEnum1?, filterServiceLine: ServiceLineEnum?, filterOrderClassificationByTaskGroupType: TaskGroupTypeEnum1?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: String?, filterCoordinatorDepartmentId: String?, filterCoordinatorAssignedUserIds: String?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
 <dl>
 <dd>
 
@@ -28038,15 +27407,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -28062,16 +27422,11 @@ private func main() async throws {
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExecutorOrgId: "filter_executor_org_id",
+        filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -28286,6 +27641,14 @@ try await main()
 <dl>
 <dd>
 
+**filterOffChrtExecutorOrgDataId:** `String?` — Filter by off-CHRT executor org data ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterCoordinatorOrgId:** `String?` 
     
 </dd>
@@ -28401,15 +27764,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -30479,7 +29833,7 @@ try await main()
 </details>
 
 ## Shipping TaskGroups Expanded
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forCoordinatorOperatorsV1</a>(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forDriverV1</a>(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
 <dl>
 <dd>
 
@@ -30491,7 +29845,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an expanded task group with optional related data for coordinator operators (the provider org coordinating the order). | authz_personas=[coordinator_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+Retrieves an expanded task group with optional related data for its assigned driver. | authz_personas=[driver_for_executor] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
 </dd>
 </dl>
 </dd>
@@ -30512,7 +29866,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.expanded.forCoordinatorOperatorsV1(
+    _ = try await client.shipping.taskGroups.expanded.forDriverV1(
         taskGroupId: "task_group_id",
         request: OrderAndTaskGroupExpandedReq(
 
@@ -30563,7 +29917,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forDriverForExecutorV1</a>(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forProviderOperatorsV1</a>(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
 <dl>
 <dd>
 
@@ -30575,7 +29929,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an expanded task group with optional related data for the driver assigned to it (a driver of the executor provider org). | authz_personas=[driver_for_executor] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
+Retrieves an expanded task group when the caller's provider org is its coordinator, executor, or both. Coordinator-only callers receive empty executor_org_notes; executor-only callers receive empty coordinator_shipper_account_ids. Executor notes are limited to the caller's org. | authz_personas=[coordinator_org_operators, executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
 </dd>
 </dl>
 </dd>
@@ -30596,91 +29950,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.expanded.forDriverForExecutorV1(
-        taskGroupId: "task_group_id",
-        request: OrderAndTaskGroupExpandedReq(
-
-        )
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `OrderAndTaskGroupExpandedReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">forExecutorOperatorsV1</a>(taskGroupId: String, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpanded</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves an expanded task group with optional related data for executor operators (the provider org doing the work on this task group). | authz_personas=[executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpanded)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.expanded.forExecutorOperatorsV1(
+    _ = try await client.shipping.taskGroups.expanded.forProviderOperatorsV1(
         taskGroupId: "task_group_id",
         request: OrderAndTaskGroupExpandedReq(
 
@@ -30815,7 +30085,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForDriverForExecutorV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForDriverV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -30848,15 +30118,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.expanded.listForDriverForExecutorV1(
+    _ = try await client.shipping.taskGroups.expanded.listForDriverV1(
         sortBy: .draftStartedAtTimestamp,
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31099,7 +30366,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForExecutorOperatorsV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterDriverId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: TaskGroupProviderRoleFilterEnum?, sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: TaskGroupStatusEnum1?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterDriverId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -31111,7 +30378,7 @@ try await main()
 <dl>
 <dd>
 
-Lists expanded task groups where the caller's provider org is the executor. Filtering, sorting, pagination, optional full-text search. | authz_personas=[executor_org_operators] | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
+Lists expanded task groups where the caller's provider org is the coordinator, executor, or both. Filtering, sorting, pagination, optional full-text search. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (TaskGroupExpandedListRes)
 </dd>
 </dl>
 </dd>
@@ -31132,15 +30399,13 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.expanded.listForExecutorOperatorsV1(
+    _ = try await client.shipping.taskGroups.expanded.listForProviderOperatorsV1(
+        providerRole: .all,
         sortBy: .draftStartedAtTimestamp,
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31176,6 +30441,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**providerRole:** `TaskGroupProviderRoleFilterEnum?` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -31689,7 +30962,7 @@ try await main()
 </details>
 
 ## Shipping TaskGroups TaskGroupId
-<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forDriverForExecutorV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forDriverV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -31722,7 +30995,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.taskGroupId.forDriverForExecutorV1(orderRef: "order_ref")
+    _ = try await client.shipping.taskGroups.taskGroupId.forDriverV1(orderRef: "order_ref")
 }
 
 try await main()
@@ -31760,7 +31033,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forExecutorOperatorsV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forProviderOperatorsV1</a>(orderRef: String, providerRole: TaskGroupProviderRoleFilterEnum?, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -31772,7 +31045,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves the task group IDs where the caller's provider org is the executor for an order's task groups. | authz_personas=[executor_org_operators] | () -> (list[PydanticObjectId])
+Retrieves task group IDs where the caller's provider org is the coordinator, executor, or both. | authz_personas=[coordinator_org_operators, executor_org_operators] | () -> (list[PydanticObjectId])
 </dd>
 </dl>
 </dd>
@@ -31793,7 +31066,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.taskGroups.taskGroupId.forExecutorOperatorsV1(orderRef: "order_ref")
+    _ = try await client.shipping.taskGroups.taskGroupId.forProviderOperatorsV1(
+        orderRef: "order_ref",
+        providerRole: .all
+    )
 }
 
 try await main()
@@ -31812,6 +31088,14 @@ try await main()
 <dd>
 
 **orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**providerRole:** `TaskGroupProviderRoleFilterEnum?` 
     
 </dd>
 </dl>
@@ -32791,10 +32075,10 @@ private func main() async throws {
             geometry: Geometry.geometryCollection(
                 .init(
                     geometries: [
-                        GeometriesItem.lineString(
+                        GeometryCollectionGeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    CoordinatesItem.position2D(
+                                    LineStringCoordinatesItem.position2D(
                                         []
                                     )
                                 ]
@@ -35300,7 +34584,7 @@ try await main()
 </details>
 
 ## Tracking Timeseries TaskGroupByDriver
-<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">dataPointsV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [TaskGroupByDriverDataPoint1]</code></summary>
+<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">dataPointsV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPointsRes</code></summary>
 <dl>
 <dd>
 
@@ -35312,7 +34596,7 @@ try await main()
 <dl>
 <dd>
 
-Returns sampled driver location data points for a task group. Excludes outliers. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (list[TaskGroupByDriverDataPoint1])
+Returns sampled driver location data points and the unique drivers for a task group. Excludes outliers. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (TaskGroupByDriverDataPointsRes)
 </dd>
 </dl>
 </dd>
@@ -35464,7 +34748,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPoint1?</code></summary>
+<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverLastSeenRes?</code></summary>
 <dl>
 <dd>
 
@@ -35476,7 +34760,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a task group. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (TaskGroupByDriverDataPoint1 | None)
+Returns the most recent driver location data point and driver for a task group. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (TaskGroupByDriverLastSeenRes | None)
 </dd>
 </dl>
 </dd>

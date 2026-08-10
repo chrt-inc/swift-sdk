@@ -9,7 +9,6 @@ public final class DepartmentsClient: Sendable {
 
     /// Adds an operator to a department. | authz: min_org_role=administrator | () -> (bool)
     ///
-    /// - Parameter userId: Must be a string starting with `user_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addOperatorV1(departmentId: String, userId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -44,7 +43,6 @@ public final class DepartmentsClient: Sendable {
 
     /// Removes an operator from a department. | authz: min_org_role=administrator | () -> (bool)
     ///
-    /// - Parameter userId: Must be a string starting with `user_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeOperatorV1(departmentId: String, userId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
