@@ -3,13 +3,13 @@ import Foundation
 /// MultiLineString Model
 public struct MultiLineString: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
-    public let coordinates: [[MultiLineStringCoordinatesItemItem]]
+    public let coordinates: [[CoordinatesItemItem]]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         bbox: [JSONValue]? = nil,
-        coordinates: [[MultiLineStringCoordinatesItemItem]],
+        coordinates: [[CoordinatesItemItem]],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.bbox = bbox
@@ -20,7 +20,7 @@ public struct MultiLineString: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-        self.coordinates = try container.decode([[MultiLineStringCoordinatesItemItem]].self, forKey: .coordinates)
+        self.coordinates = try container.decode([[CoordinatesItemItem]].self, forKey: .coordinates)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

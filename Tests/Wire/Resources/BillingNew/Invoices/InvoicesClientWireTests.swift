@@ -400,7 +400,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                LineStringCoordinatesItem.position2D(
+                                                CoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -433,7 +433,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            LineStringCoordinatesItem.position2D(
+                                            CoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -479,7 +479,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            LineStringCoordinatesItem.position2D(
+                                            CoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -512,7 +512,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            LineStringCoordinatesItem.position2D(
+                                            CoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -1238,6 +1238,15 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterStatuses: [
+                .draft
+            ],
+            filterInvoiceTypes: [
+                .accountsReceivable
+            ],
+            filterCurrencyCodes: [
+                .usd
+            ],
             filterCounterpartyOrgId: "filter_counterparty_org_id",
             filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
             filterCounterpartyDriverId: "filter_counterparty_driver_id",

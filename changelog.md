@@ -1,3 +1,7 @@
+## 2.0.1 - 2026-08-10
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 2.0.0 - 2026-08-07
 ### Breaking Changes
 * **`MultiPointCoordinatesItem`**, **`LineStringCoordinatesItem`**, and related per-geometry coordinate types — removed and consolidated into `CoordinatesItem`, `CoordinatesItemItem`, and `CoordinatesItemItemItem`; update all geometry coordinate references to the new names.
