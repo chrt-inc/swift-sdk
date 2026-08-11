@@ -3,7 +3,7 @@ import Foundation
 public struct ValidationError: Codable, Hashable, Sendable {
     public let ctx: [String: JSONValue]?
     public let input: JSONValue?
-    public let loc: [ValidationErrorLocItem]
+    public let loc: [LocationItem]
     public let msg: String
     public let type: String
     /// Additional properties that are not explicitly defined in the schema
@@ -12,7 +12,7 @@ public struct ValidationError: Codable, Hashable, Sendable {
     public init(
         ctx: [String: JSONValue]? = nil,
         input: JSONValue? = nil,
-        loc: [ValidationErrorLocItem],
+        loc: [LocationItem],
         msg: String,
         type: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -29,7 +29,7 @@ public struct ValidationError: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.ctx = try container.decodeIfPresent([String: JSONValue].self, forKey: .ctx)
         self.input = try container.decodeIfPresent(JSONValue.self, forKey: .input)
-        self.loc = try container.decode([ValidationErrorLocItem].self, forKey: .loc)
+        self.loc = try container.decode([LocationItem].self, forKey: .loc)
         self.msg = try container.decode(String.self, forKey: .msg)
         self.type = try container.decode(String.self, forKey: .type)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)

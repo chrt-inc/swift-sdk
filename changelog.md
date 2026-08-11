@@ -1,3 +1,15 @@
+## 3.0.0 - 2026-08-11
+### Breaking Changes
+* **`Session1`** — renamed to `Session2`; `destinationGeofenceEntered`, `destinationGeofenceLocation`, and `destinationGeofenceRadiusMiles` fields removed — replace with the new `geofences: [SessionGeofence1]` array and access `entered`, `enteredAtTimestamp`, `location`, and `radiusMiles` on each element.
+* **`InvoiceLineItem1`** — no longer returned directly in invoice line item lists; use `InvoiceLineItemExpandedRes` instead, accessing the core line item via its `invoiceLineItem` property and nested counterparty/order/shipper sub-objects.
+* **`Point`**, **`GeometriesItem.Point`**, and **`Geometry.Point`** — initializers now require a new `type: Point` parameter; update all construction sites to pass `type: .point`.
+### Added
+* **`GeofenceTemplatesClient`** — new client on `TrackingClient` (and `ChrtClient.tracking`) exposing `createV1()`, `getByIdV1()`, `listV1()`, `updateV1()`, `archiveV1()`, and `unarchiveV1()` for managing organization geofence templates.
+* **`SessionGeofencesClient`** — new client on `TrackingClient` exposing `addV1()`, `applyTemplateV1()`, `reorderV1()`, `updateV1()`, and `removeV1()` for managing geofences on active tracking sessions.
+* **`SessionGeofence1`**, **`SessionGeofenceBase1`**, **`SessionGeofenceTemplate1`**, and related request types — new structs and request types supporting full geofence template and session geofence management.
+* **`TrackingSessionGeofenceEnteredWebhookPayload`** — new struct for the `tracking.session.geofence_entered` webhook event carrying `geofenceId`, `geofenceDisplayName`, `sessionId`, and `eventTimestamp`.
+* **`TaskListToApplyToOrderExpanded`** and new optional fields on **`OrderAndTaskGroupExpandedReq`** and **`OrderExpandedForProvider`** — support for expanding coordinator task-list data on orders.
+
 ## 2.0.1 - 2026-08-10
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
