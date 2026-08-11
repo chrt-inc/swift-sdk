@@ -36,6 +36,22 @@ import Chrt
                       "schema_version": 1
                     }
                   ],
+                  "coordinator_task_lists_to_apply_at_order_staging_expanded": [
+                    {
+                      "operations_task_list": {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "updated_at_timestamp": "2024-01-15T09:30:00Z"
+                      },
+                      "task_list_to_apply": {
+                        "task_list_id": "task_list_id"
+                      }
+                    }
+                  ],
                   "notification_intents_ad_hoc": [
                     {
                       "_id": "_id",
@@ -216,7 +232,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -231,6 +247,22 @@ import Chrt
                     offChrtOrgDataId: Optional("off_chrt_org_data_id"),
                     orgId: Optional("org_id"),
                     schemaVersion: 1
+                )
+            ]),
+            coordinatorTaskListsToApplyAtOrderStagingExpanded: Optional([
+                TaskListToApplyToOrderExpanded(
+                    operationsTaskList: Optional(OperationsTaskList1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    )),
+                    taskListToApply: TaskListToApplyToOrder1(
+                        taskListId: "task_list_id"
+                    )
                 )
             ]),
             notificationIntentsAdHoc: Optional([
@@ -597,7 +629,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -784,6 +816,13 @@ import Chrt
                           "schema_version": 1
                         }
                       ],
+                      "coordinator_task_lists_to_apply_at_order_staging_expanded": [
+                        {
+                          "task_list_to_apply": {
+                            "task_list_id": "task_list_id"
+                          }
+                        }
+                      ],
                       "notification_intents_ad_hoc": [
                         {
                           "_id": "_id",
@@ -856,6 +895,13 @@ import Chrt
                             schemaVersion: 1
                         )
                     ]),
+                    coordinatorTaskListsToApplyAtOrderStagingExpanded: Optional([
+                        TaskListToApplyToOrderExpanded(
+                            taskListToApply: TaskListToApplyToOrder1(
+                                taskListId: "task_list_id"
+                            )
+                        )
+                    ]),
                     notificationIntentsAdHoc: Optional([
                         NotificationIntentAdHoc1(
                             id: "_id",
@@ -913,15 +959,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -941,13 +978,7 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-            filterCoordinatorAssignedUserIds: [
-                "filter_coordinator_assigned_user_ids"
-            ],
             filterCoordinatorLabel: "filter_coordinator_label",
             request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -1100,15 +1131,6 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
-            filterStatus: [
-                .draft
-            ],
-            filterServiceLine: [
-                .onDemand
-            ],
-            filterOrderClassificationByTaskGroupType: [
-                .chrtGroundProvider
-            ],
             filterAwbNumber: "filter_awb_number",
             filterHasInvoice: true,
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

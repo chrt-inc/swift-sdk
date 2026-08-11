@@ -20,5 +20,6 @@ public enum NotificationEventsForUsersEnum: String, Codable, Hashable, CaseItera
     case operationsOrderDepartmentAssigned = "operations.order.department_assigned"
     case operationsOrderInternalMessagesMessage = "operations.order_internal_messages.message"
     case operationsOrderInternalMessagesFileAdded = "operations.order_internal_messages.file_added"
-    case trackingSessionDestinationGeofenceEntered = "tracking.session.destination_geofence_entered"
+    case billingInvoiceApproved = "billing.invoice.approved"
+    case trackingSessionGeofenceEntered = "tracking.session.geofence_entered"
 }

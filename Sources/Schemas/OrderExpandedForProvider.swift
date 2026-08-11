@@ -5,6 +5,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
     /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     public let coordinatorOrgHandle: String?
     public let coordinatorShipperAccounts: [Account1]?
+    public let coordinatorTaskListsToApplyAtOrderStagingExpanded: [TaskListToApplyToOrderExpanded]?
     public let notificationIntentsAdHoc: [NotificationIntentAdHoc1]?
     public let offChrtShipperOrgCompanyName: String?
     public let order: OrderLimitedForProvider1
@@ -19,6 +20,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
         coordinatorOrgCompanyName: String? = nil,
         coordinatorOrgHandle: String? = nil,
         coordinatorShipperAccounts: [Account1]? = nil,
+        coordinatorTaskListsToApplyAtOrderStagingExpanded: [TaskListToApplyToOrderExpanded]? = nil,
         notificationIntentsAdHoc: [NotificationIntentAdHoc1]? = nil,
         offChrtShipperOrgCompanyName: String? = nil,
         order: OrderLimitedForProvider1,
@@ -31,6 +33,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
         self.coordinatorOrgCompanyName = coordinatorOrgCompanyName
         self.coordinatorOrgHandle = coordinatorOrgHandle
         self.coordinatorShipperAccounts = coordinatorShipperAccounts
+        self.coordinatorTaskListsToApplyAtOrderStagingExpanded = coordinatorTaskListsToApplyAtOrderStagingExpanded
         self.notificationIntentsAdHoc = notificationIntentsAdHoc
         self.offChrtShipperOrgCompanyName = offChrtShipperOrgCompanyName
         self.order = order
@@ -46,6 +49,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
         self.coordinatorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgCompanyName)
         self.coordinatorOrgHandle = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgHandle)
         self.coordinatorShipperAccounts = try container.decodeIfPresent([Account1].self, forKey: .coordinatorShipperAccounts)
+        self.coordinatorTaskListsToApplyAtOrderStagingExpanded = try container.decodeIfPresent([TaskListToApplyToOrderExpanded].self, forKey: .coordinatorTaskListsToApplyAtOrderStagingExpanded)
         self.notificationIntentsAdHoc = try container.decodeIfPresent([NotificationIntentAdHoc1].self, forKey: .notificationIntentsAdHoc)
         self.offChrtShipperOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgCompanyName)
         self.order = try container.decode(OrderLimitedForProvider1.self, forKey: .order)
@@ -62,6 +66,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.coordinatorOrgCompanyName, forKey: .coordinatorOrgCompanyName)
         try container.encodeIfPresent(self.coordinatorOrgHandle, forKey: .coordinatorOrgHandle)
         try container.encodeIfPresent(self.coordinatorShipperAccounts, forKey: .coordinatorShipperAccounts)
+        try container.encodeIfPresent(self.coordinatorTaskListsToApplyAtOrderStagingExpanded, forKey: .coordinatorTaskListsToApplyAtOrderStagingExpanded)
         try container.encodeIfPresent(self.notificationIntentsAdHoc, forKey: .notificationIntentsAdHoc)
         try container.encodeIfPresent(self.offChrtShipperOrgCompanyName, forKey: .offChrtShipperOrgCompanyName)
         try container.encode(self.order, forKey: .order)
@@ -76,6 +81,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
         case coordinatorOrgCompanyName = "coordinator_org_company_name"
         case coordinatorOrgHandle = "coordinator_org_handle"
         case coordinatorShipperAccounts = "coordinator_shipper_accounts"
+        case coordinatorTaskListsToApplyAtOrderStagingExpanded = "coordinator_task_lists_to_apply_at_order_staging_expanded"
         case notificationIntentsAdHoc = "notification_intents_ad_hoc"
         case offChrtShipperOrgCompanyName = "off_chrt_shipper_org_company_name"
         case order

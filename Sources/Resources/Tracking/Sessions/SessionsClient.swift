@@ -7,10 +7,10 @@ public final class SessionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification; attach flights afterwards via set_flight_info. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
+    /// Creates a tracking session with ordered geofences or an organization template and links its device. | auth: api_key | authz: min_org_role=operator | (SessionsCreateV1Req) -> (PydanticObjectId)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionsCreateV1Req, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/tracking/sessions/create_session/v1",
@@ -55,10 +55,10 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session1)
+    /// Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session2)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session1 {
+    public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session2 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/get/v1",
@@ -66,7 +66,7 @@ public final class SessionsClient: Sendable {
                 "session_id": .string(sessionId)
             ],
             requestOptions: requestOptions,
-            responseType: Session1.self
+            responseType: Session2.self
         )
     }
 
@@ -172,10 +172,10 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Updates a session's mutable metadata (off_chrt_reference_id, comments, public, termination_scheduled_for_timestamp, destination_geofence_location, destination_geofence_radius_miles). Setting or replacing the destination geofence location resets the entered latch so it can fire again; clearing it (destination_geofence_location__set_to_None) also resets the latch. | auth: api_key | (SessionClientUpdate1) -> (bool)
+    /// Updates mutable non-geofence session fields. Use dedicated geofence routes for geofence changes. | auth: api_key | authz: min_org_role=operator | (SessionClientUpdate2) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(sessionId: String, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(sessionId: String, request: Requests.SessionClientUpdate2, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/tracking/sessions/update/v1",

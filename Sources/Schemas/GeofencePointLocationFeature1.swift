@@ -1,0 +1,60 @@
+import Foundation
+
+public struct GeofencePointLocationFeature1: Codable, Hashable, Sendable {
+    public let bbox: [JSONValue]?
+    public let geometry: Point
+    public let id: Id?
+    public let properties: LocationProperties?
+    public let type: Feature
+    /// Additional properties that are not explicitly defined in the schema
+    public let additionalProperties: [String: JSONValue]
+
+    public init(
+        bbox: [JSONValue]? = nil,
+        geometry: Point,
+        id: Id? = nil,
+        properties: LocationProperties? = nil,
+        type: Feature,
+        additionalProperties: [String: JSONValue] = .init()
+    ) {
+        self.bbox = bbox
+        self.geometry = geometry
+        self.id = id
+        self.properties = properties
+        self.type = type
+        self.additionalProperties = additionalProperties
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
+        self.geometry = try container.decode(Point.self, forKey: .geometry)
+        self.id = try container.decodeIfPresent(Id.self, forKey: .id)
+        self.properties = try container.decodeIfPresent(LocationProperties.self, forKey: .properties)
+        self.type = try container.decode(Feature.self, forKey: .type)
+        self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
+    }
+
+    public func encode(to encoder: Encoder) throws -> Void {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.bbox, forKey: .bbox)
+        try container.encode(self.geometry, forKey: .geometry)
+        try container.encodeIfPresent(self.id, forKey: .id)
+        try container.encodeIfPresent(self.properties, forKey: .properties)
+        try container.encode(self.type, forKey: .type)
+    }
+
+    public enum Feature: String, Codable, Hashable, CaseIterable, Sendable {
+        case feature = "Feature"
+    }
+
+    /// Keys for encoding/decoding struct properties.
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case bbox
+        case geometry
+        case id
+        case properties
+        case type
+    }
+}

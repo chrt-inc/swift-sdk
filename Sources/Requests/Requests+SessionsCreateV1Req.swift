@@ -1,10 +1,10 @@
 import Foundation
 
 extension Requests {
-    public struct SessionClientCreate1: Codable, Hashable, Sendable {
+    public struct SessionsCreateV1Req: Codable, Hashable, Sendable {
         public let comments: String?
-        public let destinationGeofenceLocation: LocationFeature?
-        public let destinationGeofenceRadiusMiles: Double?
+        public let geofenceTemplateId: String?
+        public let geofences: [SessionGeofenceClientCreate1]?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
         public let offChrtShipperOrgDataId: String?
@@ -16,8 +16,8 @@ extension Requests {
 
         public init(
             comments: String? = nil,
-            destinationGeofenceLocation: LocationFeature? = nil,
-            destinationGeofenceRadiusMiles: Double? = nil,
+            geofenceTemplateId: String? = nil,
+            geofences: [SessionGeofenceClientCreate1]? = nil,
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgDataId: String? = nil,
             public: Bool? = nil,
@@ -26,8 +26,8 @@ extension Requests {
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.comments = comments
-            self.destinationGeofenceLocation = destinationGeofenceLocation
-            self.destinationGeofenceRadiusMiles = destinationGeofenceRadiusMiles
+            self.geofenceTemplateId = geofenceTemplateId
+            self.geofences = geofences
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
             self.public = `public`
@@ -39,8 +39,8 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
-            self.destinationGeofenceLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .destinationGeofenceLocation)
-            self.destinationGeofenceRadiusMiles = try container.decodeIfPresent(Double.self, forKey: .destinationGeofenceRadiusMiles)
+            self.geofenceTemplateId = try container.decodeIfPresent(String.self, forKey: .geofenceTemplateId)
+            self.geofences = try container.decodeIfPresent([SessionGeofenceClientCreate1].self, forKey: .geofences)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
             self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
@@ -53,8 +53,8 @@ extension Requests {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.comments, forKey: .comments)
-            try container.encodeIfPresent(self.destinationGeofenceLocation, forKey: .destinationGeofenceLocation)
-            try container.encodeIfPresent(self.destinationGeofenceRadiusMiles, forKey: .destinationGeofenceRadiusMiles)
+            try container.encodeIfPresent(self.geofenceTemplateId, forKey: .geofenceTemplateId)
+            try container.encodeIfPresent(self.geofences, forKey: .geofences)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
             try container.encodeIfPresent(self.public, forKey: .public)
@@ -65,8 +65,8 @@ extension Requests {
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
             case comments
-            case destinationGeofenceLocation = "destination_geofence_location"
-            case destinationGeofenceRadiusMiles = "destination_geofence_radius_miles"
+            case geofenceTemplateId = "geofence_template_id"
+            case geofences
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
             case `public`

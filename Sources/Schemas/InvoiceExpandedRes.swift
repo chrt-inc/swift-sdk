@@ -6,7 +6,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
     public let counterpartyOffChrtOrgData: OffChrtOrgData1?
     public let counterpartyOrg: OrgPublicData1?
     public let invoice: Invoice1
-    public let invoiceLineItems: [InvoiceLineItem1]?
+    public let invoiceLineItems: [InvoiceLineItemExpandedRes]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -16,7 +16,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         counterpartyOffChrtOrgData: OffChrtOrgData1? = nil,
         counterpartyOrg: OrgPublicData1? = nil,
         invoice: Invoice1,
-        invoiceLineItems: [InvoiceLineItem1]? = nil,
+        invoiceLineItems: [InvoiceLineItemExpandedRes]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.counterpartyAccounts = counterpartyAccounts
@@ -35,7 +35,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         self.counterpartyOffChrtOrgData = try container.decodeIfPresent(OffChrtOrgData1.self, forKey: .counterpartyOffChrtOrgData)
         self.counterpartyOrg = try container.decodeIfPresent(OrgPublicData1.self, forKey: .counterpartyOrg)
         self.invoice = try container.decode(Invoice1.self, forKey: .invoice)
-        self.invoiceLineItems = try container.decodeIfPresent([InvoiceLineItem1].self, forKey: .invoiceLineItems)
+        self.invoiceLineItems = try container.decodeIfPresent([InvoiceLineItemExpandedRes].self, forKey: .invoiceLineItems)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

@@ -174,9 +174,6 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.listMembersV1(
-        filterRole: [
-            .owner
-        ],
         sortBy: .firstName,
         sortOrder: .asc,
         page: 1,
@@ -1388,15 +1385,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatuses: [
-            .open
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -2075,25 +2063,10 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterShipperAccountId: "filter_shipper_account_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
-        filterCargoTypes: [
-            .spareParts
-        ],
-        filterVehicleTypes: [
-            .sedan
-        ],
         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -3265,18 +3238,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
-        filterLineItemTypes: [
-            .baseRate
-        ],
-        filterUnits: [
-            .each
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -3862,7 +3823,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an owner-scoped invoice with its line items, counterparty organization data, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
+Retrieves an owner-scoped invoice with line-item orders, counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
 </dd>
 </dl>
 </dd>
@@ -4292,15 +4253,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatuses: [
-            .draft
-        ],
-        filterInvoiceTypes: [
-            .accountsReceivable
-        ],
-        filterCurrencyCodes: [
-            .usd
-        ],
         filterCounterpartyOrgId: "filter_counterparty_org_id",
         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
         filterCounterpartyDriverId: "filter_counterparty_driver_id",
@@ -4909,15 +4861,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterAwbNumber: "filter_awb_number",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterExecutorOrgId: "filter_executor_org_id",
         filterCoordinatorLabel: "filter_coordinator_label",
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -5869,7 +5815,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+**awb:** `String` 
     
 </dd>
 </dl>
@@ -6011,7 +5957,7 @@ try await main()
 <dl>
 <dd>
 
-**awb:** `String` — IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
+**awb:** `String` 
     
 </dd>
 </dl>
@@ -6769,9 +6715,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -6944,9 +6887,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
         filterListingId: "filter_listing_id",
         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
         filterBidderDriverId: "filter_bidder_driver_id",
@@ -8353,12 +8293,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8555,12 +8489,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -8749,12 +8677,6 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
-        filterStatus: [
-            .open
-        ],
-        filterType: [
-            .dispatch
-        ],
         filterTaskGroupId: "filter_task_group_id",
         filterOrderId: "filter_order_id",
         filterCreatedByOrgId: "filter_created_by_org_id",
@@ -9214,7 +9136,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — Must be a string starting with `org_`
+**providerOrgId:** `String` 
     
 </dd>
 </dl>
@@ -9666,7 +9588,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — Must be a string starting with `org_`
+**providerOrgId:** `String` 
     
 </dd>
 </dl>
@@ -10346,7 +10268,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -10970,7 +10892,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -11728,7 +11650,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -11785,10 +11707,7 @@ private func main() async throws {
         sortBy: .createdAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1,
-        filterDepartmentType: [
-            .aerospace
-        ]
+        pageSize: 1
     )
 }
 
@@ -11921,7 +11840,7 @@ try await main()
 <dl>
 <dd>
 
-**userId:** `String` — Must be a string starting with `user_`
+**userId:** `String` 
     
 </dd>
 </dl>
@@ -13526,18 +13445,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -13722,18 +13632,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterOrderIds: [
-            "filter_order_ids"
-        ],
         filterOrderShortId: "filter_order_short_id",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentId: "filter_department_id",
-        filterTaskType: [
-            .reviewOrderDetails
-        ],
-        filterStatus: [
-            .notStarted
-        ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -15653,7 +15554,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17581,7 +17482,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17652,7 +17553,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17723,7 +17624,7 @@ try await main()
 <dl>
 <dd>
 
-**handle:** `String` — Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
+**handle:** `String` 
     
 </dd>
 </dl>
@@ -17928,7 +17829,7 @@ try await main()
 <dl>
 <dd>
 
-**orgId:** `String` — Must be a string starting with `org_`
+**orgId:** `String` 
     
 </dd>
 </dl>
@@ -18741,10 +18642,7 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         filterAvailableAccordingToDriver: true,
-        filterAvailableAccordingToOperators: true,
-        filterStatus: [
-            .unassigned
-        ]
+        filterAvailableAccordingToOperators: true
     )
 }
 
@@ -18866,9 +18764,6 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
-        filterRole: [
-            .owner
-        ],
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         sortBy: .firstName,
@@ -20490,9 +20385,6 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
-        filterServiceLine: [
-            .onDemand
-        ],
         filterOffChrtReferenceIdStr: "filter_off_chrt_reference_id_str",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
@@ -27515,15 +27407,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -27543,13 +27426,7 @@ private func main() async throws {
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-        filterCoordinatorShipperAccountIds: [
-            "filter_coordinator_shipper_account_ids"
-        ],
         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
-        filterCoordinatorAssignedUserIds: [
-            "filter_coordinator_assigned_user_ids"
-        ],
         filterCoordinatorLabel: "filter_coordinator_label",
         request: .init(body: OrderAndTaskGroupExpandedReq(
 
@@ -27887,15 +27764,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
-        filterServiceLine: [
-            .onDemand
-        ],
-        filterOrderClassificationByTaskGroupType: [
-            .chrtGroundProvider
-        ],
         filterAwbNumber: "filter_awb_number",
         filterHasInvoice: true,
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -30256,9 +30124,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -30541,9 +30406,6 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
-        filterStatus: [
-            .draft
-        ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -32213,10 +32075,10 @@ private func main() async throws {
             geometry: Geometry.geometryCollection(
                 .init(
                     geometries: [
-                        GeometriesItem.lineString(
+                        GeometryCollectionGeometriesItem.lineString(
                             .init(
                                 coordinates: [
-                                    CoordinatesItem.position2D(
+                                    LineStringCoordinatesItem.position2D(
                                         []
                                     )
                                 ]
@@ -32267,8 +32129,8 @@ try await main()
 </dl>
 </details>
 
-## Tracking Sessions
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">createSessionV1</a>(deviceId: String, noAutoTermination: Bool?, request: Requests.SessionClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+## Tracking GeofenceTemplates
+<details><summary><code>client.tracking.geofenceTemplates.<a href="/Sources/Resources/Tracking/GeofenceTemplates/GeofenceTemplatesClient.swift">archiveV1</a>(geofenceTemplateId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -32280,7 +32142,564 @@ try await main()
 <dl>
 <dd>
 
-Creates a new tracking session for a device and automatically starts recording data points. The caller must be the device owner or belong to an org the device is shared with. The device owner remains the session owner (org_id). The device's shared_with_org_ids are copied to the session. The device must not have an active session. Optionally seed a destination geofence (location + radius) to fire a destination geofence entered notification; attach flights afterwards via set_flight_info. Auto-termination is scheduled for ~1 week out at 8 PM PT. Prevent auto termination with `no_auto_termination=True` | auth: api_key | (SessionClientCreate1) -> (PydanticObjectId)
+Archives a geofence template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.geofenceTemplates.archiveV1(geofenceTemplateId: "geofence_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**geofenceTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.geofenceTemplates.<a href="/Sources/Resources/Tracking/GeofenceTemplates/GeofenceTemplatesClient.swift">listV1</a>(sortBy: GeofenceTemplateSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterArchived: Bool?, filterOwnedByUserId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> GeofenceTemplateListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists geofence templates for the caller's organization. | authz: min_org_role=operator | () -> (GeofenceTemplateListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.geofenceTemplates.listV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterArchived: true,
+        filterOwnedByUserId: "filter_owned_by_user_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `GeofenceTemplateSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — Include archived templates instead of active templates.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOwnedByUserId:** `String?` — Filter by the user that created the template.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastEditedAtTimestampGte:** `Date?` — Filter last_edited_at_timestamp >= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastEditedAtTimestampLte:** `Date?` — Filter last_edited_at_timestamp <= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastUsedAtTimestampGte:** `Date?` — Filter last_used_at_timestamp >= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastUsedAtTimestampLte:** `Date?` — Filter last_used_at_timestamp <= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.geofenceTemplates.<a href="/Sources/Resources/Tracking/GeofenceTemplates/GeofenceTemplatesClient.swift">unarchiveV1</a>(geofenceTemplateId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Restores an archived geofence template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.geofenceTemplates.unarchiveV1(geofenceTemplateId: "geofence_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**geofenceTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.geofenceTemplates.<a href="/Sources/Resources/Tracking/GeofenceTemplates/GeofenceTemplatesClient.swift">updateV1</a>(geofenceTemplateId: String, request: Requests.SessionGeofenceTemplateClientUpdate1, requestOptions: RequestOptions?) -> SessionGeofenceTemplate1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an active geofence template owned by the caller's organization. | authz: min_org_role=operator | (SessionGeofenceTemplateClientUpdate1) -> (SessionGeofenceTemplate1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.geofenceTemplates.updateV1(
+        geofenceTemplateId: "geofence_template_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**geofenceTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionGeofenceTemplateClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.geofenceTemplates.<a href="/Sources/Resources/Tracking/GeofenceTemplates/GeofenceTemplatesClient.swift">createV1</a>(request: Requests.SessionGeofenceTemplateClientCreate1, requestOptions: RequestOptions?) -> SessionGeofenceTemplate1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a geofence template owned by the caller's organization. | authz: min_org_role=operator | (SessionGeofenceTemplateClientCreate1) -> (SessionGeofenceTemplate1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.geofenceTemplates.createV1(request: .init(
+        geofences: [
+            SessionGeofenceBase1(
+                displayName: "display_name",
+                location: GeofencePointLocationFeature1(
+                    geometry: Point(
+                        coordinates: Coordinates.position2D(
+                            []
+                        ),
+                        type: .point
+                    ),
+                    type: .feature
+                ),
+                radiusMiles: 1.1
+            )
+        ],
+        name: "name",
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionGeofenceTemplateClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.geofenceTemplates.<a href="/Sources/Resources/Tracking/GeofenceTemplates/GeofenceTemplatesClient.swift">getByIdV1</a>(geofenceTemplateId: String, requestOptions: RequestOptions?) -> SessionGeofenceTemplate1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a geofence template owned by the caller's organization. | authz: min_org_role=operator | () -> (SessionGeofenceTemplate1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.geofenceTemplates.getByIdV1(geofenceTemplateId: "geofence_template_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**geofenceTemplateId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tracking Sessions
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">createSessionV1</a>(deviceId: String, noAutoTermination: Bool?, request: Requests.SessionsCreateV1Req, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a tracking session with ordered geofences or an organization template and links its device. | auth: api_key | authz: min_org_role=operator | (SessionsCreateV1Req) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -32339,7 +32758,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.SessionClientCreate1` 
+**request:** `Requests.SessionsCreateV1Req` 
     
 </dd>
 </dl>
@@ -32512,7 +32931,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">getV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Session1</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">getV1</a>(sessionId: String, requestOptions: RequestOptions?) -> Session2</code></summary>
 <dl>
 <dd>
 
@@ -32524,7 +32943,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session1)
+Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session2)
 </dd>
 </dl>
 </dd>
@@ -33082,7 +33501,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateV1</a>(sessionId: String, request: Requests.SessionClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">updateV1</a>(sessionId: String, request: Requests.SessionClientUpdate2, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -33094,7 +33513,7 @@ try await main()
 <dl>
 <dd>
 
-Updates a session's mutable metadata (off_chrt_reference_id, comments, public, termination_scheduled_for_timestamp, destination_geofence_location, destination_geofence_radius_miles). Setting or replacing the destination geofence location resets the entered latch so it can fire again; clearing it (destination_geofence_location__set_to_None) also resets the latch. | auth: api_key | (SessionClientUpdate1) -> (bool)
+Updates mutable non-geofence session fields. Use dedicated geofence routes for geofence changes. | auth: api_key | authz: min_org_role=operator | (SessionClientUpdate2) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -33144,7 +33563,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.SessionClientUpdate1` 
+**request:** `Requests.SessionClientUpdate2` 
     
 </dd>
 </dl>
@@ -33216,6 +33635,438 @@ try await main()
 <dd>
 
 **request:** `Requests.SessionsUpdateSharedOrgsReq1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Tracking SessionGeofences
+<details><summary><code>client.tracking.sessionGeofences.<a href="/Sources/Resources/Tracking/SessionGeofences/SessionGeofencesClient.swift">addV1</a>(sessionId: String, request: SessionGeofenceClientCreate1, requestOptions: RequestOptions?) -> Session2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a geofence to an active session. | auth: api_key | authz: min_org_role=operator | (SessionGeofenceClientCreate1) -> (Session2)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessionGeofences.addV1(
+        sessionId: "session_id",
+        request: SessionGeofenceClientCreate1(
+            displayName: "display_name",
+            location: GeofencePointLocationFeature1(
+                geometry: Point(
+                    coordinates: Coordinates.position2D(
+                        []
+                    ),
+                    type: .point
+                ),
+                type: .feature
+            ),
+            radiusMiles: 1.1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `SessionGeofenceClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessionGeofences.<a href="/Sources/Resources/Tracking/SessionGeofences/SessionGeofencesClient.swift">applyTemplateV1</a>(sessionId: String, request: Requests.SessionGeofenceApplyTemplateReq, requestOptions: RequestOptions?) -> Session2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces an active session's geofences from an active organization template. | auth: api_key | authz: min_org_role=operator | (SessionGeofenceApplyTemplateReq) -> (Session2)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessionGeofences.applyTemplateV1(
+        sessionId: "session_id",
+        request: .init(geofenceTemplateId: "geofence_template_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionGeofenceApplyTemplateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessionGeofences.<a href="/Sources/Resources/Tracking/SessionGeofences/SessionGeofencesClient.swift">reorderV1</a>(sessionId: String, request: Requests.SessionGeofenceReorderReq, requestOptions: RequestOptions?) -> Session2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reorders an active session's geofences using an exact ID permutation. | auth: api_key | authz: min_org_role=operator | (SessionGeofenceReorderReq) -> (Session2)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessionGeofences.reorderV1(
+        sessionId: "session_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionGeofenceReorderReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessionGeofences.<a href="/Sources/Resources/Tracking/SessionGeofences/SessionGeofencesClient.swift">updateV1</a>(sessionId: String, geofenceId: String, request: Requests.SessionGeofenceClientUpdate1, requestOptions: RequestOptions?) -> Session2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a session geofence, resetting entry state only when location or radius changes. | auth: api_key | authz: min_org_role=operator | (SessionGeofenceClientUpdate1) -> (Session2)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessionGeofences.updateV1(
+        sessionId: "session_id",
+        geofenceId: "geofence_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**geofenceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.SessionGeofenceClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sessionGeofences.<a href="/Sources/Resources/Tracking/SessionGeofences/SessionGeofencesClient.swift">removeV1</a>(sessionId: String, geofenceId: String, requestOptions: RequestOptions?) -> Session2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a geofence from an active session. | auth: api_key | authz: min_org_role=operator | () -> (Session2)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sessionGeofences.removeV1(
+        sessionId: "session_id",
+        geofenceId: "geofence_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sessionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**geofenceId:** `String` 
     
 </dd>
 </dl>

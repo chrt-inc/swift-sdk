@@ -1,18 +1,16 @@
 import Foundation
 
-public struct Session1: Codable, Hashable, Sendable {
+public struct Session2: Codable, Hashable, Sendable {
     public let id: String
     public let comments: String?
     public let createdAtTimestamp: Date
-    public let destinationGeofenceEntered: Bool?
-    public let destinationGeofenceLocation: LocationFeature?
-    public let destinationGeofenceRadiusMiles: Double?
     public let deviceId: String
     public let deviceMacAddress: String
     public let flightLegIds: [String]?
     public let flightLoadedStatusByFlightLegId: [String: String?]?
     public let flightLoadedStatuses: [String]?
     public let flightNumbers: [String]?
+    public let geofences: [SessionGeofence1]?
     public let lastSeenAtLocation: LocationFeature?
     public let lastSeenAtLocationCity: String?
     public let lastSeenAtLocationLargeCity: String?
@@ -35,15 +33,13 @@ public struct Session1: Codable, Hashable, Sendable {
         id: String,
         comments: String? = nil,
         createdAtTimestamp: Date,
-        destinationGeofenceEntered: Bool? = nil,
-        destinationGeofenceLocation: LocationFeature? = nil,
-        destinationGeofenceRadiusMiles: Double? = nil,
         deviceId: String,
         deviceMacAddress: String,
         flightLegIds: [String]? = nil,
         flightLoadedStatusByFlightLegId: [String: String?]? = nil,
         flightLoadedStatuses: [String]? = nil,
         flightNumbers: [String]? = nil,
+        geofences: [SessionGeofence1]? = nil,
         lastSeenAtLocation: LocationFeature? = nil,
         lastSeenAtLocationCity: String? = nil,
         lastSeenAtLocationLargeCity: String? = nil,
@@ -62,15 +58,13 @@ public struct Session1: Codable, Hashable, Sendable {
         self.id = id
         self.comments = comments
         self.createdAtTimestamp = createdAtTimestamp
-        self.destinationGeofenceEntered = destinationGeofenceEntered
-        self.destinationGeofenceLocation = destinationGeofenceLocation
-        self.destinationGeofenceRadiusMiles = destinationGeofenceRadiusMiles
         self.deviceId = deviceId
         self.deviceMacAddress = deviceMacAddress
         self.flightLegIds = flightLegIds
         self.flightLoadedStatusByFlightLegId = flightLoadedStatusByFlightLegId
         self.flightLoadedStatuses = flightLoadedStatuses
         self.flightNumbers = flightNumbers
+        self.geofences = geofences
         self.lastSeenAtLocation = lastSeenAtLocation
         self.lastSeenAtLocationCity = lastSeenAtLocationCity
         self.lastSeenAtLocationLargeCity = lastSeenAtLocationLargeCity
@@ -92,15 +86,13 @@ public struct Session1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
-        self.destinationGeofenceEntered = try container.decodeIfPresent(Bool.self, forKey: .destinationGeofenceEntered)
-        self.destinationGeofenceLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .destinationGeofenceLocation)
-        self.destinationGeofenceRadiusMiles = try container.decodeIfPresent(Double.self, forKey: .destinationGeofenceRadiusMiles)
         self.deviceId = try container.decode(String.self, forKey: .deviceId)
         self.deviceMacAddress = try container.decode(String.self, forKey: .deviceMacAddress)
         self.flightLegIds = try container.decodeIfPresent([String].self, forKey: .flightLegIds)
         self.flightLoadedStatusByFlightLegId = try container.decodeIfPresent([String: String?].self, forKey: .flightLoadedStatusByFlightLegId)
         self.flightLoadedStatuses = try container.decodeIfPresent([String].self, forKey: .flightLoadedStatuses)
         self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
+        self.geofences = try container.decodeIfPresent([SessionGeofence1].self, forKey: .geofences)
         self.lastSeenAtLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
         self.lastSeenAtLocationCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationCity)
         self.lastSeenAtLocationLargeCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationLargeCity)
@@ -123,15 +115,13 @@ public struct Session1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.comments, forKey: .comments)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
-        try container.encodeIfPresent(self.destinationGeofenceEntered, forKey: .destinationGeofenceEntered)
-        try container.encodeIfPresent(self.destinationGeofenceLocation, forKey: .destinationGeofenceLocation)
-        try container.encodeIfPresent(self.destinationGeofenceRadiusMiles, forKey: .destinationGeofenceRadiusMiles)
         try container.encode(self.deviceId, forKey: .deviceId)
         try container.encode(self.deviceMacAddress, forKey: .deviceMacAddress)
         try container.encodeIfPresent(self.flightLegIds, forKey: .flightLegIds)
         try container.encodeIfPresent(self.flightLoadedStatusByFlightLegId, forKey: .flightLoadedStatusByFlightLegId)
         try container.encodeIfPresent(self.flightLoadedStatuses, forKey: .flightLoadedStatuses)
         try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
+        try container.encodeIfPresent(self.geofences, forKey: .geofences)
         try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
         try container.encodeIfPresent(self.lastSeenAtLocationCity, forKey: .lastSeenAtLocationCity)
         try container.encodeIfPresent(self.lastSeenAtLocationLargeCity, forKey: .lastSeenAtLocationLargeCity)
@@ -152,15 +142,13 @@ public struct Session1: Codable, Hashable, Sendable {
         case id = "_id"
         case comments
         case createdAtTimestamp = "created_at_timestamp"
-        case destinationGeofenceEntered = "destination_geofence_entered"
-        case destinationGeofenceLocation = "destination_geofence_location"
-        case destinationGeofenceRadiusMiles = "destination_geofence_radius_miles"
         case deviceId = "device_id"
         case deviceMacAddress = "device_mac_address"
         case flightLegIds = "flight_leg_ids"
         case flightLoadedStatusByFlightLegId = "flight_loaded_status_by_flight_leg_id"
         case flightLoadedStatuses = "flight_loaded_statuses"
         case flightNumbers = "flight_numbers"
+        case geofences
         case lastSeenAtLocation = "last_seen_at_location"
         case lastSeenAtLocationCity = "last_seen_at_location_city"
         case lastSeenAtLocationLargeCity = "last_seen_at_location_large_city"

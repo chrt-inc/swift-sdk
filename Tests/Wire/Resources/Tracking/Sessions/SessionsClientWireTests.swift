@@ -179,32 +179,6 @@ import Chrt
                   "_id": "_id",
                   "comments": "comments",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "destination_geofence_entered": true,
-                  "destination_geofence_location": {
-                    "bbox": [
-                      {
-                        "key": "value"
-                      }
-                    ],
-                    "geometry": {
-                      "geometries": [
-                        {
-                          "coordinates": [
-                            []
-                          ],
-                          "type": "LineString"
-                        }
-                      ],
-                      "type": "GeometryCollection"
-                    },
-                    "id": 1,
-                    "properties": {
-                      "address": "address",
-                      "name": "name"
-                    },
-                    "type": "Feature"
-                  },
-                  "destination_geofence_radius_miles": 1.1,
                   "device_id": "device_id",
                   "device_mac_address": "device_mac_address",
                   "flight_leg_ids": [
@@ -218,6 +192,22 @@ import Chrt
                   ],
                   "flight_numbers": [
                     "flight_numbers"
+                  ],
+                  "geofences": [
+                    {
+                      "display_name": "display_name",
+                      "entered": true,
+                      "entered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "geofence_id": "geofence_id",
+                      "location": {
+                        "geometry": {
+                          "coordinates": [],
+                          "type": "Point"
+                        },
+                        "type": "Feature"
+                      },
+                      "radius_miles": 1.1
+                    }
                   ],
                   "last_seen_at_location": {
                     "bbox": [
@@ -266,44 +256,10 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Session1(
+        let expectedResponse = Session2(
             id: "_id",
             comments: Optional("comments"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            destinationGeofenceEntered: Optional(true),
-            destinationGeofenceLocation: Optional(LocationFeature(
-                bbox: Optional([
-                    JSONValue.object(
-                        [
-                            "key": JSONValue.string("value")
-                        ]
-                    )
-                ]),
-                geometry: .geometryCollection(
-                    .init(
-                        geometries: [
-                            .lineString(
-                                .init(
-                                    coordinates: [
-                                        CoordinatesItem.position2D(
-                                            []
-                                        )
-                                    ]
-                                )
-                            )
-                        ]
-                    )
-                ),
-                id: Optional(Id.int(
-                    1
-                )),
-                properties: Optional(LocationProperties(
-                    address: Optional("address"),
-                    name: Optional("name")
-                )),
-                type: .feature
-            )),
-            destinationGeofenceRadiusMiles: Optional(1.1),
             deviceId: "device_id",
             deviceMacAddress: "device_mac_address",
             flightLegIds: Optional([
@@ -317,6 +273,24 @@ import Chrt
             ]),
             flightNumbers: Optional([
                 "flight_numbers"
+            ]),
+            geofences: Optional([
+                SessionGeofence1(
+                    displayName: "display_name",
+                    entered: Optional(true),
+                    enteredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    geofenceId: "geofence_id",
+                    location: GeofencePointLocationFeature1(
+                        geometry: Point(
+                            coordinates: Coordinates.position2D(
+                                []
+                            ),
+                            type: .point
+                        ),
+                        type: .feature
+                    ),
+                    radiusMiles: 1.1
+                )
             ]),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
@@ -332,7 +306,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]
@@ -383,22 +357,6 @@ import Chrt
                       "_id": "_id",
                       "comments": "comments",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "destination_geofence_entered": true,
-                      "destination_geofence_location": {
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        },
-                        "type": "Feature"
-                      },
-                      "destination_geofence_radius_miles": 1.1,
                       "device_id": "device_id",
                       "device_mac_address": "device_mac_address",
                       "flight_leg_ids": [
@@ -409,6 +367,20 @@ import Chrt
                       ],
                       "flight_numbers": [
                         "flight_numbers"
+                      ],
+                      "geofences": [
+                        {
+                          "display_name": "display_name",
+                          "geofence_id": "geofence_id",
+                          "location": {
+                            "geometry": {
+                              "coordinates": [],
+                              "type": "Point"
+                            },
+                            "type": "Feature"
+                          },
+                          "radius_miles": 1.1
+                        }
                       ],
                       "last_seen_at_location": {
                         "geometry": {
@@ -452,30 +424,10 @@ import Chrt
         )
         let expectedResponse = SessionListRes(
             items: [
-                Session1(
+                Session2(
                     id: "_id",
                     comments: Optional("comments"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    destinationGeofenceEntered: Optional(true),
-                    destinationGeofenceLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                CoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        ),
-                        type: .feature
-                    )),
-                    destinationGeofenceRadiusMiles: Optional(1.1),
                     deviceId: "device_id",
                     deviceMacAddress: "device_mac_address",
                     flightLegIds: Optional([
@@ -487,6 +439,22 @@ import Chrt
                     flightNumbers: Optional([
                         "flight_numbers"
                     ]),
+                    geofences: Optional([
+                        SessionGeofence1(
+                            displayName: "display_name",
+                            geofenceId: "geofence_id",
+                            location: GeofencePointLocationFeature1(
+                                geometry: Point(
+                                    coordinates: Coordinates.position2D(
+                                        []
+                                    ),
+                                    type: .point
+                                ),
+                                type: .feature
+                            ),
+                            radiusMiles: 1.1
+                        )
+                    ]),
                     lastSeenAtLocation: Optional(LocationFeature(
                         geometry: .geometryCollection(
                             .init(
@@ -494,7 +462,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]

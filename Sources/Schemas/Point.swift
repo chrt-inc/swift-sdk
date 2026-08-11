@@ -4,16 +4,19 @@ import Foundation
 public struct Point: Codable, Hashable, Sendable {
     public let bbox: [JSONValue]?
     public let coordinates: Coordinates
+    public let type: Point
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         bbox: [JSONValue]? = nil,
         coordinates: Coordinates,
+        type: Point,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.bbox = bbox
         self.coordinates = coordinates
+        self.type = type
         self.additionalProperties = additionalProperties
     }
 
@@ -21,6 +24,7 @@ public struct Point: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
         self.coordinates = try container.decode(Coordinates.self, forKey: .coordinates)
+        self.type = try container.decode(Point.self, forKey: .type)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -29,11 +33,17 @@ public struct Point: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.bbox, forKey: .bbox)
         try container.encode(self.coordinates, forKey: .coordinates)
+        try container.encode(self.type, forKey: .type)
+    }
+
+    public enum Point: String, Codable, Hashable, CaseIterable, Sendable {
+        case point = "Point"
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case bbox
         case coordinates
+        case type
     }
 }

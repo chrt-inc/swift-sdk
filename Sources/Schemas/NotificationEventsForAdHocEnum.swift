@@ -7,5 +7,5 @@ import Foundation
 public enum NotificationEventsForAdHocEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case shippingOrderStaged = "shipping.order.staged"
     case shippingOrderCompleted = "shipping.order.completed"
-    case trackingSessionDestinationGeofenceEntered = "tracking.session.destination_geofence_entered"
+    case trackingSessionGeofenceEntered = "tracking.session.geofence_entered"
 }

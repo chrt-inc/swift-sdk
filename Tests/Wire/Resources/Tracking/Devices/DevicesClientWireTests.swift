@@ -66,23 +66,6 @@ import Chrt
                     "_id": "_id",
                     "comments": "comments",
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "destination_geofence_entered": true,
-                    "destination_geofence_location": {
-                      "geometry": {
-                        "geometries": [
-                          {
-                            "coordinates": [
-                              []
-                            ],
-                            "type": "LineString"
-                          }
-                        ],
-                        "type": "GeometryCollection"
-                      },
-                      "id": 1,
-                      "type": "Feature"
-                    },
-                    "destination_geofence_radius_miles": 1.1,
                     "device_id": "device_id",
                     "device_mac_address": "device_mac_address",
                     "flight_leg_ids": [
@@ -96,6 +79,20 @@ import Chrt
                     ],
                     "flight_numbers": [
                       "flight_numbers"
+                    ],
+                    "geofences": [
+                      {
+                        "display_name": "display_name",
+                        "geofence_id": "geofence_id",
+                        "location": {
+                          "geometry": {
+                            "coordinates": [],
+                            "type": "Point"
+                          },
+                          "type": "Feature"
+                        },
+                        "radius_miles": 1.1
+                      }
                     ],
                     "last_seen_at_location": {
                       "geometry": {
@@ -209,22 +206,6 @@ import Chrt
                       "_id": "_id",
                       "comments": "comments",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "destination_geofence_entered": true,
-                      "destination_geofence_location": {
-                        "geometry": {
-                          "geometries": [
-                            {
-                              "coordinates": [
-                                []
-                              ],
-                              "type": "LineString"
-                            }
-                          ],
-                          "type": "GeometryCollection"
-                        },
-                        "type": "Feature"
-                      },
-                      "destination_geofence_radius_miles": 1.1,
                       "device_id": "device_id",
                       "device_mac_address": "device_mac_address",
                       "flight_leg_ids": [
@@ -235,6 +216,20 @@ import Chrt
                       ],
                       "flight_numbers": [
                         "flight_numbers"
+                      ],
+                      "geofences": [
+                        {
+                          "display_name": "display_name",
+                          "geofence_id": "geofence_id",
+                          "location": {
+                            "geometry": {
+                              "coordinates": [],
+                              "type": "Point"
+                            },
+                            "type": "Feature"
+                          },
+                          "radius_miles": 1.1
+                        }
                       ],
                       "last_seen_at_location": {
                         "geometry": {
@@ -307,33 +302,10 @@ import Chrt
                 weightPounds: Optional(1.1),
                 widthInches: Optional(1.1)
             )),
-            activeSession: Optional(Session1(
+            activeSession: Optional(Session2(
                 id: "_id",
                 comments: Optional("comments"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                destinationGeofenceEntered: Optional(true),
-                destinationGeofenceLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
-                        .init(
-                            geometries: [
-                                .lineString(
-                                    .init(
-                                        coordinates: [
-                                            CoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ]
-                                    )
-                                )
-                            ]
-                        )
-                    ),
-                    id: Optional(Id.int(
-                        1
-                    )),
-                    type: .feature
-                )),
-                destinationGeofenceRadiusMiles: Optional(1.1),
                 deviceId: "device_id",
                 deviceMacAddress: "device_mac_address",
                 flightLegIds: Optional([
@@ -348,6 +320,22 @@ import Chrt
                 flightNumbers: Optional([
                     "flight_numbers"
                 ]),
+                geofences: Optional([
+                    SessionGeofence1(
+                        displayName: "display_name",
+                        geofenceId: "geofence_id",
+                        location: GeofencePointLocationFeature1(
+                            geometry: Point(
+                                coordinates: Coordinates.position2D(
+                                    []
+                                ),
+                                type: .point
+                            ),
+                            type: .feature
+                        ),
+                        radiusMiles: 1.1
+                    )
+                ]),
                 lastSeenAtLocation: Optional(LocationFeature(
                     geometry: .geometryCollection(
                         .init(
@@ -355,7 +343,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -400,7 +388,7 @@ import Chrt
                                 .lineString(
                                     .init(
                                         coordinates: [
-                                            CoordinatesItem.position2D(
+                                            LineStringCoordinatesItem.position2D(
                                                 []
                                             )
                                         ]
@@ -468,30 +456,10 @@ import Chrt
                 )
             ]),
             pastSessions: Optional([
-                Session1(
+                Session2(
                     id: "_id",
                     comments: Optional("comments"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    destinationGeofenceEntered: Optional(true),
-                    destinationGeofenceLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
-                            .init(
-                                geometries: [
-                                    .lineString(
-                                        .init(
-                                            coordinates: [
-                                                CoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ]
-                                        )
-                                    )
-                                ]
-                            )
-                        ),
-                        type: .feature
-                    )),
-                    destinationGeofenceRadiusMiles: Optional(1.1),
                     deviceId: "device_id",
                     deviceMacAddress: "device_mac_address",
                     flightLegIds: Optional([
@@ -503,6 +471,22 @@ import Chrt
                     flightNumbers: Optional([
                         "flight_numbers"
                     ]),
+                    geofences: Optional([
+                        SessionGeofence1(
+                            displayName: "display_name",
+                            geofenceId: "geofence_id",
+                            location: GeofencePointLocationFeature1(
+                                geometry: Point(
+                                    coordinates: Coordinates.position2D(
+                                        []
+                                    ),
+                                    type: .point
+                                ),
+                                type: .feature
+                            ),
+                            radiusMiles: 1.1
+                        )
+                    ]),
                     lastSeenAtLocation: Optional(LocationFeature(
                         geometry: .geometryCollection(
                             .init(
@@ -510,7 +494,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]
@@ -624,7 +608,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]

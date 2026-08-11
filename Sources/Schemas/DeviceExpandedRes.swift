@@ -2,19 +2,19 @@ import Foundation
 
 public struct DeviceExpandedRes: Codable, Hashable, Sendable {
     public let activeCargo: Cargo1?
-    public let activeSession: Session1?
+    public let activeSession: Session2?
     public let device: DeviceLimitedForList1
     public let pastCargos: [Cargo1]?
-    public let pastSessions: [Session1]?
+    public let pastSessions: [Session2]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         activeCargo: Cargo1? = nil,
-        activeSession: Session1? = nil,
+        activeSession: Session2? = nil,
         device: DeviceLimitedForList1,
         pastCargos: [Cargo1]? = nil,
-        pastSessions: [Session1]? = nil,
+        pastSessions: [Session2]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.activeCargo = activeCargo
@@ -28,10 +28,10 @@ public struct DeviceExpandedRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.activeCargo = try container.decodeIfPresent(Cargo1.self, forKey: .activeCargo)
-        self.activeSession = try container.decodeIfPresent(Session1.self, forKey: .activeSession)
+        self.activeSession = try container.decodeIfPresent(Session2.self, forKey: .activeSession)
         self.device = try container.decode(DeviceLimitedForList1.self, forKey: .device)
         self.pastCargos = try container.decodeIfPresent([Cargo1].self, forKey: .pastCargos)
-        self.pastSessions = try container.decodeIfPresent([Session1].self, forKey: .pastSessions)
+        self.pastSessions = try container.decodeIfPresent([Session2].self, forKey: .pastSessions)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

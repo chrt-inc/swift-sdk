@@ -3,7 +3,9 @@ import Foundation
 public final class TrackingClient: Sendable {
     public let devices: DevicesClient
     public let driver: DriverClient
+    public let geofenceTemplates: GeofenceTemplatesClient
     public let sessions: SessionsClient
+    public let sessionGeofences: SessionGeofencesClient
     public let sharingSettings: SharingSettingsClient
     public let timeseries: TimeseriesClient
     private let httpClient: HTTPClient
@@ -11,7 +13,9 @@ public final class TrackingClient: Sendable {
     init(config: ClientConfig) {
         self.devices = DevicesClient(config: config)
         self.driver = DriverClient(config: config)
+        self.geofenceTemplates = GeofenceTemplatesClient(config: config)
         self.sessions = SessionsClient(config: config)
+        self.sessionGeofences = SessionGeofencesClient(config: config)
         self.sharingSettings = SharingSettingsClient(config: config)
         self.timeseries = TimeseriesClient(config: config)
         self.httpClient = HTTPClient(config: config)

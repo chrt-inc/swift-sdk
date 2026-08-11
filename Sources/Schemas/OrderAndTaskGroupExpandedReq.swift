@@ -6,6 +6,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public let expandContacts: Bool?
     public let expandCoordinatorOrgCompanyName: Bool?
     public let expandCoordinatorOrgHandle: Bool?
+    public let expandCoordinatorTaskListsToApplyAtOrderStaging: Bool?
     public let expandDriver: Bool?
     public let expandExecutorOrgCompanyName: Bool?
     public let expandExecutorOrgHandle: Bool?
@@ -23,6 +24,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         expandContacts: Bool? = nil,
         expandCoordinatorOrgCompanyName: Bool? = nil,
         expandCoordinatorOrgHandle: Bool? = nil,
+        expandCoordinatorTaskListsToApplyAtOrderStaging: Bool? = nil,
         expandDriver: Bool? = nil,
         expandExecutorOrgCompanyName: Bool? = nil,
         expandExecutorOrgHandle: Bool? = nil,
@@ -38,6 +40,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandContacts = expandContacts
         self.expandCoordinatorOrgCompanyName = expandCoordinatorOrgCompanyName
         self.expandCoordinatorOrgHandle = expandCoordinatorOrgHandle
+        self.expandCoordinatorTaskListsToApplyAtOrderStaging = expandCoordinatorTaskListsToApplyAtOrderStaging
         self.expandDriver = expandDriver
         self.expandExecutorOrgCompanyName = expandExecutorOrgCompanyName
         self.expandExecutorOrgHandle = expandExecutorOrgHandle
@@ -56,6 +59,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandContacts = try container.decodeIfPresent(Bool.self, forKey: .expandContacts)
         self.expandCoordinatorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgCompanyName)
         self.expandCoordinatorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgHandle)
+        self.expandCoordinatorTaskListsToApplyAtOrderStaging = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorTaskListsToApplyAtOrderStaging)
         self.expandDriver = try container.decodeIfPresent(Bool.self, forKey: .expandDriver)
         self.expandExecutorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgCompanyName)
         self.expandExecutorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgHandle)
@@ -75,6 +79,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.expandContacts, forKey: .expandContacts)
         try container.encodeIfPresent(self.expandCoordinatorOrgCompanyName, forKey: .expandCoordinatorOrgCompanyName)
         try container.encodeIfPresent(self.expandCoordinatorOrgHandle, forKey: .expandCoordinatorOrgHandle)
+        try container.encodeIfPresent(self.expandCoordinatorTaskListsToApplyAtOrderStaging, forKey: .expandCoordinatorTaskListsToApplyAtOrderStaging)
         try container.encodeIfPresent(self.expandDriver, forKey: .expandDriver)
         try container.encodeIfPresent(self.expandExecutorOrgCompanyName, forKey: .expandExecutorOrgCompanyName)
         try container.encodeIfPresent(self.expandExecutorOrgHandle, forKey: .expandExecutorOrgHandle)
@@ -92,6 +97,7 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         case expandContacts = "expand_contacts"
         case expandCoordinatorOrgCompanyName = "expand_coordinator_org_company_name"
         case expandCoordinatorOrgHandle = "expand_coordinator_org_handle"
+        case expandCoordinatorTaskListsToApplyAtOrderStaging = "expand_coordinator_task_lists_to_apply_at_order_staging"
         case expandDriver = "expand_driver"
         case expandExecutorOrgCompanyName = "expand_executor_org_company_name"
         case expandExecutorOrgHandle = "expand_executor_org_handle"

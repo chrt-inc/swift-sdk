@@ -44,7 +44,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Retrieves an owner-scoped invoice with its line items, counterparty organization data, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
+    /// Retrieves an owner-scoped invoice with line-item orders, counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getExpandedV1(invoiceId: String, requestOptions: RequestOptions? = nil) async throws -> InvoiceExpandedRes {
