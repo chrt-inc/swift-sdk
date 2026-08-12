@@ -11,6 +11,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public let completedByOrgId: String?
     /// Must be a string starting with `user_`
     public let completedByUserId: String?
+    public let completionSubmittedAtTimestamp: Date?
     public let contactIds: [String]?
     public let coordinatorShipperAccountIds: [String]?
     /// Must be a string starting with `org_`
@@ -50,6 +51,7 @@ public struct Task1: Codable, Hashable, Sendable {
         completedAtTimestamp: Date? = nil,
         completedByOrgId: String? = nil,
         completedByUserId: String? = nil,
+        completionSubmittedAtTimestamp: Date? = nil,
         contactIds: [String]? = nil,
         coordinatorShipperAccountIds: [String]? = nil,
         createdByOrgId: String,
@@ -84,6 +86,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = completedAtTimestamp
         self.completedByOrgId = completedByOrgId
         self.completedByUserId = completedByUserId
+        self.completionSubmittedAtTimestamp = completionSubmittedAtTimestamp
         self.contactIds = contactIds
         self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.createdByOrgId = createdByOrgId
@@ -121,6 +124,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.completedByOrgId = try container.decodeIfPresent(String.self, forKey: .completedByOrgId)
         self.completedByUserId = try container.decodeIfPresent(String.self, forKey: .completedByUserId)
+        self.completionSubmittedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completionSubmittedAtTimestamp)
         self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
@@ -159,6 +163,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.completedByOrgId, forKey: .completedByOrgId)
         try container.encodeIfPresent(self.completedByUserId, forKey: .completedByUserId)
+        try container.encodeIfPresent(self.completionSubmittedAtTimestamp, forKey: .completionSubmittedAtTimestamp)
         try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
         try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
@@ -195,6 +200,7 @@ public struct Task1: Codable, Hashable, Sendable {
         case completedAtTimestamp = "completed_at_timestamp"
         case completedByOrgId = "completed_by_org_id"
         case completedByUserId = "completed_by_user_id"
+        case completionSubmittedAtTimestamp = "completion_submitted_at_timestamp"
         case contactIds = "contact_ids"
         case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case createdByOrgId = "created_by_org_id"

@@ -1,39 +1,32 @@
 import Foundation
 
-/// Polygon Model
-public struct Polygon: Codable, Hashable, Sendable {
-    public let bbox: [JSONValue]?
-    public let coordinates: [[PolygonCoordinatesItemItem]]
+public struct TaskCompleteReq: Codable, Hashable, Sendable {
+    public let completedAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        bbox: [JSONValue]? = nil,
-        coordinates: [[PolygonCoordinatesItemItem]],
+        completedAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.bbox = bbox
-        self.coordinates = coordinates
+        self.completedAtTimestamp = completedAtTimestamp
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bbox = try container.decodeIfPresent([JSONValue].self, forKey: .bbox)
-        self.coordinates = try container.decode([[PolygonCoordinatesItemItem]].self, forKey: .coordinates)
+        self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.bbox, forKey: .bbox)
-        try container.encode(self.coordinates, forKey: .coordinates)
+        try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case bbox
-        case coordinates
+        case completedAtTimestamp = "completed_at_timestamp"
     }
 }

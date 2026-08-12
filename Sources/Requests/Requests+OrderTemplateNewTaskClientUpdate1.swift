@@ -7,6 +7,7 @@ extension Requests {
         public let coordinatorShipperAccountIds: [String]?
         public let datetimeWindowsDateparserStr: [OrderTemplateNewDateTimeWindow1]?
         public let location: LocationFeature?
+        public let locationSetToNone: Bool?
         public let orderPlacerComments: String?
         public let orderPlacerCommentsSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
@@ -18,6 +19,7 @@ extension Requests {
             coordinatorShipperAccountIds: [String]? = nil,
             datetimeWindowsDateparserStr: [OrderTemplateNewDateTimeWindow1]? = nil,
             location: LocationFeature? = nil,
+            locationSetToNone: Bool? = nil,
             orderPlacerComments: String? = nil,
             orderPlacerCommentsSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -27,6 +29,7 @@ extension Requests {
             self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
             self.datetimeWindowsDateparserStr = datetimeWindowsDateparserStr
             self.location = location
+            self.locationSetToNone = locationSetToNone
             self.orderPlacerComments = orderPlacerComments
             self.orderPlacerCommentsSetToNone = orderPlacerCommentsSetToNone
             self.additionalProperties = additionalProperties
@@ -39,6 +42,7 @@ extension Requests {
             self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
             self.datetimeWindowsDateparserStr = try container.decodeIfPresent([OrderTemplateNewDateTimeWindow1].self, forKey: .datetimeWindowsDateparserStr)
             self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
+            self.locationSetToNone = try container.decodeIfPresent(Bool.self, forKey: .locationSetToNone)
             self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
             self.orderPlacerCommentsSetToNone = try container.decodeIfPresent(Bool.self, forKey: .orderPlacerCommentsSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -52,6 +56,7 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
             try container.encodeIfPresent(self.datetimeWindowsDateparserStr, forKey: .datetimeWindowsDateparserStr)
             try container.encodeIfPresent(self.location, forKey: .location)
+            try container.encodeIfPresent(self.locationSetToNone, forKey: .locationSetToNone)
             try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
             try container.encodeIfPresent(self.orderPlacerCommentsSetToNone, forKey: .orderPlacerCommentsSetToNone)
         }
@@ -63,6 +68,7 @@ extension Requests {
             case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
             case datetimeWindowsDateparserStr = "datetime_windows_dateparser_str"
             case location
+            case locationSetToNone = "location__set_to_None"
             case orderPlacerComments = "order_placer_comments"
             case orderPlacerCommentsSetToNone = "order_placer_comments__set_to_None"
         }

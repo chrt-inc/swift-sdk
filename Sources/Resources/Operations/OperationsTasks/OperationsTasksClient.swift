@@ -57,10 +57,11 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterTaskType: Filter by task type(s). Defaults to all types.
     /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
     /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
+    /// - Parameter filterSourceTaskListId: Filter to tasks created from this OperationsTaskList
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedListV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: String? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: OperationsTaskTypeEnum? = nil, filterStatus: OperationsTaskStatusEnum? = nil, filterAssignedUserId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskExpandedListRes {
+    public func expandedListV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: String? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: OperationsTaskTypeEnum? = nil, filterStatus: OperationsTaskStatusEnum? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskExpandedListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/expanded/list/v1",
@@ -77,6 +78,7 @@ public final class OperationsTasksClient: Sendable {
                 "filter_task_type": filterTaskType.map { .string($0.rawValue) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
+                "filter_source_task_list_id": filterSourceTaskListId.map { .string($0) }, 
                 "filter_deadline_gte": filterDeadlineGte.map { .date($0) }, 
                 "filter_deadline_lte": filterDeadlineLte.map { .date($0) }
             ],
@@ -85,7 +87,7 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / assignee / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
+    /// Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / assignee / source task list / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
@@ -97,10 +99,11 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterTaskType: Filter by task type(s). Defaults to all types.
     /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
     /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
+    /// - Parameter filterSourceTaskListId: Filter to tasks created from this OperationsTaskList
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: String? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: OperationsTaskTypeEnum? = nil, filterStatus: OperationsTaskStatusEnum? = nil, filterAssignedUserId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
+    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: String? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: OperationsTaskTypeEnum? = nil, filterStatus: OperationsTaskStatusEnum? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/list/v1",
@@ -117,6 +120,7 @@ public final class OperationsTasksClient: Sendable {
                 "filter_task_type": filterTaskType.map { .string($0.rawValue) }, 
                 "filter_status": filterStatus.map { .string($0.rawValue) }, 
                 "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
+                "filter_source_task_list_id": filterSourceTaskListId.map { .string($0) }, 
                 "filter_deadline_gte": filterDeadlineGte.map { .date($0) }, 
                 "filter_deadline_lte": filterDeadlineLte.map { .date($0) }
             ],

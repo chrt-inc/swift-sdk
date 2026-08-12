@@ -260,6 +260,13 @@ import Chrt
                       ],
                       "coordinator_department_id": "coordinator_department_id",
                       "coordinator_label": "coordinator_label",
+                      "coordinator_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
                       "coordinator_org_id": "coordinator_org_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "description": "description",
@@ -267,11 +274,26 @@ import Chrt
                       "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                       "name": "name",
                       "off_chrt_reference_id": "off_chrt_reference_id",
+                      "off_chrt_shipper_org": {
+                        "_id": "_id",
+                        "created_by_user_id": "created_by_user_id",
+                        "name": "name",
+                        "org_type": "provider",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "schema_version": 1
+                      },
                       "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "owned_by_user_id": "owned_by_user_id",
                       "schema_version": 1,
                       "service_line": "on_demand",
+                      "shipper_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
                       "shipper_org_id": "shipper_org_id",
                       "task_groups": [
                         {
@@ -287,6 +309,24 @@ import Chrt
                               "task_key": "task_key"
                             }
                           ]
+                        }
+                      ],
+                      "task_groups_expanded": [
+                        {
+                          "task_group": {
+                            "task_group_key": "task_group_key",
+                            "task_group_type": "chrt_ground_provider",
+                            "tasks": [
+                              {
+                                "datetime_windows_dateparser_str": [
+                                  {
+                                    "time_zone_name": "America/New_York"
+                                  }
+                                ],
+                                "task_key": "task_key"
+                              }
+                            ]
+                          }
                         }
                       ],
                       "task_lists_to_apply_at_order_creation": [
@@ -313,7 +353,7 @@ import Chrt
         )
         let expectedResponse = OrderTemplateNewListRes(
             items: [
-                OrderTemplateNew1(
+                OrderTemplateNewExpanded1(
                     id: "_id",
                     archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     cargos: Optional([
@@ -327,6 +367,13 @@ import Chrt
                     ]),
                     coordinatorDepartmentId: Optional("coordinator_department_id"),
                     coordinatorLabel: Optional("coordinator_label"),
+                    coordinatorOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    )),
                     coordinatorOrgId: Optional("coordinator_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     description: Optional("description"),
@@ -334,11 +381,26 @@ import Chrt
                     lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     name: "name",
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
+                    offChrtShipperOrg: Optional(OffChrtOrgData1(
+                        id: "_id",
+                        createdByUserId: "created_by_user_id",
+                        name: "name",
+                        orgType: .provider,
+                        ownedByOrgId: "owned_by_org_id",
+                        schemaVersion: 1
+                    )),
                     offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                     ownedByOrgId: "owned_by_org_id",
                     ownedByUserId: "owned_by_user_id",
                     schemaVersion: 1,
                     serviceLine: Optional(.onDemand),
+                    shipperOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: .provider,
+                        schemaVersion: 1
+                    )),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskGroups: Optional([
                         OrderTemplateNewTaskGroup1(
@@ -354,6 +416,24 @@ import Chrt
                                     taskKey: "task_key"
                                 )
                             ])
+                        )
+                    ]),
+                    taskGroupsExpanded: Optional([
+                        OrderTemplateNewTaskGroupExpanded1(
+                            taskGroup: OrderTemplateNewTaskGroup1(
+                                taskGroupKey: "task_group_key",
+                                taskGroupType: .chrtGroundProvider,
+                                tasks: Optional([
+                                    OrderTemplateNewTask1(
+                                        datetimeWindowsDateparserStr: Optional([
+                                            OrderTemplateNewDateTimeWindow1(
+                                                timeZoneName: "America/New_York"
+                                            )
+                                        ]),
+                                        taskKey: "task_key"
+                                    )
+                                ])
+                            )
                         )
                     ]),
                     taskListsToApplyAtOrderCreation: Optional([
@@ -375,8 +455,13 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterArchived: true,
             filterOwnedByUserId: "filter_owned_by_user_id",
+            filterExecutorOrgId: "filter_executor_org_id",
+            filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
+            filterShipperOrgId: "filter_shipper_org_id",
+            filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

@@ -9,7 +9,6 @@ public final class PublicDataClient: Sendable {
 
     /// Returns the organization avatar URL or a placeholder. | () -> (str)
     ///
-    /// - Parameter handle: Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getAvatarV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -22,7 +21,6 @@ public final class PublicDataClient: Sendable {
 
     /// Retrieves public organization data by handle. | () -> (OrgPublicData1)
     ///
-    /// - Parameter handle: Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> OrgPublicData1 {
         return try await httpClient.performRequest(
@@ -35,7 +33,6 @@ public final class PublicDataClient: Sendable {
 
     /// Returns True when the provided handle is available, otherwise False. | () -> (bool)
     ///
-    /// - Parameter handle: Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getHandleAvailabilityV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -73,7 +70,6 @@ public final class PublicDataClient: Sendable {
 
     /// Retrieves public organization data for a specific organization by ID. | () -> (OrgPublicData1)
     ///
-    /// - Parameter orgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByOrgIdV1(orgId: String, requestOptions: RequestOptions? = nil) async throws -> OrgPublicData1 {
         return try await httpClient.performRequest(

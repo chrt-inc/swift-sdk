@@ -1,13 +1,13 @@
 import Foundation
 
 public struct OrderTemplateNewListRes: Codable, Hashable, Sendable {
-    public let items: [OrderTemplateNew1]
+    public let items: [OrderTemplateNewExpanded1]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        items: [OrderTemplateNew1],
+        items: [OrderTemplateNewExpanded1],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct OrderTemplateNewListRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.items = try container.decode([OrderTemplateNew1].self, forKey: .items)
+        self.items = try container.decode([OrderTemplateNewExpanded1].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

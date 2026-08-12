@@ -53,12 +53,18 @@ public final class OrderTemplatesNewClient: Sendable {
         )
     }
 
-    /// Lists order templates for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OrderTemplateNewListRes)
+    /// Lists order templates with filtering, sorting, pagination, full-text search, and party/account expansion. | authz: min_org_role=operator | () -> (OrderTemplateNewListRes)
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
+    /// - Parameter search: Full-text search query for template name or description.
     /// - Parameter filterArchived: Include archived templates instead of active templates.
     /// - Parameter filterOwnedByUserId: Filter by the user that created the template.
+    /// - Parameter filterExecutorOrgId: Filter by an on-CHRT executor organization ID.
+    /// - Parameter filterOffChrtExecutorOrgDataId: Filter by an off-CHRT executor organization data ID.
+    /// - Parameter filterShipperOrgId: Filter by an on-CHRT shipper organization ID.
+    /// - Parameter filterOffChrtShipperOrgDataId: Filter by an off-CHRT shipper organization data ID.
+    /// - Parameter filterCoordinatorShipperAccountIds: Filter by coordinator shipper account ID(s) assigned to template tasks.
     /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value (inclusive).
     /// - Parameter filterCreatedAtTimestampLte: Filter created_at_timestamp <= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
@@ -66,7 +72,7 @@ public final class OrderTemplatesNewClient: Sendable {
     /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
     /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
+    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates_new/list/v1",
@@ -75,8 +81,14 @@ public final class OrderTemplatesNewClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
+                "filter_executor_org_id": filterExecutorOrgId.map { .string($0) }, 
+                "filter_off_chrt_executor_org_data_id": filterOffChrtExecutorOrgDataId.map { .string($0) }, 
+                "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 
+                "filter_off_chrt_shipper_org_data_id": filterOffChrtShipperOrgDataId.map { .string($0) }, 
+                "filter_coordinator_shipper_account_ids": filterCoordinatorShipperAccountIds.map { .string($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
                 "filter_last_edited_at_timestamp_gte": filterLastEditedAtTimestampGte.map { .date($0) }, 

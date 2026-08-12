@@ -22,13 +22,27 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Marks a task as COMPLETED. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
+    /// Marks a task as COMPLETED, optionally recording a client-supplied completion timestamp no more than five minutes in the future. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskCompleteReq | None) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func completeV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func completeV1(taskId: String, request: TaskCompleteReq?, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/complete/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Corrects a completed task's completion timestamp. The driver may correct only their own completion; authorized operators may override it. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskCompletionTimestampUpdateReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCompletionTimestampV1(taskId: String, request: Requests.TaskCompletionTimestampUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/tasks/completion_timestamp/update/v1/\(taskId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

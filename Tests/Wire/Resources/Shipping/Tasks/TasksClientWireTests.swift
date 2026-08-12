@@ -43,6 +43,32 @@ import Chrt
         let expectedResponse = true
         let response = try await client.shipping.tasks.completeV1(
             taskId: "task_id",
+            request: TaskCompleteReq(
+
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateCompletionTimestampV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Data(
+                """
+                true
+                """.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.tasks.updateCompletionTimestampV1(
+            taskId: "task_id",
+            request: .init(completedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

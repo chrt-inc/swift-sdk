@@ -21,7 +21,6 @@ public final class GroupsClient: Sendable {
 
     /// Adds a user to a notification group. | authz: min_org_role=administrator | () -> (bool)
     ///
-    /// - Parameter userId: Must be a string starting with `user_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addUserV1(groupId: String, userId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -127,7 +126,6 @@ public final class GroupsClient: Sendable {
 
     /// Removes a user from a notification group. | authz: min_org_role=administrator | () -> (bool)
     ///
-    /// - Parameter userId: Must be a string starting with `user_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeUserV1(groupId: String, userId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
