@@ -1,3 +1,15 @@
+## 6.0.0 - 2026-08-12
+### Breaking Changes
+* **`OrderTemplatesClient`** and **`OrderTemplatesNewClient`** — `OrderTemplatesClient` is removed entirely (all methods including `createV1`, `updateV1`, `archiveV1`, `deleteV1`, `listV1`, etc.); migrate to `OrderTemplatesNewClient` via `ShippingClient_.orderTemplatesNew`.
+* **`DraftsClient`** — sub-client properties `cargo` and `taskGroup` are removed, and methods `addCoordinatorTaskListToApplyAtOrderStagingV1`, `removeCoordinatorTaskListToApplyAtOrderStagingV1`, `deleteV1`, `deleteManyV1`, `setTaskGroupOrderingV1`, `updateV1`, and `validateV1` are removed; migrate to the equivalent methods on `ShippingOrdersClient`.
+* **`DraftsCargoClient`**, **`DraftsTaskGroupClient`**, and **`Order1`** — these types are removed entirely; remove all references and update decoding, construction, and pattern-matching sites accordingly.
+* **`OrderTemplate1`**, **`OrderTemplateExpanded1`**, **`OrderTemplateListRes`**, **`OrderTemplateOrgInfo1`**, **`OrderTemplateReferenceColumnEnum1`**, and **`OrderTemplateSortByEnum`** — all removed; update to the replacement types provided by the current schema.
+* **`Requests.OrdersOpenDraftReq.orderTemplateId`** — field removed along with `Requests.OrderTemplateClientCreate1`, `Requests.OrderTemplateClientUpdate1`, and `Requests.OrderTemplateRemoveReferenceReq`; remove all construction and usage of these types and omit `orderTemplateId` from `OrdersOpenDraftReq` initializer call sites.
+### Added
+* **`ShippingOrdersClient`** — gains `addCoordinatorTaskListToApplyAtOrderStagingV1`, `removeCoordinatorTaskListToApplyAtOrderStagingV1`, `deleteDraftV1`, `deleteManyDraftsV1`, `updateDraftV1`, `validateDraftV1`, and `taskGroupOrderingV1` methods, consolidating draft and task-group operations previously spread across `DraftsClient` and its sub-clients.
+* **`TaskGroupClient.deleteV1`** — new method to delete a task group by ID.
+* **`SessionsClient.flightTrackV1`** — gains a new optional `forceRefresh` parameter to bypass cached flight tracking data.
+
 ## 5.0.0 - 2026-08-12
 ### Breaking Changes
 * **`TaskCompleteReq`** — removed from the top-level schema namespace; the type now lives at `Requests.TaskCompleteReq`. Update all references from `TaskCompleteReq` to `Requests.TaskCompleteReq`.
