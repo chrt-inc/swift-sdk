@@ -1,3 +1,8 @@
+## 5.0.0 - 2026-08-12
+### Breaking Changes
+* **`TaskCompleteReq`** — removed from the top-level schema namespace; the type now lives at `Requests.TaskCompleteReq`. Update all references from `TaskCompleteReq` to `Requests.TaskCompleteReq`.
+* **`TasksClient.completeV1`** — the `request` parameter type changed from `TaskCompleteReq?` (optional) to `Requests.TaskCompleteReq` (non-optional). Replace `nil` with `Requests.TaskCompleteReq()` and remove any optional-handling logic at every call site.
+
 ## 4.0.0 - 2026-08-12
 ### Breaking Changes
 * **`TasksClient.completeV1`** — now requires a new `request: TaskCompleteReq?` parameter before `requestOptions`; add `request: nil` (or a `TaskCompleteReq`) at every call site.
