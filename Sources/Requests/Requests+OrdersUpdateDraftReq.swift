@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct OrdersDraftUpdateReq: Codable, Hashable, Sendable {
+    public struct OrdersUpdateDraftReq: Codable, Hashable, Sendable {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?

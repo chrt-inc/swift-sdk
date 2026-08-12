@@ -39,16 +39,18 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Returns the Cirium-sourced positional track for one of the session's flight legs — the live breadcrumb trail plus the planned path (waypoints + legacy route) — cached on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+    /// Returns the raw Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
     ///
+    /// - Parameter forceRefresh: Bypass the cache and fetch the latest flight track.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func flightTrackV1(sessionId: String, flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
+    public func flightTrackV1(sessionId: String, flightLegId: String, forceRefresh: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/flight_track/v1",
             queryParams: [
                 "session_id": .string(sessionId), 
-                "flight_leg_id": .string(flightLegId)
+                "flight_leg_id": .string(flightLegId), 
+                "force_refresh": forceRefresh.map { .bool($0) }
             ],
             requestOptions: requestOptions,
             responseType: FlightTrackRes.self

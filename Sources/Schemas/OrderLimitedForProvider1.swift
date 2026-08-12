@@ -30,7 +30,6 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
     public let orderClassificationByTaskGroupType: TaskGroupTypeEnum1?
     public let orderScheduleId: String?
     public let orderScheduleRunIdempotencyKey: String?
-    public let orderTemplateId: String?
     public let orderTemplateNewId: String?
     public let schemaVersion: Int
     public let serviceLine: ServiceLineEnum?
@@ -66,7 +65,6 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         orderClassificationByTaskGroupType: TaskGroupTypeEnum1? = nil,
         orderScheduleId: String? = nil,
         orderScheduleRunIdempotencyKey: String? = nil,
-        orderTemplateId: String? = nil,
         orderTemplateNewId: String? = nil,
         schemaVersion: Int,
         serviceLine: ServiceLineEnum? = nil,
@@ -99,7 +97,6 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         self.orderClassificationByTaskGroupType = orderClassificationByTaskGroupType
         self.orderScheduleId = orderScheduleId
         self.orderScheduleRunIdempotencyKey = orderScheduleRunIdempotencyKey
-        self.orderTemplateId = orderTemplateId
         self.orderTemplateNewId = orderTemplateNewId
         self.schemaVersion = schemaVersion
         self.serviceLine = serviceLine
@@ -135,7 +132,6 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         self.orderClassificationByTaskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .orderClassificationByTaskGroupType)
         self.orderScheduleId = try container.decodeIfPresent(String.self, forKey: .orderScheduleId)
         self.orderScheduleRunIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .orderScheduleRunIdempotencyKey)
-        self.orderTemplateId = try container.decodeIfPresent(String.self, forKey: .orderTemplateId)
         self.orderTemplateNewId = try container.decodeIfPresent(String.self, forKey: .orderTemplateNewId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
@@ -172,7 +168,6 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderClassificationByTaskGroupType, forKey: .orderClassificationByTaskGroupType)
         try container.encodeIfPresent(self.orderScheduleId, forKey: .orderScheduleId)
         try container.encodeIfPresent(self.orderScheduleRunIdempotencyKey, forKey: .orderScheduleRunIdempotencyKey)
-        try container.encodeIfPresent(self.orderTemplateId, forKey: .orderTemplateId)
         try container.encodeIfPresent(self.orderTemplateNewId, forKey: .orderTemplateNewId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
@@ -207,7 +202,6 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         case orderClassificationByTaskGroupType = "order_classification_by_task_group_type"
         case orderScheduleId = "order_schedule_id"
         case orderScheduleRunIdempotencyKey = "order_schedule_run_idempotency_key"
-        case orderTemplateId = "order_template_id"
         case orderTemplateNewId = "order_template_new_id"
         case schemaVersion = "schema_version"
         case serviceLine = "service_line"

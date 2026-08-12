@@ -59,6 +59,59 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
+    /// Adds or updates a coordinator task list to apply when the draft is staged. | authz_personas=[coordinator_org_operators] | (UTCDatetime | None) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func addCoordinatorTaskListToApplyAtOrderStagingV1(orderId: String, taskListId: String, departmentId: String? = nil, request: Date?, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/orders/coordinator_task_lists_to_apply_at_order_staging/add/v1/\(orderId)/\(taskListId)",
+            queryParams: [
+                "department_id": departmentId.map { .string($0) }
+            ],
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Removes a coordinator task list pending application at draft staging. | authz_personas=[coordinator_org_operators] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func removeCoordinatorTaskListToApplyAtOrderStagingV1(orderId: String, taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/orders/coordinator_task_lists_to_apply_at_order_staging/remove/v1/\(orderId)/\(taskListId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Hard-deletes a draft order and all dependent entities. | authz_personas=[draft_creator_org_operator] | () -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteDraftV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/orders/delete_draft/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Hard-deletes multiple draft orders and all dependent entities. | authz_personas=[draft_creator_org_operator] | (OrdersDeleteManyDraftsReq) -> (OrdersDeleteManyDraftsRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteManyDraftsV1(request: Requests.OrdersDeleteManyDraftsReq, requestOptions: RequestOptions? = nil) async throws -> OrdersDeleteManyDraftsRes {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/shipping/orders/delete_many_drafts/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrdersDeleteManyDraftsRes.self
+        )
+    }
+
     /// Validates a draft order and stages all related entities in a transaction. | authz_personas=[draft_creator_org_operator] | () -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -80,6 +133,19 @@ public final class ShippingOrdersClient: Sendable {
             path: "/shipping/orders/suggested_department/v1/\(orderId)",
             requestOptions: requestOptions,
             responseType: String?.self
+        )
+    }
+
+    /// Sets task-group ordering on an active order unless a task group or task is completed. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersTaskGroupOrderingReq) -> (bool)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func taskGroupOrderingV1(orderId: String, request: Requests.OrdersTaskGroupOrderingReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/orders/task_group_ordering/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 
@@ -145,6 +211,19 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
+    /// Updates service-line and organization assignments on a draft order. | authz_personas=[draft_creator_org_operator] | (OrdersUpdateDraftReq) -> (OrdersUpdateDraftRes)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDraftV1(orderId: String, request: Requests.OrdersUpdateDraftReq, requestOptions: RequestOptions? = nil) async throws -> OrdersUpdateDraftRes {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/update_draft/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrdersUpdateDraftRes.self
+        )
+    }
+
     /// Updates label for the caller's role on the order. Coordinator writes coordinator_label; executor writes executor_label on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateLabelReq) -> (bool)
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -168,6 +247,18 @@ public final class ShippingOrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OrdersUpdateOffChrtReferenceIdRes.self
+        )
+    }
+
+    /// Validates a draft order for staging and returns requirement results. | authz_personas=[draft_creator_org_operator] | () -> (OrderDraftValidationResult)
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func validateDraftV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderDraftValidationResult {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/orders/validate_draft/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: OrderDraftValidationResult.self
         )
     }
 }

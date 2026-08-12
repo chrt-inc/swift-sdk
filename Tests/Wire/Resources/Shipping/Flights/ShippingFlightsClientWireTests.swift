@@ -300,6 +300,7 @@ import Chrt
         )
         let response = try await client.shipping.flights.getFlightTrackForFlightLegV1(
             flightLegId: "flight_leg_id",
+            forceRefresh: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

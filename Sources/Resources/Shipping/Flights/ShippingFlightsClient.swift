@@ -43,13 +43,17 @@ public final class ShippingFlightsClient: Sendable {
         )
     }
 
-    /// Returns the Cirium-sourced positional track for a flight leg — the live breadcrumb trail plus the planned path (waypoints + legacy route) in one read-through call, cached on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+    /// Returns the raw Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
     ///
+    /// - Parameter forceRefresh: Bypass the cache and fetch the latest flight track.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getFlightTrackForFlightLegV1(flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
+    public func getFlightTrackForFlightLegV1(flightLegId: String, forceRefresh: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> FlightTrackRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/flights/track/for_flight_leg/v1/\(flightLegId)",
+            queryParams: [
+                "force_refresh": forceRefresh.map { .bool($0) }
+            ],
             requestOptions: requestOptions,
             responseType: FlightTrackRes.self
         )
