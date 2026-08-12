@@ -1,3 +1,14 @@
+## 4.0.0 - 2026-08-12
+### Breaking Changes
+* **`TasksClient.completeV1`** — now requires a new `request: TaskCompleteReq?` parameter before `requestOptions`; add `request: nil` (or a `TaskCompleteReq`) at every call site.
+* **`OrderTemplateNewListRes.items`** — element type changed from `[OrderTemplateNew1]` to `[OrderTemplateNewExpanded1]`; update all decoding, pattern-matching, and construction sites to use `OrderTemplateNewExpanded1`.
+### Added
+* **`TasksClient.updateCompletionTimestampV1`** — new method to correct a completed task's `completedAtTimestamp`; accepts a `TaskCompletionTimestampUpdateReq` and returns `Bool`.
+* **`OrderTemplatesNewClient.listV1`** — new optional filter parameters (`search`, `filterExecutorOrgId`, `filterShipperOrgId`, `filterCoordinatorShipperAccountIds`, and more) for richer template filtering.
+* **`filterSourceTaskListId`** — new optional filter on `OperationsTasksClient.listV1` and `expandedListV1` to scope results to tasks from a specific `OperationsTaskList`.
+* **`locationSetToNone: Bool?`** — new optional field on `TaskClientUpdate1` and `OrderTemplateNewTaskClientUpdate1` to explicitly clear a task's location.
+* **`OrderTemplateNewExpanded1`** and **`OrderTemplateNewTaskGroupExpanded1`** — new structs representing fully expanded order template and task-group responses; `Task1` gains a new `completionSubmittedAtTimestamp: Date?` field.
+
 ## 3.0.0 - 2026-08-11
 ### Breaking Changes
 * **`Session1`** — renamed to `Session2`; `destinationGeofenceEntered`, `destinationGeofenceLocation`, and `destinationGeofenceRadiusMiles` fields removed — replace with the new `geofences: [SessionGeofence1]` array and access `entered`, `enteredAtTimestamp`, `location`, and `radiusMiles` on each element.

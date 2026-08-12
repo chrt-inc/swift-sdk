@@ -187,9 +187,18 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOrderIds: [
+                "filter_order_ids"
+            ],
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
+            filterTaskType: [
+                .reviewOrderDetails
+            ],
+            filterStatus: [
+                .notStarted
+            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterSourceTaskListId: "filter_source_task_list_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -282,9 +291,18 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOrderIds: [
+                "filter_order_ids"
+            ],
             filterOrderShortId: "filter_order_short_id",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentId: "filter_department_id",
+            filterTaskType: [
+                .reviewOrderDetails
+            ],
+            filterStatus: [
+                .notStarted
+            ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterSourceTaskListId: "filter_source_task_list_id",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
