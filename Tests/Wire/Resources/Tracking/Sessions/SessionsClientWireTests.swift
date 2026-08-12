@@ -306,7 +306,7 @@ import Chrt
                             .lineString(
                                 .init(
                                     coordinates: [
-                                        CoordinatesItem.position2D(
+                                        LineStringCoordinatesItem.position2D(
                                             []
                                         )
                                     ]
@@ -462,7 +462,7 @@ import Chrt
                                     .lineString(
                                         .init(
                                             coordinates: [
-                                                CoordinatesItem.position2D(
+                                                LineStringCoordinatesItem.position2D(
                                                     []
                                                 )
                                             ]

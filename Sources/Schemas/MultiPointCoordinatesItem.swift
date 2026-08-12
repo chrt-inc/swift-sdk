@@ -1,6 +1,6 @@
 import Foundation
 
-public enum CoordinatesItemItemItem: Codable, Hashable, Sendable {
+public enum MultiPointCoordinatesItem: Codable, Hashable, Sendable {
     case position2D(Position2D)
     case position3D(Position3D)
 

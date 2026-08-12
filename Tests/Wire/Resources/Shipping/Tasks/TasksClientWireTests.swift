@@ -43,9 +43,7 @@ import Chrt
         let expectedResponse = true
         let response = try await client.shipping.tasks.completeV1(
             taskId: "task_id",
-            request: TaskCompleteReq(
-
-            ),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

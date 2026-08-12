@@ -462,9 +462,6 @@ import Chrt
             filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            filterCoordinatorShipperAccountIds: [
-                "filter_coordinator_shipper_account_ids"
-            ],
             filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
