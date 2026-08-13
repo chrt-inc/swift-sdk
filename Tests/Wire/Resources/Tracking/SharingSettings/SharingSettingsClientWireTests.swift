@@ -6,8 +6,8 @@ import Chrt
     @Test func getSettingsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "sharing_settings": {
@@ -23,7 +23,7 @@ import Chrt
                     "task_group_id": "task_group_id"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -58,8 +58,8 @@ import Chrt
     @Test func cargoByDeviceSettingsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "cargo_id": "cargo_id",
@@ -71,7 +71,7 @@ import Chrt
                   "schema_version": 1,
                   "task_group_id": "task_group_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -105,8 +105,8 @@ import Chrt
     @Test func cargoByDriverSettingsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "cargo_id": "cargo_id",
@@ -118,7 +118,7 @@ import Chrt
                   "schema_version": 1,
                   "task_group_id": "task_group_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -151,8 +151,8 @@ import Chrt
     @Test func taskGroupByDriverSharingSettingsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "driver_id": "driver_id",
@@ -163,7 +163,7 @@ import Chrt
                   "schema_version": 1,
                   "task_group_id": "task_group_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

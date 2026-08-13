@@ -9,6 +9,22 @@ public final class DriverBiddingGroupsClient: Sendable {
 
     /// Adds a driver to a bidding group. Driver must be part of the caller's org. Duplicate adds are idempotent ($addToSet). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.addMemberV1(
+    ///         groupId: "group_id",
+    ///         driverId: "driver_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addMemberV1(groupId: String, driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -21,6 +37,19 @@ public final class DriverBiddingGroupsClient: Sendable {
 
     /// Fetches a driver bidding group by id. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroup1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.byIdV1(groupId: "group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> DriverBiddingGroup1 {
         return try await httpClient.performRequest(
@@ -32,6 +61,22 @@ public final class DriverBiddingGroupsClient: Sendable {
     }
 
     /// Creates a driver bidding group owned by the caller's org. The group starts empty — add drivers via /add_member. | authz: allowed_org_types=[provider], min_org_role=operator | (DriverBiddingGroupClientCreate1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.createV1(request: .init(
+    ///         groupName: "group_name",
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.DriverBiddingGroupClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -46,6 +91,19 @@ public final class DriverBiddingGroupsClient: Sendable {
 
     /// Hard-deletes a driver bidding group. Live Listings that reference this group as a source are unaffected — they hold their own snapshotted `participant_driver_ids`. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.deleteV1(groupId: "group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -57,6 +115,30 @@ public final class DriverBiddingGroupsClient: Sendable {
     }
 
     /// Lists driver bidding groups owned by the caller's org with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroupListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.listByOrgV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterCreatedByUserId: "filter_created_by_user_id",
+    ///         filterDriverId: "filter_driver_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
@@ -90,6 +172,22 @@ public final class DriverBiddingGroupsClient: Sendable {
 
     /// Removes a driver from a bidding group. No-op if the driver is not a member. Live Listings retain their snapshotted members. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.removeMemberV1(
+    ///         groupId: "group_id",
+    ///         driverId: "driver_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeMemberV1(groupId: String, driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -101,6 +199,22 @@ public final class DriverBiddingGroupsClient: Sendable {
     }
 
     /// Updates the name of a driver bidding group. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.driverBiddingGroups.updateNameV1(
+    ///         groupId: "group_id",
+    ///         groupName: "group_name"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateNameV1(groupId: String, groupName: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

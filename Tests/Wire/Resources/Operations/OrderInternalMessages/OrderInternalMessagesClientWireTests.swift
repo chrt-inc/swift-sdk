@@ -6,10 +6,10 @@ import Chrt
     @Test func addMessageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -29,8 +29,8 @@ import Chrt
     @Test func getByOrderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at": "2024-01-15T09:30:00Z",
@@ -50,7 +50,7 @@ import Chrt
                   "org_id": "org_id",
                   "schema_version": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -87,10 +87,10 @@ import Chrt
     @Test func deleteMessageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

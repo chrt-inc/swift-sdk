@@ -6,8 +6,8 @@ import Chrt
     @Test func createAdHocV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -39,7 +39,7 @@ import Chrt
                     "unit_price": 1.1
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -57,24 +57,24 @@ import Chrt
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
+                currencyCode: BillingCurrencyCodeEnum1.usd,
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
-                invoiceType: .accountsReceivable,
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: .baseRate,
+                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
-                status: Optional(.draft),
+                status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
-                unit: Optional(.each),
+                unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
         ]
@@ -103,8 +103,8 @@ import Chrt
     @Test func previewAdHocV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "awb_number": "awb_number",
@@ -135,7 +135,7 @@ import Chrt
                     "unit_price": 1.1
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -152,24 +152,24 @@ import Chrt
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
+                currencyCode: BillingCurrencyCodeEnum1.usd,
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
-                invoiceType: .accountsReceivable,
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: .baseRate,
+                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
-                status: Optional(.draft),
+                status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
-                unit: Optional(.each),
+                unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
         ]
@@ -198,8 +198,8 @@ import Chrt
     @Test func approveManyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -231,7 +231,7 @@ import Chrt
                     "unit_price": 1.1
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -249,24 +249,24 @@ import Chrt
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
+                currencyCode: BillingCurrencyCodeEnum1.usd,
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
-                invoiceType: .accountsReceivable,
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: .baseRate,
+                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
-                status: Optional(.draft),
+                status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
-                unit: Optional(.each),
+                unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
         ]
@@ -282,8 +282,8 @@ import Chrt
     @Test func listByOrderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "billing_periods": [
                     {
@@ -485,7 +485,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -501,10 +501,10 @@ import Chrt
                         amount: 1.1,
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
-                        cycle: .daily,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        cycle: BillingPeriodCycleEnum1.daily,
                         description: "description",
-                        invoiceType: .accountsReceivable,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
                         ownedByOrgId: "owned_by_org_id",
@@ -516,8 +516,8 @@ import Chrt
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
-                        invoiceType: .accountsReceivable,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
                         ownedByOrgId: "owned_by_org_id",
@@ -529,12 +529,12 @@ import Chrt
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        invoiceType: .accountsReceivable,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: .baseRate,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
@@ -553,18 +553,24 @@ import Chrt
                     firstName: Optional("first_name"),
                     lastName: Optional("last_name"),
                     lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -577,10 +583,10 @@ import Chrt
                     phoneNumberPrimary: Optional("phone_number_primary"),
                     phoneNumberSecondary: Optional("phone_number_secondary"),
                     schemaVersion: 1,
-                    status: Optional(.unassigned),
+                    status: Optional(DriverStatusEnum.unassigned),
                     userId: "user_id",
                     vehicleTypes: Optional([
-                        .sedan
+                        VehicleTypeEnum.sedan
                     ]),
                     waiting: Optional(true)
                 )
@@ -593,23 +599,29 @@ import Chrt
                     emailAddress: Optional("email_address"),
                     industry: Optional("industry"),
                     name: "name",
-                    orgType: .provider,
+                    orgType: OrgTypeEnum.provider,
                     ownedByOrgId: "owned_by_org_id",
                     phoneNumber: Optional("phone_number"),
                     schemaVersion: 1,
                     streetAddress: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -626,22 +638,28 @@ import Chrt
                     industry: Optional("industry"),
                     name: "name",
                     orgId: "org_id",
-                    orgType: .provider,
+                    orgType: OrgTypeEnum.provider,
                     phoneNumber: Optional("phone_number"),
                     schemaVersion: 1,
                     streetAddress: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -659,24 +677,24 @@ import Chrt
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByUserId: "created_by_user_id",
-                    currencyCode: .usd,
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
                     description: "description",
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     invoiceId: Optional("invoice_id"),
-                    invoiceType: .accountsReceivable,
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     lastEditedByUserId: "last_edited_by_user_id",
-                    lineItemType: .baseRate,
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                     orderId: Optional("order_id"),
                     ownedByOrgId: "owned_by_org_id",
                     quantity: 1.1,
                     rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: 1,
                     shipperAccountId: Optional("shipper_account_id"),
-                    status: Optional(.draft),
+                    status: Optional(InvoiceLineItemStatusEnum1.draft),
                     taskGroupId: Optional("task_group_id"),
                     taxPercentage: Optional(1.1),
-                    unit: Optional(.each),
+                    unit: Optional(InvoiceLineItemUnitEnum1.each),
                     unitPrice: 1.1
                 )
             ],
@@ -686,18 +704,24 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     location: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -720,13 +744,13 @@ import Chrt
     @Test func createFromAmountV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "created_invoice_line_item_count": 1,
                   "invoice_id": "invoice_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -754,8 +778,8 @@ import Chrt
     @Test func createFromAwbCostsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "created_awbs": [
                     {
@@ -781,7 +805,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -803,14 +827,14 @@ import Chrt
                     counterpartyOffChrtOrgDataId: "counterparty_off_chrt_org_data_id",
                     createdAwbCount: 1,
                     createdInvoiceLineItemCount: 1,
-                    currencyCode: .usd,
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
                     invoiceId: "invoice_id"
                 )
             ]),
             rejectedAwbs: Optional([
                 CreateInvoiceLineItemsFromAwbCostsRejectedAwb1(
                     awbNumber: "awb_number",
-                    reason: .alreadyBilled
+                    reason: CreateInvoiceLineItemsFromAwbCostsRejectedReasonEnum1.alreadyBilled
                 )
             ])
         )
@@ -832,13 +856,13 @@ import Chrt
     @Test func createFromLineItemsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "created_invoice_line_item_count": 1,
                   "invoice_id": "invoice_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -885,14 +909,14 @@ import Chrt
     @Test func deleteManyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "deleted_invoice_line_item_ids": [
                     "deleted_invoice_line_item_ids"
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -917,8 +941,8 @@ import Chrt
     @Test func createFromRateSheetsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -950,7 +974,7 @@ import Chrt
                     "unit_price": 1.1
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -968,24 +992,24 @@ import Chrt
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
+                currencyCode: BillingCurrencyCodeEnum1.usd,
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
-                invoiceType: .accountsReceivable,
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: .baseRate,
+                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
-                status: Optional(.draft),
+                status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
-                unit: Optional(.each),
+                unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
         ]
@@ -1008,8 +1032,8 @@ import Chrt
     @Test func previewFromRateSheetsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "accounts_payable_invoice_line_items": [
@@ -1047,7 +1071,7 @@ import Chrt
                     "task_group_id": "task_group_id"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1061,12 +1085,12 @@ import Chrt
                     InvoiceLineItemServerCreate1(
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        invoiceType: .accountsReceivable,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: .baseRate,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
@@ -1077,12 +1101,12 @@ import Chrt
                     InvoiceLineItemServerCreate1(
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        invoiceType: .accountsReceivable,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: .baseRate,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
@@ -1111,8 +1135,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -1148,7 +1172,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1163,8 +1187,8 @@ import Chrt
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
-                        invoiceType: .accountsReceivable,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
                         ownedByOrgId: "owned_by_org_id",
@@ -1176,12 +1200,12 @@ import Chrt
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        invoiceType: .accountsReceivable,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: .baseRate,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
@@ -1228,8 +1252,8 @@ import Chrt
     @Test func recalculateTaxesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -1261,7 +1285,7 @@ import Chrt
                     "unit_price": 1.1
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1279,24 +1303,24 @@ import Chrt
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
+                currencyCode: BillingCurrencyCodeEnum1.usd,
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
-                invoiceType: .accountsReceivable,
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: .baseRate,
+                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
-                status: Optional(.draft),
+                status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
-                unit: Optional(.each),
+                unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
         ]
@@ -1310,10 +1334,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

@@ -9,6 +9,19 @@ public final class UserPreferencesClient: Sendable {
 
     /// Creates a new notification preferences record for the caller. Returns existing preferences if already created. | () -> (NotificationUserPreferences1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.userPreferences.createV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(requestOptions: RequestOptions? = nil) async throws -> NotificationUserPreferences1 {
         return try await httpClient.performRequest(
@@ -21,6 +34,19 @@ public final class UserPreferencesClient: Sendable {
 
     /// Retrieves the caller's notification preferences. | () -> (NotificationUserPreferences1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.userPreferences.getV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> NotificationUserPreferences1 {
         return try await httpClient.performRequest(
@@ -32,6 +58,19 @@ public final class UserPreferencesClient: Sendable {
     }
 
     /// Updates notification preferences with explicit events, opt-in, or opt-out operations. | (UserNotificationPreferencesUpdateRequest) -> (NotificationUserPreferences1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.userPreferences.updateV1(request: .init())
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.UserNotificationPreferencesUpdateRequest, requestOptions: RequestOptions? = nil) async throws -> NotificationUserPreferences1 {

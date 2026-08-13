@@ -6,8 +6,8 @@ import Chrt
     @Test func getFlightInfoForTaskV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "flight_legs": [
                     {
@@ -39,7 +39,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -64,12 +64,12 @@ import Chrt
                     estimatedArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     estimatedDepartureUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     flightNumber: "flight_number",
-                    flightStatus: Optional(.scheduled),
+                    flightStatus: Optional(FlightLegStatusEnum1.scheduled),
                     flightStatusFetchedAtUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    flightStatusSource: Optional(.live),
+                    flightStatusSource: Optional(FlightLegStatusSourceEnum1.live),
                     orderId: Optional("order_id"),
                     originIata: "origin_iata",
-                    provenance: .manual,
+                    provenance: FlightLegProvenanceEnum1.manual,
                     scheduledArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     schemaVersion: 1,
@@ -88,8 +88,8 @@ import Chrt
     @Test func getFlightLegsForTaskGroupV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "flight_legs": [
                     {
@@ -121,7 +121,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -146,12 +146,12 @@ import Chrt
                     estimatedArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     estimatedDepartureUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     flightNumber: "flight_number",
-                    flightStatus: Optional(.scheduled),
+                    flightStatus: Optional(FlightLegStatusEnum1.scheduled),
                     flightStatusFetchedAtUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    flightStatusSource: Optional(.live),
+                    flightStatusSource: Optional(FlightLegStatusSourceEnum1.live),
                     orderId: Optional("order_id"),
                     originIata: "origin_iata",
-                    provenance: .manual,
+                    provenance: FlightLegProvenanceEnum1.manual,
                     scheduledArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     schemaVersion: 1,
@@ -170,8 +170,8 @@ import Chrt
     @Test func getFlightStatusForFlightLegV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "actual_arrival_utc": "2024-01-15T09:30:00Z",
@@ -199,7 +199,7 @@ import Chrt
                   "session_id": "session_id",
                   "task_group_id": "task_group_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -222,12 +222,12 @@ import Chrt
             estimatedArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             estimatedDepartureUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             flightNumber: "flight_number",
-            flightStatus: Optional(.scheduled),
+            flightStatus: Optional(FlightLegStatusEnum1.scheduled),
             flightStatusFetchedAtUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            flightStatusSource: Optional(.live),
+            flightStatusSource: Optional(FlightLegStatusSourceEnum1.live),
             orderId: Optional("order_id"),
             originIata: "origin_iata",
-            provenance: .manual,
+            provenance: FlightLegProvenanceEnum1.manual,
             scheduledArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
@@ -244,8 +244,8 @@ import Chrt
     @Test func getFlightTrackForFlightLegV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "bearing": 1.1,
                   "cirium_flight_id": 1,
@@ -268,7 +268,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

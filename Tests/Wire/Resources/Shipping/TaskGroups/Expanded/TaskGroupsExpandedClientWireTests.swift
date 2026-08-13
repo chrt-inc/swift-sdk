@@ -6,8 +6,8 @@ import Chrt
     @Test func forDriverV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "awb_numbers": [
                     "awb_numbers"
@@ -154,7 +154,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -179,18 +179,24 @@ import Chrt
                 firstName: Optional("first_name"),
                 lastName: Optional("last_name"),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -206,10 +212,10 @@ import Chrt
                 phoneNumberPrimary: Optional("phone_number_primary"),
                 phoneNumberSecondary: Optional("phone_number_secondary"),
                 schemaVersion: 1,
-                status: Optional(.unassigned),
+                status: Optional(DriverStatusEnum.unassigned),
                 userId: "user_id",
                 vehicleTypes: Optional([
-                    .sedan
+                    VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
             )),
@@ -257,15 +263,15 @@ import Chrt
                 shipperOrgId: Optional("shipper_org_id"),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                status: Optional(.draft),
+                status: Optional(TaskGroupStatusEnum1.draft),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
-                taskGroupType: .chrtGroundProvider,
+                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                vehicleType: Optional(.sedan),
+                vehicleType: Optional(VehicleTypeEnum.sedan),
                 waitTimeTotalMinutes: Optional(1.1)
             ),
             tasksExpanded: Optional([
@@ -273,7 +279,7 @@ import Chrt
                     cargos: Optional([
                         Cargo1(
                             id: "_id",
-                            cargoType: .spareParts,
+                            cargoType: CargoTypeEnum1.spareParts,
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
@@ -308,7 +314,7 @@ import Chrt
                             schemaVersion: 1,
                             taskGroupId: "task_group_id",
                             taskId: "task_id",
-                            type: .image
+                            type: TaskArtifactTypeEnum1.image
                         )
                     ])
                 )
@@ -327,8 +333,8 @@ import Chrt
     @Test func forProviderOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "awb_numbers": [
                     "awb_numbers"
@@ -475,7 +481,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -500,18 +506,24 @@ import Chrt
                 firstName: Optional("first_name"),
                 lastName: Optional("last_name"),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -527,10 +539,10 @@ import Chrt
                 phoneNumberPrimary: Optional("phone_number_primary"),
                 phoneNumberSecondary: Optional("phone_number_secondary"),
                 schemaVersion: 1,
-                status: Optional(.unassigned),
+                status: Optional(DriverStatusEnum.unassigned),
                 userId: "user_id",
                 vehicleTypes: Optional([
-                    .sedan
+                    VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
             )),
@@ -578,15 +590,15 @@ import Chrt
                 shipperOrgId: Optional("shipper_org_id"),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                status: Optional(.draft),
+                status: Optional(TaskGroupStatusEnum1.draft),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
-                taskGroupType: .chrtGroundProvider,
+                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                vehicleType: Optional(.sedan),
+                vehicleType: Optional(VehicleTypeEnum.sedan),
                 waitTimeTotalMinutes: Optional(1.1)
             ),
             tasksExpanded: Optional([
@@ -594,7 +606,7 @@ import Chrt
                     cargos: Optional([
                         Cargo1(
                             id: "_id",
-                            cargoType: .spareParts,
+                            cargoType: CargoTypeEnum1.spareParts,
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
@@ -629,7 +641,7 @@ import Chrt
                             schemaVersion: 1,
                             taskGroupId: "task_group_id",
                             taskId: "task_id",
-                            type: .image
+                            type: TaskArtifactTypeEnum1.image
                         )
                     ])
                 )
@@ -648,8 +660,8 @@ import Chrt
     @Test func forShipperOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "awb_numbers": [
                     "awb_numbers"
@@ -796,7 +808,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -821,18 +833,24 @@ import Chrt
                 firstName: Optional("first_name"),
                 lastName: Optional("last_name"),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -848,10 +866,10 @@ import Chrt
                 phoneNumberPrimary: Optional("phone_number_primary"),
                 phoneNumberSecondary: Optional("phone_number_secondary"),
                 schemaVersion: 1,
-                status: Optional(.unassigned),
+                status: Optional(DriverStatusEnum.unassigned),
                 userId: "user_id",
                 vehicleTypes: Optional([
-                    .sedan
+                    VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
             )),
@@ -899,15 +917,15 @@ import Chrt
                 shipperOrgId: Optional("shipper_org_id"),
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                status: Optional(.draft),
+                status: Optional(TaskGroupStatusEnum1.draft),
                 taskGroupS3ObjectMetadataIds: Optional([
                     "task_group_s3_object_metadata_ids"
                 ]),
-                taskGroupType: .chrtGroundProvider,
+                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                 taskIds: Optional([
                     "task_ids"
                 ]),
-                vehicleType: Optional(.sedan),
+                vehicleType: Optional(VehicleTypeEnum.sedan),
                 waitTimeTotalMinutes: Optional(1.1)
             ),
             tasksExpanded: Optional([
@@ -915,7 +933,7 @@ import Chrt
                     cargos: Optional([
                         Cargo1(
                             id: "_id",
-                            cargoType: .spareParts,
+                            cargoType: CargoTypeEnum1.spareParts,
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
@@ -950,7 +968,7 @@ import Chrt
                             schemaVersion: 1,
                             taskGroupId: "task_group_id",
                             taskId: "task_id",
-                            type: .image
+                            type: TaskArtifactTypeEnum1.image
                         )
                     ])
                 )
@@ -969,8 +987,8 @@ import Chrt
     @Test func listForDriverV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -1021,7 +1039,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1060,7 +1078,7 @@ import Chrt
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         schemaVersion: 1,
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -1105,9 +1123,9 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            request: .init(body: OrderAndTaskGroupExpandedReq(
+            request: OrderAndTaskGroupExpandedReq(
 
-            )),
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -1116,8 +1134,8 @@ import Chrt
     @Test func listForProviderOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -1168,7 +1186,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1207,7 +1225,7 @@ import Chrt
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         schemaVersion: 1,
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -1254,9 +1272,9 @@ import Chrt
             filterCoordinatorOrgId: "filter_coordinator_org_id",
             filterShipperOrgId: "filter_shipper_org_id",
             filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
-            request: .init(body: OrderAndTaskGroupExpandedReq(
+            request: OrderAndTaskGroupExpandedReq(
 
-            )),
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -3,12 +3,12 @@ import Foundation
 /// Coarse functional buckets a dispatcher batch-processes (powers the
 /// per-type functional-queue index). Granular SOP specifics live in the Task's
 /// `title`/`description`, not here.
-/// 
+///
 /// Ordered roughly along the shipment lifecycle (review -> research -> book ->
 /// track/verify -> contact -> billing). The buckets are the distinct *modes of
 /// work* an operator sits down and batches; the exact SOP step (e.g. "Send
 /// Shipping Label", "CBC Call", "Get Pack Time") is captured in the title.
-/// 
+///
 /// Contact is split by *who* (customer, agent, airline, other), not by
 /// *channel* (call vs. email) — the recipient is what a dispatcher batches
 /// around, and the channel is captured in title/description detail.

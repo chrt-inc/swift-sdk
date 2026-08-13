@@ -6,15 +6,15 @@ import Chrt
     @Test func getTimezoneV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "lat": 1.1,
                   "lng": 1.1,
                   "method": "method",
                   "timezone": "timezone"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

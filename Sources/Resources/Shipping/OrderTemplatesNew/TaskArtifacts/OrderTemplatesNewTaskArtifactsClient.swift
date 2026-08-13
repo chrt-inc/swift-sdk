@@ -9,6 +9,23 @@ public final class OrderTemplatesNewTaskArtifactsClient: Sendable {
 
     /// Moves a task artifact to the end of another task. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactMoveReq1) -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.taskArtifacts.putMoveV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         taskArtifactKey: "task_artifact_key",
+    ///         request: .init(targetTaskKey: "target_task_key")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func putMoveV1(orderTemplateId: String, taskArtifactKey: String, request: Requests.OrderTemplateNewTaskArtifactMoveReq1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -21,6 +38,23 @@ public final class OrderTemplatesNewTaskArtifactsClient: Sendable {
     }
 
     /// Reorders artifacts within one task. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactReorderReq1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.taskArtifacts.putReorderV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         taskKey: "task_key",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func putReorderV1(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskArtifactReorderReq1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
@@ -35,6 +69,22 @@ public final class OrderTemplatesNewTaskArtifactsClient: Sendable {
 
     /// Deletes a task artifact from an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.taskArtifacts.deleteV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         taskArtifactKey: "task_artifact_key"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orderTemplateId: String, taskArtifactKey: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -46,6 +96,23 @@ public final class OrderTemplatesNewTaskArtifactsClient: Sendable {
     }
 
     /// Updates a task artifact in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactClientUpdate1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.taskArtifacts.patchUpdateV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         taskArtifactKey: "task_artifact_key",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func patchUpdateV1(orderTemplateId: String, taskArtifactKey: String, request: Requests.OrderTemplateNewTaskArtifactClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
@@ -59,6 +126,23 @@ public final class OrderTemplatesNewTaskArtifactsClient: Sendable {
     }
 
     /// Adds an artifact to a task in an active order template. | authz: min_org_role=operator | (OrderTemplateNewTaskArtifactClientCreate1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.taskArtifacts.postCreateV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         taskKey: "task_key",
+    ///         request: .init(type: .image)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postCreateV1(orderTemplateId: String, taskKey: String, request: Requests.OrderTemplateNewTaskArtifactClientCreate1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {

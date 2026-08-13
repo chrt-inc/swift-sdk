@@ -9,6 +9,22 @@ public final class AccountsClient: Sendable {
 
     /// Creates a coordinator-private account with a name unique to its associated shipper. Optional location may be set at creation. | authz: allowed_org_types=[provider], min_org_role=operator | (AccountClientCreate1) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.accounts.createV1(request: .init(
+    ///         name: "name",
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.AccountClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -21,6 +37,28 @@ public final class AccountsClient: Sendable {
     }
 
     /// Lists coordinator-created shipper accounts with association filters, name search, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (AccountListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.accounts.listV1(
+    ///         search: "search",
+    ///         filterAccountId: "filter_account_id",
+    ///         filterOrgId: "filter_org_id",
+    ///         filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
+    ///         sortBy: .name,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter search: Full-text account name search query
     /// - Parameter filterAccountId: Filter by account ID
@@ -50,6 +88,22 @@ public final class AccountsClient: Sendable {
 
     /// Returns distinct coordinator-created shipper account names matching the query, with matching account IDs. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[AccountTypeaheadResult])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.accounts.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -68,6 +122,22 @@ public final class AccountsClient: Sendable {
 
     /// Updates a coordinator-created shipper account name and optional location while preserving per-shipper name uniqueness. | authz: allowed_org_types=[provider], min_org_role=operator | (AccountClientUpdate1) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.accounts.updateV1(
+    ///         accountId: "account_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(accountId: String, request: Requests.AccountClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -80,6 +150,19 @@ public final class AccountsClient: Sendable {
     }
 
     /// Retrieves a coordinator-created shipper account. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (Account1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.accounts.getV1(accountId: "account_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(accountId: String, requestOptions: RequestOptions? = nil) async throws -> Account1 {

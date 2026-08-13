@@ -6,8 +6,8 @@ import Chrt
     @Test func generateManyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "created_invoice_line_item_count": 1,
                   "failed_order_count": 1,
@@ -40,7 +40,7 @@ import Chrt
                   "succeeded_order_count": 1,
                   "total_order_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -58,12 +58,12 @@ import Chrt
                             id: "_id",
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             createdByUserId: "created_by_user_id",
-                            currencyCode: .usd,
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
                             description: "description",
-                            invoiceType: .accountsReceivable,
+                            invoiceType: InvoiceTypeEnum1.accountsReceivable,
                             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             lastEditedByUserId: "last_edited_by_user_id",
-                            lineItemType: .baseRate,
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                             ownedByOrgId: "owned_by_org_id",
                             quantity: 1.1,
                             schemaVersion: 1,
@@ -73,7 +73,7 @@ import Chrt
                     errorDetail: Optional("error_detail"),
                     errorStatusCode: Optional(1),
                     orderId: "order_id",
-                    status: .generated
+                    status: OrderRateSheetLineItemsGenerateManyStatusEnum.generated
                 )
             ]),
             skippedOrderCount: 1,

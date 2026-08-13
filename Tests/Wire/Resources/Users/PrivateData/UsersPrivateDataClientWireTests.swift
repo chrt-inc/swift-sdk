@@ -6,8 +6,8 @@ import Chrt
     @Test func upsertFirebaseCloudMessagingTokenV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -23,7 +23,7 @@ import Chrt
                   "schema_version": 1,
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -38,7 +38,7 @@ import Chrt
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
                     lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    platform: Optional(.android)
+                    platform: Optional(PlatformEnum.android)
                 )
             ]),
             phoneNumber: Optional("phone_number"),
@@ -56,8 +56,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -73,7 +73,7 @@ import Chrt
                   "schema_version": 1,
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -88,7 +88,7 @@ import Chrt
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
                     lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    platform: Optional(.android)
+                    platform: Optional(PlatformEnum.android)
                 )
             ]),
             phoneNumber: Optional("phone_number"),
@@ -103,8 +103,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -120,7 +120,7 @@ import Chrt
                   "schema_version": 1,
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -135,7 +135,7 @@ import Chrt
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
                     lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    platform: Optional(.android)
+                    platform: Optional(PlatformEnum.android)
                 )
             ]),
             phoneNumber: Optional("phone_number"),
@@ -153,8 +153,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -170,7 +170,7 @@ import Chrt
                   "schema_version": 1,
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -185,7 +185,7 @@ import Chrt
                 FirebaseCloudMessagingTokenData1(
                     firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
                     lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    platform: Optional(.android)
+                    platform: Optional(PlatformEnum.android)
                 )
             ]),
             phoneNumber: Optional("phone_number"),

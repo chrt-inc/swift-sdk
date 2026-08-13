@@ -6,12 +6,12 @@ import Chrt
     @Test func onboardingLinkV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "url": "url"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -29,12 +29,12 @@ import Chrt
     @Test func createAccountV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "stripe_connect_account_id": "stripe_connect_account_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

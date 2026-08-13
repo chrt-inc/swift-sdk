@@ -9,6 +9,24 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Order (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. department_id overrides the caller's Order department when supplied. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.applyToOrderV1(
+    ///         taskListId: "task_list_id",
+    ///         orderId: "order_id",
+    ///         departmentId: "department_id",
+    ///         initialDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter departmentId: Overrides the Order department for tasks materialized by this application.
     /// - Parameter initialDeadlineTimestamp: If set, pins the first entry's deadline; later FROM_PREVIOUS_TASK entries cascade from it.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -27,6 +45,19 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Orders are unaffected. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.archiveV1(taskListId: "task_list_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func archiveV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -38,6 +69,26 @@ public final class OperationsTaskListsClient: Sendable {
     }
 
     /// Appends a new entry to an OperationsTaskList's `entries` array. The server assigns a fresh UUID and returns it. Order is load-bearing for from_previous_task-anchored deadlines. | authz: min_org_role=operator | (OperationsTaskListEntryClientCreate1) -> (str)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.addEntryV1(
+    ///         taskListId: "task_list_id",
+    ///         request: OperationsTaskListEntryClientCreate1(
+    ///             description: "description",
+    ///             taskType: .reviewOrderDetails,
+    ///             title: "title"
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addEntryV1(taskListId: String, request: OperationsTaskListEntryClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -52,6 +103,27 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Replaces the entry with the given uuid in an OperationsTaskList's `entries` array. The stored uuid is preserved regardless of the request body. 404 if no entry matches. | authz: min_org_role=operator | (OperationsTaskListEntryClientCreate1) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.editEntryV1(
+    ///         taskListId: "task_list_id",
+    ///         entryUuid: "entry_uuid",
+    ///         request: OperationsTaskListEntryClientCreate1(
+    ///             description: "description",
+    ///             taskType: .reviewOrderDetails,
+    ///             title: "title"
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func editEntryV1(taskListId: String, entryUuid: String, request: OperationsTaskListEntryClientCreate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -65,6 +137,22 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Removes the entry with the given uuid from an OperationsTaskList's `entries` array, closing the gap in order. 404 if no entry matches. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.removeEntryV1(
+    ///         taskListId: "task_list_id",
+    ///         entryUuid: "entry_uuid"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeEntryV1(taskListId: String, entryUuid: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -76,6 +164,22 @@ public final class OperationsTaskListsClient: Sendable {
     }
 
     /// Reorders an OperationsTaskList's existing entries. `entry_uuids` must be an exact permutation of the list's current entry uuids (every uuid present, no extras, no duplicates), so a reorder can never drop, add, or mutate an entry. | authz: min_org_role=operator | (OperationsTaskListReorderEntries1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.reorderEntriesV1(
+    ///         taskListId: "task_list_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func reorderEntriesV1(taskListId: String, request: Requests.OperationsTaskListReorderEntries1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -89,6 +193,25 @@ public final class OperationsTaskListsClient: Sendable {
     }
 
     /// Lists OperationsTaskLists for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.listV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterArchived: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
@@ -112,6 +235,22 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Removes the OperationsTasks this OperationsTaskList added to the Order (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromOrderRes1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.removeNotStartedTasksFromOrderV1(
+    ///         taskListId: "task_list_id",
+    ///         orderId: "order_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeNotStartedTasksFromOrderV1(taskListId: String, orderId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRemoveFromOrderRes1 {
         return try await httpClient.performRequest(
@@ -124,6 +263,19 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Restores an archived OperationsTaskList by setting `archived=False`. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.unarchiveV1(taskListId: "task_list_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func unarchiveV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -135,6 +287,22 @@ public final class OperationsTaskListsClient: Sendable {
     }
 
     /// Creates a new OperationsTaskList for the caller's organization. | authz: min_org_role=operator | (OperationsTaskListClientCreate1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.createV1(request: .init(
+    ///         name: "name",
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.OperationsTaskListClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -149,6 +317,19 @@ public final class OperationsTaskListsClient: Sendable {
 
     /// Retrieves a single OperationsTaskList by id. | authz: min_org_role=operator | () -> (OperationsTaskList1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.getV1(taskListId: "task_list_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(taskListId: String, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskList1 {
         return try await httpClient.performRequest(
@@ -160,6 +341,22 @@ public final class OperationsTaskListsClient: Sendable {
     }
 
     /// Updates scalar fields (name, description) on an OperationsTaskList. | authz: min_org_role=operator | (OperationsTaskListClientUpdate1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.updateV1(
+    ///         taskListId: "task_list_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(taskListId: String, request: Requests.OperationsTaskListClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

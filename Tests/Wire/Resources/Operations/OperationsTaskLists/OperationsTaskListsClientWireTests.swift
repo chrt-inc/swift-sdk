@@ -6,12 +6,12 @@ import Chrt
     @Test func applyToOrderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   "string"
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -35,10 +35,10 @@ import Chrt
     @Test func archiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -57,10 +57,10 @@ import Chrt
     @Test func addEntryV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -84,10 +84,10 @@ import Chrt
     @Test func editEntryV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -112,10 +112,10 @@ import Chrt
     @Test func removeEntryV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -135,10 +135,10 @@ import Chrt
     @Test func reorderEntriesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -158,8 +158,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -183,7 +183,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -202,7 +202,7 @@ import Chrt
                     entries: Optional([
                         OperationsTaskListEntry1(
                             description: "description",
-                            taskType: .reviewOrderDetails,
+                            taskType: OperationsTaskTypeEnum.reviewOrderDetails,
                             title: "title"
                         )
                     ]),
@@ -228,13 +228,13 @@ import Chrt
     @Test func removeNotStartedTasksFromOrderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "deleted_count": 1,
                   "kept_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -257,10 +257,10 @@ import Chrt
     @Test func unarchiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -279,10 +279,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -304,8 +304,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived": true,
@@ -327,7 +327,7 @@ import Chrt
                   "schema_version": 1,
                   "updated_at_timestamp": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -343,10 +343,10 @@ import Chrt
             description: Optional("description"),
             entries: Optional([
                 OperationsTaskListEntry1(
-                    deadlineAnchor: Optional(.fromFirstTask),
+                    deadlineAnchor: Optional(DeadlineAnchorEnum.fromFirstTask),
                     deadlineOffsetSeconds: Optional(1),
                     description: "description",
-                    taskType: .reviewOrderDetails,
+                    taskType: OperationsTaskTypeEnum.reviewOrderDetails,
                     title: "title",
                     uuid: Optional("uuid")
                 )
@@ -366,10 +366,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

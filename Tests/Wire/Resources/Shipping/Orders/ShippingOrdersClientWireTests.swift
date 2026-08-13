@@ -6,10 +6,10 @@ import Chrt
     @Test func assignV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -31,10 +31,10 @@ import Chrt
     @Test func cancelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -53,10 +53,10 @@ import Chrt
     @Test func cancelManyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -77,10 +77,10 @@ import Chrt
     @Test func addCoordinatorTaskListToApplyAtOrderStagingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -93,7 +93,7 @@ import Chrt
             orderId: "order_id",
             taskListId: "task_list_id",
             departmentId: "department_id",
-            request: .init(body: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            request: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -102,10 +102,10 @@ import Chrt
     @Test func removeCoordinatorTaskListToApplyAtOrderStagingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -125,10 +125,10 @@ import Chrt
     @Test func deleteDraftV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -147,14 +147,14 @@ import Chrt
     @Test func deleteManyDraftsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "deleted_order_ids": [
                     "deleted_order_ids"
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -179,10 +179,10 @@ import Chrt
     @Test func stageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -201,10 +201,10 @@ import Chrt
     @Test func getSuggestedDepartmentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
-                string
-                """.utf8
+            body: Foundation.Data(
+                #"""
+                "string"
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -223,10 +223,10 @@ import Chrt
     @Test func taskGroupOrderingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -248,12 +248,12 @@ import Chrt
     @Test func typeaheadLabelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   "string"
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -275,8 +275,8 @@ import Chrt
     @Test func typeaheadV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "type": "off_chrt_reference_id",
@@ -290,7 +290,7 @@ import Chrt
                     ]
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -300,7 +300,7 @@ import Chrt
         )
         let expectedResponse = [
             OrderTypeaheadResult(
-                type: .offChrtReferenceId,
+                type: OrderTypeaheadFieldEnum.offChrtReferenceId,
                 values: [
                     OrderTypeaheadValue(
                         orderIds: [
@@ -322,10 +322,10 @@ import Chrt
     @Test func unassignV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -347,10 +347,10 @@ import Chrt
     @Test func updateDepartmentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -370,8 +370,8 @@ import Chrt
     @Test func updateDraftV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "coordinator_org_id": "coordinator_org_id",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
@@ -380,7 +380,7 @@ import Chrt
                   "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -393,7 +393,7 @@ import Chrt
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             orderId: "order_id",
             orderShortId: "order_short_id",
-            serviceLine: .onDemand,
+            serviceLine: ServiceLineEnum.onDemand,
             shipperOrgId: Optional("shipper_org_id")
         )
         let response = try await client.shipping.orders.updateDraftV1(
@@ -407,10 +407,10 @@ import Chrt
     @Test func updateLabelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -430,12 +430,12 @@ import Chrt
     @Test func updateOffChrtReferenceIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "off_chrt_reference_id": "off_chrt_reference_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -457,8 +457,8 @@ import Chrt
     @Test func validateDraftV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "is_valid": true,
                   "issues": [
@@ -480,7 +480,7 @@ import Chrt
                     "tasks_have_valid_cargo": true
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

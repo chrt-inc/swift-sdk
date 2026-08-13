@@ -6,10 +6,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -29,8 +29,8 @@ import Chrt
     @Test func getForCallerV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "active_task_group_ids": [
@@ -81,7 +81,7 @@ import Chrt
                   ],
                   "waiting": true
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -109,18 +109,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -140,10 +146,10 @@ import Chrt
             phoneNumberPrimary: Optional("phone_number_primary"),
             phoneNumberSecondary: Optional("phone_number_secondary"),
             schemaVersion: 1,
-            status: Optional(.unassigned),
+            status: Optional(DriverStatusEnum.unassigned),
             userId: "user_id",
             vehicleTypes: Optional([
-                .sedan
+                VehicleTypeEnum.sedan
             ]),
             waiting: Optional(true)
         )
@@ -154,10 +160,10 @@ import Chrt
     @Test func clearLastSeenV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -173,8 +179,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -220,7 +226,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -243,18 +249,24 @@ import Chrt
                     firstName: Optional("first_name"),
                     lastName: Optional("last_name"),
                     lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -267,10 +279,10 @@ import Chrt
                     phoneNumberPrimary: Optional("phone_number_primary"),
                     phoneNumberSecondary: Optional("phone_number_secondary"),
                     schemaVersion: 1,
-                    status: Optional(.unassigned),
+                    status: Optional(DriverStatusEnum.unassigned),
                     userId: "user_id",
                     vehicleTypes: Optional([
-                        .sedan
+                        VehicleTypeEnum.sedan
                     ]),
                     waiting: Optional(true)
                 )
@@ -295,8 +307,8 @@ import Chrt
     @Test func listOrgMembersAndDriversV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -307,8 +319,6 @@ import Chrt
                         "user_id": "user_id"
                       },
                       "org_member": {
-                        "first_name": null,
-                        "last_name": null,
                         "role": "owner",
                         "user_id": "user_id"
                       }
@@ -316,7 +326,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -334,9 +344,7 @@ import Chrt
                         userId: "user_id"
                     )),
                     orgMember: OrgMemberDetails(
-                        firstName: Optional(nil),
-                        lastName: Optional(nil),
-                        role: .owner,
+                        role: OrgRoleEnum.owner,
                         userId: "user_id"
                     )
                 )
@@ -362,8 +370,8 @@ import Chrt
     @Test func createSelfReportedHoursAndMileageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -376,7 +384,7 @@ import Chrt
                   "schema_version": 1,
                   "updated_at": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -410,10 +418,10 @@ import Chrt
     @Test func deleteSelfReportedHoursAndMileageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -433,8 +441,8 @@ import Chrt
     @Test func getSelfReportedHoursAndMileageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -447,7 +455,7 @@ import Chrt
                   "schema_version": 1,
                   "updated_at": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -478,8 +486,8 @@ import Chrt
     @Test func listSelfReportedHoursAndMileageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -497,7 +505,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -537,8 +545,8 @@ import Chrt
     @Test func orgListSelfReportedHoursAndMileageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -556,7 +564,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -597,8 +605,8 @@ import Chrt
     @Test func updateSelfReportedHoursAndMileageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -611,7 +619,7 @@ import Chrt
                   "schema_version": 1,
                   "updated_at": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -643,8 +651,8 @@ import Chrt
     @Test func getStatsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "driver_analytics_days": [
                     {
@@ -679,7 +687,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -716,7 +724,7 @@ import Chrt
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         schemaVersion: 1,
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )
                 )
             ])
@@ -735,10 +743,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -758,10 +766,10 @@ import Chrt
     @Test func updateAutoAssignV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -781,10 +789,10 @@ import Chrt
     @Test func updateAvailabilityAccordingToDriverV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -805,10 +813,10 @@ import Chrt
     @Test func updateAvailabilityAccordingToOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -830,8 +838,8 @@ import Chrt
     @Test func getByDriverIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "active_task_group_ids": [
@@ -882,7 +890,7 @@ import Chrt
                   ],
                   "waiting": true
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -910,18 +918,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -941,10 +955,10 @@ import Chrt
             phoneNumberPrimary: Optional("phone_number_primary"),
             phoneNumberSecondary: Optional("phone_number_secondary"),
             schemaVersion: 1,
-            status: Optional(.unassigned),
+            status: Optional(DriverStatusEnum.unassigned),
             userId: "user_id",
             vehicleTypes: Optional([
-                .sedan
+                VehicleTypeEnum.sedan
             ]),
             waiting: Optional(true)
         )

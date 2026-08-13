@@ -9,6 +9,19 @@ public final class TiveDevicesClient: Sendable {
 
     /// Retrieves a single Tive device by its ID. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDevice1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.tive.devices.getV1(tiveDeviceId: "tive_device_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(tiveDeviceId: String, requestOptions: RequestOptions? = nil) async throws -> TiveDevice1 {
         return try await httpClient.performRequest(
@@ -23,6 +36,28 @@ public final class TiveDevicesClient: Sendable {
     }
 
     /// Lists Tive devices with filtering, sorting, and pagination. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveDeviceListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.tive.devices.listV1(
+    ///         sortBy: .chrtCreatedAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterTiveAccountId: 1,
+    ///         filterTiveDeviceId: "filter_tive_device_id",
+    ///         filterChrtCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterChrtCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)

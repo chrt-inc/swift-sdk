@@ -6,15 +6,15 @@ import Chrt
     @Test func updateV21() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "cargo_tracking_count": 1,
                   "driver_by_driver_ping_recorded": true,
                   "driver_updated": true,
                   "task_group_tracking_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,10 +32,10 @@ import Chrt
             request: .init(
                 location: LocationFeature(
                     geometry: Geometry.geometryCollection(
-                        .init(
+                        GeometryCollection(
                             geometries: [
                                 GeometriesItem.lineString(
-                                    .init(
+                                    LineString(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []

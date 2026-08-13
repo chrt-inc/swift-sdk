@@ -9,6 +9,19 @@ public final class ShippingFlightsClient: Sendable {
 
     /// Returns flight info from an adjacent FLIGHT task group for TENDER_TO_AIRLINE or RECOVER_FROM_AIRLINE tasks. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightInfoForTaskRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.flights.getFlightInfoForTaskV1(taskId: "task_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getFlightInfoForTaskV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> FlightInfoForTaskRes {
         return try await httpClient.performRequest(
@@ -20,6 +33,19 @@ public final class ShippingFlightsClient: Sendable {
     }
 
     /// Returns the ordered list of flight legs for a task group. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (FlightInfoForTaskRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.flights.getFlightLegsForTaskGroupV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getFlightLegsForTaskGroupV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> FlightInfoForTaskRes {
@@ -33,6 +59,19 @@ public final class ShippingFlightsClient: Sendable {
 
     /// Returns the flight leg with its Cirium-sourced status, lazily resolving the Cirium flightId and refreshing the cached status on read. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightLeg1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.flights.getFlightStatusForFlightLegV1(flightLegId: "flight_leg_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getFlightStatusForFlightLegV1(flightLegId: String, requestOptions: RequestOptions? = nil) async throws -> FlightLeg1 {
         return try await httpClient.performRequest(
@@ -44,6 +83,22 @@ public final class ShippingFlightsClient: Sendable {
     }
 
     /// Returns the raw Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.flights.getFlightTrackForFlightLegV1(
+    ///         flightLegId: "flight_leg_id",
+    ///         forceRefresh: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter forceRefresh: Bypass the cache and fetch the latest flight track.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

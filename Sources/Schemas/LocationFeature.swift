@@ -1,7 +1,7 @@
 import Foundation
 
 /// GeoJSON Feature with typed properties for locations
-/// 
+///
 /// The geometry field is strongly typed as Geometry (union of all geometry types)
 /// but remains optional to match the base Feature class specification.
 /// To ensure geometry is always present, validate it at runtime or make it required.

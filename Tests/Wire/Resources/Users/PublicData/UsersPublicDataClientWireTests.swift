@@ -6,15 +6,15 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "schema_version": 1,
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

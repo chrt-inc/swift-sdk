@@ -6,10 +6,10 @@ import Chrt
     @Test func addCommentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -29,12 +29,12 @@ import Chrt
     @Test func applyTimeDeltaToDeadlineTimestampsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "updated_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -60,10 +60,10 @@ import Chrt
     @Test func deleteCommentV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -83,15 +83,13 @@ import Chrt
     @Test func expandedListV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
                       "assigned_users": [
                         {
-                          "first_name": null,
-                          "last_name": null,
                           "role": "owner",
                           "user_id": "user_id"
                         }
@@ -129,7 +127,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -142,9 +140,7 @@ import Chrt
                 OperationsTaskExpandedListItem(
                     assignedUsers: [
                         OrgMemberDetails(
-                            firstName: Optional(nil),
-                            lastName: Optional(nil),
-                            role: .owner,
+                            role: OrgRoleEnum.owner,
                             userId: "user_id"
                         )
                     ],
@@ -152,7 +148,7 @@ import Chrt
                         id: "_id",
                         createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        departmentType: .aerospace,
+                        departmentType: DepartmentTypeEnum.aerospace,
                         name: "name",
                         orgId: "org_id",
                         schemaVersion: 1,
@@ -165,7 +161,7 @@ import Chrt
                         orderShortId: "order_short_id",
                         orgId: "org_id",
                         schemaVersion: 1,
-                        taskType: .reviewOrderDetails,
+                        taskType: OperationsTaskTypeEnum.reviewOrderDetails,
                         title: "title"
                     ),
                     operationsTaskList: Optional(OperationsTaskList1(
@@ -211,8 +207,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -245,7 +241,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -278,8 +274,8 @@ import Chrt
                     orgId: "org_id",
                     schemaVersion: 1,
                     sourceTaskListId: Optional("source_task_list_id"),
-                    status: Optional(.notStarted),
-                    taskType: .reviewOrderDetails,
+                    status: Optional(OperationsTaskStatusEnum.notStarted),
+                    taskType: OperationsTaskTypeEnum.reviewOrderDetails,
                     title: "title"
                 )
             ],
@@ -315,12 +311,12 @@ import Chrt
     @Test func setDeadlineTimestampsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "updated_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -346,12 +342,12 @@ import Chrt
     @Test func setStatusV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "updated_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -377,10 +373,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -405,8 +401,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "assigned_user_ids": [
@@ -435,7 +431,7 @@ import Chrt
                   "task_type": "review_order_details",
                   "title": "title"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -467,8 +463,8 @@ import Chrt
             orgId: "org_id",
             schemaVersion: 1,
             sourceTaskListId: Optional("source_task_list_id"),
-            status: Optional(.notStarted),
-            taskType: .reviewOrderDetails,
+            status: Optional(OperationsTaskStatusEnum.notStarted),
+            taskType: OperationsTaskTypeEnum.reviewOrderDetails,
             title: "title"
         )
         let response = try await client.operations.operationsTasks.getV1(
@@ -481,10 +477,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -503,10 +499,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

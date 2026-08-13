@@ -6,10 +6,10 @@ import Chrt
     @Test func addMessageV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -29,10 +29,10 @@ import Chrt
     @Test func startV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -51,8 +51,8 @@ import Chrt
     @Test func typeaheadV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "type": "order_short_id",
@@ -61,7 +61,7 @@ import Chrt
                     ]
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -71,7 +71,7 @@ import Chrt
         )
         let expectedResponse = [
             TaskGroupTypeaheadResult(
-                type: .orderShortId,
+                type: TaskGroupTypeaheadFieldEnum.orderShortId,
                 values: [
                     "values"
                 ]

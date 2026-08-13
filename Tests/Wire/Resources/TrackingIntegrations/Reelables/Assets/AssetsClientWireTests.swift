@@ -6,8 +6,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "asset_id": "asset_id",
@@ -76,7 +76,7 @@ import Chrt
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -96,18 +96,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -135,18 +141,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -182,8 +194,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "asset_id": "asset_id",
@@ -252,7 +264,7 @@ import Chrt
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -272,18 +284,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -311,18 +329,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -354,8 +378,8 @@ import Chrt
     @Test func linkLabelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "asset_id": "asset_id",
@@ -424,7 +448,7 @@ import Chrt
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -444,18 +468,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -483,18 +513,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -527,8 +563,8 @@ import Chrt
     @Test func unlinkLabelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "asset_id": "asset_id",
@@ -597,7 +633,7 @@ import Chrt
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -617,18 +653,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -656,18 +698,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -699,8 +747,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -753,7 +801,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -768,18 +816,24 @@ import Chrt
                     assetId: "asset_id",
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     destinationGeofenceLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -792,18 +846,24 @@ import Chrt
                         nfcId: "nfc_id"
                     )),
                     lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -834,8 +894,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "asset_id": "asset_id",
@@ -904,7 +964,7 @@ import Chrt
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -924,18 +984,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -963,18 +1029,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),

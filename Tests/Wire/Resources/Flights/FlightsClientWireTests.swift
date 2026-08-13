@@ -6,8 +6,8 @@ import Chrt
     @Test func searchConnectionsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "connections": [
                     {
@@ -20,7 +20,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

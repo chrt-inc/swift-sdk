@@ -6,10 +6,10 @@ import Chrt
     @Test func archiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -28,8 +28,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "active_cargo": {
                     "_id": "_id",
@@ -262,7 +262,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -276,7 +276,7 @@ import Chrt
                 awbNumber: Optional("awb_number"),
                 awbNumberLineItemsGenerated: Optional(true),
                 cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                cargoType: .spareParts,
+                cargoType: CargoTypeEnum1.spareParts,
                 createdByOrgId: "created_by_org_id",
                 createdByUserId: Optional("created_by_user_id"),
                 deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -297,7 +297,7 @@ import Chrt
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 stackable: Optional(true),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                status: Optional(.draft),
+                status: Optional(CargoStatusEnum1.draft),
                 turnable: Optional(true),
                 weightPounds: Optional(1.1),
                 widthInches: Optional(1.1)
@@ -337,18 +337,24 @@ import Chrt
                     )
                 ]),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -382,18 +388,24 @@ import Chrt
                 deviceToken: Optional("device_token"),
                 firstSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -420,7 +432,7 @@ import Chrt
                 sharedWithOrgIds: Optional([
                     "shared_with_org_ids"
                 ]),
-                type: Optional(.d15NTag)
+                type: Optional(TrackingDeviceTypeEnum1.d15NTag)
             ),
             pastCargos: Optional([
                 Cargo1(
@@ -428,7 +440,7 @@ import Chrt
                     awbNumber: Optional("awb_number"),
                     awbNumberLineItemsGenerated: Optional(true),
                     cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: Optional("created_by_user_id"),
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -449,7 +461,7 @@ import Chrt
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stackable: Optional(true),
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    status: Optional(.draft),
+                    status: Optional(CargoStatusEnum1.draft),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),
                     widthInches: Optional(1.1)
@@ -488,18 +500,24 @@ import Chrt
                         )
                     ]),
                     lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -532,8 +550,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -582,7 +600,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -602,18 +620,24 @@ import Chrt
                     deviceToken: Optional("device_token"),
                     firstSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -637,7 +661,7 @@ import Chrt
                     sharedWithOrgIds: Optional([
                         "shared_with_org_ids"
                     ]),
-                    type: Optional(.d15NTag)
+                    type: Optional(TrackingDeviceTypeEnum1.d15NTag)
                 )
             ],
             totalCount: 1
@@ -670,10 +694,10 @@ import Chrt
     @Test func pauseV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -692,10 +716,10 @@ import Chrt
     @Test func registerToOrgV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -717,8 +741,8 @@ import Chrt
     @Test func typeaheadV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "type": "device_mac_address",
@@ -727,7 +751,7 @@ import Chrt
                     ]
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -737,7 +761,7 @@ import Chrt
         )
         let expectedResponse = [
             TrackingTypeaheadResult(
-                type: .deviceMacAddress,
+                type: TrackingTypeaheadFieldEnum.deviceMacAddress,
                 values: [
                     "values"
                 ]
@@ -755,10 +779,10 @@ import Chrt
     @Test func unpauseV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -777,10 +801,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -800,10 +824,10 @@ import Chrt
     @Test func updateSharedOrgsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

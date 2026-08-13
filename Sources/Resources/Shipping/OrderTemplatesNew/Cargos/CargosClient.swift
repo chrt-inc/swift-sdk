@@ -9,6 +9,22 @@ public final class CargosClient: Sendable {
 
     /// Duplicates cargo and its task associations in an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.cargos.postDuplicateV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         cargoKey: "cargo_key"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postDuplicateV1(orderTemplateId: String, cargoKey: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -20,6 +36,22 @@ public final class CargosClient: Sendable {
     }
 
     /// Reorders cargo in an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoReorderReq1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.cargos.putReorderV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func putReorderV1(orderTemplateId: String, request: Requests.OrderTemplateNewCargoReorderReq1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
@@ -34,6 +66,22 @@ public final class CargosClient: Sendable {
 
     /// Adds cargo to an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoClientCreate1) -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.cargos.postCreateV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         request: .init(cargoType: .spareParts)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postCreateV1(orderTemplateId: String, request: Requests.OrderTemplateNewCargoClientCreate1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -47,6 +95,22 @@ public final class CargosClient: Sendable {
 
     /// Deletes cargo and its task associations from an active order template. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.cargos.deleteV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         cargoKey: "cargo_key"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orderTemplateId: String, cargoKey: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -58,6 +122,23 @@ public final class CargosClient: Sendable {
     }
 
     /// Updates cargo in an active order template. | authz: min_org_role=operator | (OrderTemplateNewCargoClientUpdate1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.cargos.patchUpdateV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         cargoKey: "cargo_key",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func patchUpdateV1(orderTemplateId: String, cargoKey: String, request: Requests.OrderTemplateNewCargoClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {

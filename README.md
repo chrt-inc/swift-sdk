@@ -5,6 +5,22 @@
 
 The Chrt Swift library provides convenient access to the Chrt APIs from Swift.
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Environments](#environments)
+- [Errors](#errors)
+- [Request Types](#request-types)
+- [Advanced](#advanced)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Timeouts](#timeouts)
+  - [Custom Networking Client](#custom-networking-client)
+- [Contributing](#contributing)
+
 ## Requirements
 
 This SDK requires:
@@ -20,7 +36,7 @@ With Swift Package Manager (SPM), add the following to the top-level `dependenci
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "6.0.0"),
+    .package(url: "https://github.com/chrt-inc/swift-sdk", from: "1.914.0"),
 ]
 ```
 
@@ -48,6 +64,49 @@ private func main() async throws {
 }
 
 try await main()
+```
+
+## Environments
+
+This SDK allows you to configure different environments for API requests.
+
+```swift
+import Chrt
+
+let client = ChrtClient(
+    token: "YOUR_API_KEY",
+    environment: .local
+)
+```
+
+## Errors
+
+The SDK throws a single error enum for all failures. Client-side issues encoding/decoding failures and network errors use dedicated cases, while non-success HTTP responses are wrapped in an `HTTPError` that exposes the status code, a simple classification and an optional decoded message.
+
+```swift
+import Chrt
+
+let client = ChrtClient(token: "YOUR_API_KEY")
+
+do {
+    let response = try await client.flights.searchConnectionsV1(...)
+    // Handle successful response
+} catch let error as ChrtError {
+    switch error {
+    case .httpError(let httpError):
+        print("Status code:", httpError.statusCode)
+        print("Kind:", httpError.kind)
+        print("Message:", httpError.body?.message ?? httpError.localizedDescription)
+    case .encodingError(let underlying):
+        print("Encoding error:", underlying)
+    case .networkError(let underlying):
+        print("Network error:", underlying)
+    default:
+        print("Other client error:", error)
+    }
+} catch {
+    print("Unexpected error:", error)
+}
 ```
 
 ## Request Types
@@ -107,7 +166,7 @@ import Foundation
 import Chrt
 
 let client = ChrtClient(
-    ...,
+    token: "YOUR_API_KEY",
     urlSession: // Provide your implementation here
 )
 ```

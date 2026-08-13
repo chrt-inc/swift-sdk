@@ -6,8 +6,8 @@ import Chrt
     @Test func approveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -59,7 +59,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -79,7 +79,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -88,7 +88,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -99,19 +99,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),
@@ -128,10 +128,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -154,10 +154,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -176,8 +176,8 @@ import Chrt
     @Test func getExpandedV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "counterparty_accounts": [
                     {
@@ -402,7 +402,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -417,18 +417,24 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     location: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -450,18 +456,24 @@ import Chrt
                 firstName: Optional("first_name"),
                 lastName: Optional("last_name"),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -477,10 +489,10 @@ import Chrt
                 phoneNumberPrimary: Optional("phone_number_primary"),
                 phoneNumberSecondary: Optional("phone_number_secondary"),
                 schemaVersion: 1,
-                status: Optional(.unassigned),
+                status: Optional(DriverStatusEnum.unassigned),
                 userId: "user_id",
                 vehicleTypes: Optional([
-                    .sedan
+                    VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
             )),
@@ -491,23 +503,29 @@ import Chrt
                 emailAddress: Optional("email_address"),
                 industry: Optional("industry"),
                 name: "name",
-                orgType: .provider,
+                orgType: OrgTypeEnum.provider,
                 ownedByOrgId: "owned_by_org_id",
                 phoneNumber: Optional("phone_number"),
                 schemaVersion: 1,
                 streetAddress: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -525,22 +543,28 @@ import Chrt
                 industry: Optional("industry"),
                 name: "name",
                 orgId: "org_id",
-                orgType: .provider,
+                orgType: OrgTypeEnum.provider,
                 phoneNumber: Optional("phone_number"),
                 schemaVersion: 1,
                 streetAddress: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -562,7 +586,7 @@ import Chrt
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
+                currencyCode: BillingCurrencyCodeEnum1.usd,
                 description: Optional("description"),
                 exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
                 exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -571,7 +595,7 @@ import Chrt
                 invoiceLineItemIds: Optional([
                     "invoice_line_item_ids"
                 ]),
-                invoiceType: .accountsReceivable,
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
                 mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -582,19 +606,19 @@ import Chrt
                 mergeLinkedAccountId: Optional("merge_linked_account_id"),
                 mergeRemoteId: Optional("merge_remote_id"),
                 mergeRemoteWasDeleted: Optional(true),
-                mergeStatus: Optional(.draft),
+                mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
                 name: Optional("name"),
                 ownedByOrgId: "owned_by_org_id",
                 periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 schemaVersion: 1,
-                status: Optional(.draft),
+                status: Optional(InvoiceStatusEnum1.draft),
                 stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
                 stripeInvoiceId: Optional("stripe_invoice_id"),
                 stripeInvoiceNumber: Optional("stripe_invoice_number"),
                 stripeInvoiceUrl: Optional("stripe_invoice_url"),
-                stripeStatus: Optional(.draft),
+                stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
                 stripeWasDeleted: Optional(true),
                 totalAmount: Optional(1.1),
                 voidReason: Optional("void_reason"),
@@ -613,7 +637,7 @@ import Chrt
                         id: "_id",
                         createdByUserId: "created_by_user_id",
                         name: "name",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1
                     )),
@@ -621,19 +645,19 @@ import Chrt
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         schemaVersion: 1
                     )),
                     invoiceLineItem: InvoiceLineItem1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        invoiceType: .accountsReceivable,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: .baseRate,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
@@ -666,8 +690,8 @@ import Chrt
     @Test func addLineItemV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -719,7 +743,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -739,7 +763,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -748,7 +772,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -759,19 +783,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),
@@ -789,8 +813,8 @@ import Chrt
     @Test func removeLineItemV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -842,7 +866,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -862,7 +886,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -871,7 +895,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -882,19 +906,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),
@@ -912,8 +936,8 @@ import Chrt
     @Test func addLineItemsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -965,7 +989,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -985,7 +1009,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -994,7 +1018,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -1005,19 +1029,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),
@@ -1037,8 +1061,8 @@ import Chrt
     @Test func removeLineItemsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -1090,7 +1114,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1110,7 +1134,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -1119,7 +1143,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -1130,19 +1154,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),
@@ -1162,8 +1186,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -1217,7 +1241,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1241,7 +1265,7 @@ import Chrt
                         id: "_id",
                         createdByUserId: "created_by_user_id",
                         name: "name",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1
                     )),
@@ -1249,15 +1273,15 @@ import Chrt
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         schemaVersion: 1
                     )),
                     invoice: Invoice1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
-                        invoiceType: .accountsReceivable,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         lastEditedByUserId: "last_edited_by_user_id",
                         ownedByOrgId: "owned_by_org_id",
@@ -1309,10 +1333,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1332,10 +1356,10 @@ import Chrt
     @Test func updatePeriodV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1358,8 +1382,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -1411,7 +1435,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1431,7 +1455,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -1440,7 +1464,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -1451,19 +1475,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),
@@ -1480,8 +1504,8 @@ import Chrt
     @Test func voidV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "approved_at_timestamp": "2024-01-15T09:30:00Z",
@@ -1533,7 +1557,7 @@ import Chrt
                   "voided_at_timestamp": "2024-01-15T09:30:00Z",
                   "voided_by_user_id": "voided_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1553,7 +1577,7 @@ import Chrt
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             description: Optional("description"),
             exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
             exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
@@ -1562,7 +1586,7 @@ import Chrt
             invoiceLineItemIds: Optional([
                 "invoice_line_item_ids"
             ]),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -1573,19 +1597,19 @@ import Chrt
             mergeLinkedAccountId: Optional("merge_linked_account_id"),
             mergeRemoteId: Optional("merge_remote_id"),
             mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(.draft),
+            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
             name: Optional("name"),
             ownedByOrgId: "owned_by_org_id",
             periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             schemaVersion: 1,
-            status: Optional(.draft),
+            status: Optional(InvoiceStatusEnum1.draft),
             stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
             stripeInvoiceId: Optional("stripe_invoice_id"),
             stripeInvoiceNumber: Optional("stripe_invoice_number"),
             stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(.draft),
+            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
             stripeWasDeleted: Optional(true),
             totalAmount: Optional(1.1),
             voidReason: Optional("void_reason"),

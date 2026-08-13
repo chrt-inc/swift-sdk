@@ -6,8 +6,8 @@ import Chrt
     @Test func retrieveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "awb_number": "awb_number",
@@ -101,7 +101,7 @@ import Chrt
                   "synced_at": "2024-01-15T09:30:00Z",
                   "task_group_id": "task_group_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -224,8 +224,8 @@ import Chrt
     @Test func syncV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "awb_number": "awb_number",
@@ -319,7 +319,7 @@ import Chrt
                   "synced_at": "2024-01-15T09:30:00Z",
                   "task_group_id": "task_group_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

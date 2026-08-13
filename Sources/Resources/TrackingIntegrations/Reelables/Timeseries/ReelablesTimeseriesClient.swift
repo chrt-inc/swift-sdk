@@ -9,6 +9,23 @@ public final class ReelablesTimeseriesClient: Sendable {
 
     /// Refreshes and returns Reelables location data points within the requested time range. | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.reelables.timeseries.refreshV1(
+    ///         assetId: "asset_id",
+    ///         startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func refreshV1(assetId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions? = nil) async throws -> ReelablesTimeseriesRes {
         return try await httpClient.performRequest(
@@ -24,6 +41,23 @@ public final class ReelablesTimeseriesClient: Sendable {
     }
 
     /// Returns stored Reelables location data points within the requested time range without refreshing from Reelables. | auth: api_key | authz: min_org_role=operator | () -> (ReelablesTimeseriesRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.reelables.timeseries.dataPointsV1(
+    ///         assetId: "asset_id",
+    ///         startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsV1(assetId: String, startTimestamp: Date, endTimestamp: Date, requestOptions: RequestOptions? = nil) async throws -> ReelablesTimeseriesRes {

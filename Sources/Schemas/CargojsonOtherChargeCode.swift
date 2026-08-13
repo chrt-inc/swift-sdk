@@ -1,7 +1,7 @@
 import Foundation
 
 /// https://github.com/champ-cargosystems-gmbh/cargojson.champ.aero/blob/master/src/main/java/aero/champ/cargojson/common/OtherChargeCode.java
-/// 
+///
 /// Code identifying the type of an individual charge.
 /// Value is the 2-letter Cargo-IMP code.
 public enum CargojsonOtherChargeCode: String, Codable, Hashable, CaseIterable, Sendable {

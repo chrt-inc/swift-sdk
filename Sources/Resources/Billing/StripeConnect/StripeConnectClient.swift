@@ -9,6 +9,19 @@ public final class StripeConnectClient: Sendable {
 
     /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (StripeConnectAccountOnboardingLinkRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billing.stripeConnect.onboardingLinkV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func onboardingLinkV1(requestOptions: RequestOptions? = nil) async throws -> StripeConnectAccountOnboardingLinkRes {
         return try await httpClient.performRequest(
@@ -20,6 +33,19 @@ public final class StripeConnectClient: Sendable {
     }
 
     /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateStripeConnectAccountRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billing.stripeConnect.createAccountV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createAccountV1(requestOptions: RequestOptions? = nil) async throws -> CreateStripeConnectAccountRes {

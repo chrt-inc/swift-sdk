@@ -6,10 +6,10 @@ import Chrt
     @Test func postArchiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -28,8 +28,8 @@ import Chrt
     @Test func putReplaceCoreV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -107,7 +107,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -122,7 +122,7 @@ import Chrt
                 OrderTemplateNewCargo1(
                     awbNumber: Optional("awb_number"),
                     cargoKey: "cargo_key",
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
                     girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
@@ -151,7 +151,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
-            serviceLine: Optional(.onDemand),
+            serviceLine: Optional(ServiceLineEnum.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -163,7 +163,7 @@ import Chrt
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
-                    taskGroupType: .chrtGroundProvider,
+                    taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
                         OrderTemplateNewTask1(
                             datetimeWindowsDateparserStr: Optional([
@@ -174,7 +174,7 @@ import Chrt
                             taskKey: "task_key"
                         )
                     ]),
-                    vehicleType: Optional(.sedan)
+                    vehicleType: Optional(VehicleTypeEnum.sedan)
                 )
             ]),
             taskListsToApplyAtOrderCreation: Optional([
@@ -205,8 +205,8 @@ import Chrt
     @Test func resolveDateparserV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "anchor_timestamp": "2024-01-15T09:30:00Z",
                   "dateparser_str": "dateparser_str",
@@ -214,7 +214,7 @@ import Chrt
                   "resolved_to_timestamp": "2024-01-15T09:30:00Z",
                   "time_zone_name": "America/New_York"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -242,8 +242,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -343,7 +343,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -359,7 +359,7 @@ import Chrt
                     cargos: Optional([
                         OrderTemplateNewCargo1(
                             cargoKey: "cargo_key",
-                            cargoType: .spareParts
+                            cargoType: CargoTypeEnum1.spareParts
                         )
                     ]),
                     coordinatorAssignedUserIds: Optional([
@@ -371,7 +371,7 @@ import Chrt
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         schemaVersion: 1
                     )),
                     coordinatorOrgId: Optional("coordinator_org_id"),
@@ -385,7 +385,7 @@ import Chrt
                         id: "_id",
                         createdByUserId: "created_by_user_id",
                         name: "name",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1
                     )),
@@ -393,19 +393,19 @@ import Chrt
                     ownedByOrgId: "owned_by_org_id",
                     ownedByUserId: "owned_by_user_id",
                     schemaVersion: 1,
-                    serviceLine: Optional(.onDemand),
+                    serviceLine: Optional(ServiceLineEnum.onDemand),
                     shipperOrg: Optional(OrgPublicData1(
                         id: "_id",
                         name: "name",
                         orgId: "org_id",
-                        orgType: .provider,
+                        orgType: OrgTypeEnum.provider,
                         schemaVersion: 1
                     )),
                     shipperOrgId: Optional("shipper_org_id"),
                     taskGroups: Optional([
                         OrderTemplateNewTaskGroup1(
                             taskGroupKey: "task_group_key",
-                            taskGroupType: .chrtGroundProvider,
+                            taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                             tasks: Optional([
                                 OrderTemplateNewTask1(
                                     datetimeWindowsDateparserStr: Optional([
@@ -422,7 +422,7 @@ import Chrt
                         OrderTemplateNewTaskGroupExpanded1(
                             taskGroup: OrderTemplateNewTaskGroup1(
                                 taskGroupKey: "task_group_key",
-                                taskGroupType: .chrtGroundProvider,
+                                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                                 tasks: Optional([
                                     OrderTemplateNewTask1(
                                         datetimeWindowsDateparserStr: Optional([
@@ -479,10 +479,10 @@ import Chrt
     @Test func postUnarchiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -501,8 +501,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -580,7 +580,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -595,7 +595,7 @@ import Chrt
                 OrderTemplateNewCargo1(
                     awbNumber: Optional("awb_number"),
                     cargoKey: "cargo_key",
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
                     girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
@@ -624,7 +624,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
-            serviceLine: Optional(.onDemand),
+            serviceLine: Optional(ServiceLineEnum.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -636,7 +636,7 @@ import Chrt
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
-                    taskGroupType: .chrtGroundProvider,
+                    taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
                         OrderTemplateNewTask1(
                             datetimeWindowsDateparserStr: Optional([
@@ -647,7 +647,7 @@ import Chrt
                             taskKey: "task_key"
                         )
                     ]),
-                    vehicleType: Optional(.sedan)
+                    vehicleType: Optional(VehicleTypeEnum.sedan)
                 )
             ]),
             taskListsToApplyAtOrderCreation: Optional([
@@ -676,8 +676,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -755,7 +755,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -770,7 +770,7 @@ import Chrt
                 OrderTemplateNewCargo1(
                     awbNumber: Optional("awb_number"),
                     cargoKey: "cargo_key",
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
                     girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
@@ -799,7 +799,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
-            serviceLine: Optional(.onDemand),
+            serviceLine: Optional(ServiceLineEnum.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -811,7 +811,7 @@ import Chrt
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
-                    taskGroupType: .chrtGroundProvider,
+                    taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
                         OrderTemplateNewTask1(
                             datetimeWindowsDateparserStr: Optional([
@@ -822,7 +822,7 @@ import Chrt
                             taskKey: "task_key"
                         )
                     ]),
-                    vehicleType: Optional(.sedan)
+                    vehicleType: Optional(VehicleTypeEnum.sedan)
                 )
             ]),
             taskListsToApplyAtOrderCreation: Optional([
@@ -853,8 +853,8 @@ import Chrt
     @Test func getByIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -932,7 +932,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -947,7 +947,7 @@ import Chrt
                 OrderTemplateNewCargo1(
                     awbNumber: Optional("awb_number"),
                     cargoKey: "cargo_key",
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
                     girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
@@ -976,7 +976,7 @@ import Chrt
             ownedByOrgId: "owned_by_org_id",
             ownedByUserId: "owned_by_user_id",
             schemaVersion: 1,
-            serviceLine: Optional(.onDemand),
+            serviceLine: Optional(ServiceLineEnum.onDemand),
             shipperOrgId: Optional("shipper_org_id"),
             taskGroups: Optional([
                 OrderTemplateNewTaskGroup1(
@@ -988,7 +988,7 @@ import Chrt
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     taskGroupKey: "task_group_key",
-                    taskGroupType: .chrtGroundProvider,
+                    taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
                         OrderTemplateNewTask1(
                             datetimeWindowsDateparserStr: Optional([
@@ -999,7 +999,7 @@ import Chrt
                             taskKey: "task_key"
                         )
                     ]),
-                    vehicleType: Optional(.sedan)
+                    vehicleType: Optional(VehicleTypeEnum.sedan)
                 )
             ]),
             taskListsToApplyAtOrderCreation: Optional([
@@ -1027,10 +1027,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

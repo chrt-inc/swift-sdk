@@ -6,8 +6,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "org_id": "org_id",
@@ -24,7 +24,7 @@ import Chrt
                   "webcargo_email": "webcargo_email",
                   "webhook_enabled": true
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -36,7 +36,7 @@ import Chrt
             id: "_id",
             orgId: "org_id",
             orgSubscription: Optional(true),
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             schemaVersion: 1,
             stripeConnectAccountId: Optional("stripe_connect_account_id"),
             stripeCustomerId: Optional("stripe_customer_id"),

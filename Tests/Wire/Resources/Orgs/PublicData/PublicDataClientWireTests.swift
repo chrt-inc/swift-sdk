@@ -6,10 +6,10 @@ import Chrt
     @Test func getAvatarV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -28,8 +28,8 @@ import Chrt
     @Test func getByHandleV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -66,7 +66,7 @@ import Chrt
                     "type": "Feature"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -82,7 +82,7 @@ import Chrt
             industry: Optional("industry"),
             name: "name",
             orgId: "org_id",
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             phoneNumber: Optional("phone_number"),
             schemaVersion: 1,
             streetAddress: Optional(LocationFeature(
@@ -93,18 +93,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -128,10 +134,10 @@ import Chrt
     @Test func getHandleAvailabilityV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -150,8 +156,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -188,7 +194,7 @@ import Chrt
                     "type": "Feature"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -204,7 +210,7 @@ import Chrt
             industry: Optional("industry"),
             name: "name",
             orgId: "org_id",
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             phoneNumber: Optional("phone_number"),
             schemaVersion: 1,
             streetAddress: Optional(LocationFeature(
@@ -215,18 +221,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -247,10 +259,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -269,8 +281,8 @@ import Chrt
     @Test func getByOrgIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -307,7 +319,7 @@ import Chrt
                     "type": "Feature"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -323,7 +335,7 @@ import Chrt
             industry: Optional("industry"),
             name: "name",
             orgId: "org_id",
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             phoneNumber: Optional("phone_number"),
             schemaVersion: 1,
             streetAddress: Optional(LocationFeature(
@@ -334,18 +346,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),

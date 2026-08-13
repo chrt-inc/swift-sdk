@@ -6,10 +6,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,10 +32,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -54,8 +54,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "additional_mileage": {
@@ -160,7 +160,7 @@ import Chrt
                     "sage_item_id": "sage_item_id"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -191,14 +191,14 @@ import Chrt
                 sageItemId: Optional("sage_item_id")
             )),
             cargoTypes: Optional([
-                .spareParts
+                CargoTypeEnum1.spareParts
             ]),
             comments: Optional("comments"),
             counterpartyDriverId: Optional("counterparty_driver_id"),
             counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            currencyCode: .usd,
+            currencyCode: BillingCurrencyCodeEnum1.usd,
             dangerousGoods: Optional(DangerousGoodsRate1(
                 ratePerInstance: 1.1,
                 sageItemId: Optional("sage_item_id")
@@ -225,7 +225,7 @@ import Chrt
                 ratePerInstance: 1.1,
                 sageItemId: Optional("sage_item_id")
             )),
-            invoiceType: .accountsReceivable,
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
             longDistanceSurcharge: Optional(LongDistanceSurchargeRate1(
                 ratePerMile: 1.1,
                 sageItemId: Optional("sage_item_id"),
@@ -238,7 +238,7 @@ import Chrt
                 sageItemId: Optional("sage_item_id")
             )),
             schemaVersion: 1,
-            serviceLine: Optional(.onDemand),
+            serviceLine: Optional(ServiceLineEnum.onDemand),
             shipperAccountId: Optional("shipper_account_id"),
             tax1: Optional(TaxRate1(
                 name: "name",
@@ -260,7 +260,7 @@ import Chrt
             )),
             updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             vehicleTypes: Optional([
-                .sedan
+                VehicleTypeEnum.sedan
             ]),
             waitTime: Optional(WaitTimeRate1(
                 includedMinutes: 1.1,
@@ -282,8 +282,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -368,7 +368,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -397,14 +397,14 @@ import Chrt
                         ratePerInstance: 1.1
                     )),
                     cargoTypes: Optional([
-                        .spareParts
+                        CargoTypeEnum1.spareParts
                     ]),
                     comments: Optional("comments"),
                     counterpartyDriverId: Optional("counterparty_driver_id"),
                     counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    currencyCode: .usd,
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
                     dangerousGoods: Optional(DangerousGoodsRate1(
                         ratePerInstance: 1.1
                     )),
@@ -420,7 +420,7 @@ import Chrt
                     holiday: Optional(HolidayRate1(
                         ratePerInstance: 1.1
                     )),
-                    invoiceType: .accountsReceivable,
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
                     longDistanceSurcharge: Optional(LongDistanceSurchargeRate1(
                         ratePerMile: 1.1,
                         startsAtTotalDistanceMiles: 1.1
@@ -431,7 +431,7 @@ import Chrt
                         ratePerInstance: 1.1
                     )),
                     schemaVersion: 1,
-                    serviceLine: Optional(.onDemand),
+                    serviceLine: Optional(ServiceLineEnum.onDemand),
                     shipperAccountId: Optional("shipper_account_id"),
                     tax1: Optional(TaxRate1(
                         name: "name",
@@ -447,7 +447,7 @@ import Chrt
                     )),
                     updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     vehicleTypes: Optional([
-                        .sedan
+                        VehicleTypeEnum.sedan
                     ]),
                     waitTime: Optional(WaitTimeRate1(
                         includedMinutes: 1.1,
@@ -497,8 +497,8 @@ import Chrt
     @Test func resolveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "accounts_payable_rate_sheets": [
@@ -571,7 +571,7 @@ import Chrt
                     }
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -585,8 +585,8 @@ import Chrt
                     ChrtGroundProviderRates1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        currencyCode: .usd,
-                        invoiceType: .accountsReceivable,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1,
                         updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -596,8 +596,8 @@ import Chrt
                     ChrtGroundProviderRates1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        currencyCode: .usd,
-                        invoiceType: .accountsReceivable,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         ownedByOrgId: "owned_by_org_id",
                         schemaVersion: 1,
                         updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
@@ -638,15 +638,15 @@ import Chrt
                     shipperOrgId: Optional("shipper_org_id"),
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    status: Optional(.draft),
+                    status: Optional(TaskGroupStatusEnum1.draft),
                     taskGroupS3ObjectMetadataIds: Optional([
                         "task_group_s3_object_metadata_ids"
                     ]),
-                    taskGroupType: .chrtGroundProvider,
+                    taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     taskIds: Optional([
                         "task_ids"
                     ]),
-                    vehicleType: Optional(.sedan),
+                    vehicleType: Optional(VehicleTypeEnum.sedan),
                     waitTimeTotalMinutes: Optional(1.1)
                 )
             )
@@ -661,10 +661,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

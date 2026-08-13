@@ -6,8 +6,8 @@ import Chrt
     @Test func dataPointsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "data_points": [
                     {
@@ -46,7 +46,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -66,18 +66,24 @@ import Chrt
                     humidity: Optional(1.1),
                     light: Optional(1.1),
                     location: LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -108,8 +114,8 @@ import Chrt
     @Test func lastSeenV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "acceleration_g": 1.1,
@@ -155,7 +161,7 @@ import Chrt
                   "temperature_f": 1.1,
                   "timestamp": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -180,18 +186,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -226,15 +238,15 @@ import Chrt
     @Test func syncV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "duplicates_filtered": 1,
                   "new_data_points_count": 1,
                   "skipped_no_location": 1,
                   "total_fetched_from_tive": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

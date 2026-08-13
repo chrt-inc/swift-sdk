@@ -1,7 +1,7 @@
 import Foundation
 
 /// Result of removing a Task List's materialized tasks from an Order.
-/// 
+///
 /// Only untouched (`not_started`) tasks are deleted; tasks an operator has
 /// started, completed, skipped, or cancelled are preserved and reported as `kept_count`.
 public struct OperationsTaskListRemoveFromOrderRes1: Codable, Hashable, Sendable {

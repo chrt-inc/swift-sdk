@@ -6,8 +6,8 @@ import Chrt
     @Test func forProviderOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "coordinator_org_company_name": "coordinator_org_company_name",
                   "coordinator_org_handle": "coordinator_org_handle",
@@ -208,7 +208,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -225,18 +225,24 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     location: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -272,16 +278,16 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     emailEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     orderId: Optional("order_id"),
                     pushEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     schemaVersion: 1,
                     sessionId: Optional("session_id"),
                     smsEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ])
                 )
             ]),
@@ -318,25 +324,25 @@ import Chrt
                 ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
-                orderClassificationByTaskGroupType: Optional(.chrtGroundProvider),
+                orderClassificationByTaskGroupType: Optional(TaskGroupTypeEnum1.chrtGroundProvider),
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateNewId: Optional("order_template_new_id"),
                 schemaVersion: 1,
-                serviceLine: Optional(.onDemand),
+                serviceLine: Optional(ServiceLineEnum.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
                 shortId: "short_id",
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                status: Optional(.draft),
+                status: Optional(OrderStatusEnum1.draft),
                 taskGroupDetails: Optional([
                     OrderTaskGroupExecutorDetails1(
                         taskGroupId: "task_group_id",
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )
                 ])
             ),
             providerRoles: [
-                .coordinator
+                OrderProviderRoleEnum.coordinator
             ],
             shipperOrgCompanyName: Optional("shipper_org_company_name"),
             taskGroupsExpanded: Optional([
@@ -369,7 +375,7 @@ import Chrt
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         schemaVersion: 1,
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -392,7 +398,7 @@ import Chrt
                     awbNumber: Optional("awb_number"),
                     awbNumberLineItemsGenerated: Optional(true),
                     cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: Optional("created_by_user_id"),
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -413,7 +419,7 @@ import Chrt
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stackable: Optional(true),
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    status: Optional(.draft),
+                    status: Optional(CargoStatusEnum1.draft),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),
                     widthInches: Optional(1.1)
@@ -433,8 +439,8 @@ import Chrt
     @Test func forShipperOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "coordinator_org_company_name": "coordinator_org_company_name",
                   "coordinator_org_handle": "coordinator_org_handle",
@@ -603,7 +609,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -620,18 +626,24 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     location: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -651,16 +663,16 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     emailEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     orderId: Optional("order_id"),
                     pushEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     schemaVersion: 1,
                     sessionId: Optional("session_id"),
                     smsEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ])
                 )
             ]),
@@ -684,20 +696,20 @@ import Chrt
                 ]),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
-                orderClassificationByTaskGroupType: Optional(.chrtGroundProvider),
+                orderClassificationByTaskGroupType: Optional(TaskGroupTypeEnum1.chrtGroundProvider),
                 orderScheduleId: Optional("order_schedule_id"),
                 orderScheduleRunIdempotencyKey: Optional("order_schedule_run_idempotency_key"),
                 orderTemplateNewId: Optional("order_template_new_id"),
                 schemaVersion: 1,
-                serviceLine: Optional(.onDemand),
+                serviceLine: Optional(ServiceLineEnum.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
                 shortId: "short_id",
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                status: Optional(.draft),
+                status: Optional(OrderStatusEnum1.draft),
                 taskGroupDetails: Optional([
                     OrderTaskGroupSharedDetails1(
                         taskGroupId: "task_group_id",
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )
                 ])
             ),
@@ -732,7 +744,7 @@ import Chrt
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         schemaVersion: 1,
-                        taskGroupType: .chrtGroundProvider
+                        taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
@@ -755,7 +767,7 @@ import Chrt
                     awbNumber: Optional("awb_number"),
                     awbNumberLineItemsGenerated: Optional(true),
                     cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    cargoType: .spareParts,
+                    cargoType: CargoTypeEnum1.spareParts,
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: Optional("created_by_user_id"),
                     deliveredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -776,7 +788,7 @@ import Chrt
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     stackable: Optional(true),
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    status: Optional(.draft),
+                    status: Optional(CargoStatusEnum1.draft),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),
                     widthInches: Optional(1.1)
@@ -796,8 +808,8 @@ import Chrt
     @Test func listForProviderOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -869,7 +881,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -917,7 +929,7 @@ import Chrt
                         shortId: "short_id"
                     ),
                     providerRoles: [
-                        .coordinator
+                        OrderProviderRoleEnum.coordinator
                     ],
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     taskGroupsExpanded: Optional([
@@ -929,14 +941,14 @@ import Chrt
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 schemaVersion: 1,
-                                taskGroupType: .chrtGroundProvider
+                                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                             )
                         )
                     ]),
                     unassignedCargos: Optional([
                         Cargo1(
                             id: "_id",
-                            cargoType: .spareParts,
+                            cargoType: CargoTypeEnum1.spareParts,
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
@@ -991,9 +1003,9 @@ import Chrt
                 "filter_coordinator_assigned_user_ids"
             ],
             filterCoordinatorLabel: "filter_coordinator_label",
-            request: .init(body: OrderAndTaskGroupExpandedReq(
+            request: OrderAndTaskGroupExpandedReq(
 
-            )),
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -1002,8 +1014,8 @@ import Chrt
     @Test func listForShipperOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -1066,7 +1078,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1117,14 +1129,14 @@ import Chrt
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 schemaVersion: 1,
-                                taskGroupType: .chrtGroundProvider
+                                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                             )
                         )
                     ]),
                     unassignedCargos: Optional([
                         Cargo1(
                             id: "_id",
-                            cargoType: .spareParts,
+                            cargoType: CargoTypeEnum1.spareParts,
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
@@ -1167,9 +1179,9 @@ import Chrt
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExecutorOrgId: "filter_executor_org_id",
             filterCoordinatorOrgId: "filter_coordinator_org_id",
-            request: .init(body: OrderAndTaskGroupExpandedReq(
+            request: OrderAndTaskGroupExpandedReq(
 
-            )),
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

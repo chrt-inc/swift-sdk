@@ -6,8 +6,8 @@ import Chrt
     @Test func getInfoV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "admin_delete_enabled": true,
                   "created_at": 1,
@@ -23,7 +23,7 @@ import Chrt
                   "slug": "slug",
                   "updated_at": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -53,8 +53,8 @@ import Chrt
     @Test func listMembersV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -66,7 +66,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -79,7 +79,7 @@ import Chrt
                 OrgMemberDetails(
                     firstName: Optional("first_name"),
                     lastName: Optional("last_name"),
-                    role: .owner,
+                    role: OrgRoleEnum.owner,
                     userId: "user_id"
                 )
             ],
@@ -102,10 +102,10 @@ import Chrt
     @Test func setupOrgV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -127,10 +127,10 @@ import Chrt
     @Test func getStripeConnectAccountIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

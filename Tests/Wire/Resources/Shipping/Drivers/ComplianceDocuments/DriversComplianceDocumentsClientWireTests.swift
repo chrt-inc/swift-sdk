@@ -6,8 +6,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -21,7 +21,7 @@ import Chrt
                   "valid_from": "2024-01-15T09:30:00Z",
                   "valid_until": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,7 +32,7 @@ import Chrt
         let expectedResponse = DriverComplianceDocument1(
             id: "_id",
             description: Optional("description"),
-            documentType: .driversLicense,
+            documentType: DriverComplianceDocumentTypeEnum1.driversLicense,
             driverComplianceDocumentS3ObjectMetadataIds: Optional([
                 "driver_compliance_document_s3_object_metadata_ids"
             ]),
@@ -56,8 +56,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -73,7 +73,7 @@ import Chrt
                     "valid_until": "2024-01-15T09:30:00Z"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -85,7 +85,7 @@ import Chrt
             DriverComplianceDocument1(
                 id: "_id",
                 description: Optional("description"),
-                documentType: .driversLicense,
+                documentType: DriverComplianceDocumentTypeEnum1.driversLicense,
                 driverComplianceDocumentS3ObjectMetadataIds: Optional([
                     "driver_compliance_document_s3_object_metadata_ids"
                 ]),
@@ -106,8 +106,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -121,7 +121,7 @@ import Chrt
                   "valid_from": "2024-01-15T09:30:00Z",
                   "valid_until": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -132,7 +132,7 @@ import Chrt
         let expectedResponse = DriverComplianceDocument1(
             id: "_id",
             description: Optional("description"),
-            documentType: .driversLicense,
+            documentType: DriverComplianceDocumentTypeEnum1.driversLicense,
             driverComplianceDocumentS3ObjectMetadataIds: Optional([
                 "driver_compliance_document_s3_object_metadata_ids"
             ]),
@@ -153,8 +153,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -168,7 +168,7 @@ import Chrt
                   "valid_from": "2024-01-15T09:30:00Z",
                   "valid_until": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -179,7 +179,7 @@ import Chrt
         let expectedResponse = DriverComplianceDocument1(
             id: "_id",
             description: Optional("description"),
-            documentType: .driversLicense,
+            documentType: DriverComplianceDocumentTypeEnum1.driversLicense,
             driverComplianceDocumentS3ObjectMetadataIds: Optional([
                 "driver_compliance_document_s3_object_metadata_ids"
             ]),

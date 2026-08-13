@@ -9,6 +9,19 @@ public final class CargoaiTrackAndTraceClient: Sendable {
 
     /// Starts CargoAi Track & Trace URL + e-mail updates for an AWB (which must already be recorded on a flight leg). Idempotent: re-subscribing a still-live AWB returns the existing subscription without calling CargoAi again. | authz: order participant operator | (CargoAiTrackAndTraceSubscribeReq) -> (CargoAiTrackAndTraceSubscription1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.cargoaiTrackAndTrace.subscribeV1(request: .init(awb: "awb"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func subscribeV1(request: Requests.CargoAiTrackAndTraceSubscribeReq, requestOptions: RequestOptions? = nil) async throws -> CargoAiTrackAndTraceSubscription1 {
         return try await httpClient.performRequest(
@@ -21,6 +34,19 @@ public final class CargoaiTrackAndTraceClient: Sendable {
     }
 
     /// Retrieves the stored CargoAi tracking subscription for an AWB. | authz: order participant | () -> (CargoAiTrackAndTraceSubscription1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.cargoaiTrackAndTrace.subscriptionV1(awb: "awb")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter awb: IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -35,6 +61,19 @@ public final class CargoaiTrackAndTraceClient: Sendable {
 
     /// Lists CargoAi tracking subscriptions for the AWBs recorded on a task group. | authz: order participant | () -> (list[CargoAiTrackAndTraceSubscription1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.cargoaiTrackAndTrace.subscriptionsByTaskGroupV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func subscriptionsByTaskGroupV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [CargoAiTrackAndTraceSubscription1] {
         return try await httpClient.performRequest(
@@ -46,6 +85,19 @@ public final class CargoaiTrackAndTraceClient: Sendable {
     }
 
     /// Retrieves stored CargoAi tracking updates for an AWB, latest first (the first item is the current state). | authz: order participant | () -> (list[CargoAiTrackAndTraceUpdate1])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.cargoaiTrackAndTrace.updatesV1(awb: "awb")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter awb: IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

@@ -6,10 +6,10 @@ import Chrt
     @Test func acceptV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -31,8 +31,8 @@ import Chrt
     @Test func byIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "accepted_pro_forma_line_items": [
@@ -78,7 +78,7 @@ import Chrt
                   "status": "open",
                   "status_changed_at_timestamp": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -92,15 +92,15 @@ import Chrt
                 ProFormaLineItem1(
                     awbNumber: Optional("awb_number"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    currencyCode: .usd,
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
                     description: "description",
-                    lineItemType: .baseRate,
-                    provenance: .rateSheet,
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                     quantity: 1.1,
                     rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: Optional(1),
                     taxPercentage: Optional(1.1),
-                    unit: Optional(.each),
+                    unit: Optional(InvoiceLineItemUnitEnum1.each),
                     unitPrice: 1.1
                 )
             ]),
@@ -109,16 +109,16 @@ import Chrt
             bids: [
                 Bid(
                     actedByUserId: "acted_by_user_id",
-                    action: .submit,
+                    action: BidActionEnum.submit,
                     comment: Optional("comment"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     fromLister: true,
                     proFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            currencyCode: .usd,
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
                             description: "description",
-                            lineItemType: .baseRate,
-                            provenance: .rateSheet,
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                             quantity: 1.1,
                             unitPrice: 1.1
                         )
@@ -128,7 +128,7 @@ import Chrt
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             listingId: "listing_id",
             schemaVersion: Optional(1),
-            status: .open,
+            status: BidThreadStatusEnum.open,
             statusChangedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
         let response = try await client.listing.bidThreads.byIdV1(
@@ -141,10 +141,10 @@ import Chrt
     @Test func confirmAcceptV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -163,10 +163,10 @@ import Chrt
     @Test func counterV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -188,10 +188,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -213,10 +213,10 @@ import Chrt
     @Test func denyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -238,8 +238,8 @@ import Chrt
     @Test func listForBidderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -273,7 +273,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -287,10 +287,10 @@ import Chrt
                     id: "_id",
                     acceptedProFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            currencyCode: .usd,
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
                             description: "description",
-                            lineItemType: .baseRate,
-                            provenance: .rateSheet,
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                             quantity: 1.1,
                             unitPrice: 1.1
                         )
@@ -300,7 +300,7 @@ import Chrt
                     bids: [
                         Bid(
                             actedByUserId: "acted_by_user_id",
-                            action: .submit,
+                            action: BidActionEnum.submit,
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             fromLister: true
                         )
@@ -308,7 +308,7 @@ import Chrt
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     listingId: "listing_id",
                     schemaVersion: Optional(1),
-                    status: .open,
+                    status: BidThreadStatusEnum.open,
                     statusChangedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                 )
             ],
@@ -337,8 +337,8 @@ import Chrt
     @Test func listForListingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -372,7 +372,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -386,10 +386,10 @@ import Chrt
                     id: "_id",
                     acceptedProFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            currencyCode: .usd,
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
                             description: "description",
-                            lineItemType: .baseRate,
-                            provenance: .rateSheet,
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                             quantity: 1.1,
                             unitPrice: 1.1
                         )
@@ -399,7 +399,7 @@ import Chrt
                     bids: [
                         Bid(
                             actedByUserId: "acted_by_user_id",
-                            action: .submit,
+                            action: BidActionEnum.submit,
                             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             fromLister: true
                         )
@@ -407,7 +407,7 @@ import Chrt
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     listingId: "listing_id",
                     schemaVersion: Optional(1),
-                    status: .open,
+                    status: BidThreadStatusEnum.open,
                     statusChangedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                 )
             ],
@@ -437,10 +437,10 @@ import Chrt
     @Test func withdrawV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

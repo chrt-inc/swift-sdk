@@ -1,7 +1,7 @@
 import Foundation
 
 /// Reusable weight amount + unit pair.
-/// 
+///
 /// Used for:
 ///   - AirWayBill.weight          -> [WEBCARGO] <NetWeight> (gross weight)
 ///   - Charge.chargeable_weight   -> [WEBCARGO] <TotalChargeableWeight> (billing weight)

@@ -6,10 +6,10 @@ import Chrt
     @Test func addEventV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -20,8 +20,8 @@ import Chrt
         let expectedResponse = true
         let response = try await client.notifications.groups.addEventV1(
             groupId: "group_id",
-            channel: .email,
-            event: .shippingOrderStaged,
+            channel: "email",
+            event: "shipping.order.staged",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -30,10 +30,10 @@ import Chrt
     @Test func addUserV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -53,10 +53,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -78,10 +78,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -100,8 +100,8 @@ import Chrt
     @Test func getForAdministratorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -125,7 +125,7 @@ import Chrt
                     "user_ids_opted_out"
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -137,17 +137,17 @@ import Chrt
             id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             emailEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForOrgsEnum.shippingOrderStaged
             ]),
             groupName: "group_name",
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             orgId: "org_id",
             pushEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForOrgsEnum.shippingOrderStaged
             ]),
             schemaVersion: 1,
             smsEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForOrgsEnum.shippingOrderStaged
             ]),
             userIds: Optional([
                 "user_ids"
@@ -166,8 +166,8 @@ import Chrt
     @Test func getForMemberV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "email_events": [
@@ -185,7 +185,7 @@ import Chrt
                     "shipping.order.staged"
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -196,18 +196,18 @@ import Chrt
         let expectedResponse = NotificationGroupLimitedForDriver1(
             id: "_id",
             emailEvents: [
-                .shippingOrderStaged
+                NotificationEventsForOrgsEnum.shippingOrderStaged
             ],
             groupName: "group_name",
             isOptedOut: true,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             orgId: "org_id",
             pushEvents: [
-                .shippingOrderStaged
+                NotificationEventsForOrgsEnum.shippingOrderStaged
             ],
             schemaVersion: 1,
             smsEvents: [
-                .shippingOrderStaged
+                NotificationEventsForOrgsEnum.shippingOrderStaged
             ]
         )
         let response = try await client.notifications.groups.getForMemberV1(
@@ -220,8 +220,8 @@ import Chrt
     @Test func listByOrgV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -250,7 +250,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -264,17 +264,17 @@ import Chrt
                     id: "_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     emailEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForOrgsEnum.shippingOrderStaged
                     ]),
                     groupName: "group_name",
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     orgId: "org_id",
                     pushEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForOrgsEnum.shippingOrderStaged
                     ]),
                     schemaVersion: 1,
                     smsEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForOrgsEnum.shippingOrderStaged
                     ]),
                     userIds: Optional([
                         "user_ids"
@@ -297,8 +297,8 @@ import Chrt
     @Test func listByUserV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -321,7 +321,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -334,18 +334,18 @@ import Chrt
                 NotificationGroupLimitedForDriver1(
                     id: "_id",
                     emailEvents: [
-                        .shippingOrderStaged
+                        NotificationEventsForOrgsEnum.shippingOrderStaged
                     ],
                     groupName: "group_name",
                     isOptedOut: true,
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     orgId: "org_id",
                     pushEvents: [
-                        .shippingOrderStaged
+                        NotificationEventsForOrgsEnum.shippingOrderStaged
                     ],
                     schemaVersion: 1,
                     smsEvents: [
-                        .shippingOrderStaged
+                        NotificationEventsForOrgsEnum.shippingOrderStaged
                     ]
                 )
             ],
@@ -362,10 +362,10 @@ import Chrt
     @Test func removeEventV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -376,8 +376,8 @@ import Chrt
         let expectedResponse = true
         let response = try await client.notifications.groups.removeEventV1(
             groupId: "group_id",
-            channel: .email,
-            event: .shippingOrderStaged,
+            channel: "email",
+            event: "shipping.order.staged",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -386,10 +386,10 @@ import Chrt
     @Test func removeUserV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -409,10 +409,10 @@ import Chrt
     @Test func updateNameV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -432,10 +432,10 @@ import Chrt
     @Test func userOptInV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -454,10 +454,10 @@ import Chrt
     @Test func userOptOutV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

@@ -11,6 +11,22 @@ public final class OrderInternalMessagesClient: Sendable {
 
     /// Appends a message to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderInternalMessagesAddMessageReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.addMessageV1(
+    ///         orderId: "order_id",
+    ///         request: .init(message: "message")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addMessageV1(orderId: String, request: Requests.OrderInternalMessagesAddMessageReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -24,6 +40,19 @@ public final class OrderInternalMessagesClient: Sendable {
 
     /// Returns the caller's OrderInternalMessages for this order, or 404 if none exist yet. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderInternalMessages1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.getByOrderV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByOrderV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderInternalMessages1 {
         return try await httpClient.performRequest(
@@ -35,6 +64,22 @@ public final class OrderInternalMessagesClient: Sendable {
     }
 
     /// Deletes a message from the caller's OrderInternalMessages for this order. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.deleteMessageV1(
+    ///         orderId: "order_id",
+    ///         messageId: "message_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteMessageV1(orderId: String, messageId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

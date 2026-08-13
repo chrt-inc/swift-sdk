@@ -6,12 +6,12 @@ import Chrt
     @Test func forDriverV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   "string"
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,12 +32,12 @@ import Chrt
     @Test func forProviderOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   "string"
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Notification events available for user-level opt-in preferences.
-/// 
+///
 /// These are events that relate to a user's direct involvement:
 /// - Order events: via `order.created_by_user_id`
 /// - TaskGroup events: via `task_group.driver_id`

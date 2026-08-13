@@ -9,6 +9,19 @@ public final class WebcargoBookingsClient: Sendable {
 
     /// Retrieves the stored WebCargo booking record for a task group. Returns 404 if the booking has never been synced. | () -> (WebcargoBookingRecord1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.webcargoBookings.retrieveV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieveV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> WebcargoBookingRecord1 {
         return try await httpClient.performRequest(
@@ -20,6 +33,19 @@ public final class WebcargoBookingsClient: Sendable {
     }
 
     /// Fetches the latest booking record from WebCargo for a task group and upserts it in the database. Creates the record on first call, updates on subsequent calls. | () -> (WebcargoBookingRecord1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.webcargoBookings.syncV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func syncV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> WebcargoBookingRecord1 {

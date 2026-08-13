@@ -17,6 +17,19 @@ public final class OrderTemplatesNewClient: Sendable {
 
     /// Archives an order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.postArchiveV1(orderTemplateId: "order_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postArchiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -28,6 +41,24 @@ public final class OrderTemplatesNewClient: Sendable {
     }
 
     /// Atomically replaces an active order template core. | authz: min_org_role=operator | (OrderTemplateNewCore1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.putReplaceCoreV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         request: OrderTemplateNewCore1(
+    ///             schemaVersion: 1
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func putReplaceCoreV1(orderTemplateId: String, request: OrderTemplateNewCore1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
@@ -42,6 +73,22 @@ public final class OrderTemplatesNewClient: Sendable {
 
     /// Validates a natural-language date string and resolves it to a UTC timestamp. | authz: min_org_role=operator | (OrderTemplateNewDateparserResolveReq) -> (OrderTemplateNewDateparserResolveRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.resolveDateparserV1(request: .init(
+    ///         dateparserStr: "dateparser_str",
+    ///         timeZoneName: "America/New_York"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func resolveDateparserV1(request: Requests.OrderTemplateNewDateparserResolveReq, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewDateparserResolveRes {
         return try await httpClient.performRequest(
@@ -54,6 +101,40 @@ public final class OrderTemplatesNewClient: Sendable {
     }
 
     /// Lists order templates with filtering, sorting, pagination, full-text search, and party/account expansion. | authz: min_org_role=operator | () -> (OrderTemplateNewListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.listV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         search: "search",
+    ///         filterArchived: true,
+    ///         filterOwnedByUserId: "filter_owned_by_user_id",
+    ///         filterExecutorOrgId: "filter_executor_org_id",
+    ///         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
+    ///         filterShipperOrgId: "filter_shipper_org_id",
+    ///         filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+    ///         filterCoordinatorShipperAccountIds: [
+    ///             "filter_coordinator_shipper_account_ids"
+    ///         ],
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
@@ -72,7 +153,7 @@ public final class OrderTemplatesNewClient: Sendable {
     /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
     /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
+    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates_new/list/v1",
@@ -88,7 +169,7 @@ public final class OrderTemplatesNewClient: Sendable {
                 "filter_off_chrt_executor_org_data_id": filterOffChrtExecutorOrgDataId.map { .string($0) }, 
                 "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 
                 "filter_off_chrt_shipper_org_data_id": filterOffChrtShipperOrgDataId.map { .string($0) }, 
-                "filter_coordinator_shipper_account_ids": filterCoordinatorShipperAccountIds.map { .string($0) }, 
+                "filter_coordinator_shipper_account_ids": filterCoordinatorShipperAccountIds.map { .stringArray($0) }, 
                 "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
                 "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
                 "filter_last_edited_at_timestamp_gte": filterLastEditedAtTimestampGte.map { .date($0) }, 
@@ -103,6 +184,19 @@ public final class OrderTemplatesNewClient: Sendable {
 
     /// Restores an archived order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.postUnarchiveV1(orderTemplateId: "order_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func postUnarchiveV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -114,6 +208,22 @@ public final class OrderTemplatesNewClient: Sendable {
     }
 
     /// Updates an order template owned by the caller's organization. | authz: min_org_role=operator | (OrderTemplateNewClientUpdate1) -> (OrderTemplateNew1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.updateV1(
+    ///         orderTemplateId: "order_template_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(orderTemplateId: String, request: Requests.OrderTemplateNewClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
@@ -128,6 +238,22 @@ public final class OrderTemplatesNewClient: Sendable {
 
     /// Creates an order template owned by the caller's organization. | authz: min_org_role=operator | (OrderTemplateNewClientCreate1) -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.createV1(request: .init(
+    ///         name: "name",
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.OrderTemplateNewClientCreate1, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -141,6 +267,19 @@ public final class OrderTemplatesNewClient: Sendable {
 
     /// Retrieves an order template by ID. | authz: min_org_role=operator | () -> (OrderTemplateNew1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.getByIdV1(orderTemplateId: "order_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNew1 {
         return try await httpClient.performRequest(
@@ -152,6 +291,19 @@ public final class OrderTemplatesNewClient: Sendable {
     }
 
     /// Deletes an order template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.deleteV1(orderTemplateId: "order_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orderTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

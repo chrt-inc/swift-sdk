@@ -9,6 +9,19 @@ public final class AirWaybillsClient: Sendable {
 
     /// Retrieves all CHAMP confirmation receipts linked to the air waybill for a task group. | () -> (list[ChampConfirmationReceipt1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.confirmationsV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func confirmationsV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [ChampConfirmationReceipt1] {
         return try await httpClient.performRequest(
@@ -20,6 +33,19 @@ public final class AirWaybillsClient: Sendable {
     }
 
     /// Creates a CHAMP air waybill pre-populated from the stored WebCargo booking record. The booking must be synced first via the webcargo_bookings sync route. Returns 409 if an air waybill already exists for this task group. | (AirWaybillCreateReq) -> (ChampAirWaybill1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.createV1(request: .init(taskGroupId: "task_group_id"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.AirWaybillCreateReq, requestOptions: RequestOptions? = nil) async throws -> ChampAirWaybill1 {
@@ -34,6 +60,19 @@ public final class AirWaybillsClient: Sendable {
 
     /// Retrieves all CHAMP flight status updates linked to the air waybill for a task group. | () -> (list[ChampFlightStatus1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.flightStatusesV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func flightStatusesV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [ChampFlightStatus1] {
         return try await httpClient.performRequest(
@@ -45,6 +84,19 @@ public final class AirWaybillsClient: Sendable {
     }
 
     /// Converts a CHAMP air waybill to PDF via CHAMP's conversion API. Requires shipper, consignee, and charge_declarations to be filled in. Returns the PDF file as application/pdf. | () -> (PDF binary)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.pdfV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func pdfV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
@@ -58,6 +110,19 @@ public final class AirWaybillsClient: Sendable {
 
     /// Retrieves the stored CHAMP air waybill for a task group. | () -> (ChampAirWaybill1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.retrieveV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func retrieveV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> ChampAirWaybill1 {
         return try await httpClient.performRequest(
@@ -70,6 +135,19 @@ public final class AirWaybillsClient: Sendable {
 
     /// Submits a draft CHAMP air waybill to Traxon cargoHUB. Requires shipper, consignee, and charge_declarations to be filled in. Returns 422 if the AWB is not in draft status or required fields are missing. | () -> (ChampAirWaybill1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.submitV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func submitV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> ChampAirWaybill1 {
         return try await httpClient.performRequest(
@@ -81,6 +159,22 @@ public final class AirWaybillsClient: Sendable {
     }
 
     /// Updates fields on an existing CHAMP air waybill. Any editable field can be set — only fields included in the request body are changed. | (ChampAirWaybillClientUpdate1) -> (ChampAirWaybill1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.integrations.airWaybills.updateV1(
+    ///         taskGroupId: "task_group_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(taskGroupId: String, request: Requests.ChampAirWaybillClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> ChampAirWaybill1 {

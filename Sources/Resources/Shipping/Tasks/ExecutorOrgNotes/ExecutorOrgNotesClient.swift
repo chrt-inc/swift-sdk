@@ -9,6 +9,22 @@ public final class ExecutorOrgNotesClient: Sendable {
 
     /// Adds an executor-side note to a task. | authz_personas=[driver_for_executor, executor_org_operators] | (AddExecutorOrgNoteReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.tasks.executorOrgNotes.addV1(
+    ///         taskId: "task_id",
+    ///         request: .init(note: "note")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(taskId: String, request: Requests.AddExecutorOrgNoteReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(

@@ -9,6 +9,23 @@ public final class CargoByDriverClient: Sendable {
 
     /// Returns up to the specified number of data points for a cargo within a task group, intelligently sampled across the time range. Excludes outliers. | auth: api_key | () -> (list[CargoByDriverDataPoint1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.timeseries.cargoByDriver.dataPointsV1(
+    ///         cargoId: "cargo_id",
+    ///         taskGroupId: "task_group_id",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDriverDataPoint1] {
         return try await httpClient.performRequest(
@@ -25,6 +42,23 @@ public final class CargoByDriverClient: Sendable {
     }
 
     /// Returns up to the specified number of data points for a cargo within a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (list[CargoByDriverDataPoint1])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.timeseries.cargoByDriver.dataPointsPublicV1(
+    ///         cargoId: "cargo_id",
+    ///         taskGroupId: "task_group_id",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func dataPointsPublicV1(cargoId: String, taskGroupId: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [CargoByDriverDataPoint1] {
@@ -43,6 +77,22 @@ public final class CargoByDriverClient: Sendable {
 
     /// Returns the most recent driver location data point for cargo within a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | auth: api_key | () -> (CargoByDriverDataPoint1 | None)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.timeseries.cargoByDriver.lastSeenV1(
+    ///         cargoId: "cargo_id",
+    ///         taskGroupId: "task_group_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverDataPoint1? {
         return try await httpClient.performRequest(
@@ -58,6 +108,22 @@ public final class CargoByDriverClient: Sendable {
     }
 
     /// Returns the most recent driver location data point for a cargo within a public task group. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (CargoByDriverDataPoint1 | None)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.timeseries.cargoByDriver.lastSeenPublicV1(
+    ///         cargoId: "cargo_id",
+    ///         taskGroupId: "task_group_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func lastSeenPublicV1(cargoId: String, taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverDataPoint1? {

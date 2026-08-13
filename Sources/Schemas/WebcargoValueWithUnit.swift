@@ -1,7 +1,7 @@
 import Foundation
 
 /// XML element with text content and a unitCode attribute.
-/// 
+///
 /// Parses e.g. ``<Width unitCode="CMT">10.0</Width>`` into
 /// ``value="10.0", unit_code="CMT"``.
 public struct WebcargoValueWithUnit: Codable, Hashable, Sendable {

@@ -14,6 +14,7 @@ public final class ChrtClient: Sendable {
     public let notifications: NotificationsClient
     public let operations: OperationsClient
     public let shipping: ShippingClient_
+    public let shippingIntegrations: ShippingIntegrationsClient
     public let tracking: TrackingClient
     public let trackingIntegrations: TrackingIntegrationsClient
     public let users: UsersClient
@@ -33,7 +34,7 @@ public final class ChrtClient: Sendable {
         headers: [String: String]? = nil,
         timeout: Int? = nil,
         maxRetries: Int? = nil,
-        urlSession: URLSession? = nil
+        urlSession: Networking.URLSession? = nil
     ) {
         self.init(
             baseURL: baseURL,
@@ -63,7 +64,7 @@ public final class ChrtClient: Sendable {
         headers: [String: String]? = nil,
         timeout: Int? = nil,
         maxRetries: Int? = nil,
-        urlSession: URLSession? = nil
+        urlSession: Networking.URLSession? = nil
     ) {
         self.init(
             baseURL: baseURL,
@@ -87,7 +88,7 @@ public final class ChrtClient: Sendable {
         headers: [String: String]? = nil,
         timeout: Int? = nil,
         maxRetries: Int? = nil,
-        urlSession: URLSession? = nil
+        urlSession: Networking.URLSession? = nil
     ) {
         let config = ClientConfig(
             baseURL: baseURL,
@@ -111,6 +112,7 @@ public final class ChrtClient: Sendable {
         self.notifications = NotificationsClient(config: config)
         self.operations = OperationsClient(config: config)
         self.shipping = ShippingClient_(config: config)
+        self.shippingIntegrations = ShippingIntegrationsClient(config: config)
         self.tracking = TrackingClient(config: config)
         self.trackingIntegrations = TrackingIntegrationsClient(config: config)
         self.users = UsersClient(config: config)

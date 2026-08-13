@@ -15,6 +15,19 @@ public final class ConnectionsClient: Sendable {
 
     /// Gets the connection between caller's org and the org with the specified handle. | () -> (ShipperCoordinatorConnection1 | CoordinatorExecutorConnection1 | None)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.getByHandleV1(handle: "handle")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter handle: Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByHandleV1(handle: String, requestOptions: RequestOptions? = nil) async throws -> ConnectionsGetByHandleV1Response? {
@@ -27,6 +40,25 @@ public final class ConnectionsClient: Sendable {
     }
 
     /// Lists the caller's coordinator connections with filtering, pagination, and identity search. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (CoordinatorExecutorConnectionsForExecutorListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.listCoordinatorsForExecutorV1(
+    ///         search: "search",
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterAutoAssignEnabled: true,
+    ///         filterConnected: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter search: Search by organization identity details
     /// - Parameter filterAutoAssignEnabled: Filter by executor auto-assign consent
@@ -50,6 +82,24 @@ public final class ConnectionsClient: Sendable {
 
     /// Lists the caller's coordinator connections with filtering, pagination, and identity search. | authz: allowed_org_types=[shipper] | () -> (ShipperCoordinatorConnectionsForShipperListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.listCoordinatorsForShipperV1(
+    ///         search: "search",
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterConnected: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter search: Search by organization identity details
     /// - Parameter filterConnected: Filter by connection status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -70,6 +120,21 @@ public final class ConnectionsClient: Sendable {
 
     /// Creates a shipper-coordinator or coordinator-executor connection to an on-CHRT provider. | (CreateConnectionReq) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.createConnectionToProviderV1(request: CreateConnectionReq(
+    ///         handle: "handle"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createConnectionToProviderV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -83,6 +148,21 @@ public final class ConnectionsClient: Sendable {
 
     /// Creates a shipper-coordinator connection to an on-CHRT shipper. | authz: allowed_org_types=[provider] | (CreateConnectionReq) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.createConnectionToShipperV1(request: CreateConnectionReq(
+    ///         handle: "handle"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createConnectionToShipperV1(request: CreateConnectionReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -95,6 +175,26 @@ public final class ConnectionsClient: Sendable {
     }
 
     /// Lists the caller's executor connections nearest to a location, with filtering and pagination. Executors without registered addresses follow geocoded results. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (CoordinatorExecutorConnectionsForCoordinatorGeoSearchListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.listExecutorsGeoSearchForCoordinatorV1(
+    ///         nearLatitude: 1.1,
+    ///         nearLongitude: 1.1,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterAutoAssignEnabled: true,
+    ///         filterConnected: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter nearLatitude: Geo-search latitude
     /// - Parameter nearLongitude: Geo-search longitude
@@ -120,6 +220,25 @@ public final class ConnectionsClient: Sendable {
 
     /// Lists the caller's executor connections with filtering, pagination, and identity search. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (CoordinatorExecutorConnectionsForCoordinatorListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.listExecutorsForCoordinatorV1(
+    ///         search: "search",
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterAutoAssignEnabled: true,
+    ///         filterConnected: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter search: Search by organization identity details
     /// - Parameter filterAutoAssignEnabled: Filter by executor auto-assign consent
     /// - Parameter filterConnected: Filter by connection status
@@ -142,6 +261,22 @@ public final class ConnectionsClient: Sendable {
 
     /// Sets an executor's consent to direct task-group assignment. | authz: allowed_org_types=[provider], min_org_role=administrator | (CoordinatorExecutorUpdateAutoAssignReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.setCoordinatorExecutorAutoAssignV1(
+    ///         connectionId: "connection_id",
+    ///         request: .init(autoAssignEnabled: true)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setCoordinatorExecutorAutoAssignV1(connectionId: String, request: Requests.CoordinatorExecutorUpdateAutoAssignReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -155,6 +290,22 @@ public final class ConnectionsClient: Sendable {
 
     /// Sets or clears the coordinator's default department for a shipper-coordinator connection. | authz: allowed_org_types=[provider], min_org_role=operator | (ShipperCoordinatorConnectionClientUpdate1) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.setShipperCoordinatorDefaultDepartmentV1(
+    ///         connectionId: "connection_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setShipperCoordinatorDefaultDepartmentV1(connectionId: String, request: Requests.ShipperCoordinatorConnectionClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -167,6 +318,24 @@ public final class ConnectionsClient: Sendable {
     }
 
     /// Lists the caller's shipper connections with filtering, pagination, and identity search. | authz: allowed_org_types=[provider] | () -> (ShipperCoordinatorConnectionsForCoordinatorListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.listShippersForCoordinatorV1(
+    ///         search: "search",
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterConnected: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter search: Search by organization identity details
     /// - Parameter filterConnected: Filter by connection status

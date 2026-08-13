@@ -1,7 +1,7 @@
 import Foundation
 
 /// Specification relative to calendar time when to run an action.
-/// 
+///
 /// A timestamp matches if at least one range of each field matches except for
 /// year. If year is missing, that means all years match. For all fields besides
 /// year, at least one range must be present to match anything.

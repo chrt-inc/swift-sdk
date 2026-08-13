@@ -9,6 +9,22 @@ public final class ShippersClient: Sendable {
 
     /// Returns distinct connected-shipper names matching the query, with the matching connection IDs. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[ConnectionTypeaheadResult])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.shippers.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

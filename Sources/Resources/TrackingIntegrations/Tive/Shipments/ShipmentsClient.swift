@@ -9,6 +9,19 @@ public final class ShipmentsClient: Sendable {
 
     /// Retrieves a single Tive shipment by its ID. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveShipment1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.tive.shipments.getV1(tiveShipmentId: "tive_shipment_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(tiveShipmentId: String, requestOptions: RequestOptions? = nil) async throws -> TiveShipment1 {
         return try await httpClient.performRequest(
@@ -23,6 +36,28 @@ public final class ShipmentsClient: Sendable {
     }
 
     /// Lists Tive shipments with filtering, sorting, and pagination. Scoped to the caller's organization. | auth: api_key | authz: min_org_role=operator | () -> (TiveShipmentListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.tive.shipments.listV1(
+    ///         sortBy: .chrtCreatedAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterTiveDeviceObjectId: "filter_tive_device_object_id",
+    ///         filterTiveShipmentId: "filter_tive_shipment_id",
+    ///         filterChrtCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterChrtCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)

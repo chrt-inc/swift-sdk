@@ -9,6 +9,25 @@ public final class AdHocClient: Sendable {
 
     /// Creates or returns an existing ad-hoc notification intent for an order. | authz: min_org_role=operator | (NotificationIntentAdHocClientCreate1) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.adHoc.createV1(
+    ///         orderId: "order_id",
+    ///         request: NotificationIntentAdHocClientCreate1(
+    ///             contactId: "contact_id",
+    ///             schemaVersion: 1
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(orderId: String, request: NotificationIntentAdHocClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -21,6 +40,25 @@ public final class AdHocClient: Sendable {
     }
 
     /// Creates a new ad-hoc notification intent for a tracking session. | authz: min_org_role=operator | (NotificationIntentAdHocClientCreate1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.adHoc.createForSessionV1(
+    ///         sessionId: "session_id",
+    ///         request: NotificationIntentAdHocClientCreate1(
+    ///             contactId: "contact_id",
+    ///             schemaVersion: 1
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createForSessionV1(sessionId: String, request: NotificationIntentAdHocClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
@@ -35,6 +73,19 @@ public final class AdHocClient: Sendable {
 
     /// Deletes an ad-hoc notification intent. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.adHoc.deleteV1(adHocId: "ad_hoc_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(adHocId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -46,6 +97,23 @@ public final class AdHocClient: Sendable {
     }
 
     /// Lists all ad-hoc notification intents for an order. | authz: min_org_role=operator | () -> (NotificationAdHocListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.adHoc.listByOrderIdV1(
+    ///         orderId: "order_id",
+    ///         page: 1,
+    ///         pageSize: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByOrderIdV1(orderId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationAdHocListRes {
@@ -62,6 +130,23 @@ public final class AdHocClient: Sendable {
     }
 
     /// Lists all ad-hoc notification intents for a tracking session. | authz: min_org_role=operator | () -> (NotificationAdHocListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.notifications.adHoc.listBySessionIdV1(
+    ///         sessionId: "session_id",
+    ///         page: 1,
+    ///         pageSize: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listBySessionIdV1(sessionId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> NotificationAdHocListRes {

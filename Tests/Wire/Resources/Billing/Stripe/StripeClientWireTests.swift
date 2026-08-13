@@ -6,12 +6,12 @@ import Chrt
     @Test func createCheckoutSessionV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "url": "url"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -35,12 +35,12 @@ import Chrt
     @Test func createCustomerPortalSessionV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "url": "url"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

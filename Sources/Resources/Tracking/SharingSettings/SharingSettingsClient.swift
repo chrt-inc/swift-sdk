@@ -9,6 +9,19 @@ public final class SharingSettingsClient: Sendable {
 
     /// Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. Note: looking up by off_chrt_reference_id requires authentication because it is only org-level unique and needs the caller's org_id to resolve unambiguously. | () -> (list[TrackingSharingSettingsRes])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sharingSettings.getSettingsV1(orderRef: "order_ref")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter orderRef: Order ID, short ID, or off-chrt reference ID
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getSettingsV1(orderRef: String, requestOptions: RequestOptions? = nil) async throws -> [TrackingSharingSettingsRes] {
@@ -21,6 +34,24 @@ public final class SharingSettingsClient: Sendable {
     }
 
     /// Updates the sharing settings for a cargo by device tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, order_creator_org_operators] | (CargoByDeviceSharingSettingsUpdateReq) -> (CargoByDeviceSharingSettings1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sharingSettings.cargoByDeviceSettingsV1(request: .init(
+    ///         cargoId: "cargo_id",
+    ///         deviceId: "device_id",
+    ///         public: true,
+    ///         taskGroupId: "task_group_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func cargoByDeviceSettingsV1(request: Requests.CargoByDeviceSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> CargoByDeviceSharingSettings1 {
@@ -35,6 +66,23 @@ public final class SharingSettingsClient: Sendable {
 
     /// Updates the sharing settings for a cargo by driver tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sharingSettings.cargoByDriverSettingsV1(request: .init(
+    ///         cargoId: "cargo_id",
+    ///         public: true,
+    ///         taskGroupId: "task_group_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func cargoByDriverSettingsV1(request: Requests.CargoByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverSharingSettings1 {
         return try await httpClient.performRequest(
@@ -47,6 +95,22 @@ public final class SharingSettingsClient: Sendable {
     }
 
     /// Updates the sharing settings for a task group by driver tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sharingSettings.taskGroupByDriverSharingSettingsV1(request: .init(
+    ///         public: true,
+    ///         taskGroupId: "task_group_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func taskGroupByDriverSharingSettingsV1(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverSharingSettings1 {

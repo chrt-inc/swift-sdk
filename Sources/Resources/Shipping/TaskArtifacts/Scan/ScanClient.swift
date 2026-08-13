@@ -9,6 +9,25 @@ public final class ScanClient: Sendable {
 
     /// Appends a barcode/QR scan payload to a SCAN-type task artifact's expected or observed array (deduplicated). | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (AddScanPayloadReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.taskArtifacts.scan.addV1(
+    ///         taskArtifactId: "task_artifact_id",
+    ///         request: .init(
+    ///             kind: .expected,
+    ///             payload: "payload"
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(taskArtifactId: String, request: Requests.AddScanPayloadReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -21,6 +40,23 @@ public final class ScanClient: Sendable {
     }
 
     /// Removes a barcode/QR scan payload (by value) from a SCAN-type task artifact's expected or observed array. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.taskArtifacts.scan.deleteV1(
+    ///         taskArtifactId: "task_artifact_id",
+    ///         kind: .expected,
+    ///         payload: "payload"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(taskArtifactId: String, kind: ScanPayloadKindEnum, payload: String, requestOptions: RequestOptions? = nil) async throws -> Bool {

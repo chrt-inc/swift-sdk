@@ -6,8 +6,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -21,7 +21,7 @@ import Chrt
                   "valid_from": "2024-01-15T09:30:00Z",
                   "valid_until": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,12 +32,12 @@ import Chrt
         let expectedResponse = OrgComplianceDocument1(
             id: "_id",
             description: Optional("description"),
-            documentType: .securityThreatAssessment,
+            documentType: OrgComplianceDocumentTypeEnum1.securityThreatAssessment,
             orgComplianceDocumentS3ObjectMetadataIds: Optional([
                 "org_compliance_document_s3_object_metadata_ids"
             ]),
             orgId: "org_id",
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             schemaVersion: 1,
             validFrom: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             validUntil: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
@@ -55,8 +55,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -72,7 +72,7 @@ import Chrt
                     "valid_until": "2024-01-15T09:30:00Z"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -84,12 +84,12 @@ import Chrt
             OrgComplianceDocument1(
                 id: "_id",
                 description: Optional("description"),
-                documentType: .securityThreatAssessment,
+                documentType: OrgComplianceDocumentTypeEnum1.securityThreatAssessment,
                 orgComplianceDocumentS3ObjectMetadataIds: Optional([
                     "org_compliance_document_s3_object_metadata_ids"
                 ]),
                 orgId: "org_id",
-                orgType: .provider,
+                orgType: OrgTypeEnum.provider,
                 schemaVersion: 1,
                 validFrom: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 validUntil: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
@@ -102,8 +102,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -117,7 +117,7 @@ import Chrt
                   "valid_from": "2024-01-15T09:30:00Z",
                   "valid_until": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -128,12 +128,12 @@ import Chrt
         let expectedResponse = OrgComplianceDocument1(
             id: "_id",
             description: Optional("description"),
-            documentType: .securityThreatAssessment,
+            documentType: OrgComplianceDocumentTypeEnum1.securityThreatAssessment,
             orgComplianceDocumentS3ObjectMetadataIds: Optional([
                 "org_compliance_document_s3_object_metadata_ids"
             ]),
             orgId: "org_id",
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             schemaVersion: 1,
             validFrom: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             validUntil: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
@@ -149,8 +149,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "description": "description",
@@ -164,7 +164,7 @@ import Chrt
                   "valid_from": "2024-01-15T09:30:00Z",
                   "valid_until": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -175,12 +175,12 @@ import Chrt
         let expectedResponse = OrgComplianceDocument1(
             id: "_id",
             description: Optional("description"),
-            documentType: .securityThreatAssessment,
+            documentType: OrgComplianceDocumentTypeEnum1.securityThreatAssessment,
             orgComplianceDocumentS3ObjectMetadataIds: Optional([
                 "org_compliance_document_s3_object_metadata_ids"
             ]),
             orgId: "org_id",
-            orgType: .provider,
+            orgType: OrgTypeEnum.provider,
             schemaVersion: 1,
             validFrom: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             validUntil: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))

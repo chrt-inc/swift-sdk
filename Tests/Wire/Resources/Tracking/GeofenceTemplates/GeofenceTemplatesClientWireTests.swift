@@ -6,10 +6,10 @@ import Chrt
     @Test func archiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -28,8 +28,8 @@ import Chrt
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -60,7 +60,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -121,10 +121,10 @@ import Chrt
     @Test func unarchiveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -143,8 +143,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -170,7 +170,7 @@ import Chrt
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -216,8 +216,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -243,7 +243,7 @@ import Chrt
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -306,8 +306,8 @@ import Chrt
     @Test func getByIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
@@ -333,7 +333,7 @@ import Chrt
                   "owned_by_user_id": "owned_by_user_id",
                   "schema_version": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

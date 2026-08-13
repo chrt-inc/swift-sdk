@@ -9,6 +9,19 @@ public final class DevicesClient: Sendable {
 
     /// Archives a device by setting archived=True. Device must not have an active session — terminate it first. | auth: api_key | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.archiveV1(deviceId: "device_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func archiveV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -24,6 +37,19 @@ public final class DevicesClient: Sendable {
 
     /// Retrieves a single device by its ID with expanded sessions and cargos. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (DeviceExpandedRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.getV1(deviceId: "device_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> DeviceExpandedRes {
         return try await httpClient.performRequest(
@@ -38,6 +64,39 @@ public final class DevicesClient: Sendable {
     }
 
     /// Lists devices with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (DeviceListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.listV1(
+    ///         sortBy: .registeredAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         search: "search",
+    ///         orgScope: .owned,
+    ///         filterOffChrtReferenceId: "filter_off_chrt_reference_id",
+    ///         filterType: .d15NTag,
+    ///         filterActiveCargoId: "filter_active_cargo_id",
+    ///         filterActiveSessionId: "filter_active_session_id",
+    ///         filterHasActiveSession: true,
+    ///         filterHasActiveCargo: true,
+    ///         filterRegisteredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterRegisteredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterFirstSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterFirstSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterArchived: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
@@ -89,6 +148,19 @@ public final class DevicesClient: Sendable {
 
     /// Pauses a device and opens a new pause time window. | auth: api_key | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.pauseV1(deviceId: "device_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func pauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -104,6 +176,22 @@ public final class DevicesClient: Sendable {
 
     /// Registers a tracking device to the caller's organization. If the device is already registered to a different organization, returns 409 Conflict. | auth: api_key | (DeviceClientCreate1) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.registerToOrgV1(request: .init(
+    ///         deviceMacAddress: "device_mac_address",
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func registerToOrgV1(request: Requests.DeviceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -116,6 +204,23 @@ public final class DevicesClient: Sendable {
     }
 
     /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1,
+    ///         orgScope: .owned
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field
@@ -137,6 +242,19 @@ public final class DevicesClient: Sendable {
 
     /// Unpauses a device. Closes the open pause time window. | auth: api_key | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.unpauseV1(deviceId: "device_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func unpauseV1(deviceId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -151,6 +269,22 @@ public final class DevicesClient: Sendable {
     }
 
     /// Updates a device's type, comments, and/or off_chrt_reference_id. Use __set_to_None flags to explicitly clear Optional fields. | auth: api_key | (DeviceClientUpdate1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.updateV1(
+    ///         deviceId: "device_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(deviceId: String, request: Requests.DeviceClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -167,6 +301,19 @@ public final class DevicesClient: Sendable {
     }
 
     /// Adds and/or removes org_ids from a device's shared_with_org_ids list. Removal overrides addition. | auth: api_key | (DevicesUpdateSharedOrgsReq1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.devices.updateSharedOrgsV1(request: .init(deviceId: "device_id"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateSharedOrgsV1(request: Requests.DevicesUpdateSharedOrgsReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {

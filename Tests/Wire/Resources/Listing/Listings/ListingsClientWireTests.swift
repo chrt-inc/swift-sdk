@@ -6,10 +6,10 @@ import Chrt
     @Test func addDriverParticipantsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -29,10 +29,10 @@ import Chrt
     @Test func addProviderParticipantsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -52,8 +52,8 @@ import Chrt
     @Test func byIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "listing": {
                     "_id": "_id",
@@ -107,7 +107,7 @@ import Chrt
                     ]
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -119,7 +119,7 @@ import Chrt
             listing: ListingLimitedForBidder1(
                 id: "_id",
                 acceptedBidThreadId: Optional("accepted_bid_thread_id"),
-                audience: .providers,
+                audience: ListingAudienceEnum.providers,
                 autoAwardFirstAccept: Optional(true),
                 autoOpenPricedBidThreads: Optional(true),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -144,20 +144,20 @@ import Chrt
                 ]),
                 proFormaLineItems: Optional([
                     ProFormaLineItem1(
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        lineItemType: .baseRate,
-                        provenance: .rateSheet,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                        provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                         quantity: 1.1,
                         unitPrice: 1.1
                     )
                 ]),
                 schemaVersion: Optional(1),
                 shareProFormaLineItems: Optional(true),
-                status: .open,
+                status: ListingStatusEnum.open,
                 taskGroupId: "task_group_id",
                 taskGroupSummaryForBidders: "task_group_summary_for_bidders",
-                type: Optional(.dispatch)
+                type: Optional(ListingTypeEnum.dispatch)
             ),
             taskGroup: ListingTaskGroupForBidder1(
                 mileageEstimated: Optional(1.1),
@@ -178,8 +178,8 @@ import Chrt
     @Test func byIdForListerV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "accepted_bid_thread_id": "accepted_bid_thread_id",
@@ -230,7 +230,7 @@ import Chrt
                   "task_group_summary_for_bidders": "task_group_summary_for_bidders",
                   "type": "dispatch"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -241,7 +241,7 @@ import Chrt
         let expectedResponse = Listing1(
             id: "_id",
             acceptedBidThreadId: Optional("accepted_bid_thread_id"),
-            audience: .providers,
+            audience: ListingAudienceEnum.providers,
             autoAwardFirstAccept: Optional(true),
             autoOpenPricedBidThreads: Optional(true),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -269,24 +269,24 @@ import Chrt
                 ProFormaLineItem1(
                     awbNumber: Optional("awb_number"),
                     createdAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    currencyCode: .usd,
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
                     description: "description",
-                    lineItemType: .baseRate,
-                    provenance: .rateSheet,
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                     quantity: 1.1,
                     rateSheetId: Optional("rate_sheet_id"),
                     schemaVersion: Optional(1),
                     taxPercentage: Optional(1.1),
-                    unit: Optional(.each),
+                    unit: Optional(InvoiceLineItemUnitEnum1.each),
                     unitPrice: 1.1
                 )
             ]),
             schemaVersion: Optional(1),
             shareProFormaLineItems: Optional(true),
-            status: .open,
+            status: ListingStatusEnum.open,
             taskGroupId: "task_group_id",
             taskGroupSummaryForBidders: "task_group_summary_for_bidders",
-            type: Optional(.dispatch)
+            type: Optional(ListingTypeEnum.dispatch)
         )
         let response = try await client.listing.listings.byIdForListerV1(
             listingId: "listing_id",
@@ -298,8 +298,8 @@ import Chrt
     @Test func byTaskGroupV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -346,7 +346,7 @@ import Chrt
                     "type": "dispatch"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -358,7 +358,7 @@ import Chrt
             Listing1(
                 id: "_id",
                 acceptedBidThreadId: Optional("accepted_bid_thread_id"),
-                audience: .providers,
+                audience: ListingAudienceEnum.providers,
                 autoAwardFirstAccept: Optional(true),
                 autoOpenPricedBidThreads: Optional(true),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -384,20 +384,20 @@ import Chrt
                 ]),
                 proFormaLineItems: Optional([
                     ProFormaLineItem1(
-                        currencyCode: .usd,
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
-                        lineItemType: .baseRate,
-                        provenance: .rateSheet,
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                        provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                         quantity: 1.1,
                         unitPrice: 1.1
                     )
                 ]),
                 schemaVersion: Optional(1),
                 shareProFormaLineItems: Optional(true),
-                status: .open,
+                status: ListingStatusEnum.open,
                 taskGroupId: "task_group_id",
                 taskGroupSummaryForBidders: "task_group_summary_for_bidders",
-                type: Optional(.dispatch)
+                type: Optional(ListingTypeEnum.dispatch)
             )
         ]
         let response = try await client.listing.listings.byTaskGroupV1(
@@ -410,10 +410,10 @@ import Chrt
     @Test func cancelV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -432,10 +432,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -459,8 +459,8 @@ import Chrt
     @Test func listByOrgV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -510,7 +510,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -523,7 +523,7 @@ import Chrt
                 Listing1(
                     id: "_id",
                     acceptedBidThreadId: Optional("accepted_bid_thread_id"),
-                    audience: .providers,
+                    audience: ListingAudienceEnum.providers,
                     autoAwardFirstAccept: Optional(true),
                     autoOpenPricedBidThreads: Optional(true),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -549,20 +549,20 @@ import Chrt
                     ]),
                     proFormaLineItems: Optional([
                         ProFormaLineItem1(
-                            currencyCode: .usd,
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
                             description: "description",
-                            lineItemType: .baseRate,
-                            provenance: .rateSheet,
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
                             quantity: 1.1,
                             unitPrice: 1.1
                         )
                     ]),
                     schemaVersion: Optional(1),
                     shareProFormaLineItems: Optional(true),
-                    status: .open,
+                    status: ListingStatusEnum.open,
                     taskGroupId: "task_group_id",
                     taskGroupSummaryForBidders: "task_group_summary_for_bidders",
-                    type: Optional(.dispatch)
+                    type: Optional(ListingTypeEnum.dispatch)
                 )
             ],
             totalCount: 1
@@ -595,8 +595,8 @@ import Chrt
     @Test func listForDriverBidderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -619,7 +619,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -632,7 +632,7 @@ import Chrt
                 ListingForBidder1(
                     listing: ListingLimitedForBidder1(
                         id: "_id",
-                        audience: .providers,
+                        audience: ListingAudienceEnum.providers,
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
@@ -640,7 +640,7 @@ import Chrt
                         listingDescription: "listing_description",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        status: .open,
+                        status: ListingStatusEnum.open,
                         taskGroupId: "task_group_id",
                         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
                     ),
@@ -678,8 +678,8 @@ import Chrt
     @Test func listForProviderBidderV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -702,7 +702,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -715,7 +715,7 @@ import Chrt
                 ListingForBidder1(
                     listing: ListingLimitedForBidder1(
                         id: "_id",
-                        audience: .providers,
+                        audience: ListingAudienceEnum.providers,
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByOrgId: "created_by_org_id",
                         createdByUserId: "created_by_user_id",
@@ -723,7 +723,7 @@ import Chrt
                         listingDescription: "listing_description",
                         orderId: "order_id",
                         orderShortId: "order_short_id",
-                        status: .open,
+                        status: ListingStatusEnum.open,
                         taskGroupId: "task_group_id",
                         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
                     ),
@@ -761,10 +761,10 @@ import Chrt
     @Test func removeDriverParticipantsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -784,10 +784,10 @@ import Chrt
     @Test func removeProviderParticipantsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -807,10 +807,10 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

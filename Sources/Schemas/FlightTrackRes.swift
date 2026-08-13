@@ -1,7 +1,7 @@
 import Foundation
 
 /// Positional track for a flight leg: live trail + (optional) planned path.
-/// 
+///
 /// `positions` is the flown breadcrumb trail (present once airborne);
 /// `waypoints` / `legacy_route` are the planned path (present once Cirium has
 /// the filed flight plan, ~24h before departure). Everything is empty when the

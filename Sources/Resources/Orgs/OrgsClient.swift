@@ -23,6 +23,19 @@ public final class OrgsClient: Sendable {
 
     /// Retrieves basic organization information from the authentication service. | () -> (OrgInfoResponse)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.getInfoV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getInfoV1(requestOptions: RequestOptions? = nil) async throws -> OrgInfoResponse {
         return try await httpClient.performRequest(
@@ -35,17 +48,39 @@ public final class OrgsClient: Sendable {
 
     /// Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role, sorting, and pagination. | () -> (OrgMemberListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.listMembersV1(
+    ///         filterRole: [
+    ///             .owner
+    ///         ],
+    ///         sortBy: .firstName,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         search: "search"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter filterRole: Filter by organization role(s)
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Search by first or last name
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listMembersV1(filterRole: OrgRoleEnum? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMemberListRes {
+    public func listMembersV1(filterRole: [OrgRoleEnum]? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMemberListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/members/list/v1",
             queryParams: [
-                "filter_role": filterRole.map { .string($0.rawValue) }, 
+                "filter_role": filterRole.map { .unknown($0) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
@@ -59,6 +94,22 @@ public final class OrgsClient: Sendable {
 
     /// Single onboarding entry point. Sets `org_type` in WorkOS JWT metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Required `name` and optional `description` and `handle` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.setupOrgV1(request: .init(
+    ///         name: "name",
+    ///         orgType: .provider
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setupOrgV1(request: Requests.SetupOrgReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -71,6 +122,19 @@ public final class OrgsClient: Sendable {
     }
 
     /// Retrieves the Stripe Connect account ID for the caller's organization. Returns 404 if not set. | () -> (str)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.getStripeConnectAccountIdV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getStripeConnectAccountIdV1(requestOptions: RequestOptions? = nil) async throws -> String {

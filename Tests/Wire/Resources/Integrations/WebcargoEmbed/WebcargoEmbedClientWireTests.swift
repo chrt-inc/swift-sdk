@@ -6,14 +6,14 @@ import Chrt
     @Test func getEmbedV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "access_token": "access_token",
                   "expires_in": 1,
                   "url": "url"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

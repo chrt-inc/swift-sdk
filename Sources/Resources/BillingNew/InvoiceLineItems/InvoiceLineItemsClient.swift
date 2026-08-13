@@ -9,6 +9,34 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Creates account-split ad-hoc line items and attaches them to matching draft invoices. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.createAdHocV1(request: AdHocInvoiceLineItemsReq(
+    ///         adHocLineItems: [
+    ///             AdHocInvoiceLineItem1(
+    ///                 invoiceLineItem: InvoiceLineItemClientCreate1(
+    ///                     currencyCode: .usd,
+    ///                     description: "description",
+    ///                     invoiceType: .accountsReceivable,
+    ///                     lineItemType: .baseRate,
+    ///                     quantity: 1.1,
+    ///                     schemaVersion: 1,
+    ///                     unitPrice: 1.1
+    ///                 )
+    ///             )
+    ///         ],
+    ///         taskGroupId: "task_group_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createAdHocV1(request: AdHocInvoiceLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
         return try await httpClient.performRequest(
@@ -21,6 +49,34 @@ public final class InvoiceLineItemsClient: Sendable {
     }
 
     /// Previews account-split ad-hoc line items without persisting them. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.previewAdHocV1(request: AdHocInvoiceLineItemsReq(
+    ///         adHocLineItems: [
+    ///             AdHocInvoiceLineItem1(
+    ///                 invoiceLineItem: InvoiceLineItemClientCreate1(
+    ///                     currencyCode: .usd,
+    ///                     description: "description",
+    ///                     invoiceType: .accountsReceivable,
+    ///                     lineItemType: .baseRate,
+    ///                     quantity: 1.1,
+    ///                     schemaVersion: 1,
+    ///                     unitPrice: 1.1
+    ///                 )
+    ///             )
+    ///         ],
+    ///         taskGroupId: "task_group_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func previewAdHocV1(request: AdHocInvoiceLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItemServerCreate1] {
@@ -35,6 +91,21 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Atomically approves draft line items owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsApproveManyReq) -> (list[InvoiceLineItem1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.approveManyV1(request: .init(invoiceLineItemIds: [
+    ///         "invoice_line_item_ids"
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func approveManyV1(request: Requests.InvoiceLineItemsApproveManyReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
         return try await httpClient.performRequest(
@@ -48,6 +119,19 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Lists owner-scoped line items and attributed billing periods for an order with counterparties and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemsByOrderExpandedRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.listByOrderV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listByOrderV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemsByOrderExpandedRes {
         return try await httpClient.performRequest(
@@ -59,6 +143,25 @@ public final class InvoiceLineItemsClient: Sendable {
     }
 
     /// Creates optionally order-attributed line items from an amount and attaches them to a draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators, task_group_coordinator_operators, executor_org_operators] when order-attributed | (CreateInvoiceLineItemsFromAmountReq) -> (CreateInvoiceLineItemsFromAmountRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.createFromAmountV1(request: .init(
+    ///         amount: 1.1,
+    ///         currencyCode: .usd,
+    ///         description: "description",
+    ///         invoiceType: .accountsReceivable,
+    ///         lineItemType: .baseRate
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createFromAmountV1(request: Requests.CreateInvoiceLineItemsFromAmountReq, requestOptions: RequestOptions? = nil) async throws -> CreateInvoiceLineItemsFromAmountRes {
@@ -73,6 +176,27 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.createFromAwbCostsV1(request: .init(awbCosts: [
+    ///         CreateInvoiceLineItemsFromAwbCostsItem1(
+    ///             awbNumber: "awb_number",
+    ///             cost: Cost.double(
+    ///                 1.1
+    ///             ),
+    ///             currencyCode: .usd
+    ///         )
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createFromAwbCostsV1(request: Requests.CreateInvoiceLineItemsFromAwbCostsReq, requestOptions: RequestOptions? = nil) async throws -> CreateInvoiceLineItemsFromAwbCostsRes {
         return try await httpClient.performRequest(
@@ -85,6 +209,44 @@ public final class InvoiceLineItemsClient: Sendable {
     }
 
     /// Creates optionally order-attributed line items by transforming submitted line items and attaches them to a draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators, task_group_coordinator_operators, executor_org_operators] when order-attributed | (CreateInvoiceLineItemsFromLineItemsReq) -> (CreateInvoiceLineItemsFromLineItemsRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.createFromLineItemsV1(request: .init(
+    ///         description: "description",
+    ///         invoiceLineItemAmountTransformation: InvoiceLineItemAmountTransformation1(
+    ///             transformationType: .percent,
+    ///             value: 1.1
+    ///         ),
+    ///         invoiceType: .accountsReceivable,
+    ///         lineItemType: .baseRate,
+    ///         sourceInvoiceLineItems: [
+    ///             InvoiceLineItem1(
+    ///                 id: "_id",
+    ///                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///                 createdByUserId: "created_by_user_id",
+    ///                 currencyCode: .usd,
+    ///                 description: "description",
+    ///                 invoiceType: .accountsReceivable,
+    ///                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///                 lastEditedByUserId: "last_edited_by_user_id",
+    ///                 lineItemType: .baseRate,
+    ///                 ownedByOrgId: "owned_by_org_id",
+    ///                 quantity: 1.1,
+    ///                 schemaVersion: 1,
+    ///                 unitPrice: 1.1
+    ///             )
+    ///         ]
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createFromLineItemsV1(request: Requests.CreateInvoiceLineItemsFromLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> CreateInvoiceLineItemsFromLineItemsRes {
@@ -99,6 +261,21 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Deletes owner-scoped line items and rebuilds every affected draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsDeleteManyReq) -> (InvoiceLineItemsDeleteManyRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.deleteManyV1(request: .init(invoiceLineItemIds: [
+    ///         "invoice_line_item_ids"
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteManyV1(request: Requests.InvoiceLineItemsDeleteManyReq, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemsDeleteManyRes {
         return try await httpClient.performRequest(
@@ -111,6 +288,28 @@ public final class InvoiceLineItemsClient: Sendable {
     }
 
     /// Creates rate-sheet-derived line items and attaches them to matching draft invoices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[InvoiceLineItem1])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.createFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
+    ///         taskGroupChrtGroundProviderRateSheetIds: [
+    ///             TaskGroupChrtGroundProviderRateSheetIds1(
+    ///                 rateSheetIds: [
+    ///                     "rate_sheet_ids"
+    ///                 ],
+    ///                 taskGroupId: "task_group_id"
+    ///             )
+    ///         ]
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
@@ -125,6 +324,28 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Previews accounts-payable, accounts-receivable, and tax line items from selected active rate sheets. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.previewFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
+    ///         taskGroupChrtGroundProviderRateSheetIds: [
+    ///             TaskGroupChrtGroundProviderRateSheetIds1(
+    ///                 rateSheetIds: [
+    ///                     "rate_sheet_ids"
+    ///                 ],
+    ///                 taskGroupId: "task_group_id"
+    ///             )
+    ///         ]
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func previewFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1] {
         return try await httpClient.performRequest(
@@ -137,6 +358,48 @@ public final class InvoiceLineItemsClient: Sendable {
     }
 
     /// Lists owner-scoped invoice line items with attached invoices expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceLineItemListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.listV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterInvoiceTypes: [
+    ///             .accountsReceivable
+    ///         ],
+    ///         filterCurrencyCodes: [
+    ///             .usd
+    ///         ],
+    ///         filterLineItemTypes: [
+    ///             .baseRate
+    ///         ],
+    ///         filterUnits: [
+    ///             .each
+    ///         ],
+    ///         filterCounterpartyOrgId: "filter_counterparty_org_id",
+    ///         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+    ///         filterCounterpartyDriverId: "filter_counterparty_driver_id",
+    ///         filterShipperAccountId: "filter_shipper_account_id",
+    ///         filterInvoiceId: "filter_invoice_id",
+    ///         filterIsInvoiced: true,
+    ///         filterOrderId: "filter_order_id",
+    ///         filterTaskGroupId: "filter_task_group_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order.
@@ -157,7 +420,7 @@ public final class InvoiceLineItemsClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter by last_edited_at_timestamp greater than or equal.
     /// - Parameter filterLastEditedAtTimestampLte: Filter by last_edited_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: InvoiceLineItemSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterLineItemTypes: InvoiceLineItemTypeEnum1? = nil, filterUnits: InvoiceLineItemUnitEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterShipperAccountId: String? = nil, filterInvoiceId: String? = nil, filterIsInvoiced: Bool? = nil, filterOrderId: String? = nil, filterTaskGroupId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemListRes {
+    public func listV1(sortBy: InvoiceLineItemSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceTypes: [InvoiceTypeEnum1]? = nil, filterCurrencyCodes: [BillingCurrencyCodeEnum1]? = nil, filterLineItemTypes: [InvoiceLineItemTypeEnum1]? = nil, filterUnits: [InvoiceLineItemUnitEnum1]? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterShipperAccountId: String? = nil, filterInvoiceId: String? = nil, filterIsInvoiced: Bool? = nil, filterOrderId: String? = nil, filterTaskGroupId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/invoice_line_items/list/v1",
@@ -166,10 +429,10 @@ public final class InvoiceLineItemsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_invoice_types": filterInvoiceTypes.map { .string($0.rawValue) }, 
-                "filter_currency_codes": filterCurrencyCodes.map { .string($0.rawValue) }, 
-                "filter_line_item_types": filterLineItemTypes.map { .string($0.rawValue) }, 
-                "filter_units": filterUnits.map { .string($0.rawValue) }, 
+                "filter_invoice_types": filterInvoiceTypes.map { .unknown($0) }, 
+                "filter_currency_codes": filterCurrencyCodes.map { .unknown($0) }, 
+                "filter_line_item_types": filterLineItemTypes.map { .unknown($0) }, 
+                "filter_units": filterUnits.map { .unknown($0) }, 
                 "filter_counterparty_org_id": filterCounterpartyOrgId.map { .string($0) }, 
                 "filter_counterparty_off_chrt_org_data_id": filterCounterpartyOffChrtOrgDataId.map { .string($0) }, 
                 "filter_counterparty_driver_id": filterCounterpartyDriverId.map { .string($0) }, 
@@ -190,6 +453,19 @@ public final class InvoiceLineItemsClient: Sendable {
 
     /// Recalculates existing tax line items from current non-tax items in the same billing scope. | authz: allowed_org_types=[provider], min_org_role=operator | (RecalculateOrderTaxInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.recalculateTaxesV1(request: .init(orderId: "order_id"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func recalculateTaxesV1(request: Requests.RecalculateOrderTaxInvoiceLineItemsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
         return try await httpClient.performRequest(
@@ -202,6 +478,22 @@ public final class InvoiceLineItemsClient: Sendable {
     }
 
     /// Updates an owner-scoped line item and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.updateV1(
+    ///         invoiceLineItemId: "invoice_line_item_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(invoiceLineItemId: String, request: Requests.InvoiceLineItemClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

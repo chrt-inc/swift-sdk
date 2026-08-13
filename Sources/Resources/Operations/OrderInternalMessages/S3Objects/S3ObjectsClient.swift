@@ -9,6 +9,22 @@ public final class S3ObjectsClient: Sendable {
 
     /// Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.s3Objects.addV1(
+    ///         orderId: "order_id",
+    ///         request: .init(file: .init(data: Data("".utf8)))
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions? = nil) async throws -> OrderInternalMessageS3ObjectMetadata1 {
         return try await httpClient.performRequest(
@@ -23,6 +39,19 @@ public final class S3ObjectsClient: Sendable {
 
     /// Deletes an S3 object metadata and the associated S3 object from order internal messages. Only the uploader or an operator from the uploading org can delete. | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.s3Objects.deleteV1(orderInternalMessageS3ObjectMetadataId: "order_internal_message_s3_object_metadata_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -35,6 +64,19 @@ public final class S3ObjectsClient: Sendable {
 
     /// Retrieves metadata for an order internal messages S3 object. | authz: min_org_role=operator | () -> (OrderInternalMessageS3ObjectMetadata1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.s3Objects.getS3ObjectMetadataV1(orderInternalMessageS3ObjectMetadataId: "order_internal_message_s3_object_metadata_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getS3ObjectMetadataV1(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> OrderInternalMessageS3ObjectMetadata1 {
         return try await httpClient.performRequest(
@@ -46,6 +88,19 @@ public final class S3ObjectsClient: Sendable {
     }
 
     /// Streams an order internal messages S3 object file from storage. | authz: min_org_role=operator | () -> (binary)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.orderInternalMessages.s3Objects.getV1(orderInternalMessageS3ObjectMetadataId: "order_internal_message_s3_object_metadata_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {

@@ -6,13 +6,13 @@ import Chrt
     @Test func createFromOrderTemplateNewV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "order_id": "order_id",
                   "order_short_id": "order_short_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -34,13 +34,13 @@ import Chrt
     @Test func openV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "order_id": "order_id",
                   "order_short_id": "order_short_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

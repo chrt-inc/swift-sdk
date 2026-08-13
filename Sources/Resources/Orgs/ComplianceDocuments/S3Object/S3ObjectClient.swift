@@ -9,6 +9,22 @@ public final class S3ObjectClient: Sendable {
 
     /// Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.complianceDocuments.s3Object.addV1(
+    ///         orgComplianceDocumentId: "org_compliance_document_id",
+    ///         request: .init(file: .init(data: Data("".utf8)))
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addV1(orgComplianceDocumentId: String, request: Requests.BodyPostOrgComplianceDocumentsS3ObjectAddV1, requestOptions: RequestOptions? = nil) async throws -> OrgComplianceDocumentS3ObjectMetadata1 {
         return try await httpClient.performRequest(
@@ -23,6 +39,19 @@ public final class S3ObjectClient: Sendable {
 
     /// Deletes an organization compliance document S3 object and metadata. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.complianceDocuments.s3Object.deleteV1(orgComplianceDocumentS3ObjectMetadataId: "org_compliance_document_s3_object_metadata_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(orgComplianceDocumentS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -35,6 +64,19 @@ public final class S3ObjectClient: Sendable {
 
     /// Retrieves metadata for an organization compliance document S3 object. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (OrgComplianceDocumentS3ObjectMetadata1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.complianceDocuments.s3Object.getS3ObjectMetadataV1(orgComplianceDocumentS3ObjectMetadataId: "org_compliance_document_s3_object_metadata_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getS3ObjectMetadataV1(orgComplianceDocumentS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> OrgComplianceDocumentS3ObjectMetadata1 {
         return try await httpClient.performRequest(
@@ -46,6 +88,19 @@ public final class S3ObjectClient: Sendable {
     }
 
     /// Streams an organization compliance document S3 object file from storage. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (binary)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.complianceDocuments.s3Object.getV1(orgComplianceDocumentS3ObjectMetadataId: "org_compliance_document_s3_object_metadata_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(orgComplianceDocumentS3ObjectMetadataId: String, requestOptions: RequestOptions? = nil) async throws -> Data {

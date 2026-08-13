@@ -13,6 +13,22 @@ public final class UtilsClient: Sendable {
 
     /// Returns the IANA timezone identifier (e.g., 'America/Los_Angeles') for the given latitude and longitude coordinates. Falls back to closest timezone if the point is in the ocean or at an edge. | () -> (TimezoneResponse)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.utils.getTimezoneV1(
+    ///         lat: 37.7749,
+    ///         lng: -122.4194
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter lat: Latitude in decimal degrees (range: -90 to 90)
     /// - Parameter lng: Longitude in decimal degrees (range: -180 to 180)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.

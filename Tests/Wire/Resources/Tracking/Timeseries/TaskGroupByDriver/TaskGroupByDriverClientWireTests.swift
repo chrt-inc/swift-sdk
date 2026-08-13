@@ -6,8 +6,8 @@ import Chrt
     @Test func dataPointsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "data_points": [
                     {
@@ -74,7 +74,7 @@ import Chrt
                     }
                   ]
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -87,18 +87,24 @@ import Chrt
                 TaskGroupByDriverDataPoint1(
                     id: "_id",
                     location: LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -123,18 +129,24 @@ import Chrt
                     firstName: Optional("first_name"),
                     lastName: Optional("last_name"),
                     lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: .geometryCollection(
+                        geometry: Geometry.geometryCollection(
                             .init(
                                 geometries: [
-                                    .lineString(
+                                    GeometriesItem.lineString(
                                         .init(
                                             coordinates: [
                                                 CoordinatesItem.position2D(
                                                     []
                                                 )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
                                             ]
                                         )
                                     )
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
                                 ]
                             )
                         ),
@@ -147,10 +159,10 @@ import Chrt
                     phoneNumberPrimary: Optional("phone_number_primary"),
                     phoneNumberSecondary: Optional("phone_number_secondary"),
                     schemaVersion: 1,
-                    status: Optional(.unassigned),
+                    status: Optional(DriverStatusEnum.unassigned),
                     userId: "user_id",
                     vehicleTypes: Optional([
-                        .sedan
+                        VehicleTypeEnum.sedan
                     ]),
                     waiting: Optional(true)
                 )
@@ -167,8 +179,8 @@ import Chrt
     @Test func dataPointsPublicV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -198,7 +210,7 @@ import Chrt
                     "timestamp": "2024-01-15T09:30:00Z"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -210,18 +222,24 @@ import Chrt
             TaskGroupByDriverDataPoint1(
                 id: "_id",
                 location: LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -233,7 +251,7 @@ import Chrt
                 metadata: TaskGroupByDriverDataPointMetadata1(
                     driverId: "driver_id",
                     outlier: Optional(true),
-                    outlierLabeller: Optional(.movingpandas),
+                    outlierLabeller: Optional(OutlierLabellerEnum.movingpandas),
                     pytest: Optional(true),
                     taskGroupId: "task_group_id"
                 ),
@@ -252,8 +270,8 @@ import Chrt
     @Test func lastSeenV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "data_point": {
                     "_id": "_id",
@@ -321,7 +339,7 @@ import Chrt
                     "waiting": true
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -333,18 +351,24 @@ import Chrt
             dataPoint: TaskGroupByDriverDataPoint1(
                 id: "_id",
                 location: LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -356,7 +380,7 @@ import Chrt
                 metadata: TaskGroupByDriverDataPointMetadata1(
                     driverId: "driver_id",
                     outlier: Optional(true),
-                    outlierLabeller: Optional(.movingpandas),
+                    outlierLabeller: Optional(OutlierLabellerEnum.movingpandas),
                     pytest: Optional(true),
                     taskGroupId: "task_group_id"
                 ),
@@ -373,18 +397,24 @@ import Chrt
                 firstName: Optional("first_name"),
                 lastName: Optional("last_name"),
                 lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: .geometryCollection(
+                    geometry: Geometry.geometryCollection(
                         .init(
                             geometries: [
-                                .lineString(
+                                GeometriesItem.lineString(
                                     .init(
                                         coordinates: [
                                             CoordinatesItem.position2D(
                                                 []
                                             )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
                                         ]
                                     )
                                 )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
                             ]
                         )
                     ),
@@ -400,10 +430,10 @@ import Chrt
                 phoneNumberPrimary: Optional("phone_number_primary"),
                 phoneNumberSecondary: Optional("phone_number_secondary"),
                 schemaVersion: 1,
-                status: Optional(.unassigned),
+                status: Optional(DriverStatusEnum.unassigned),
                 userId: "user_id",
                 vehicleTypes: Optional([
-                    .sedan
+                    VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
             ))
@@ -418,8 +448,8 @@ import Chrt
     @Test func lastSeenPublicV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "location": {
@@ -456,7 +486,7 @@ import Chrt
                   "schema_version": 1,
                   "timestamp": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -474,18 +504,24 @@ import Chrt
                         ]
                     )
                 ]),
-                geometry: .geometryCollection(
+                geometry: Geometry.geometryCollection(
                     .init(
                         geometries: [
-                            .lineString(
+                            GeometriesItem.lineString(
                                 .init(
                                     coordinates: [
                                         CoordinatesItem.position2D(
                                             []
                                         )
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("LineString")
                                     ]
                                 )
                             )
+                        ],
+                        additionalProperties: [
+                            "type": JSONValue.string("GeometryCollection")
                         ]
                     )
                 ),
@@ -501,7 +537,7 @@ import Chrt
             metadata: TaskGroupByDriverDataPointMetadata1(
                 driverId: "driver_id",
                 outlier: Optional(true),
-                outlierLabeller: Optional(.movingpandas),
+                outlierLabeller: Optional(OutlierLabellerEnum.movingpandas),
                 pytest: Optional(true),
                 taskGroupId: "task_group_id"
             ),

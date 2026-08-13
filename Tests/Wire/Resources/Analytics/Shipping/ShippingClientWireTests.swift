@@ -6,8 +6,8 @@ import Chrt
     @Test func retrieveOrdersCountV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "buckets": [
                     {
@@ -17,7 +17,7 @@ import Chrt
                   ],
                   "total": 1.1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

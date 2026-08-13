@@ -9,6 +9,22 @@ public final class OrderInformationClient: Sendable {
 
     /// Adds a message to an existing order-information conversation for its owner. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationMessageReq) -> (OrderInformationConversationRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.agent.orderInformation.messageV1(
+    ///         conversationId: "conversation_id",
+    ///         request: .init(message: "message")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func messageV1(conversationId: String, request: Requests.OrderInformationConversationMessageReq, requestOptions: RequestOptions? = nil) async throws -> OrderInformationConversationRes {
         return try await httpClient.performRequest(
@@ -22,6 +38,19 @@ public final class OrderInformationClient: Sendable {
 
     /// Starts an order-information conversation for the authenticated operator. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationStartReq) -> (OrderInformationConversationRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.agent.orderInformation.startV1(request: .init(message: "message"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func startV1(request: Requests.OrderInformationConversationStartReq, requestOptions: RequestOptions? = nil) async throws -> OrderInformationConversationRes {
         return try await httpClient.performRequest(
@@ -34,6 +63,22 @@ public final class OrderInformationClient: Sendable {
     }
 
     /// Updates an order-information conversation's title for its owner. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationClientUpdate1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.agent.orderInformation.updateV1(
+    ///         conversationId: "conversation_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(conversationId: String, request: Requests.OrderInformationConversationClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -6,8 +6,8 @@ import Chrt
     @Test func confirmationsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -30,7 +30,7 @@ import Chrt
                     "type": "confirmation receipt"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -72,8 +72,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "accounting": [
@@ -303,7 +303,7 @@ import Chrt
                     "unit": "KILOGRAM"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -316,7 +316,7 @@ import Chrt
             accounting: Optional([
                 CargojsonAccounting(
                     accountingInformation: "accountingInformation",
-                    identifier: .creditCardNumber
+                    identifier: CargojsonAccountingInformationIdentifier.creditCardNumber
                 )
             ]),
             additionalSpecialHandlingCodes: Optional([
@@ -330,7 +330,7 @@ import Chrt
                 participantIdentifier: Optional(CargojsonParticipantIdentifier(
                     airportCityCode: "airportCityCode",
                     code: "code",
-                    identifier: .air
+                    identifier: CargojsonParticipantType.air
                 )),
                 place: "place"
             )),
@@ -355,13 +355,13 @@ import Chrt
                 ])
             )),
             chargeDeclarations: Optional(CargojsonChargeDeclarations(
-                chargeCode: Optional(.allChargesCollect),
+                chargeCode: Optional(CargojsonChargeCode.allChargesCollect),
                 declaredValueForCarriage: Optional(1.1),
                 declaredValueForCustoms: Optional(1.1),
                 declaredValueForInsurance: Optional(1.1),
                 isoCurrencyCode: "isoCurrencyCode",
-                paymentOtherCharges: Optional(.collect),
-                paymentWeightValuation: Optional(.collect)
+                paymentOtherCharges: Optional(CargojsonPaymentCondition.collect),
+                paymentWeightValuation: Optional(CargojsonPaymentCondition.collect)
             )),
             chargeItems: [
                 CargojsonChargeItem(
@@ -389,7 +389,7 @@ import Chrt
                         )
                     ]),
                     rateCombinationPointCityCode: Optional("rateCombinationPointCityCode"),
-                    serviceCode: Optional(.airportToAirport)
+                    serviceCode: Optional(CargojsonServiceCode.airportToAirport)
                 )
             ],
             chargesCollectInDestCurrency: Optional(CargojsonCollectChargesInDestCurrency(
@@ -460,9 +460,9 @@ import Chrt
             otherCharges: Optional([
                 CargojsonOtherChargeItem(
                     chargeAmount: 1.1,
-                    entitlementCode: .agent,
-                    otherChargeCode: .uc,
-                    paymentCondition: .collect
+                    entitlementCode: CargojsonEntitlementCode.agent,
+                    otherChargeCode: CargojsonOtherChargeCode.uc,
+                    paymentCondition: CargojsonPaymentCondition.collect
                 )
             ]),
             otherParticipant: Optional([
@@ -477,7 +477,7 @@ import Chrt
                     participantIdentification: Optional(CargojsonParticipantIdentifier(
                         airportCityCode: "airportCityCode",
                         code: "code",
-                        identifier: .air
+                        identifier: CargojsonParticipantType.air
                     ))
                 )
             ]),
@@ -497,7 +497,7 @@ import Chrt
                 )
             ],
             salesIncentive: Optional(CargojsonSalesIncentive(
-                cassIndicator: Optional(.awbAsInvoice),
+                cassIndicator: Optional(CargojsonCassIndicator.awbAsInvoice),
                 chargeAmount: 1.1
             )),
             schemaVersion: Optional(1),
@@ -526,22 +526,22 @@ import Chrt
             )),
             shippersCertification: Optional("shippersCertification"),
             specialHandlingCodes: Optional([
-                .act
+                CargojsonSpecialHandlingCode.act
             ]),
             specialServiceRequest: Optional("specialServiceRequest"),
-            status: Optional(.draft),
+            status: Optional(ChampAirWaybillStatusEnum1.draft),
             submittedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             taskGroupId: "taskGroupId",
             totalConsignmentNumberOfPieces: 1,
             updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             volume: Optional(CargojsonVolume(
                 amount: 1.1,
-                unit: Optional(.cubicCentimetre)
+                unit: Optional(CargojsonVolumeUnit.cubicCentimetre)
             )),
             webcargoBookingRecordId: "webcargoBookingRecordId",
             weight: CargojsonWeight(
                 amount: 1.1,
-                unit: Optional(.kilogram)
+                unit: Optional(CargojsonWeightUnit.kilogram)
             )
         )
         let response = try await client.integrations.airWaybills.createV1(
@@ -554,8 +554,8 @@ import Chrt
     @Test func flightStatusesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -589,7 +589,7 @@ import Chrt
                     "type": "flight status"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -642,12 +642,12 @@ import Chrt
     @Test func pdfV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "key": "value"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -670,8 +670,8 @@ import Chrt
     @Test func retrieveV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "accounting": [
@@ -901,7 +901,7 @@ import Chrt
                     "unit": "KILOGRAM"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -914,7 +914,7 @@ import Chrt
             accounting: Optional([
                 CargojsonAccounting(
                     accountingInformation: "accountingInformation",
-                    identifier: .creditCardNumber
+                    identifier: CargojsonAccountingInformationIdentifier.creditCardNumber
                 )
             ]),
             additionalSpecialHandlingCodes: Optional([
@@ -928,7 +928,7 @@ import Chrt
                 participantIdentifier: Optional(CargojsonParticipantIdentifier(
                     airportCityCode: "airportCityCode",
                     code: "code",
-                    identifier: .air
+                    identifier: CargojsonParticipantType.air
                 )),
                 place: "place"
             )),
@@ -953,13 +953,13 @@ import Chrt
                 ])
             )),
             chargeDeclarations: Optional(CargojsonChargeDeclarations(
-                chargeCode: Optional(.allChargesCollect),
+                chargeCode: Optional(CargojsonChargeCode.allChargesCollect),
                 declaredValueForCarriage: Optional(1.1),
                 declaredValueForCustoms: Optional(1.1),
                 declaredValueForInsurance: Optional(1.1),
                 isoCurrencyCode: "isoCurrencyCode",
-                paymentOtherCharges: Optional(.collect),
-                paymentWeightValuation: Optional(.collect)
+                paymentOtherCharges: Optional(CargojsonPaymentCondition.collect),
+                paymentWeightValuation: Optional(CargojsonPaymentCondition.collect)
             )),
             chargeItems: [
                 CargojsonChargeItem(
@@ -987,7 +987,7 @@ import Chrt
                         )
                     ]),
                     rateCombinationPointCityCode: Optional("rateCombinationPointCityCode"),
-                    serviceCode: Optional(.airportToAirport)
+                    serviceCode: Optional(CargojsonServiceCode.airportToAirport)
                 )
             ],
             chargesCollectInDestCurrency: Optional(CargojsonCollectChargesInDestCurrency(
@@ -1058,9 +1058,9 @@ import Chrt
             otherCharges: Optional([
                 CargojsonOtherChargeItem(
                     chargeAmount: 1.1,
-                    entitlementCode: .agent,
-                    otherChargeCode: .uc,
-                    paymentCondition: .collect
+                    entitlementCode: CargojsonEntitlementCode.agent,
+                    otherChargeCode: CargojsonOtherChargeCode.uc,
+                    paymentCondition: CargojsonPaymentCondition.collect
                 )
             ]),
             otherParticipant: Optional([
@@ -1075,7 +1075,7 @@ import Chrt
                     participantIdentification: Optional(CargojsonParticipantIdentifier(
                         airportCityCode: "airportCityCode",
                         code: "code",
-                        identifier: .air
+                        identifier: CargojsonParticipantType.air
                     ))
                 )
             ]),
@@ -1095,7 +1095,7 @@ import Chrt
                 )
             ],
             salesIncentive: Optional(CargojsonSalesIncentive(
-                cassIndicator: Optional(.awbAsInvoice),
+                cassIndicator: Optional(CargojsonCassIndicator.awbAsInvoice),
                 chargeAmount: 1.1
             )),
             schemaVersion: Optional(1),
@@ -1124,22 +1124,22 @@ import Chrt
             )),
             shippersCertification: Optional("shippersCertification"),
             specialHandlingCodes: Optional([
-                .act
+                CargojsonSpecialHandlingCode.act
             ]),
             specialServiceRequest: Optional("specialServiceRequest"),
-            status: Optional(.draft),
+            status: Optional(ChampAirWaybillStatusEnum1.draft),
             submittedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             taskGroupId: "taskGroupId",
             totalConsignmentNumberOfPieces: 1,
             updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             volume: Optional(CargojsonVolume(
                 amount: 1.1,
-                unit: Optional(.cubicCentimetre)
+                unit: Optional(CargojsonVolumeUnit.cubicCentimetre)
             )),
             webcargoBookingRecordId: "webcargoBookingRecordId",
             weight: CargojsonWeight(
                 amount: 1.1,
-                unit: Optional(.kilogram)
+                unit: Optional(CargojsonWeightUnit.kilogram)
             )
         )
         let response = try await client.integrations.airWaybills.retrieveV1(
@@ -1152,8 +1152,8 @@ import Chrt
     @Test func submitV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "accounting": [
@@ -1383,7 +1383,7 @@ import Chrt
                     "unit": "KILOGRAM"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1396,7 +1396,7 @@ import Chrt
             accounting: Optional([
                 CargojsonAccounting(
                     accountingInformation: "accountingInformation",
-                    identifier: .creditCardNumber
+                    identifier: CargojsonAccountingInformationIdentifier.creditCardNumber
                 )
             ]),
             additionalSpecialHandlingCodes: Optional([
@@ -1410,7 +1410,7 @@ import Chrt
                 participantIdentifier: Optional(CargojsonParticipantIdentifier(
                     airportCityCode: "airportCityCode",
                     code: "code",
-                    identifier: .air
+                    identifier: CargojsonParticipantType.air
                 )),
                 place: "place"
             )),
@@ -1435,13 +1435,13 @@ import Chrt
                 ])
             )),
             chargeDeclarations: Optional(CargojsonChargeDeclarations(
-                chargeCode: Optional(.allChargesCollect),
+                chargeCode: Optional(CargojsonChargeCode.allChargesCollect),
                 declaredValueForCarriage: Optional(1.1),
                 declaredValueForCustoms: Optional(1.1),
                 declaredValueForInsurance: Optional(1.1),
                 isoCurrencyCode: "isoCurrencyCode",
-                paymentOtherCharges: Optional(.collect),
-                paymentWeightValuation: Optional(.collect)
+                paymentOtherCharges: Optional(CargojsonPaymentCondition.collect),
+                paymentWeightValuation: Optional(CargojsonPaymentCondition.collect)
             )),
             chargeItems: [
                 CargojsonChargeItem(
@@ -1469,7 +1469,7 @@ import Chrt
                         )
                     ]),
                     rateCombinationPointCityCode: Optional("rateCombinationPointCityCode"),
-                    serviceCode: Optional(.airportToAirport)
+                    serviceCode: Optional(CargojsonServiceCode.airportToAirport)
                 )
             ],
             chargesCollectInDestCurrency: Optional(CargojsonCollectChargesInDestCurrency(
@@ -1540,9 +1540,9 @@ import Chrt
             otherCharges: Optional([
                 CargojsonOtherChargeItem(
                     chargeAmount: 1.1,
-                    entitlementCode: .agent,
-                    otherChargeCode: .uc,
-                    paymentCondition: .collect
+                    entitlementCode: CargojsonEntitlementCode.agent,
+                    otherChargeCode: CargojsonOtherChargeCode.uc,
+                    paymentCondition: CargojsonPaymentCondition.collect
                 )
             ]),
             otherParticipant: Optional([
@@ -1557,7 +1557,7 @@ import Chrt
                     participantIdentification: Optional(CargojsonParticipantIdentifier(
                         airportCityCode: "airportCityCode",
                         code: "code",
-                        identifier: .air
+                        identifier: CargojsonParticipantType.air
                     ))
                 )
             ]),
@@ -1577,7 +1577,7 @@ import Chrt
                 )
             ],
             salesIncentive: Optional(CargojsonSalesIncentive(
-                cassIndicator: Optional(.awbAsInvoice),
+                cassIndicator: Optional(CargojsonCassIndicator.awbAsInvoice),
                 chargeAmount: 1.1
             )),
             schemaVersion: Optional(1),
@@ -1606,22 +1606,22 @@ import Chrt
             )),
             shippersCertification: Optional("shippersCertification"),
             specialHandlingCodes: Optional([
-                .act
+                CargojsonSpecialHandlingCode.act
             ]),
             specialServiceRequest: Optional("specialServiceRequest"),
-            status: Optional(.draft),
+            status: Optional(ChampAirWaybillStatusEnum1.draft),
             submittedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             taskGroupId: "taskGroupId",
             totalConsignmentNumberOfPieces: 1,
             updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             volume: Optional(CargojsonVolume(
                 amount: 1.1,
-                unit: Optional(.cubicCentimetre)
+                unit: Optional(CargojsonVolumeUnit.cubicCentimetre)
             )),
             webcargoBookingRecordId: "webcargoBookingRecordId",
             weight: CargojsonWeight(
                 amount: 1.1,
-                unit: Optional(.kilogram)
+                unit: Optional(CargojsonWeightUnit.kilogram)
             )
         )
         let response = try await client.integrations.airWaybills.submitV1(
@@ -1634,8 +1634,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "accounting": [
@@ -1865,7 +1865,7 @@ import Chrt
                     "unit": "KILOGRAM"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -1878,7 +1878,7 @@ import Chrt
             accounting: Optional([
                 CargojsonAccounting(
                     accountingInformation: "accountingInformation",
-                    identifier: .creditCardNumber
+                    identifier: CargojsonAccountingInformationIdentifier.creditCardNumber
                 )
             ]),
             additionalSpecialHandlingCodes: Optional([
@@ -1892,7 +1892,7 @@ import Chrt
                 participantIdentifier: Optional(CargojsonParticipantIdentifier(
                     airportCityCode: "airportCityCode",
                     code: "code",
-                    identifier: .air
+                    identifier: CargojsonParticipantType.air
                 )),
                 place: "place"
             )),
@@ -1917,13 +1917,13 @@ import Chrt
                 ])
             )),
             chargeDeclarations: Optional(CargojsonChargeDeclarations(
-                chargeCode: Optional(.allChargesCollect),
+                chargeCode: Optional(CargojsonChargeCode.allChargesCollect),
                 declaredValueForCarriage: Optional(1.1),
                 declaredValueForCustoms: Optional(1.1),
                 declaredValueForInsurance: Optional(1.1),
                 isoCurrencyCode: "isoCurrencyCode",
-                paymentOtherCharges: Optional(.collect),
-                paymentWeightValuation: Optional(.collect)
+                paymentOtherCharges: Optional(CargojsonPaymentCondition.collect),
+                paymentWeightValuation: Optional(CargojsonPaymentCondition.collect)
             )),
             chargeItems: [
                 CargojsonChargeItem(
@@ -1951,7 +1951,7 @@ import Chrt
                         )
                     ]),
                     rateCombinationPointCityCode: Optional("rateCombinationPointCityCode"),
-                    serviceCode: Optional(.airportToAirport)
+                    serviceCode: Optional(CargojsonServiceCode.airportToAirport)
                 )
             ],
             chargesCollectInDestCurrency: Optional(CargojsonCollectChargesInDestCurrency(
@@ -2022,9 +2022,9 @@ import Chrt
             otherCharges: Optional([
                 CargojsonOtherChargeItem(
                     chargeAmount: 1.1,
-                    entitlementCode: .agent,
-                    otherChargeCode: .uc,
-                    paymentCondition: .collect
+                    entitlementCode: CargojsonEntitlementCode.agent,
+                    otherChargeCode: CargojsonOtherChargeCode.uc,
+                    paymentCondition: CargojsonPaymentCondition.collect
                 )
             ]),
             otherParticipant: Optional([
@@ -2039,7 +2039,7 @@ import Chrt
                     participantIdentification: Optional(CargojsonParticipantIdentifier(
                         airportCityCode: "airportCityCode",
                         code: "code",
-                        identifier: .air
+                        identifier: CargojsonParticipantType.air
                     ))
                 )
             ]),
@@ -2059,7 +2059,7 @@ import Chrt
                 )
             ],
             salesIncentive: Optional(CargojsonSalesIncentive(
-                cassIndicator: Optional(.awbAsInvoice),
+                cassIndicator: Optional(CargojsonCassIndicator.awbAsInvoice),
                 chargeAmount: 1.1
             )),
             schemaVersion: Optional(1),
@@ -2088,22 +2088,22 @@ import Chrt
             )),
             shippersCertification: Optional("shippersCertification"),
             specialHandlingCodes: Optional([
-                .act
+                CargojsonSpecialHandlingCode.act
             ]),
             specialServiceRequest: Optional("specialServiceRequest"),
-            status: Optional(.draft),
+            status: Optional(ChampAirWaybillStatusEnum1.draft),
             submittedAt: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             taskGroupId: "taskGroupId",
             totalConsignmentNumberOfPieces: 1,
             updatedAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             volume: Optional(CargojsonVolume(
                 amount: 1.1,
-                unit: Optional(.cubicCentimetre)
+                unit: Optional(CargojsonVolumeUnit.cubicCentimetre)
             )),
             webcargoBookingRecordId: "webcargoBookingRecordId",
             weight: CargojsonWeight(
                 amount: 1.1,
-                unit: Optional(.kilogram)
+                unit: Optional(CargojsonWeightUnit.kilogram)
             )
         )
         let response = try await client.integrations.airWaybills.updateV1(

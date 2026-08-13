@@ -1,7 +1,7 @@
 import Foundation
 
 /// Bidder-facing response shape — same as `Listing1` minus `internal_notes`.
-/// 
+///
 /// Used by `get__listings_by_id_v1`, `list_for_provider_bidder/v1`, and
 /// `list_for_driver_bidder/v1`. Constructed from a validated `Listing1`;
 /// field-shape parity is enforced at import time by `limited_model_checker`

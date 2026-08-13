@@ -1,7 +1,7 @@
 import Foundation
 
 /// Response model for list/search views.
-/// 
+///
 /// Excludes historical relationship fields:
 /// - past_session_ids
 /// - past_cargo_ids

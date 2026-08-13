@@ -6,8 +6,8 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -24,7 +24,7 @@ import Chrt
                   ],
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -36,15 +36,15 @@ import Chrt
             id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             emailEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             pushEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             schemaVersion: 1,
             smsEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             userId: "user_id"
         )
@@ -55,8 +55,8 @@ import Chrt
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -73,7 +73,7 @@ import Chrt
                   ],
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -85,15 +85,15 @@ import Chrt
             id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             emailEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             pushEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             schemaVersion: 1,
             smsEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             userId: "user_id"
         )
@@ -104,8 +104,8 @@ import Chrt
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -122,7 +122,7 @@ import Chrt
                   ],
                   "user_id": "user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -134,15 +134,15 @@ import Chrt
             id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             emailEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             pushEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             schemaVersion: 1,
             smsEvents: Optional([
-                .shippingOrderStaged
+                NotificationEventsForUsersEnum.shippingOrderStaged
             ]),
             userId: "user_id"
         )

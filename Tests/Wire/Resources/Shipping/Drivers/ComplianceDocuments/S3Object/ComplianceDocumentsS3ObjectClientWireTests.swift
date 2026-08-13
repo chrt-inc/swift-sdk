@@ -6,8 +6,8 @@ import Chrt
     @Test func addV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "blurhash": "blurhash",
@@ -20,7 +20,7 @@ import Chrt
                   "uploaded_by_org_id": "uploaded_by_org_id",
                   "uploaded_by_user_id": "uploaded_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -51,10 +51,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -73,8 +73,8 @@ import Chrt
     @Test func getS3ObjectMetadataV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "blurhash": "blurhash",
@@ -87,7 +87,7 @@ import Chrt
                   "uploaded_by_org_id": "uploaded_by_org_id",
                   "uploaded_by_user_id": "uploaded_by_user_id"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

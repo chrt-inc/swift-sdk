@@ -1,12 +1,12 @@
 import Foundation
 
 /// Response model for non-admin views (e.g., drivers).
-/// 
+///
 /// Excludes sensitive membership fields:
 /// - created_at_timestamp
 /// - user_ids
 /// - user_ids_opted_out
-/// 
+///
 /// Includes computed fields:
 /// - is_opted_out: True if the requesting user is in user_ids_opted_out
 public struct NotificationGroupLimitedForDriver1: Codable, Hashable, Sendable {

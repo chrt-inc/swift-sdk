@@ -1,6 +1,6 @@
 import Foundation
 
-public struct WorkflowActor: Codable, Hashable, Sendable {
+public struct WorkflowCaller: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let orgRole: OrgRoleEnum?

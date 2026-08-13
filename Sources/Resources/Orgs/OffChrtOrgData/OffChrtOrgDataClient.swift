@@ -9,6 +9,23 @@ public final class OffChrtOrgDataClient: Sendable {
 
     /// Creates owner-scoped off-CHRT organization data and, for shippers or providers, its required connection. | authz: allowed_org_types=[provider] | (CreateOffChrtOrgReq) -> (CreateOffChrtOrgRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.offChrtOrgData.createV1(request: .init(offChrtOrgData: OffChrtOrgDataClientCreate1(
+    ///         name: "name",
+    ///         orgType: .provider,
+    ///         schemaVersion: 1
+    ///     )))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.CreateOffChrtOrgReq, requestOptions: RequestOptions? = nil) async throws -> CreateOffChrtOrgRes {
         return try await httpClient.performRequest(
@@ -21,6 +38,26 @@ public final class OffChrtOrgDataClient: Sendable {
     }
 
     /// Lists off-CHRT organization data owned by the caller with optional organization-type filtering, identity search, sorting, and pagination. | authz: allowed_org_types=[provider] | () -> (OffChrtOrgDataListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.offChrtOrgData.listV1(
+    ///         search: "search",
+    ///         filterOrgType: .provider,
+    ///         sortBy: .name,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter search: Search by name, industry, or email
     /// - Parameter sortBy: Field to sort by
@@ -45,6 +82,19 @@ public final class OffChrtOrgDataClient: Sendable {
 
     /// Gets owner-scoped off-CHRT organization data by ID. | authz: allowed_org_types=[provider] | () -> (OffChrtOrgData1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.offChrtOrgData.getByIdV1(offChrtOrgDataId: "off_chrt_org_data_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(offChrtOrgDataId: String, requestOptions: RequestOptions? = nil) async throws -> OffChrtOrgData1 {
         return try await httpClient.performRequest(
@@ -56,6 +106,22 @@ public final class OffChrtOrgDataClient: Sendable {
     }
 
     /// Updates canonical identity fields for owner-scoped off-CHRT organization data. | authz: allowed_org_types=[provider] | (OffChrtOrgDataClientUpdate1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.offChrtOrgData.updateByIdV1(
+    ///         offChrtOrgDataId: "off_chrt_org_data_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateByIdV1(offChrtOrgDataId: String, request: Requests.OffChrtOrgDataClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

@@ -9,6 +9,19 @@ public final class UsersPrivateDataClient: Sendable {
 
     /// Upserts a Firebase Cloud Messaging token for the caller. Dedupes on token; if token exists, updates last_used_timestamp. | (FirebaseCloudMessagingTokenClientCreate1) -> (UserPrivateData1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.users.privateData.upsertFirebaseCloudMessagingTokenV1(request: .init(firebaseCloudMessagingToken: "firebase_cloud_messaging_token"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func upsertFirebaseCloudMessagingTokenV1(request: Requests.FirebaseCloudMessagingTokenClientCreate1, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
         return try await httpClient.performRequest(
@@ -22,6 +35,19 @@ public final class UsersPrivateDataClient: Sendable {
 
     /// Retrieves private user data for the caller. | () -> (UserPrivateData1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.users.privateData.getV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
         return try await httpClient.performRequest(
@@ -33,6 +59,19 @@ public final class UsersPrivateDataClient: Sendable {
     }
 
     /// Creates private user data for the caller. | (UserPrivateDataClientCreate1) -> (UserPrivateData1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.users.privateData.createV1(request: .init(schemaVersion: 1))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.UserPrivateDataClientCreate1, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
@@ -46,6 +85,19 @@ public final class UsersPrivateDataClient: Sendable {
     }
 
     /// Updates private user data for the caller. | (UserPrivateDataClientUpdate1) -> (UserPrivateData1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.users.privateData.updateV1(request: .init())
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(request: Requests.UserPrivateDataClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {

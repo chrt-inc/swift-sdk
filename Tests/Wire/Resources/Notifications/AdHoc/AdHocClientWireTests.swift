@@ -6,10 +6,10 @@ import Chrt
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,10 +32,10 @@ import Chrt
     @Test func createForSessionV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -58,10 +58,10 @@ import Chrt
     @Test func deleteV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 true
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -80,8 +80,8 @@ import Chrt
     @Test func listByOrderIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -106,7 +106,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -123,16 +123,16 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     emailEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     orderId: Optional("order_id"),
                     pushEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     schemaVersion: 1,
                     sessionId: Optional("session_id"),
                     smsEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ])
                 )
             ],
@@ -150,8 +150,8 @@ import Chrt
     @Test func listBySessionIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -176,7 +176,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -193,16 +193,16 @@ import Chrt
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: "created_by_user_id",
                     emailEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     orderId: Optional("order_id"),
                     pushEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ]),
                     schemaVersion: 1,
                     sessionId: Optional("session_id"),
                     smsEvents: Optional([
-                        .shippingOrderStaged
+                        NotificationEventsForAdHocEnum.shippingOrderStaged
                     ])
                 )
             ],

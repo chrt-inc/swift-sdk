@@ -9,6 +9,19 @@ public final class BillingPeriodsClient: Sendable {
 
     /// Closes an open billing period and creates one approved line item on the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodExpanded1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.closeV1(billingPeriodId: "billing_period_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func closeV1(billingPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> BillingPeriodExpanded1 {
         return try await httpClient.performRequest(
@@ -20,6 +33,28 @@ public final class BillingPeriodsClient: Sendable {
     }
 
     /// Creates an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodClientCreate1) -> (BillingPeriod1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.createV1(request: .init(
+    ///         amount: 1.1,
+    ///         currencyCode: .usd,
+    ///         cycle: .daily,
+    ///         description: "description",
+    ///         invoiceType: .accountsReceivable,
+    ///         periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.BillingPeriodClientCreate1, requestOptions: RequestOptions? = nil) async throws -> BillingPeriod1 {
@@ -34,6 +69,19 @@ public final class BillingPeriodsClient: Sendable {
 
     /// Deletes an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.deleteV1(billingPeriodId: "billing_period_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func deleteV1(billingPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -46,6 +94,19 @@ public final class BillingPeriodsClient: Sendable {
 
     /// Gets an owner-scoped billing period with its generated line item and invoice when present. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodExpanded1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.getExpandedV1(billingPeriodId: "billing_period_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getExpandedV1(billingPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> BillingPeriodExpanded1 {
         return try await httpClient.performRequest(
@@ -57,6 +118,42 @@ public final class BillingPeriodsClient: Sendable {
     }
 
     /// Lists owner-scoped billing periods with generated line items and invoices. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.listV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterStatuses: [
+    ///             .open
+    ///         ],
+    ///         filterInvoiceTypes: [
+    ///             .accountsReceivable
+    ///         ],
+    ///         filterCurrencyCodes: [
+    ///             .usd
+    ///         ],
+    ///         filterCounterpartyOrgId: "filter_counterparty_org_id",
+    ///         filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+    ///         filterCounterpartyDriverId: "filter_counterparty_driver_id",
+    ///         filterShipperAccountId: "filter_shipper_account_id",
+    ///         filterTaskGroupId: "filter_task_group_id",
+    ///         filterPeriodStartAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterPeriodStartAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterPeriodEndAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterPeriodEndAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order.
@@ -73,7 +170,7 @@ public final class BillingPeriodsClient: Sendable {
     /// - Parameter filterPeriodEndAtTimestampGte: Filter by period end greater than or equal.
     /// - Parameter filterPeriodEndAtTimestampLte: Filter by period end less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: BillingPeriodSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatuses: BillingPeriodStatusEnum1? = nil, filterInvoiceTypes: InvoiceTypeEnum1? = nil, filterCurrencyCodes: BillingCurrencyCodeEnum1? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterShipperAccountId: String? = nil, filterTaskGroupId: String? = nil, filterPeriodStartAtTimestampGte: Date? = nil, filterPeriodStartAtTimestampLte: Date? = nil, filterPeriodEndAtTimestampGte: Date? = nil, filterPeriodEndAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BillingPeriodListRes {
+    public func listV1(sortBy: BillingPeriodSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatuses: [BillingPeriodStatusEnum1]? = nil, filterInvoiceTypes: [InvoiceTypeEnum1]? = nil, filterCurrencyCodes: [BillingCurrencyCodeEnum1]? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterShipperAccountId: String? = nil, filterTaskGroupId: String? = nil, filterPeriodStartAtTimestampGte: Date? = nil, filterPeriodStartAtTimestampLte: Date? = nil, filterPeriodEndAtTimestampGte: Date? = nil, filterPeriodEndAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BillingPeriodListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/billing_periods/list/v1",
@@ -82,9 +179,9 @@ public final class BillingPeriodsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_statuses": filterStatuses.map { .string($0.rawValue) }, 
-                "filter_invoice_types": filterInvoiceTypes.map { .string($0.rawValue) }, 
-                "filter_currency_codes": filterCurrencyCodes.map { .string($0.rawValue) }, 
+                "filter_statuses": filterStatuses.map { .unknown($0) }, 
+                "filter_invoice_types": filterInvoiceTypes.map { .unknown($0) }, 
+                "filter_currency_codes": filterCurrencyCodes.map { .unknown($0) }, 
                 "filter_counterparty_org_id": filterCounterpartyOrgId.map { .string($0) }, 
                 "filter_counterparty_off_chrt_org_data_id": filterCounterpartyOffChrtOrgDataId.map { .string($0) }, 
                 "filter_counterparty_driver_id": filterCounterpartyDriverId.map { .string($0) }, 
@@ -102,6 +199,26 @@ public final class BillingPeriodsClient: Sendable {
 
     /// Adds visible TaskGroups to an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodTaskGroupsReq) -> (BillingPeriod1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.addTaskGroupsV1(
+    ///         billingPeriodId: "billing_period_id",
+    ///         request: BillingPeriodTaskGroupsReq(
+    ///             taskGroupIds: [
+    ///                 "task_group_ids"
+    ///             ]
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addTaskGroupsV1(billingPeriodId: String, request: BillingPeriodTaskGroupsReq, requestOptions: RequestOptions? = nil) async throws -> BillingPeriod1 {
         return try await httpClient.performRequest(
@@ -115,6 +232,26 @@ public final class BillingPeriodsClient: Sendable {
 
     /// Removes linked TaskGroups from an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodTaskGroupsReq) -> (BillingPeriod1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.removeTaskGroupsV1(
+    ///         billingPeriodId: "billing_period_id",
+    ///         request: BillingPeriodTaskGroupsReq(
+    ///             taskGroupIds: [
+    ///                 "task_group_ids"
+    ///             ]
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeTaskGroupsV1(billingPeriodId: String, request: BillingPeriodTaskGroupsReq, requestOptions: RequestOptions? = nil) async throws -> BillingPeriod1 {
         return try await httpClient.performRequest(
@@ -127,6 +264,22 @@ public final class BillingPeriodsClient: Sendable {
     }
 
     /// Updates an open owner-scoped billing period. | authz: allowed_org_types=[provider], min_org_role=operator | (BillingPeriodClientUpdate1) -> (BillingPeriod1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.billingPeriods.updateV1(
+    ///         billingPeriodId: "billing_period_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(billingPeriodId: String, request: Requests.BillingPeriodClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> BillingPeriod1 {

@@ -9,6 +9,23 @@ public final class SessionsClient: Sendable {
 
     /// Creates a tracking session with ordered geofences or an organization template and links its device. | auth: api_key | authz: min_org_role=operator | (SessionsCreateV1Req) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.createSessionV1(
+    ///         deviceId: "device_id",
+    ///         noAutoTermination: true,
+    ///         request: .init(schemaVersion: 1)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createSessionV1(deviceId: String, noAutoTermination: Bool? = nil, request: Requests.SessionsCreateV1Req, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -26,6 +43,19 @@ public final class SessionsClient: Sendable {
 
     /// Returns the session's flight legs in order, with Cirium-sourced status lazily resolved and refreshed on read. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (list[FlightLeg1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.flightLegsV1(sessionId: "session_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func flightLegsV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> [FlightLeg1] {
         return try await httpClient.performRequest(
@@ -40,6 +70,23 @@ public final class SessionsClient: Sendable {
     }
 
     /// Returns the raw Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.flightTrackV1(
+    ///         sessionId: "session_id",
+    ///         flightLegId: "flight_leg_id",
+    ///         forceRefresh: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter forceRefresh: Bypass the cache and fetch the latest flight track.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
@@ -59,6 +106,19 @@ public final class SessionsClient: Sendable {
 
     /// Retrieves a single session by its ID. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (Session2)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.getV1(sessionId: "session_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Session2 {
         return try await httpClient.performRequest(
@@ -73,6 +133,41 @@ public final class SessionsClient: Sendable {
     }
 
     /// Lists sessions with filtering, sorting, and pagination. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (SessionListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.listV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         search: "search",
+    ///         orgScope: .owned,
+    ///         filterTerminated: true,
+    ///         filterPublic: true,
+    ///         filterDeviceId: "filter_device_id",
+    ///         filterOffChrtReferenceId: "filter_off_chrt_reference_id",
+    ///         filterFlightNumber: "filter_flight_number",
+    ///         filterFlightLoadedStatus: "filter_flight_loaded_status",
+    ///         filterHasLastSeen: true,
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastSeenAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastSeenAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterTerminationScheduledForTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterTerminationScheduledForTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterTerminatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterTerminatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
@@ -128,6 +223,32 @@ public final class SessionsClient: Sendable {
 
     /// Replaces the session's followed flights: deletes the existing session-owned FlightLeg documents and creates new ones from the supplied flight details. Each leg's Cirium flightId and status resolve lazily on read. Pass an empty list to clear all flights. | auth: api_key | authz: min_org_role=operator | (SessionSetFlightInfoReq1) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.setFlightInfoV1(request: .init(
+    ///         flightLegs: [
+    ///             FlightLegClientCreate1(
+    ///                 carrierIata: "carrier_iata",
+    ///                 destinationIata: "destination_iata",
+    ///                 flightNumber: "flight_number",
+    ///                 originIata: "origin_iata",
+    ///                 provenance: .manual,
+    ///                 scheduledDepartureUtc: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///                 schemaVersion: 1
+    ///             )
+    ///         ],
+    ///         sessionId: "session_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func setFlightInfoV1(request: Requests.SessionSetFlightInfoReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -140,6 +261,19 @@ public final class SessionsClient: Sendable {
     }
 
     /// Terminates a session. Moves device.active_session_id to device.past_session_ids and deactivates the device. | auth: api_key | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.terminateV1(sessionId: "session_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func terminateV1(sessionId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -155,6 +289,23 @@ public final class SessionsClient: Sendable {
     }
 
     /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1,
+    ///         orgScope: .owned
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field
@@ -176,6 +327,22 @@ public final class SessionsClient: Sendable {
 
     /// Updates mutable non-geofence session fields. Use dedicated geofence routes for geofence changes. | auth: api_key | authz: min_org_role=operator | (SessionClientUpdate2) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.updateV1(
+    ///         sessionId: "session_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(sessionId: String, request: Requests.SessionClientUpdate2, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -191,6 +358,19 @@ public final class SessionsClient: Sendable {
     }
 
     /// Adds and/or removes org_ids from a session's shared_with_org_ids list. Only the owning org may modify sharing. Removal overrides addition. | auth: api_key | (SessionsUpdateSharedOrgsReq1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sessions.updateSharedOrgsV1(request: .init(sessionId: "session_id"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateSharedOrgsV1(request: Requests.SessionsUpdateSharedOrgsReq1, requestOptions: RequestOptions? = nil) async throws -> Bool {

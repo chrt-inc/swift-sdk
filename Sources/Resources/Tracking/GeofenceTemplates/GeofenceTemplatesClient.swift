@@ -9,6 +9,19 @@ public final class GeofenceTemplatesClient: Sendable {
 
     /// Archives a geofence template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.geofenceTemplates.archiveV1(geofenceTemplateId: "geofence_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func archiveV1(geofenceTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -20,6 +33,32 @@ public final class GeofenceTemplatesClient: Sendable {
     }
 
     /// Lists geofence templates for the caller's organization. | authz: min_org_role=operator | () -> (GeofenceTemplateListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.geofenceTemplates.listV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterArchived: true,
+    ///         filterOwnedByUserId: "filter_owned_by_user_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order.
@@ -57,6 +96,19 @@ public final class GeofenceTemplatesClient: Sendable {
 
     /// Restores an archived geofence template owned by the caller's organization. | authz: min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.geofenceTemplates.unarchiveV1(geofenceTemplateId: "geofence_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func unarchiveV1(geofenceTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -68,6 +120,22 @@ public final class GeofenceTemplatesClient: Sendable {
     }
 
     /// Updates an active geofence template owned by the caller's organization. | authz: min_org_role=operator | (SessionGeofenceTemplateClientUpdate1) -> (SessionGeofenceTemplate1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.geofenceTemplates.updateV1(
+    ///         geofenceTemplateId: "geofence_template_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(geofenceTemplateId: String, request: Requests.SessionGeofenceTemplateClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> SessionGeofenceTemplate1 {
@@ -82,6 +150,37 @@ public final class GeofenceTemplatesClient: Sendable {
 
     /// Creates a geofence template owned by the caller's organization. | authz: min_org_role=operator | (SessionGeofenceTemplateClientCreate1) -> (SessionGeofenceTemplate1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.geofenceTemplates.createV1(request: .init(
+    ///         geofences: [
+    ///             SessionGeofenceBase1(
+    ///                 displayName: "display_name",
+    ///                 location: GeofencePointLocationFeature1(
+    ///                     geometry: Point(
+    ///                         coordinates: Coordinates.position2D(
+    ///                             []
+    ///                         ),
+    ///                         type: .point
+    ///                     ),
+    ///                     type: .feature
+    ///                 ),
+    ///                 radiusMiles: 1.1
+    ///             )
+    ///         ],
+    ///         name: "name",
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.SessionGeofenceTemplateClientCreate1, requestOptions: RequestOptions? = nil) async throws -> SessionGeofenceTemplate1 {
         return try await httpClient.performRequest(
@@ -94,6 +193,19 @@ public final class GeofenceTemplatesClient: Sendable {
     }
 
     /// Retrieves a geofence template owned by the caller's organization. | authz: min_org_role=operator | () -> (SessionGeofenceTemplate1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.geofenceTemplates.getByIdV1(geofenceTemplateId: "geofence_template_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func getByIdV1(geofenceTemplateId: String, requestOptions: RequestOptions? = nil) async throws -> SessionGeofenceTemplate1 {

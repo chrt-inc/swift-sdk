@@ -1,7 +1,7 @@
 import Foundation
 
 /// Driver read DTO: persisted Driver1 plus the derived active task group IDs.
-/// 
+///
 /// The field is computed per request from shipping.task_groups so the JSON shape
 /// stays identical to when active_task_group_ids was persisted on the driver.
 public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {

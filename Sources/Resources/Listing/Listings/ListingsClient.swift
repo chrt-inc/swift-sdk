@@ -9,6 +9,22 @@ public final class ListingsClient: Sendable {
 
     /// Expands the audience of an OPEN DRIVERS listing. Ad-hoc driver picks are unioned with expanded driver bidding groups, then `$addToSet` onto the listing. Rejected for PROVIDERS listings. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingAddDriverParticipantsReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.addDriverParticipantsV1(
+    ///         listingId: "listing_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addDriverParticipantsV1(listingId: String, request: Requests.ListingAddDriverParticipantsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -21,6 +37,22 @@ public final class ListingsClient: Sendable {
     }
 
     /// Expands the audience of an OPEN PROVIDERS listing. Ad-hoc provider picks are unioned with expanded org bidding groups, then `$addToSet` onto the listing. Rejected for DRIVERS listings. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingAddProviderParticipantsReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.addProviderParticipantsV1(
+    ///         listingId: "listing_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func addProviderParticipantsV1(listingId: String, request: Requests.ListingAddProviderParticipantsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -35,6 +67,19 @@ public final class ListingsClient: Sendable {
 
     /// Fetches a listing by id in the bidder-facing shape with tasks and mileage. Visible to the lister and to snapshot participants (as bidder — provider org or driver). Listers wanting the full record call `by_id_for_lister/v1`. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidder1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.byIdV1(listingId: "listing_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(listingId: String, requestOptions: RequestOptions? = nil) async throws -> ListingForBidder1 {
         return try await httpClient.performRequest(
@@ -46,6 +91,19 @@ public final class ListingsClient: Sendable {
     }
 
     /// Fetches the full listing record (including `internal_notes`). Restricted to the lister org — bidders use `by_id/v1`. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (Listing1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.byIdForListerV1(listingId: "listing_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdForListerV1(listingId: String, requestOptions: RequestOptions? = nil) async throws -> Listing1 {
@@ -59,6 +117,19 @@ public final class ListingsClient: Sendable {
 
     /// Fetches all listings for a single task group. Typically returns one or two (dual-audience siblings) OPEN listings during active bidding plus any terminal history. Visible only to the task group's coordinator. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[Listing1])
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.byTaskGroupV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byTaskGroupV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> [Listing1] {
         return try await httpClient.performRequest(
@@ -70,6 +141,19 @@ public final class ListingsClient: Sendable {
     }
 
     /// Cancels an OPEN listing. All OPEN BidThreads on this listing are system-rejected. No shipping side-effects. Idempotent: no-op on an already-terminal listing. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.cancelV1(listingId: "listing_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func cancelV1(listingId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -83,6 +167,24 @@ public final class ListingsClient: Sendable {
 
     /// Creates a Listing for a TaskGroup that the caller's org coordinates. Snapshots participants by unioning ad-hoc picks with expanded bidding groups. When `auto_open_priced_bid_threads` is True, also auto-opens one BidThread per resolved participant with a lister-side seed Bid carrying default-rate-sheet-derived pricing (falling back to the listing's `pro_forma_line_items` when no rate sheet is configured for a participant) — listing insert and thread inserts are atomic. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.createV1(request: .init(
+    ///         audience: .providers,
+    ///         listingDescription: "listing_description",
+    ///         taskGroupId: "task_group_id",
+    ///         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.ListingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -95,6 +197,39 @@ public final class ListingsClient: Sendable {
     }
 
     /// Lists listings owned (created) by the caller's org with filtering, sorting, and pagination. Lister view. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ListingListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.listByOrgV1(
+    ///         filterAudience: .providers,
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterStatus: [
+    ///             .open
+    ///         ],
+    ///         filterType: [
+    ///             .dispatch
+    ///         ],
+    ///         filterTaskGroupId: "filter_task_group_id",
+    ///         filterOrderId: "filter_order_id",
+    ///         filterCreatedByOrgId: "filter_created_by_org_id",
+    ///         filterCreatedByUserId: "filter_created_by_user_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter filterAudience: Filter to a single audience (PROVIDERS or DRIVERS). Lister-only — bidder routes hardcode audience.
     /// - Parameter sortBy: Field to sort by.
@@ -110,7 +245,7 @@ public final class ListingsClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampLte: Filter last_edited_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listByOrgV1(filterAudience: ListingAudienceEnum? = nil, sortBy: ListingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: ListingStatusEnum? = nil, filterType: ListingTypeEnum? = nil, filterTaskGroupId: String? = nil, filterOrderId: String? = nil, filterCreatedByOrgId: String? = nil, filterCreatedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListingListRes {
+    public func listByOrgV1(filterAudience: ListingAudienceEnum? = nil, sortBy: ListingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [ListingStatusEnum]? = nil, filterType: [ListingTypeEnum]? = nil, filterTaskGroupId: String? = nil, filterOrderId: String? = nil, filterCreatedByOrgId: String? = nil, filterCreatedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListingListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/listings/list_by_org/v1",
@@ -120,8 +255,8 @@ public final class ListingsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_status": filterStatus.map { .string($0.rawValue) }, 
-                "filter_type": filterType.map { .string($0.rawValue) }, 
+                "filter_status": filterStatus.map { .unknown($0) }, 
+                "filter_type": filterType.map { .unknown($0) }, 
                 "filter_task_group_id": filterTaskGroupId.map { .string($0) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
                 "filter_created_by_org_id": filterCreatedByOrgId.map { .string($0) }, 
@@ -138,6 +273,38 @@ public final class ListingsClient: Sendable {
 
     /// Lists DRIVERS-audience listings where the caller (resolved to a Driver of their org) is a snapshot participant. Driver-side bidder view with filtering, sorting, and pagination. Returns the bidder shape with tasks and mileage (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=driver | () -> (ListingForBidderListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.listForDriverBidderV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterStatus: [
+    ///             .open
+    ///         ],
+    ///         filterType: [
+    ///             .dispatch
+    ///         ],
+    ///         filterTaskGroupId: "filter_task_group_id",
+    ///         filterOrderId: "filter_order_id",
+    ///         filterCreatedByOrgId: "filter_created_by_org_id",
+    ///         filterCreatedByUserId: "filter_created_by_user_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter filterStatus: Filter by listing status(es). Multi-select.
@@ -151,7 +318,7 @@ public final class ListingsClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampLte: Filter last_edited_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForDriverBidderV1(sortBy: ListingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: ListingStatusEnum? = nil, filterType: ListingTypeEnum? = nil, filterTaskGroupId: String? = nil, filterOrderId: String? = nil, filterCreatedByOrgId: String? = nil, filterCreatedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListingForBidderListRes {
+    public func listForDriverBidderV1(sortBy: ListingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [ListingStatusEnum]? = nil, filterType: [ListingTypeEnum]? = nil, filterTaskGroupId: String? = nil, filterOrderId: String? = nil, filterCreatedByOrgId: String? = nil, filterCreatedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListingForBidderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/listings/list_for_driver_bidder/v1",
@@ -160,8 +327,8 @@ public final class ListingsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_status": filterStatus.map { .string($0.rawValue) }, 
-                "filter_type": filterType.map { .string($0.rawValue) }, 
+                "filter_status": filterStatus.map { .unknown($0) }, 
+                "filter_type": filterType.map { .unknown($0) }, 
                 "filter_task_group_id": filterTaskGroupId.map { .string($0) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
                 "filter_created_by_org_id": filterCreatedByOrgId.map { .string($0) }, 
@@ -178,6 +345,38 @@ public final class ListingsClient: Sendable {
 
     /// Lists PROVIDERS-audience listings where the caller's org is a snapshot participant. Provider-side bidder view with filtering, sorting, and pagination. Returns the bidder shape with tasks and mileage (no `internal_notes`). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ListingForBidderListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.listForProviderBidderV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterStatus: [
+    ///             .open
+    ///         ],
+    ///         filterType: [
+    ///             .dispatch
+    ///         ],
+    ///         filterTaskGroupId: "filter_task_group_id",
+    ///         filterOrderId: "filter_order_id",
+    ///         filterCreatedByOrgId: "filter_created_by_org_id",
+    ///         filterCreatedByUserId: "filter_created_by_user_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter filterStatus: Filter by listing status(es). Multi-select.
@@ -191,7 +390,7 @@ public final class ListingsClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter last_edited_at_timestamp >= value (inclusive).
     /// - Parameter filterLastEditedAtTimestampLte: Filter last_edited_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderBidderV1(sortBy: ListingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: ListingStatusEnum? = nil, filterType: ListingTypeEnum? = nil, filterTaskGroupId: String? = nil, filterOrderId: String? = nil, filterCreatedByOrgId: String? = nil, filterCreatedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListingForBidderListRes {
+    public func listForProviderBidderV1(sortBy: ListingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [ListingStatusEnum]? = nil, filterType: [ListingTypeEnum]? = nil, filterTaskGroupId: String? = nil, filterOrderId: String? = nil, filterCreatedByOrgId: String? = nil, filterCreatedByUserId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ListingForBidderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/listings/list_for_provider_bidder/v1",
@@ -200,8 +399,8 @@ public final class ListingsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_status": filterStatus.map { .string($0.rawValue) }, 
-                "filter_type": filterType.map { .string($0.rawValue) }, 
+                "filter_status": filterStatus.map { .unknown($0) }, 
+                "filter_type": filterType.map { .unknown($0) }, 
                 "filter_task_group_id": filterTaskGroupId.map { .string($0) }, 
                 "filter_order_id": filterOrderId.map { .string($0) }, 
                 "filter_created_by_org_id": filterCreatedByOrgId.map { .string($0) }, 
@@ -218,6 +417,22 @@ public final class ListingsClient: Sendable {
 
     /// Narrows the audience of an OPEN DRIVERS listing. Rejected for any driver with a live (OPEN) BidThread. Rejected for PROVIDERS listings. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingRemoveDriverParticipantsReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.removeDriverParticipantsV1(
+    ///         listingId: "listing_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeDriverParticipantsV1(listingId: String, request: Requests.ListingRemoveDriverParticipantsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -231,6 +446,22 @@ public final class ListingsClient: Sendable {
 
     /// Narrows the audience of an OPEN PROVIDERS listing. Rejected for any participant with a live (OPEN) BidThread. Rejected for DRIVERS listings. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingRemoveProviderParticipantsReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.removeProviderParticipantsV1(
+    ///         listingId: "listing_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func removeProviderParticipantsV1(listingId: String, request: Requests.ListingRemoveProviderParticipantsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -243,6 +474,22 @@ public final class ListingsClient: Sendable {
     }
 
     /// Partial update of a Listing. Allowed only while `status == OPEN`. Audience participant lists are NOT editable here — use add_participants / remove_participants. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientUpdate1) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.updateV1(
+    ///         listingId: "listing_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func updateV1(listingId: String, request: Requests.ListingClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {

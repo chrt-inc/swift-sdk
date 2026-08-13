@@ -6,8 +6,8 @@ import Chrt
     @Test func subscribeV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "active_until": "2024-01-15T09:30:00Z",
@@ -26,7 +26,7 @@ import Chrt
                   ],
                   "updated_at": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -62,8 +62,8 @@ import Chrt
     @Test func subscriptionV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "_id": "_id",
                   "active_until": "2024-01-15T09:30:00Z",
@@ -82,7 +82,7 @@ import Chrt
                   ],
                   "updated_at": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -118,8 +118,8 @@ import Chrt
     @Test func subscriptionsByTaskGroupV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -140,7 +140,7 @@ import Chrt
                     "updated_at": "2024-01-15T09:30:00Z"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -178,8 +178,8 @@ import Chrt
     @Test func updatesV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 [
                   {
                     "_id": "_id",
@@ -209,7 +209,7 @@ import Chrt
                     "weight": "weight"
                   }
                 ]
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -221,7 +221,7 @@ import Chrt
             CargoAiTrackAndTraceUpdate1(
                 id: "_id",
                 alerts: Optional(CargoAiTrackAndTraceAlert(
-                    level: Optional(.ok),
+                    level: Optional(CargoAiTrackAndTraceAlertLevelEnum.ok),
                     message: Optional("message")
                 )),
                 awb: "awb",

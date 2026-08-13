@@ -6,8 +6,8 @@ import Chrt
     @Test func listAwbBillingForCoordinatorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -25,7 +25,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -61,8 +61,8 @@ import Chrt
     @Test func listExpandedForCoordinatorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "items": [
                     {
@@ -120,7 +120,7 @@ import Chrt
                   ],
                   "total_count": 1
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -146,10 +146,10 @@ import Chrt
                                 amount: 1.1,
                                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 createdByUserId: "created_by_user_id",
-                                currencyCode: .usd,
-                                cycle: .daily,
+                                currencyCode: BillingCurrencyCodeEnum1.usd,
+                                cycle: BillingPeriodCycleEnum1.daily,
                                 description: "description",
-                                invoiceType: .accountsReceivable,
+                                invoiceType: InvoiceTypeEnum1.accountsReceivable,
                                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 lastEditedByUserId: "last_edited_by_user_id",
                                 ownedByOrgId: "owned_by_org_id",
@@ -169,16 +169,16 @@ import Chrt
                     invoiceCount: 1,
                     invoiceLineItemCount: 1,
                     invoiceStatuses: Optional([
-                        .draft
+                        InvoiceStatusEnum1.draft
                     ]),
                     orderId: "order_id",
                     orderShortId: "order_short_id",
-                    orderStatus: .draft,
+                    orderStatus: OrderStatusEnum1.draft,
                     totalsByCurrency: Optional([
                         OrderBillingCurrencyTotals1(
                             accountsPayableTotalAmount: 1.1,
                             accountsReceivableTotalAmount: 1.1,
-                            currencyCode: .usd
+                            currencyCode: BillingCurrencyCodeEnum1.usd
                         )
                     ])
                 )

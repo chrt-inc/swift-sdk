@@ -6,12 +6,12 @@ import Chrt
     @Test func postAgentGeographyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "response": "response"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -32,12 +32,12 @@ import Chrt
     @Test func postAgentOpenaiPingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "response": "response"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -58,15 +58,15 @@ import Chrt
     @Test func postAgentPingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "activity_completed_at": "activity_completed_at",
                   "nonce": "nonce",
                   "response": "response",
                   "workflow_completed_at": "workflow_completed_at"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -90,8 +90,8 @@ import Chrt
     @Test func getCredentialInfoV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "caller": {
                     "credential": "credential",
@@ -108,7 +108,7 @@ import Chrt
                     "key": "value"
                   }
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -119,15 +119,15 @@ import Chrt
         let expectedResponse = CredentialInfoRes(
             caller: Caller(
                 credential: Optional("credential"),
-                credentialType: .sessionJwt,
+                credentialType: CallerCredentialTypeEnum.sessionJwt,
                 orgId: "org_id",
-                orgRole: Optional(.owner),
+                orgRole: Optional(OrgRoleEnum.owner),
                 orgSubscription: Optional(true),
-                orgType: Optional(.provider),
+                orgType: Optional(OrgTypeEnum.provider),
                 userEmail: Optional("user_email"),
                 userId: "user_id"
             ),
-            credentialType: .sessionJwt,
+            credentialType: CallerCredentialTypeEnum.sessionJwt,
             rawClaims: [
                 "key": JSONValue.string("value")
             ]
@@ -139,10 +139,10 @@ import Chrt
     @Test func getEmailV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -158,12 +158,12 @@ import Chrt
     @Test func getGitInfoV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "key": "value"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -181,10 +181,10 @@ import Chrt
     @Test func getTemplateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -200,14 +200,14 @@ import Chrt
     @Test func createTemplateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 {
                   "message": "message",
                   "number": 1,
                   "timestamp": "2024-01-15T09:30:00Z"
                 }
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -234,10 +234,10 @@ import Chrt
     @Test func getUserIdV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(
@@ -253,10 +253,10 @@ import Chrt
     @Test func getUserIdV21() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
-            body: Data(
-                """
+            body: Foundation.Data(
+                #"""
                 string
-                """.utf8
+                """#.utf8
             )
         )
         let client = ChrtClient(

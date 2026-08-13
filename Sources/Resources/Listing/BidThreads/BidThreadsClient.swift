@@ -9,6 +9,24 @@ public final class BidThreadsClient: Sendable {
 
     /// Pushes a bidder-side ACCEPT onto an OPEN thread. References the most recent lister-side pro_forma (or the listing's opening for DISPATCH). On `auto_award_first_accept=True` listings, fires the full cascade immediately (thread ACCEPTED, listing AWARDED, shipping and BillingNew side-effects). Otherwise leaves the thread OPEN for the lister to finalise via confirm_accept. Lister-side finalisation lives on confirm_accept; calling /accept/v1 from the lister side is rejected (400). | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.acceptV1(
+    ///         bidThreadId: "bid_thread_id",
+    ///         request: BidAppendReq(
+    ///
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func acceptV1(bidThreadId: String, request: BidAppendReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -22,6 +40,19 @@ public final class BidThreadsClient: Sendable {
 
     /// Fetches a bid thread by id. Visible to the lister, the bidder org (provider), and the bidder driver. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (BidThread1)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.byIdV1(bidThreadId: "bid_thread_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func byIdV1(bidThreadId: String, requestOptions: RequestOptions? = nil) async throws -> BidThread1 {
         return try await httpClient.performRequest(
@@ -34,6 +65,19 @@ public final class BidThreadsClient: Sendable {
 
     /// Lister confirmation of a bidder's ACCEPT on this thread, used when `listing.auto_award_first_accept == False`. Runs the full award cascade: thread ACCEPTED, listing AWARDED, sibling threads / listings cancelled, and shipping and BillingNew side-effects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.confirmAcceptV1(bidThreadId: "bid_thread_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func confirmAcceptV1(bidThreadId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
@@ -45,6 +89,24 @@ public final class BidThreadsClient: Sendable {
     }
 
     /// Pushes a COUNTER Bid carrying revised pro_forma_line_items onto an OPEN NEGOTIATION thread. Both sides of the thread may COUNTER. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.counterV1(
+    ///         bidThreadId: "bid_thread_id",
+    ///         request: BidAppendReq(
+    ///
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func counterV1(bidThreadId: String, request: BidAppendReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -59,6 +121,22 @@ public final class BidThreadsClient: Sendable {
 
     /// Opens a new BidThread on a Listing. The body carries the thread's first Bid (SUBMIT / ACCEPT / DENY). Bidder identity is resolved server-side from the caller's JWT + the listing's audience. | authz: allowed_org_types=[provider], min_org_role=driver | (BidThreadClientCreate1) -> (PydanticObjectId)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.createV1(request: .init(
+    ///         action: .submit,
+    ///         listingId: "listing_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func createV1(request: Requests.BidThreadClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
@@ -71,6 +149,24 @@ public final class BidThreadsClient: Sendable {
     }
 
     /// Pushes a DENY onto an OPEN thread, flipping its status to DENIED (terminal). Both sides may deny. References the most recent opposite-side Bid; carries no pro_forma. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.denyV1(
+    ///         bidThreadId: "bid_thread_id",
+    ///         request: BidAppendReq(
+    ///
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func denyV1(bidThreadId: String, request: BidAppendReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
@@ -85,6 +181,34 @@ public final class BidThreadsClient: Sendable {
 
     /// Lists bid threads where the caller is the bidder — either as the bidder org (operator+) or as the bidder driver (driver). Filtering, sorting, and pagination supported. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (BidThreadListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.listForBidderV1(
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterStatus: [
+    ///             .open
+    ///         ],
+    ///         filterListingId: "filter_listing_id",
+    ///         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
+    ///         filterBidderDriverId: "filter_bidder_driver_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterStatusChangedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterStatusChangedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter filterStatus: Filter by thread status(es). Multi-select.
@@ -96,7 +220,7 @@ public final class BidThreadsClient: Sendable {
     /// - Parameter filterStatusChangedAtTimestampGte: Filter status_changed_at_timestamp >= value (inclusive).
     /// - Parameter filterStatusChangedAtTimestampLte: Filter status_changed_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForBidderV1(sortBy: BidThreadSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: BidThreadStatusEnum? = nil, filterListingId: String? = nil, filterBidderProviderOrgId: String? = nil, filterBidderDriverId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterStatusChangedAtTimestampGte: Date? = nil, filterStatusChangedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BidThreadListRes {
+    public func listForBidderV1(sortBy: BidThreadSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [BidThreadStatusEnum]? = nil, filterListingId: String? = nil, filterBidderProviderOrgId: String? = nil, filterBidderDriverId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterStatusChangedAtTimestampGte: Date? = nil, filterStatusChangedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BidThreadListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/bid_threads/list_for_bidder/v1",
@@ -105,7 +229,7 @@ public final class BidThreadsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_status": filterStatus.map { .string($0.rawValue) }, 
+                "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_listing_id": filterListingId.map { .string($0) }, 
                 "filter_bidder_provider_org_id": filterBidderProviderOrgId.map { .string($0) }, 
                 "filter_bidder_driver_id": filterBidderDriverId.map { .string($0) }, 
@@ -121,6 +245,35 @@ public final class BidThreadsClient: Sendable {
 
     /// Lists all bid threads on a listing with filtering, sorting, and pagination. Lister-only — the listing must belong to the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BidThreadListRes)
     ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.listForListingV1(
+    ///         listingId: "listing_id",
+    ///         sortBy: .createdAtTimestamp,
+    ///         sortOrder: .asc,
+    ///         page: 1,
+    ///         pageSize: 1,
+    ///         filterStatus: [
+    ///             .open
+    ///         ],
+    ///         filterListingId: "filter_listing_id",
+    ///         filterBidderProviderOrgId: "filter_bidder_provider_org_id",
+    ///         filterBidderDriverId: "filter_bidder_driver_id",
+    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterStatusChangedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterStatusChangedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter filterStatus: Filter by thread status(es). Multi-select.
@@ -132,7 +285,7 @@ public final class BidThreadsClient: Sendable {
     /// - Parameter filterStatusChangedAtTimestampGte: Filter status_changed_at_timestamp >= value (inclusive).
     /// - Parameter filterStatusChangedAtTimestampLte: Filter status_changed_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForListingV1(listingId: String, sortBy: BidThreadSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: BidThreadStatusEnum? = nil, filterListingId: String? = nil, filterBidderProviderOrgId: String? = nil, filterBidderDriverId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterStatusChangedAtTimestampGte: Date? = nil, filterStatusChangedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BidThreadListRes {
+    public func listForListingV1(listingId: String, sortBy: BidThreadSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [BidThreadStatusEnum]? = nil, filterListingId: String? = nil, filterBidderProviderOrgId: String? = nil, filterBidderDriverId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterStatusChangedAtTimestampGte: Date? = nil, filterStatusChangedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BidThreadListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/bid_threads/list_for_listing/v1/\(listingId)",
@@ -141,7 +294,7 @@ public final class BidThreadsClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
-                "filter_status": filterStatus.map { .string($0.rawValue) }, 
+                "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_listing_id": filterListingId.map { .string($0) }, 
                 "filter_bidder_provider_org_id": filterBidderProviderOrgId.map { .string($0) }, 
                 "filter_bidder_driver_id": filterBidderDriverId.map { .string($0) }, 
@@ -156,6 +309,24 @@ public final class BidThreadsClient: Sendable {
     }
 
     /// Pushes a bidder-side WITHDRAW onto an OPEN thread, flipping its status to WITHDRAWN (terminal). Bidder-only — the lister equivalent is CANCEL on the listing. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.bidThreads.withdrawV1(
+    ///         bidThreadId: "bid_thread_id",
+    ///         request: BidAppendReq(
+    ///
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func withdrawV1(bidThreadId: String, request: BidAppendReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
