@@ -1,3 +1,10 @@
+## 7.0.0 - 2026-08-13
+### Breaking Changes
+* **`ShippingIntegrationOrder1`** — required fields `createdAtTimestamp`, `mirroredAtTimestamp`, and `updatedAtTimestamp` are removed; replace them with the new required fields `firstMirroredAtTimestamp` and `lastMirroredAtTimestamp` at every construction, decoding, and pattern-matching site.
+* **`ShippingIntegrationsOrdersClient.listV1`** — parameters `filterMirroredAtTimestampGte`, `filterMirroredAtTimestampLte`, `filterCreatedAtTimestampGte`, `filterCreatedAtTimestampLte`, `filterUpdatedAtTimestampGte`, and `filterUpdatedAtTimestampLte` are removed; replace with `filterLastMirroredAtTimestampGte`, `filterLastMirroredAtTimestampLte`, `filterFirstMirroredAtTimestampGte`, and `filterFirstMirroredAtTimestampLte`.
+* **`ShippingIntegrationsOrdersClient.statusSummaryV1`** — same filter parameter renames as `listV1` apply here; update all call sites accordingly.
+* **`ShippingIntegrationOrderSortByEnum`** — cases `mirroredAtTimestamp`, `createdAtTimestamp`, and `updatedAtTimestamp` are removed; replace with `lastMirroredAtTimestamp` or `firstMirroredAtTimestamp` as appropriate.
+
 ## 6.0.1 - 2026-08-13
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
