@@ -2,10 +2,10 @@ import Foundation
 
 public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
     public let id: String
-    public let createdAtTimestamp: Date
     public let destination: ShippingIntegrationOrderPlace1?
+    public let firstMirroredAtTimestamp: Date
     public let integrationOrderId: String
-    public let mirroredAtTimestamp: Date
+    public let lastMirroredAtTimestamp: Date
     public let orderedAtTimestamp: Date?
     /// Must be a string starting with `org_`
     public let orgId: String
@@ -19,16 +19,15 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
     public let sourceProviderPayloadHash: String
     public let status: ShippingIntegrationOrderStatusEnum1
     public let stopCount: Int?
-    public let updatedAtTimestamp: Date
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         id: String,
-        createdAtTimestamp: Date,
         destination: ShippingIntegrationOrderPlace1? = nil,
+        firstMirroredAtTimestamp: Date,
         integrationOrderId: String,
-        mirroredAtTimestamp: Date,
+        lastMirroredAtTimestamp: Date,
         orderedAtTimestamp: Date? = nil,
         orgId: String,
         origin: ShippingIntegrationOrderPlace1? = nil,
@@ -40,14 +39,13 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         sourceProviderPayloadHash: String,
         status: ShippingIntegrationOrderStatusEnum1,
         stopCount: Int? = nil,
-        updatedAtTimestamp: Date,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
-        self.createdAtTimestamp = createdAtTimestamp
         self.destination = destination
+        self.firstMirroredAtTimestamp = firstMirroredAtTimestamp
         self.integrationOrderId = integrationOrderId
-        self.mirroredAtTimestamp = mirroredAtTimestamp
+        self.lastMirroredAtTimestamp = lastMirroredAtTimestamp
         self.orderedAtTimestamp = orderedAtTimestamp
         self.orgId = orgId
         self.origin = origin
@@ -59,17 +57,16 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         self.sourceProviderPayloadHash = sourceProviderPayloadHash
         self.status = status
         self.stopCount = stopCount
-        self.updatedAtTimestamp = updatedAtTimestamp
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.destination = try container.decodeIfPresent(ShippingIntegrationOrderPlace1.self, forKey: .destination)
+        self.firstMirroredAtTimestamp = try container.decode(Date.self, forKey: .firstMirroredAtTimestamp)
         self.integrationOrderId = try container.decode(String.self, forKey: .integrationOrderId)
-        self.mirroredAtTimestamp = try container.decode(Date.self, forKey: .mirroredAtTimestamp)
+        self.lastMirroredAtTimestamp = try container.decode(Date.self, forKey: .lastMirroredAtTimestamp)
         self.orderedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderedAtTimestamp)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.origin = try container.decodeIfPresent(ShippingIntegrationOrderPlace1.self, forKey: .origin)
@@ -81,7 +78,6 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         self.sourceProviderPayloadHash = try container.decode(String.self, forKey: .sourceProviderPayloadHash)
         self.status = try container.decode(ShippingIntegrationOrderStatusEnum1.self, forKey: .status)
         self.stopCount = try container.decodeIfPresent(Int.self, forKey: .stopCount)
-        self.updatedAtTimestamp = try container.decode(Date.self, forKey: .updatedAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -89,10 +85,10 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.destination, forKey: .destination)
+        try container.encode(self.firstMirroredAtTimestamp, forKey: .firstMirroredAtTimestamp)
         try container.encode(self.integrationOrderId, forKey: .integrationOrderId)
-        try container.encode(self.mirroredAtTimestamp, forKey: .mirroredAtTimestamp)
+        try container.encode(self.lastMirroredAtTimestamp, forKey: .lastMirroredAtTimestamp)
         try container.encodeIfPresent(self.orderedAtTimestamp, forKey: .orderedAtTimestamp)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.origin, forKey: .origin)
@@ -104,16 +100,15 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         try container.encode(self.sourceProviderPayloadHash, forKey: .sourceProviderPayloadHash)
         try container.encode(self.status, forKey: .status)
         try container.encodeIfPresent(self.stopCount, forKey: .stopCount)
-        try container.encode(self.updatedAtTimestamp, forKey: .updatedAtTimestamp)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
-        case createdAtTimestamp = "created_at_timestamp"
         case destination
+        case firstMirroredAtTimestamp = "first_mirrored_at_timestamp"
         case integrationOrderId = "integration_order_id"
-        case mirroredAtTimestamp = "mirrored_at_timestamp"
+        case lastMirroredAtTimestamp = "last_mirrored_at_timestamp"
         case orderedAtTimestamp = "ordered_at_timestamp"
         case orgId = "org_id"
         case origin
@@ -125,6 +120,5 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         case sourceProviderPayloadHash = "source_provider_payload_hash"
         case status
         case stopCount = "stop_count"
-        case updatedAtTimestamp = "updated_at_timestamp"
     }
 }

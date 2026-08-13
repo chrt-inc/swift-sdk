@@ -10,7 +10,6 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
-                  "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "destination": {
                     "city": "city",
                     "company_name": "company_name",
@@ -34,8 +33,9 @@ import Chrt
                     "postal_code": "postal_code",
                     "state": "state"
                   },
+                  "first_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                   "integration_order_id": "integration_order_id",
-                  "mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                  "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                   "ordered_at_timestamp": "2024-01-15T09:30:00Z",
                   "org_id": "org_id",
                   "origin": {
@@ -70,8 +70,7 @@ import Chrt
                   "shipping_integration": "xcelerator",
                   "source_provider_payload_hash": "source_provider_payload_hash",
                   "status": "staged",
-                  "stop_count": 1,
-                  "updated_at_timestamp": "2024-01-15T09:30:00Z"
+                  "stop_count": 1
                 }
                 """#.utf8
             )
@@ -83,7 +82,6 @@ import Chrt
         )
         let expectedResponse = ShippingIntegrationOrder1(
             id: "_id",
-            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             destination: Optional(ShippingIntegrationOrderPlace1(
                 city: Optional("city"),
                 companyName: Optional("company_name"),
@@ -119,8 +117,9 @@ import Chrt
                 postalCode: Optional("postal_code"),
                 state: Optional("state")
             )),
+            firstMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             integrationOrderId: "integration_order_id",
-            mirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             orgId: "org_id",
             origin: Optional(ShippingIntegrationOrderPlace1(
@@ -167,8 +166,7 @@ import Chrt
             shippingIntegration: OrgShippingIntegrationEnum1.xcelerator,
             sourceProviderPayloadHash: "source_provider_payload_hash",
             status: ShippingIntegrationOrderStatusEnum1.staged,
-            stopCount: Optional(1),
-            updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+            stopCount: Optional(1)
         )
         let response = try await client.shippingIntegrations.orders.detailV1(
             id: "id",
@@ -186,12 +184,12 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
-                      "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "destination": {
                         "label": "label"
                       },
+                      "first_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                       "integration_order_id": "integration_order_id",
-                      "mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                       "ordered_at_timestamp": "2024-01-15T09:30:00Z",
                       "org_id": "org_id",
                       "origin": {
@@ -206,8 +204,7 @@ import Chrt
                       "shipping_integration": "xcelerator",
                       "source_provider_payload_hash": "source_provider_payload_hash",
                       "status": "staged",
-                      "stop_count": 1,
-                      "updated_at_timestamp": "2024-01-15T09:30:00Z"
+                      "stop_count": 1
                     }
                   ],
                   "total_count": 1
@@ -224,12 +221,12 @@ import Chrt
             items: [
                 ShippingIntegrationOrder1(
                     id: "_id",
-                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     destination: Optional(ShippingIntegrationOrderPlace1(
                         label: "label"
                     )),
+                    firstMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     integrationOrderId: "integration_order_id",
-                    mirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orgId: "org_id",
                     origin: Optional(ShippingIntegrationOrderPlace1(
@@ -244,8 +241,7 @@ import Chrt
                     shippingIntegration: OrgShippingIntegrationEnum1.xcelerator,
                     sourceProviderPayloadHash: "source_provider_payload_hash",
                     status: ShippingIntegrationOrderStatusEnum1.staged,
-                    stopCount: Optional(1),
-                    updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    stopCount: Optional(1)
                 )
             ],
             totalCount: 1
@@ -268,12 +264,10 @@ import Chrt
             filterReferenceNumber: "filter_reference_number",
             filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -322,12 +316,10 @@ import Chrt
             filterReferenceNumber: "filter_reference_number",
             filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

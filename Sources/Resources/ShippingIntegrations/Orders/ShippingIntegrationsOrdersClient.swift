@@ -60,12 +60,10 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///         filterReferenceNumber: "filter_reference_number",
     ///         filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///         filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     ///     )
     /// }
     ///
@@ -81,14 +79,12 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter filterReferenceNumber: Filter by an exact reference number carried on the order
     /// - Parameter filterOrderedAtTimestampGte: Filter ordered_at_timestamp >= value
     /// - Parameter filterOrderedAtTimestampLte: Filter ordered_at_timestamp <= value
-    /// - Parameter filterMirroredAtTimestampGte: Filter mirrored_at_timestamp >= value
-    /// - Parameter filterMirroredAtTimestampLte: Filter mirrored_at_timestamp <= value
-    /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value
-    /// - Parameter filterCreatedAtTimestampLte: Filter created_at_timestamp <= value
-    /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
-    /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
+    /// - Parameter filterLastMirroredAtTimestampGte: Filter last_mirrored_at_timestamp >= value
+    /// - Parameter filterLastMirroredAtTimestampLte: Filter last_mirrored_at_timestamp <= value
+    /// - Parameter filterFirstMirroredAtTimestampGte: Filter first_mirrored_at_timestamp >= value
+    /// - Parameter filterFirstMirroredAtTimestampLte: Filter first_mirrored_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
+    public func listV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/list/v1",
@@ -104,12 +100,10 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
                 "filter_reference_number": filterReferenceNumber.map { .string($0) }, 
                 "filter_ordered_at_timestamp_gte": filterOrderedAtTimestampGte.map { .date($0) }, 
                 "filter_ordered_at_timestamp_lte": filterOrderedAtTimestampLte.map { .date($0) }, 
-                "filter_mirrored_at_timestamp_gte": filterMirroredAtTimestampGte.map { .date($0) }, 
-                "filter_mirrored_at_timestamp_lte": filterMirroredAtTimestampLte.map { .date($0) }, 
-                "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
-                "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
-                "filter_updated_at_timestamp_gte": filterUpdatedAtTimestampGte.map { .date($0) }, 
-                "filter_updated_at_timestamp_lte": filterUpdatedAtTimestampLte.map { .date($0) }
+                "filter_last_mirrored_at_timestamp_gte": filterLastMirroredAtTimestampGte.map { .date($0) }, 
+                "filter_last_mirrored_at_timestamp_lte": filterLastMirroredAtTimestampLte.map { .date($0) }, 
+                "filter_first_mirrored_at_timestamp_gte": filterFirstMirroredAtTimestampGte.map { .date($0) }, 
+                "filter_first_mirrored_at_timestamp_lte": filterFirstMirroredAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: ShippingIntegrationOrderListRes.self
@@ -139,12 +133,10 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///         filterReferenceNumber: "filter_reference_number",
     ///         filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-    ///         filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///         filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     ///     )
     /// }
     ///
@@ -158,14 +150,12 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter filterReferenceNumber: Filter by an exact reference number carried on the order
     /// - Parameter filterOrderedAtTimestampGte: Filter ordered_at_timestamp >= value
     /// - Parameter filterOrderedAtTimestampLte: Filter ordered_at_timestamp <= value
-    /// - Parameter filterMirroredAtTimestampGte: Filter mirrored_at_timestamp >= value
-    /// - Parameter filterMirroredAtTimestampLte: Filter mirrored_at_timestamp <= value
-    /// - Parameter filterCreatedAtTimestampGte: Filter created_at_timestamp >= value
-    /// - Parameter filterCreatedAtTimestampLte: Filter created_at_timestamp <= value
-    /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
-    /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
+    /// - Parameter filterLastMirroredAtTimestampGte: Filter last_mirrored_at_timestamp >= value
+    /// - Parameter filterLastMirroredAtTimestampLte: Filter last_mirrored_at_timestamp <= value
+    /// - Parameter filterFirstMirroredAtTimestampGte: Filter first_mirrored_at_timestamp >= value
+    /// - Parameter filterFirstMirroredAtTimestampLte: Filter first_mirrored_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func statusSummaryV1(filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderStatusSummaryRes {
+    public func statusSummaryV1(filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderStatusSummaryRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/status_summary/v1",
@@ -177,12 +167,10 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
                 "filter_reference_number": filterReferenceNumber.map { .string($0) }, 
                 "filter_ordered_at_timestamp_gte": filterOrderedAtTimestampGte.map { .date($0) }, 
                 "filter_ordered_at_timestamp_lte": filterOrderedAtTimestampLte.map { .date($0) }, 
-                "filter_mirrored_at_timestamp_gte": filterMirroredAtTimestampGte.map { .date($0) }, 
-                "filter_mirrored_at_timestamp_lte": filterMirroredAtTimestampLte.map { .date($0) }, 
-                "filter_created_at_timestamp_gte": filterCreatedAtTimestampGte.map { .date($0) }, 
-                "filter_created_at_timestamp_lte": filterCreatedAtTimestampLte.map { .date($0) }, 
-                "filter_updated_at_timestamp_gte": filterUpdatedAtTimestampGte.map { .date($0) }, 
-                "filter_updated_at_timestamp_lte": filterUpdatedAtTimestampLte.map { .date($0) }
+                "filter_last_mirrored_at_timestamp_gte": filterLastMirroredAtTimestampGte.map { .date($0) }, 
+                "filter_last_mirrored_at_timestamp_lte": filterLastMirroredAtTimestampLte.map { .date($0) }, 
+                "filter_first_mirrored_at_timestamp_gte": filterFirstMirroredAtTimestampGte.map { .date($0) }, 
+                "filter_first_mirrored_at_timestamp_lte": filterFirstMirroredAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
             responseType: ShippingIntegrationOrderStatusSummaryRes.self

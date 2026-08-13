@@ -30772,7 +30772,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -30823,12 +30823,10 @@ private func main() async throws {
         filterReferenceNumber: "filter_reference_number",
         filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
 
@@ -30935,7 +30933,7 @@ try await main()
 <dl>
 <dd>
 
-**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+**filterLastMirroredAtTimestampGte:** `Date?` — Filter last_mirrored_at_timestamp >= value
     
 </dd>
 </dl>
@@ -30943,7 +30941,7 @@ try await main()
 <dl>
 <dd>
 
-**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+**filterLastMirroredAtTimestampLte:** `Date?` — Filter last_mirrored_at_timestamp <= value
     
 </dd>
 </dl>
@@ -30951,7 +30949,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+**filterFirstMirroredAtTimestampGte:** `Date?` — Filter first_mirrored_at_timestamp >= value
     
 </dd>
 </dl>
@@ -30959,23 +30957,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+**filterFirstMirroredAtTimestampLte:** `Date?` — Filter first_mirrored_at_timestamp <= value
     
 </dd>
 </dl>
@@ -30995,7 +30977,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">statusSummaryV1</a>(filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderStatusSummaryRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">statusSummaryV1</a>(filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderStatusSummaryRes</code></summary>
 <dl>
 <dd>
 
@@ -31042,12 +31024,10 @@ private func main() async throws {
         filterReferenceNumber: "filter_reference_number",
         filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+        filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
 
@@ -31122,7 +31102,7 @@ try await main()
 <dl>
 <dd>
 
-**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+**filterLastMirroredAtTimestampGte:** `Date?` — Filter last_mirrored_at_timestamp >= value
     
 </dd>
 </dl>
@@ -31130,7 +31110,7 @@ try await main()
 <dl>
 <dd>
 
-**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+**filterLastMirroredAtTimestampLte:** `Date?` — Filter last_mirrored_at_timestamp <= value
     
 </dd>
 </dl>
@@ -31138,7 +31118,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+**filterFirstMirroredAtTimestampGte:** `Date?` — Filter first_mirrored_at_timestamp >= value
     
 </dd>
 </dl>
@@ -31146,23 +31126,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+**filterFirstMirroredAtTimestampLte:** `Date?` — Filter first_mirrored_at_timestamp <= value
     
 </dd>
 </dl>
