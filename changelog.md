@@ -1,3 +1,7 @@
+## 6.0.1 - 2026-08-13
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 6.0.0 - 2026-08-12
 ### Breaking Changes
 * **`OrderTemplatesClient`** and **`OrderTemplatesNewClient`** — `OrderTemplatesClient` is removed entirely (all methods including `createV1`, `updateV1`, `archiveV1`, `deleteV1`, `listV1`, etc.); migrate to `OrderTemplatesNewClient` via `ShippingClient_.orderTemplatesNew`.

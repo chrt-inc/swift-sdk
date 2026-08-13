@@ -9,9 +9,9 @@
     "nullableAsOptional": true
   },
   "originGitCommit": "3721e66521d662345774f7172a15abadf3ad1352",
-  "originGitCommitIsDirty": false,
+  "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "1.914.0",
-  "ciProvider": "github",
-  "sdkVersion": "1.914.0"
+  "requestedVersion": "AUTO",
+  "ciProvider": "unknown",
+  "sdkVersion": "6.0.1"
 }
