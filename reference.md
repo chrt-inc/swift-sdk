@@ -30649,7 +30649,7 @@ try await main()
 <dl>
 <dd>
 
-Lists every provider the caller's organization has credentials for, across all shipping integrations. | () -> (ShippingIntegrationConnectionListRes)
+Lists every provider the caller's organization has credentials for, across all shipping integrations, with public organization data expanded. | () -> (ShippingIntegrationConnectionListRes)
 </dd>
 </dl>
 </dd>
@@ -30701,7 +30701,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Orders
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> ShippingIntegrationOrder1</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> ShippingIntegrationOrderExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -30713,7 +30713,7 @@ try await main()
 <dl>
 <dd>
 
-Returns one unified shipping integration order by its Mongo ObjectId. | () -> (ShippingIntegrationOrder1)
+Returns one unified shipping integration order by its Mongo ObjectId with the provider organization expanded. | () -> (ShippingIntegrationOrderExpanded1)
 </dd>
 </dl>
 </dd>
@@ -30772,7 +30772,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -30784,7 +30784,7 @@ try await main()
 <dl>
 <dd>
 
-Lists the caller's orders from every shipping integration with filtering, sorting, and pagination. | () -> (ShippingIntegrationOrderListRes)
+Lists the caller's orders from every shipping integration with provider organizations expanded, filtering, sorting, pagination, and optional search. | () -> (ShippingIntegrationOrderListRes)
 </dd>
 </dl>
 </dd>
@@ -30810,6 +30810,7 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        search: "search",
         filterShippingIntegration: [
             .xcelerator
         ],
@@ -30870,6 +30871,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search provider order IDs and reference numbers.
     
 </dd>
 </dl>
@@ -31146,8 +31155,3617 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ShippingIntegrationOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns distinct integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Atlas Creds
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AtlasCredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's Atlas credential for one provider, without API key. | () -> (AtlasCredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> AtlasCredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's Atlas credentials, one per connected provider, without API key. | () -> (AtlasCredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AtlasCredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Tests whether stored Atlas credentials can authenticate against the provider. | authz: min_org_role=operator | () -> (AtlasCredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.AtlasCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores Atlas credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (AtlasCredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            apiKey: "api_key",
+            schemaVersion: 1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AtlasCredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes stored Atlas credentials for one provider. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.AtlasCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates stored Atlas credentials for one provider. | authz: min_org_role=administrator | (AtlasCredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AtlasCredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Atlas Orders
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> AtlasOrderExpanded1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored Atlas order by the provider's own order ID with the provider organization expanded. | () -> (AtlasOrderExpanded1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.orders.detailByIntegrationOrderIdV1(
+        providerOrgId: "provider_org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — CHRT org ID of the courier whose Atlas instance holds the order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — Atlas's own ID for the order, as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> AtlasOrderExpanded1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored Atlas order by its Mongo ObjectId with the provider organization expanded. | () -> (AtlasOrderExpanded1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. Atlas's own order ID is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">listV1</a>(sortBy: AtlasOrderSortByEnum?, sortOrder: SortOrderEnum?, limit: Int?, page: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> AtlasOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of mirrored Atlas orders with provider organizations expanded, filtering, sorting, pagination, and optional search. | (AtlasOrderListFilters) -> (AtlasOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        limit: 1,
+        page: 1,
+        search: "search",
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `AtlasOrderSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort direction
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max items to return
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` — Page number (1-indexed)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search Atlas order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by Atlas's exact order ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">syncOneV1</a>(request: Requests.AtlasOrderSyncOneReq, requestOptions: RequestOptions?) -> AtlasOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one Atlas order by the provider's own order ID. | authz: min_org_role=operator | (AtlasOrderSyncOneReq) -> (AtlasOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AtlasOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ShippingIntegrationOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns distinct Atlas integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Cxt Creds
+<details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> CxtCredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's CXT credential for one provider, without passwords or access tokens. | () -> (CxtCredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> CxtCredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's CXT credentials, one per connected provider, without passwords or access tokens. | () -> (CxtCredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> CxtCredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Tests whether stored CXT credentials can authenticate against the provider. | authz: min_org_role=operator | () -> (CxtCredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.CxtCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores CXT credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (CxtCredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            baseUrl: "base_url",
+            cxtAuthType: .xdUser,
+            password: "password",
+            schemaVersion: 1,
+            username: "username"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CxtCredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes stored CXT credentials for one provider. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.CxtCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates stored CXT credentials for one provider. | authz: min_org_role=administrator | (CxtCredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CxtCredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Cxt Orders
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> CxtOrderExpanded1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored CXT order by the provider's own order ID with the provider organization expanded. | () -> (CxtOrderExpanded1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.orders.detailByIntegrationOrderIdV1(
+        providerOrgId: "provider_org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — CHRT org ID of the courier whose CXT instance holds the order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — CXT's own decimal ID for the order, as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> CxtOrderExpanded1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored CXT order by its Mongo ObjectId with the provider organization expanded. | () -> (CxtOrderExpanded1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. CXT's own order ID is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">listV1</a>(sortBy: CxtOrderSortByEnum?, sortOrder: SortOrderEnum?, limit: Int?, page: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> CxtOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of mirrored CXT orders with provider organizations expanded, filtering, sorting, pagination, and optional search. | (CxtOrderListFilters) -> (CxtOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        limit: 1,
+        page: 1,
+        search: "search",
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `CxtOrderSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort direction
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max items to return
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` — Page number (1-indexed)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search CXT order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by CXT's exact order ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">syncOneV1</a>(request: Requests.CxtOrderSyncOneReq, requestOptions: RequestOptions?) -> CxtOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one CXT order by the provider's own decimal order ID. | authz: min_org_role=operator | (CxtOrderSyncOneReq) -> (CxtOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CxtOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations DispatchScience Creds
+<details><summary><code>client.shippingIntegrations.dispatchScience.creds.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Creds/DispatchScienceCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> DispatchScienceCredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's DispatchScience credential for one provider, without password or access token. | () -> (DispatchScienceCredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.creds.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Creds/DispatchScienceCredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> DispatchScienceCredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's DispatchScience credentials, one per connected provider, without password or access token. | () -> (DispatchScienceCredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.creds.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Creds/DispatchScienceCredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> DispatchScienceCredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Confirms the caller's stored DispatchScience credentials for one provider still authenticate, reporting the tenant's configured workflow count. | authz: min_org_role=operator | () -> (DispatchScienceCredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.creds.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Creds/DispatchScienceCredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.DispatchScienceCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores DispatchScience credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (DispatchScienceCredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            baseUrl: "https://tenant.dispatchscience.com",
+            password: "password",
+            schemaVersion: 1,
+            username: "username"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.DispatchScienceCredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.creds.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Creds/DispatchScienceCredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the caller's DispatchScience credentials for one provider, stopping future syncs. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.creds.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Creds/DispatchScienceCredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.DispatchScienceCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the caller's DispatchScience credentials for one provider. | authz: min_org_role=administrator | (DispatchScienceCredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.DispatchScienceCredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations DispatchScience Orders
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> DispatchScienceOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored DispatchScience order by the provider's own order ID. | () -> (DispatchScienceOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.orders.detailByIntegrationOrderIdV1(
+        providerOrgId: "provider_org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — CHRT org ID of the courier whose DispatchScience instance holds the order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — DispatchScience's own ID for the order (its orderId), as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> DispatchScienceOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored DispatchScience order by its Mongo ObjectId. | () -> (DispatchScienceOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. DispatchScience's own order ID is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">listV1</a>(sortBy: DispatchScienceOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatus: Int?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DispatchScienceOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists mirrored DispatchScience orders for the caller's organization with filtering, sorting, pagination, and optional search. | () -> (DispatchScienceOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        search: "search",
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterProviderStatus: 1,
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `DispatchScienceOrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search DispatchScience order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by DispatchScience's exact order ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderStatus:** `Int?` — Filter by DispatchScience's raw status integer (0 Received, 1 Assigned, 2 PickedUp, 3 EnRoute, 4 Delivered, 91 Cancelled)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">syncOneV1</a>(request: Requests.DispatchScienceOrderSyncOneReq, requestOptions: RequestOptions?) -> DispatchScienceOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one DispatchScience order by the provider's own order ID. | authz: min_org_role=operator | (DispatchScienceOrderSyncOneReq) -> (DispatchScienceOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.DispatchScienceOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Ontime360 Creds
+<details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> OnTime360CredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's OnTime360 credential for one provider, without the API key. | () -> (OnTime360CredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> OnTime360CredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's OnTime360 credentials, one per connected provider, without the API key. | () -> (OnTime360CredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> OnTime360CredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Confirms the caller's stored OnTime360 credentials for one provider can still perform a scoped read, best-effort refreshes the provider's own account label for the caller to eyeball, and reports the provider's own reported time zones beside the stored one. | authz: min_org_role=operator | () -> (OnTime360CredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.OnTime360CredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores OnTime360 credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (OnTime360CredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            apiKey: "api_key",
+            baseUrl: "base_url",
+            schemaVersion: 1,
+            siteTimeZone: "America/New_York"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OnTime360CredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the caller's OnTime360 credentials for one provider, stopping future syncs. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.OnTime360CredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the caller's OnTime360 credentials for one provider. | authz: min_org_role=administrator | (OnTime360CredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OnTime360CredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Ontime360 Orders
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> OnTime360Order1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored OnTime360 order by the provider's own order GUID. | () -> (OnTime360Order1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.orders.detailByIntegrationOrderIdV1(
+        providerOrgId: "provider_org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — CHRT org ID of the courier whose OnTime360 site holds the order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — OnTime360's own GUID for the order (its ID), as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> OnTime360Order1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored OnTime360 order by its Mongo ObjectId. | () -> (OnTime360Order1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. OnTime360's own order GUID is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">listV1</a>(sortBy: OnTime360OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusLevel: OnTime360StatusLevelEnum1?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OnTime360OrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists mirrored OnTime360 orders for the caller's organization with filtering, sorting, pagination, and optional search. | () -> (OnTime360OrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        search: "search",
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterProviderStatusLevel: 1,
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `OnTime360OrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search OnTime360 order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by OnTime360's exact order GUID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderStatusLevel:** `OnTime360StatusLevelEnum1?` — Filter by OnTime360's raw status level
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">syncOneV1</a>(request: Requests.OnTime360OrderSyncOneReq, requestOptions: RequestOptions?) -> OnTime360Order1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one OnTime360 order by the provider's own order GUID, updating the unified order list alongside it. | authz: min_org_role=operator | (OnTime360OrderSyncOneReq) -> (OnTime360Order1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OnTime360OrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ShippingIntegrations Xcelerator Creds
-<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/CredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> XceleratorCredsLimited1</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/XceleratorCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> XceleratorCredsLimited1</code></summary>
 <dl>
 <dd>
 
@@ -31218,7 +34836,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/CredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> XceleratorCredsListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/XceleratorCredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> XceleratorCredsListRes</code></summary>
 <dl>
 <dd>
 
@@ -31281,7 +34899,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/CredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> XceleratorCredsTestRes</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/XceleratorCredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> XceleratorCredsTestRes</code></summary>
 <dl>
 <dd>
 
@@ -31352,7 +34970,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/CredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.XceleratorCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/XceleratorCredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.XceleratorCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -31388,7 +35006,7 @@ private func main() async throws {
     _ = try await client.shippingIntegrations.xcelerator.creds.createV1(
         providerOrgId: "provider_org_id",
         request: .init(
-            baseUrl: "base_url",
+            baseUrl: "https://tenant.dispatchscience.com",
             password: "password",
             schemaVersion: 1,
             username: "username"
@@ -31439,7 +35057,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/CredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/XceleratorCredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -31510,7 +35128,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/CredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.XceleratorCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.creds.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Creds/XceleratorCredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.XceleratorCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -31593,7 +35211,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Xcelerator Orders
-<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> XceleratorOrder1</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> XceleratorOrderExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -31605,7 +35223,7 @@ try await main()
 <dl>
 <dd>
 
-Returns one mirrored Xcelerator order by the provider's own order ID. | () -> (XceleratorOrder1)
+Returns one mirrored Xcelerator order by the provider's own order ID with the provider organization expanded. | () -> (XceleratorOrderExpanded1)
 </dd>
 </dl>
 </dd>
@@ -31675,7 +35293,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> XceleratorOrder1</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> XceleratorOrderExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -31687,7 +35305,7 @@ try await main()
 <dl>
 <dd>
 
-Returns one mirrored Xcelerator order by its Mongo ObjectId. | () -> (XceleratorOrder1)
+Returns one mirrored Xcelerator order by its Mongo ObjectId with the provider organization expanded. | () -> (XceleratorOrderExpanded1)
 </dd>
 </dl>
 </dd>
@@ -31746,7 +35364,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">listV1</a>(sortBy: XceleratorOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusRaw: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> XceleratorOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">listV1</a>(sortBy: XceleratorOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusRaw: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> XceleratorOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -31758,7 +35376,7 @@ try await main()
 <dl>
 <dd>
 
-Lists mirrored Xcelerator orders for the caller's organization with filtering, sorting, and pagination. | () -> (XceleratorOrderListRes)
+Lists mirrored Xcelerator orders with provider organizations expanded, filtering, sorting, pagination, and optional search. | () -> (XceleratorOrderListRes)
 </dd>
 </dl>
 </dd>
@@ -31784,6 +35402,7 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        search: "search",
         filterProviderOrgId: [
             "filter_provider_org_id"
         ],
@@ -31838,6 +35457,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search Xcelerator order IDs.
     
 </dd>
 </dl>
@@ -31984,6 +35611,88 @@ try await main()
 <dd>
 
 **request:** `Requests.XceleratorOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ShippingIntegrationOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns distinct Xcelerator integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.xcelerator.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results
     
 </dd>
 </dl>

@@ -7,7 +7,7 @@ public final class CredsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the caller's Xcelerator credential for one provider, without password or access token. | () -> (XceleratorCredsLimited1)
+    /// Returns the caller's Atlas credential for one provider, without API key. | () -> (AtlasCredsLimited1)
     ///
     /// ```swift
     /// import Foundation
@@ -16,7 +16,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.xcelerator.creds.detailV1(providerOrgId: "provider_org_id")
+    ///     _ = try await client.shippingIntegrations.atlas.creds.detailV1(providerOrgId: "provider_org_id")
     /// }
     ///
     /// try await main()
@@ -24,16 +24,16 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> XceleratorCredsLimited1 {
+    public func detailV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> AtlasCredsLimited1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/xcelerator/creds/detail/v1/\(providerOrgId)",
+            path: "/shipping_integrations/atlas/creds/detail/v1/\(providerOrgId)",
             requestOptions: requestOptions,
-            responseType: XceleratorCredsLimited1.self
+            responseType: AtlasCredsLimited1.self
         )
     }
 
-    /// Lists the caller's Xcelerator credentials, one per connected provider, without password or access token. | () -> (XceleratorCredsListRes)
+    /// Lists the caller's Atlas credentials, one per connected provider, without API key. | () -> (AtlasCredsListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -42,23 +42,23 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.xcelerator.creds.listV1()
+    ///     _ = try await client.shippingIntegrations.atlas.creds.listV1()
     /// }
     ///
     /// try await main()
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(requestOptions: RequestOptions? = nil) async throws -> XceleratorCredsListRes {
+    public func listV1(requestOptions: RequestOptions? = nil) async throws -> AtlasCredsListRes {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/xcelerator/creds/list/v1",
+            path: "/shipping_integrations/atlas/creds/list/v1",
             requestOptions: requestOptions,
-            responseType: XceleratorCredsListRes.self
+            responseType: AtlasCredsListRes.self
         )
     }
 
-    /// Confirms the caller's stored Xcelerator credentials for one provider can still obtain an access token, and best-effort refreshes the provider's own account label for the caller to eyeball. | authz: min_org_role=operator | () -> (XceleratorCredsTestRes)
+    /// Tests whether stored Atlas credentials can authenticate against the provider. | authz: min_org_role=operator | () -> (AtlasCredsTestRes)
     ///
     /// ```swift
     /// import Foundation
@@ -67,7 +67,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.xcelerator.creds.testV1(providerOrgId: "provider_org_id")
+    ///     _ = try await client.shippingIntegrations.atlas.creds.testV1(providerOrgId: "provider_org_id")
     /// }
     ///
     /// try await main()
@@ -75,16 +75,16 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func testV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> XceleratorCredsTestRes {
+    public func testV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> AtlasCredsTestRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping_integrations/xcelerator/creds/test/v1/\(providerOrgId)",
+            path: "/shipping_integrations/atlas/creds/test/v1/\(providerOrgId)",
             requestOptions: requestOptions,
-            responseType: XceleratorCredsTestRes.self
+            responseType: AtlasCredsTestRes.self
         )
     }
 
-    /// Stores Xcelerator credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (XceleratorCredsClientCreate1) -> (PydanticObjectId)
+    /// Stores Atlas credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (AtlasCredsClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -93,13 +93,11 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.xcelerator.creds.createV1(
+    ///     _ = try await client.shippingIntegrations.atlas.creds.createV1(
     ///         providerOrgId: "provider_org_id",
     ///         request: .init(
-    ///             baseUrl: "base_url",
-    ///             password: "password",
-    ///             schemaVersion: 1,
-    ///             username: "username"
+    ///             apiKey: "api_key",
+    ///             schemaVersion: 1
     ///         )
     ///     )
     /// }
@@ -109,17 +107,17 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(providerOrgId: String, request: Requests.XceleratorCredsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(providerOrgId: String, request: Requests.AtlasCredsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping_integrations/xcelerator/creds/v1/\(providerOrgId)",
+            path: "/shipping_integrations/atlas/creds/v1/\(providerOrgId)",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
         )
     }
 
-    /// Deletes the caller's Xcelerator credentials for one provider, stopping future syncs. | authz: min_org_role=administrator | () -> (bool)
+    /// Deletes stored Atlas credentials for one provider. | authz: min_org_role=administrator | () -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -128,7 +126,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.xcelerator.creds.deleteV1(providerOrgId: "provider_org_id")
+    ///     _ = try await client.shippingIntegrations.atlas.creds.deleteV1(providerOrgId: "provider_org_id")
     /// }
     ///
     /// try await main()
@@ -139,13 +137,13 @@ public final class CredsClient: Sendable {
     public func deleteV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/shipping_integrations/xcelerator/creds/v1/\(providerOrgId)",
+            path: "/shipping_integrations/atlas/creds/v1/\(providerOrgId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Updates the caller's Xcelerator credentials for one provider. | authz: min_org_role=administrator | (XceleratorCredsClientUpdate1) -> (bool)
+    /// Updates stored Atlas credentials for one provider. | authz: min_org_role=administrator | (AtlasCredsClientUpdate1) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -154,7 +152,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.xcelerator.creds.updateV1(
+    ///     _ = try await client.shippingIntegrations.atlas.creds.updateV1(
     ///         providerOrgId: "provider_org_id",
     ///         request: .init()
     ///     )
@@ -165,10 +163,10 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(providerOrgId: String, request: Requests.XceleratorCredsClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(providerOrgId: String, request: Requests.AtlasCredsClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/shipping_integrations/xcelerator/creds/v1/\(providerOrgId)",
+            path: "/shipping_integrations/atlas/creds/v1/\(providerOrgId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

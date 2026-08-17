@@ -7,7 +7,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns one unified shipping integration order by its Mongo ObjectId. | () -> (ShippingIntegrationOrder1)
+    /// Returns one unified shipping integration order by its Mongo ObjectId with the provider organization expanded. | () -> (ShippingIntegrationOrderExpanded1)
     ///
     /// ```swift
     /// import Foundation
@@ -24,16 +24,16 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///
     /// - Parameter id: Mongo ObjectId of the unified order document. The provider's own order ID is the integration_order_id field on the returned order.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrder1 {
+    public func detailV1(id: String, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderExpanded1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/detail/v1/\(id)",
             requestOptions: requestOptions,
-            responseType: ShippingIntegrationOrder1.self
+            responseType: ShippingIntegrationOrderExpanded1.self
         )
     }
 
-    /// Lists the caller's orders from every shipping integration with filtering, sorting, and pagination. | () -> (ShippingIntegrationOrderListRes)
+    /// Lists the caller's orders from every shipping integration with provider organizations expanded, filtering, sorting, pagination, and optional search. | () -> (ShippingIntegrationOrderListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -47,6 +47,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///         sortOrder: .asc,
     ///         page: 1,
     ///         pageSize: 1,
+    ///         search: "search",
     ///         filterShippingIntegration: [
     ///             .xcelerator
     ///         ],
@@ -72,6 +73,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
+    /// - Parameter search: Search provider order IDs and reference numbers.
     /// - Parameter filterShippingIntegration: Filter by shipping integration(s)
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterStatus: Filter by unified status(es)
@@ -84,7 +86,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter filterFirstMirroredAtTimestampGte: Filter first_mirrored_at_timestamp >= value
     /// - Parameter filterFirstMirroredAtTimestampLte: Filter first_mirrored_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
+    public func listV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/list/v1",
@@ -93,6 +95,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "filter_shipping_integration": filterShippingIntegration.map { .unknown($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
@@ -174,6 +177,40 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: ShippingIntegrationOrderStatusSummaryRes.self
+        )
+    }
+
+    /// Returns distinct integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.orders.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [ShippingIntegrationOrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/orders/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [ShippingIntegrationOrderTypeaheadResult].self
         )
     }
 }

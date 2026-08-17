@@ -7,7 +7,7 @@ public final class ShippingIntegrationsConnectionsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists every provider the caller's organization has credentials for, across all shipping integrations. | () -> (ShippingIntegrationConnectionListRes)
+    /// Lists every provider the caller's organization has credentials for, across all shipping integrations, with public organization data expanded. | () -> (ShippingIntegrationConnectionListRes)
     ///
     /// ```swift
     /// import Foundation

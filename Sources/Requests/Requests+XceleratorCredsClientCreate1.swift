@@ -2,6 +2,7 @@ import Foundation
 
 extension Requests {
     public struct XceleratorCredsClientCreate1: Codable, Hashable, Sendable {
+        /// Per-provider https:// base URL for a courier TMS integration.
         public let baseUrl: String
         public let description: String?
         public let password: String

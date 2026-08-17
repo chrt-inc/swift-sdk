@@ -7,7 +7,7 @@ public final class XceleratorOrdersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns one mirrored Xcelerator order by the provider's own order ID. | () -> (XceleratorOrder1)
+    /// Returns one mirrored Xcelerator order by the provider's own order ID with the provider organization expanded. | () -> (XceleratorOrderExpanded1)
     ///
     /// ```swift
     /// import Foundation
@@ -28,16 +28,16 @@ public final class XceleratorOrdersClient: Sendable {
     /// - Parameter providerOrgId: CHRT org ID of the courier whose Xcelerator instance holds the order
     /// - Parameter integrationOrderId: Xcelerator's own ID for the order (its OrderTrackingId), as carried on a unified order row
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailByIntegrationOrderIdV1(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrder1 {
+    public func detailByIntegrationOrderIdV1(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrderExpanded1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/xcelerator/orders/by_integration_order_id/detail/v1/\(providerOrgId)/\(integrationOrderId)",
             requestOptions: requestOptions,
-            responseType: XceleratorOrder1.self
+            responseType: XceleratorOrderExpanded1.self
         )
     }
 
-    /// Returns one mirrored Xcelerator order by its Mongo ObjectId. | () -> (XceleratorOrder1)
+    /// Returns one mirrored Xcelerator order by its Mongo ObjectId with the provider organization expanded. | () -> (XceleratorOrderExpanded1)
     ///
     /// ```swift
     /// import Foundation
@@ -54,16 +54,16 @@ public final class XceleratorOrdersClient: Sendable {
     ///
     /// - Parameter id: Mongo ObjectId of the mirror document. Xcelerator's own order ID is the integration_order_id, accepted by the by_integration_order_id route.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailV1(id: String, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrder1 {
+    public func detailV1(id: String, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrderExpanded1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/xcelerator/orders/detail/v1/\(id)",
             requestOptions: requestOptions,
-            responseType: XceleratorOrder1.self
+            responseType: XceleratorOrderExpanded1.self
         )
     }
 
-    /// Lists mirrored Xcelerator orders for the caller's organization with filtering, sorting, and pagination. | () -> (XceleratorOrderListRes)
+    /// Lists mirrored Xcelerator orders with provider organizations expanded, filtering, sorting, pagination, and optional search. | () -> (XceleratorOrderListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -77,6 +77,7 @@ public final class XceleratorOrdersClient: Sendable {
     ///         sortOrder: .asc,
     ///         page: 1,
     ///         pageSize: 1,
+    ///         search: "search",
     ///         filterProviderOrgId: [
     ///             "filter_provider_org_id"
     ///         ],
@@ -96,6 +97,7 @@ public final class XceleratorOrdersClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
+    /// - Parameter search: Search Xcelerator order IDs.
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterIntegrationOrderId: Filter by Xcelerator's exact order tracking ID
     /// - Parameter filterProviderStatusRaw: Filter by Xcelerator's raw status letter
@@ -106,7 +108,7 @@ public final class XceleratorOrdersClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
     /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: XceleratorOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatusRaw: String? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrderListRes {
+    public func listV1(sortBy: XceleratorOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatusRaw: String? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/xcelerator/orders/list/v1",
@@ -115,6 +117,7 @@ public final class XceleratorOrdersClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_integration_order_id": filterIntegrationOrderId.map { .string($0) }, 
                 "filter_provider_status_raw": filterProviderStatusRaw.map { .string($0) }, 
@@ -156,6 +159,40 @@ public final class XceleratorOrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: XceleratorOrder1.self
+        )
+    }
+
+    /// Returns distinct Xcelerator integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.xcelerator.orders.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [ShippingIntegrationOrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/xcelerator/orders/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [ShippingIntegrationOrderTypeaheadResult].self
         )
     }
 }

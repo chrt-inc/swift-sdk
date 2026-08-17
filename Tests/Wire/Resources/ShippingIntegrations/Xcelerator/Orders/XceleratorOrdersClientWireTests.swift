@@ -14,6 +14,33 @@ import Chrt
                   "integration_order_id": "integration_order_id",
                   "mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                   "org_id": "org_id",
+                  "provider_org": {
+                    "_id": "_id",
+                    "description": "description",
+                    "email_address": "email_address",
+                    "handle": "handle",
+                    "industry": "industry",
+                    "name": "name",
+                    "org_id": "org_id",
+                    "org_type": "provider",
+                    "phone_number": "phone_number",
+                    "schema_version": 1,
+                    "street_address": {
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1,
+                      "type": "Feature"
+                    }
+                  },
                   "provider_org_id": "provider_org_id",
                   "provider_payload": {
                     "AccountNo": "AccountNo",
@@ -105,12 +132,51 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = XceleratorOrder1(
+        let expectedResponse = XceleratorOrderExpanded1(
             id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             integrationOrderId: "integration_order_id",
             mirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             orgId: "org_id",
+            providerOrg: Optional(OrgPublicData1(
+                id: "_id",
+                description: Optional("description"),
+                emailAddress: Optional("email_address"),
+                handle: Optional("handle"),
+                industry: Optional("industry"),
+                name: "name",
+                orgId: "org_id",
+                orgType: OrgTypeEnum.provider,
+                phoneNumber: Optional("phone_number"),
+                schemaVersion: 1,
+                streetAddress: Optional(LocationFeature(
+                    geometry: Geometry.geometryCollection(
+                        .init(
+                            geometries: [
+                                GeometriesItem.lineString(
+                                    .init(
+                                        coordinates: [
+                                            CoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
+                                        ]
+                                    )
+                                )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    )),
+                    type: .feature
+                ))
+            )),
             providerOrgId: "provider_org_id",
             providerPayload: XceleratorOrderResponse1(
                 accountNo: Optional("AccountNo"),
@@ -217,6 +283,33 @@ import Chrt
                   "integration_order_id": "integration_order_id",
                   "mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                   "org_id": "org_id",
+                  "provider_org": {
+                    "_id": "_id",
+                    "description": "description",
+                    "email_address": "email_address",
+                    "handle": "handle",
+                    "industry": "industry",
+                    "name": "name",
+                    "org_id": "org_id",
+                    "org_type": "provider",
+                    "phone_number": "phone_number",
+                    "schema_version": 1,
+                    "street_address": {
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1,
+                      "type": "Feature"
+                    }
+                  },
                   "provider_org_id": "provider_org_id",
                   "provider_payload": {
                     "AccountNo": "AccountNo",
@@ -308,12 +401,51 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = XceleratorOrder1(
+        let expectedResponse = XceleratorOrderExpanded1(
             id: "_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             integrationOrderId: "integration_order_id",
             mirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             orgId: "org_id",
+            providerOrg: Optional(OrgPublicData1(
+                id: "_id",
+                description: Optional("description"),
+                emailAddress: Optional("email_address"),
+                handle: Optional("handle"),
+                industry: Optional("industry"),
+                name: "name",
+                orgId: "org_id",
+                orgType: OrgTypeEnum.provider,
+                phoneNumber: Optional("phone_number"),
+                schemaVersion: 1,
+                streetAddress: Optional(LocationFeature(
+                    geometry: Geometry.geometryCollection(
+                        .init(
+                            geometries: [
+                                GeometriesItem.lineString(
+                                    .init(
+                                        coordinates: [
+                                            CoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
+                                        ]
+                                    )
+                                )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    )),
+                    type: .feature
+                ))
+            )),
             providerOrgId: "provider_org_id",
             providerPayload: XceleratorOrderResponse1(
                 accountNo: Optional("AccountNo"),
@@ -421,6 +553,13 @@ import Chrt
                       "integration_order_id": "integration_order_id",
                       "mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                       "org_id": "org_id",
+                      "provider_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
                       "provider_org_id": "provider_org_id",
                       "provider_payload": {
                         "OrderTrackingId": "OrderTrackingId"
@@ -443,12 +582,19 @@ import Chrt
         )
         let expectedResponse = XceleratorOrderListRes(
             items: [
-                XceleratorOrder1(
+                XceleratorOrderExpanded1(
                     id: "_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     integrationOrderId: "integration_order_id",
                     mirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     orgId: "org_id",
+                    providerOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: OrgTypeEnum.provider,
+                        schemaVersion: 1
+                    )),
                     providerOrgId: "provider_org_id",
                     providerPayload: XceleratorOrderResponse1(
                         orderTrackingId: "OrderTrackingId"
@@ -466,6 +612,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterProviderOrgId: [
                 "filter_provider_org_id"
             ],
@@ -682,6 +829,43 @@ import Chrt
                 integrationOrderId: "integration_order_id",
                 providerOrgId: "provider_org_id"
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "integration_order_id",
+                    "values": [
+                      "values"
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            ShippingIntegrationOrderTypeaheadResult(
+                type: .integrationOrderId,
+                values: [
+                    "values"
+                ]
+            )
+        ]
+        let response = try await client.shippingIntegrations.xcelerator.orders.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

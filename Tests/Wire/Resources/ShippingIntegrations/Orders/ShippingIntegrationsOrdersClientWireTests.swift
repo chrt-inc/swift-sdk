@@ -61,6 +61,33 @@ import Chrt
                     "postal_code": "postal_code",
                     "state": "state"
                   },
+                  "provider_org": {
+                    "_id": "_id",
+                    "description": "description",
+                    "email_address": "email_address",
+                    "handle": "handle",
+                    "industry": "industry",
+                    "name": "name",
+                    "org_id": "org_id",
+                    "org_type": "provider",
+                    "phone_number": "phone_number",
+                    "schema_version": 1,
+                    "street_address": {
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1,
+                      "type": "Feature"
+                    }
+                  },
                   "provider_org_id": "provider_org_id",
                   "provider_status_raw": "provider_status_raw",
                   "reference_numbers": [
@@ -80,7 +107,7 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = ShippingIntegrationOrder1(
+        let expectedResponse = ShippingIntegrationOrderExpanded1(
             id: "_id",
             destination: Optional(ShippingIntegrationOrderPlace1(
                 city: Optional("city"),
@@ -157,6 +184,45 @@ import Chrt
                 postalCode: Optional("postal_code"),
                 state: Optional("state")
             )),
+            providerOrg: Optional(OrgPublicData1(
+                id: "_id",
+                description: Optional("description"),
+                emailAddress: Optional("email_address"),
+                handle: Optional("handle"),
+                industry: Optional("industry"),
+                name: "name",
+                orgId: "org_id",
+                orgType: OrgTypeEnum.provider,
+                phoneNumber: Optional("phone_number"),
+                schemaVersion: 1,
+                streetAddress: Optional(LocationFeature(
+                    geometry: Geometry.geometryCollection(
+                        .init(
+                            geometries: [
+                                GeometriesItem.lineString(
+                                    .init(
+                                        coordinates: [
+                                            CoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
+                                        ]
+                                    )
+                                )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    )),
+                    type: .feature
+                ))
+            )),
             providerOrgId: "provider_org_id",
             providerStatusRaw: Optional("provider_status_raw"),
             referenceNumbers: Optional([
@@ -195,6 +261,13 @@ import Chrt
                       "origin": {
                         "label": "label"
                       },
+                      "provider_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
                       "provider_org_id": "provider_org_id",
                       "provider_status_raw": "provider_status_raw",
                       "reference_numbers": [
@@ -219,7 +292,7 @@ import Chrt
         )
         let expectedResponse = ShippingIntegrationOrderListRes(
             items: [
-                ShippingIntegrationOrder1(
+                ShippingIntegrationOrderExpanded1(
                     id: "_id",
                     destination: Optional(ShippingIntegrationOrderPlace1(
                         label: "label"
@@ -231,6 +304,13 @@ import Chrt
                     orgId: "org_id",
                     origin: Optional(ShippingIntegrationOrderPlace1(
                         label: "label"
+                    )),
+                    providerOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: OrgTypeEnum.provider,
+                        schemaVersion: 1
                     )),
                     providerOrgId: "provider_org_id",
                     providerStatusRaw: Optional("provider_status_raw"),
@@ -251,6 +331,7 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            search: "search",
             filterShippingIntegration: [
                 .xcelerator
             ],
@@ -320,6 +401,43 @@ import Chrt
             filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "integration_order_id",
+                    "values": [
+                      "values"
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            ShippingIntegrationOrderTypeaheadResult(
+                type: .integrationOrderId,
+                values: [
+                    "values"
+                ]
+            )
+        ]
+        let response = try await client.shippingIntegrations.orders.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

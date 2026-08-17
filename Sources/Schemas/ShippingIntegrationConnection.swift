@@ -12,6 +12,7 @@ public struct ShippingIntegrationConnection: Codable, Hashable, Sendable {
     public let orderCount: Int?
     /// Must be a string starting with `user_`
     public let ownedByUserId: String
+    public let providerOrg: OrgPublicData1?
     /// Must be a string starting with `org_`
     public let providerOrgId: String
     public let providerOrgName: String?
@@ -26,6 +27,7 @@ public struct ShippingIntegrationConnection: Codable, Hashable, Sendable {
         lastMirroredAtTimestamp: Date? = nil,
         orderCount: Int? = nil,
         ownedByUserId: String,
+        providerOrg: OrgPublicData1? = nil,
         providerOrgId: String,
         providerOrgName: String? = nil,
         shippingIntegration: OrgShippingIntegrationEnum1,
@@ -37,6 +39,7 @@ public struct ShippingIntegrationConnection: Codable, Hashable, Sendable {
         self.lastMirroredAtTimestamp = lastMirroredAtTimestamp
         self.orderCount = orderCount
         self.ownedByUserId = ownedByUserId
+        self.providerOrg = providerOrg
         self.providerOrgId = providerOrgId
         self.providerOrgName = providerOrgName
         self.shippingIntegration = shippingIntegration
@@ -51,6 +54,7 @@ public struct ShippingIntegrationConnection: Codable, Hashable, Sendable {
         self.lastMirroredAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastMirroredAtTimestamp)
         self.orderCount = try container.decodeIfPresent(Int.self, forKey: .orderCount)
         self.ownedByUserId = try container.decode(String.self, forKey: .ownedByUserId)
+        self.providerOrg = try container.decodeIfPresent(OrgPublicData1.self, forKey: .providerOrg)
         self.providerOrgId = try container.decode(String.self, forKey: .providerOrgId)
         self.providerOrgName = try container.decodeIfPresent(String.self, forKey: .providerOrgName)
         self.shippingIntegration = try container.decode(OrgShippingIntegrationEnum1.self, forKey: .shippingIntegration)
@@ -66,6 +70,7 @@ public struct ShippingIntegrationConnection: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.lastMirroredAtTimestamp, forKey: .lastMirroredAtTimestamp)
         try container.encodeIfPresent(self.orderCount, forKey: .orderCount)
         try container.encode(self.ownedByUserId, forKey: .ownedByUserId)
+        try container.encodeIfPresent(self.providerOrg, forKey: .providerOrg)
         try container.encode(self.providerOrgId, forKey: .providerOrgId)
         try container.encodeIfPresent(self.providerOrgName, forKey: .providerOrgName)
         try container.encode(self.shippingIntegration, forKey: .shippingIntegration)
@@ -79,6 +84,7 @@ public struct ShippingIntegrationConnection: Codable, Hashable, Sendable {
         case lastMirroredAtTimestamp = "last_mirrored_at_timestamp"
         case orderCount = "order_count"
         case ownedByUserId = "owned_by_user_id"
+        case providerOrg = "provider_org"
         case providerOrgId = "provider_org_id"
         case providerOrgName = "provider_org_name"
         case shippingIntegration = "shipping_integration"

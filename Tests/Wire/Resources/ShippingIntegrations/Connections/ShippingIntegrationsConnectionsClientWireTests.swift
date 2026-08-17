@@ -16,6 +16,13 @@ import Chrt
                       "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                       "order_count": 1,
                       "owned_by_user_id": "owned_by_user_id",
+                      "provider_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
                       "provider_org_id": "provider_org_id",
                       "provider_org_name": "provider_org_name",
                       "shipping_integration": "xcelerator",
@@ -40,6 +47,13 @@ import Chrt
                     lastMirroredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orderCount: Optional(1),
                     ownedByUserId: "owned_by_user_id",
+                    providerOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: OrgTypeEnum.provider,
+                        schemaVersion: 1
+                    )),
                     providerOrgId: "provider_org_id",
                     providerOrgName: Optional("provider_org_name"),
                     shippingIntegration: OrgShippingIntegrationEnum1.xcelerator,

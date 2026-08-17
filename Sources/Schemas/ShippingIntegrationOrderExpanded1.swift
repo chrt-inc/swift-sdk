@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
+public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
     public let id: String
     public let destination: ShippingIntegrationOrderPlace1?
     public let firstMirroredAtTimestamp: Date
@@ -10,6 +10,7 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let orgId: String
     public let origin: ShippingIntegrationOrderPlace1?
+    public let providerOrg: OrgPublicData1?
     /// Must be a string starting with `org_`
     public let providerOrgId: String
     public let providerStatusRaw: String?
@@ -31,6 +32,7 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         orderedAtTimestamp: Date? = nil,
         orgId: String,
         origin: ShippingIntegrationOrderPlace1? = nil,
+        providerOrg: OrgPublicData1? = nil,
         providerOrgId: String,
         providerStatusRaw: String? = nil,
         referenceNumbers: [String]? = nil,
@@ -49,6 +51,7 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         self.orderedAtTimestamp = orderedAtTimestamp
         self.orgId = orgId
         self.origin = origin
+        self.providerOrg = providerOrg
         self.providerOrgId = providerOrgId
         self.providerStatusRaw = providerStatusRaw
         self.referenceNumbers = referenceNumbers
@@ -70,6 +73,7 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         self.orderedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderedAtTimestamp)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.origin = try container.decodeIfPresent(ShippingIntegrationOrderPlace1.self, forKey: .origin)
+        self.providerOrg = try container.decodeIfPresent(OrgPublicData1.self, forKey: .providerOrg)
         self.providerOrgId = try container.decode(String.self, forKey: .providerOrgId)
         self.providerStatusRaw = try container.decodeIfPresent(String.self, forKey: .providerStatusRaw)
         self.referenceNumbers = try container.decodeIfPresent([String].self, forKey: .referenceNumbers)
@@ -92,6 +96,7 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orderedAtTimestamp, forKey: .orderedAtTimestamp)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.origin, forKey: .origin)
+        try container.encodeIfPresent(self.providerOrg, forKey: .providerOrg)
         try container.encode(self.providerOrgId, forKey: .providerOrgId)
         try container.encodeIfPresent(self.providerStatusRaw, forKey: .providerStatusRaw)
         try container.encodeIfPresent(self.referenceNumbers, forKey: .referenceNumbers)
@@ -112,6 +117,7 @@ public struct ShippingIntegrationOrder1: Codable, Hashable, Sendable {
         case orderedAtTimestamp = "ordered_at_timestamp"
         case orgId = "org_id"
         case origin
+        case providerOrg = "provider_org"
         case providerOrgId = "provider_org_id"
         case providerStatusRaw = "provider_status_raw"
         case referenceNumbers = "reference_numbers"
