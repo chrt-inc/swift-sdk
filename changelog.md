@@ -1,3 +1,7 @@
+## 7.0.1 - 2026-08-17
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 7.0.0 - 2026-08-13
 ### Breaking Changes
 * **`ShippingIntegrationOrder1`** — required fields `createdAtTimestamp`, `mirroredAtTimestamp`, and `updatedAtTimestamp` are removed; replace them with the new required fields `firstMirroredAtTimestamp` and `lastMirroredAtTimestamp` at every construction, decoding, and pattern-matching site.
