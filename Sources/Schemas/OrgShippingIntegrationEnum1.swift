@@ -6,4 +6,5 @@ public enum OrgShippingIntegrationEnum1: String, Codable, Hashable, CaseIterable
     case ontime360
     case cxt
     case atlas
+    case ecourier
 }

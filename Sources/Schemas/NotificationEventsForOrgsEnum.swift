@@ -30,4 +30,9 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case operationsOrderInternalMessagesFileAdded = "operations.order_internal_messages.file_added"
     case billingInvoiceApproved = "billing.invoice.approved"
     case trackingSessionGeofenceEntered = "tracking.session.geofence_entered"
+    case shippingIntegrationOrderStaged = "shipping_integration.order.staged"
+    case shippingIntegrationOrderInProgress = "shipping_integration.order.in_progress"
+    case shippingIntegrationOrderCompleted = "shipping_integration.order.completed"
+    case shippingIntegrationOrderException = "shipping_integration.order.exception"
+    case shippingIntegrationOrderCancelled = "shipping_integration.order.cancelled"
 }

@@ -33898,6 +33898,866 @@ try await main()
 </dl>
 </details>
 
+## ShippingIntegrations Ecourier Creds
+<details><summary><code>client.shippingIntegrations.ecourier.creds.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Creds/EcourierCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> EcourierCredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's e-Courier credential for one provider, without the password or session token. | () -> (EcourierCredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.creds.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Creds/EcourierCredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> EcourierCredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's e-Courier credentials, one per connected provider, without the password or session token. | () -> (EcourierCredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.creds.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Creds/EcourierCredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> EcourierCredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Confirms the caller's stored e-Courier credentials for one provider can still log in, and reports which customer the credential is scoped to. | authz: min_org_role=operator | () -> (EcourierCredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.creds.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Creds/EcourierCredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.EcourierCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores e-Courier credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (EcourierCredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            baseUrl: "https://bigtex.e-courier.com",
+            ecourierCustomerCode: "ecourier_customer_code",
+            ecourierCustomerId: "ecourier_customer_id",
+            ecourierDatabase: "ecourier_database",
+            password: "password",
+            schemaVersion: 1,
+            username: "username"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.EcourierCredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.creds.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Creds/EcourierCredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the caller's e-Courier credentials for one provider, stopping future syncs. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.creds.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Creds/EcourierCredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.EcourierCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the caller's e-Courier credentials for one provider. | authz: min_org_role=administrator | (EcourierCredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.EcourierCredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Ecourier Orders
+<details><summary><code>client.shippingIntegrations.ecourier.orders.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Orders/EcourierOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> EcourierOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored e-Courier order by the provider's own order number. | () -> (EcourierOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.orders.detailByIntegrationOrderIdV1(
+        providerOrgId: "provider_org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — CHRT org ID of the courier whose e-Courier database holds the order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — e-Courier's own order number for the order, as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.orders.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Orders/EcourierOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> EcourierOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored e-Courier order by its Mongo ObjectId. | () -> (EcourierOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. e-Courier's own order number is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.orders.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Orders/EcourierOrdersClient.swift">listV1</a>(sortBy: EcourierOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusRaw: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> EcourierOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists mirrored e-Courier orders for the caller's organization with filtering, sorting, and pagination. | () -> (EcourierOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterProviderStatusRaw: "filter_provider_status_raw",
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `EcourierOrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by e-Courier's exact order number
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderStatusRaw:** `String?` — Filter by e-Courier's raw OrderStatus letter. Not reliably operational; prefer the unified status on the cross-integration list.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ecourier.orders.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Orders/EcourierOrdersClient.swift">syncOneV1</a>(request: Requests.EcourierOrderSyncOneReq, requestOptions: RequestOptions?) -> EcourierOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one e-Courier order by the provider's own order number, updating the unified order list alongside it. | authz: min_org_role=operator | (EcourierOrderSyncOneReq) -> (EcourierOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ecourier.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.EcourierOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ShippingIntegrations Ontime360 Creds
 <details><summary><code>client.shippingIntegrations.ontime360.creds.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Creds/Ontime360CredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> OnTime360CredsLimited1</code></summary>
 <dl>
