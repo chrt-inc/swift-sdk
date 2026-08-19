@@ -1,3 +1,12 @@
+## 8.0.0 - 2026-08-19
+### Breaking Changes
+* **`NotificationEventsForOrgsEnum`** and **`NotificationEventsForUsersEnum`** — five new `shippingIntegration.order.*` cases added; exhaustive `switch` statements must add a `default` branch or handle each new case explicitly.
+* **`OrgShippingIntegrationEnum1`** — new `ecourier` case added; exhaustive `switch` statements must handle it or add a `default` branch.
+### Added
+* **`EcourierClient`** — new sub-client accessible via `shippingIntegrations.ecourier`, providing credential management (`EcourierCredsClient`) and order mirroring (`EcourierOrdersClient`) for the e-Courier shipping integration.
+* **`ShippingIntegrationOrderStatusChangedWebhookPayload`** and **`ShippingIntegrationOrderStatusChangedWebhookPayloadEventType`** — new types representing the full payload and five-case event-type enum for shipping integration order status change webhook events.
+* **New e-Courier and webhook schemas** — `EcourierOrder1`, `EcourierOrderResponse1`, `EcourierOrderListRes`, `EcourierCredsLimited1`, `ShippingIntegrationOrderStatusChangedRes`, `FraytWebhookResponse`, and related types added to support the new integration endpoints.
+
 ## 7.0.1 - 2026-08-17
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
