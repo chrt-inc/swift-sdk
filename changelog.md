@@ -1,3 +1,16 @@
+## 9.0.0 - 2026-08-20
+### Breaking Changes
+* **`AtlasOrdersClient.typeaheadV1`** and **`XceleratorOrdersClient.typeaheadV1`** — methods removed; migrate callers to `ShippingIntegrationsOrdersClient.typeaheadV1` or the new `listForIntegrationExecutorOperatorsV1` endpoint.
+* **`ShippingIntegrationOrderSortByEnum`** — new `completedAtTimestamp` case added; exhaustive `switch` statements must handle it or add a `default` branch.
+* **`ShippingIntegrationOrderTypeaheadFieldEnum`** — new `referenceNumbers` case added; exhaustive `switch` statements must handle it or add a `default` branch.
+### Added
+* **`ShippingIntegrationsOrdersClient.listForIntegrationExecutorOperatorsV1`** — new method listing orders assigned to the caller's integration executor organization across all shipping integrations, with filtering, sorting, and pagination support.
+* **`IntegrationExecutorsClient`** — new sub-client accessible via `shippingIntegrations.integrationExecutors`, providing `listV1()` to enumerate all distinct integration executor organizations with credentials configured across any shipping integration.
+* **`ShippingIntegrationOrderCompletedAtProvenanceEnum1`** — new enum (`reported`, `derived`) describing how a shipping order's completed-at timestamp was determined.
+* **`filterCompletedAtTimestampGte` / `filterCompletedAtTimestampLte`** — new optional filter parameters on `ShippingIntegrationsOrdersClient.listV1` and `statusSummaryV1` to filter orders by completion timestamp range.
+### Changed
+* **`ShippingIntegrationOrderExpanded1`** — gains new optional fields `completedAtProvenance`, `completedAtTimestamp`, and `shipperOrg`, surfacing completion provenance and the expanded shipper organization on order responses.
+
 ## 8.0.0 - 2026-08-19
 ### Breaking Changes
 * **`NotificationEventsForOrgsEnum`** and **`NotificationEventsForUsersEnum`** — five new `shippingIntegration.order.*` cases added; exhaustive `switch` statements must add a `default` branch or handle each new case explicitly.
