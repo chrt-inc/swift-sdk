@@ -448,41 +448,4 @@ import Chrt
         )
         try #require(response == expectedResponse)
     }
-
-    @Test func typeaheadV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                [
-                  {
-                    "type": "integration_order_id",
-                    "values": [
-                      "values"
-                    ]
-                  }
-                ]
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            ShippingIntegrationOrderTypeaheadResult(
-                type: .integrationOrderId,
-                values: [
-                    "values"
-                ]
-            )
-        ]
-        let response = try await client.shippingIntegrations.atlas.orders.typeaheadV1(
-            query: "query",
-            limit: 1,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
 }

@@ -30700,6 +30700,70 @@ try await main()
 </dl>
 </details>
 
+## ShippingIntegrations IntegrationExecutors
+<details><summary><code>client.shippingIntegrations.integrationExecutors.<a href="/Sources/Resources/ShippingIntegrations/IntegrationExecutors/IntegrationExecutorsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> ShippingIntegrationIntegrationExecutorListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all distinct integration executor organizations that have credentials configured across any shipping integration, with public organization data expanded. | authz: min_org_role=operator | () -> (ShippingIntegrationIntegrationExecutorListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.integrationExecutors.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ShippingIntegrations Orders
 <details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> ShippingIntegrationOrderExpanded1</code></summary>
 <dl>
@@ -30713,7 +30777,7 @@ try await main()
 <dl>
 <dd>
 
-Returns one unified shipping integration order by its Mongo ObjectId with the provider organization expanded. | () -> (ShippingIntegrationOrderExpanded1)
+Returns one unified shipping integration order by its Mongo ObjectId with related organizations expanded. | () -> (ShippingIntegrationOrderExpanded1)
 </dd>
 </dl>
 </dd>
@@ -30772,7 +30836,210 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listForIntegrationExecutorOperatorsV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists orders assigned to the caller's integration executor organization across all shipping integrations with integration coordinator organizations expanded, filtering, sorting, pagination, and optional search. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ShippingIntegrationOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.orders.listForIntegrationExecutorOperatorsV1(
+        sortBy: .orderedAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        search: "search",
+        filterShippingIntegration: [
+            .xcelerator
+        ],
+        filterStatus: [
+            .staged
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterReferenceNumber: "filter_reference_number",
+        filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterFirstMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `ShippingIntegrationOrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search provider order IDs and reference numbers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShippingIntegration:** `[OrgShippingIntegrationEnum1]?` — Filter by shipping integration(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `[ShippingIntegrationOrderStatusEnum1]?` — Filter by unified status(es)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by the provider's exact order ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterReferenceNumber:** `String?` — Filter by an exact reference number carried on the order
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderedAtTimestampGte:** `Date?` — Filter ordered_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderedAtTimestampLte:** `Date?` — Filter ordered_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMirroredAtTimestampGte:** `Date?` — Filter last_mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMirroredAtTimestampLte:** `Date?` — Filter last_mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterFirstMirroredAtTimestampGte:** `Date?` — Filter first_mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterFirstMirroredAtTimestampLte:** `Date?` — Filter first_mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -30824,6 +31091,8 @@ private func main() async throws {
         filterReferenceNumber: "filter_reference_number",
         filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -30942,6 +31211,22 @@ try await main()
 <dl>
 <dd>
 
+**filterCompletedAtTimestampGte:** `Date?` — Filter completed_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtTimestampLte:** `Date?` — Filter completed_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterLastMirroredAtTimestampGte:** `Date?` — Filter last_mirrored_at_timestamp >= value
     
 </dd>
@@ -30986,7 +31271,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">statusSummaryV1</a>(filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderStatusSummaryRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">statusSummaryV1</a>(filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderStatusSummaryRes</code></summary>
 <dl>
 <dd>
 
@@ -31033,6 +31318,8 @@ private func main() async throws {
         filterReferenceNumber: "filter_reference_number",
         filterOrderedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterOrderedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterLastMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterFirstMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -31111,6 +31398,22 @@ try await main()
 <dl>
 <dd>
 
+**filterCompletedAtTimestampGte:** `Date?` — Filter completed_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtTimestampLte:** `Date?` — Filter completed_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterLastMirroredAtTimestampGte:** `Date?` — Filter last_mirrored_at_timestamp >= value
     
 </dd>
@@ -31167,7 +31470,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
+Returns distinct integration order IDs and reference numbers matching the query via case-insensitive regex within the caller's organization. | () -> (list[ShippingIntegrationOrderTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -32073,88 +32376,6 @@ try await main()
 <dd>
 
 **request:** `Requests.AtlasOrderSyncOneReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ShippingIntegrationOrderTypeaheadResult]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns distinct Atlas integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shippingIntegrations.atlas.orders.typeaheadV1(
-        query: "query",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**query:** `String` — Typeahead search query
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` — Max results
     
 </dd>
 </dl>
@@ -36471,88 +36692,6 @@ try await main()
 <dd>
 
 **request:** `Requests.XceleratorOrderSyncOneReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ShippingIntegrationOrderTypeaheadResult]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns distinct Xcelerator integration order IDs matching the query via case-insensitive regex within the caller's organization. | authz: caller's organization scope | () -> (list[ShippingIntegrationOrderTypeaheadResult])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shippingIntegrations.xcelerator.orders.typeaheadV1(
-        query: "query",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**query:** `String` — Typeahead search query
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` — Max results
     
 </dd>
 </dl>
