@@ -1,9 +1,3 @@
-## 10.0.0 - 2026-08-21
-### Breaking Changes
-* **`detailByIntegrationOrderIdV1(providerOrgId:integrationOrderId:)`** — the `providerOrgId` parameter label has been renamed to `orgId` on all six shipping integration order clients (`AtlasOrdersClient`, `CxtOrdersClient`, `DispatchScienceOrdersClient`, `EcourierOrdersClient`, `Ontime360OrdersClient`, `XceleratorOrdersClient`). Update all call sites to use `orgId:` instead of `providerOrgId:`.
-### Added
-* **`OrderTemplatesNewClient.listV1`** — new optional `filterCoordinatorLabel` parameter for filtering order templates by coordinator label.
-
 ## 9.0.0 - 2026-08-20
 ### Breaking Changes
 * **`AtlasOrdersClient.typeaheadV1`** and **`XceleratorOrdersClient.typeaheadV1`** — methods removed; migrate callers to `ShippingIntegrationsOrdersClient.typeaheadV1` or the new `listForIntegrationExecutorOperatorsV1` endpoint.
