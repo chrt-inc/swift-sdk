@@ -20265,7 +20265,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the raw Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+Returns the Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
 </dd>
 </dl>
 </dd>
@@ -20565,7 +20565,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterArchived: Bool?, filterOwnedByUserId: String?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterArchived: Bool?, filterOwnedByUserId: String?, filterCoordinatorLabel: String?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
 <dl>
 <dd>
 
@@ -20606,6 +20606,7 @@ private func main() async throws {
         search: "search",
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
+        filterCoordinatorLabel: "filter_coordinator_label",
         filterExecutorOrgId: "filter_executor_org_id",
         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
         filterShipperOrgId: "filter_shipper_org_id",
@@ -20686,6 +20687,14 @@ try await main()
 <dd>
 
 **filterOwnedByUserId:** `String?` — Filter by the user that created the template.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCoordinatorLabel:** `String?` — Filter by coordinator label.
     
 </dd>
 </dl>
@@ -31985,7 +31994,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Atlas Orders
-<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> AtlasOrderExpanded1</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> AtlasOrderExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -32019,7 +32028,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.atlas.orders.detailByIntegrationOrderIdV1(
-        providerOrgId: "provider_org_id",
+        orgId: "org_id",
         integrationOrderId: "integration_order_id"
     )
 }
@@ -32039,7 +32048,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — CHRT org ID of the courier whose Atlas instance holds the order
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     
 </dd>
 </dl>
@@ -32843,7 +32852,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Cxt Orders
-<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> CxtOrderExpanded1</code></summary>
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> CxtOrderExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -32877,7 +32886,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.cxt.orders.detailByIntegrationOrderIdV1(
-        providerOrgId: "provider_org_id",
+        orgId: "org_id",
         integrationOrderId: "integration_order_id"
     )
 }
@@ -32897,7 +32906,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — CHRT org ID of the courier whose CXT instance holds the order
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     
 </dd>
 </dl>
@@ -33700,7 +33709,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations DispatchScience Orders
-<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> DispatchScienceOrder1</code></summary>
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> DispatchScienceOrder1</code></summary>
 <dl>
 <dd>
 
@@ -33734,7 +33743,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.dispatchScience.orders.detailByIntegrationOrderIdV1(
-        providerOrgId: "provider_org_id",
+        orgId: "org_id",
         integrationOrderId: "integration_order_id"
     )
 }
@@ -33754,7 +33763,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — CHRT org ID of the courier whose DispatchScience instance holds the order
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     
 </dd>
 </dl>
@@ -34569,7 +34578,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Ecourier Orders
-<details><summary><code>client.shippingIntegrations.ecourier.orders.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Orders/EcourierOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> EcourierOrder1</code></summary>
+<details><summary><code>client.shippingIntegrations.ecourier.orders.<a href="/Sources/Resources/ShippingIntegrations/Ecourier/Orders/EcourierOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> EcourierOrder1</code></summary>
 <dl>
 <dd>
 
@@ -34603,7 +34612,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.ecourier.orders.detailByIntegrationOrderIdV1(
-        providerOrgId: "provider_org_id",
+        orgId: "org_id",
         integrationOrderId: "integration_order_id"
     )
 }
@@ -34623,7 +34632,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — CHRT org ID of the courier whose e-Courier database holds the order
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     
 </dd>
 </dl>
@@ -35426,7 +35435,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Ontime360 Orders
-<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> OnTime360Order1</code></summary>
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> OnTime360Order1</code></summary>
 <dl>
 <dd>
 
@@ -35460,7 +35469,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.ontime360.orders.detailByIntegrationOrderIdV1(
-        providerOrgId: "provider_org_id",
+        orgId: "org_id",
         integrationOrderId: "integration_order_id"
     )
 }
@@ -35480,7 +35489,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — CHRT org ID of the courier whose OnTime360 site holds the order
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     
 </dd>
 </dl>
@@ -36292,7 +36301,7 @@ try await main()
 </details>
 
 ## ShippingIntegrations Xcelerator Orders
-<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">detailByIntegrationOrderIdV1</a>(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> XceleratorOrderExpanded1</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> XceleratorOrderExpanded1</code></summary>
 <dl>
 <dd>
 
@@ -36326,7 +36335,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.xcelerator.orders.detailByIntegrationOrderIdV1(
-        providerOrgId: "provider_org_id",
+        orgId: "org_id",
         integrationOrderId: "integration_order_id"
     )
 }
@@ -36346,7 +36355,7 @@ try await main()
 <dl>
 <dd>
 
-**providerOrgId:** `String` — CHRT org ID of the courier whose Xcelerator instance holds the order
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     
 </dd>
 </dl>
@@ -38374,7 +38383,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the raw Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+Returns the Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
 </dd>
 </dl>
 </dd>

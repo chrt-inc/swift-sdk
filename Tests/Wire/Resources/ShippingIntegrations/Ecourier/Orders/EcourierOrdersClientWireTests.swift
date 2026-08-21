@@ -121,7 +121,7 @@ import Chrt
             updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
         let response = try await client.shippingIntegrations.ecourier.orders.detailByIntegrationOrderIdV1(
-            providerOrgId: "provider_org_id",
+            orgId: "org_id",
             integrationOrderId: "integration_order_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

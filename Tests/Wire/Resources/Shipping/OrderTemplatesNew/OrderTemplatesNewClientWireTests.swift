@@ -458,6 +458,7 @@ import Chrt
             search: "search",
             filterArchived: true,
             filterOwnedByUserId: "filter_owned_by_user_id",
+            filterCoordinatorLabel: "filter_coordinator_label",
             filterExecutorOrgId: "filter_executor_org_id",
             filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
             filterShipperOrgId: "filter_shipper_org_id",

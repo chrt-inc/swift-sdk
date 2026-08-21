@@ -82,7 +82,7 @@ public final class ShippingFlightsClient: Sendable {
         )
     }
 
-    /// Returns the raw Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+    /// Returns the Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
     ///
     /// ```swift
     /// import Foundation

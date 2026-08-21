@@ -17,7 +17,7 @@ public final class DispatchScienceOrdersClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.shippingIntegrations.dispatchScience.orders.detailByIntegrationOrderIdV1(
-    ///         providerOrgId: "provider_org_id",
+    ///         orgId: "org_id",
     ///         integrationOrderId: "integration_order_id"
     ///     )
     /// }
@@ -25,13 +25,13 @@ public final class DispatchScienceOrdersClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter providerOrgId: CHRT org ID of the courier whose DispatchScience instance holds the order
+    /// - Parameter orgId: CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     /// - Parameter integrationOrderId: DispatchScience's own ID for the order (its orderId), as carried on a unified order row
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailByIntegrationOrderIdV1(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> DispatchScienceOrder1 {
+    public func detailByIntegrationOrderIdV1(orgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> DispatchScienceOrder1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/dispatch_science/orders/by_integration_order_id/detail/v1/\(providerOrgId)/\(integrationOrderId)",
+            path: "/shipping_integrations/dispatch_science/orders/by_integration_order_id/detail/v1/\(orgId)/\(integrationOrderId)",
             requestOptions: requestOptions,
             responseType: DispatchScienceOrder1.self
         )

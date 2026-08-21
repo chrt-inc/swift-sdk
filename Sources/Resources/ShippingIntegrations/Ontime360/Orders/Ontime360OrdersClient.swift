@@ -17,7 +17,7 @@ public final class Ontime360OrdersClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.shippingIntegrations.ontime360.orders.detailByIntegrationOrderIdV1(
-    ///         providerOrgId: "provider_org_id",
+    ///         orgId: "org_id",
     ///         integrationOrderId: "integration_order_id"
     ///     )
     /// }
@@ -25,13 +25,13 @@ public final class Ontime360OrdersClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter providerOrgId: CHRT org ID of the courier whose OnTime360 site holds the order
+    /// - Parameter orgId: CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     /// - Parameter integrationOrderId: OnTime360's own GUID for the order (its ID), as carried on a unified order row
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailByIntegrationOrderIdV1(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> OnTime360Order1 {
+    public func detailByIntegrationOrderIdV1(orgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> OnTime360Order1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/ontime360/orders/by_integration_order_id/detail/v1/\(providerOrgId)/\(integrationOrderId)",
+            path: "/shipping_integrations/ontime360/orders/by_integration_order_id/detail/v1/\(orgId)/\(integrationOrderId)",
             requestOptions: requestOptions,
             responseType: OnTime360Order1.self
         )

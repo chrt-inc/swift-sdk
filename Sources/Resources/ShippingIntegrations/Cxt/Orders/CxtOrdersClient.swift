@@ -17,7 +17,7 @@ public final class CxtOrdersClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.shippingIntegrations.cxt.orders.detailByIntegrationOrderIdV1(
-    ///         providerOrgId: "provider_org_id",
+    ///         orgId: "org_id",
     ///         integrationOrderId: "integration_order_id"
     ///     )
     /// }
@@ -25,13 +25,13 @@ public final class CxtOrdersClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter providerOrgId: CHRT org ID of the courier whose CXT instance holds the order
+    /// - Parameter orgId: CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
     /// - Parameter integrationOrderId: CXT's own decimal ID for the order, as carried on a unified order row
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailByIntegrationOrderIdV1(providerOrgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> CxtOrderExpanded1 {
+    public func detailByIntegrationOrderIdV1(orgId: String, integrationOrderId: String, requestOptions: RequestOptions? = nil) async throws -> CxtOrderExpanded1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/cxt/orders/by_integration_order_id/detail/v1/\(providerOrgId)/\(integrationOrderId)",
+            path: "/shipping_integrations/cxt/orders/by_integration_order_id/detail/v1/\(orgId)/\(integrationOrderId)",
             requestOptions: requestOptions,
             responseType: CxtOrderExpanded1.self
         )

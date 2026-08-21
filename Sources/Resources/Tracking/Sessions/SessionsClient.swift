@@ -69,7 +69,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Returns the raw Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+    /// Returns the Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
     ///
     /// ```swift
     /// import Foundation
