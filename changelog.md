@@ -1,3 +1,10 @@
+## 1.954.0 - 2026-08-23
+### Added
+* **`OrderEventsClient`** — new sub-client accessible via `shipping.orders.orderEvents`, providing `listV1()` to paginate and filter order event log entries and `getV1()` to retrieve a single event by ID, both with hydrated org and user public data.
+* **`OrderEventExpanded1`** and **`OrderEventListRes`** — new response types representing a single expanded order event and a paginated list of order events respectively.
+* **`OrderEventActionEnum1`** — new enum with 57 cases covering the full vocabulary of shipping order, task group, task, cargo, task artifact, account, and contact event actions.
+* **`OrderEventActor1`**, **`OrderEventEntity1`**, **`OrderEventSortByEnum`**, **`OrderEventSystemActorEnum1`**, and **`Order1`** — new supporting schema types for order event payloads.
+
 ## 9.0.0 - 2026-08-20
 ### Breaking Changes
 * **`AtlasOrdersClient.typeaheadV1`** and **`XceleratorOrdersClient.typeaheadV1`** — methods removed; migrate callers to `ShippingIntegrationsOrdersClient.typeaheadV1` or the new `listForIntegrationExecutorOperatorsV1` endpoint.
