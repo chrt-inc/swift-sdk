@@ -21880,7 +21880,7 @@ try await main()
 <dl>
 <dd>
 
-Sets task-group ordering on an active order unless a task group or task is completed. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersTaskGroupOrderingReq) -> (bool)
+Sets task-group ordering on an order ensuring terminal task groups precede non-terminal task groups. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersTaskGroupOrderingReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -27508,6 +27508,234 @@ try await main()
 <dd>
 
 **request:** `OrderAndTaskGroupExpandedReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping Orders OrderEvents
+<details><summary><code>client.shipping.orders.orderEvents.<a href="/Sources/Resources/Shipping/Orders/OrderEvents/OrderEventsClient.swift">listV1</a>(orderId: String, sortBy: OrderEventSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterAction: [OrderEventActionEnum1]?, filterUserId: String?, filterOrgId: String?, filterTimestampGte: Date?, filterTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderEventListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists event log entries for an order with organization and user public data hydrated, filtering, sorting, and pagination. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.orderEvents.listV1(
+        orderId: "order_id",
+        sortBy: .timestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterAction: [
+            .shippingOrderDraftStarted
+        ],
+        filterUserId: "filter_user_id",
+        filterOrgId: "filter_org_id",
+        filterTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `OrderEventSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterAction:** `[OrderEventActionEnum1]?` — Filter by order event action(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUserId:** `String?` — Filter by actor user ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrgId:** `String?` — Filter by actor org ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTimestampGte:** `Date?` — Filter timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTimestampLte:** `Date?` — Filter timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orders.orderEvents.<a href="/Sources/Resources/Shipping/Orders/OrderEvents/OrderEventsClient.swift">getV1</a>(orderEventId: String, requestOptions: RequestOptions?) -> OrderEventExpanded1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single order event log entry by its ID with organization and user public data hydrated. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventExpanded1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.orderEvents.getV1(orderEventId: "order_event_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderEventId:** `String` 
     
 </dd>
 </dl>

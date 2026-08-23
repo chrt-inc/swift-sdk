@@ -8,10 +8,10 @@
     "environmentEnumName": "ChrtEnvironment",
     "nullableAsOptional": true
   },
-  "originGitCommit": "b6f0794d50be6230f8fa5c5bbf6f198b6d947fd3",
+  "originGitCommit": "7a3c655cb9eddba72fc3d3dc253442b38feed3d4",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
-  "requestedVersion": "1.953.0",
+  "requestedVersion": "1.959.0",
   "ciProvider": "github",
-  "sdkVersion": "1.953.0"
+  "sdkVersion": "1.959.0"
 }

@@ -4,6 +4,7 @@ public final class ShippingOrdersClient: Sendable {
     public let cargo: CargoClient
     public let drafts: DraftsClient
     public let expanded: ExpandedClient
+    public let orderEvents: OrderEventsClient
     public let task: TaskClient
     public let taskArtifact: TaskArtifactClient
     public let taskGroup: TaskGroupClient
@@ -14,6 +15,7 @@ public final class ShippingOrdersClient: Sendable {
         self.cargo = CargoClient(config: config)
         self.drafts = DraftsClient(config: config)
         self.expanded = ExpandedClient(config: config)
+        self.orderEvents = OrderEventsClient(config: config)
         self.task = TaskClient(config: config)
         self.taskArtifact = TaskArtifactClient(config: config)
         self.taskGroup = TaskGroupClient(config: config)
@@ -270,7 +272,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Sets task-group ordering on an active order unless a task group or task is completed. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersTaskGroupOrderingReq) -> (bool)
+    /// Sets task-group ordering on an order ensuring terminal task groups precede non-terminal task groups. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersTaskGroupOrderingReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
