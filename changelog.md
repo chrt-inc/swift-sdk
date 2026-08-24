@@ -1,3 +1,7 @@
+## 2.0.0 - 2026-08-24
+### Breaking Changes
+* **`OrderEventActionEnum1`** — four new cases added (`shippingTaskGroupFileDeleted`, `shippingCargoAssociated`, `shippingCargoUnassociated`, `shippingTaskArtifactFileDeleted`); exhaustive `switch` statements must handle each new case or add a `default` branch to avoid a compile error.
+
 ## 1.954.0 - 2026-08-23
 ### Added
 * **`OrderEventsClient`** — new sub-client accessible via `shipping.orders.orderEvents`, providing `listV1()` to paginate and filter order event log entries and `getV1()` to retrieve a single event by ID, both with hydrated org and user public data.
