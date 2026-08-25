@@ -1,3 +1,15 @@
+## 2.0.0 - 2026-08-25
+### Breaking Changes
+* **`OrderEventExpanded1.userPublicData`** — property removed and replaced with `userName: String?`; replace all reads of `userPublicData` (and any use of `UserPublicData1` from this field) with direct reads of `userName`.
+* **`OrderEventActionEnum1.shippingTaskArtifactUpdated`** — new case added to the enum; exhaustive `switch` statements must add a `default` branch or explicitly handle this case to avoid a compile error.
+### Added
+* **`CustodyParty1`** and **`CustodyPartyExpanded`** — new schema types representing the party that provided or received cargo, with optional contact, user, name, and note fields.
+* **`TasksClient.updateCustodyPartiesV1`** and **`TaskArtifactsClient.updateCustodyPartiesV1`** — new methods to update or clear the `providedBy` / `receivedBy` custody parties on a task or task artifact.
+* **`UsersPrivateDataClient.updateNameV1`** — new method to update the caller's display name in WorkOS and private user data, accepting a `UserPrivateDataNameUpdateReq`.
+### Changed
+* **`Task1`**, **`TaskArtifact1`**, and **`TaskExpanded`** — gain new optional `providedBy` and `receivedBy` fields of type `CustodyParty1` / `CustodyPartyExpanded` surfacing cargo handoff party data.
+* **`UserPrivateData1`** — gains a new optional `name: String?` field reflecting the user's display name.
+
 ## 1.954.0 - 2026-08-23
 ### Added
 * **`OrderEventsClient`** — new sub-client accessible via `shipping.orders.orderEvents`, providing `listV1()` to paginate and filter order event log entries and `getV1()` to retrieve a single event by ID, both with hydrated org and user public data.
