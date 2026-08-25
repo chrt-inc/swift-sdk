@@ -18,6 +18,8 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
     public let observedScanPayloads: [String]?
     public let orderId: String
     public let orderShortId: String
+    public let providedBy: CustodyParty1?
+    public let receivedBy: CustodyParty1?
     /// Must be a string starting with `org_`
     public let requestedByOrgId: String?
     /// Must be a string starting with `user_`
@@ -47,6 +49,8 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         observedScanPayloads: [String]? = nil,
         orderId: String,
         orderShortId: String,
+        providedBy: CustodyParty1? = nil,
+        receivedBy: CustodyParty1? = nil,
         requestedByOrgId: String? = nil,
         requestedByUserId: String? = nil,
         schemaVersion: Int,
@@ -72,6 +76,8 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.observedScanPayloads = observedScanPayloads
         self.orderId = orderId
         self.orderShortId = orderShortId
+        self.providedBy = providedBy
+        self.receivedBy = receivedBy
         self.requestedByOrgId = requestedByOrgId
         self.requestedByUserId = requestedByUserId
         self.schemaVersion = schemaVersion
@@ -100,6 +106,8 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         self.observedScanPayloads = try container.decodeIfPresent([String].self, forKey: .observedScanPayloads)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
+        self.providedBy = try container.decodeIfPresent(CustodyParty1.self, forKey: .providedBy)
+        self.receivedBy = try container.decodeIfPresent(CustodyParty1.self, forKey: .receivedBy)
         self.requestedByOrgId = try container.decodeIfPresent(String.self, forKey: .requestedByOrgId)
         self.requestedByUserId = try container.decodeIfPresent(String.self, forKey: .requestedByUserId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -129,6 +137,8 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.observedScanPayloads, forKey: .observedScanPayloads)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
+        try container.encodeIfPresent(self.providedBy, forKey: .providedBy)
+        try container.encodeIfPresent(self.receivedBy, forKey: .receivedBy)
         try container.encodeIfPresent(self.requestedByOrgId, forKey: .requestedByOrgId)
         try container.encodeIfPresent(self.requestedByUserId, forKey: .requestedByUserId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -156,6 +166,8 @@ public struct TaskArtifact1: Codable, Hashable, Sendable {
         case observedScanPayloads = "observed_scan_payloads"
         case orderId = "order_id"
         case orderShortId = "order_short_id"
+        case providedBy = "provided_by"
+        case receivedBy = "received_by"
         case requestedByOrgId = "requested_by_org_id"
         case requestedByUserId = "requested_by_user_id"
         case schemaVersion = "schema_version"

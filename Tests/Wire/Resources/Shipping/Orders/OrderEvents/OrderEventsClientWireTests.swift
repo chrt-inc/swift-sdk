@@ -28,12 +28,7 @@ import Chrt
                       },
                       "schema_version": 1,
                       "timestamp": "2024-01-15T09:30:00Z",
-                      "user_public_data": {
-                        "_id": "_id",
-                        "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "schema_version": 1,
-                        "user_id": "user_id"
-                      }
+                      "user_name": "user_name"
                     }
                   ],
                   "total_count": 1
@@ -70,12 +65,7 @@ import Chrt
                     )),
                     schemaVersion: 1,
                     timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    userPublicData: Optional(UserPublicData1(
-                        id: "_id",
-                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        schemaVersion: 1,
-                        userId: "user_id"
-                    ))
+                    userName: Optional("user_name")
                 )
             ],
             totalCount: 1
@@ -224,12 +214,7 @@ import Chrt
                   },
                   "schema_version": 1,
                   "timestamp": "2024-01-15T09:30:00Z",
-                  "user_public_data": {
-                    "_id": "_id",
-                    "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "schema_version": 1,
-                    "user_id": "user_id"
-                  }
+                  "user_name": "user_name"
                 }
                 """#.utf8
             )
@@ -372,12 +357,7 @@ import Chrt
             )),
             schemaVersion: 1,
             timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            userPublicData: Optional(UserPublicData1(
-                id: "_id",
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                schemaVersion: 1,
-                userId: "user_id"
-            ))
+            userName: Optional("user_name")
         )
         let response = try await client.shipping.orders.orderEvents.getV1(
             orderEventId: "order_event_id",

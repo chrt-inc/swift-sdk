@@ -33,6 +33,32 @@ public final class UsersPrivateDataClient: Sendable {
         )
     }
 
+    /// Updates the caller's name in WorkOS and private user data. | (UserPrivateDataNameUpdateReq) -> (UserPrivateData1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.users.privateData.updateNameV1(request: .init(name: "name"))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateNameV1(request: Requests.UserPrivateDataNameUpdateReq, requestOptions: RequestOptions? = nil) async throws -> UserPrivateData1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/users/user_private_data/update_name/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: UserPrivateData1.self
+        )
+    }
+
     /// Retrieves private user data for the caller. | () -> (UserPrivateData1)
     ///
     /// ```swift

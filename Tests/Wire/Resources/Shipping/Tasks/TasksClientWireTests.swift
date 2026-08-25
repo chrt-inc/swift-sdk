@@ -72,6 +72,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func updateCustodyPartiesV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.tasks.updateCustodyPartiesV1(
+            taskId: "task_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func locationFromReferenceV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

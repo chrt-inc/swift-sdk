@@ -27,6 +27,8 @@ public struct Task1: Codable, Hashable, Sendable {
     public let orderId: String
     public let orderPlacerComments: String?
     public let orderShortId: String
+    public let providedBy: CustodyParty1?
+    public let receivedBy: CustodyParty1?
     public let schemaVersion: Int
     public let skippedAtTimestamp: Date?
     public let stagedAtTimestamp: Date?
@@ -65,6 +67,8 @@ public struct Task1: Codable, Hashable, Sendable {
         orderId: String,
         orderPlacerComments: String? = nil,
         orderShortId: String,
+        providedBy: CustodyParty1? = nil,
+        receivedBy: CustodyParty1? = nil,
         schemaVersion: Int,
         skippedAtTimestamp: Date? = nil,
         stagedAtTimestamp: Date? = nil,
@@ -100,6 +104,8 @@ public struct Task1: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.orderPlacerComments = orderPlacerComments
         self.orderShortId = orderShortId
+        self.providedBy = providedBy
+        self.receivedBy = receivedBy
         self.schemaVersion = schemaVersion
         self.skippedAtTimestamp = skippedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
@@ -138,6 +144,8 @@ public struct Task1: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
+        self.providedBy = try container.decodeIfPresent(CustodyParty1.self, forKey: .providedBy)
+        self.receivedBy = try container.decodeIfPresent(CustodyParty1.self, forKey: .receivedBy)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
@@ -177,6 +185,8 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encode(self.orderShortId, forKey: .orderShortId)
+        try container.encodeIfPresent(self.providedBy, forKey: .providedBy)
+        try container.encodeIfPresent(self.receivedBy, forKey: .receivedBy)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
@@ -214,6 +224,8 @@ public struct Task1: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case orderPlacerComments = "order_placer_comments"
         case orderShortId = "order_short_id"
+        case providedBy = "provided_by"
+        case receivedBy = "received_by"
         case schemaVersion = "schema_version"
         case skippedAtTimestamp = "skipped_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"

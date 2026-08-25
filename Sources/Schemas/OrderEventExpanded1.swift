@@ -10,7 +10,7 @@ public struct OrderEventExpanded1: Codable, Hashable, Sendable {
     public let orgPublicData: OrgPublicData1?
     public let schemaVersion: Int
     public let timestamp: Date
-    public let userPublicData: UserPublicData1?
+    public let userName: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -24,7 +24,7 @@ public struct OrderEventExpanded1: Codable, Hashable, Sendable {
         orgPublicData: OrgPublicData1? = nil,
         schemaVersion: Int,
         timestamp: Date,
-        userPublicData: UserPublicData1? = nil,
+        userName: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
@@ -36,7 +36,7 @@ public struct OrderEventExpanded1: Codable, Hashable, Sendable {
         self.orgPublicData = orgPublicData
         self.schemaVersion = schemaVersion
         self.timestamp = timestamp
-        self.userPublicData = userPublicData
+        self.userName = userName
         self.additionalProperties = additionalProperties
     }
 
@@ -51,7 +51,7 @@ public struct OrderEventExpanded1: Codable, Hashable, Sendable {
         self.orgPublicData = try container.decodeIfPresent(OrgPublicData1.self, forKey: .orgPublicData)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)
-        self.userPublicData = try container.decodeIfPresent(UserPublicData1.self, forKey: .userPublicData)
+        self.userName = try container.decodeIfPresent(String.self, forKey: .userName)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -67,7 +67,7 @@ public struct OrderEventExpanded1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.orgPublicData, forKey: .orgPublicData)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.timestamp, forKey: .timestamp)
-        try container.encodeIfPresent(self.userPublicData, forKey: .userPublicData)
+        try container.encodeIfPresent(self.userName, forKey: .userName)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -81,6 +81,6 @@ public struct OrderEventExpanded1: Codable, Hashable, Sendable {
         case orgPublicData = "org_public_data"
         case schemaVersion = "schema_version"
         case timestamp
-        case userPublicData = "user_public_data"
+        case userName = "user_name"
     }
 }

@@ -57,6 +57,7 @@ public enum OrderEventActionEnum1: String, Codable, Hashable, CaseIterable, Send
     case shippingCargoDeleted = "shipping.cargo.deleted"
     case shippingTaskArtifactAdded = "shipping.task_artifact.added"
     case shippingTaskArtifactCompleted = "shipping.task_artifact.completed"
+    case shippingTaskArtifactUpdated = "shipping.task_artifact.updated"
     case shippingTaskArtifactFileAdded = "shipping.task_artifact.file_added"
     case shippingTaskArtifactFileDeleted = "shipping.task_artifact.file_deleted"
     case shippingTaskArtifactDeleted = "shipping.task_artifact.deleted"

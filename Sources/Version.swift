@@ -1,1 +1,1 @@
-public let sdkVersion = "1.961.0"
+public let sdkVersion = "1.962.0"

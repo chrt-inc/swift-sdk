@@ -96,6 +96,35 @@ public final class TasksClient: Sendable {
         )
     }
 
+    /// Updates or clears the parties that provided or received cargo for a task. Contact references must belong to the caller's organization. | authz_personas=[draft_creator_org_operator, driver_for_executor, executor_org_operators, coordinator_org_operators] (depending on status) | (TaskCustodyPartiesUpdateReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.tasks.updateCustodyPartiesV1(
+    ///         taskId: "task_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCustodyPartiesV1(taskId: String, request: Requests.TaskCustodyPartiesUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/tasks/custody_parties/update/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
     ///
     /// ```swift

@@ -18,6 +18,7 @@ import Chrt
                       "platform": "android"
                     }
                   ],
+                  "name": "name",
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
@@ -41,6 +42,7 @@ import Chrt
                     platform: Optional(PlatformEnum.android)
                 )
             ]),
+            name: Optional("name"),
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
@@ -48,6 +50,58 @@ import Chrt
         )
         let response = try await client.users.privateData.upsertFirebaseCloudMessagingTokenV1(
             request: .init(firebaseCloudMessagingToken: "firebase_cloud_messaging_token"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateNameV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "_id": "_id",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "firebase_cloud_messaging_token_data": [
+                    {
+                      "firebase_cloud_messaging_token": "firebase_cloud_messaging_token",
+                      "last_used_timestamp": "2024-01-15T09:30:00Z",
+                      "platform": "android"
+                    }
+                  ],
+                  "name": "name",
+                  "phone_number": "phone_number",
+                  "primary_email_address": "primary_email_address",
+                  "schema_version": 1,
+                  "user_id": "user_id"
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = UserPrivateData1(
+            id: "_id",
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            firebaseCloudMessagingTokenData: Optional([
+                FirebaseCloudMessagingTokenData1(
+                    firebaseCloudMessagingToken: "firebase_cloud_messaging_token",
+                    lastUsedTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    platform: Optional(PlatformEnum.android)
+                )
+            ]),
+            name: Optional("name"),
+            phoneNumber: Optional("phone_number"),
+            primaryEmailAddress: Optional("primary_email_address"),
+            schemaVersion: 1,
+            userId: "user_id"
+        )
+        let response = try await client.users.privateData.updateNameV1(
+            request: .init(name: "name"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -68,6 +122,7 @@ import Chrt
                       "platform": "android"
                     }
                   ],
+                  "name": "name",
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
@@ -91,6 +146,7 @@ import Chrt
                     platform: Optional(PlatformEnum.android)
                 )
             ]),
+            name: Optional("name"),
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
@@ -115,6 +171,7 @@ import Chrt
                       "platform": "android"
                     }
                   ],
+                  "name": "name",
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
@@ -138,6 +195,7 @@ import Chrt
                     platform: Optional(PlatformEnum.android)
                 )
             ]),
+            name: Optional("name"),
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
@@ -165,6 +223,7 @@ import Chrt
                       "platform": "android"
                     }
                   ],
+                  "name": "name",
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
@@ -188,6 +247,7 @@ import Chrt
                     platform: Optional(PlatformEnum.android)
                 )
             ]),
+            name: Optional("name"),
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,

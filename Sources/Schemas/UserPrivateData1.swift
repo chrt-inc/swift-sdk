@@ -4,6 +4,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
     public let id: String
     public let createdAtTimestamp: Date
     public let firebaseCloudMessagingTokenData: [FirebaseCloudMessagingTokenData1]?
+    public let name: String?
     public let phoneNumber: String?
     public let primaryEmailAddress: String?
     public let schemaVersion: Int
@@ -16,6 +17,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         id: String,
         createdAtTimestamp: Date,
         firebaseCloudMessagingTokenData: [FirebaseCloudMessagingTokenData1]? = nil,
+        name: String? = nil,
         phoneNumber: String? = nil,
         primaryEmailAddress: String? = nil,
         schemaVersion: Int,
@@ -25,6 +27,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.id = id
         self.createdAtTimestamp = createdAtTimestamp
         self.firebaseCloudMessagingTokenData = firebaseCloudMessagingTokenData
+        self.name = name
         self.phoneNumber = phoneNumber
         self.primaryEmailAddress = primaryEmailAddress
         self.schemaVersion = schemaVersion
@@ -37,6 +40,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.firebaseCloudMessagingTokenData = try container.decodeIfPresent([FirebaseCloudMessagingTokenData1].self, forKey: .firebaseCloudMessagingTokenData)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
         self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -50,6 +54,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.firebaseCloudMessagingTokenData, forKey: .firebaseCloudMessagingTokenData)
+        try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -61,6 +66,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         case id = "_id"
         case createdAtTimestamp = "created_at_timestamp"
         case firebaseCloudMessagingTokenData = "firebase_cloud_messaging_token_data"
+        case name
         case phoneNumber = "phone_number"
         case primaryEmailAddress = "primary_email_address"
         case schemaVersion = "schema_version"

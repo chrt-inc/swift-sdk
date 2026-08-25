@@ -7,7 +7,7 @@ public final class OrderEventsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists event log entries for an order with organization and user public data hydrated, filtering, sorting, and pagination. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventListRes)
+    /// Lists event log entries for an order with organization and user display data hydrated, filtering, sorting, and pagination. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -63,7 +63,7 @@ public final class OrderEventsClient: Sendable {
         )
     }
 
-    /// Retrieves a single order event log entry by its ID with organization and user public data hydrated. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventExpanded1)
+    /// Retrieves a single order event log entry by its ID with organization and user name hydrated. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventExpanded1)
     ///
     /// ```swift
     /// import Foundation

@@ -22671,6 +22671,88 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shipping.taskArtifacts.<a href="/Sources/Resources/Shipping/TaskArtifacts/TaskArtifactsClient.swift">updateCustodyPartiesV1</a>(taskArtifactId: String, request: Requests.TaskArtifactCustodyPartiesUpdateReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates or clears the parties that provided or received cargo for a task artifact. Contact references must belong to the caller's organization. | authz_personas=[draft_creator_org_operator, driver_for_executor, executor_org_operators, coordinator_org_operators] (depending on status) | (TaskArtifactCustodyPartiesUpdateReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskArtifacts.updateCustodyPartiesV1(
+        taskArtifactId: "task_artifact_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskArtifactId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskArtifactCustodyPartiesUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.taskArtifacts.<a href="/Sources/Resources/Shipping/TaskArtifacts/TaskArtifactsClient.swift">skipV1</a>(taskArtifactId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -23206,6 +23288,88 @@ try await main()
 <dd>
 
 **request:** `Requests.TaskCompletionTimestampUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">updateCustodyPartiesV1</a>(taskId: String, request: Requests.TaskCustodyPartiesUpdateReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates or clears the parties that provided or received cargo for a task. Contact references must belong to the caller's organization. | authz_personas=[draft_creator_org_operator, driver_for_executor, executor_org_operators, coordinator_org_operators] (depending on status) | (TaskCustodyPartiesUpdateReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.tasks.updateCustodyPartiesV1(
+        taskId: "task_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskCustodyPartiesUpdateReq` 
     
 </dd>
 </dl>
@@ -27540,7 +27704,7 @@ try await main()
 <dl>
 <dd>
 
-Lists event log entries for an order with organization and user public data hydrated, filtering, sorting, and pagination. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventListRes)
+Lists event log entries for an order with organization and user display data hydrated, filtering, sorting, and pagination. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventListRes)
 </dd>
 </dl>
 </dd>
@@ -27696,7 +27860,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a single order event log entry by its ID with organization and user public data hydrated. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventExpanded1)
+Retrieves a single order event log entry by its ID with organization and user name hydrated. | authz: min_org_role=administrator | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (OrderEventExpanded1)
 </dd>
 </dl>
 </dd>
@@ -43006,6 +43170,77 @@ try await main()
 <dd>
 
 **request:** `Requests.FirebaseCloudMessagingTokenClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.privateData.<a href="/Sources/Resources/Users/PrivateData/UsersPrivateDataClient.swift">updateNameV1</a>(request: Requests.UserPrivateDataNameUpdateReq, requestOptions: RequestOptions?) -> UserPrivateData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the caller's name in WorkOS and private user data. | (UserPrivateDataNameUpdateReq) -> (UserPrivateData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.users.privateData.updateNameV1(request: .init(name: "name"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.UserPrivateDataNameUpdateReq` 
     
 </dd>
 </dl>
