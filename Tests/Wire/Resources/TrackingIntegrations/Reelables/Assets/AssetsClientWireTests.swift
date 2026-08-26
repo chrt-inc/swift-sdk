@@ -43,6 +43,7 @@ import Chrt
                     "config__reporting_interval": "config__reporting_interval",
                     "nfc_id": "nfc_id"
                   },
+                  "label_activated_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -72,6 +73,13 @@ import Chrt
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
                   "org_id": "org_id",
+                  "pause_windows": [
+                    {
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "start_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "paused": true,
                   "schema_version": 1,
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
@@ -133,6 +141,7 @@ import Chrt
                 configReportingInterval: Optional("config__reporting_interval"),
                 nfcId: "nfc_id"
             )),
+            labelActivatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -176,6 +185,13 @@ import Chrt
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
             orgId: "org_id",
+            pauseWindows: Optional([
+                ReelablesAssetPausedTimeWindow1(
+                    endTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ]),
+            paused: Optional(true),
             schemaVersion: 1,
             syncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             workspaceId: "workspace_id"
@@ -231,6 +247,7 @@ import Chrt
                     "config__reporting_interval": "config__reporting_interval",
                     "nfc_id": "nfc_id"
                   },
+                  "label_activated_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -260,6 +277,13 @@ import Chrt
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
                   "org_id": "org_id",
+                  "pause_windows": [
+                    {
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "start_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "paused": true,
                   "schema_version": 1,
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
@@ -321,6 +345,7 @@ import Chrt
                 configReportingInterval: Optional("config__reporting_interval"),
                 nfcId: "nfc_id"
             )),
+            labelActivatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -364,6 +389,13 @@ import Chrt
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
             orgId: "org_id",
+            pauseWindows: Optional([
+                ReelablesAssetPausedTimeWindow1(
+                    endTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ]),
+            paused: Optional(true),
             schemaVersion: 1,
             syncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             workspaceId: "workspace_id"
@@ -415,6 +447,7 @@ import Chrt
                     "config__reporting_interval": "config__reporting_interval",
                     "nfc_id": "nfc_id"
                   },
+                  "label_activated_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -444,6 +477,13 @@ import Chrt
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
                   "org_id": "org_id",
+                  "pause_windows": [
+                    {
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "start_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "paused": true,
                   "schema_version": 1,
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
@@ -505,6 +545,7 @@ import Chrt
                 configReportingInterval: Optional("config__reporting_interval"),
                 nfcId: "nfc_id"
             )),
+            labelActivatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -548,6 +589,13 @@ import Chrt
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
             orgId: "org_id",
+            pauseWindows: Optional([
+                ReelablesAssetPausedTimeWindow1(
+                    endTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ]),
+            paused: Optional(true),
             schemaVersion: 1,
             syncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             workspaceId: "workspace_id"
@@ -600,6 +648,7 @@ import Chrt
                     "config__reporting_interval": "config__reporting_interval",
                     "nfc_id": "nfc_id"
                   },
+                  "label_activated_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -629,6 +678,13 @@ import Chrt
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
                   "org_id": "org_id",
+                  "pause_windows": [
+                    {
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "start_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "paused": true,
                   "schema_version": 1,
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
@@ -690,6 +746,7 @@ import Chrt
                 configReportingInterval: Optional("config__reporting_interval"),
                 nfcId: "nfc_id"
             )),
+            labelActivatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -733,6 +790,13 @@ import Chrt
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
             orgId: "org_id",
+            pauseWindows: Optional([
+                ReelablesAssetPausedTimeWindow1(
+                    endTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ]),
+            paused: Optional(true),
             schemaVersion: 1,
             syncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             workspaceId: "workspace_id"
@@ -775,6 +839,7 @@ import Chrt
                         "ble_id": 1,
                         "nfc_id": "nfc_id"
                       },
+                      "label_activated_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_seen_at_location": {
                         "geometry": {
                           "geometries": [
@@ -794,6 +859,12 @@ import Chrt
                       "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                       "name": "name",
                       "org_id": "org_id",
+                      "pause_windows": [
+                        {
+                          "start_timestamp": "2024-01-15T09:30:00Z"
+                        }
+                      ],
+                      "paused": true,
                       "schema_version": 1,
                       "synced_at_timestamp": "2024-01-15T09:30:00Z",
                       "workspace_id": "workspace_id"
@@ -845,6 +916,7 @@ import Chrt
                         bleId: 1,
                         nfcId: "nfc_id"
                     )),
+                    labelActivatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lastSeenAtLocation: Optional(LocationFeature(
                         geometry: Geometry.geometryCollection(
                             .init(
@@ -874,6 +946,12 @@ import Chrt
                     lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     name: "name",
                     orgId: "org_id",
+                    pauseWindows: Optional([
+                        ReelablesAssetPausedTimeWindow1(
+                            startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                        )
+                    ]),
+                    paused: Optional(true),
                     schemaVersion: 1,
                     syncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     workspaceId: "workspace_id"
@@ -886,6 +964,50 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func pauseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.trackingIntegrations.reelables.assets.pauseV1(
+            assetId: "asset_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unpauseV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.trackingIntegrations.reelables.assets.unpauseV1(
+            assetId: "asset_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -931,6 +1053,7 @@ import Chrt
                     "config__reporting_interval": "config__reporting_interval",
                     "nfc_id": "nfc_id"
                   },
+                  "label_activated_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_seen_at_location": {
                     "bbox": [
                       {
@@ -960,6 +1083,13 @@ import Chrt
                   "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
                   "org_id": "org_id",
+                  "pause_windows": [
+                    {
+                      "end_timestamp": "2024-01-15T09:30:00Z",
+                      "start_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "paused": true,
                   "schema_version": 1,
                   "synced_at_timestamp": "2024-01-15T09:30:00Z",
                   "workspace_id": "workspace_id"
@@ -1021,6 +1151,7 @@ import Chrt
                 configReportingInterval: Optional("config__reporting_interval"),
                 nfcId: "nfc_id"
             )),
+            labelActivatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             lastSeenAtLocation: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
@@ -1064,6 +1195,13 @@ import Chrt
             lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
             orgId: "org_id",
+            pauseWindows: Optional([
+                ReelablesAssetPausedTimeWindow1(
+                    endTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ]),
+            paused: Optional(true),
             schemaVersion: 1,
             syncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             workspaceId: "workspace_id"

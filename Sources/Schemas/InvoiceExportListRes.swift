@@ -1,38 +1,38 @@
 import Foundation
 
-public struct ReelablesDataPointMetadata1: Codable, Hashable, Sendable {
-    public let assetId: String
-    public let paused: Bool?
+public struct InvoiceExportListRes: Codable, Hashable, Sendable {
+    public let items: [InvoiceExportListItem]
+    public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        assetId: String,
-        paused: Bool? = nil,
+        items: [InvoiceExportListItem],
+        totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.assetId = assetId
-        self.paused = paused
+        self.items = items
+        self.totalCount = totalCount
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.assetId = try container.decode(String.self, forKey: .assetId)
-        self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
+        self.items = try container.decode([InvoiceExportListItem].self, forKey: .items)
+        self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.assetId, forKey: .assetId)
-        try container.encodeIfPresent(self.paused, forKey: .paused)
+        try container.encode(self.items, forKey: .items)
+        try container.encode(self.totalCount, forKey: .totalCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case assetId = "asset_id"
-        case paused
+        case items
+        case totalCount = "total_count"
     }
 }

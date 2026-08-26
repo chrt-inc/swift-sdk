@@ -154,6 +154,56 @@ public final class AssetsClient: Sendable {
         )
     }
 
+    /// Pauses a Reelables asset and opens a new pause time window. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.reelables.assets.pauseV1(assetId: "asset_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func pauseV1(assetId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking_integrations/reelables/assets/pause/v1/\(assetId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Unpauses a Reelables asset and closes the open pause time window. | authz: min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.trackingIntegrations.reelables.assets.unpauseV1(assetId: "asset_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unpauseV1(assetId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/tracking_integrations/reelables/assets/unpause/v1/\(assetId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Updates a Reelables asset, applying name changes upstream before updating CHRT. | authz: min_org_role=operator | (ReelablesAssetClientUpdate1) -> (ReelablesAsset1)
     ///
     /// ```swift

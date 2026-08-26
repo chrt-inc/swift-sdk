@@ -7,6 +7,7 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
     public let destinationGeofenceLocation: LocationFeature?
     public let destinationGeofenceRadiusMiles: Double?
     public let label: ReelablesLabel1?
+    public let labelActivatedAtTimestamp: Date?
     public let lastSeenAtLocation: LocationFeature?
     public let lastSeenAtLocationCity: String?
     public let lastSeenAtLocationLargeCity: String?
@@ -14,6 +15,8 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
     public let name: String
     /// Must be a string starting with `org_`
     public let orgId: String
+    public let pauseWindows: [ReelablesAssetPausedTimeWindow1]?
+    public let paused: Bool?
     public let schemaVersion: Int
     public let syncedAtTimestamp: Date?
     public let workspaceId: String
@@ -27,12 +30,15 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
         destinationGeofenceLocation: LocationFeature? = nil,
         destinationGeofenceRadiusMiles: Double? = nil,
         label: ReelablesLabel1? = nil,
+        labelActivatedAtTimestamp: Date? = nil,
         lastSeenAtLocation: LocationFeature? = nil,
         lastSeenAtLocationCity: String? = nil,
         lastSeenAtLocationLargeCity: String? = nil,
         lastSeenAtTimestamp: Date? = nil,
         name: String,
         orgId: String,
+        pauseWindows: [ReelablesAssetPausedTimeWindow1]? = nil,
+        paused: Bool? = nil,
         schemaVersion: Int,
         syncedAtTimestamp: Date? = nil,
         workspaceId: String,
@@ -44,12 +50,15 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
         self.destinationGeofenceLocation = destinationGeofenceLocation
         self.destinationGeofenceRadiusMiles = destinationGeofenceRadiusMiles
         self.label = label
+        self.labelActivatedAtTimestamp = labelActivatedAtTimestamp
         self.lastSeenAtLocation = lastSeenAtLocation
         self.lastSeenAtLocationCity = lastSeenAtLocationCity
         self.lastSeenAtLocationLargeCity = lastSeenAtLocationLargeCity
         self.lastSeenAtTimestamp = lastSeenAtTimestamp
         self.name = name
         self.orgId = orgId
+        self.pauseWindows = pauseWindows
+        self.paused = paused
         self.schemaVersion = schemaVersion
         self.syncedAtTimestamp = syncedAtTimestamp
         self.workspaceId = workspaceId
@@ -64,12 +73,15 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
         self.destinationGeofenceLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .destinationGeofenceLocation)
         self.destinationGeofenceRadiusMiles = try container.decodeIfPresent(Double.self, forKey: .destinationGeofenceRadiusMiles)
         self.label = try container.decodeIfPresent(ReelablesLabel1.self, forKey: .label)
+        self.labelActivatedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .labelActivatedAtTimestamp)
         self.lastSeenAtLocation = try container.decodeIfPresent(LocationFeature.self, forKey: .lastSeenAtLocation)
         self.lastSeenAtLocationCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationCity)
         self.lastSeenAtLocationLargeCity = try container.decodeIfPresent(String.self, forKey: .lastSeenAtLocationLargeCity)
         self.lastSeenAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastSeenAtTimestamp)
         self.name = try container.decode(String.self, forKey: .name)
         self.orgId = try container.decode(String.self, forKey: .orgId)
+        self.pauseWindows = try container.decodeIfPresent([ReelablesAssetPausedTimeWindow1].self, forKey: .pauseWindows)
+        self.paused = try container.decodeIfPresent(Bool.self, forKey: .paused)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.syncedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .syncedAtTimestamp)
         self.workspaceId = try container.decode(String.self, forKey: .workspaceId)
@@ -85,12 +97,15 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.destinationGeofenceLocation, forKey: .destinationGeofenceLocation)
         try container.encodeIfPresent(self.destinationGeofenceRadiusMiles, forKey: .destinationGeofenceRadiusMiles)
         try container.encodeIfPresent(self.label, forKey: .label)
+        try container.encodeIfPresent(self.labelActivatedAtTimestamp, forKey: .labelActivatedAtTimestamp)
         try container.encodeIfPresent(self.lastSeenAtLocation, forKey: .lastSeenAtLocation)
         try container.encodeIfPresent(self.lastSeenAtLocationCity, forKey: .lastSeenAtLocationCity)
         try container.encodeIfPresent(self.lastSeenAtLocationLargeCity, forKey: .lastSeenAtLocationLargeCity)
         try container.encodeIfPresent(self.lastSeenAtTimestamp, forKey: .lastSeenAtTimestamp)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.orgId, forKey: .orgId)
+        try container.encodeIfPresent(self.pauseWindows, forKey: .pauseWindows)
+        try container.encodeIfPresent(self.paused, forKey: .paused)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.syncedAtTimestamp, forKey: .syncedAtTimestamp)
         try container.encode(self.workspaceId, forKey: .workspaceId)
@@ -104,12 +119,15 @@ public struct ReelablesAsset1: Codable, Hashable, Sendable {
         case destinationGeofenceLocation = "destination_geofence_location"
         case destinationGeofenceRadiusMiles = "destination_geofence_radius_miles"
         case label
+        case labelActivatedAtTimestamp = "label_activated_at_timestamp"
         case lastSeenAtLocation = "last_seen_at_location"
         case lastSeenAtLocationCity = "last_seen_at_location_city"
         case lastSeenAtLocationLargeCity = "last_seen_at_location_large_city"
         case lastSeenAtTimestamp = "last_seen_at_timestamp"
         case name
         case orgId = "org_id"
+        case pauseWindows = "pause_windows"
+        case paused
         case schemaVersion = "schema_version"
         case syncedAtTimestamp = "synced_at_timestamp"
         case workspaceId = "workspace_id"

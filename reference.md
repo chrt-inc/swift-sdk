@@ -5163,6 +5163,98 @@ try await main()
 </dl>
 </details>
 
+## BillingNew Invoices Export
+<details><summary><code>client.billingNew.invoices.export.<a href="/Sources/Resources/BillingNew/Invoices/Export/ExportClient.swift">listV1</a>(invoiceId: String, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> InvoiceExportListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists up to 1,000 shipment-level export rows for one approved accounts-receivable invoice owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoices.export.listV1(
+        invoiceId: "invoice_id",
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## BillingNew Orders RateSheetLineItems
 <details><summary><code>client.billingNew.orders.rateSheetLineItems.<a href="/Sources/Resources/BillingNew/Orders/RateSheetLineItems/RateSheetLineItemsClient.swift">generateManyV1</a>(request: Requests.OrderRateSheetLineItemsGenerateManyReq, requestOptions: RequestOptions?) -> OrderRateSheetLineItemsGenerateManyRes</code></summary>
 <dl>
@@ -42183,6 +42275,148 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">pauseV1</a>(assetId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Pauses a Reelables asset and opens a new pause time window. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.pauseV1(assetId: "asset_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.trackingIntegrations.reelables.assets.<a href="/Sources/Resources/TrackingIntegrations/Reelables/Assets/AssetsClient.swift">unpauseV1</a>(assetId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unpauses a Reelables asset and closes the open pause time window. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.trackingIntegrations.reelables.assets.unpauseV1(assetId: "asset_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetId:** `String` 
     
 </dd>
 </dl>

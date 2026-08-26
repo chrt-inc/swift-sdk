@@ -1,9 +1,11 @@
 import Foundation
 
 public final class InvoicesClient: Sendable {
+    public let export: ExportClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.export = ExportClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
