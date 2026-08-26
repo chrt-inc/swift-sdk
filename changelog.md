@@ -1,3 +1,13 @@
+## 2.1.0 - 2026-08-26
+### Added
+* **`ExportClient`** — new sub-client at `billingNew.invoices.export` with `listV1(invoiceId:page:pageSize:)` to retrieve paginated shipment-level export rows for an approved accounts-receivable invoice.
+* **`InvoiceExportListRes`** and **`InvoiceExportListItem`** — new response types representing a paginated invoice export list with full billing, delivery, and tax detail fields.
+* **`AssetsClient.pauseV1(assetId:)`** and **`AssetsClient.unpauseV1(assetId:)`** — new methods on `trackingIntegrations.reelables.assets` to pause and unpause a Reelables asset by ID, each returning a `Bool` indicating success.
+* **`ReelablesAssetPausedTimeWindow1`** — new schema type representing a pause time window with a required `startTimestamp` and an optional `endTimestamp`.
+### Changed
+* **`ReelablesAsset1`** — gains new optional fields `paused`, `pauseWindows`, and `labelActivatedAtTimestamp` surfacing asset pause state, pause time windows, and label activation timestamp.
+* **`ReelablesDataPointMetadata1`** — gains a new optional `paused: Bool?` field indicating whether the asset was paused at the time of the data point.
+
 ## 2.0.0 - 2026-08-25
 ### Breaking Changes
 * **`OrderEventExpanded1.userPublicData`** — property removed and replaced with `userName: String?`; replace all reads of `userPublicData` (and any use of `UserPublicData1` from this field) with direct reads of `userName`.
