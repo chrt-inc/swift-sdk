@@ -14,6 +14,7 @@ public enum DepartmentTypeEnum: String, Codable, Hashable, CaseIterable, Sendabl
     case lifeSciences = "life_sciences"
     case liveAnimals = "live_animals"
     case manufacturing
+    case marine
     case pharmaceutical
     case radiopharma
     case retail

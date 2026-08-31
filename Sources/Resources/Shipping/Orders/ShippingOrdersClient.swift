@@ -402,6 +402,31 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
+    /// Reopens a cancelled order, restaging every cancelled task group, task, task artifact, operations task, and cargo on it regardless of when each was cancelled, then re-deriving order, cargo, and driver status from the surviving work. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.undoCancelV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func undoCancelV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/orders/undo_cancel/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Updates department_id for the caller's role on the order. Coordinator writes coordinator_department_id; executor writes executor_department_id on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentReq) -> (bool)
     ///
     /// ```swift

@@ -53,6 +53,34 @@ import Chrt
                     ],
                     "waiting": true
                   },
+                  "executor_department": {
+                    "_id": "_id",
+                    "created_at": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "department_type": "aerospace",
+                    "location": {
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1,
+                      "type": "Feature"
+                    },
+                    "name": "name",
+                    "operator_user_ids": [
+                      "operator_user_ids"
+                    ],
+                    "org_id": "org_id",
+                    "schema_version": 1,
+                    "short_id": "short_id"
+                  },
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
@@ -218,6 +246,46 @@ import Chrt
                     VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
+            )),
+            executorDepartment: Optional(Department1(
+                id: "_id",
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                departmentType: DepartmentTypeEnum.aerospace,
+                location: Optional(LocationFeature(
+                    geometry: Geometry.geometryCollection(
+                        .init(
+                            geometries: [
+                                GeometriesItem.lineString(
+                                    .init(
+                                        coordinates: [
+                                            CoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
+                                        ]
+                                    )
+                                )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    )),
+                    type: .feature
+                )),
+                name: "name",
+                operatorUserIds: Optional([
+                    "operator_user_ids"
+                ]),
+                orgId: "org_id",
+                schemaVersion: 1,
+                shortId: "short_id"
             )),
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
@@ -380,6 +448,34 @@ import Chrt
                     ],
                     "waiting": true
                   },
+                  "executor_department": {
+                    "_id": "_id",
+                    "created_at": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "department_type": "aerospace",
+                    "location": {
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1,
+                      "type": "Feature"
+                    },
+                    "name": "name",
+                    "operator_user_ids": [
+                      "operator_user_ids"
+                    ],
+                    "org_id": "org_id",
+                    "schema_version": 1,
+                    "short_id": "short_id"
+                  },
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
@@ -545,6 +641,46 @@ import Chrt
                     VehicleTypeEnum.sedan
                 ]),
                 waiting: Optional(true)
+            )),
+            executorDepartment: Optional(Department1(
+                id: "_id",
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                departmentType: DepartmentTypeEnum.aerospace,
+                location: Optional(LocationFeature(
+                    geometry: Geometry.geometryCollection(
+                        .init(
+                            geometries: [
+                                GeometriesItem.lineString(
+                                    .init(
+                                        coordinates: [
+                                            CoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
+                                        ]
+                                    )
+                                )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    )),
+                    type: .feature
+                )),
+                name: "name",
+                operatorUserIds: Optional([
+                    "operator_user_ids"
+                ]),
+                orgId: "org_id",
+                schemaVersion: 1,
+                shortId: "short_id"
             )),
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
@@ -707,6 +843,34 @@ import Chrt
                     ],
                     "waiting": true
                   },
+                  "executor_department": {
+                    "_id": "_id",
+                    "created_at": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "department_type": "aerospace",
+                    "location": {
+                      "geometry": {
+                        "geometries": [
+                          {
+                            "coordinates": [
+                              []
+                            ],
+                            "type": "LineString"
+                          }
+                        ],
+                        "type": "GeometryCollection"
+                      },
+                      "id": 1,
+                      "type": "Feature"
+                    },
+                    "name": "name",
+                    "operator_user_ids": [
+                      "operator_user_ids"
+                    ],
+                    "org_id": "org_id",
+                    "schema_version": 1,
+                    "short_id": "short_id"
+                  },
                   "executor_org_company_name": "executor_org_company_name",
                   "executor_org_handle": "executor_org_handle",
                   "executor_org_id": "executor_org_id",
@@ -873,6 +1037,46 @@ import Chrt
                 ]),
                 waiting: Optional(true)
             )),
+            executorDepartment: Optional(Department1(
+                id: "_id",
+                createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                departmentType: DepartmentTypeEnum.aerospace,
+                location: Optional(LocationFeature(
+                    geometry: Geometry.geometryCollection(
+                        .init(
+                            geometries: [
+                                GeometriesItem.lineString(
+                                    .init(
+                                        coordinates: [
+                                            CoordinatesItem.position2D(
+                                                []
+                                            )
+                                        ],
+                                        additionalProperties: [
+                                            "type": JSONValue.string("LineString")
+                                        ]
+                                    )
+                                )
+                            ],
+                            additionalProperties: [
+                                "type": JSONValue.string("GeometryCollection")
+                            ]
+                        )
+                    ),
+                    id: Optional(Id.int(
+                        1
+                    )),
+                    type: .feature
+                )),
+                name: "name",
+                operatorUserIds: Optional([
+                    "operator_user_ids"
+                ]),
+                orgId: "org_id",
+                schemaVersion: 1,
+                shortId: "short_id"
+            )),
             executorOrgCompanyName: Optional("executor_org_company_name"),
             executorOrgHandle: Optional("executor_org_handle"),
             executorOrgId: Optional("executor_org_id"),
@@ -1004,6 +1208,16 @@ import Chrt
                         "schema_version": 1,
                         "user_id": "user_id"
                       },
+                      "executor_department": {
+                        "_id": "_id",
+                        "created_at": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "department_type": "aerospace",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "short_id": "short_id"
+                      },
                       "executor_org_company_name": "executor_org_company_name",
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
@@ -1061,6 +1275,16 @@ import Chrt
                         orgId: "org_id",
                         schemaVersion: 1,
                         userId: "user_id"
+                    )),
+                    executorDepartment: Optional(Department1(
+                        id: "_id",
+                        createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        departmentType: DepartmentTypeEnum.aerospace,
+                        name: "name",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        shortId: "short_id"
                     )),
                     executorOrgCompanyName: Optional("executor_org_company_name"),
                     executorOrgHandle: Optional("executor_org_handle"),
@@ -1151,6 +1375,16 @@ import Chrt
                         "schema_version": 1,
                         "user_id": "user_id"
                       },
+                      "executor_department": {
+                        "_id": "_id",
+                        "created_at": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "department_type": "aerospace",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "short_id": "short_id"
+                      },
                       "executor_org_company_name": "executor_org_company_name",
                       "executor_org_handle": "executor_org_handle",
                       "executor_org_id": "executor_org_id",
@@ -1208,6 +1442,16 @@ import Chrt
                         orgId: "org_id",
                         schemaVersion: 1,
                         userId: "user_id"
+                    )),
+                    executorDepartment: Optional(Department1(
+                        id: "_id",
+                        createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        departmentType: DepartmentTypeEnum.aerospace,
+                        name: "name",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        shortId: "short_id"
                     )),
                     executorOrgCompanyName: Optional("executor_org_company_name"),
                     executorOrgHandle: Optional("executor_org_handle"),

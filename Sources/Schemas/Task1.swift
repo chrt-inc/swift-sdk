@@ -22,6 +22,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?
     public let executorOrgNotes: [TaskExecutorOrgNote1]?
+    public let flightLegId: String?
     public let geofenceDistanceMiles: Double?
     public let location: LocationFeature?
     public let orderId: String
@@ -62,6 +63,7 @@ public struct Task1: Codable, Hashable, Sendable {
         draftStartedAtTimestamp: Date,
         exceptionAtTimestamp: Date? = nil,
         executorOrgNotes: [TaskExecutorOrgNote1]? = nil,
+        flightLegId: String? = nil,
         geofenceDistanceMiles: Double? = nil,
         location: LocationFeature? = nil,
         orderId: String,
@@ -99,6 +101,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
         self.executorOrgNotes = executorOrgNotes
+        self.flightLegId = flightLegId
         self.geofenceDistanceMiles = geofenceDistanceMiles
         self.location = location
         self.orderId = orderId
@@ -139,6 +142,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
         self.executorOrgNotes = try container.decodeIfPresent([TaskExecutorOrgNote1].self, forKey: .executorOrgNotes)
+        self.flightLegId = try container.decodeIfPresent(String.self, forKey: .flightLegId)
         self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.orderId = try container.decode(String.self, forKey: .orderId)
@@ -180,6 +184,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
         try container.encodeIfPresent(self.executorOrgNotes, forKey: .executorOrgNotes)
+        try container.encodeIfPresent(self.flightLegId, forKey: .flightLegId)
         try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encode(self.orderId, forKey: .orderId)
@@ -219,6 +224,7 @@ public struct Task1: Codable, Hashable, Sendable {
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
         case executorOrgNotes = "executor_org_notes"
+        case flightLegId = "flight_leg_id"
         case geofenceDistanceMiles = "geofence_distance_miles"
         case location
         case orderId = "order_id"

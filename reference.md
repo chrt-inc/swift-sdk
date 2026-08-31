@@ -5252,7 +5252,7 @@ try await main()
 <dl>
 <dd>
 
-Lists up to 1,000 shipment-level export rows for one approved accounts-receivable invoice owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
+Lists up to 1,000 shipment-level export rows for one accounts-receivable invoice owned by the caller's organization, regardless of invoice status. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
 </dd>
 </dl>
 </dd>
@@ -22368,6 +22368,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">undoCancelV1</a>(orderId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reopens a cancelled order, restaging every cancelled task group, task, task artifact, operations task, and cargo on it regardless of when each was cancelled, then re-deriving order, cargo, and driver status from the surviving work. | authz_personas=[task_group_operating_org_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.undoCancelV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">updateDepartmentV1</a>(orderId: String, request: Requests.OrdersUpdateDepartmentReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -26590,7 +26661,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes active cargo without completed task associations and resynchronizes the order AWB cache. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
+Deletes cargo in any lifecycle state, removes task associations, and resynchronizes the order AWB cache. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -27189,7 +27260,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentId: String?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentId: String?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
 <dl>
 <dd>
 
@@ -27253,6 +27324,7 @@ private func main() async throws {
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExecutorOrgId: "filter_executor_org_id",
+        filterExecutorDepartmentId: "filter_executor_department_id",
         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
@@ -27471,6 +27543,14 @@ try await main()
 <dd>
 
 **filterExecutorOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterExecutorDepartmentId:** `String?` — Filter by executor department ID
     
 </dd>
 </dl>
@@ -28176,7 +28256,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task, recalculates task-group mileage, and rejects operational deletion while artifacts remain. | () -> (bool)
+Deletes a task in any lifecycle state and synchronizes affected shipping state. | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -28487,7 +28567,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a task group to a non-terminal order. Groups added to DRAFT orders are DRAFT; groups added to STAGED or IN_PROGRESS orders are STAGED. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersAddTaskGroupReq) -> (PydanticObjectId)
+Adds a task group to an order. Draft groups are DRAFT; all later lifecycle groups are STAGED and parent state is synchronized. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersAddTaskGroupReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -28643,7 +28723,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes a task group from an active order and synchronizes affected order, driver, cargo, and account state. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
+Deletes a task group in any lifecycle state and synchronizes affected shipping state. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -28856,7 +28936,7 @@ try await main()
 <dl>
 <dd>
 
-Replaces the ordered flight legs on an order task group. | (OrdersSetTaskGroupFlightInfoReq) -> (bool)
+Replaces the ordered flight legs on an order task group. A submitted leg that is the same physical flight (carrier, flight number, origin, destination, UTC departure date) as an existing leg keeps its id, so tasks reporting on it stay attached. Changing any of those five details is a different flight: the old leg is deleted and any task referencing it has its flight_leg_id cleared. Because flight_leg_id is not editable, re-attaching such a task requires deleting and recreating it. | (OrdersSetTaskGroupFlightInfoReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -28948,7 +29028,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the ordering of tasks within an order task group and recalculates estimated mileage. DRAFT orders require draft_creator_org_operator; operational orders require task_group_operating_org_operators and a STAGED or IN_PROGRESS task group. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (OrdersSetTaskGroupTaskOrderingReq) -> (bool)
+Sets task ordering in any lifecycle state, recalculating mileage and affected cargo state. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (OrdersSetTaskGroupTaskOrderingReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -29032,7 +29112,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the vehicle type until the task group reaches a terminal status. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
+Sets the task-group vehicle type in any lifecycle state. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
 </dd>
 </dl>
 </dd>

@@ -7,7 +7,7 @@ public final class ExportClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists up to 1,000 shipment-level export rows for one approved accounts-receivable invoice owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
+    /// Lists up to 1,000 shipment-level export rows for one accounts-receivable invoice owned by the caller's organization, regardless of invoice status. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
     ///
     /// ```swift
     /// import Foundation

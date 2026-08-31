@@ -69,7 +69,7 @@ public final class CargoClient: Sendable {
         )
     }
 
-    /// Deletes active cargo without completed task associations and resynchronizes the order AWB cache. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
+    /// Deletes cargo in any lifecycle state, removes task associations, and resynchronizes the order AWB cache. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
     ///
     /// ```swift
     /// import Foundation

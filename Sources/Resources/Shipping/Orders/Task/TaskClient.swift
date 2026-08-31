@@ -38,7 +38,7 @@ public final class TaskClient: Sendable {
         )
     }
 
-    /// Deletes a task, recalculates task-group mileage, and rejects operational deletion while artifacts remain. | () -> (bool)
+    /// Deletes a task in any lifecycle state and synchronizes affected shipping state. | () -> (bool)
     ///
     /// ```swift
     /// import Foundation

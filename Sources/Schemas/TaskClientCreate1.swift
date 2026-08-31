@@ -5,6 +5,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
     public let contactIds: [String]?
     public let coordinatorShipperAccountIds: [String]?
     public let datetimeWindows: [DateTimeWindow1]?
+    public let flightLegId: String?
     public let geofenceDistanceMiles: Double?
     public let location: LocationFeature?
     public let orderPlacerComments: String?
@@ -17,6 +18,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         contactIds: [String]? = nil,
         coordinatorShipperAccountIds: [String]? = nil,
         datetimeWindows: [DateTimeWindow1]? = nil,
+        flightLegId: String? = nil,
         geofenceDistanceMiles: Double? = nil,
         location: LocationFeature? = nil,
         orderPlacerComments: String? = nil,
@@ -27,6 +29,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         self.contactIds = contactIds
         self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.datetimeWindows = datetimeWindows
+        self.flightLegId = flightLegId
         self.geofenceDistanceMiles = geofenceDistanceMiles
         self.location = location
         self.orderPlacerComments = orderPlacerComments
@@ -40,6 +43,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         self.contactIds = try container.decodeIfPresent([String].self, forKey: .contactIds)
         self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.datetimeWindows = try container.decodeIfPresent([DateTimeWindow1].self, forKey: .datetimeWindows)
+        self.flightLegId = try container.decodeIfPresent(String.self, forKey: .flightLegId)
         self.geofenceDistanceMiles = try container.decodeIfPresent(Double.self, forKey: .geofenceDistanceMiles)
         self.location = try container.decodeIfPresent(LocationFeature.self, forKey: .location)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
@@ -54,6 +58,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.contactIds, forKey: .contactIds)
         try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encodeIfPresent(self.datetimeWindows, forKey: .datetimeWindows)
+        try container.encodeIfPresent(self.flightLegId, forKey: .flightLegId)
         try container.encodeIfPresent(self.geofenceDistanceMiles, forKey: .geofenceDistanceMiles)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
@@ -66,6 +71,7 @@ public struct TaskClientCreate1: Codable, Hashable, Sendable {
         case contactIds = "contact_ids"
         case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case datetimeWindows = "datetime_windows"
+        case flightLegId = "flight_leg_id"
         case geofenceDistanceMiles = "geofence_distance_miles"
         case location
         case orderPlacerComments = "order_placer_comments"

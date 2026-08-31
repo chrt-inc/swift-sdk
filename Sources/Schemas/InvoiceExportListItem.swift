@@ -19,7 +19,7 @@ public struct InvoiceExportListItem: Codable, Hashable, Sendable {
     public let deliveryStopsOnOrder: Int?
     public let destinationIata: String?
     public let flightNumbers: [String]?
-    public let invoiceApprovalTimestamp: Date
+    public let invoiceApprovalTimestamp: Date?
     public let invoiceNumber: String
     public let mileageEstimated: Double?
     public let netBilling: Double
@@ -63,7 +63,7 @@ public struct InvoiceExportListItem: Codable, Hashable, Sendable {
         deliveryStopsOnOrder: Int? = nil,
         destinationIata: String? = nil,
         flightNumbers: [String]? = nil,
-        invoiceApprovalTimestamp: Date,
+        invoiceApprovalTimestamp: Date? = nil,
         invoiceNumber: String,
         mileageEstimated: Double? = nil,
         netBilling: Double,
@@ -150,7 +150,7 @@ public struct InvoiceExportListItem: Codable, Hashable, Sendable {
         self.deliveryStopsOnOrder = try container.decodeIfPresent(Int.self, forKey: .deliveryStopsOnOrder)
         self.destinationIata = try container.decodeIfPresent(String.self, forKey: .destinationIata)
         self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
-        self.invoiceApprovalTimestamp = try container.decode(Date.self, forKey: .invoiceApprovalTimestamp)
+        self.invoiceApprovalTimestamp = try container.decodeIfPresent(Date.self, forKey: .invoiceApprovalTimestamp)
         self.invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
         self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
         self.netBilling = try container.decode(Double.self, forKey: .netBilling)
@@ -196,7 +196,7 @@ public struct InvoiceExportListItem: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.deliveryStopsOnOrder, forKey: .deliveryStopsOnOrder)
         try container.encodeIfPresent(self.destinationIata, forKey: .destinationIata)
         try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
-        try container.encode(self.invoiceApprovalTimestamp, forKey: .invoiceApprovalTimestamp)
+        try container.encodeIfPresent(self.invoiceApprovalTimestamp, forKey: .invoiceApprovalTimestamp)
         try container.encode(self.invoiceNumber, forKey: .invoiceNumber)
         try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
         try container.encode(self.netBilling, forKey: .netBilling)

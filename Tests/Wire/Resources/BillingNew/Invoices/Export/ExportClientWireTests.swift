@@ -102,7 +102,7 @@ import Chrt
                     flightNumbers: Optional([
                         "flight_numbers"
                     ]),
-                    invoiceApprovalTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    invoiceApprovalTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     invoiceNumber: "invoice_number",
                     mileageEstimated: Optional(1.1),
                     netBilling: 1.1,

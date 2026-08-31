@@ -7,7 +7,7 @@ public final class TaskGroupClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a task group to a non-terminal order. Groups added to DRAFT orders are DRAFT; groups added to STAGED or IN_PROGRESS orders are STAGED. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersAddTaskGroupReq) -> (PydanticObjectId)
+    /// Adds a task group to an order. Draft groups are DRAFT; all later lifecycle groups are STAGED and parent state is synchronized. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (OrdersAddTaskGroupReq) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -65,7 +65,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Deletes a task group from an active order and synchronizes affected order, driver, cargo, and account state. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
+    /// Deletes a task group in any lifecycle state and synchronizes affected shipping state. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | () -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -140,7 +140,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Replaces the ordered flight legs on an order task group. | (OrdersSetTaskGroupFlightInfoReq) -> (bool)
+    /// Replaces the ordered flight legs on an order task group. A submitted leg that is the same physical flight (carrier, flight number, origin, destination, UTC departure date) as an existing leg keeps its id, so tasks reporting on it stay attached. Changing any of those five details is a different flight: the old leg is deleted and any task referencing it has its flight_leg_id cleared. Because flight_leg_id is not editable, re-attaching such a task requires deleting and recreating it. | (OrdersSetTaskGroupFlightInfoReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -179,7 +179,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the ordering of tasks within an order task group and recalculates estimated mileage. DRAFT orders require draft_creator_org_operator; operational orders require task_group_operating_org_operators and a STAGED or IN_PROGRESS task group. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (OrdersSetTaskGroupTaskOrderingReq) -> (bool)
+    /// Sets task ordering in any lifecycle state, recalculating mileage and affected cargo state. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (OrdersSetTaskGroupTaskOrderingReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -210,7 +210,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the vehicle type until the task group reaches a terminal status. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
+    /// Sets the task-group vehicle type in any lifecycle state. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation

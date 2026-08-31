@@ -1,6 +1,7 @@
 import Foundation
 
 public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
+    public let coordinatorDepartment: Department1?
     public let coordinatorOrgCompanyName: String?
     /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
     public let coordinatorOrgHandle: String?
@@ -17,6 +18,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        coordinatorDepartment: Department1? = nil,
         coordinatorOrgCompanyName: String? = nil,
         coordinatorOrgHandle: String? = nil,
         coordinatorShipperAccounts: [Account1]? = nil,
@@ -30,6 +32,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
         unassignedCargos: [Cargo1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.coordinatorDepartment = coordinatorDepartment
         self.coordinatorOrgCompanyName = coordinatorOrgCompanyName
         self.coordinatorOrgHandle = coordinatorOrgHandle
         self.coordinatorShipperAccounts = coordinatorShipperAccounts
@@ -46,6 +49,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.coordinatorDepartment = try container.decodeIfPresent(Department1.self, forKey: .coordinatorDepartment)
         self.coordinatorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgCompanyName)
         self.coordinatorOrgHandle = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgHandle)
         self.coordinatorShipperAccounts = try container.decodeIfPresent([Account1].self, forKey: .coordinatorShipperAccounts)
@@ -63,6 +67,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.coordinatorDepartment, forKey: .coordinatorDepartment)
         try container.encodeIfPresent(self.coordinatorOrgCompanyName, forKey: .coordinatorOrgCompanyName)
         try container.encodeIfPresent(self.coordinatorOrgHandle, forKey: .coordinatorOrgHandle)
         try container.encodeIfPresent(self.coordinatorShipperAccounts, forKey: .coordinatorShipperAccounts)
@@ -78,6 +83,7 @@ public struct OrderExpandedForProvider: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case coordinatorDepartment = "coordinator_department"
         case coordinatorOrgCompanyName = "coordinator_org_company_name"
         case coordinatorOrgHandle = "coordinator_org_handle"
         case coordinatorShipperAccounts = "coordinator_shipper_accounts"
