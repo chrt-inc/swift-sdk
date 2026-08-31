@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-08-31
+### Breaking Changes
+* **`InvoiceLineItemsClient.updateV1`** — renamed to `updateSourceV1` with return type changed from `Bool` to `InvoiceLineItem1` and a new HTTP path; replace all calls to `updateV1` with `updateSourceV1` and update any code handling a `Bool` response.
+* **`InvoiceLineItemClientUpdate1`** — properties `currencyCode` and `unitPrice` removed; replace them with `sourceCurrencyCode` (`BillingCurrencyCodeEnum1?`) and `sourceUnitPrice` (`Double?`) respectively.
+* **`ShippingIntegrationOrderCompletedAtProvenanceEnum1`** — enum deleted; `completedAtProvenance` on `ShippingIntegrationOrderExpanded1` now uses `ShippingIntegrationOrderStatusTimestampProvenanceEnum1`; update all type references and exhaustive `switch` statements.
+### Added
+* **`InvoiceLineItemsClient.updateCurrencyConversionManyV1(request:requestOptions:)`** — new bulk PATCH method that applies or reverts a currency conversion across multiple line items, returning `[InvoiceLineItem1]`.
+* **`InvoiceLineItemCurrencyConversion1`** and **`InvoiceLineItemsCurrencyConversionUpdateManyReq`** — new schema and request types supporting bulk currency-conversion updates on invoice line items.
+* **`ShippingIntegrationOrderStatusTimestampProvenanceEnum1`** — new enum with `reported` and `derived` cases replacing the deleted provenance enum.
+* **`ShippingIntegrationOrderExpanded1`** — gains optional `inProgressAtProvenance` and `inProgressAtTimestamp` fields surfacing in-progress status timestamp data.
+### Changed
+* **`InvoiceLineItem1`** and **`InvoiceLineItemServerCreate1`** — gain a new optional `currencyConversion: InvoiceLineItemCurrencyConversion1?` field reflecting any active currency conversion on the line item.
+
 ## 2.1.0 - 2026-08-26
 ### Added
 * **`ExportClient`** — new sub-client at `billingNew.invoices.export` with `listV1(invoiceId:page:pageSize:)` to retrieve paginated shipment-level export rows for an approved accounts-receivable invoice.
