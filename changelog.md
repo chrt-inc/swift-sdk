@@ -1,3 +1,12 @@
+## 3.0.0 - 2026-08-31
+### Breaking Changes
+* **`InvoiceExportListItem.invoiceApprovalTimestamp`** — changed from `Date` to `Date?`; add an `if let` or `guard let` unwrap wherever this property is read, and update initializer call sites to pass `nil` or an explicit `Optional(...)` value.
+### Added
+* **`ShippingOrdersClient.undoCancelV1(orderId:)`** — new method that reopens a cancelled order, restaging all associated task groups, tasks, artifacts, operations tasks, and cargo, then re-derives order, cargo, and driver status.
+* **`DepartmentTypeEnum.marine`** — new enum case; exhaustive `switch` statements must add a `case .marine:` branch.
+* **`flightLegId: String?`** — new optional field added to `Task1`, `OrderTemplateNewTask1`, and `TaskClientCreate1` for linking a task or task-creation request to a specific flight leg.
+* **Department expand support** — `OrderAndTaskGroupExpandedReq` gains optional `expandCoordinatorDepartment` and `expandExecutorDepartment` flags; `OrderExpandedForProvider` gains `coordinatorDepartment: Department1?`; `TaskGroupExpanded` gains `executorDepartment: Department1?`; and `ExpandedClient.listForProviderOperatorsV1` gains a `filterExecutorDepartmentId: String?` parameter.
+
 ## 2.0.0 - 2026-08-31
 ### Breaking Changes
 * **`InvoiceLineItemsClient.updateV1`** — renamed to `updateSourceV1` with return type changed from `Bool` to `InvoiceLineItem1` and a new HTTP path; replace all calls to `updateV1` with `updateSourceV1` and update any code handling a `Bool` response.
