@@ -36,6 +36,8 @@ import Chrt
                     "state": "state"
                   },
                   "first_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                  "in_progress_at_provenance": "reported",
+                  "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                   "integration_order_id": "integration_order_id",
                   "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                   "ordered_at_timestamp": "2024-01-15T09:30:00Z",
@@ -138,7 +140,7 @@ import Chrt
         )
         let expectedResponse = ShippingIntegrationOrderExpanded1(
             id: "_id",
-            completedAtProvenance: Optional(ShippingIntegrationOrderCompletedAtProvenanceEnum1.reported),
+            completedAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
             completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             destination: Optional(ShippingIntegrationOrderPlace1(
                 city: Optional("city"),
@@ -176,6 +178,8 @@ import Chrt
                 state: Optional("state")
             )),
             firstMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            inProgressAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
+            inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             integrationOrderId: "integration_order_id",
             lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -326,6 +330,8 @@ import Chrt
                         "label": "label"
                       },
                       "first_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "in_progress_at_provenance": "reported",
+                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "integration_order_id": "integration_order_id",
                       "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                       "ordered_at_timestamp": "2024-01-15T09:30:00Z",
@@ -373,12 +379,14 @@ import Chrt
             items: [
                 ShippingIntegrationOrderExpanded1(
                     id: "_id",
-                    completedAtProvenance: Optional(ShippingIntegrationOrderCompletedAtProvenanceEnum1.reported),
+                    completedAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
                     completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     destination: Optional(ShippingIntegrationOrderPlace1(
                         label: "label"
                     )),
                     firstMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    inProgressAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
+                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     integrationOrderId: "integration_order_id",
                     lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -454,6 +462,8 @@ import Chrt
                         "label": "label"
                       },
                       "first_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "in_progress_at_provenance": "reported",
+                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "integration_order_id": "integration_order_id",
                       "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
                       "ordered_at_timestamp": "2024-01-15T09:30:00Z",
@@ -501,12 +511,14 @@ import Chrt
             items: [
                 ShippingIntegrationOrderExpanded1(
                     id: "_id",
-                    completedAtProvenance: Optional(ShippingIntegrationOrderCompletedAtProvenanceEnum1.reported),
+                    completedAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
                     completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     destination: Optional(ShippingIntegrationOrderPlace1(
                         label: "label"
                     )),
                     firstMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    inProgressAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
+                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     integrationOrderId: "integration_order_id",
                     lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),

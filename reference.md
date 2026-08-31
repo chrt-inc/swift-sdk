@@ -3550,7 +3550,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateV1</a>(invoiceLineItemId: String, request: Requests.InvoiceLineItemClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateCurrencyConversionManyV1</a>(request: Requests.InvoiceLineItemsCurrencyConversionUpdateManyReq, requestOptions: RequestOptions?) -> [InvoiceLineItem1]</code></summary>
 <dl>
 <dd>
 
@@ -3562,7 +3562,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an owner-scoped line item and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (bool)
+Applies or reverts one currency conversion on line items from their original source values and moves attached items to the matching target-currency draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
 </dd>
 </dl>
 </dd>
@@ -3583,7 +3583,83 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billingNew.invoiceLineItems.updateV1(
+    _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionManyV1(request: .init(
+        invoiceLineItemIds: [
+            "invoice_line_item_ids"
+        ],
+        targetCurrencyCode: .usd
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.InvoiceLineItemsCurrencyConversionUpdateManyReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateSourceV1</a>(invoiceLineItemId: String, request: Requests.InvoiceLineItemClientUpdate1, requestOptions: RequestOptions?) -> InvoiceLineItem1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an owner-scoped line item's source fields, reapplies any existing currency conversion, and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (InvoiceLineItem1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoiceLineItems.updateSourceV1(
         invoiceLineItemId: "invoice_line_item_id",
         request: .init()
     )

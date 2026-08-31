@@ -19,6 +19,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -58,6 +64,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
@@ -115,6 +127,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -153,6 +171,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
@@ -211,6 +235,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -250,6 +280,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
@@ -439,6 +475,11 @@ import Chrt
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_user_id": "created_by_user_id",
                       "currency_code": "USD",
+                      "currency_conversion": {
+                        "conversion_rate": 1.1,
+                        "source_currency_code": "USD",
+                        "source_unit_price": 1.1
+                      },
                       "description": "description",
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
                       "invoice_id": "invoice_id",
@@ -678,6 +719,11 @@ import Chrt
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByUserId: "created_by_user_id",
                     currencyCode: BillingCurrencyCodeEnum1.usd,
+                    currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                        conversionRate: 1.1,
+                        sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                        sourceUnitPrice: 1.1
+                    )),
                     description: "description",
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     invoiceId: Optional("invoice_id"),
@@ -954,6 +1000,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -993,6 +1045,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
@@ -1265,6 +1323,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -1304,6 +1368,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
@@ -1331,12 +1401,48 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateV11() async throws -> Void {
+    @Test func updateCurrencyConversionManyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
-                true
+                [
+                  {
+                    "_id": "_id",
+                    "awb_number": "awb_number",
+                    "billing_period_id": "billing_period_id",
+                    "counterparty_driver_id": "counterparty_driver_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
+                    "description": "description",
+                    "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "invoice_id": "invoice_id",
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "line_item_type": "base_rate",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "quantity": 1.1,
+                    "rate_sheet_id": "rate_sheet_id",
+                    "schema_version": 1,
+                    "shipper_account_id": "shipper_account_id",
+                    "status": "draft",
+                    "task_group_id": "task_group_id",
+                    "tax_percentage": 1.1,
+                    "unit": "each",
+                    "unit_price": 1.1
+                  }
+                ]
                 """#.utf8
             )
         )
@@ -1345,8 +1451,139 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = true
-        let response = try await client.billingNew.invoiceLineItems.updateV1(
+        let expectedResponse = [
+            InvoiceLineItem1(
+                id: "_id",
+                awbNumber: Optional("awb_number"),
+                billingPeriodId: Optional("billing_period_id"),
+                counterpartyDriverId: Optional("counterparty_driver_id"),
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
+                description: "description",
+                exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                invoiceId: Optional("invoice_id"),
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                orderId: Optional("order_id"),
+                ownedByOrgId: "owned_by_org_id",
+                quantity: 1.1,
+                rateSheetId: Optional("rate_sheet_id"),
+                schemaVersion: 1,
+                shipperAccountId: Optional("shipper_account_id"),
+                status: Optional(InvoiceLineItemStatusEnum1.draft),
+                taskGroupId: Optional("task_group_id"),
+                taxPercentage: Optional(1.1),
+                unit: Optional(InvoiceLineItemUnitEnum1.each),
+                unitPrice: 1.1
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.updateCurrencyConversionManyV1(
+            request: .init(
+                invoiceLineItemIds: [
+                    "invoice_line_item_ids"
+                ],
+                targetCurrencyCode: .usd
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateSourceV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "_id": "_id",
+                  "awb_number": "awb_number",
+                  "billing_period_id": "billing_period_id",
+                  "counterparty_driver_id": "counterparty_driver_id",
+                  "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                  "counterparty_org_id": "counterparty_org_id",
+                  "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "created_by_user_id": "created_by_user_id",
+                  "currency_code": "USD",
+                  "currency_conversion": {
+                    "conversion_rate": 1.1,
+                    "description": "description",
+                    "source_currency_code": "USD",
+                    "source_unit_price": 1.1
+                  },
+                  "description": "description",
+                  "export_ref__sage__item_id": "export_ref__sage__item_id",
+                  "invoice_id": "invoice_id",
+                  "invoice_type": "accounts_receivable",
+                  "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                  "last_edited_by_user_id": "last_edited_by_user_id",
+                  "line_item_type": "base_rate",
+                  "order_id": "order_id",
+                  "owned_by_org_id": "owned_by_org_id",
+                  "quantity": 1.1,
+                  "rate_sheet_id": "rate_sheet_id",
+                  "schema_version": 1,
+                  "shipper_account_id": "shipper_account_id",
+                  "status": "draft",
+                  "task_group_id": "task_group_id",
+                  "tax_percentage": 1.1,
+                  "unit": "each",
+                  "unit_price": 1.1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = InvoiceLineItem1(
+            id: "_id",
+            awbNumber: Optional("awb_number"),
+            billingPeriodId: Optional("billing_period_id"),
+            counterpartyDriverId: Optional("counterparty_driver_id"),
+            counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+            counterpartyOrgId: Optional("counterparty_org_id"),
+            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            createdByUserId: "created_by_user_id",
+            currencyCode: BillingCurrencyCodeEnum1.usd,
+            currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                conversionRate: 1.1,
+                description: Optional("description"),
+                sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                sourceUnitPrice: 1.1
+            )),
+            description: "description",
+            exportRefSageItemId: Optional("export_ref__sage__item_id"),
+            invoiceId: Optional("invoice_id"),
+            invoiceType: InvoiceTypeEnum1.accountsReceivable,
+            lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            lastEditedByUserId: "last_edited_by_user_id",
+            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+            orderId: Optional("order_id"),
+            ownedByOrgId: "owned_by_org_id",
+            quantity: 1.1,
+            rateSheetId: Optional("rate_sheet_id"),
+            schemaVersion: 1,
+            shipperAccountId: Optional("shipper_account_id"),
+            status: Optional(InvoiceLineItemStatusEnum1.draft),
+            taskGroupId: Optional("task_group_id"),
+            taxPercentage: Optional(1.1),
+            unit: Optional(InvoiceLineItemUnitEnum1.each),
+            unitPrice: 1.1
+        )
+        let response = try await client.billingNew.invoiceLineItems.updateSourceV1(
             invoiceLineItemId: "invoice_line_item_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

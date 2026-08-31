@@ -12,6 +12,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
     /// Must be a string starting with `user_`
     public let createdByUserId: String
     public let currencyCode: BillingCurrencyCodeEnum1
+    public let currencyConversion: InvoiceLineItemCurrencyConversion1?
     public let description: String
     public let exportRefSageItemId: String?
     public let invoiceId: String?
@@ -44,6 +45,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         createdAtTimestamp: Date,
         createdByUserId: String,
         currencyCode: BillingCurrencyCodeEnum1,
+        currencyConversion: InvoiceLineItemCurrencyConversion1? = nil,
         description: String,
         exportRefSageItemId: String? = nil,
         invoiceId: String? = nil,
@@ -72,6 +74,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         self.createdAtTimestamp = createdAtTimestamp
         self.createdByUserId = createdByUserId
         self.currencyCode = currencyCode
+        self.currencyConversion = currencyConversion
         self.description = description
         self.exportRefSageItemId = exportRefSageItemId
         self.invoiceId = invoiceId
@@ -103,6 +106,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
         self.currencyCode = try container.decode(BillingCurrencyCodeEnum1.self, forKey: .currencyCode)
+        self.currencyConversion = try container.decodeIfPresent(InvoiceLineItemCurrencyConversion1.self, forKey: .currencyConversion)
         self.description = try container.decode(String.self, forKey: .description)
         self.exportRefSageItemId = try container.decodeIfPresent(String.self, forKey: .exportRefSageItemId)
         self.invoiceId = try container.decodeIfPresent(String.self, forKey: .invoiceId)
@@ -135,6 +139,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.currencyCode, forKey: .currencyCode)
+        try container.encodeIfPresent(self.currencyConversion, forKey: .currencyConversion)
         try container.encode(self.description, forKey: .description)
         try container.encodeIfPresent(self.exportRefSageItemId, forKey: .exportRefSageItemId)
         try container.encodeIfPresent(self.invoiceId, forKey: .invoiceId)
@@ -165,6 +170,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         case createdAtTimestamp = "created_at_timestamp"
         case createdByUserId = "created_by_user_id"
         case currencyCode = "currency_code"
+        case currencyConversion = "currency_conversion"
         case description
         case exportRefSageItemId = "export_ref__sage__item_id"
         case invoiceId = "invoice_id"

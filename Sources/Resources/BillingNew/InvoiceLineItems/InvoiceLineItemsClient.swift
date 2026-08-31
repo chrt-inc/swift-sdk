@@ -477,7 +477,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Updates an owner-scoped line item and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (bool)
+    /// Applies or reverts one currency conversion on line items from their original source values and moves attached items to the matching target-currency draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
     ///
     /// ```swift
     /// import Foundation
@@ -486,7 +486,38 @@ public final class InvoiceLineItemsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.billingNew.invoiceLineItems.updateV1(
+    ///     _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionManyV1(request: .init(
+    ///         invoiceLineItemIds: [
+    ///             "invoice_line_item_ids"
+    ///         ],
+    ///         targetCurrencyCode: .usd
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCurrencyConversionManyV1(request: Requests.InvoiceLineItemsCurrencyConversionUpdateManyReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing_new/invoice_line_items/update_currency_conversion_many/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [InvoiceLineItem1].self
+        )
+    }
+
+    /// Updates an owner-scoped line item's source fields, reapplies any existing currency conversion, and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (InvoiceLineItem1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.updateSourceV1(
     ///         invoiceLineItemId: "invoice_line_item_id",
     ///         request: .init()
     ///     )
@@ -496,13 +527,13 @@ public final class InvoiceLineItemsClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(invoiceLineItemId: String, request: Requests.InvoiceLineItemClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateSourceV1(invoiceLineItemId: String, request: Requests.InvoiceLineItemClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItem1 {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/billing_new/invoice_line_items/update/v1/\(invoiceLineItemId)",
+            path: "/billing_new/invoice_line_items/update_source/v1/\(invoiceLineItemId)",
             body: request,
             requestOptions: requestOptions,
-            responseType: Bool.self
+            responseType: InvoiceLineItem1.self
         )
     }
 }

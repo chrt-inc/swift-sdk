@@ -2,10 +2,12 @@ import Foundation
 
 public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
     public let id: String
-    public let completedAtProvenance: ShippingIntegrationOrderCompletedAtProvenanceEnum1?
+    public let completedAtProvenance: ShippingIntegrationOrderStatusTimestampProvenanceEnum1?
     public let completedAtTimestamp: Date?
     public let destination: ShippingIntegrationOrderPlace1?
     public let firstMirroredAtTimestamp: Date
+    public let inProgressAtProvenance: ShippingIntegrationOrderStatusTimestampProvenanceEnum1?
+    public let inProgressAtTimestamp: Date?
     public let integrationOrderId: String
     public let lastMirroredAtTimestamp: Date
     public let orderedAtTimestamp: Date?
@@ -28,10 +30,12 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
-        completedAtProvenance: ShippingIntegrationOrderCompletedAtProvenanceEnum1? = nil,
+        completedAtProvenance: ShippingIntegrationOrderStatusTimestampProvenanceEnum1? = nil,
         completedAtTimestamp: Date? = nil,
         destination: ShippingIntegrationOrderPlace1? = nil,
         firstMirroredAtTimestamp: Date,
+        inProgressAtProvenance: ShippingIntegrationOrderStatusTimestampProvenanceEnum1? = nil,
+        inProgressAtTimestamp: Date? = nil,
         integrationOrderId: String,
         lastMirroredAtTimestamp: Date,
         orderedAtTimestamp: Date? = nil,
@@ -54,6 +58,8 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = completedAtTimestamp
         self.destination = destination
         self.firstMirroredAtTimestamp = firstMirroredAtTimestamp
+        self.inProgressAtProvenance = inProgressAtProvenance
+        self.inProgressAtTimestamp = inProgressAtTimestamp
         self.integrationOrderId = integrationOrderId
         self.lastMirroredAtTimestamp = lastMirroredAtTimestamp
         self.orderedAtTimestamp = orderedAtTimestamp
@@ -75,10 +81,12 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.completedAtProvenance = try container.decodeIfPresent(ShippingIntegrationOrderCompletedAtProvenanceEnum1.self, forKey: .completedAtProvenance)
+        self.completedAtProvenance = try container.decodeIfPresent(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.self, forKey: .completedAtProvenance)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.destination = try container.decodeIfPresent(ShippingIntegrationOrderPlace1.self, forKey: .destination)
         self.firstMirroredAtTimestamp = try container.decode(Date.self, forKey: .firstMirroredAtTimestamp)
+        self.inProgressAtProvenance = try container.decodeIfPresent(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.self, forKey: .inProgressAtProvenance)
+        self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.integrationOrderId = try container.decode(String.self, forKey: .integrationOrderId)
         self.lastMirroredAtTimestamp = try container.decode(Date.self, forKey: .lastMirroredAtTimestamp)
         self.orderedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderedAtTimestamp)
@@ -105,6 +113,8 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.destination, forKey: .destination)
         try container.encode(self.firstMirroredAtTimestamp, forKey: .firstMirroredAtTimestamp)
+        try container.encodeIfPresent(self.inProgressAtProvenance, forKey: .inProgressAtProvenance)
+        try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encode(self.integrationOrderId, forKey: .integrationOrderId)
         try container.encode(self.lastMirroredAtTimestamp, forKey: .lastMirroredAtTimestamp)
         try container.encodeIfPresent(self.orderedAtTimestamp, forKey: .orderedAtTimestamp)
@@ -129,6 +139,8 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         case completedAtTimestamp = "completed_at_timestamp"
         case destination
         case firstMirroredAtTimestamp = "first_mirrored_at_timestamp"
+        case inProgressAtProvenance = "in_progress_at_provenance"
+        case inProgressAtTimestamp = "in_progress_at_timestamp"
         case integrationOrderId = "integration_order_id"
         case lastMirroredAtTimestamp = "last_mirrored_at_timestamp"
         case orderedAtTimestamp = "ordered_at_timestamp"

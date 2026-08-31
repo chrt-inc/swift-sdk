@@ -97,6 +97,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -214,6 +220,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
@@ -440,6 +452,12 @@ import Chrt
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "currency_code": "USD",
+                    "currency_conversion": {
+                      "conversion_rate": 1.1,
+                      "description": "description",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1
+                    },
                     "description": "description",
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
                     "invoice_id": "invoice_id",
@@ -557,6 +575,12 @@ import Chrt
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: "created_by_user_id",
                 currencyCode: BillingCurrencyCodeEnum1.usd,
+                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                    conversionRate: 1.1,
+                    description: Optional("description"),
+                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                    sourceUnitPrice: 1.1
+                )),
                 description: "description",
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
                 invoiceId: Optional("invoice_id"),
