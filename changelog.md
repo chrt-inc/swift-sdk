@@ -1,3 +1,7 @@
+## 3.1.0 - 2026-09-02
+### Added
+* **`OrdersClient.listExpandedForCoordinatorOperatorsV1`** — gains a new optional `filterOffChrtExecutorOrgDataId: String?` parameter for filtering billing order results by an off-CHRT executor organization; existing call sites require no changes.
+
 ## 3.0.0 - 2026-08-31
 ### Breaking Changes
 * **`InvoiceExportListItem.invoiceApprovalTimestamp`** — changed from `Date` to `Date?`; add an `if let` or `guard let` unwrap wherever this property is read, and update initializer call sites to pass `nil` or an explicit `Optional(...)` value.
