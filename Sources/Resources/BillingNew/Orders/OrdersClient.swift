@@ -66,6 +66,7 @@ public final class OrdersClient: Sendable {
     ///             "filter_coordinator_shipper_account_ids"
     ///         ],
     ///         filterExecutorOrgId: "filter_executor_org_id",
+    ///         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
     ///         filterCoordinatorLabel: "filter_coordinator_label",
     ///         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -95,9 +96,10 @@ public final class OrdersClient: Sendable {
     /// - Parameter filterOffChrtShipperOrgDataId: Filter by an off-CHRT shipper.
     /// - Parameter filterCoordinatorShipperAccountIds: Filter by one or more coordinator shipper accounts.
     /// - Parameter filterExecutorOrgId: Filter by an on-CHRT executor organization.
+    /// - Parameter filterOffChrtExecutorOrgDataId: Filter by an off-CHRT executor.
     /// - Parameter filterCoordinatorLabel: Filter by an exact coordinator label.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listExpandedForCoordinatorOperatorsV1(sortBy: OrderBillingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterAwbNumber: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorLabel: String? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderBillingExpandedListRes {
+    public func listExpandedForCoordinatorOperatorsV1(sortBy: OrderBillingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterAwbNumber: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorLabel: String? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderBillingExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing_new/orders/expanded/list/for_coordinator_operators/v1",
@@ -113,6 +115,7 @@ public final class OrdersClient: Sendable {
                 "filter_off_chrt_shipper_org_data_id": filterOffChrtShipperOrgDataId.map { .string($0) }, 
                 "filter_coordinator_shipper_account_ids": filterCoordinatorShipperAccountIds.map { .stringArray($0) }, 
                 "filter_executor_org_id": filterExecutorOrgId.map { .string($0) }, 
+                "filter_off_chrt_executor_org_data_id": filterOffChrtExecutorOrgDataId.map { .string($0) }, 
                 "filter_coordinator_label": filterCoordinatorLabel.map { .string($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 

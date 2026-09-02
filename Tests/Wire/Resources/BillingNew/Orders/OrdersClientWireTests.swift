@@ -201,6 +201,7 @@ import Chrt
                 "filter_coordinator_shipper_account_ids"
             ],
             filterExecutorOrgId: "filter_executor_org_id",
+            filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
             filterCoordinatorLabel: "filter_coordinator_label",
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

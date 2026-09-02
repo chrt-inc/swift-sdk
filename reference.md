@@ -4946,7 +4946,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterExecutorOrgId: String?, filterCoordinatorLabel: String?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorLabel: String?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -4995,6 +4995,7 @@ private func main() async throws {
             "filter_coordinator_shipper_account_ids"
         ],
         filterExecutorOrgId: "filter_executor_org_id",
+        filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
         filterCoordinatorLabel: "filter_coordinator_label",
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -5108,6 +5109,14 @@ try await main()
 <dd>
 
 **filterExecutorOrgId:** `String?` — Filter by an on-CHRT executor organization.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOffChrtExecutorOrgDataId:** `String?` — Filter by an off-CHRT executor.
     
 </dd>
 </dl>
