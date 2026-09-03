@@ -1401,6 +1401,79 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func updateCurrencyConversionForReceivablesAcrossOrdersV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "converted_invoice_line_items": [
+                      {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "unit_price": 1.1
+                      }
+                    ],
+                    "failure_reason": "failure_reason",
+                    "order_id": "order_id",
+                    "status": "succeeded"
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            ReceivablesAcrossOrdersCurrencyConversionOrderRes(
+                convertedInvoiceLineItems: Optional([
+                    InvoiceLineItem1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        description: "description",
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        unitPrice: 1.1
+                    )
+                ]),
+                failureReason: Optional("failure_reason"),
+                orderId: "order_id",
+                status: StatusType.succeeded
+            )
+        ]
+        let response = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForReceivablesAcrossOrdersV1(
+            request: .init(
+                orderIds: [
+                    "order_ids"
+                ],
+                targetCurrencyCode: .usd
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateCurrencyConversionManyV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

@@ -477,7 +477,38 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Applies or reverts one currency conversion on line items from their original source values and moves attached items to the matching target-currency draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
+    /// Applies one currency conversion independently to each selected order and reports each outcome. | authz: allowed_org_types=[provider], min_org_role=operator | (ReceivablesAcrossOrdersCurrencyConversionUpdateReq) -> (list[ReceivablesAcrossOrdersCurrencyConversionOrderRes])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForReceivablesAcrossOrdersV1(request: .init(
+    ///         orderIds: [
+    ///             "order_ids"
+    ///         ],
+    ///         targetCurrencyCode: .usd
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCurrencyConversionForReceivablesAcrossOrdersV1(request: Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq, requestOptions: RequestOptions? = nil) async throws -> [ReceivablesAcrossOrdersCurrencyConversionOrderRes] {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing_new/invoice_line_items/update_currency_conversion_for_receivables_across_orders/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [ReceivablesAcrossOrdersCurrencyConversionOrderRes].self
+        )
+    }
+
+    /// Applies, reverts, or skips one currency conversion from original source values and moves attached items to the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
     ///
     /// ```swift
     /// import Foundation

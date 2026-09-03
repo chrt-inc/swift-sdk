@@ -3550,6 +3550,82 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateCurrencyConversionForReceivablesAcrossOrdersV1</a>(request: Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq, requestOptions: RequestOptions?) -> [ReceivablesAcrossOrdersCurrencyConversionOrderRes]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies one currency conversion independently to each selected order and reports each outcome. | authz: allowed_org_types=[provider], min_org_role=operator | (ReceivablesAcrossOrdersCurrencyConversionUpdateReq) -> (list[ReceivablesAcrossOrdersCurrencyConversionOrderRes])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForReceivablesAcrossOrdersV1(request: .init(
+        orderIds: [
+            "order_ids"
+        ],
+        targetCurrencyCode: .usd
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateCurrencyConversionManyV1</a>(request: Requests.InvoiceLineItemsCurrencyConversionUpdateManyReq, requestOptions: RequestOptions?) -> [InvoiceLineItem1]</code></summary>
 <dl>
 <dd>
@@ -3562,7 +3638,7 @@ try await main()
 <dl>
 <dd>
 
-Applies or reverts one currency conversion on line items from their original source values and moves attached items to the matching target-currency draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
+Applies, reverts, or skips one currency conversion from original source values and moves attached items to the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
 </dd>
 </dl>
 </dd>
