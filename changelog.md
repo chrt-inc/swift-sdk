@@ -1,3 +1,10 @@
+## 3.2.0 - 2026-09-03
+### Added
+* **`InvoiceLineItemsClient.updateCurrencyConversionForReceivablesAcrossOrdersV1(request:requestOptions:)`** — new PATCH method that applies one currency conversion independently to each selected order and returns a per-order outcome list as `[ReceivablesAcrossOrdersCurrencyConversionOrderRes]`.
+* **`Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq`** — new request struct for the order-scoped currency conversion endpoint, accepting `orderIds: [String]`, `targetCurrencyCode: BillingCurrencyCodeEnum1`, and optional `conversionRate` and `description` fields.
+* **`ReceivablesAcrossOrdersCurrencyConversionOrderRes`** — new response struct reporting per-order conversion outcome with `orderId`, `status`, optional `convertedInvoiceLineItems`, and optional `failureReason`.
+* **`StatusType`** — new enum with `succeeded`, `failed`, and `noReceivables` cases representing the outcome of a per-order currency conversion; exhaustive `switch` statements must handle all three cases.
+
 ## 3.1.0 - 2026-09-02
 ### Added
 * **`OrdersClient.listExpandedForCoordinatorOperatorsV1`** — gains a new optional `filterOffChrtExecutorOrgDataId: String?` parameter for filtering billing order results by an off-CHRT executor organization; existing call sites require no changes.
