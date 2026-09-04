@@ -1,3 +1,14 @@
+## 4.0.0 - 2026-09-04
+### Breaking Changes
+* **`InvoicesClient.export`** — the `ExportClient` property has been removed from `InvoicesClient`; access it via `invoiceLineItems.export` instead.
+* **`ExportClient.listV1`** — signature changed: `invoiceId: String` removed, a required `request: Requests.InvoiceLineItemExportListReq` body added, and the method now issues a POST request; update all call sites accordingly.
+* **`InvoiceExportListRes`** — renamed to `InvoiceLineItemExportListRes` with `items` typed as `[InvoiceLineItemExportListItem]`; update all type references.
+* **`InvoiceExportListItem`** — renamed to `InvoiceLineItemExportListItem` with many fields removed (e.g., `airbillCharge`, `baseRate`, `netBilling`) and new required fields added (e.g., `invoiceLineItemId`, `lineItemType`, `lineItemTotalAmount`); rebuild all construction and decoding sites.
+* **`billingPeriodEndAtTimestamp` / `billingPeriodStartAtTimestamp`** on `InvoiceLineItemExportListItem` — changed from `Date` to `Date?`; add `if let` or `guard let` unwraps wherever these properties are read.
+### Added
+* **`Requests.InvoiceLineItemExportListReq`** — new request struct accepting a required `orderIds: [String]` for batch invoice line item export operations.
+* **`Requests.InvoiceLineItemClientUpdate1.shipperAccountId`** and **`.shipperAccountIdSetToNone`** — new optional fields for associating or clearing a shipper account on an invoice line item update request; existing call sites require no changes.
+
 ## 3.2.0 - 2026-09-03
 ### Added
 * **`InvoiceLineItemsClient.updateCurrencyConversionForReceivablesAcrossOrdersV1(request:requestOptions:)`** — new PATCH method that applies one currency conversion independently to each selected order and returns a per-order outcome list as `[ReceivablesAcrossOrdersCurrencyConversionOrderRes]`.
