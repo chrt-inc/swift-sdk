@@ -7,7 +7,7 @@ public final class ExportClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists up to 1,000 shipment-level export rows for one accounts-receivable invoice owned by the caller's organization, regardless of invoice status. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
+    /// Lists up to 1,000 accounts-receivable and accounts-payable line items for the selected Orders, with shipment context. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemExportListReq) -> (InvoiceLineItemExportListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -16,10 +16,12 @@ public final class ExportClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.billingNew.invoices.export.listV1(
-    ///         invoiceId: "invoice_id",
+    ///     _ = try await client.billingNew.invoiceLineItems.export.listV1(
     ///         page: 1,
-    ///         pageSize: 1
+    ///         pageSize: 1,
+    ///         request: .init(orderIds: [
+    ///             "order_ids"
+    ///         ])
     ///     )
     /// }
     ///
@@ -27,16 +29,17 @@ public final class ExportClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(invoiceId: String, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceExportListRes {
+    public func listV1(page: Int? = nil, pageSize: Int? = nil, request: Requests.InvoiceLineItemExportListReq, requestOptions: RequestOptions? = nil) async throws -> InvoiceLineItemExportListRes {
         return try await httpClient.performRequest(
-            method: .get,
-            path: "/billing_new/invoices/export/list/v1/\(invoiceId)",
+            method: .post,
+            path: "/billing_new/invoice_line_items/export/list/v1",
             queryParams: [
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }
             ],
+            body: request,
             requestOptions: requestOptions,
-            responseType: InvoiceExportListRes.self
+            responseType: InvoiceLineItemExportListRes.self
         )
     }
 }

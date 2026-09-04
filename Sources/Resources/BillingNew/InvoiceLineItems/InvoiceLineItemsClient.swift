@@ -1,9 +1,11 @@
 import Foundation
 
 public final class InvoiceLineItemsClient: Sendable {
+    public let export: ExportClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.export = ExportClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -539,7 +541,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Updates an owner-scoped line item's source fields, reapplies any existing currency conversion, and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (InvoiceLineItem1)
+    /// Updates an owner-scoped line item's source fields, including its caller-owned shipper account when not rate-sheet-derived, and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (InvoiceLineItem1)
     ///
     /// ```swift
     /// import Foundation

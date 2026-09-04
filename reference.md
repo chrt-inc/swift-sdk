@@ -3714,7 +3714,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an owner-scoped line item's source fields, reapplies any existing currency conversion, and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (InvoiceLineItem1)
+Updates an owner-scoped line item's source fields, including its caller-owned shipper account when not rate-sheet-derived, and rebuilds its draft invoice when attached. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemClientUpdate1) -> (InvoiceLineItem1)
 </dd>
 </dl>
 </dd>
@@ -5324,8 +5324,8 @@ try await main()
 </dl>
 </details>
 
-## BillingNew Invoices Export
-<details><summary><code>client.billingNew.invoices.export.<a href="/Sources/Resources/BillingNew/Invoices/Export/ExportClient.swift">listV1</a>(invoiceId: String, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> InvoiceExportListRes</code></summary>
+## BillingNew InvoiceLineItems Export
+<details><summary><code>client.billingNew.invoiceLineItems.export.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/Export/ExportClient.swift">listV1</a>(page: Int?, pageSize: Int?, request: Requests.InvoiceLineItemExportListReq, requestOptions: RequestOptions?) -> InvoiceLineItemExportListRes</code></summary>
 <dl>
 <dd>
 
@@ -5337,7 +5337,7 @@ try await main()
 <dl>
 <dd>
 
-Lists up to 1,000 shipment-level export rows for one accounts-receivable invoice owned by the caller's organization, regardless of invoice status. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExportListRes)
+Lists up to 1,000 accounts-receivable and accounts-payable line items for the selected Orders, with shipment context. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemExportListReq) -> (InvoiceLineItemExportListRes)
 </dd>
 </dl>
 </dd>
@@ -5358,10 +5358,12 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billingNew.invoices.export.listV1(
-        invoiceId: "invoice_id",
+    _ = try await client.billingNew.invoiceLineItems.export.listV1(
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        request: .init(orderIds: [
+            "order_ids"
+        ])
     )
 }
 
@@ -5380,14 +5382,6 @@ try await main()
 <dl>
 <dd>
 
-**invoiceId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **page:** `Int?` 
     
 </dd>
@@ -5397,6 +5391,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.InvoiceLineItemExportListReq` 
     
 </dd>
 </dl>

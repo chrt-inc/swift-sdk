@@ -7,6 +7,8 @@ extension Requests {
         public let exportRefSageItemIdSetToNone: Bool?
         public let invoiceType: InvoiceTypeEnum1?
         public let quantity: Double?
+        public let shipperAccountId: String?
+        public let shipperAccountIdSetToNone: Bool?
         public let sourceCurrencyCode: BillingCurrencyCodeEnum1?
         public let sourceUnitPrice: Double?
         public let unit: InvoiceLineItemUnitEnum1?
@@ -20,6 +22,8 @@ extension Requests {
             exportRefSageItemIdSetToNone: Bool? = nil,
             invoiceType: InvoiceTypeEnum1? = nil,
             quantity: Double? = nil,
+            shipperAccountId: String? = nil,
+            shipperAccountIdSetToNone: Bool? = nil,
             sourceCurrencyCode: BillingCurrencyCodeEnum1? = nil,
             sourceUnitPrice: Double? = nil,
             unit: InvoiceLineItemUnitEnum1? = nil,
@@ -31,6 +35,8 @@ extension Requests {
             self.exportRefSageItemIdSetToNone = exportRefSageItemIdSetToNone
             self.invoiceType = invoiceType
             self.quantity = quantity
+            self.shipperAccountId = shipperAccountId
+            self.shipperAccountIdSetToNone = shipperAccountIdSetToNone
             self.sourceCurrencyCode = sourceCurrencyCode
             self.sourceUnitPrice = sourceUnitPrice
             self.unit = unit
@@ -45,6 +51,8 @@ extension Requests {
             self.exportRefSageItemIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .exportRefSageItemIdSetToNone)
             self.invoiceType = try container.decodeIfPresent(InvoiceTypeEnum1.self, forKey: .invoiceType)
             self.quantity = try container.decodeIfPresent(Double.self, forKey: .quantity)
+            self.shipperAccountId = try container.decodeIfPresent(String.self, forKey: .shipperAccountId)
+            self.shipperAccountIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .shipperAccountIdSetToNone)
             self.sourceCurrencyCode = try container.decodeIfPresent(BillingCurrencyCodeEnum1.self, forKey: .sourceCurrencyCode)
             self.sourceUnitPrice = try container.decodeIfPresent(Double.self, forKey: .sourceUnitPrice)
             self.unit = try container.decodeIfPresent(InvoiceLineItemUnitEnum1.self, forKey: .unit)
@@ -60,6 +68,8 @@ extension Requests {
             try container.encodeIfPresent(self.exportRefSageItemIdSetToNone, forKey: .exportRefSageItemIdSetToNone)
             try container.encodeIfPresent(self.invoiceType, forKey: .invoiceType)
             try container.encodeIfPresent(self.quantity, forKey: .quantity)
+            try container.encodeIfPresent(self.shipperAccountId, forKey: .shipperAccountId)
+            try container.encodeIfPresent(self.shipperAccountIdSetToNone, forKey: .shipperAccountIdSetToNone)
             try container.encodeIfPresent(self.sourceCurrencyCode, forKey: .sourceCurrencyCode)
             try container.encodeIfPresent(self.sourceUnitPrice, forKey: .sourceUnitPrice)
             try container.encodeIfPresent(self.unit, forKey: .unit)
@@ -73,6 +83,8 @@ extension Requests {
             case exportRefSageItemIdSetToNone = "export_ref__sage__item_id__set_to_None"
             case invoiceType = "invoice_type"
             case quantity
+            case shipperAccountId = "shipper_account_id"
+            case shipperAccountIdSetToNone = "shipper_account_id__set_to_None"
             case sourceCurrencyCode = "source_currency_code"
             case sourceUnitPrice = "source_unit_price"
             case unit

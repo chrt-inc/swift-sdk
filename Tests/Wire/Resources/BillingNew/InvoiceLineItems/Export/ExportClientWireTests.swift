@@ -12,21 +12,22 @@ import Chrt
                   "items": [
                     {
                       "account_name": "account_name",
-                      "airbill_charge": 1.1,
                       "airlines": [
                         "airlines"
                       ],
                       "awb_numbers": [
                         "awb_numbers"
                       ],
-                      "base_rate": 1.1,
                       "billing_period_end_at_timestamp": "2024-01-15T09:30:00Z",
                       "billing_period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                      "cargo_descriptions": [
+                        "cargo_descriptions"
+                      ],
+                      "cargo_quantity": 1,
                       "cargo_types": [
                         "cargo_types"
                       ],
-                      "charge_per_quantity": 1.1,
-                      "charges_subtotal": 1.1,
+                      "counterparty_name": "counterparty_name",
                       "currency_code": "USD",
                       "delivery_address": "delivery_address",
                       "delivery_location_name": "delivery_location_name",
@@ -38,28 +39,26 @@ import Chrt
                         "flight_numbers"
                       ],
                       "invoice_approval_timestamp": "2024-01-15T09:30:00Z",
+                      "invoice_line_item_id": "invoice_line_item_id",
+                      "invoice_line_item_status": "draft",
                       "invoice_number": "invoice_number",
+                      "invoice_status": "draft",
+                      "invoice_type": "accounts_receivable",
+                      "line_item_awb_number": "line_item_awb_number",
+                      "line_item_description": "line_item_description",
+                      "line_item_quantity": 1.1,
+                      "line_item_total_amount": 1.1,
+                      "line_item_type": "base_rate",
+                      "line_item_unit": "each",
+                      "line_item_unit_price": 1.1,
                       "mileage_estimated": 1.1,
-                      "net_billing": 1.1,
                       "off_chrt_reference_id": "off_chrt_reference_id",
                       "order_placer_comments": "order_placer_comments",
                       "order_short_id": "order_short_id",
                       "origin_iata": "origin_iata",
-                      "other_charges": 1.1,
-                      "other_charges_detail": [
-                        "other_charges_detail"
-                      ],
-                      "pod_date": "pod_date",
+                      "pod_at_timestamp": "2024-01-15T09:30:00Z",
                       "pod_name": "pod_name",
-                      "pod_time": "pod_time",
-                      "quantity": 1,
-                      "tax_1_amount": 1.1,
-                      "tax_1_description": "tax_1_description",
-                      "tax_2_amount": 1.1,
-                      "tax_2_description": "tax_2_description",
-                      "tax_3_amount": 1.1,
-                      "tax_3_description": "tax_3_description",
-                      "total_tax": 1.1,
+                      "tax_percentage": 1.1,
                       "weight_pounds": 1.1
                     }
                   ],
@@ -73,25 +72,26 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = InvoiceExportListRes(
+        let expectedResponse = InvoiceLineItemExportListRes(
             items: [
-                InvoiceExportListItem(
+                InvoiceLineItemExportListItem(
                     accountName: Optional("account_name"),
-                    airbillCharge: 1.1,
                     airlines: Optional([
                         "airlines"
                     ]),
                     awbNumbers: Optional([
                         "awb_numbers"
                     ]),
-                    baseRate: 1.1,
-                    billingPeriodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    billingPeriodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    billingPeriodEndAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    billingPeriodStartAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    cargoDescriptions: Optional([
+                        "cargo_descriptions"
+                    ]),
+                    cargoQuantity: Optional(1),
                     cargoTypes: Optional([
                         "cargo_types"
                     ]),
-                    chargePerQuantity: Optional(1.1),
-                    chargesSubtotal: 1.1,
+                    counterpartyName: Optional("counterparty_name"),
                     currencyCode: BillingCurrencyCodeEnum1.usd,
                     deliveryAddress: Optional("delivery_address"),
                     deliveryLocationName: Optional("delivery_location_name"),
@@ -103,37 +103,37 @@ import Chrt
                         "flight_numbers"
                     ]),
                     invoiceApprovalTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    invoiceNumber: "invoice_number",
+                    invoiceLineItemId: "invoice_line_item_id",
+                    invoiceLineItemStatus: InvoiceLineItemStatusEnum1.draft,
+                    invoiceNumber: Optional("invoice_number"),
+                    invoiceStatus: Optional(InvoiceStatusEnum1.draft),
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                    lineItemAwbNumber: Optional("line_item_awb_number"),
+                    lineItemDescription: "line_item_description",
+                    lineItemQuantity: 1.1,
+                    lineItemTotalAmount: 1.1,
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    lineItemUnit: Optional(InvoiceLineItemUnitEnum1.each),
+                    lineItemUnitPrice: 1.1,
                     mileageEstimated: Optional(1.1),
-                    netBilling: 1.1,
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
                     orderPlacerComments: Optional("order_placer_comments"),
                     orderShortId: Optional("order_short_id"),
                     originIata: Optional("origin_iata"),
-                    otherCharges: 1.1,
-                    otherChargesDetail: Optional([
-                        "other_charges_detail"
-                    ]),
-                    podDate: Optional("pod_date"),
+                    podAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     podName: Optional("pod_name"),
-                    podTime: Optional("pod_time"),
-                    quantity: Optional(1),
-                    tax1Amount: Optional(1.1),
-                    tax1Description: Optional("tax_1_description"),
-                    tax2Amount: Optional(1.1),
-                    tax2Description: Optional("tax_2_description"),
-                    tax3Amount: Optional(1.1),
-                    tax3Description: Optional("tax_3_description"),
-                    totalTax: 1.1,
+                    taxPercentage: Optional(1.1),
                     weightPounds: Optional(1.1)
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.billingNew.invoices.export.listV1(
-            invoiceId: "invoice_id",
+        let response = try await client.billingNew.invoiceLineItems.export.listV1(
             page: 1,
             pageSize: 1,
+            request: .init(orderIds: [
+                "order_ids"
+            ]),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
