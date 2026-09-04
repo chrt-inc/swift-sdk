@@ -27,8 +27,10 @@ import Chrt
                       "cargo_types": [
                         "cargo_types"
                       ],
+                      "conversion_rate": 1.1,
                       "counterparty_name": "counterparty_name",
                       "currency_code": "USD",
+                      "currency_conversion_description": "currency_conversion_description",
                       "delivery_address": "delivery_address",
                       "delivery_location_name": "delivery_location_name",
                       "delivery_status": "delivery_status",
@@ -58,6 +60,8 @@ import Chrt
                       "origin_iata": "origin_iata",
                       "pod_at_timestamp": "2024-01-15T09:30:00Z",
                       "pod_name": "pod_name",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1,
                       "tax_percentage": 1.1,
                       "weight_pounds": 1.1
                     }
@@ -91,8 +95,10 @@ import Chrt
                     cargoTypes: Optional([
                         "cargo_types"
                     ]),
+                    conversionRate: Optional(1.1),
                     counterpartyName: Optional("counterparty_name"),
                     currencyCode: BillingCurrencyCodeEnum1.usd,
+                    currencyConversionDescription: Optional("currency_conversion_description"),
                     deliveryAddress: Optional("delivery_address"),
                     deliveryLocationName: Optional("delivery_location_name"),
                     deliveryStatus: Optional("delivery_status"),
@@ -122,6 +128,8 @@ import Chrt
                     originIata: Optional("origin_iata"),
                     podAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     podName: Optional("pod_name"),
+                    sourceCurrencyCode: Optional(BillingCurrencyCodeEnum1.usd),
+                    sourceUnitPrice: Optional(1.1),
                     taxPercentage: Optional(1.1),
                     weightPounds: Optional(1.1)
                 )

@@ -9,8 +9,10 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
     public let cargoDescriptions: [String]?
     public let cargoQuantity: Int?
     public let cargoTypes: [String]?
+    public let conversionRate: Double?
     public let counterpartyName: String?
     public let currencyCode: BillingCurrencyCodeEnum1
+    public let currencyConversionDescription: String?
     public let deliveryAddress: String?
     public let deliveryLocationName: String?
     public let deliveryStatus: String?
@@ -39,6 +41,8 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
     public let originIata: String?
     public let podAtTimestamp: Date?
     public let podName: String?
+    public let sourceCurrencyCode: BillingCurrencyCodeEnum1?
+    public let sourceUnitPrice: Double?
     public let taxPercentage: Double?
     public let weightPounds: Double?
     /// Additional properties that are not explicitly defined in the schema
@@ -53,8 +57,10 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         cargoDescriptions: [String]? = nil,
         cargoQuantity: Int? = nil,
         cargoTypes: [String]? = nil,
+        conversionRate: Double? = nil,
         counterpartyName: String? = nil,
         currencyCode: BillingCurrencyCodeEnum1,
+        currencyConversionDescription: String? = nil,
         deliveryAddress: String? = nil,
         deliveryLocationName: String? = nil,
         deliveryStatus: String? = nil,
@@ -82,6 +88,8 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         originIata: String? = nil,
         podAtTimestamp: Date? = nil,
         podName: String? = nil,
+        sourceCurrencyCode: BillingCurrencyCodeEnum1? = nil,
+        sourceUnitPrice: Double? = nil,
         taxPercentage: Double? = nil,
         weightPounds: Double? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -94,8 +102,10 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.cargoDescriptions = cargoDescriptions
         self.cargoQuantity = cargoQuantity
         self.cargoTypes = cargoTypes
+        self.conversionRate = conversionRate
         self.counterpartyName = counterpartyName
         self.currencyCode = currencyCode
+        self.currencyConversionDescription = currencyConversionDescription
         self.deliveryAddress = deliveryAddress
         self.deliveryLocationName = deliveryLocationName
         self.deliveryStatus = deliveryStatus
@@ -123,6 +133,8 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.originIata = originIata
         self.podAtTimestamp = podAtTimestamp
         self.podName = podName
+        self.sourceCurrencyCode = sourceCurrencyCode
+        self.sourceUnitPrice = sourceUnitPrice
         self.taxPercentage = taxPercentage
         self.weightPounds = weightPounds
         self.additionalProperties = additionalProperties
@@ -138,8 +150,10 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.cargoDescriptions = try container.decodeIfPresent([String].self, forKey: .cargoDescriptions)
         self.cargoQuantity = try container.decodeIfPresent(Int.self, forKey: .cargoQuantity)
         self.cargoTypes = try container.decodeIfPresent([String].self, forKey: .cargoTypes)
+        self.conversionRate = try container.decodeIfPresent(Double.self, forKey: .conversionRate)
         self.counterpartyName = try container.decodeIfPresent(String.self, forKey: .counterpartyName)
         self.currencyCode = try container.decode(BillingCurrencyCodeEnum1.self, forKey: .currencyCode)
+        self.currencyConversionDescription = try container.decodeIfPresent(String.self, forKey: .currencyConversionDescription)
         self.deliveryAddress = try container.decodeIfPresent(String.self, forKey: .deliveryAddress)
         self.deliveryLocationName = try container.decodeIfPresent(String.self, forKey: .deliveryLocationName)
         self.deliveryStatus = try container.decodeIfPresent(String.self, forKey: .deliveryStatus)
@@ -167,6 +181,8 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.originIata = try container.decodeIfPresent(String.self, forKey: .originIata)
         self.podAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .podAtTimestamp)
         self.podName = try container.decodeIfPresent(String.self, forKey: .podName)
+        self.sourceCurrencyCode = try container.decodeIfPresent(BillingCurrencyCodeEnum1.self, forKey: .sourceCurrencyCode)
+        self.sourceUnitPrice = try container.decodeIfPresent(Double.self, forKey: .sourceUnitPrice)
         self.taxPercentage = try container.decodeIfPresent(Double.self, forKey: .taxPercentage)
         self.weightPounds = try container.decodeIfPresent(Double.self, forKey: .weightPounds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -183,8 +199,10 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.cargoDescriptions, forKey: .cargoDescriptions)
         try container.encodeIfPresent(self.cargoQuantity, forKey: .cargoQuantity)
         try container.encodeIfPresent(self.cargoTypes, forKey: .cargoTypes)
+        try container.encodeIfPresent(self.conversionRate, forKey: .conversionRate)
         try container.encodeIfPresent(self.counterpartyName, forKey: .counterpartyName)
         try container.encode(self.currencyCode, forKey: .currencyCode)
+        try container.encodeIfPresent(self.currencyConversionDescription, forKey: .currencyConversionDescription)
         try container.encodeIfPresent(self.deliveryAddress, forKey: .deliveryAddress)
         try container.encodeIfPresent(self.deliveryLocationName, forKey: .deliveryLocationName)
         try container.encodeIfPresent(self.deliveryStatus, forKey: .deliveryStatus)
@@ -212,6 +230,8 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.originIata, forKey: .originIata)
         try container.encodeIfPresent(self.podAtTimestamp, forKey: .podAtTimestamp)
         try container.encodeIfPresent(self.podName, forKey: .podName)
+        try container.encodeIfPresent(self.sourceCurrencyCode, forKey: .sourceCurrencyCode)
+        try container.encodeIfPresent(self.sourceUnitPrice, forKey: .sourceUnitPrice)
         try container.encodeIfPresent(self.taxPercentage, forKey: .taxPercentage)
         try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
     }
@@ -226,8 +246,10 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         case cargoDescriptions = "cargo_descriptions"
         case cargoQuantity = "cargo_quantity"
         case cargoTypes = "cargo_types"
+        case conversionRate = "conversion_rate"
         case counterpartyName = "counterparty_name"
         case currencyCode = "currency_code"
+        case currencyConversionDescription = "currency_conversion_description"
         case deliveryAddress = "delivery_address"
         case deliveryLocationName = "delivery_location_name"
         case deliveryStatus = "delivery_status"
@@ -255,6 +277,8 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         case originIata = "origin_iata"
         case podAtTimestamp = "pod_at_timestamp"
         case podName = "pod_name"
+        case sourceCurrencyCode = "source_currency_code"
+        case sourceUnitPrice = "source_unit_price"
         case taxPercentage = "tax_percentage"
         case weightPounds = "weight_pounds"
     }
