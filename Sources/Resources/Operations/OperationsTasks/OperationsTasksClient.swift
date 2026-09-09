@@ -124,6 +124,7 @@ public final class OperationsTasksClient: Sendable {
     ///         ],
     ///         filterAssignedUserId: "filter_assigned_user_id",
     ///         filterSourceTaskListId: "filter_source_task_list_id",
+    ///         filterEntryTag: "filter_entry_tag",
     ///         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     ///     )
@@ -143,10 +144,11 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
     /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
     /// - Parameter filterSourceTaskListId: Filter to tasks created from this OperationsTaskList
+    /// - Parameter filterEntryTag: Filter by exact entry tag (case-sensitive)
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedListV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskExpandedListRes {
+    public func expandedListV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterEntryTag: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskExpandedListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/expanded/list/v1",
@@ -164,6 +166,7 @@ public final class OperationsTasksClient: Sendable {
                 "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
                 "filter_source_task_list_id": filterSourceTaskListId.map { .string($0) }, 
+                "filter_entry_tag": filterEntryTag.map { .string($0) }, 
                 "filter_deadline_gte": filterDeadlineGte.map { .date($0) }, 
                 "filter_deadline_lte": filterDeadlineLte.map { .date($0) }
             ],
@@ -172,7 +175,7 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / assignee / source task list / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
+    /// Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / assignee / source task list / entry tag / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -201,6 +204,7 @@ public final class OperationsTasksClient: Sendable {
     ///         ],
     ///         filterAssignedUserId: "filter_assigned_user_id",
     ///         filterSourceTaskListId: "filter_source_task_list_id",
+    ///         filterEntryTag: "filter_entry_tag",
     ///         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     ///     )
@@ -220,10 +224,11 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
     /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
     /// - Parameter filterSourceTaskListId: Filter to tasks created from this OperationsTaskList
+    /// - Parameter filterEntryTag: Filter by exact entry tag (case-sensitive)
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
+    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterEntryTag: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/list/v1",
@@ -241,6 +246,7 @@ public final class OperationsTasksClient: Sendable {
                 "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
                 "filter_source_task_list_id": filterSourceTaskListId.map { .string($0) }, 
+                "filter_entry_tag": filterEntryTag.map { .string($0) }, 
                 "filter_deadline_gte": filterDeadlineGte.map { .date($0) }, 
                 "filter_deadline_lte": filterDeadlineLte.map { .date($0) }
             ],
@@ -311,7 +317,35 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Creates a new OperationsTask on an Order where the caller is coordinator or executor. Seeds department_id from the caller's Order department fields. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
+    /// Assigns or clears one department on selected tasks across orders. Missing and other-org tasks are skipped. | authz: min_org_role=operator | (OperationsTasksUpdateDepartmentManyReq) -> (OperationsTasksUpdateDepartmentManyRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTasks.updateDepartmentManyV1(request: .init(operationsTaskIds: [
+    ///         "operations_task_ids"
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDepartmentManyV1(request: Requests.OperationsTasksUpdateDepartmentManyReq, requestOptions: RequestOptions? = nil) async throws -> OperationsTasksUpdateDepartmentManyRes {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/operations/operations_tasks/update_department_many/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OperationsTasksUpdateDepartmentManyRes.self
+        )
+    }
+
+    /// Creates a new OperationsTask on an Order where the caller is coordinator or executor. Uses the explicit department_id or leaves the task unassigned. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OperationsTaskClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation

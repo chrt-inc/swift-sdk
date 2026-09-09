@@ -115,7 +115,7 @@ public final class OrgBiddingGroupsClient: Sendable {
         )
     }
 
-    /// Lists org bidding groups owned by the caller's org with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrgBiddingGroupListRes)
+    /// Lists org bidding groups owned by the caller's org with filtering, sorting, pagination, and member organization public data. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrgBiddingGroupListRes)
     ///
     /// ```swift
     /// import Foundation

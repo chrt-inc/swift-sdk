@@ -210,7 +210,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Sets the task-group vehicle type in any lifecycle state. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
+    /// Sets the task-group vehicle type in any lifecycle state; vehicle_type__set_to_None clears it. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -221,7 +221,7 @@ public final class TaskGroupClient: Sendable {
     ///
     ///     _ = try await client.shipping.orders.taskGroup.setVehicleTypeV1(
     ///         taskGroupId: "task_group_id",
-    ///         request: .init(vehicleType: .sedan)
+    ///         request: .init()
     ///     )
     /// }
     ///

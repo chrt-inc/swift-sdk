@@ -5,7 +5,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
     public let archivedAtTimestamp: Date?
     public let cargos: [OrderTemplateNewCargo1]?
     public let coordinatorAssignedUserIds: [String]?
-    public let coordinatorDepartmentId: String?
+    public let coordinatorDepartmentIds: [String]?
     public let coordinatorLabel: String?
     public let coordinatorOrg: OrgPublicData1?
     /// Must be a string starting with `org_`
@@ -40,7 +40,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         archivedAtTimestamp: Date? = nil,
         cargos: [OrderTemplateNewCargo1]? = nil,
         coordinatorAssignedUserIds: [String]? = nil,
-        coordinatorDepartmentId: String? = nil,
+        coordinatorDepartmentIds: [String]? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrg: OrgPublicData1? = nil,
         coordinatorOrgId: String? = nil,
@@ -68,7 +68,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         self.archivedAtTimestamp = archivedAtTimestamp
         self.cargos = cargos
         self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
-        self.coordinatorDepartmentId = coordinatorDepartmentId
+        self.coordinatorDepartmentIds = coordinatorDepartmentIds
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrg = coordinatorOrg
         self.coordinatorOrgId = coordinatorOrgId
@@ -99,7 +99,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         self.archivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .archivedAtTimestamp)
         self.cargos = try container.decodeIfPresent([OrderTemplateNewCargo1].self, forKey: .cargos)
         self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
-        self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
+        self.coordinatorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .coordinatorDepartmentIds)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrg = try container.decodeIfPresent(OrgPublicData1.self, forKey: .coordinatorOrg)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
@@ -131,7 +131,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.archivedAtTimestamp, forKey: .archivedAtTimestamp)
         try container.encodeIfPresent(self.cargos, forKey: .cargos)
         try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
-        try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
+        try container.encodeIfPresent(self.coordinatorDepartmentIds, forKey: .coordinatorDepartmentIds)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrg, forKey: .coordinatorOrg)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
@@ -161,7 +161,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         case archivedAtTimestamp = "archived_at_timestamp"
         case cargos
         case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
-        case coordinatorDepartmentId = "coordinator_department_id"
+        case coordinatorDepartmentIds = "coordinator_department_ids"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrg = "coordinator_org"
         case coordinatorOrgId = "coordinator_org_id"

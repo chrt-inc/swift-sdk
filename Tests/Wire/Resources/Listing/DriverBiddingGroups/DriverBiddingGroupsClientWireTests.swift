@@ -131,6 +131,14 @@ import Chrt
                       "driver_ids": [
                         "driver_ids"
                       ],
+                      "drivers": [
+                        {
+                          "_id": "_id",
+                          "org_id": "org_id",
+                          "schema_version": 1,
+                          "user_id": "user_id"
+                        }
+                      ],
                       "group_name": "group_name",
                       "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                       "owner_org_id": "owner_org_id",
@@ -149,12 +157,20 @@ import Chrt
         )
         let expectedResponse = DriverBiddingGroupListRes(
             items: [
-                DriverBiddingGroup1(
+                DriverBiddingGroupListItemRes(
                     id: "_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByUserId: "created_by_user_id",
                     driverIds: Optional([
                         "driver_ids"
+                    ]),
+                    drivers: Optional([
+                        Driver1(
+                            id: "_id",
+                            orgId: "org_id",
+                            schemaVersion: 1,
+                            userId: "user_id"
+                        )
                     ]),
                     groupName: "group_name",
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

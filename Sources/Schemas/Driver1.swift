@@ -2,6 +2,7 @@ import Foundation
 
 public struct Driver1: Codable, Hashable, Sendable {
     public let id: String
+    public let archivedAtTimestamp: Date?
     public let autoAssignEnabled: Bool?
     public let availableAccordingToDriver: Bool?
     public let availableAccordingToOperators: Bool?
@@ -28,6 +29,7 @@ public struct Driver1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        archivedAtTimestamp: Date? = nil,
         autoAssignEnabled: Bool? = nil,
         availableAccordingToDriver: Bool? = nil,
         availableAccordingToOperators: Bool? = nil,
@@ -50,6 +52,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.archivedAtTimestamp = archivedAtTimestamp
         self.autoAssignEnabled = autoAssignEnabled
         self.availableAccordingToDriver = availableAccordingToDriver
         self.availableAccordingToOperators = availableAccordingToOperators
@@ -75,6 +78,7 @@ public struct Driver1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.archivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .archivedAtTimestamp)
         self.autoAssignEnabled = try container.decodeIfPresent(Bool.self, forKey: .autoAssignEnabled)
         self.availableAccordingToDriver = try container.decodeIfPresent(Bool.self, forKey: .availableAccordingToDriver)
         self.availableAccordingToOperators = try container.decodeIfPresent(Bool.self, forKey: .availableAccordingToOperators)
@@ -101,6 +105,7 @@ public struct Driver1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.archivedAtTimestamp, forKey: .archivedAtTimestamp)
         try container.encodeIfPresent(self.autoAssignEnabled, forKey: .autoAssignEnabled)
         try container.encodeIfPresent(self.availableAccordingToDriver, forKey: .availableAccordingToDriver)
         try container.encodeIfPresent(self.availableAccordingToOperators, forKey: .availableAccordingToOperators)
@@ -125,6 +130,7 @@ public struct Driver1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case archivedAtTimestamp = "archived_at_timestamp"
         case autoAssignEnabled = "auto_assign_enabled"
         case availableAccordingToDriver = "available_according_to_driver"
         case availableAccordingToOperators = "available_according_to_operators"

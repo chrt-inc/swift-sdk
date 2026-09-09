@@ -192,7 +192,7 @@ import Chrt
         let expectedResponse = true
         let response = try await client.shipping.orders.taskGroup.setVehicleTypeV1(
             taskGroupId: "task_group_id",
-            request: .init(vehicleType: .sedan),
+            request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

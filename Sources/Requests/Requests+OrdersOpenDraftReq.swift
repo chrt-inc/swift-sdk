@@ -6,7 +6,7 @@ extension Requests {
         public let coordinatorOrgId: String?
         /// Optional key, unique per caller org, that makes draft creation idempotent: re-sending the same key returns the already-created draft instead of creating a duplicate.
         public let creationIdempotencyKey: String?
-        public let departmentId: String?
+        public let departmentIds: [String]?
         public let label: String?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
@@ -24,7 +24,7 @@ extension Requests {
         public init(
             coordinatorOrgId: String? = nil,
             creationIdempotencyKey: String? = nil,
-            departmentId: String? = nil,
+            departmentIds: [String]? = nil,
             label: String? = nil,
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgDataId: String? = nil,
@@ -36,7 +36,7 @@ extension Requests {
         ) {
             self.coordinatorOrgId = coordinatorOrgId
             self.creationIdempotencyKey = creationIdempotencyKey
-            self.departmentId = departmentId
+            self.departmentIds = departmentIds
             self.label = label
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
@@ -51,7 +51,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.creationIdempotencyKey = try container.decodeIfPresent(String.self, forKey: .creationIdempotencyKey)
-            self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
+            self.departmentIds = try container.decodeIfPresent([String].self, forKey: .departmentIds)
             self.label = try container.decodeIfPresent(String.self, forKey: .label)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
@@ -67,7 +67,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.creationIdempotencyKey, forKey: .creationIdempotencyKey)
-            try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
+            try container.encodeIfPresent(self.departmentIds, forKey: .departmentIds)
             try container.encodeIfPresent(self.label, forKey: .label)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
@@ -81,7 +81,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorOrgId = "coordinator_org_id"
             case creationIdempotencyKey = "creation_idempotency_key"
-            case departmentId = "department_id"
+            case departmentIds = "department_ids"
             case label
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"

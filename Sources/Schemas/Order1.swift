@@ -6,7 +6,7 @@ public struct Order1: Codable, Hashable, Sendable {
     public let cancelledAtTimestamp: Date?
     public let completedAtTimestamp: Date?
     public let coordinatorAssignedUserIds: [String]?
-    public let coordinatorDepartmentId: String?
+    public let coordinatorDepartmentIds: [String]?
     public let coordinatorLabel: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
@@ -46,7 +46,7 @@ public struct Order1: Codable, Hashable, Sendable {
         cancelledAtTimestamp: Date? = nil,
         completedAtTimestamp: Date? = nil,
         coordinatorAssignedUserIds: [String]? = nil,
-        coordinatorDepartmentId: String? = nil,
+        coordinatorDepartmentIds: [String]? = nil,
         coordinatorLabel: String? = nil,
         coordinatorOrgId: String? = nil,
         coordinatorShipperAccountIds: [String]? = nil,
@@ -78,7 +78,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.cancelledAtTimestamp = cancelledAtTimestamp
         self.completedAtTimestamp = completedAtTimestamp
         self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
-        self.coordinatorDepartmentId = coordinatorDepartmentId
+        self.coordinatorDepartmentIds = coordinatorDepartmentIds
         self.coordinatorLabel = coordinatorLabel
         self.coordinatorOrgId = coordinatorOrgId
         self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
@@ -113,7 +113,7 @@ public struct Order1: Codable, Hashable, Sendable {
         self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
-        self.coordinatorDepartmentId = try container.decodeIfPresent(String.self, forKey: .coordinatorDepartmentId)
+        self.coordinatorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .coordinatorDepartmentIds)
         self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
         self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
@@ -149,7 +149,7 @@ public struct Order1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
-        try container.encodeIfPresent(self.coordinatorDepartmentId, forKey: .coordinatorDepartmentId)
+        try container.encodeIfPresent(self.coordinatorDepartmentIds, forKey: .coordinatorDepartmentIds)
         try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
@@ -183,7 +183,7 @@ public struct Order1: Codable, Hashable, Sendable {
         case cancelledAtTimestamp = "cancelled_at_timestamp"
         case completedAtTimestamp = "completed_at_timestamp"
         case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
-        case coordinatorDepartmentId = "coordinator_department_id"
+        case coordinatorDepartmentIds = "coordinator_department_ids"
         case coordinatorLabel = "coordinator_label"
         case coordinatorOrgId = "coordinator_org_id"
         case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"

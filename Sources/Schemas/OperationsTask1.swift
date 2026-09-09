@@ -10,6 +10,7 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
     public let deadlineTimestamp: Date?
     public let departmentId: String?
     public let description: String
+    public let entryTag: String?
     public let orderId: String
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let orderOffChrtReferenceId: String?
@@ -33,6 +34,7 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         deadlineTimestamp: Date? = nil,
         departmentId: String? = nil,
         description: String,
+        entryTag: String? = nil,
         orderId: String,
         orderOffChrtReferenceId: String? = nil,
         orderShortId: String,
@@ -52,6 +54,7 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         self.deadlineTimestamp = deadlineTimestamp
         self.departmentId = departmentId
         self.description = description
+        self.entryTag = entryTag
         self.orderId = orderId
         self.orderOffChrtReferenceId = orderOffChrtReferenceId
         self.orderShortId = orderShortId
@@ -74,6 +77,7 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         self.deadlineTimestamp = try container.decodeIfPresent(Date.self, forKey: .deadlineTimestamp)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
         self.description = try container.decode(String.self, forKey: .description)
+        self.entryTag = try container.decodeIfPresent(String.self, forKey: .entryTag)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.orderOffChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .orderOffChrtReferenceId)
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
@@ -97,6 +101,7 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.deadlineTimestamp, forKey: .deadlineTimestamp)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
         try container.encode(self.description, forKey: .description)
+        try container.encodeIfPresent(self.entryTag, forKey: .entryTag)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encodeIfPresent(self.orderOffChrtReferenceId, forKey: .orderOffChrtReferenceId)
         try container.encode(self.orderShortId, forKey: .orderShortId)
@@ -118,6 +123,7 @@ public struct OperationsTask1: Codable, Hashable, Sendable {
         case deadlineTimestamp = "deadline_timestamp"
         case departmentId = "department_id"
         case description
+        case entryTag = "entry_tag"
         case orderId = "order_id"
         case orderOffChrtReferenceId = "order_off_chrt_reference_id"
         case orderShortId = "order_short_id"

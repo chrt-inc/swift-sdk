@@ -36,7 +36,7 @@ public final class DepartmentsClient: Sendable {
         )
     }
 
-    /// Lists department configurations for the caller's organization. | authz: min_org_role=operator | () -> (DepartmentListRes)
+    /// Lists department configurations for the caller's organization with filtering, sorting, pagination, and Atlas Search. | authz: min_org_role=operator | () -> (DepartmentListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -48,6 +48,7 @@ public final class DepartmentsClient: Sendable {
     ///     _ = try await client.operations.departments.listV1(
     ///         sortBy: .createdAt,
     ///         sortOrder: .asc,
+    ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
     ///         filterDepartmentType: [
@@ -61,15 +62,17 @@ public final class DepartmentsClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Search name and short_id using Atlas Search
     /// - Parameter filterDepartmentType: Filter by department type(s)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DepartmentSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentType: [DepartmentTypeEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DepartmentListRes {
+    public func listV1(sortBy: DepartmentSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentType: [DepartmentTypeEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DepartmentListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/departments/list/v1",
             queryParams: [
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "filter_department_type": filterDepartmentType.map { .unknown($0) }

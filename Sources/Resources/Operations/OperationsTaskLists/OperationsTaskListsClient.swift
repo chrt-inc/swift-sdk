@@ -7,7 +7,7 @@ public final class OperationsTaskListsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Order (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. department_id overrides the caller's Order department when supplied. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
+    /// Materializes each entry of an OperationsTaskList into an OperationsTask on the Order (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. department_id explicitly assigns the materialized tasks; omitted leaves them unassigned. No dedup — applying twice creates duplicate tasks. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (list[PydanticObjectId])
     ///
     /// ```swift
     /// import Foundation
@@ -20,6 +20,7 @@ public final class OperationsTaskListsClient: Sendable {
     ///         taskListId: "task_list_id",
     ///         orderId: "order_id",
     ///         departmentId: "department_id",
+    ///         entryTag: "entry_tag",
     ///         initialDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     ///     )
     /// }
@@ -27,15 +28,17 @@ public final class OperationsTaskListsClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter departmentId: Overrides the Order department for tasks materialized by this application.
+    /// - Parameter departmentId: Department for materialized tasks; omitted leaves them unassigned.
+    /// - Parameter entryTag: Context tag copied onto every generated task
     /// - Parameter initialDeadlineTimestamp: If set, pins the first entry's deadline; later FROM_PREVIOUS_TASK entries cascade from it.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func applyToOrderV1(taskListId: String, orderId: String, departmentId: String? = nil, initialDeadlineTimestamp: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func applyToOrderV1(taskListId: String, orderId: String, departmentId: String? = nil, entryTag: String? = nil, initialDeadlineTimestamp: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
         return try await httpClient.performRequest(
             method: .post,
             path: "/operations/operations_task_lists/apply_to_order/v1/\(taskListId)/\(orderId)",
             queryParams: [
                 "department_id": departmentId.map { .string($0) }, 
+                "entry_tag": entryTag.map { .string($0) }, 
                 "initial_deadline_timestamp": initialDeadlineTimestamp.map { .date($0) }
             ],
             requestOptions: requestOptions,
@@ -192,7 +195,7 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Lists OperationsTaskLists for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
+    /// Lists OperationsTaskLists for the caller's organization with filtering, sorting, pagination, and Atlas Search. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -204,6 +207,7 @@ public final class OperationsTaskListsClient: Sendable {
     ///     _ = try await client.operations.operationsTaskLists.listV1(
     ///         sortBy: .createdAtTimestamp,
     ///         sortOrder: .asc,
+    ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
     ///         filterArchived: true
@@ -215,15 +219,17 @@ public final class OperationsTaskListsClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Search name and description using Atlas Search
     /// - Parameter filterArchived: Filter by archived flag. None=all, True=archived only, False=unarchived only.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskListSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListListRes {
+    public func listV1(sortBy: OperationsTaskListSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_task_lists/list/v1",
             queryParams: [
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
+                "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }
@@ -233,7 +239,7 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Removes the OperationsTasks this OperationsTaskList added to the Order (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromOrderRes1)
+    /// Removes the OperationsTasks this OperationsTaskList added to the Order (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OperationsTaskListRemoveFromOrderRes1)
     ///
     /// ```swift
     /// import Foundation

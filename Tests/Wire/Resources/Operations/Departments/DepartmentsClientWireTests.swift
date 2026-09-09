@@ -116,6 +116,7 @@ import Chrt
         let response = try await client.operations.departments.listV1(
             sortBy: .createdAt,
             sortOrder: .asc,
+            search: "search",
             page: 1,
             pageSize: 1,
             filterDepartmentType: [

@@ -111,7 +111,9 @@ public final class ExpandedClient: Sendable {
     ///         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterExecutorOrgId: "filter_executor_org_id",
-    ///         filterExecutorDepartmentId: "filter_executor_department_id",
+    ///         filterExecutorDepartmentIds: [
+    ///             "filter_executor_department_ids"
+    ///         ],
     ///         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
     ///         filterCoordinatorOrgId: "filter_coordinator_org_id",
     ///         filterShipperOrgId: "filter_shipper_org_id",
@@ -119,7 +121,9 @@ public final class ExpandedClient: Sendable {
     ///         filterCoordinatorShipperAccountIds: [
     ///             "filter_coordinator_shipper_account_ids"
     ///         ],
-    ///         filterCoordinatorDepartmentId: "filter_coordinator_department_id",
+    ///         filterCoordinatorDepartmentIds: [
+    ///             "filter_coordinator_department_ids"
+    ///         ],
     ///         filterCoordinatorAssignedUserIds: [
     ///             "filter_coordinator_assigned_user_ids"
     ///         ],
@@ -139,11 +143,12 @@ public final class ExpandedClient: Sendable {
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
     /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter filterHasInvoice: Filter by whether the order has any invoice
-    /// - Parameter filterExecutorDepartmentId: Filter by executor department ID
+    /// - Parameter filterExecutorDepartmentIds: Filter by executor department IDs
     /// - Parameter filterOffChrtExecutorOrgDataId: Filter by off-CHRT executor org data ID
     /// - Parameter filterCoordinatorShipperAccountIds: Filter by coordinator shipper account IDs
+    /// - Parameter filterCoordinatorDepartmentIds: Filter by coordinator department IDs
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentId: String? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
+    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_provider_operators/v1",
@@ -172,13 +177,13 @@ public final class ExpandedClient: Sendable {
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 
                 "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }, 
                 "filter_executor_org_id": filterExecutorOrgId.map { .string($0) }, 
-                "filter_executor_department_id": filterExecutorDepartmentId.map { .string($0) }, 
+                "filter_executor_department_ids": filterExecutorDepartmentIds.map { .stringArray($0) }, 
                 "filter_off_chrt_executor_org_data_id": filterOffChrtExecutorOrgDataId.map { .string($0) }, 
                 "filter_coordinator_org_id": filterCoordinatorOrgId.map { .string($0) }, 
                 "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 
                 "filter_off_chrt_shipper_org_data_id": filterOffChrtShipperOrgDataId.map { .string($0) }, 
                 "filter_coordinator_shipper_account_ids": filterCoordinatorShipperAccountIds.map { .stringArray($0) }, 
-                "filter_coordinator_department_id": filterCoordinatorDepartmentId.map { .string($0) }, 
+                "filter_coordinator_department_ids": filterCoordinatorDepartmentIds.map { .stringArray($0) }, 
                 "filter_coordinator_assigned_user_ids": filterCoordinatorAssignedUserIds.map { .stringArray($0) }, 
                 "filter_coordinator_label": filterCoordinatorLabel.map { .string($0) }
             ],

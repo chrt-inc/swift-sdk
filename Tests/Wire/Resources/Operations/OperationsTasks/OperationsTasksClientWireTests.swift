@@ -197,6 +197,7 @@ import Chrt
             ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterSourceTaskListId: "filter_source_task_list_id",
+            filterEntryTag: "filter_entry_tag",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -228,6 +229,7 @@ import Chrt
                       "deadline_timestamp": "2024-01-15T09:30:00Z",
                       "department_id": "department_id",
                       "description": "description",
+                      "entry_tag": "entry_tag",
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                       "order_short_id": "order_short_id",
@@ -268,6 +270,7 @@ import Chrt
                     deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     departmentId: Optional("department_id"),
                     description: "description",
+                    entryTag: Optional("entry_tag"),
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
                     orderShortId: "order_short_id",
@@ -301,6 +304,7 @@ import Chrt
             ],
             filterAssignedUserId: "filter_assigned_user_id",
             filterSourceTaskListId: "filter_source_task_list_id",
+            filterEntryTag: "filter_entry_tag",
             filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -370,6 +374,34 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func updateDepartmentManyV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "updated_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OperationsTasksUpdateDepartmentManyRes(
+            updatedCount: 1
+        )
+        let response = try await client.operations.operationsTasks.updateDepartmentManyV1(
+            request: .init(operationsTaskIds: [
+                "operations_task_ids"
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -421,6 +453,7 @@ import Chrt
                   "deadline_timestamp": "2024-01-15T09:30:00Z",
                   "department_id": "department_id",
                   "description": "description",
+                  "entry_tag": "entry_tag",
                   "order_id": "order_id",
                   "order_off_chrt_reference_id": "order_off_chrt_reference_id",
                   "order_short_id": "order_short_id",
@@ -457,6 +490,7 @@ import Chrt
             deadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             departmentId: Optional("department_id"),
             description: "description",
+            entryTag: Optional("entry_tag"),
             orderId: "order_id",
             orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
             orderShortId: "order_short_id",

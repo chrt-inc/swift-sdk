@@ -114,7 +114,7 @@ public final class DriverBiddingGroupsClient: Sendable {
         )
     }
 
-    /// Lists driver bidding groups owned by the caller's org with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroupListRes)
+    /// Lists driver bidding groups owned by the caller's org with filtering, sorting, pagination, and member driver profiles. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroupListRes)
     ///
     /// ```swift
     /// import Foundation

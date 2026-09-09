@@ -120,6 +120,7 @@ public final class ShippingOrdersClient: Sendable {
     ///         orderId: "order_id",
     ///         taskListId: "task_list_id",
     ///         departmentId: "department_id",
+    ///         entryTag: "entry_tag",
     ///         request: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     ///     )
     /// }
@@ -127,13 +128,15 @@ public final class ShippingOrdersClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter entryTag: Context tag for the generated tasks
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addCoordinatorTaskListToApplyAtOrderStagingV1(orderId: String, taskListId: String, departmentId: String? = nil, request: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func addCoordinatorTaskListToApplyAtOrderStagingV1(orderId: String, taskListId: String, departmentId: String? = nil, entryTag: String? = nil, request: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/coordinator_task_lists_to_apply_at_order_staging/add/v1/\(orderId)/\(taskListId)",
             queryParams: [
-                "department_id": departmentId.map { .string($0) }
+                "department_id": departmentId.map { .string($0) }, 
+                "entry_tag": entryTag.map { .string($0) }
             ],
             body: request,
             requestOptions: requestOptions,
@@ -247,7 +250,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Returns the coordinator's account-level default department for the order's shipper. | authz: min_org_role=operator | () -> (PydanticObjectId | None)
+    /// Returns the coordinator's account-level default department for the order's shipper. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (PydanticObjectId | None)
     ///
     /// ```swift
     /// import Foundation
@@ -427,7 +430,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Updates department_id for the caller's role on the order. Coordinator writes coordinator_department_id; executor writes executor_department_id on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentReq) -> (bool)
+    /// Replaces department_ids for the caller's role on the order. Coordinator writes coordinator_department_ids; executor writes executor_department_ids on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentsReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -436,7 +439,7 @@ public final class ShippingOrdersClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shipping.orders.updateDepartmentV1(
+    ///     _ = try await client.shipping.orders.updateDepartmentsV1(
     ///         orderId: "order_id",
     ///         request: .init()
     ///     )
@@ -446,10 +449,10 @@ public final class ShippingOrdersClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateDepartmentV1(orderId: String, request: Requests.OrdersUpdateDepartmentReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateDepartmentsV1(orderId: String, request: Requests.OrdersUpdateDepartmentsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/shipping/orders/update_department/v1/\(orderId)",
+            path: "/shipping/orders/update_departments/v1/\(orderId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

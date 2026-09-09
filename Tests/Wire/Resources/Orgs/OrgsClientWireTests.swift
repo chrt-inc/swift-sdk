@@ -89,6 +89,9 @@ import Chrt
             filterRole: [
                 .owner
             ],
+            filterUserIds: [
+                "filter_user_ids"
+            ],
             sortBy: .firstName,
             sortOrder: .asc,
             page: 1,

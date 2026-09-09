@@ -7,7 +7,7 @@ public final class BidThreadsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Pushes a bidder-side ACCEPT onto an OPEN thread. References the most recent lister-side pro_forma (or the listing's opening for DISPATCH). On `auto_award_first_accept=True` listings, fires the full cascade immediately (thread ACCEPTED, listing AWARDED, shipping and BillingNew side-effects). Otherwise leaves the thread OPEN for the lister to finalise via confirm_accept. Lister-side finalisation lives on confirm_accept; calling /accept/v1 from the lister side is rejected (400). | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    /// Accepts an offer; lister acceptance awards immediately, while bidder acceptance follows the listing's auto-award setting. | authz: allowed_org_types=[provider], min_org_role=member; lister min_org_role=operator | (BidAppendReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -63,7 +63,7 @@ public final class BidThreadsClient: Sendable {
         )
     }
 
-    /// Lister confirmation of a bidder's ACCEPT on this thread, used when `listing.auto_award_first_accept == False`. Runs the full award cascade: thread ACCEPTED, listing AWARDED, sibling threads / listings cancelled, and shipping and BillingNew side-effects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    /// Confirms a pending bidder acceptance and awards at its recorded price. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -88,7 +88,7 @@ public final class BidThreadsClient: Sendable {
         )
     }
 
-    /// Pushes a COUNTER Bid carrying revised pro_forma_line_items onto an OPEN NEGOTIATION thread. Both sides of the thread may COUNTER. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    /// Adds a counteroffer to an open negotiation. | authz: allowed_org_types=[provider], min_org_role=member | (BidAppendReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -119,7 +119,7 @@ public final class BidThreadsClient: Sendable {
         )
     }
 
-    /// Opens a new BidThread on a Listing. The body carries the thread's first Bid (SUBMIT / ACCEPT / DENY). Bidder identity is resolved server-side from the caller's JWT + the listing's audience. | authz: allowed_org_types=[provider], min_org_role=driver | (BidThreadClientCreate1) -> (PydanticObjectId)
+    /// Opens a bid thread with an offer, acceptance, or denial. | authz: allowed_org_types=[provider], min_org_role=member | (BidThreadClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -148,7 +148,7 @@ public final class BidThreadsClient: Sendable {
         )
     }
 
-    /// Pushes a DENY onto an OPEN thread, flipping its status to DENIED (terminal). Both sides may deny. References the most recent opposite-side Bid; carries no pro_forma. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    /// Declines an open negotiation and closes its thread. | authz: allowed_org_types=[provider], min_org_role=member | (BidAppendReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -308,7 +308,7 @@ public final class BidThreadsClient: Sendable {
         )
     }
 
-    /// Pushes a bidder-side WITHDRAW onto an OPEN thread, flipping its status to WITHDRAWN (terminal). Bidder-only — the lister equivalent is CANCEL on the listing. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+    /// Withdraws the bidder's offer and closes its thread. | authz: allowed_org_types=[provider], min_org_role=member | (BidAppendReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation

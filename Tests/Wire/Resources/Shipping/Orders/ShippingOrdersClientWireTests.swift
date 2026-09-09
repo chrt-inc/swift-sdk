@@ -93,6 +93,7 @@ import Chrt
             orderId: "order_id",
             taskListId: "task_list_id",
             departmentId: "department_id",
+            entryTag: "entry_tag",
             request: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -366,7 +367,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateDepartmentV11() async throws -> Void {
+    @Test func updateDepartmentsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
@@ -381,7 +382,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orders.updateDepartmentV1(
+        let response = try await client.shipping.orders.updateDepartmentsV1(
             orderId: "order_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

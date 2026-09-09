@@ -46,7 +46,7 @@ public final class OrgsClient: Sendable {
         )
     }
 
-    /// Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role, sorting, and pagination. | () -> (OrgMemberListRes)
+    /// Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role and user IDs, sorting, and pagination. | () -> (OrgMemberListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -58,6 +58,9 @@ public final class OrgsClient: Sendable {
     ///     _ = try await client.orgs.listMembersV1(
     ///         filterRole: [
     ///             .owner
+    ///         ],
+    ///         filterUserIds: [
+    ///             "filter_user_ids"
     ///         ],
     ///         sortBy: .firstName,
     ///         sortOrder: .asc,
@@ -71,16 +74,18 @@ public final class OrgsClient: Sendable {
     /// ```
     ///
     /// - Parameter filterRole: Filter by organization role(s)
+    /// - Parameter filterUserIds: Filter by user ID(s)
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Search by first or last name
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listMembersV1(filterRole: [OrgRoleEnum]? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMemberListRes {
+    public func listMembersV1(filterRole: [OrgRoleEnum]? = nil, filterUserIds: [String]? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMemberListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/members/list/v1",
             queryParams: [
                 "filter_role": filterRole.map { .unknown($0) }, 
+                "filter_user_ids": filterUserIds.map { .stringArray($0) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 

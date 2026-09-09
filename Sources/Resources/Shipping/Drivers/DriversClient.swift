@@ -9,6 +9,31 @@ public final class DriversClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Archives a driver after draft, staged, and in-progress assignments are resolved, and denies their open bid threads. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.drivers.archiveV1(driverId: "driver_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func archiveV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/archive/v1/\(driverId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Provider orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
@@ -105,6 +130,8 @@ public final class DriversClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterByDriverId: "filter_by_driver_id",
+    ///         filterArchived: true,
     ///         filterAvailableAccordingToDriver: true,
     ///         filterAvailableAccordingToOperators: true,
     ///         filterStatus: [
@@ -118,11 +145,13 @@ public final class DriversClient: Sendable {
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query
+    /// - Parameter filterByDriverId: Filter by driver ID
+    /// - Parameter filterArchived: Select archived drivers instead of active drivers
     /// - Parameter filterAvailableAccordingToDriver: Filter by driver's self-reported availability
     /// - Parameter filterAvailableAccordingToOperators: Filter by operator-set availability
     /// - Parameter filterStatus: Filter by driver state (UNASSIGNED / ASSIGNED / IN_PROGRESS)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, filterStatus: [DriverStatusEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverListRes {
+    public func listV1(sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterByDriverId: String? = nil, filterArchived: Bool? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, filterStatus: [DriverStatusEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/list/v1",
@@ -131,6 +160,8 @@ public final class DriversClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_by_driver_id": filterByDriverId.map { .string($0) }, 
+                "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_available_according_to_driver": filterAvailableAccordingToDriver.map { .bool($0) }, 
                 "filter_available_according_to_operators": filterAvailableAccordingToOperators.map { .bool($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }
@@ -151,6 +182,7 @@ public final class DriversClient: Sendable {
     ///
     ///     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
     ///         search: "search",
+    ///         filterArchived: true,
     ///         filterRole: [
     ///             .owner
     ///         ],
@@ -167,18 +199,20 @@ public final class DriversClient: Sendable {
     /// ```
     ///
     /// - Parameter search: Search by first or last name
+    /// - Parameter filterArchived: Select archived driver profiles
     /// - Parameter filterRole: Filter by organization role(s)
     /// - Parameter filterAvailableAccordingToDriver: Filter by driver's self-reported availability.
     /// - Parameter filterAvailableAccordingToOperators: Filter by operator-set availability.
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listOrgMembersAndDriversV1(search: String? = nil, filterRole: [OrgRoleEnum]? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMembersAndDriversListRes {
+    public func listOrgMembersAndDriversV1(search: String? = nil, filterArchived: Bool? = nil, filterRole: [OrgRoleEnum]? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, sortBy: OrgMemberSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OrgMembersAndDriversListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/org_members_and_drivers/list/v1",
             queryParams: [
                 "search": search.map { .string($0) }, 
+                "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_role": filterRole.map { .unknown($0) }, 
                 "filter_available_according_to_driver": filterAvailableAccordingToDriver.map { .bool($0) }, 
                 "filter_available_according_to_operators": filterAvailableAccordingToOperators.map { .bool($0) }, 
@@ -418,6 +452,31 @@ public final class DriversClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: DriverStatsRes.self
+        )
+    }
+
+    /// Restores an archived driver with active organization membership. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.drivers.unarchiveV1(driverId: "driver_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func unarchiveV1(driverId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/unarchive/v1/\(driverId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
         )
     }
 

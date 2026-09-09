@@ -134,6 +134,15 @@ import Chrt
                       "provider_org_ids": [
                         "provider_org_ids"
                       ],
+                      "providers": [
+                        {
+                          "_id": "_id",
+                          "name": "name",
+                          "org_id": "org_id",
+                          "org_type": "provider",
+                          "schema_version": 1
+                        }
+                      ],
                       "schema_version": 1
                     }
                   ],
@@ -149,7 +158,7 @@ import Chrt
         )
         let expectedResponse = OrgBiddingGroupListRes(
             items: [
-                OrgBiddingGroup1(
+                OrgBiddingGroupListItemRes(
                     id: "_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     createdByUserId: "created_by_user_id",
@@ -158,6 +167,15 @@ import Chrt
                     ownerOrgId: "owner_org_id",
                     providerOrgIds: Optional([
                         "provider_org_ids"
+                    ]),
+                    providers: Optional([
+                        OrgPublicData1(
+                            id: "_id",
+                            name: "name",
+                            orgId: "org_id",
+                            orgType: OrgTypeEnum.provider,
+                            schemaVersion: 1
+                        )
                     ]),
                     schemaVersion: 1
                 )

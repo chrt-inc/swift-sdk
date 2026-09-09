@@ -7,6 +7,7 @@ import Foundation
 public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
     public let id: String
     public let activeTaskGroupIds: [String]?
+    public let archivedAtTimestamp: Date?
     public let autoAssignEnabled: Bool?
     public let availableAccordingToDriver: Bool?
     public let availableAccordingToOperators: Bool?
@@ -34,6 +35,7 @@ public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
     public init(
         id: String,
         activeTaskGroupIds: [String]? = nil,
+        archivedAtTimestamp: Date? = nil,
         autoAssignEnabled: Bool? = nil,
         availableAccordingToDriver: Bool? = nil,
         availableAccordingToOperators: Bool? = nil,
@@ -57,6 +59,7 @@ public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
     ) {
         self.id = id
         self.activeTaskGroupIds = activeTaskGroupIds
+        self.archivedAtTimestamp = archivedAtTimestamp
         self.autoAssignEnabled = autoAssignEnabled
         self.availableAccordingToDriver = availableAccordingToDriver
         self.availableAccordingToOperators = availableAccordingToOperators
@@ -83,6 +86,7 @@ public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.activeTaskGroupIds = try container.decodeIfPresent([String].self, forKey: .activeTaskGroupIds)
+        self.archivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .archivedAtTimestamp)
         self.autoAssignEnabled = try container.decodeIfPresent(Bool.self, forKey: .autoAssignEnabled)
         self.availableAccordingToDriver = try container.decodeIfPresent(Bool.self, forKey: .availableAccordingToDriver)
         self.availableAccordingToOperators = try container.decodeIfPresent(Bool.self, forKey: .availableAccordingToOperators)
@@ -110,6 +114,7 @@ public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.activeTaskGroupIds, forKey: .activeTaskGroupIds)
+        try container.encodeIfPresent(self.archivedAtTimestamp, forKey: .archivedAtTimestamp)
         try container.encodeIfPresent(self.autoAssignEnabled, forKey: .autoAssignEnabled)
         try container.encodeIfPresent(self.availableAccordingToDriver, forKey: .availableAccordingToDriver)
         try container.encodeIfPresent(self.availableAccordingToOperators, forKey: .availableAccordingToOperators)
@@ -135,6 +140,7 @@ public struct DriverWithActiveTaskGroupIds1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
         case activeTaskGroupIds = "active_task_group_ids"
+        case archivedAtTimestamp = "archived_at_timestamp"
         case autoAssignEnabled = "auto_assign_enabled"
         case availableAccordingToDriver = "available_according_to_driver"
         case availableAccordingToOperators = "available_according_to_operators"

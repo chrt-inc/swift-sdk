@@ -26,6 +26,7 @@ import Chrt
             taskListId: "task_list_id",
             orderId: "order_id",
             departmentId: "department_id",
+            entryTag: "entry_tag",
             initialDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -217,6 +218,7 @@ import Chrt
         let response = try await client.operations.operationsTaskLists.listV1(
             sortBy: .createdAtTimestamp,
             sortOrder: .asc,
+            search: "search",
             page: 1,
             pageSize: 1,
             filterArchived: true,

@@ -206,6 +206,7 @@ import Chrt
                   ],
                   "counterparty_driver": {
                     "_id": "_id",
+                    "archived_at_timestamp": "2024-01-15T09:30:00Z",
                     "auto_assign_enabled": true,
                     "available_according_to_driver": true,
                     "available_according_to_operators": true,
@@ -448,6 +449,7 @@ import Chrt
             ]),
             counterpartyDriver: Optional(Driver1(
                 id: "_id",
+                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 autoAssignEnabled: Optional(true),
                 availableAccordingToDriver: Optional(true),
                 availableAccordingToOperators: Optional(true),

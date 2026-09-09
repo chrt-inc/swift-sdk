@@ -4,12 +4,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
     public let expandAccounts: Bool?
     public let expandCargos: Bool?
     public let expandContacts: Bool?
-    public let expandCoordinatorDepartment: Bool?
+    public let expandCoordinatorDepartments: Bool?
     public let expandCoordinatorOrgCompanyName: Bool?
     public let expandCoordinatorOrgHandle: Bool?
     public let expandCoordinatorTaskListsToApplyAtOrderStaging: Bool?
     public let expandDriver: Bool?
-    public let expandExecutorDepartment: Bool?
+    public let expandExecutorDepartments: Bool?
     public let expandExecutorOrgCompanyName: Bool?
     public let expandExecutorOrgHandle: Bool?
     public let expandNotificationIntentsAdHoc: Bool?
@@ -24,12 +24,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         expandAccounts: Bool? = nil,
         expandCargos: Bool? = nil,
         expandContacts: Bool? = nil,
-        expandCoordinatorDepartment: Bool? = nil,
+        expandCoordinatorDepartments: Bool? = nil,
         expandCoordinatorOrgCompanyName: Bool? = nil,
         expandCoordinatorOrgHandle: Bool? = nil,
         expandCoordinatorTaskListsToApplyAtOrderStaging: Bool? = nil,
         expandDriver: Bool? = nil,
-        expandExecutorDepartment: Bool? = nil,
+        expandExecutorDepartments: Bool? = nil,
         expandExecutorOrgCompanyName: Bool? = nil,
         expandExecutorOrgHandle: Bool? = nil,
         expandNotificationIntentsAdHoc: Bool? = nil,
@@ -42,12 +42,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandAccounts = expandAccounts
         self.expandCargos = expandCargos
         self.expandContacts = expandContacts
-        self.expandCoordinatorDepartment = expandCoordinatorDepartment
+        self.expandCoordinatorDepartments = expandCoordinatorDepartments
         self.expandCoordinatorOrgCompanyName = expandCoordinatorOrgCompanyName
         self.expandCoordinatorOrgHandle = expandCoordinatorOrgHandle
         self.expandCoordinatorTaskListsToApplyAtOrderStaging = expandCoordinatorTaskListsToApplyAtOrderStaging
         self.expandDriver = expandDriver
-        self.expandExecutorDepartment = expandExecutorDepartment
+        self.expandExecutorDepartments = expandExecutorDepartments
         self.expandExecutorOrgCompanyName = expandExecutorOrgCompanyName
         self.expandExecutorOrgHandle = expandExecutorOrgHandle
         self.expandNotificationIntentsAdHoc = expandNotificationIntentsAdHoc
@@ -63,12 +63,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         self.expandAccounts = try container.decodeIfPresent(Bool.self, forKey: .expandAccounts)
         self.expandCargos = try container.decodeIfPresent(Bool.self, forKey: .expandCargos)
         self.expandContacts = try container.decodeIfPresent(Bool.self, forKey: .expandContacts)
-        self.expandCoordinatorDepartment = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorDepartment)
+        self.expandCoordinatorDepartments = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorDepartments)
         self.expandCoordinatorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgCompanyName)
         self.expandCoordinatorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorOrgHandle)
         self.expandCoordinatorTaskListsToApplyAtOrderStaging = try container.decodeIfPresent(Bool.self, forKey: .expandCoordinatorTaskListsToApplyAtOrderStaging)
         self.expandDriver = try container.decodeIfPresent(Bool.self, forKey: .expandDriver)
-        self.expandExecutorDepartment = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorDepartment)
+        self.expandExecutorDepartments = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorDepartments)
         self.expandExecutorOrgCompanyName = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgCompanyName)
         self.expandExecutorOrgHandle = try container.decodeIfPresent(Bool.self, forKey: .expandExecutorOrgHandle)
         self.expandNotificationIntentsAdHoc = try container.decodeIfPresent(Bool.self, forKey: .expandNotificationIntentsAdHoc)
@@ -85,12 +85,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.expandAccounts, forKey: .expandAccounts)
         try container.encodeIfPresent(self.expandCargos, forKey: .expandCargos)
         try container.encodeIfPresent(self.expandContacts, forKey: .expandContacts)
-        try container.encodeIfPresent(self.expandCoordinatorDepartment, forKey: .expandCoordinatorDepartment)
+        try container.encodeIfPresent(self.expandCoordinatorDepartments, forKey: .expandCoordinatorDepartments)
         try container.encodeIfPresent(self.expandCoordinatorOrgCompanyName, forKey: .expandCoordinatorOrgCompanyName)
         try container.encodeIfPresent(self.expandCoordinatorOrgHandle, forKey: .expandCoordinatorOrgHandle)
         try container.encodeIfPresent(self.expandCoordinatorTaskListsToApplyAtOrderStaging, forKey: .expandCoordinatorTaskListsToApplyAtOrderStaging)
         try container.encodeIfPresent(self.expandDriver, forKey: .expandDriver)
-        try container.encodeIfPresent(self.expandExecutorDepartment, forKey: .expandExecutorDepartment)
+        try container.encodeIfPresent(self.expandExecutorDepartments, forKey: .expandExecutorDepartments)
         try container.encodeIfPresent(self.expandExecutorOrgCompanyName, forKey: .expandExecutorOrgCompanyName)
         try container.encodeIfPresent(self.expandExecutorOrgHandle, forKey: .expandExecutorOrgHandle)
         try container.encodeIfPresent(self.expandNotificationIntentsAdHoc, forKey: .expandNotificationIntentsAdHoc)
@@ -105,12 +105,12 @@ public struct OrderAndTaskGroupExpandedReq: Codable, Hashable, Sendable {
         case expandAccounts = "expand_accounts"
         case expandCargos = "expand_cargos"
         case expandContacts = "expand_contacts"
-        case expandCoordinatorDepartment = "expand_coordinator_department"
+        case expandCoordinatorDepartments = "expand_coordinator_departments"
         case expandCoordinatorOrgCompanyName = "expand_coordinator_org_company_name"
         case expandCoordinatorOrgHandle = "expand_coordinator_org_handle"
         case expandCoordinatorTaskListsToApplyAtOrderStaging = "expand_coordinator_task_lists_to_apply_at_order_staging"
         case expandDriver = "expand_driver"
-        case expandExecutorDepartment = "expand_executor_department"
+        case expandExecutorDepartments = "expand_executor_departments"
         case expandExecutorOrgCompanyName = "expand_executor_org_company_name"
         case expandExecutorOrgHandle = "expand_executor_org_handle"
         case expandNotificationIntentsAdHoc = "expand_notification_intents_ad_hoc"

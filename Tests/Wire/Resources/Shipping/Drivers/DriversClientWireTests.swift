@@ -3,6 +3,28 @@ import Testing
 import Chrt
 
 @Suite("DriversClient Wire Tests") struct DriversClientWireTests {
+    @Test func archiveV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.drivers.archiveV1(
+            driverId: "driver_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -36,6 +58,7 @@ import Chrt
                   "active_task_group_ids": [
                     "active_task_group_ids"
                   ],
+                  "archived_at_timestamp": "2024-01-15T09:30:00Z",
                   "auto_assign_enabled": true,
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
@@ -94,6 +117,7 @@ import Chrt
             activeTaskGroupIds: Optional([
                 "active_task_group_ids"
             ]),
+            archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             autoAssignEnabled: Optional(true),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),
@@ -188,6 +212,7 @@ import Chrt
                       "active_task_group_ids": [
                         "active_task_group_ids"
                       ],
+                      "archived_at_timestamp": "2024-01-15T09:30:00Z",
                       "auto_assign_enabled": true,
                       "available_according_to_driver": true,
                       "available_according_to_operators": true,
@@ -241,6 +266,7 @@ import Chrt
                     activeTaskGroupIds: Optional([
                         "active_task_group_ids"
                     ]),
+                    archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     autoAssignEnabled: Optional(true),
                     availableAccordingToDriver: Optional(true),
                     availableAccordingToOperators: Optional(true),
@@ -294,6 +320,8 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterByDriverId: "filter_by_driver_id",
+            filterArchived: true,
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
             filterStatus: [
@@ -353,6 +381,7 @@ import Chrt
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
             search: "search",
+            filterArchived: true,
             filterRole: [
                 .owner
             ],
@@ -740,6 +769,28 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func unarchiveV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.drivers.unarchiveV1(
+            driverId: "driver_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func updateV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -845,6 +896,7 @@ import Chrt
                   "active_task_group_ids": [
                     "active_task_group_ids"
                   ],
+                  "archived_at_timestamp": "2024-01-15T09:30:00Z",
                   "auto_assign_enabled": true,
                   "available_according_to_driver": true,
                   "available_according_to_operators": true,
@@ -903,6 +955,7 @@ import Chrt
             activeTaskGroupIds: Optional([
                 "active_task_group_ids"
             ]),
+            archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             autoAssignEnabled: Optional(true),
             availableAccordingToDriver: Optional(true),
             availableAccordingToOperators: Optional(true),

@@ -140,7 +140,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">listMembersV1</a>(filterRole: [OrgRoleEnum]?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, requestOptions: RequestOptions?) -> OrgMemberListRes</code></summary>
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">listMembersV1</a>(filterRole: [OrgRoleEnum]?, filterUserIds: [String]?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, requestOptions: RequestOptions?) -> OrgMemberListRes</code></summary>
 <dl>
 <dd>
 
@@ -152,7 +152,7 @@ try await main()
 <dl>
 <dd>
 
-Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role, sorting, and pagination. | () -> (OrgMemberListRes)
+Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role and user IDs, sorting, and pagination. | () -> (OrgMemberListRes)
 </dd>
 </dl>
 </dd>
@@ -176,6 +176,9 @@ private func main() async throws {
     _ = try await client.orgs.listMembersV1(
         filterRole: [
             .owner
+        ],
+        filterUserIds: [
+            "filter_user_ids"
         ],
         sortBy: .firstName,
         sortOrder: .asc,
@@ -201,6 +204,14 @@ try await main()
 <dd>
 
 **filterRole:** `[OrgRoleEnum]?` — Filter by organization role(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUserIds:** `[String]?` — Filter by user ID(s)
     
 </dd>
 </dl>
@@ -6530,7 +6541,7 @@ try await main()
 <dl>
 <dd>
 
-Pushes a bidder-side ACCEPT onto an OPEN thread. References the most recent lister-side pro_forma (or the listing's opening for DISPATCH). On `auto_award_first_accept=True` listings, fires the full cascade immediately (thread ACCEPTED, listing AWARDED, shipping and BillingNew side-effects). Otherwise leaves the thread OPEN for the lister to finalise via confirm_accept. Lister-side finalisation lives on confirm_accept; calling /accept/v1 from the lister side is rejected (400). | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+Accepts an offer; lister acceptance awards immediately, while bidder acceptance follows the listing's auto-award setting. | authz: allowed_org_types=[provider], min_org_role=member; lister min_org_role=operator | (BidAppendReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6685,7 +6696,7 @@ try await main()
 <dl>
 <dd>
 
-Lister confirmation of a bidder's ACCEPT on this thread, used when `listing.auto_award_first_accept == False`. Runs the full award cascade: thread ACCEPTED, listing AWARDED, sibling threads / listings cancelled, and shipping and BillingNew side-effects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+Confirms a pending bidder acceptance and awards at its recorded price. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6756,7 +6767,7 @@ try await main()
 <dl>
 <dd>
 
-Pushes a COUNTER Bid carrying revised pro_forma_line_items onto an OPEN NEGOTIATION thread. Both sides of the thread may COUNTER. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+Adds a counteroffer to an open negotiation. | authz: allowed_org_types=[provider], min_org_role=member | (BidAppendReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -6840,7 +6851,7 @@ try await main()
 <dl>
 <dd>
 
-Opens a new BidThread on a Listing. The body carries the thread's first Bid (SUBMIT / ACCEPT / DENY). Bidder identity is resolved server-side from the caller's JWT + the listing's audience. | authz: allowed_org_types=[provider], min_org_role=driver | (BidThreadClientCreate1) -> (PydanticObjectId)
+Opens a bid thread with an offer, acceptance, or denial. | authz: allowed_org_types=[provider], min_org_role=member | (BidThreadClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -6914,7 +6925,7 @@ try await main()
 <dl>
 <dd>
 
-Pushes a DENY onto an OPEN thread, flipping its status to DENIED (terminal). Both sides may deny. References the most recent opposite-side Bid; carries no pro_forma. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+Declines an open negotiation and closes its thread. | authz: allowed_org_types=[provider], min_org_role=member | (BidAppendReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7355,7 +7366,7 @@ try await main()
 <dl>
 <dd>
 
-Pushes a bidder-side WITHDRAW onto an OPEN thread, flipping its status to WITHDRAWN (terminal). Bidder-only — the lister equivalent is CANCEL on the listing. | authz: allowed_org_types=[provider], min_org_role=driver | (BidAppendReq) -> (bool)
+Withdraws the bidder's offer and closes its thread. | authz: allowed_org_types=[provider], min_org_role=member | (BidAppendReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -7738,7 +7749,7 @@ try await main()
 <dl>
 <dd>
 
-Lists driver bidding groups owned by the caller's org with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroupListRes)
+Lists driver bidding groups owned by the caller's org with filtering, sorting, pagination, and member driver profiles. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (DriverBiddingGroupListRes)
 </dd>
 </dl>
 </dd>
@@ -9717,7 +9728,7 @@ try await main()
 <dl>
 <dd>
 
-Lists org bidding groups owned by the caller's org with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrgBiddingGroupListRes)
+Lists org bidding groups owned by the caller's org with filtering, sorting, pagination, and member organization public data. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrgBiddingGroupListRes)
 </dd>
 </dl>
 </dd>
@@ -12003,7 +12014,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.departments.<a href="/Sources/Resources/Operations/Departments/DepartmentsClient.swift">listV1</a>(sortBy: DepartmentSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterDepartmentType: [DepartmentTypeEnum]?, requestOptions: RequestOptions?) -> DepartmentListRes</code></summary>
+<details><summary><code>client.operations.departments.<a href="/Sources/Resources/Operations/Departments/DepartmentsClient.swift">listV1</a>(sortBy: DepartmentSortByEnum?, sortOrder: SortOrderEnum?, search: String?, page: Int?, pageSize: Int?, filterDepartmentType: [DepartmentTypeEnum]?, requestOptions: RequestOptions?) -> DepartmentListRes</code></summary>
 <dl>
 <dd>
 
@@ -12015,7 +12026,7 @@ try await main()
 <dl>
 <dd>
 
-Lists department configurations for the caller's organization. | authz: min_org_role=operator | () -> (DepartmentListRes)
+Lists department configurations for the caller's organization with filtering, sorting, pagination, and Atlas Search. | authz: min_org_role=operator | () -> (DepartmentListRes)
 </dd>
 </dl>
 </dd>
@@ -12039,6 +12050,7 @@ private func main() async throws {
     _ = try await client.operations.departments.listV1(
         sortBy: .createdAt,
         sortOrder: .asc,
+        search: "search",
         page: 1,
         pageSize: 1,
         filterDepartmentType: [
@@ -12071,6 +12083,14 @@ try await main()
 <dd>
 
 **sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search name and short_id using Atlas Search
     
 </dd>
 </dl>
@@ -12496,7 +12516,7 @@ try await main()
 </details>
 
 ## Operations OperationsTaskLists
-<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">applyToOrderV1</a>(taskListId: String, orderId: String, departmentId: String?, initialDeadlineTimestamp: Date?, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">applyToOrderV1</a>(taskListId: String, orderId: String, departmentId: String?, entryTag: String?, initialDeadlineTimestamp: Date?, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
 <dd>
 
@@ -12508,7 +12528,7 @@ try await main()
 <dl>
 <dd>
 
-Materializes each entry of an OperationsTaskList into an OperationsTask on the Order (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. department_id overrides the caller's Order department when supplied. No dedup — applying twice creates duplicate tasks. | authz: min_org_role=operator | () -> (list[PydanticObjectId])
+Materializes each entry of an OperationsTaskList into an OperationsTask on the Order (status=not_started, source_task_list_id set). Deadlines resolve per-entry from its anchor+offset; initial_deadline_timestamp, if set, pins the first entry and the chain follows. department_id explicitly assigns the materialized tasks; omitted leaves them unassigned. No dedup — applying twice creates duplicate tasks. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (list[PydanticObjectId])
 </dd>
 </dl>
 </dd>
@@ -12533,6 +12553,7 @@ private func main() async throws {
         taskListId: "task_list_id",
         orderId: "order_id",
         departmentId: "department_id",
+        entryTag: "entry_tag",
         initialDeadlineTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
@@ -12568,7 +12589,15 @@ try await main()
 <dl>
 <dd>
 
-**departmentId:** `String?` — Overrides the Order department for tasks materialized by this application.
+**departmentId:** `String?` — Department for materialized tasks; omitted leaves them unassigned.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entryTag:** `String?` — Context tag copied onto every generated task
     
 </dd>
 </dl>
@@ -13012,7 +13041,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">listV1</a>(sortBy: OperationsTaskListSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterArchived: Bool?, requestOptions: RequestOptions?) -> OperationsTaskListListRes</code></summary>
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">listV1</a>(sortBy: OperationsTaskListSortByEnum?, sortOrder: SortOrderEnum?, search: String?, page: Int?, pageSize: Int?, filterArchived: Bool?, requestOptions: RequestOptions?) -> OperationsTaskListListRes</code></summary>
 <dl>
 <dd>
 
@@ -13024,7 +13053,7 @@ try await main()
 <dl>
 <dd>
 
-Lists OperationsTaskLists for the caller's organization with filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
+Lists OperationsTaskLists for the caller's organization with filtering, sorting, pagination, and Atlas Search. | authz: min_org_role=operator | () -> (OperationsTaskListListRes)
 </dd>
 </dl>
 </dd>
@@ -13048,6 +13077,7 @@ private func main() async throws {
     _ = try await client.operations.operationsTaskLists.listV1(
         sortBy: .createdAtTimestamp,
         sortOrder: .asc,
+        search: "search",
         page: 1,
         pageSize: 1,
         filterArchived: true
@@ -13078,6 +13108,14 @@ try await main()
 <dd>
 
 **sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Search name and description using Atlas Search
     
 </dd>
 </dl>
@@ -13133,7 +13171,7 @@ try await main()
 <dl>
 <dd>
 
-Removes the OperationsTasks this OperationsTaskList added to the Order (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz: min_org_role=operator | () -> (OperationsTaskListRemoveFromOrderRes1)
+Removes the OperationsTasks this OperationsTaskList added to the Order (matched by source_task_list_id). Only untouched (not_started) tasks are deleted; started/completed/skipped/cancelled tasks are kept. Returns deleted and kept counts. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OperationsTaskListRemoveFromOrderRes1)
 </dd>
 </dl>
 </dd>
@@ -13742,7 +13780,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">expandedListV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentId: String?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskExpandedListRes</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">expandedListV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentId: String?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterEntryTag: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -13795,6 +13833,7 @@ private func main() async throws {
         ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterSourceTaskListId: "filter_source_task_list_id",
+        filterEntryTag: "filter_entry_tag",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
@@ -13919,6 +13958,14 @@ try await main()
 <dl>
 <dd>
 
+**filterEntryTag:** `String?` — Filter by exact entry tag (case-sensitive)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterDeadlineGte:** `Date?` — Filter to tasks with deadline >= this timestamp
     
 </dd>
@@ -13947,7 +13994,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentId: String?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentId: String?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterEntryTag: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
 <dl>
 <dd>
 
@@ -13959,7 +14006,7 @@ try await main()
 <dl>
 <dd>
 
-Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / assignee / source task list / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
+Lists OperationsTasks for the caller's organization, with order ids / order short id / order off-CHRT reference id / department / type / status / assignee / source task list / entry tag / deadline filtering, sorting, and pagination. | authz: min_org_role=operator | () -> (OperationsTaskListRes)
 </dd>
 </dl>
 </dd>
@@ -14000,6 +14047,7 @@ private func main() async throws {
         ],
         filterAssignedUserId: "filter_assigned_user_id",
         filterSourceTaskListId: "filter_source_task_list_id",
+        filterEntryTag: "filter_entry_tag",
         filterDeadlineGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDeadlineLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
@@ -14117,6 +14165,14 @@ try await main()
 <dd>
 
 **filterSourceTaskListId:** `String?` — Filter to tasks created from this OperationsTaskList
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterEntryTag:** `String?` — Filter by exact entry tag (case-sensitive)
     
 </dd>
 </dl>
@@ -14304,6 +14360,79 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">updateDepartmentManyV1</a>(request: Requests.OperationsTasksUpdateDepartmentManyReq, requestOptions: RequestOptions?) -> OperationsTasksUpdateDepartmentManyRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assigns or clears one department on selected tasks across orders. Missing and other-org tasks are skipped. | authz: min_org_role=operator | (OperationsTasksUpdateDepartmentManyReq) -> (OperationsTasksUpdateDepartmentManyRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTasks.updateDepartmentManyV1(request: .init(operationsTaskIds: [
+        "operations_task_ids"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OperationsTasksUpdateDepartmentManyReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">createV1</a>(request: Requests.OperationsTaskClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
@@ -14316,7 +14445,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new OperationsTask on an Order where the caller is coordinator or executor. Seeds department_id from the caller's Order department fields. | authz: min_org_role=operator | (OperationsTaskClientCreate1) -> (PydanticObjectId)
+Creates a new OperationsTask on an Order where the caller is coordinator or executor. Uses the explicit department_id or leaves the task unassigned. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OperationsTaskClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -18767,6 +18896,77 @@ try await main()
 </details>
 
 ## Shipping Drivers
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">archiveV1</a>(driverId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a driver after draft, staged, and in-progress assignments are resolved, and denies their open bid threads. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.archiveV1(driverId: "driver_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">createV1</a>(targetUserId: String?, request: Requests.DriverClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
@@ -18975,7 +19175,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listV1</a>(sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, filterStatus: [DriverStatusEnum]?, requestOptions: RequestOptions?) -> DriverListRes</code></summary>
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listV1</a>(sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterByDriverId: String?, filterArchived: Bool?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, filterStatus: [DriverStatusEnum]?, requestOptions: RequestOptions?) -> DriverListRes</code></summary>
 <dl>
 <dd>
 
@@ -19013,6 +19213,8 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterByDriverId: "filter_by_driver_id",
+        filterArchived: true,
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
         filterStatus: [
@@ -19068,6 +19270,22 @@ try await main()
 <dl>
 <dd>
 
+**filterByDriverId:** `String?` — Filter by driver ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — Select archived drivers instead of active drivers
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterAvailableAccordingToDriver:** `Bool?` — Filter by driver's self-reported availability
     
 </dd>
@@ -19104,7 +19322,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(search: String?, filterRole: [OrgRoleEnum]?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMembersAndDriversListRes</code></summary>
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(search: String?, filterArchived: Bool?, filterRole: [OrgRoleEnum]?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMembersAndDriversListRes</code></summary>
 <dl>
 <dd>
 
@@ -19139,6 +19357,7 @@ private func main() async throws {
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
         search: "search",
+        filterArchived: true,
         filterRole: [
             .owner
         ],
@@ -19167,6 +19386,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search by first or last name
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — Select archived driver profiles
     
 </dd>
 </dl>
@@ -19883,6 +20110,77 @@ try await main()
 <dd>
 
 **request:** `Requests.DriverStatsReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">unarchiveV1</a>(driverId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Restores an archived driver with active organization membership. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.unarchiveV1(driverId: "driver_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**driverId:** `String` 
     
 </dd>
 </dl>
@@ -21655,7 +21953,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">addCoordinatorTaskListToApplyAtOrderStagingV1</a>(orderId: String, taskListId: String, departmentId: String?, request: Date?, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">addCoordinatorTaskListToApplyAtOrderStagingV1</a>(orderId: String, taskListId: String, departmentId: String?, entryTag: String?, request: Date?, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -21692,6 +21990,7 @@ private func main() async throws {
         orderId: "order_id",
         taskListId: "task_list_id",
         departmentId: "department_id",
+        entryTag: "entry_tag",
         request: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
     )
 }
@@ -21728,6 +22027,14 @@ try await main()
 <dd>
 
 **departmentId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**entryTag:** `String?` — Context tag for the generated tasks
     
 </dd>
 </dl>
@@ -22064,7 +22371,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the coordinator's account-level default department for the order's shipper. | authz: min_org_role=operator | () -> (PydanticObjectId | None)
+Returns the coordinator's account-level default department for the order's shipper. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (PydanticObjectId | None)
 </dd>
 </dl>
 </dd>
@@ -22526,7 +22833,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">updateDepartmentV1</a>(orderId: String, request: Requests.OrdersUpdateDepartmentReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">updateDepartmentsV1</a>(orderId: String, request: Requests.OrdersUpdateDepartmentsReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -22538,7 +22845,7 @@ try await main()
 <dl>
 <dd>
 
-Updates department_id for the caller's role on the order. Coordinator writes coordinator_department_id; executor writes executor_department_id on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentReq) -> (bool)
+Replaces department_ids for the caller's role on the order. Coordinator writes coordinator_department_ids; executor writes executor_department_ids on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateDepartmentsReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -22559,7 +22866,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.orders.updateDepartmentV1(
+    _ = try await client.shipping.orders.updateDepartmentsV1(
         orderId: "order_id",
         request: .init()
     )
@@ -22588,7 +22895,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.OrdersUpdateDepartmentReq` 
+**request:** `Requests.OrdersUpdateDepartmentsReq` 
     
 </dd>
 </dl>
@@ -27347,7 +27654,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentId: String?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentIds: [String]?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentIds: [String]?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabel: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
 <dl>
 <dd>
 
@@ -27411,7 +27718,9 @@ private func main() async throws {
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExecutorOrgId: "filter_executor_org_id",
-        filterExecutorDepartmentId: "filter_executor_department_id",
+        filterExecutorDepartmentIds: [
+            "filter_executor_department_ids"
+        ],
         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
         filterCoordinatorOrgId: "filter_coordinator_org_id",
         filterShipperOrgId: "filter_shipper_org_id",
@@ -27419,7 +27728,9 @@ private func main() async throws {
         filterCoordinatorShipperAccountIds: [
             "filter_coordinator_shipper_account_ids"
         ],
-        filterCoordinatorDepartmentId: "filter_coordinator_department_id",
+        filterCoordinatorDepartmentIds: [
+            "filter_coordinator_department_ids"
+        ],
         filterCoordinatorAssignedUserIds: [
             "filter_coordinator_assigned_user_ids"
         ],
@@ -27637,7 +27948,7 @@ try await main()
 <dl>
 <dd>
 
-**filterExecutorDepartmentId:** `String?` — Filter by executor department ID
+**filterExecutorDepartmentIds:** `[String]?` — Filter by executor department IDs
     
 </dd>
 </dl>
@@ -27685,7 +27996,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCoordinatorDepartmentId:** `String?` 
+**filterCoordinatorDepartmentIds:** `[String]?` — Filter by coordinator department IDs
     
 </dd>
 </dl>
@@ -29199,7 +29510,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the task-group vehicle type in any lifecycle state. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
+Sets the task-group vehicle type in any lifecycle state; vehicle_type__set_to_None clears it. | authz_personas=[draft_creator_org_operator, task_group_coordinator_operators] | (OrdersSetTaskGroupVehicleTypeReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -29222,7 +29533,7 @@ private func main() async throws {
 
     _ = try await client.shipping.orders.taskGroup.setVehicleTypeV1(
         taskGroupId: "task_group_id",
-        request: .init(vehicleType: .sedan)
+        request: .init()
     )
 }
 

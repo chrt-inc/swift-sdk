@@ -4,6 +4,7 @@ extension Requests {
     public struct OperationsTaskClientCreate1: Codable, Hashable, Sendable {
         public let assignedUserIds: [String]?
         public let deadlineTimestamp: Date?
+        public let departmentId: String?
         public let description: String
         public let orderId: String
         public let schemaVersion: Int
@@ -15,6 +16,7 @@ extension Requests {
         public init(
             assignedUserIds: [String]? = nil,
             deadlineTimestamp: Date? = nil,
+            departmentId: String? = nil,
             description: String,
             orderId: String,
             schemaVersion: Int,
@@ -24,6 +26,7 @@ extension Requests {
         ) {
             self.assignedUserIds = assignedUserIds
             self.deadlineTimestamp = deadlineTimestamp
+            self.departmentId = departmentId
             self.description = description
             self.orderId = orderId
             self.schemaVersion = schemaVersion
@@ -36,6 +39,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.assignedUserIds = try container.decodeIfPresent([String].self, forKey: .assignedUserIds)
             self.deadlineTimestamp = try container.decodeIfPresent(Date.self, forKey: .deadlineTimestamp)
+            self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
             self.description = try container.decode(String.self, forKey: .description)
             self.orderId = try container.decode(String.self, forKey: .orderId)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -49,6 +53,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.assignedUserIds, forKey: .assignedUserIds)
             try container.encodeIfPresent(self.deadlineTimestamp, forKey: .deadlineTimestamp)
+            try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
             try container.encode(self.description, forKey: .description)
             try container.encode(self.orderId, forKey: .orderId)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -60,6 +65,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case assignedUserIds = "assigned_user_ids"
             case deadlineTimestamp = "deadline_timestamp"
+            case departmentId = "department_id"
             case description
             case orderId = "order_id"
             case schemaVersion = "schema_version"

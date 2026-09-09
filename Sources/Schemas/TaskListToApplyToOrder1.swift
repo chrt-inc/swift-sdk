@@ -3,6 +3,7 @@ import Foundation
 /// Shared task-list application payload for drafts, templates, and Order staging.
 public struct TaskListToApplyToOrder1: Codable, Hashable, Sendable {
     public let departmentId: String?
+    public let entryTag: String?
     public let initialDeadlineTimestamp: Date?
     public let taskListId: String
     /// Additional properties that are not explicitly defined in the schema
@@ -10,11 +11,13 @@ public struct TaskListToApplyToOrder1: Codable, Hashable, Sendable {
 
     public init(
         departmentId: String? = nil,
+        entryTag: String? = nil,
         initialDeadlineTimestamp: Date? = nil,
         taskListId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.departmentId = departmentId
+        self.entryTag = entryTag
         self.initialDeadlineTimestamp = initialDeadlineTimestamp
         self.taskListId = taskListId
         self.additionalProperties = additionalProperties
@@ -23,6 +26,7 @@ public struct TaskListToApplyToOrder1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.departmentId = try container.decodeIfPresent(String.self, forKey: .departmentId)
+        self.entryTag = try container.decodeIfPresent(String.self, forKey: .entryTag)
         self.initialDeadlineTimestamp = try container.decodeIfPresent(Date.self, forKey: .initialDeadlineTimestamp)
         self.taskListId = try container.decode(String.self, forKey: .taskListId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -32,6 +36,7 @@ public struct TaskListToApplyToOrder1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.departmentId, forKey: .departmentId)
+        try container.encodeIfPresent(self.entryTag, forKey: .entryTag)
         try container.encodeIfPresent(self.initialDeadlineTimestamp, forKey: .initialDeadlineTimestamp)
         try container.encode(self.taskListId, forKey: .taskListId)
     }
@@ -39,6 +44,7 @@ public struct TaskListToApplyToOrder1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case departmentId = "department_id"
+        case entryTag = "entry_tag"
         case initialDeadlineTimestamp = "initial_deadline_timestamp"
         case taskListId = "task_list_id"
     }

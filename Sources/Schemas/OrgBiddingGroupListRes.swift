@@ -1,13 +1,13 @@
 import Foundation
 
 public struct OrgBiddingGroupListRes: Codable, Hashable, Sendable {
-    public let items: [OrgBiddingGroup1]
+    public let items: [OrgBiddingGroupListItemRes]
     public let totalCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        items: [OrgBiddingGroup1],
+        items: [OrgBiddingGroupListItemRes],
         totalCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct OrgBiddingGroupListRes: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.items = try container.decode([OrgBiddingGroup1].self, forKey: .items)
+        self.items = try container.decode([OrgBiddingGroupListItemRes].self, forKey: .items)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

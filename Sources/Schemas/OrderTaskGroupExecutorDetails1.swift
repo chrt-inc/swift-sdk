@@ -2,7 +2,7 @@ import Foundation
 
 public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
     public let executorAssignedUserIds: [String]?
-    public let executorDepartmentId: String?
+    public let executorDepartmentIds: [String]?
     public let executorLabel: String?
     /// Must be a string starting with `org_`
     public let executorOrgId: String?
@@ -14,7 +14,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
 
     public init(
         executorAssignedUserIds: [String]? = nil,
-        executorDepartmentId: String? = nil,
+        executorDepartmentIds: [String]? = nil,
         executorLabel: String? = nil,
         executorOrgId: String? = nil,
         offChrtExecutorOrgDataId: String? = nil,
@@ -23,7 +23,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.executorAssignedUserIds = executorAssignedUserIds
-        self.executorDepartmentId = executorDepartmentId
+        self.executorDepartmentIds = executorDepartmentIds
         self.executorLabel = executorLabel
         self.executorOrgId = executorOrgId
         self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
@@ -35,7 +35,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.executorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .executorAssignedUserIds)
-        self.executorDepartmentId = try container.decodeIfPresent(String.self, forKey: .executorDepartmentId)
+        self.executorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .executorDepartmentIds)
         self.executorLabel = try container.decodeIfPresent(String.self, forKey: .executorLabel)
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
         self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
@@ -48,7 +48,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.executorAssignedUserIds, forKey: .executorAssignedUserIds)
-        try container.encodeIfPresent(self.executorDepartmentId, forKey: .executorDepartmentId)
+        try container.encodeIfPresent(self.executorDepartmentIds, forKey: .executorDepartmentIds)
         try container.encodeIfPresent(self.executorLabel, forKey: .executorLabel)
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
@@ -59,7 +59,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case executorAssignedUserIds = "executor_assigned_user_ids"
-        case executorDepartmentId = "executor_department_id"
+        case executorDepartmentIds = "executor_department_ids"
         case executorLabel = "executor_label"
         case executorOrgId = "executor_org_id"
         case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"

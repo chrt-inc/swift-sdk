@@ -53,7 +53,9 @@ import Chrt
                   "coordinator_assigned_user_ids": [
                     "coordinator_assigned_user_ids"
                   ],
-                  "coordinator_department_id": "coordinator_department_id",
+                  "coordinator_department_ids": [
+                    "coordinator_department_ids"
+                  ],
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -95,6 +97,7 @@ import Chrt
                   "task_lists_to_apply_at_order_creation": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -102,6 +105,7 @@ import Chrt
                   "task_lists_to_apply_at_order_staging": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -138,7 +142,9 @@ import Chrt
             coordinatorAssignedUserIds: Optional([
                 "coordinator_assigned_user_ids"
             ]),
-            coordinatorDepartmentId: Optional("coordinator_department_id"),
+            coordinatorDepartmentIds: Optional([
+                "coordinator_department_ids"
+            ]),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -180,6 +186,7 @@ import Chrt
             taskListsToApplyAtOrderCreation: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -187,6 +194,7 @@ import Chrt
             taskListsToApplyAtOrderStaging: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -258,7 +266,9 @@ import Chrt
                       "coordinator_assigned_user_ids": [
                         "coordinator_assigned_user_ids"
                       ],
-                      "coordinator_department_id": "coordinator_department_id",
+                      "coordinator_department_ids": [
+                        "coordinator_department_ids"
+                      ],
                       "coordinator_label": "coordinator_label",
                       "coordinator_org": {
                         "_id": "_id",
@@ -365,7 +375,9 @@ import Chrt
                     coordinatorAssignedUserIds: Optional([
                         "coordinator_assigned_user_ids"
                     ]),
-                    coordinatorDepartmentId: Optional("coordinator_department_id"),
+                    coordinatorDepartmentIds: Optional([
+                        "coordinator_department_ids"
+                    ]),
                     coordinatorLabel: Optional("coordinator_label"),
                     coordinatorOrg: Optional(OrgPublicData1(
                         id: "_id",
@@ -527,7 +539,9 @@ import Chrt
                   "coordinator_assigned_user_ids": [
                     "coordinator_assigned_user_ids"
                   ],
-                  "coordinator_department_id": "coordinator_department_id",
+                  "coordinator_department_ids": [
+                    "coordinator_department_ids"
+                  ],
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -569,6 +583,7 @@ import Chrt
                   "task_lists_to_apply_at_order_creation": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -576,6 +591,7 @@ import Chrt
                   "task_lists_to_apply_at_order_staging": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -612,7 +628,9 @@ import Chrt
             coordinatorAssignedUserIds: Optional([
                 "coordinator_assigned_user_ids"
             ]),
-            coordinatorDepartmentId: Optional("coordinator_department_id"),
+            coordinatorDepartmentIds: Optional([
+                "coordinator_department_ids"
+            ]),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -654,6 +672,7 @@ import Chrt
             taskListsToApplyAtOrderCreation: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -661,6 +680,7 @@ import Chrt
             taskListsToApplyAtOrderStaging: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -702,7 +722,9 @@ import Chrt
                   "coordinator_assigned_user_ids": [
                     "coordinator_assigned_user_ids"
                   ],
-                  "coordinator_department_id": "coordinator_department_id",
+                  "coordinator_department_ids": [
+                    "coordinator_department_ids"
+                  ],
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -744,6 +766,7 @@ import Chrt
                   "task_lists_to_apply_at_order_creation": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -751,6 +774,7 @@ import Chrt
                   "task_lists_to_apply_at_order_staging": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -787,7 +811,9 @@ import Chrt
             coordinatorAssignedUserIds: Optional([
                 "coordinator_assigned_user_ids"
             ]),
-            coordinatorDepartmentId: Optional("coordinator_department_id"),
+            coordinatorDepartmentIds: Optional([
+                "coordinator_department_ids"
+            ]),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -829,6 +855,7 @@ import Chrt
             taskListsToApplyAtOrderCreation: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -836,6 +863,7 @@ import Chrt
             taskListsToApplyAtOrderStaging: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -879,7 +907,9 @@ import Chrt
                   "coordinator_assigned_user_ids": [
                     "coordinator_assigned_user_ids"
                   ],
-                  "coordinator_department_id": "coordinator_department_id",
+                  "coordinator_department_ids": [
+                    "coordinator_department_ids"
+                  ],
                   "coordinator_label": "coordinator_label",
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -921,6 +951,7 @@ import Chrt
                   "task_lists_to_apply_at_order_creation": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -928,6 +959,7 @@ import Chrt
                   "task_lists_to_apply_at_order_staging": [
                     {
                       "department_id": "department_id",
+                      "entry_tag": "entry_tag",
                       "initial_deadline_timestamp": "2024-01-15T09:30:00Z",
                       "task_list_id": "task_list_id"
                     }
@@ -964,7 +996,9 @@ import Chrt
             coordinatorAssignedUserIds: Optional([
                 "coordinator_assigned_user_ids"
             ]),
-            coordinatorDepartmentId: Optional("coordinator_department_id"),
+            coordinatorDepartmentIds: Optional([
+                "coordinator_department_ids"
+            ]),
             coordinatorLabel: Optional("coordinator_label"),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1006,6 +1040,7 @@ import Chrt
             taskListsToApplyAtOrderCreation: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
@@ -1013,6 +1048,7 @@ import Chrt
             taskListsToApplyAtOrderStaging: Optional([
                 TaskListToApplyToOrder1(
                     departmentId: Optional("department_id"),
+                    entryTag: Optional("entry_tag"),
                     initialDeadlineTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     taskListId: "task_list_id"
                 )
