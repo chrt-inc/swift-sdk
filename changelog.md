@@ -1,3 +1,7 @@
+## 4.1.1 - 2026-09-09
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 4.1.0 - 2026-09-04
 ### Added
 * **`InvoiceLineItemExportListItem.conversionRate`**, **`.currencyConversionDescription`**, **`.sourceCurrencyCode`**, and **`.sourceUnitPrice`** — four new optional fields exposing currency conversion details (rate, description, source currency code, and source unit price) on exported invoice line items; existing call sites require no changes.
