@@ -1,3 +1,17 @@
+## 5.0.0 - 2026-09-12
+### Breaking Changes
+* **`coordinatorLabel` / `executorLabel`** — renamed to `coordinatorLabels` / `executorLabels` and changed from `String?` to `[String]?` across all order, task-group, and order-template types; update all property access sites and wrap single string values in an array.
+* **`filterCoordinatorLabel` / `filterDepartmentId`** — renamed to `filterCoordinatorLabels` / `filterDepartmentIds` and changed to array types on all list-request parameters; update all call sites to pass arrays.
+* **`ShippingOrdersClient.updateLabelV1`** — renamed to `updateLabelsV1` and now accepts `Requests.OrdersUpdateLabelsReq` instead of `Requests.OrdersUpdateLabelReq`; rename all call sites and update the request type.
+* **`BidThread1` / `BidThreadListRes`** — renamed to `BidThreadForListing1` / `BidThreadForListingListRes`; update all type references and exhaustive switch/pattern-match sites.
+* **`OperationsTaskStatusEnum`, `OperationsTaskTypeEnum`, `TaskArtifactTypeEnum1`** — new cases `blocked`, `customs`, and `file` added respectively; add handling for these cases in any exhaustive `switch` statements.
+### Added
+* **`DevicesClient.listV1`** — new optional `filterDeviceId: String?` and `filterDeviceMacAddress: String?` parameters for exact-match filtering by device ID or MAC address.
+* **`OperationsTasksClient.typeaheadV1`** — new endpoint returning `[OperationsTaskTypeaheadResult]` for typeahead/autocomplete queries on operations tasks.
+* **`OrderTemplateNewExpanded1.coordinatorDepartments`** — new optional `[Department1]` field exposing expanded department objects on order template responses.
+* **`BidThreadForListing1`** — new optional `bidderDriver` and `bidderProviderOrg` fields exposing the bidder's `Driver1` and `OrgPublicData1` objects directly on bid thread list items.
+* **`Requests.OperationsTaskClientUpdate1`** — new optional `departmentId`, `departmentIdSetToNone`, `entryTag`, and `entryTagSetToNone` fields for associating or clearing a department and entry tag on an operations task update.
+
 ## 4.1.1 - 2026-09-09
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
