@@ -10,7 +10,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
     public let completedAtTimestamp: Date?
     public let coordinatorAssignedUserIds: [String]?
     public let coordinatorDepartmentIds: [String]?
-    public let coordinatorLabel: String?
+    public let coordinatorLabels: [String]?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
     public let coordinatorShipperAccountIds: [String]?
@@ -49,7 +49,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         completedAtTimestamp: Date? = nil,
         coordinatorAssignedUserIds: [String]? = nil,
         coordinatorDepartmentIds: [String]? = nil,
-        coordinatorLabel: String? = nil,
+        coordinatorLabels: [String]? = nil,
         coordinatorOrgId: String? = nil,
         coordinatorShipperAccountIds: [String]? = nil,
         coordinatorTaskListsToApplyAtOrderStaging: [TaskListToApplyToOrder1]? = nil,
@@ -81,7 +81,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = completedAtTimestamp
         self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
         self.coordinatorDepartmentIds = coordinatorDepartmentIds
-        self.coordinatorLabel = coordinatorLabel
+        self.coordinatorLabels = coordinatorLabels
         self.coordinatorOrgId = coordinatorOrgId
         self.coordinatorShipperAccountIds = coordinatorShipperAccountIds
         self.coordinatorTaskListsToApplyAtOrderStaging = coordinatorTaskListsToApplyAtOrderStaging
@@ -116,7 +116,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         self.completedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .completedAtTimestamp)
         self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
         self.coordinatorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .coordinatorDepartmentIds)
-        self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
+        self.coordinatorLabels = try container.decodeIfPresent([String].self, forKey: .coordinatorLabels)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
         self.coordinatorShipperAccountIds = try container.decodeIfPresent([String].self, forKey: .coordinatorShipperAccountIds)
         self.coordinatorTaskListsToApplyAtOrderStaging = try container.decodeIfPresent([TaskListToApplyToOrder1].self, forKey: .coordinatorTaskListsToApplyAtOrderStaging)
@@ -152,7 +152,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.completedAtTimestamp, forKey: .completedAtTimestamp)
         try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
         try container.encodeIfPresent(self.coordinatorDepartmentIds, forKey: .coordinatorDepartmentIds)
-        try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
+        try container.encodeIfPresent(self.coordinatorLabels, forKey: .coordinatorLabels)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encodeIfPresent(self.coordinatorShipperAccountIds, forKey: .coordinatorShipperAccountIds)
         try container.encodeIfPresent(self.coordinatorTaskListsToApplyAtOrderStaging, forKey: .coordinatorTaskListsToApplyAtOrderStaging)
@@ -186,7 +186,7 @@ public struct OrderLimitedForProvider1: Codable, Hashable, Sendable {
         case completedAtTimestamp = "completed_at_timestamp"
         case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
         case coordinatorDepartmentIds = "coordinator_department_ids"
-        case coordinatorLabel = "coordinator_label"
+        case coordinatorLabels = "coordinator_labels"
         case coordinatorOrgId = "coordinator_org_id"
         case coordinatorShipperAccountIds = "coordinator_shipper_account_ids"
         case coordinatorTaskListsToApplyAtOrderStaging = "coordinator_task_lists_to_apply_at_order_staging"

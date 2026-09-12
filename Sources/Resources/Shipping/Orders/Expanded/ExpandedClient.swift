@@ -127,7 +127,9 @@ public final class ExpandedClient: Sendable {
     ///         filterCoordinatorAssignedUserIds: [
     ///             "filter_coordinator_assigned_user_ids"
     ///         ],
-    ///         filterCoordinatorLabel: "filter_coordinator_label",
+    ///         filterCoordinatorLabels: [
+    ///             "filter_coordinator_labels"
+    ///         ],
     ///         request: OrderAndTaskGroupExpandedReq(
     ///
     ///         )
@@ -147,8 +149,9 @@ public final class ExpandedClient: Sendable {
     /// - Parameter filterOffChrtExecutorOrgDataId: Filter by off-CHRT executor org data ID
     /// - Parameter filterCoordinatorShipperAccountIds: Filter by coordinator shipper account IDs
     /// - Parameter filterCoordinatorDepartmentIds: Filter by coordinator department IDs
+    /// - Parameter filterCoordinatorLabels: Filter by any of the supplied coordinator labels (exact match).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabel: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
+    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabels: [String]? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_provider_operators/v1",
@@ -185,7 +188,7 @@ public final class ExpandedClient: Sendable {
                 "filter_coordinator_shipper_account_ids": filterCoordinatorShipperAccountIds.map { .stringArray($0) }, 
                 "filter_coordinator_department_ids": filterCoordinatorDepartmentIds.map { .stringArray($0) }, 
                 "filter_coordinator_assigned_user_ids": filterCoordinatorAssignedUserIds.map { .stringArray($0) }, 
-                "filter_coordinator_label": filterCoordinatorLabel.map { .string($0) }
+                "filter_coordinator_labels": filterCoordinatorLabels.map { .stringArray($0) }
             ],
             body: request,
             requestOptions: requestOptions,

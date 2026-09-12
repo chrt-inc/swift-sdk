@@ -1,5 +1,5 @@
 {
-  "cliVersion": "5.119.1",
+  "cliVersion": "5.95.0",
   "generatorName": "fernapi/fern-swift-sdk",
   "generatorVersion": "0.36.0",
   "generatorConfig": {
@@ -8,10 +8,10 @@
     "environmentEnumName": "ChrtEnvironment",
     "nullableAsOptional": true
   },
-  "originGitCommit": "71cbfd7be76f3fe923f95bfa16e221cce1aac2d9",
-  "originGitCommitIsDirty": true,
+  "originGitCommit": "70a15503db79ce845130ddd5a54ac8db7306df4e",
+  "originGitCommitIsDirty": false,
   "invokedBy": "ci",
-  "requestedVersion": "AUTO",
-  "ciProvider": "unknown",
-  "sdkVersion": "4.1.1"
+  "requestedVersion": "1.992.0",
+  "ciProvider": "github",
+  "sdkVersion": "1.992.0"
 }

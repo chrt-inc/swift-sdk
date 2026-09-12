@@ -130,6 +130,11 @@ public final class DriversClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterWaiting: true,
+    ///         filterAutoAssignEnabled: true,
+    ///         filterVehicleType: [
+    ///             .sedan
+    ///         ],
     ///         filterByDriverId: "filter_by_driver_id",
     ///         filterArchived: true,
     ///         filterAvailableAccordingToDriver: true,
@@ -145,13 +150,16 @@ public final class DriversClient: Sendable {
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query
+    /// - Parameter filterWaiting: Filter by waiting status
+    /// - Parameter filterAutoAssignEnabled: Filter by automatic assignment consent
+    /// - Parameter filterVehicleType: Filter by any matching vehicle type
     /// - Parameter filterByDriverId: Filter by driver ID
     /// - Parameter filterArchived: Select archived drivers instead of active drivers
     /// - Parameter filterAvailableAccordingToDriver: Filter by driver's self-reported availability
     /// - Parameter filterAvailableAccordingToOperators: Filter by operator-set availability
     /// - Parameter filterStatus: Filter by driver state (UNASSIGNED / ASSIGNED / IN_PROGRESS)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterByDriverId: String? = nil, filterArchived: Bool? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, filterStatus: [DriverStatusEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverListRes {
+    public func listV1(sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterWaiting: Bool? = nil, filterAutoAssignEnabled: Bool? = nil, filterVehicleType: [VehicleTypeEnum]? = nil, filterByDriverId: String? = nil, filterArchived: Bool? = nil, filterAvailableAccordingToDriver: Bool? = nil, filterAvailableAccordingToOperators: Bool? = nil, filterStatus: [DriverStatusEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DriverListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/drivers/list/v1",
@@ -160,6 +168,9 @@ public final class DriversClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_waiting": filterWaiting.map { .bool($0) }, 
+                "filter_auto_assign_enabled": filterAutoAssignEnabled.map { .bool($0) }, 
+                "filter_vehicle_type": filterVehicleType.map { .unknown($0) }, 
                 "filter_by_driver_id": filterByDriverId.map { .string($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_available_according_to_driver": filterAvailableAccordingToDriver.map { .bool($0) }, 

@@ -115,7 +115,9 @@ public final class OperationsTasksClient: Sendable {
     ///         ],
     ///         filterOrderShortId: "filter_order_short_id",
     ///         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
-    ///         filterDepartmentId: "filter_department_id",
+    ///         filterDepartmentIds: [
+    ///             "filter_department_ids"
+    ///         ],
     ///         filterTaskType: [
     ///             .reviewOrderDetails
     ///         ],
@@ -139,7 +141,7 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterOrderIds: Filter to tasks on any of these order ids (e.g. the order_ids returned by the orders typeahead for a chosen short_id / off-chrt reference id)
     /// - Parameter filterOrderShortId: Filter to tasks for this order short ID
     /// - Parameter filterOrderOffChrtReferenceId: Filter to tasks for this order off-CHRT reference ID
-    /// - Parameter filterDepartmentId: Filter to tasks routed to this department (desk queue)
+    /// - Parameter filterDepartmentIds: Filter to tasks routed to any of these departments (desk queues)
     /// - Parameter filterTaskType: Filter by task type(s). Defaults to all types.
     /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
     /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
@@ -148,7 +150,7 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func expandedListV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterEntryTag: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskExpandedListRes {
+    public func expandedListV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentIds: [String]? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterEntryTag: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskExpandedListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/expanded/list/v1",
@@ -161,7 +163,7 @@ public final class OperationsTasksClient: Sendable {
                 "filter_order_ids": filterOrderIds.map { .stringArray($0) }, 
                 "filter_order_short_id": filterOrderShortId.map { .string($0) }, 
                 "filter_order_off_chrt_reference_id": filterOrderOffChrtReferenceId.map { .string($0) }, 
-                "filter_department_id": filterDepartmentId.map { .string($0) }, 
+                "filter_department_ids": filterDepartmentIds.map { .stringArray($0) }, 
                 "filter_task_type": filterTaskType.map { .unknown($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
@@ -195,7 +197,9 @@ public final class OperationsTasksClient: Sendable {
     ///         ],
     ///         filterOrderShortId: "filter_order_short_id",
     ///         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
-    ///         filterDepartmentId: "filter_department_id",
+    ///         filterDepartmentIds: [
+    ///             "filter_department_ids"
+    ///         ],
     ///         filterTaskType: [
     ///             .reviewOrderDetails
     ///         ],
@@ -219,7 +223,7 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterOrderIds: Filter to tasks on any of these order ids (e.g. the order_ids returned by the orders typeahead for a chosen short_id / off-chrt reference id)
     /// - Parameter filterOrderShortId: Filter to tasks for this order short ID
     /// - Parameter filterOrderOffChrtReferenceId: Filter to tasks for this order off-CHRT reference ID
-    /// - Parameter filterDepartmentId: Filter to tasks routed to this department (desk queue)
+    /// - Parameter filterDepartmentIds: Filter to tasks routed to any of these departments (desk queues)
     /// - Parameter filterTaskType: Filter by task type(s). Defaults to all types.
     /// - Parameter filterStatus: Filter by status(es). Defaults to all statuses.
     /// - Parameter filterAssignedUserId: Filter to tasks this user is directly assigned to
@@ -228,7 +232,7 @@ public final class OperationsTasksClient: Sendable {
     /// - Parameter filterDeadlineGte: Filter to tasks with deadline >= this timestamp
     /// - Parameter filterDeadlineLte: Filter to tasks with deadline <= this timestamp
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentId: String? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterEntryTag: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
+    public func listV1(sortBy: OperationsTaskSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterOrderShortId: String? = nil, filterOrderOffChrtReferenceId: String? = nil, filterDepartmentIds: [String]? = nil, filterTaskType: [OperationsTaskTypeEnum]? = nil, filterStatus: [OperationsTaskStatusEnum]? = nil, filterAssignedUserId: String? = nil, filterSourceTaskListId: String? = nil, filterEntryTag: String? = nil, filterDeadlineGte: Date? = nil, filterDeadlineLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_tasks/list/v1",
@@ -241,7 +245,7 @@ public final class OperationsTasksClient: Sendable {
                 "filter_order_ids": filterOrderIds.map { .stringArray($0) }, 
                 "filter_order_short_id": filterOrderShortId.map { .string($0) }, 
                 "filter_order_off_chrt_reference_id": filterOrderOffChrtReferenceId.map { .string($0) }, 
-                "filter_department_id": filterDepartmentId.map { .string($0) }, 
+                "filter_department_ids": filterDepartmentIds.map { .stringArray($0) }, 
                 "filter_task_type": filterTaskType.map { .unknown($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_assigned_user_id": filterAssignedUserId.map { .string($0) }, 
@@ -314,6 +318,40 @@ public final class OperationsTasksClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OperationsTasksStatusUpdateRes1.self
+        )
+    }
+
+    /// Returns distinct entry_tag values matching the query via case-insensitive regex. Searches operations tasks within the caller's organization. | authz: min_org_role=operator | () -> (list[OperationsTaskTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTasks.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OperationsTaskTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/operations_tasks/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OperationsTaskTypeaheadResult].self
         )
     }
 
@@ -427,7 +465,7 @@ public final class OperationsTasksClient: Sendable {
         )
     }
 
-    /// Updates editable fields (task_type, title, description, deadline_timestamp, assigned_user_ids) on an OperationsTask. | authz: min_org_role=operator | (OperationsTaskClientUpdate1) -> (bool)
+    /// Updates editable fields (task_type, title, description, entry_tag, deadline_timestamp, assigned_user_ids, department_id) on an OperationsTask. | authz: min_org_role=operator | (OperationsTaskClientUpdate1) -> (bool)
     ///
     /// ```swift
     /// import Foundation

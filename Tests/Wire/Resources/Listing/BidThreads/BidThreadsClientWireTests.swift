@@ -353,7 +353,20 @@ import Chrt
                           "unit_price": 1.1
                         }
                       ],
+                      "bidder_driver": {
+                        "_id": "_id",
+                        "org_id": "org_id",
+                        "schema_version": 1,
+                        "user_id": "user_id"
+                      },
                       "bidder_driver_id": "bidder_driver_id",
+                      "bidder_provider_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
                       "bidder_provider_org_id": "bidder_provider_org_id",
                       "bids": [
                         {
@@ -380,9 +393,9 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = BidThreadListRes(
+        let expectedResponse = BidThreadForListingListRes(
             items: [
-                BidThread1(
+                BidThreadForListing1(
                     id: "_id",
                     acceptedProFormaLineItems: Optional([
                         ProFormaLineItem1(
@@ -394,7 +407,20 @@ import Chrt
                             unitPrice: 1.1
                         )
                     ]),
+                    bidderDriver: Optional(Driver1(
+                        id: "_id",
+                        orgId: "org_id",
+                        schemaVersion: 1,
+                        userId: "user_id"
+                    )),
                     bidderDriverId: Optional("bidder_driver_id"),
+                    bidderProviderOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: OrgTypeEnum.provider,
+                        schemaVersion: 1
+                    )),
                     bidderProviderOrgId: Optional("bidder_provider_org_id"),
                     bids: [
                         Bid(

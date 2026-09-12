@@ -116,7 +116,9 @@ import Chrt
                     "coordinator_department_ids": [
                       "coordinator_department_ids"
                     ],
-                    "coordinator_label": "coordinator_label",
+                    "coordinator_labels": [
+                      "coordinator_labels"
+                    ],
                     "coordinator_org_id": "coordinator_org_id",
                     "coordinator_shipper_account_ids": [
                       "coordinator_shipper_account_ids"
@@ -387,7 +389,9 @@ import Chrt
                 coordinatorDepartmentIds: Optional([
                     "coordinator_department_ids"
                 ]),
-                coordinatorLabel: Optional("coordinator_label"),
+                coordinatorLabels: Optional([
+                    "coordinator_labels"
+                ]),
                 coordinatorOrgId: Optional("coordinator_org_id"),
                 coordinatorShipperAccountIds: Optional([
                     "coordinator_shipper_account_ids"
@@ -1151,7 +1155,9 @@ import Chrt
             filterCoordinatorAssignedUserIds: [
                 "filter_coordinator_assigned_user_ids"
             ],
-            filterCoordinatorLabel: "filter_coordinator_label",
+            filterCoordinatorLabels: [
+                "filter_coordinator_labels"
+            ],
             request: OrderAndTaskGroupExpandedReq(
 
             ),

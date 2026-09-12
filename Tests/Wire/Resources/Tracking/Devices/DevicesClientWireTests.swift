@@ -673,6 +673,8 @@ import Chrt
             pageSize: 1,
             search: "search",
             orgScope: .owned,
+            filterDeviceId: "filter_device_id",
+            filterDeviceMacAddress: "filter_device_mac_address",
             filterOffChrtReferenceId: "filter_off_chrt_reference_id",
             filterType: .d15NTag,
             filterActiveCargoId: "filter_active_cargo_id",

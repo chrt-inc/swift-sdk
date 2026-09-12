@@ -100,7 +100,7 @@ public final class OrderTemplatesNewClient: Sendable {
         )
     }
 
-    /// Lists order templates with filtering, sorting, pagination, full-text search, and party/account expansion. | authz: min_org_role=operator | () -> (OrderTemplateNewListRes)
+    /// Lists order templates with filtering, sorting, pagination, full-text search, and party/account/department expansion. | authz: min_org_role=operator | () -> (OrderTemplateNewListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -117,7 +117,9 @@ public final class OrderTemplatesNewClient: Sendable {
     ///         search: "search",
     ///         filterArchived: true,
     ///         filterOwnedByUserId: "filter_owned_by_user_id",
-    ///         filterCoordinatorLabel: "filter_coordinator_label",
+    ///         filterCoordinatorLabels: [
+    ///             "filter_coordinator_labels"
+    ///         ],
     ///         filterExecutorOrgId: "filter_executor_org_id",
     ///         filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
     ///         filterShipperOrgId: "filter_shipper_org_id",
@@ -142,7 +144,7 @@ public final class OrderTemplatesNewClient: Sendable {
     /// - Parameter search: Full-text search query for template name or description.
     /// - Parameter filterArchived: Include archived templates instead of active templates.
     /// - Parameter filterOwnedByUserId: Filter by the user that created the template.
-    /// - Parameter filterCoordinatorLabel: Filter by coordinator label.
+    /// - Parameter filterCoordinatorLabels: Filter by any of the supplied coordinator labels (exact match).
     /// - Parameter filterExecutorOrgId: Filter by an on-CHRT executor organization ID.
     /// - Parameter filterOffChrtExecutorOrgDataId: Filter by an off-CHRT executor organization data ID.
     /// - Parameter filterShipperOrgId: Filter by an on-CHRT shipper organization ID.
@@ -155,7 +157,7 @@ public final class OrderTemplatesNewClient: Sendable {
     /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
     /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCoordinatorLabel: String? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
+    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCoordinatorLabels: [String]? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates_new/list/v1",
@@ -167,7 +169,7 @@ public final class OrderTemplatesNewClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
-                "filter_coordinator_label": filterCoordinatorLabel.map { .string($0) }, 
+                "filter_coordinator_labels": filterCoordinatorLabels.map { .stringArray($0) }, 
                 "filter_executor_org_id": filterExecutorOrgId.map { .string($0) }, 
                 "filter_off_chrt_executor_org_data_id": filterOffChrtExecutorOrgDataId.map { .string($0) }, 
                 "filter_shipper_org_id": filterShipperOrgId.map { .string($0) }, 

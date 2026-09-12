@@ -427,7 +427,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateLabelV11() async throws -> Void {
+    @Test func updateLabelsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
@@ -442,7 +442,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shipping.orders.updateLabelV1(
+        let response = try await client.shipping.orders.updateLabelsV1(
             orderId: "order_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

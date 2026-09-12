@@ -4,7 +4,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
     public let cargos: [OrderTemplateNewCargo1]?
     public let coordinatorAssignedUserIds: [String]?
     public let coordinatorDepartmentIds: [String]?
-    public let coordinatorLabel: String?
+    public let coordinatorLabels: [String]?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
@@ -24,7 +24,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         cargos: [OrderTemplateNewCargo1]? = nil,
         coordinatorAssignedUserIds: [String]? = nil,
         coordinatorDepartmentIds: [String]? = nil,
-        coordinatorLabel: String? = nil,
+        coordinatorLabels: [String]? = nil,
         coordinatorOrgId: String? = nil,
         offChrtReferenceId: String? = nil,
         offChrtShipperOrgDataId: String? = nil,
@@ -39,7 +39,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         self.cargos = cargos
         self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
         self.coordinatorDepartmentIds = coordinatorDepartmentIds
-        self.coordinatorLabel = coordinatorLabel
+        self.coordinatorLabels = coordinatorLabels
         self.coordinatorOrgId = coordinatorOrgId
         self.offChrtReferenceId = offChrtReferenceId
         self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
@@ -57,7 +57,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         self.cargos = try container.decodeIfPresent([OrderTemplateNewCargo1].self, forKey: .cargos)
         self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
         self.coordinatorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .coordinatorDepartmentIds)
-        self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
+        self.coordinatorLabels = try container.decodeIfPresent([String].self, forKey: .coordinatorLabels)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
@@ -76,7 +76,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.cargos, forKey: .cargos)
         try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
         try container.encodeIfPresent(self.coordinatorDepartmentIds, forKey: .coordinatorDepartmentIds)
-        try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
+        try container.encodeIfPresent(self.coordinatorLabels, forKey: .coordinatorLabels)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
@@ -93,7 +93,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         case cargos
         case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
         case coordinatorDepartmentIds = "coordinator_department_ids"
-        case coordinatorLabel = "coordinator_label"
+        case coordinatorLabels = "coordinator_labels"
         case coordinatorOrgId = "coordinator_org_id"
         case offChrtReferenceId = "off_chrt_reference_id"
         case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"

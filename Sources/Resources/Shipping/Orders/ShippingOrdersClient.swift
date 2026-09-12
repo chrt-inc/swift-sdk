@@ -306,7 +306,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Returns distinct label values matching the query for orders where the caller is coordinator (coordinator_label) or executor (task_group_details.executor_label). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[str])
+    /// Returns distinct label values matching the query for orders where the caller is coordinator (coordinator_labels) or executor (task_group_details.executor_labels). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[str])
     ///
     /// ```swift
     /// import Foundation
@@ -488,7 +488,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Updates label for the caller's role on the order. Coordinator writes coordinator_label; executor writes executor_label on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateLabelReq) -> (bool)
+    /// Replaces labels for the caller's role on the order. Coordinator writes coordinator_labels; executor writes executor_labels on matching task_group_details rows. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrdersUpdateLabelsReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -497,7 +497,7 @@ public final class ShippingOrdersClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shipping.orders.updateLabelV1(
+    ///     _ = try await client.shipping.orders.updateLabelsV1(
     ///         orderId: "order_id",
     ///         request: .init()
     ///     )
@@ -507,10 +507,10 @@ public final class ShippingOrdersClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateLabelV1(orderId: String, request: Requests.OrdersUpdateLabelReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateLabelsV1(orderId: String, request: Requests.OrdersUpdateLabelsReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/shipping/orders/update_label/v1/\(orderId)",
+            path: "/shipping/orders/update_labels/v1/\(orderId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self

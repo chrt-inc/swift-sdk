@@ -4,7 +4,7 @@ public struct OrderBillingExpandedListItem1: Codable, Hashable, Sendable {
     public let accounts: [OrderBillingAccount1]?
     public let awbNumbers: [String]?
     public let billingPeriods: [OrderBillingPeriod1]?
-    public let coordinatorLabel: String?
+    public let coordinatorLabels: [String]?
     public let executors: [OrderBillingExecutor1]?
     public let includesAirWaybillInvoiceLineItem: Bool
     public let invoiceCount: Int
@@ -22,7 +22,7 @@ public struct OrderBillingExpandedListItem1: Codable, Hashable, Sendable {
         accounts: [OrderBillingAccount1]? = nil,
         awbNumbers: [String]? = nil,
         billingPeriods: [OrderBillingPeriod1]? = nil,
-        coordinatorLabel: String? = nil,
+        coordinatorLabels: [String]? = nil,
         executors: [OrderBillingExecutor1]? = nil,
         includesAirWaybillInvoiceLineItem: Bool,
         invoiceCount: Int,
@@ -38,7 +38,7 @@ public struct OrderBillingExpandedListItem1: Codable, Hashable, Sendable {
         self.accounts = accounts
         self.awbNumbers = awbNumbers
         self.billingPeriods = billingPeriods
-        self.coordinatorLabel = coordinatorLabel
+        self.coordinatorLabels = coordinatorLabels
         self.executors = executors
         self.includesAirWaybillInvoiceLineItem = includesAirWaybillInvoiceLineItem
         self.invoiceCount = invoiceCount
@@ -57,7 +57,7 @@ public struct OrderBillingExpandedListItem1: Codable, Hashable, Sendable {
         self.accounts = try container.decodeIfPresent([OrderBillingAccount1].self, forKey: .accounts)
         self.awbNumbers = try container.decodeIfPresent([String].self, forKey: .awbNumbers)
         self.billingPeriods = try container.decodeIfPresent([OrderBillingPeriod1].self, forKey: .billingPeriods)
-        self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
+        self.coordinatorLabels = try container.decodeIfPresent([String].self, forKey: .coordinatorLabels)
         self.executors = try container.decodeIfPresent([OrderBillingExecutor1].self, forKey: .executors)
         self.includesAirWaybillInvoiceLineItem = try container.decode(Bool.self, forKey: .includesAirWaybillInvoiceLineItem)
         self.invoiceCount = try container.decode(Int.self, forKey: .invoiceCount)
@@ -77,7 +77,7 @@ public struct OrderBillingExpandedListItem1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.accounts, forKey: .accounts)
         try container.encodeIfPresent(self.awbNumbers, forKey: .awbNumbers)
         try container.encodeIfPresent(self.billingPeriods, forKey: .billingPeriods)
-        try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
+        try container.encodeIfPresent(self.coordinatorLabels, forKey: .coordinatorLabels)
         try container.encodeIfPresent(self.executors, forKey: .executors)
         try container.encode(self.includesAirWaybillInvoiceLineItem, forKey: .includesAirWaybillInvoiceLineItem)
         try container.encode(self.invoiceCount, forKey: .invoiceCount)
@@ -95,7 +95,7 @@ public struct OrderBillingExpandedListItem1: Codable, Hashable, Sendable {
         case accounts
         case awbNumbers = "awb_numbers"
         case billingPeriods = "billing_periods"
-        case coordinatorLabel = "coordinator_label"
+        case coordinatorLabels = "coordinator_labels"
         case executors
         case includesAirWaybillInvoiceLineItem = "includes_air_waybill_invoice_line_item"
         case invoiceCount = "invoice_count"

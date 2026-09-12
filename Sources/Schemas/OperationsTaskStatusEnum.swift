@@ -8,6 +8,7 @@ import Foundation
 public enum OperationsTaskStatusEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case notStarted = "not_started"
     case inProgress = "in_progress"
+    case blocked
     case completed
     case skipped
     case cancelled

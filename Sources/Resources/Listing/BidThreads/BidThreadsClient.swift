@@ -243,7 +243,7 @@ public final class BidThreadsClient: Sendable {
         )
     }
 
-    /// Lists all bid threads on a listing with filtering, sorting, and pagination. Lister-only — the listing must belong to the caller's org. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BidThreadListRes)
+    /// Lists bid threads with bidder driver/provider profiles, filtering, sorting, and pagination for the listing's owner. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BidThreadForListingListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -285,7 +285,7 @@ public final class BidThreadsClient: Sendable {
     /// - Parameter filterStatusChangedAtTimestampGte: Filter status_changed_at_timestamp >= value (inclusive).
     /// - Parameter filterStatusChangedAtTimestampLte: Filter status_changed_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForListingV1(listingId: String, sortBy: BidThreadSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [BidThreadStatusEnum]? = nil, filterListingId: String? = nil, filterBidderProviderOrgId: String? = nil, filterBidderDriverId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterStatusChangedAtTimestampGte: Date? = nil, filterStatusChangedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BidThreadListRes {
+    public func listForListingV1(listingId: String, sortBy: BidThreadSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatus: [BidThreadStatusEnum]? = nil, filterListingId: String? = nil, filterBidderProviderOrgId: String? = nil, filterBidderDriverId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterStatusChangedAtTimestampGte: Date? = nil, filterStatusChangedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> BidThreadForListingListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/listing/bid_threads/list_for_listing/v1/\(listingId)",
@@ -304,7 +304,7 @@ public final class BidThreadsClient: Sendable {
                 "filter_status_changed_at_timestamp_lte": filterStatusChangedAtTimestampLte.map { .date($0) }
             ],
             requestOptions: requestOptions,
-            responseType: BidThreadListRes.self
+            responseType: BidThreadForListingListRes.self
         )
     }
 

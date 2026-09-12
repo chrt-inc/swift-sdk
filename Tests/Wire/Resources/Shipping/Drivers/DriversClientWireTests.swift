@@ -320,6 +320,11 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterWaiting: true,
+            filterAutoAssignEnabled: true,
+            filterVehicleType: [
+                .sedan
+            ],
             filterByDriverId: "filter_by_driver_id",
             filterArchived: true,
             filterAvailableAccordingToDriver: true,

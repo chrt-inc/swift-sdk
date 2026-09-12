@@ -34,7 +34,9 @@ import Chrt
                   "coordinator_department_ids": [
                     "coordinator_department_ids"
                   ],
-                  "coordinator_label": "coordinator_label",
+                  "coordinator_labels": [
+                    "coordinator_labels"
+                  ],
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
@@ -123,7 +125,9 @@ import Chrt
             coordinatorDepartmentIds: Optional([
                 "coordinator_department_ids"
             ]),
-            coordinatorLabel: Optional("coordinator_label"),
+            coordinatorLabels: Optional([
+                "coordinator_labels"
+            ]),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
@@ -218,7 +222,9 @@ import Chrt
                   "coordinator_department_ids": [
                     "coordinator_department_ids"
                   ],
-                  "coordinator_label": "coordinator_label",
+                  "coordinator_labels": [
+                    "coordinator_labels"
+                  ],
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
@@ -307,7 +313,9 @@ import Chrt
             coordinatorDepartmentIds: Optional([
                 "coordinator_department_ids"
             ]),
-            coordinatorLabel: Optional("coordinator_label"),
+            coordinatorLabels: Optional([
+                "coordinator_labels"
+            ]),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
@@ -402,7 +410,9 @@ import Chrt
                   "coordinator_department_ids": [
                     "coordinator_department_ids"
                   ],
-                  "coordinator_label": "coordinator_label",
+                  "coordinator_labels": [
+                    "coordinator_labels"
+                  ],
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
@@ -491,7 +501,9 @@ import Chrt
             coordinatorDepartmentIds: Optional([
                 "coordinator_department_ids"
             ]),
-            coordinatorLabel: Optional("coordinator_label"),
+            coordinatorLabels: Optional([
+                "coordinator_labels"
+            ]),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
@@ -585,7 +597,9 @@ import Chrt
                   "coordinator_department_ids": [
                     "coordinator_department_ids"
                   ],
-                  "coordinator_label": "coordinator_label",
+                  "coordinator_labels": [
+                    "coordinator_labels"
+                  ],
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
@@ -674,7 +688,9 @@ import Chrt
             coordinatorDepartmentIds: Optional([
                 "coordinator_department_ids"
             ]),
-            coordinatorLabel: Optional("coordinator_label"),
+            coordinatorLabels: Optional([
+                "coordinator_labels"
+            ]),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
@@ -769,7 +785,9 @@ import Chrt
                   "coordinator_department_ids": [
                     "coordinator_department_ids"
                   ],
-                  "coordinator_label": "coordinator_label",
+                  "coordinator_labels": [
+                    "coordinator_labels"
+                  ],
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
@@ -858,7 +876,9 @@ import Chrt
             coordinatorDepartmentIds: Optional([
                 "coordinator_department_ids"
             ]),
-            coordinatorLabel: Optional("coordinator_label"),
+            coordinatorLabels: Optional([
+                "coordinator_labels"
+            ]),
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),

@@ -4,8 +4,7 @@ extension Requests {
     public struct OrderTemplateNewClientUpdate1: Codable, Hashable, Sendable {
         public let coordinatorAssignedUserIds: [String]?
         public let coordinatorDepartmentIds: [String]?
-        public let coordinatorLabel: String?
-        public let coordinatorLabelSetToNone: Bool?
+        public let coordinatorLabels: [String]?
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let coordinatorOrgIdSetToNone: Bool?
@@ -29,8 +28,7 @@ extension Requests {
         public init(
             coordinatorAssignedUserIds: [String]? = nil,
             coordinatorDepartmentIds: [String]? = nil,
-            coordinatorLabel: String? = nil,
-            coordinatorLabelSetToNone: Bool? = nil,
+            coordinatorLabels: [String]? = nil,
             coordinatorOrgId: String? = nil,
             coordinatorOrgIdSetToNone: Bool? = nil,
             description: String? = nil,
@@ -49,8 +47,7 @@ extension Requests {
         ) {
             self.coordinatorAssignedUserIds = coordinatorAssignedUserIds
             self.coordinatorDepartmentIds = coordinatorDepartmentIds
-            self.coordinatorLabel = coordinatorLabel
-            self.coordinatorLabelSetToNone = coordinatorLabelSetToNone
+            self.coordinatorLabels = coordinatorLabels
             self.coordinatorOrgId = coordinatorOrgId
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
             self.description = description
@@ -72,8 +69,7 @@ extension Requests {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.coordinatorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .coordinatorAssignedUserIds)
             self.coordinatorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .coordinatorDepartmentIds)
-            self.coordinatorLabel = try container.decodeIfPresent(String.self, forKey: .coordinatorLabel)
-            self.coordinatorLabelSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorLabelSetToNone)
+            self.coordinatorLabels = try container.decodeIfPresent([String].self, forKey: .coordinatorLabels)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
@@ -96,8 +92,7 @@ extension Requests {
             try encoder.encodeAdditionalProperties(self.additionalProperties)
             try container.encodeIfPresent(self.coordinatorAssignedUserIds, forKey: .coordinatorAssignedUserIds)
             try container.encodeIfPresent(self.coordinatorDepartmentIds, forKey: .coordinatorDepartmentIds)
-            try container.encodeIfPresent(self.coordinatorLabel, forKey: .coordinatorLabel)
-            try container.encodeIfPresent(self.coordinatorLabelSetToNone, forKey: .coordinatorLabelSetToNone)
+            try container.encodeIfPresent(self.coordinatorLabels, forKey: .coordinatorLabels)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
             try container.encodeIfPresent(self.description, forKey: .description)
@@ -118,8 +113,7 @@ extension Requests {
         enum CodingKeys: String, CodingKey, CaseIterable {
             case coordinatorAssignedUserIds = "coordinator_assigned_user_ids"
             case coordinatorDepartmentIds = "coordinator_department_ids"
-            case coordinatorLabel = "coordinator_label"
-            case coordinatorLabelSetToNone = "coordinator_label__set_to_None"
+            case coordinatorLabels = "coordinator_labels"
             case coordinatorOrgId = "coordinator_org_id"
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
             case description

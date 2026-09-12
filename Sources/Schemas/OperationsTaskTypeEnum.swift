@@ -18,6 +18,7 @@ public enum OperationsTaskTypeEnum: String, Codable, Hashable, CaseIterable, Sen
     case facilityCheck = "facility_check"
     case weatherCheck = "weather_check"
     case bookCargo = "book_cargo"
+    case customs
     case trackAndVerify = "track_and_verify"
     case contactCustomer = "contact_customer"
     case contactAgent = "contact_agent"

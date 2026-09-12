@@ -94,7 +94,9 @@ import Chrt
                           }
                         }
                       ],
-                      "coordinator_label": "coordinator_label",
+                      "coordinator_labels": [
+                        "coordinator_labels"
+                      ],
                       "executors": [
                         {
                           "task_group_id": "task_group_id"
@@ -159,7 +161,9 @@ import Chrt
                             )
                         )
                     ]),
-                    coordinatorLabel: Optional("coordinator_label"),
+                    coordinatorLabels: Optional([
+                        "coordinator_labels"
+                    ]),
                     executors: Optional([
                         OrderBillingExecutor1(
                             taskGroupId: "task_group_id"
@@ -202,7 +206,9 @@ import Chrt
             ],
             filterExecutorOrgId: "filter_executor_org_id",
             filterOffChrtExecutorOrgDataId: "filter_off_chrt_executor_org_data_id",
-            filterCoordinatorLabel: "filter_coordinator_label",
+            filterCoordinatorLabels: [
+                "filter_coordinator_labels"
+            ],
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
