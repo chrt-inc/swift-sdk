@@ -7,7 +7,7 @@ public final class TaskArtifactsS3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (TaskArtifactS3ObjectMetadata1)
+    /// Uploads a file (image, PDF, etc.) to a task artifact. Retains uploaded files; previews require a clean malware scan. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (TaskArtifactS3ObjectMetadata1)
     ///
     /// ```swift
     /// import Foundation

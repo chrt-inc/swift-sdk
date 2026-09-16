@@ -7,7 +7,7 @@ public final class TaskGroupsS3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (TaskGroupS3ObjectMetadata1)
+    /// Uploads a file (image, PDF, etc.) to a task group. Retains uploaded files; previews require a clean malware scan. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (TaskGroupS3ObjectMetadata1)
     ///
     /// ```swift
     /// import Foundation

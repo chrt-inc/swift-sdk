@@ -15071,7 +15071,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
+Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Retains uploaded files; previews require a clean malware scan. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -18451,7 +18451,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
+Uploads a file to an organization compliance document. Retains uploaded files; previews require a clean malware scan. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -24983,7 +24983,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file to a driver compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (DriverComplianceDocumentS3ObjectMetadata1)
+Uploads a file to a driver compliance document. Retains uploaded files; previews require a clean malware scan. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (DriverComplianceDocumentS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -29868,7 +29868,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file (image, PDF, etc.) to a task artifact. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (TaskArtifactS3ObjectMetadata1)
+Uploads a file (image, PDF, etc.) to a task artifact. Retains uploaded files; previews require a clean malware scan. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, shipper_org_operators] | (UploadFile) -> (TaskArtifactS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>
@@ -31284,7 +31284,7 @@ try await main()
 <dl>
 <dd>
 
-Uploads a file (image, PDF, etc.) to a task group. Automatic blurhash generation for images. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (TaskGroupS3ObjectMetadata1)
+Uploads a file (image, PDF, etc.) to a task group. Retains uploaded files; previews require a clean malware scan. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (UploadFile) -> (TaskGroupS3ObjectMetadata1)
 </dd>
 </dl>
 </dd>

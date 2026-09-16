@@ -7,7 +7,7 @@ public final class S3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file to an organization compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
+    /// Uploads a file to an organization compliance document. Retains uploaded files; previews require a clean malware scan. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (OrgComplianceDocumentS3ObjectMetadata1)
     ///
     /// ```swift
     /// import Foundation

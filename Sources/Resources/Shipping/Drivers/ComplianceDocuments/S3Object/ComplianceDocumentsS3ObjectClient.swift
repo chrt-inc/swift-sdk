@@ -7,7 +7,7 @@ public final class ComplianceDocumentsS3ObjectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file to a driver compliance document. Automatic blurhash generation for images. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (DriverComplianceDocumentS3ObjectMetadata1)
+    /// Uploads a file to a driver compliance document. Retains uploaded files; previews require a clean malware scan. | authz: allowed_org_types=[provider], min_org_role=administrator | (UploadFile) -> (DriverComplianceDocumentS3ObjectMetadata1)
     ///
     /// ```swift
     /// import Foundation

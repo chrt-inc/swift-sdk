@@ -7,7 +7,7 @@ public final class S3ObjectsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Automatic blurhash generation for images. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
+    /// Uploads a file to the caller's OrderInternalMessages for this order (lazy-creates the messages doc). Retains uploaded files; previews require a clean malware scan. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (UploadFile) -> (OrderInternalMessageS3ObjectMetadata1)
     ///
     /// ```swift
     /// import Foundation
