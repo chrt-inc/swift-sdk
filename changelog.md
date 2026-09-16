@@ -1,3 +1,12 @@
+## 5.1.0 - 2026-09-16
+### Added
+* **`Code`** — new enum with stable file scan and download status codes (`fileScanPending`, `fileMalwareDetected`, `fileScanUnsupported`, `fileScanFailed`, `fileScanAccessDenied`, `fileScanStatusUnavailable`, `fileDownloadUnavailable`, `fileNotFound`) for use in error handling.
+* **`FileDownloadErrorRes`** — new struct representing a structured file download error response with `code`, `detail`, and `retryable` fields.
+* **`FileDownloadRequestErrorRes`** — new struct representing an authorization or validation error response for file download requests.
+* **`Detail`**, **`NotFoundErrorBody`**, and **`UnprocessableEntityErrorBody`** — new union types for decoding polymorphic error payloads returned by file download endpoints.
+### Changed
+* **S3 upload client doc comments** — updated across `S3ObjectsClient`, `S3ObjectClient`, `ComplianceDocumentsS3ObjectClient`, `TaskArtifactsS3ObjectClient`, and `TaskGroupsS3ObjectClient` to reflect that uploaded files are retained and that previews require a clean malware scan.
+
 ## 5.0.0 - 2026-09-12
 ### Breaking Changes
 * **`coordinatorLabel` / `executorLabel`** — renamed to `coordinatorLabels` / `executorLabels` and changed from `String?` to `[String]?` across all order, task-group, and order-template types; update all property access sites and wrap single string values in an array.
