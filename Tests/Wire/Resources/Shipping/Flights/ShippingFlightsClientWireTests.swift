@@ -24,6 +24,7 @@ import Chrt
                       "destination_iata": "destination_iata",
                       "estimated_arrival_utc": "2024-01-15T09:30:00Z",
                       "estimated_departure_utc": "2024-01-15T09:30:00Z",
+                      "fa_flight_id": "fa_flight_id",
                       "flight_number": "flight_number",
                       "flight_status": "scheduled",
                       "flight_status_fetched_at_utc": "2024-01-15T09:30:00Z",
@@ -63,6 +64,7 @@ import Chrt
                     destinationIata: "destination_iata",
                     estimatedArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     estimatedDepartureUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    faFlightId: Optional("fa_flight_id"),
                     flightNumber: "flight_number",
                     flightStatus: Optional(FlightLegStatusEnum1.scheduled),
                     flightStatusFetchedAtUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -106,6 +108,7 @@ import Chrt
                       "destination_iata": "destination_iata",
                       "estimated_arrival_utc": "2024-01-15T09:30:00Z",
                       "estimated_departure_utc": "2024-01-15T09:30:00Z",
+                      "fa_flight_id": "fa_flight_id",
                       "flight_number": "flight_number",
                       "flight_status": "scheduled",
                       "flight_status_fetched_at_utc": "2024-01-15T09:30:00Z",
@@ -145,6 +148,7 @@ import Chrt
                     destinationIata: "destination_iata",
                     estimatedArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     estimatedDepartureUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    faFlightId: Optional("fa_flight_id"),
                     flightNumber: "flight_number",
                     flightStatus: Optional(FlightLegStatusEnum1.scheduled),
                     flightStatusFetchedAtUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -186,6 +190,7 @@ import Chrt
                   "destination_iata": "destination_iata",
                   "estimated_arrival_utc": "2024-01-15T09:30:00Z",
                   "estimated_departure_utc": "2024-01-15T09:30:00Z",
+                  "fa_flight_id": "fa_flight_id",
                   "flight_number": "flight_number",
                   "flight_status": "scheduled",
                   "flight_status_fetched_at_utc": "2024-01-15T09:30:00Z",
@@ -221,6 +226,7 @@ import Chrt
             destinationIata: "destination_iata",
             estimatedArrivalUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             estimatedDepartureUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            faFlightId: Optional("fa_flight_id"),
             flightNumber: "flight_number",
             flightStatus: Optional(FlightLegStatusEnum1.scheduled),
             flightStatusFetchedAtUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -247,24 +253,40 @@ import Chrt
             body: Foundation.Data(
                 #"""
                 {
-                  "bearing": 1.1,
-                  "cirium_flight_id": 1,
-                  "heading": 1.1,
-                  "legacy_route": "legacy_route",
-                  "positions": [
+                  "actual_flight_path": [
                     {
-                      "altitude_ft": 1,
-                      "date_utc": "2024-01-15T09:30:00Z",
-                      "lat": 1.1,
-                      "lon": 1.1,
-                      "source": "source",
-                      "speed_mph": 1
+                      "altitude_feet": 1,
+                      "ground_speed_knots": 1,
+                      "heading_degrees": 1,
+                      "latitude": 1.1,
+                      "longitude": 1.1,
+                      "name": "name",
+                      "position_source": "position_source",
+                      "received_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ],
-                  "waypoints": [
+                  "fa_flight_id": "fa_flight_id",
+                  "last_refresh_attempt_at_timestamp": "2024-01-15T09:30:00Z",
+                  "latest_position": {
+                    "altitude_feet": 1,
+                    "ground_speed_knots": 1,
+                    "heading_degrees": 1,
+                    "latitude": 1.1,
+                    "longitude": 1.1,
+                    "name": "name",
+                    "position_source": "position_source",
+                    "received_at_timestamp": "2024-01-15T09:30:00Z"
+                  },
+                  "planned_flight_path": [
                     {
-                      "lat": 1.1,
-                      "lon": 1.1
+                      "altitude_feet": 1,
+                      "ground_speed_knots": 1,
+                      "heading_degrees": 1,
+                      "latitude": 1.1,
+                      "longitude": 1.1,
+                      "name": "name",
+                      "position_source": "position_source",
+                      "received_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ]
                 }
@@ -277,24 +299,40 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = FlightTrackRes(
-            bearing: Optional(1.1),
-            ciriumFlightId: Optional(1),
-            heading: Optional(1.1),
-            legacyRoute: Optional("legacy_route"),
-            positions: Optional([
+            actualFlightPath: Optional([
                 FlightTrackPosition1(
-                    altitudeFt: Optional(1),
-                    dateUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    lat: Optional(1.1),
-                    lon: Optional(1.1),
-                    source: Optional("source"),
-                    speedMph: Optional(1)
+                    altitudeFeet: Optional(1),
+                    groundSpeedKnots: Optional(1),
+                    headingDegrees: Optional(1),
+                    latitude: Optional(1.1),
+                    longitude: Optional(1.1),
+                    name: Optional("name"),
+                    positionSource: Optional("position_source"),
+                    receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ]),
-            waypoints: Optional([
-                FlightTrackWaypoint1(
-                    lat: Optional(1.1),
-                    lon: Optional(1.1)
+            faFlightId: Optional("fa_flight_id"),
+            lastRefreshAttemptAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            latestPosition: Optional(FlightTrackPosition1(
+                altitudeFeet: Optional(1),
+                groundSpeedKnots: Optional(1),
+                headingDegrees: Optional(1),
+                latitude: Optional(1.1),
+                longitude: Optional(1.1),
+                name: Optional("name"),
+                positionSource: Optional("position_source"),
+                receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+            )),
+            plannedFlightPath: Optional([
+                FlightTrackPosition1(
+                    altitudeFeet: Optional(1),
+                    groundSpeedKnots: Optional(1),
+                    headingDegrees: Optional(1),
+                    latitude: Optional(1.1),
+                    longitude: Optional(1.1),
+                    name: Optional("name"),
+                    positionSource: Optional("position_source"),
+                    receivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
                 )
             ])
         )

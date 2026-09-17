@@ -20935,7 +20935,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the Cirium positional track for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
+Returns the FlightAware actual path, planned path, and latest position for a flight leg; pass force_refresh=true to bypass the cache. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators, order_executor_org_operators, shipper_org_operators] | () -> (FlightTrackRes)
 </dd>
 </dl>
 </dd>
@@ -39560,7 +39560,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the Cirium positional track for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
+Returns the FlightAware actual path, planned path, and latest position for one of the session's flight legs; pass force_refresh=true to bypass the cache. Access restricted to the caller's organization or shared organizations. | auth: api_key | authz: min_org_role=operator | () -> (FlightTrackRes)
 </dd>
 </dl>
 </dd>

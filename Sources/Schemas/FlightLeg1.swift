@@ -14,6 +14,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
     public let destinationIata: String
     public let estimatedArrivalUtc: Date?
     public let estimatedDepartureUtc: Date?
+    public let faFlightId: String?
     public let flightNumber: String
     public let flightStatus: FlightLegStatusEnum1?
     public let flightStatusFetchedAtUtc: Date?
@@ -43,6 +44,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         destinationIata: String,
         estimatedArrivalUtc: Date? = nil,
         estimatedDepartureUtc: Date? = nil,
+        faFlightId: String? = nil,
         flightNumber: String,
         flightStatus: FlightLegStatusEnum1? = nil,
         flightStatusFetchedAtUtc: Date? = nil,
@@ -70,6 +72,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         self.destinationIata = destinationIata
         self.estimatedArrivalUtc = estimatedArrivalUtc
         self.estimatedDepartureUtc = estimatedDepartureUtc
+        self.faFlightId = faFlightId
         self.flightNumber = flightNumber
         self.flightStatus = flightStatus
         self.flightStatusFetchedAtUtc = flightStatusFetchedAtUtc
@@ -100,6 +103,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         self.destinationIata = try container.decode(String.self, forKey: .destinationIata)
         self.estimatedArrivalUtc = try container.decodeIfPresent(Date.self, forKey: .estimatedArrivalUtc)
         self.estimatedDepartureUtc = try container.decodeIfPresent(Date.self, forKey: .estimatedDepartureUtc)
+        self.faFlightId = try container.decodeIfPresent(String.self, forKey: .faFlightId)
         self.flightNumber = try container.decode(String.self, forKey: .flightNumber)
         self.flightStatus = try container.decodeIfPresent(FlightLegStatusEnum1.self, forKey: .flightStatus)
         self.flightStatusFetchedAtUtc = try container.decodeIfPresent(Date.self, forKey: .flightStatusFetchedAtUtc)
@@ -131,6 +135,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         try container.encode(self.destinationIata, forKey: .destinationIata)
         try container.encodeIfPresent(self.estimatedArrivalUtc, forKey: .estimatedArrivalUtc)
         try container.encodeIfPresent(self.estimatedDepartureUtc, forKey: .estimatedDepartureUtc)
+        try container.encodeIfPresent(self.faFlightId, forKey: .faFlightId)
         try container.encode(self.flightNumber, forKey: .flightNumber)
         try container.encodeIfPresent(self.flightStatus, forKey: .flightStatus)
         try container.encodeIfPresent(self.flightStatusFetchedAtUtc, forKey: .flightStatusFetchedAtUtc)
@@ -160,6 +165,7 @@ public struct FlightLeg1: Codable, Hashable, Sendable {
         case destinationIata = "destination_iata"
         case estimatedArrivalUtc = "estimated_arrival_utc"
         case estimatedDepartureUtc = "estimated_departure_utc"
+        case faFlightId = "fa_flight_id"
         case flightNumber = "flight_number"
         case flightStatus = "flight_status"
         case flightStatusFetchedAtUtc = "flight_status_fetched_at_utc"
