@@ -32,7 +32,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Returns the matching draft invoice period, or creates one with an optional rolling-month default. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
+    /// Creates a new draft invoice, optionally attaching selected uninvoiced charges atomically. Omitted dates derive from completed deliveries; empty drafts and charges without completed delivery dates require explicit bounds. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateReq) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -41,7 +41,7 @@ public final class InvoicesClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.billingNew.invoices.createV1(request: .init(
+    ///     _ = try await client.billingNew.invoices.createV1(request: InvoiceCreateReq(
     ///         currencyCode: .usd,
     ///         invoiceType: .accountsReceivable,
     ///         schemaVersion: 1
@@ -52,13 +52,46 @@ public final class InvoicesClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.InvoiceClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(request: InvoiceCreateReq, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing_new/invoices/create/v1",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
+        )
+    }
+
+    /// Creates one draft from matching order charges and reports skipped items. Billing period dates do not filter charges. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateFromOrdersReq) -> (InvoiceCreateFromOrdersRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoices.createFromOrdersV1(request: InvoiceCreateFromOrdersReq(
+    ///         currencyCode: .usd,
+    ///         invoiceType: .accountsReceivable,
+    ///         orderIds: [
+    ///             "order_ids"
+    ///         ],
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createFromOrdersV1(request: InvoiceCreateFromOrdersReq, requestOptions: RequestOptions? = nil) async throws -> InvoiceCreateFromOrdersRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoices/create_from_orders/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: InvoiceCreateFromOrdersRes.self
         )
     }
 
@@ -112,63 +145,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Attaches one line item to a draft invoice, moving it from another draft invoice when needed, and synchronizes both invoices. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (Invoice1)
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import Chrt
-    ///
-    /// private func main() async throws {
-    ///     let client = ChrtClient(token: "<token>")
-    ///
-    ///     _ = try await client.billingNew.invoices.addLineItemV1(
-    ///         invoiceId: "invoice_id",
-    ///         invoiceLineItemId: "invoice_line_item_id"
-    ///     )
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func addLineItemV1(invoiceId: String, invoiceLineItemId: String, requestOptions: RequestOptions? = nil) async throws -> Invoice1 {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing_new/invoices/line_item/add/v1/\(invoiceId)/\(invoiceLineItemId)",
-            requestOptions: requestOptions,
-            responseType: Invoice1.self
-        )
-    }
-
-    /// Detaches one line item from a draft invoice and synchronizes the invoice total and accounts. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (Invoice1)
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import Chrt
-    ///
-    /// private func main() async throws {
-    ///     let client = ChrtClient(token: "<token>")
-    ///
-    ///     _ = try await client.billingNew.invoices.removeLineItemV1(
-    ///         invoiceId: "invoice_id",
-    ///         invoiceLineItemId: "invoice_line_item_id"
-    ///     )
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func removeLineItemV1(invoiceId: String, invoiceLineItemId: String, requestOptions: RequestOptions? = nil) async throws -> Invoice1 {
-        return try await httpClient.performRequest(
-            method: .delete,
-            path: "/billing_new/invoices/line_item/remove/v1/\(invoiceId)/\(invoiceLineItemId)",
-            requestOptions: requestOptions,
-            responseType: Invoice1.self
-        )
-    }
-
-    /// Attaches existing line items to a draft invoice, moving them from any other draft invoices, and synchronizes all affected invoice totals and accounts. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsAddReq) -> (Invoice1)
+    /// Attaches uninvoiced line items to a draft invoice and refreshes its totals and accounts. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsAddReq) -> (Invoice1)
     ///
     /// ```swift
     /// import Foundation
@@ -307,6 +284,69 @@ public final class InvoicesClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: InvoiceListRes.self
+        )
+    }
+
+    /// Previews exact uninvoiced charges, current resolved taxes, and explicit or derived billing dates without saving. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateReq) -> (InvoicePreviewRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoices.previewV1(request: InvoiceCreateReq(
+    ///         currencyCode: .usd,
+    ///         invoiceType: .accountsReceivable,
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func previewV1(request: InvoiceCreateReq, requestOptions: RequestOptions? = nil) async throws -> InvoicePreviewRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoices/preview/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: InvoicePreviewRes.self
+        )
+    }
+
+    /// Selects matching uninvoiced ordinary charges, reports omitted items, and previews current taxes and billing dates without saving. Period dates do not filter charges. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateFromOrdersReq) -> (InvoicePreviewFromOrdersRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoices.previewFromOrdersV1(request: InvoiceCreateFromOrdersReq(
+    ///         currencyCode: .usd,
+    ///         invoiceType: .accountsReceivable,
+    ///         orderIds: [
+    ///             "order_ids"
+    ///         ],
+    ///         schemaVersion: 1
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func previewFromOrdersV1(request: InvoiceCreateFromOrdersReq, requestOptions: RequestOptions? = nil) async throws -> InvoicePreviewFromOrdersRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/invoices/preview_from_orders/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: InvoicePreviewFromOrdersRes.self
         )
     }
 

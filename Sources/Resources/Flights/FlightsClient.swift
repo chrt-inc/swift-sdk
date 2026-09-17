@@ -7,7 +7,7 @@ public final class FlightsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Searches Cirium for cargo flight connections between two airports, anchored on a departure or arrival time. | (FlightConnectionsSearchReq) -> (FlightConnectionsSearchRes)
+    /// Searches Cirium for cargo flight connections between two airports, anchored on a departure or arrival time, ordered by earliest final arrival with unknown arrivals last. | (FlightConnectionsSearchReq) -> (FlightConnectionsSearchRes)
     ///
     /// ```swift
     /// import Foundation

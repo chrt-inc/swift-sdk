@@ -6,6 +6,7 @@ public final class BillingNewClient: Sendable {
     public let invoiceLineItems: InvoiceLineItemsClient
     public let invoices: InvoicesClient
     public let orders: OrdersClient
+    public let taxConfigurations: TaxConfigurationsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
@@ -14,6 +15,7 @@ public final class BillingNewClient: Sendable {
         self.invoiceLineItems = InvoiceLineItemsClient(config: config)
         self.invoices = InvoicesClient(config: config)
         self.orders = OrdersClient(config: config)
+        self.taxConfigurations = TaxConfigurationsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

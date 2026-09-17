@@ -141,9 +141,172 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.billingNew.invoices.createV1(
-            request: .init(
+            request: InvoiceCreateReq(
                 currencyCode: .usd,
                 invoiceType: .accountsReceivable,
+                schemaVersion: 1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createFromOrdersV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "added_invoice_line_item_ids": [
+                    "added_invoice_line_item_ids"
+                  ],
+                  "already_invoiced_line_item_ids": [
+                    "already_invoiced_line_item_ids"
+                  ],
+                  "finalized_line_item_ids": [
+                    "finalized_line_item_ids"
+                  ],
+                  "invoice": {
+                    "_id": "_id",
+                    "approved_at_timestamp": "2024-01-15T09:30:00Z",
+                    "approved_by_user_id": "approved_by_user_id",
+                    "counterparty_account_ids": [
+                      "counterparty_account_ids"
+                    ],
+                    "counterparty_driver_id": "counterparty_driver_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__customer_id": "export_ref__sage__customer_id",
+                    "export_ref__sage__department_id": "export_ref__sage__department_id",
+                    "file_exported_at_timestamp": "2024-01-15T09:30:00Z",
+                    "file_exported_by_user_id": "file_exported_by_user_id",
+                    "invoice_line_item_ids": [
+                      "invoice_line_item_ids"
+                    ],
+                    "invoice_type": "accounts_receivable",
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "merge_exported_at_timestamp": "2024-01-15T09:30:00Z",
+                    "merge_exported_by_user_id": "merge_exported_by_user_id",
+                    "merge_invoice_id": "merge_invoice_id",
+                    "merge_invoice_number": "merge_invoice_number",
+                    "merge_invoice_url": "merge_invoice_url",
+                    "merge_linked_account_id": "merge_linked_account_id",
+                    "merge_remote_id": "merge_remote_id",
+                    "merge_remote_was_deleted": true,
+                    "merge_status": "draft",
+                    "name": "name",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                    "period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                    "schema_version": 1,
+                    "status": "draft",
+                    "stripe_exported_at_timestamp": "2024-01-15T09:30:00Z",
+                    "stripe_exported_by_user_id": "stripe_exported_by_user_id",
+                    "stripe_invoice_id": "stripe_invoice_id",
+                    "stripe_invoice_number": "stripe_invoice_number",
+                    "stripe_invoice_url": "stripe_invoice_url",
+                    "stripe_status": "draft",
+                    "stripe_was_deleted": true,
+                    "total_amount": 1.1,
+                    "void_reason": "void_reason",
+                    "voided_at_timestamp": "2024-01-15T09:30:00Z",
+                    "voided_by_user_id": "voided_by_user_id"
+                  },
+                  "orders_without_added_charges": [
+                    "orders_without_added_charges"
+                  ],
+                  "unmatched_line_item_ids": [
+                    "unmatched_line_item_ids"
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = InvoiceCreateFromOrdersRes(
+            addedInvoiceLineItemIds: Optional([
+                "added_invoice_line_item_ids"
+            ]),
+            alreadyInvoicedLineItemIds: Optional([
+                "already_invoiced_line_item_ids"
+            ]),
+            finalizedLineItemIds: Optional([
+                "finalized_line_item_ids"
+            ]),
+            invoice: Optional(Invoice1(
+                id: "_id",
+                approvedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                approvedByUserId: Optional("approved_by_user_id"),
+                counterpartyAccountIds: Optional([
+                    "counterparty_account_ids"
+                ]),
+                counterpartyDriverId: Optional("counterparty_driver_id"),
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: "created_by_user_id",
+                currencyCode: BillingCurrencyCodeEnum1.usd,
+                description: Optional("description"),
+                exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
+                exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
+                fileExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                fileExportedByUserId: Optional("file_exported_by_user_id"),
+                invoiceLineItemIds: Optional([
+                    "invoice_line_item_ids"
+                ]),
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: "last_edited_by_user_id",
+                mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                mergeExportedByUserId: Optional("merge_exported_by_user_id"),
+                mergeInvoiceId: Optional("merge_invoice_id"),
+                mergeInvoiceNumber: Optional("merge_invoice_number"),
+                mergeInvoiceUrl: Optional("merge_invoice_url"),
+                mergeLinkedAccountId: Optional("merge_linked_account_id"),
+                mergeRemoteId: Optional("merge_remote_id"),
+                mergeRemoteWasDeleted: Optional(true),
+                mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
+                name: Optional("name"),
+                ownedByOrgId: "owned_by_org_id",
+                periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                schemaVersion: 1,
+                status: Optional(InvoiceStatusEnum1.draft),
+                stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
+                stripeInvoiceId: Optional("stripe_invoice_id"),
+                stripeInvoiceNumber: Optional("stripe_invoice_number"),
+                stripeInvoiceUrl: Optional("stripe_invoice_url"),
+                stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
+                stripeWasDeleted: Optional(true),
+                totalAmount: Optional(1.1),
+                voidReason: Optional("void_reason"),
+                voidedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                voidedByUserId: Optional("voided_by_user_id")
+            )),
+            ordersWithoutAddedCharges: Optional([
+                "orders_without_added_charges"
+            ]),
+            unmatchedLineItemIds: Optional([
+                "unmatched_line_item_ids"
+            ])
+        )
+        let response = try await client.billingNew.invoices.createFromOrdersV1(
+            request: InvoiceCreateFromOrdersReq(
+                currencyCode: .usd,
+                invoiceType: .accountsReceivable,
+                orderIds: [
+                    "order_ids"
+                ],
                 schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -689,252 +852,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func addLineItemV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "_id": "_id",
-                  "approved_at_timestamp": "2024-01-15T09:30:00Z",
-                  "approved_by_user_id": "approved_by_user_id",
-                  "counterparty_account_ids": [
-                    "counterparty_account_ids"
-                  ],
-                  "counterparty_driver_id": "counterparty_driver_id",
-                  "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
-                  "counterparty_org_id": "counterparty_org_id",
-                  "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "created_by_user_id": "created_by_user_id",
-                  "currency_code": "USD",
-                  "description": "description",
-                  "export_ref__sage__customer_id": "export_ref__sage__customer_id",
-                  "export_ref__sage__department_id": "export_ref__sage__department_id",
-                  "file_exported_at_timestamp": "2024-01-15T09:30:00Z",
-                  "file_exported_by_user_id": "file_exported_by_user_id",
-                  "invoice_line_item_ids": [
-                    "invoice_line_item_ids"
-                  ],
-                  "invoice_type": "accounts_receivable",
-                  "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                  "last_edited_by_user_id": "last_edited_by_user_id",
-                  "merge_exported_at_timestamp": "2024-01-15T09:30:00Z",
-                  "merge_exported_by_user_id": "merge_exported_by_user_id",
-                  "merge_invoice_id": "merge_invoice_id",
-                  "merge_invoice_number": "merge_invoice_number",
-                  "merge_invoice_url": "merge_invoice_url",
-                  "merge_linked_account_id": "merge_linked_account_id",
-                  "merge_remote_id": "merge_remote_id",
-                  "merge_remote_was_deleted": true,
-                  "merge_status": "draft",
-                  "name": "name",
-                  "owned_by_org_id": "owned_by_org_id",
-                  "period_end_at_timestamp": "2024-01-15T09:30:00Z",
-                  "period_start_at_timestamp": "2024-01-15T09:30:00Z",
-                  "schema_version": 1,
-                  "status": "draft",
-                  "stripe_exported_at_timestamp": "2024-01-15T09:30:00Z",
-                  "stripe_exported_by_user_id": "stripe_exported_by_user_id",
-                  "stripe_invoice_id": "stripe_invoice_id",
-                  "stripe_invoice_number": "stripe_invoice_number",
-                  "stripe_invoice_url": "stripe_invoice_url",
-                  "stripe_status": "draft",
-                  "stripe_was_deleted": true,
-                  "total_amount": 1.1,
-                  "void_reason": "void_reason",
-                  "voided_at_timestamp": "2024-01-15T09:30:00Z",
-                  "voided_by_user_id": "voided_by_user_id"
-                }
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = Invoice1(
-            id: "_id",
-            approvedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            approvedByUserId: Optional("approved_by_user_id"),
-            counterpartyAccountIds: Optional([
-                "counterparty_account_ids"
-            ]),
-            counterpartyDriverId: Optional("counterparty_driver_id"),
-            counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
-            counterpartyOrgId: Optional("counterparty_org_id"),
-            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            createdByUserId: "created_by_user_id",
-            currencyCode: BillingCurrencyCodeEnum1.usd,
-            description: Optional("description"),
-            exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
-            exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
-            fileExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            fileExportedByUserId: Optional("file_exported_by_user_id"),
-            invoiceLineItemIds: Optional([
-                "invoice_line_item_ids"
-            ]),
-            invoiceType: InvoiceTypeEnum1.accountsReceivable,
-            lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            lastEditedByUserId: "last_edited_by_user_id",
-            mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            mergeExportedByUserId: Optional("merge_exported_by_user_id"),
-            mergeInvoiceId: Optional("merge_invoice_id"),
-            mergeInvoiceNumber: Optional("merge_invoice_number"),
-            mergeInvoiceUrl: Optional("merge_invoice_url"),
-            mergeLinkedAccountId: Optional("merge_linked_account_id"),
-            mergeRemoteId: Optional("merge_remote_id"),
-            mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
-            name: Optional("name"),
-            ownedByOrgId: "owned_by_org_id",
-            periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            schemaVersion: 1,
-            status: Optional(InvoiceStatusEnum1.draft),
-            stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
-            stripeInvoiceId: Optional("stripe_invoice_id"),
-            stripeInvoiceNumber: Optional("stripe_invoice_number"),
-            stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
-            stripeWasDeleted: Optional(true),
-            totalAmount: Optional(1.1),
-            voidReason: Optional("void_reason"),
-            voidedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            voidedByUserId: Optional("voided_by_user_id")
-        )
-        let response = try await client.billingNew.invoices.addLineItemV1(
-            invoiceId: "invoice_id",
-            invoiceLineItemId: "invoice_line_item_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func removeLineItemV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "_id": "_id",
-                  "approved_at_timestamp": "2024-01-15T09:30:00Z",
-                  "approved_by_user_id": "approved_by_user_id",
-                  "counterparty_account_ids": [
-                    "counterparty_account_ids"
-                  ],
-                  "counterparty_driver_id": "counterparty_driver_id",
-                  "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
-                  "counterparty_org_id": "counterparty_org_id",
-                  "created_at_timestamp": "2024-01-15T09:30:00Z",
-                  "created_by_user_id": "created_by_user_id",
-                  "currency_code": "USD",
-                  "description": "description",
-                  "export_ref__sage__customer_id": "export_ref__sage__customer_id",
-                  "export_ref__sage__department_id": "export_ref__sage__department_id",
-                  "file_exported_at_timestamp": "2024-01-15T09:30:00Z",
-                  "file_exported_by_user_id": "file_exported_by_user_id",
-                  "invoice_line_item_ids": [
-                    "invoice_line_item_ids"
-                  ],
-                  "invoice_type": "accounts_receivable",
-                  "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                  "last_edited_by_user_id": "last_edited_by_user_id",
-                  "merge_exported_at_timestamp": "2024-01-15T09:30:00Z",
-                  "merge_exported_by_user_id": "merge_exported_by_user_id",
-                  "merge_invoice_id": "merge_invoice_id",
-                  "merge_invoice_number": "merge_invoice_number",
-                  "merge_invoice_url": "merge_invoice_url",
-                  "merge_linked_account_id": "merge_linked_account_id",
-                  "merge_remote_id": "merge_remote_id",
-                  "merge_remote_was_deleted": true,
-                  "merge_status": "draft",
-                  "name": "name",
-                  "owned_by_org_id": "owned_by_org_id",
-                  "period_end_at_timestamp": "2024-01-15T09:30:00Z",
-                  "period_start_at_timestamp": "2024-01-15T09:30:00Z",
-                  "schema_version": 1,
-                  "status": "draft",
-                  "stripe_exported_at_timestamp": "2024-01-15T09:30:00Z",
-                  "stripe_exported_by_user_id": "stripe_exported_by_user_id",
-                  "stripe_invoice_id": "stripe_invoice_id",
-                  "stripe_invoice_number": "stripe_invoice_number",
-                  "stripe_invoice_url": "stripe_invoice_url",
-                  "stripe_status": "draft",
-                  "stripe_was_deleted": true,
-                  "total_amount": 1.1,
-                  "void_reason": "void_reason",
-                  "voided_at_timestamp": "2024-01-15T09:30:00Z",
-                  "voided_by_user_id": "voided_by_user_id"
-                }
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = Invoice1(
-            id: "_id",
-            approvedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            approvedByUserId: Optional("approved_by_user_id"),
-            counterpartyAccountIds: Optional([
-                "counterparty_account_ids"
-            ]),
-            counterpartyDriverId: Optional("counterparty_driver_id"),
-            counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
-            counterpartyOrgId: Optional("counterparty_org_id"),
-            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            createdByUserId: "created_by_user_id",
-            currencyCode: BillingCurrencyCodeEnum1.usd,
-            description: Optional("description"),
-            exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
-            exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
-            fileExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            fileExportedByUserId: Optional("file_exported_by_user_id"),
-            invoiceLineItemIds: Optional([
-                "invoice_line_item_ids"
-            ]),
-            invoiceType: InvoiceTypeEnum1.accountsReceivable,
-            lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            lastEditedByUserId: "last_edited_by_user_id",
-            mergeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            mergeExportedByUserId: Optional("merge_exported_by_user_id"),
-            mergeInvoiceId: Optional("merge_invoice_id"),
-            mergeInvoiceNumber: Optional("merge_invoice_number"),
-            mergeInvoiceUrl: Optional("merge_invoice_url"),
-            mergeLinkedAccountId: Optional("merge_linked_account_id"),
-            mergeRemoteId: Optional("merge_remote_id"),
-            mergeRemoteWasDeleted: Optional(true),
-            mergeStatus: Optional(InvoiceMergeStatusEnum1.draft),
-            name: Optional("name"),
-            ownedByOrgId: "owned_by_org_id",
-            periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            schemaVersion: 1,
-            status: Optional(InvoiceStatusEnum1.draft),
-            stripeExportedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            stripeExportedByUserId: Optional("stripe_exported_by_user_id"),
-            stripeInvoiceId: Optional("stripe_invoice_id"),
-            stripeInvoiceNumber: Optional("stripe_invoice_number"),
-            stripeInvoiceUrl: Optional("stripe_invoice_url"),
-            stripeStatus: Optional(InvoiceStripeStatusEnum1.draft),
-            stripeWasDeleted: Optional(true),
-            totalAmount: Optional(1.1),
-            voidReason: Optional("void_reason"),
-            voidedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            voidedByUserId: Optional("voided_by_user_id")
-        )
-        let response = try await client.billingNew.invoices.removeLineItemV1(
-            invoiceId: "invoice_id",
-            invoiceLineItemId: "invoice_line_item_id",
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func addLineItemsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1327,6 +1244,463 @@ import Chrt
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func previewV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "calculation": {
+                    "currency_code": "USD",
+                    "net_amounts": {
+                      "key": 1.1
+                    },
+                    "subtotal": 1.1,
+                    "tax_breakdown": [
+                      {
+                        "invoice_line_item_id": "invoice_line_item_id",
+                        "name": "name",
+                        "percentage": 1.1,
+                        "tax_amount": 1.1,
+                        "tax_configuration_id": "tax_configuration_id",
+                        "taxable_amount": 1.1
+                      }
+                    ],
+                    "tax_total": 1.1,
+                    "total_amount": 1.1
+                  },
+                  "invoice": {
+                    "counterparty_driver_id": "counterparty_driver_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__customer_id": "export_ref__sage__customer_id",
+                    "export_ref__sage__department_id": "export_ref__sage__department_id",
+                    "invoice_type": "accounts_receivable",
+                    "name": "name",
+                    "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                    "period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                    "schema_version": 1
+                  },
+                  "invoice_line_items": [
+                    {
+                      "_id": "_id",
+                      "awb_number": "awb_number",
+                      "billing_period_id": "billing_period_id",
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "currency_code": "USD",
+                      "currency_conversion": {
+                        "conversion_rate": 1.1,
+                        "source_currency_code": "USD",
+                        "source_unit_price": 1.1
+                      },
+                      "description": "description",
+                      "export_ref__sage__item_id": "export_ref__sage__item_id",
+                      "invoice_id": "invoice_id",
+                      "invoice_type": "accounts_receivable",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_edited_by_user_id": "last_edited_by_user_id",
+                      "line_item_type": "base_rate",
+                      "order_id": "order_id",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "quantity": 1.1,
+                      "rate_sheet_id": "rate_sheet_id",
+                      "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "status": "draft",
+                      "task_group_id": "task_group_id",
+                      "tax_percentage": 1.1,
+                      "unit": "each",
+                      "unit_price": 1.1
+                    }
+                  ],
+                  "tax_configurations_by_line_item_id": {
+                    "key": {
+                      "_id": "_id",
+                      "archived": true,
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_edited_by_user_id": "last_edited_by_user_id",
+                      "name": "name",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "tax_rules": [
+                        {
+                          "name": "name",
+                          "percentage": 1.1
+                        }
+                      ]
+                    }
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = InvoicePreviewRes(
+            calculation: InvoiceTaxCalculation1(
+                currencyCode: BillingCurrencyCodeEnum1.usd,
+                netAmounts: Optional([
+                    "key": 1.1
+                ]),
+                subtotal: 1.1,
+                taxBreakdown: Optional([
+                    CalculatedInvoiceTax1(
+                        invoiceLineItemId: "invoice_line_item_id",
+                        name: "name",
+                        percentage: 1.1,
+                        taxAmount: 1.1,
+                        taxConfigurationId: "tax_configuration_id",
+                        taxableAmount: 1.1
+                    )
+                ]),
+                taxTotal: 1.1,
+                totalAmount: 1.1
+            ),
+            invoice: InvoiceClientCreate1(
+                counterpartyDriverId: Optional("counterparty_driver_id"),
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                currencyCode: BillingCurrencyCodeEnum1.usd,
+                description: Optional("description"),
+                exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
+                exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                name: Optional("name"),
+                periodEndAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                periodStartAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                schemaVersion: 1
+            ),
+            invoiceLineItems: Optional([
+                InvoiceLineItem1(
+                    id: "_id",
+                    awbNumber: Optional("awb_number"),
+                    billingPeriodId: Optional("billing_period_id"),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                        conversionRate: 1.1,
+                        sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                        sourceUnitPrice: 1.1
+                    )),
+                    description: "description",
+                    exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                    invoiceId: Optional("invoice_id"),
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastEditedByUserId: "last_edited_by_user_id",
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    orderId: Optional("order_id"),
+                    ownedByOrgId: "owned_by_org_id",
+                    quantity: 1.1,
+                    rateSheetId: Optional("rate_sheet_id"),
+                    schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    status: Optional(InvoiceLineItemStatusEnum1.draft),
+                    taskGroupId: Optional("task_group_id"),
+                    taxPercentage: Optional(1.1),
+                    unit: Optional(InvoiceLineItemUnitEnum1.each),
+                    unitPrice: 1.1
+                )
+            ]),
+            taxConfigurationsByLineItemId: Optional([
+                "key": Optional(TaxConfiguration1(
+                    id: "_id",
+                    archived: Optional(true),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastEditedByUserId: "last_edited_by_user_id",
+                    name: "name",
+                    ownedByOrgId: "owned_by_org_id",
+                    schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    taxRules: Optional([
+                        TaxRule1(
+                            name: "name",
+                            percentage: 1.1
+                        )
+                    ])
+                ))
+            ])
+        )
+        let response = try await client.billingNew.invoices.previewV1(
+            request: InvoiceCreateReq(
+                currencyCode: .usd,
+                invoiceType: .accountsReceivable,
+                schemaVersion: 1
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func previewFromOrdersV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "already_invoiced_line_item_ids": [
+                    "already_invoiced_line_item_ids"
+                  ],
+                  "calculation": {
+                    "currency_code": "USD",
+                    "net_amounts": {
+                      "key": 1.1
+                    },
+                    "subtotal": 1.1,
+                    "tax_breakdown": [
+                      {
+                        "invoice_line_item_id": "invoice_line_item_id",
+                        "name": "name",
+                        "percentage": 1.1,
+                        "tax_amount": 1.1,
+                        "tax_configuration_id": "tax_configuration_id",
+                        "taxable_amount": 1.1
+                      }
+                    ],
+                    "tax_total": 1.1,
+                    "total_amount": 1.1
+                  },
+                  "finalized_line_item_ids": [
+                    "finalized_line_item_ids"
+                  ],
+                  "invoice": {
+                    "counterparty_driver_id": "counterparty_driver_id",
+                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                    "counterparty_org_id": "counterparty_org_id",
+                    "currency_code": "USD",
+                    "description": "description",
+                    "export_ref__sage__customer_id": "export_ref__sage__customer_id",
+                    "export_ref__sage__department_id": "export_ref__sage__department_id",
+                    "invoice_type": "accounts_receivable",
+                    "name": "name",
+                    "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                    "period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                    "schema_version": 1
+                  },
+                  "invoice_line_items": [
+                    {
+                      "_id": "_id",
+                      "awb_number": "awb_number",
+                      "billing_period_id": "billing_period_id",
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "currency_code": "USD",
+                      "currency_conversion": {
+                        "conversion_rate": 1.1,
+                        "source_currency_code": "USD",
+                        "source_unit_price": 1.1
+                      },
+                      "description": "description",
+                      "export_ref__sage__item_id": "export_ref__sage__item_id",
+                      "invoice_id": "invoice_id",
+                      "invoice_type": "accounts_receivable",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_edited_by_user_id": "last_edited_by_user_id",
+                      "line_item_type": "base_rate",
+                      "order_id": "order_id",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "quantity": 1.1,
+                      "rate_sheet_id": "rate_sheet_id",
+                      "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "status": "draft",
+                      "task_group_id": "task_group_id",
+                      "tax_percentage": 1.1,
+                      "unit": "each",
+                      "unit_price": 1.1
+                    }
+                  ],
+                  "orders_without_selected_charges": [
+                    "orders_without_selected_charges"
+                  ],
+                  "tax_configurations_by_line_item_id": {
+                    "key": {
+                      "_id": "_id",
+                      "archived": true,
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_edited_by_user_id": "last_edited_by_user_id",
+                      "name": "name",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "tax_rules": [
+                        {
+                          "name": "name",
+                          "percentage": 1.1
+                        }
+                      ]
+                    }
+                  },
+                  "tax_line_item_ids": [
+                    "tax_line_item_ids"
+                  ],
+                  "unmatched_line_item_ids": [
+                    "unmatched_line_item_ids"
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = InvoicePreviewFromOrdersRes(
+            alreadyInvoicedLineItemIds: Optional([
+                "already_invoiced_line_item_ids"
+            ]),
+            calculation: InvoiceTaxCalculation1(
+                currencyCode: BillingCurrencyCodeEnum1.usd,
+                netAmounts: Optional([
+                    "key": 1.1
+                ]),
+                subtotal: 1.1,
+                taxBreakdown: Optional([
+                    CalculatedInvoiceTax1(
+                        invoiceLineItemId: "invoice_line_item_id",
+                        name: "name",
+                        percentage: 1.1,
+                        taxAmount: 1.1,
+                        taxConfigurationId: "tax_configuration_id",
+                        taxableAmount: 1.1
+                    )
+                ]),
+                taxTotal: 1.1,
+                totalAmount: 1.1
+            ),
+            finalizedLineItemIds: Optional([
+                "finalized_line_item_ids"
+            ]),
+            invoice: InvoiceClientCreate1(
+                counterpartyDriverId: Optional("counterparty_driver_id"),
+                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                counterpartyOrgId: Optional("counterparty_org_id"),
+                currencyCode: BillingCurrencyCodeEnum1.usd,
+                description: Optional("description"),
+                exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
+                exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
+                invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                name: Optional("name"),
+                periodEndAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                periodStartAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                schemaVersion: 1
+            ),
+            invoiceLineItems: Optional([
+                InvoiceLineItem1(
+                    id: "_id",
+                    awbNumber: Optional("awb_number"),
+                    billingPeriodId: Optional("billing_period_id"),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                        conversionRate: 1.1,
+                        sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                        sourceUnitPrice: 1.1
+                    )),
+                    description: "description",
+                    exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                    invoiceId: Optional("invoice_id"),
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastEditedByUserId: "last_edited_by_user_id",
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    orderId: Optional("order_id"),
+                    ownedByOrgId: "owned_by_org_id",
+                    quantity: 1.1,
+                    rateSheetId: Optional("rate_sheet_id"),
+                    schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    status: Optional(InvoiceLineItemStatusEnum1.draft),
+                    taskGroupId: Optional("task_group_id"),
+                    taxPercentage: Optional(1.1),
+                    unit: Optional(InvoiceLineItemUnitEnum1.each),
+                    unitPrice: 1.1
+                )
+            ]),
+            ordersWithoutSelectedCharges: Optional([
+                "orders_without_selected_charges"
+            ]),
+            taxConfigurationsByLineItemId: Optional([
+                "key": Optional(TaxConfiguration1(
+                    id: "_id",
+                    archived: Optional(true),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: "created_by_user_id",
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastEditedByUserId: "last_edited_by_user_id",
+                    name: "name",
+                    ownedByOrgId: "owned_by_org_id",
+                    schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    taxRules: Optional([
+                        TaxRule1(
+                            name: "name",
+                            percentage: 1.1
+                        )
+                    ])
+                ))
+            ]),
+            taxLineItemIds: Optional([
+                "tax_line_item_ids"
+            ]),
+            unmatchedLineItemIds: Optional([
+                "unmatched_line_item_ids"
+            ])
+        )
+        let response = try await client.billingNew.invoices.previewFromOrdersV1(
+            request: InvoiceCreateFromOrdersReq(
+                currencyCode: .usd,
+                invoiceType: .accountsReceivable,
+                orderIds: [
+                    "order_ids"
+                ],
+                schemaVersion: 1
+            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

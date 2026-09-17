@@ -1,11 +1,9 @@
 import Foundation
 
 public final class OrdersClient: Sendable {
-    public let rateSheetLineItems: RateSheetLineItemsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.rateSheetLineItems = RateSheetLineItemsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
@@ -135,6 +133,59 @@ public final class OrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OrderBillingExpandedListRes.self
+        )
+    }
+
+    /// Regenerates uninvoiced rate-sheet charges per Order, reporting skips and failures. Detach existing charges before regeneration. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderRateSheetLineItemsGenerateManyReq) -> (OrderRateSheetLineItemsGenerateManyRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.generateRateSheetLineItemsManyV1(request: .init(orderIds: [
+    ///         "order_ids"
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func generateRateSheetLineItemsManyV1(request: Requests.OrderRateSheetLineItemsGenerateManyReq, requestOptions: RequestOptions? = nil) async throws -> OrderRateSheetLineItemsGenerateManyRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/orders/rate_sheet_line_items/generate_many/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderRateSheetLineItemsGenerateManyRes.self
+        )
+    }
+
+    /// Estimates current taxes for uninvoiced ordinary charges grouped by counterparty, direction, and currency. Returns an empty list when no charges qualify. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[InvoicePreviewRes])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.taxEstimatesV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func taxEstimatesV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> [InvoicePreviewRes] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/orders/tax_estimates/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: [InvoicePreviewRes].self
         )
     }
 }

@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Searches Cirium for cargo flight connections between two airports, anchored on a departure or arrival time. | (FlightConnectionsSearchReq) -> (FlightConnectionsSearchRes)
+Searches Cirium for cargo flight connections between two airports, anchored on a departure or arrival time, ordered by earliest final arrival with unknown arrivals last. | (FlightConnectionsSearchReq) -> (FlightConnectionsSearchRes)
 </dd>
 </dl>
 </dd>
@@ -1068,7 +1068,7 @@ try await main()
 </details>
 
 ## BillingNew BillingPeriods
-<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">closeV1</a>(billingPeriodId: String, requestOptions: RequestOptions?) -> BillingPeriodExpanded1</code></summary>
+<details><summary><code>client.billingNew.billingPeriods.<a href="/Sources/Resources/BillingNew/BillingPeriods/BillingPeriodsClient.swift">closeV1</a>(billingPeriodId: String, requestOptions: RequestOptions?) -> BillingPeriodCloseRes</code></summary>
 <dl>
 <dd>
 
@@ -1080,7 +1080,7 @@ try await main()
 <dl>
 <dd>
 
-Closes an open billing period and creates one approved line item on the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodExpanded1)
+Closes an open billing period and creates one approved line item without assigning an invoice. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodCloseRes)
 </dd>
 </dl>
 </dd>
@@ -2449,7 +2449,7 @@ try await main()
 <dl>
 <dd>
 
-Creates account-split ad-hoc line items and attaches them to matching draft invoices. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
+Creates account-split ad-hoc line items without assigning invoices. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
 </dd>
 </dl>
 </dd>
@@ -2753,83 +2753,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">createFromAmountV1</a>(request: Requests.CreateInvoiceLineItemsFromAmountReq, requestOptions: RequestOptions?) -> CreateInvoiceLineItemsFromAmountRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates optionally order-attributed line items from an amount and attaches them to a draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators, task_group_coordinator_operators, executor_org_operators] when order-attributed | (CreateInvoiceLineItemsFromAmountReq) -> (CreateInvoiceLineItemsFromAmountRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billingNew.invoiceLineItems.createFromAmountV1(request: .init(
-        amount: 1.1,
-        currencyCode: .usd,
-        description: "description",
-        invoiceType: .accountsReceivable,
-        lineItemType: .baseRate
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CreateInvoiceLineItemsFromAmountReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">createFromAwbCostsV1</a>(request: Requests.CreateInvoiceLineItemsFromAwbCostsReq, requestOptions: RequestOptions?) -> CreateInvoiceLineItemsFromAwbCostsRes</code></summary>
 <dl>
 <dd>
@@ -2890,102 +2813,6 @@ try await main()
 <dd>
 
 **request:** `Requests.CreateInvoiceLineItemsFromAwbCostsReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">createFromLineItemsV1</a>(request: Requests.CreateInvoiceLineItemsFromLineItemsReq, requestOptions: RequestOptions?) -> CreateInvoiceLineItemsFromLineItemsRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates optionally order-attributed line items by transforming submitted line items and attaches them to a draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators, task_group_coordinator_operators, executor_org_operators] when order-attributed | (CreateInvoiceLineItemsFromLineItemsReq) -> (CreateInvoiceLineItemsFromLineItemsRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billingNew.invoiceLineItems.createFromLineItemsV1(request: .init(
-        description: "description",
-        invoiceLineItemAmountTransformation: InvoiceLineItemAmountTransformation1(
-            transformationType: .percent,
-            value: 1.1
-        ),
-        invoiceType: .accountsReceivable,
-        lineItemType: .baseRate,
-        sourceInvoiceLineItems: [
-            InvoiceLineItem1(
-                id: "_id",
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
-                currencyCode: .usd,
-                description: "description",
-                invoiceType: .accountsReceivable,
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: .baseRate,
-                ownedByOrgId: "owned_by_org_id",
-                quantity: 1.1,
-                schemaVersion: 1,
-                unitPrice: 1.1
-            )
-        ]
-    ))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.CreateInvoiceLineItemsFromLineItemsReq` 
     
 </dd>
 </dl>
@@ -3078,6 +2905,99 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">listExportV1</a>(page: Int?, pageSize: Int?, request: Requests.InvoiceLineItemExportListReq, requestOptions: RequestOptions?) -> InvoiceLineItemExportListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists up to 1,000 accounts-receivable and accounts-payable line items for the selected Orders, with shipment context and optional estimated taxes for uninvoiced charges (included by default). | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemExportListReq) -> (InvoiceLineItemExportListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoiceLineItems.listExportV1(
+        page: 1,
+        pageSize: 1,
+        request: .init(orderIds: [
+            "order_ids"
+        ])
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.InvoiceLineItemExportListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">createFromRateSheetsV1</a>(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions?) -> [InvoiceLineItem1]</code></summary>
 <dl>
 <dd>
@@ -3090,7 +3010,7 @@ try await main()
 <dl>
 <dd>
 
-Creates rate-sheet-derived line items and attaches them to matching draft invoices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[InvoiceLineItem1])
+Creates rate-sheet-derived line items without assigning invoices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[InvoiceLineItem1])
 </dd>
 </dl>
 </dd>
@@ -3490,77 +3410,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">recalculateTaxesV1</a>(request: Requests.RecalculateOrderTaxInvoiceLineItemsReq, requestOptions: RequestOptions?) -> [InvoiceLineItem1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Recalculates existing tax line items from current non-tax items in the same billing scope. | authz: allowed_org_types=[provider], min_org_role=operator | (RecalculateOrderTaxInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billingNew.invoiceLineItems.recalculateTaxesV1(request: .init(orderId: "order_id"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.RecalculateOrderTaxInvoiceLineItemsReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateCurrencyConversionForReceivablesAcrossOrdersV1</a>(request: Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq, requestOptions: RequestOptions?) -> [ReceivablesAcrossOrdersCurrencyConversionOrderRes]</code></summary>
 <dl>
 <dd>
@@ -3649,7 +3498,7 @@ try await main()
 <dl>
 <dd>
 
-Applies, reverts, or skips one currency conversion from original source values and moves attached items to the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
+Converts uninvoiced charges or updates exchange rates within their draft invoice currency. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateManyReq) -> (list[InvoiceLineItem1])
 </dd>
 </dl>
 </dd>
@@ -3867,7 +3716,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">createV1</a>(request: Requests.InvoiceClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">createV1</a>(request: InvoiceCreateReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -3879,7 +3728,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the matching draft invoice period, or creates one with an optional rolling-month default. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceClientCreate1) -> (PydanticObjectId)
+Creates a new draft invoice, optionally attaching selected uninvoiced charges atomically. Omitted dates derive from completed deliveries; empty drafts and charges without completed delivery dates require explicit bounds. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -3900,7 +3749,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billingNew.invoices.createV1(request: .init(
+    _ = try await client.billingNew.invoices.createV1(request: InvoiceCreateReq(
         currencyCode: .usd,
         invoiceType: .accountsReceivable,
         schemaVersion: 1
@@ -3922,7 +3771,85 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.InvoiceClientCreate1` 
+**request:** `InvoiceCreateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">createFromOrdersV1</a>(request: InvoiceCreateFromOrdersReq, requestOptions: RequestOptions?) -> InvoiceCreateFromOrdersRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates one draft from matching order charges and reports skipped items. Billing period dates do not filter charges. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateFromOrdersReq) -> (InvoiceCreateFromOrdersRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoices.createFromOrdersV1(request: InvoiceCreateFromOrdersReq(
+        currencyCode: .usd,
+        invoiceType: .accountsReceivable,
+        orderIds: [
+            "order_ids"
+        ],
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `InvoiceCreateFromOrdersReq` 
     
 </dd>
 </dl>
@@ -4084,170 +4011,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">addLineItemV1</a>(invoiceId: String, invoiceLineItemId: String, requestOptions: RequestOptions?) -> Invoice1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Attaches one line item to a draft invoice, moving it from another draft invoice when needed, and synchronizes both invoices. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (Invoice1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billingNew.invoices.addLineItemV1(
-        invoiceId: "invoice_id",
-        invoiceLineItemId: "invoice_line_item_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoiceId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**invoiceLineItemId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">removeLineItemV1</a>(invoiceId: String, invoiceLineItemId: String, requestOptions: RequestOptions?) -> Invoice1</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Detaches one line item from a draft invoice and synchronizes the invoice total and accounts. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (Invoice1)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billingNew.invoices.removeLineItemV1(
-        invoiceId: "invoice_id",
-        invoiceLineItemId: "invoice_line_item_id"
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invoiceId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**invoiceLineItemId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">addLineItemsV1</a>(invoiceId: String, request: Requests.InvoiceLineItemsAddReq, requestOptions: RequestOptions?) -> Invoice1</code></summary>
 <dl>
 <dd>
@@ -4260,7 +4023,7 @@ try await main()
 <dl>
 <dd>
 
-Attaches existing line items to a draft invoice, moving them from any other draft invoices, and synchronizes all affected invoice totals and accounts. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsAddReq) -> (Invoice1)
+Attaches uninvoiced line items to a draft invoice and refreshes its totals and accounts. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsAddReq) -> (Invoice1)
 </dd>
 </dl>
 </dd>
@@ -4611,6 +4374,159 @@ try await main()
 <dd>
 
 **filterLastEditedAtTimestampLte:** `Date?` — Filter by last_edited_at_timestamp less than or equal.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">previewV1</a>(request: InvoiceCreateReq, requestOptions: RequestOptions?) -> InvoicePreviewRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Previews exact uninvoiced charges, current resolved taxes, and explicit or derived billing dates without saving. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateReq) -> (InvoicePreviewRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoices.previewV1(request: InvoiceCreateReq(
+        currencyCode: .usd,
+        invoiceType: .accountsReceivable,
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `InvoiceCreateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">previewFromOrdersV1</a>(request: InvoiceCreateFromOrdersReq, requestOptions: RequestOptions?) -> InvoicePreviewFromOrdersRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Selects matching uninvoiced ordinary charges, reports omitted items, and previews current taxes and billing dates without saving. Period dates do not filter charges. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateFromOrdersReq) -> (InvoicePreviewFromOrdersRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoices.previewFromOrdersV1(request: InvoiceCreateFromOrdersReq(
+        currencyCode: .usd,
+        invoiceType: .accountsReceivable,
+        orderIds: [
+            "order_ids"
+        ],
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `InvoiceCreateFromOrdersReq` 
     
 </dd>
 </dl>
@@ -5337,8 +5253,7 @@ try await main()
 </dl>
 </details>
 
-## BillingNew InvoiceLineItems Export
-<details><summary><code>client.billingNew.invoiceLineItems.export.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/Export/ExportClient.swift">listV1</a>(page: Int?, pageSize: Int?, request: Requests.InvoiceLineItemExportListReq, requestOptions: RequestOptions?) -> InvoiceLineItemExportListRes</code></summary>
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">generateRateSheetLineItemsManyV1</a>(request: Requests.OrderRateSheetLineItemsGenerateManyReq, requestOptions: RequestOptions?) -> OrderRateSheetLineItemsGenerateManyRes</code></summary>
 <dl>
 <dd>
 
@@ -5350,7 +5265,7 @@ try await main()
 <dl>
 <dd>
 
-Lists up to 1,000 accounts-receivable and accounts-payable line items for the selected Orders, with shipment context. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemExportListReq) -> (InvoiceLineItemExportListRes)
+Regenerates uninvoiced rate-sheet charges per Order, reporting skips and failures. Detach existing charges before regeneration. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderRateSheetLineItemsGenerateManyReq) -> (OrderRateSheetLineItemsGenerateManyRes)
 </dd>
 </dl>
 </dd>
@@ -5371,101 +5286,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billingNew.invoiceLineItems.export.listV1(
-        page: 1,
-        pageSize: 1,
-        request: .init(orderIds: [
-            "order_ids"
-        ])
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**page:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**pageSize:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.InvoiceLineItemExportListReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## BillingNew Orders RateSheetLineItems
-<details><summary><code>client.billingNew.orders.rateSheetLineItems.<a href="/Sources/Resources/BillingNew/Orders/RateSheetLineItems/RateSheetLineItemsClient.swift">generateManyV1</a>(request: Requests.OrderRateSheetLineItemsGenerateManyReq, requestOptions: RequestOptions?) -> OrderRateSheetLineItemsGenerateManyRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Resolves all matching CHRT-ground provider rate sheets for each unique Order and independently replaces that Order's rate-sheet-derived line items on draft invoices. Orders without matching rate sheets are skipped, expected per-Order failures are returned without stopping later Orders, and invoice approval or finalization is not performed. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderRateSheetLineItemsGenerateManyReq) -> (OrderRateSheetLineItemsGenerateManyRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.billingNew.orders.rateSheetLineItems.generateManyV1(request: .init(orderIds: [
+    _ = try await client.billingNew.orders.generateRateSheetLineItemsManyV1(request: .init(orderIds: [
         "order_ids"
     ]))
 }
@@ -5486,6 +5307,610 @@ try await main()
 <dd>
 
 **request:** `Requests.OrderRateSheetLineItemsGenerateManyReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">taxEstimatesV1</a>(orderId: String, requestOptions: RequestOptions?) -> [InvoicePreviewRes]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Estimates current taxes for uninvoiced ordinary charges grouped by counterparty, direction, and currency. Returns an empty list when no charges qualify. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[InvoicePreviewRes])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.taxEstimatesV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## BillingNew TaxConfigurations
+<details><summary><code>client.billingNew.taxConfigurations.<a href="/Sources/Resources/BillingNew/TaxConfigurations/TaxConfigurationsClient.swift">archiveV1</a>(taxConfigurationId: String, requestOptions: RequestOptions?) -> TaxConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a tax configuration so future resolution falls back to the next applicable scope. Repeated archival is unchanged. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (TaxConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.taxConfigurations.archiveV1(taxConfigurationId: "tax_configuration_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taxConfigurationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.taxConfigurations.<a href="/Sources/Resources/BillingNew/TaxConfigurations/TaxConfigurationsClient.swift">createV1</a>(request: Requests.TaxConfigurationClientCreate1, requestOptions: RequestOptions?) -> TaxConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a counterparty tax default or account override. Empty rules mean no tax. | authz: allowed_org_types=[provider], min_org_role=operator | (TaxConfigurationClientCreate1) -> (TaxConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.taxConfigurations.createV1(request: .init(
+        name: "name",
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaxConfigurationClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.taxConfigurations.<a href="/Sources/Resources/BillingNew/TaxConfigurations/TaxConfigurationsClient.swift">getV1</a>(taxConfigurationId: String, requestOptions: RequestOptions?) -> TaxConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an active or archived tax configuration owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (TaxConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.taxConfigurations.getV1(taxConfigurationId: "tax_configuration_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taxConfigurationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.taxConfigurations.<a href="/Sources/Resources/BillingNew/TaxConfigurations/TaxConfigurationsClient.swift">listV1</a>(sortBy: TaxConfigurationSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterShipperAccountId: String?, filterArchived: Bool?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> TaxConfigurationListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists owner-scoped tax configurations with counterparty, account, archive, date, sorting, and pagination filters. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (TaxConfigurationListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.taxConfigurations.listV1(
+        sortBy: .name,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterCounterpartyOrgId: "filter_counterparty_org_id",
+        filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+        filterCounterpartyDriverId: "filter_counterparty_driver_id",
+        filterShipperAccountId: "filter_shipper_account_id",
+        filterArchived: true,
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `TaxConfigurationSortByEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOffChrtOrgDataId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyDriverId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShipperAccountId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.taxConfigurations.<a href="/Sources/Resources/BillingNew/TaxConfigurations/TaxConfigurationsClient.swift">resolveV1</a>(request: Requests.TaxConfigurationResolveReq, requestOptions: RequestOptions?) -> TaxConfiguration1?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves account taxes or the counterparty default; returns null when neither exists. Empty rules explicitly mean no tax. | authz: allowed_org_types=[provider], min_org_role=operator | (TaxConfigurationResolveReq) -> (TaxConfiguration1 | None)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.taxConfigurations.resolveV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaxConfigurationResolveReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.taxConfigurations.<a href="/Sources/Resources/BillingNew/TaxConfigurations/TaxConfigurationsClient.swift">updateV1</a>(taxConfigurationId: String, request: Requests.TaxConfigurationClientUpdate1, requestOptions: RequestOptions?) -> TaxConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an active tax configuration's name or rules. Empty rules explicitly mean no tax. | authz: allowed_org_types=[provider], min_org_role=operator | (TaxConfigurationClientUpdate1) -> (TaxConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.taxConfigurations.updateV1(
+        taxConfigurationId: "tax_configuration_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taxConfigurationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaxConfigurationClientUpdate1` 
     
 </dd>
 </dl>

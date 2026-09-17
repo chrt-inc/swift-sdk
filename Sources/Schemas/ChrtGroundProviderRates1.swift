@@ -30,9 +30,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     public let serviceLine: ServiceLineEnum?
     public let shipperAccountId: String?
-    public let tax1: TaxRate1?
-    public let tax2: TaxRate1?
-    public let tax3: TaxRate1?
     public let updatedAtTimestamp: Date
     public let vehicleTypes: [VehicleTypeEnum]?
     public let waitTime: WaitTimeRate1?
@@ -68,9 +65,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         serviceLine: ServiceLineEnum? = nil,
         shipperAccountId: String? = nil,
-        tax1: TaxRate1? = nil,
-        tax2: TaxRate1? = nil,
-        tax3: TaxRate1? = nil,
         updatedAtTimestamp: Date,
         vehicleTypes: [VehicleTypeEnum]? = nil,
         waitTime: WaitTimeRate1? = nil,
@@ -104,9 +98,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.serviceLine = serviceLine
         self.shipperAccountId = shipperAccountId
-        self.tax1 = tax1
-        self.tax2 = tax2
-        self.tax3 = tax3
         self.updatedAtTimestamp = updatedAtTimestamp
         self.vehicleTypes = vehicleTypes
         self.waitTime = waitTime
@@ -143,9 +134,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
         self.shipperAccountId = try container.decodeIfPresent(String.self, forKey: .shipperAccountId)
-        self.tax1 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax1)
-        self.tax2 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax2)
-        self.tax3 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax3)
         self.updatedAtTimestamp = try container.decode(Date.self, forKey: .updatedAtTimestamp)
         self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
         self.waitTime = try container.decodeIfPresent(WaitTimeRate1.self, forKey: .waitTime)
@@ -183,9 +171,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
         try container.encodeIfPresent(self.shipperAccountId, forKey: .shipperAccountId)
-        try container.encodeIfPresent(self.tax1, forKey: .tax1)
-        try container.encodeIfPresent(self.tax2, forKey: .tax2)
-        try container.encodeIfPresent(self.tax3, forKey: .tax3)
         try container.encode(self.updatedAtTimestamp, forKey: .updatedAtTimestamp)
         try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
         try container.encodeIfPresent(self.waitTime, forKey: .waitTime)
@@ -221,9 +206,6 @@ public struct ChrtGroundProviderRates1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case serviceLine = "service_line"
         case shipperAccountId = "shipper_account_id"
-        case tax1 = "tax_1"
-        case tax2 = "tax_2"
-        case tax3 = "tax_3"
         case updatedAtTimestamp = "updated_at_timestamp"
         case vehicleTypes = "vehicle_types"
         case waitTime = "wait_time"

@@ -226,4 +226,242 @@ import Chrt
         )
         try #require(response == expectedResponse)
     }
+
+    @Test func generateRateSheetLineItemsManyV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "created_invoice_line_item_count": 1,
+                  "failed_order_count": 1,
+                  "results": [
+                    {
+                      "created_invoice_line_items": [
+                        {
+                          "_id": "_id",
+                          "created_at_timestamp": "2024-01-15T09:30:00Z",
+                          "created_by_user_id": "created_by_user_id",
+                          "currency_code": "USD",
+                          "description": "description",
+                          "invoice_type": "accounts_receivable",
+                          "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                          "last_edited_by_user_id": "last_edited_by_user_id",
+                          "line_item_type": "base_rate",
+                          "owned_by_org_id": "owned_by_org_id",
+                          "quantity": 1.1,
+                          "schema_version": 1,
+                          "unit_price": 1.1
+                        }
+                      ],
+                      "error_detail": "error_detail",
+                      "error_status_code": 1,
+                      "order_id": "order_id",
+                      "status": "generated"
+                    }
+                  ],
+                  "skipped_order_count": 1,
+                  "succeeded_order_count": 1,
+                  "total_order_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrderRateSheetLineItemsGenerateManyRes(
+            createdInvoiceLineItemCount: 1,
+            failedOrderCount: 1,
+            results: Optional([
+                OrderRateSheetLineItemsGenerateManyResult1(
+                    createdInvoiceLineItems: Optional([
+                        InvoiceLineItem1(
+                            id: "_id",
+                            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            createdByUserId: "created_by_user_id",
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
+                            description: "description",
+                            invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                            lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            lastEditedByUserId: "last_edited_by_user_id",
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            ownedByOrgId: "owned_by_org_id",
+                            quantity: 1.1,
+                            schemaVersion: 1,
+                            unitPrice: 1.1
+                        )
+                    ]),
+                    errorDetail: Optional("error_detail"),
+                    errorStatusCode: Optional(1),
+                    orderId: "order_id",
+                    status: OrderRateSheetLineItemsGenerateManyStatusEnum.generated
+                )
+            ]),
+            skippedOrderCount: 1,
+            succeededOrderCount: 1,
+            totalOrderCount: 1
+        )
+        let response = try await client.billingNew.orders.generateRateSheetLineItemsManyV1(
+            request: .init(orderIds: [
+                "order_ids"
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func taxEstimatesV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "calculation": {
+                      "currency_code": "USD",
+                      "net_amounts": {
+                        "key": 1.1
+                      },
+                      "subtotal": 1.1,
+                      "tax_breakdown": [
+                        {
+                          "invoice_line_item_id": "invoice_line_item_id",
+                          "name": "name",
+                          "percentage": 1.1,
+                          "tax_amount": 1.1,
+                          "tax_configuration_id": "tax_configuration_id",
+                          "taxable_amount": 1.1
+                        }
+                      ],
+                      "tax_total": 1.1,
+                      "total_amount": 1.1
+                    },
+                    "invoice": {
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "currency_code": "USD",
+                      "description": "description",
+                      "export_ref__sage__customer_id": "export_ref__sage__customer_id",
+                      "export_ref__sage__department_id": "export_ref__sage__department_id",
+                      "invoice_type": "accounts_receivable",
+                      "name": "name",
+                      "period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                      "period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                      "schema_version": 1
+                    },
+                    "invoice_line_items": [
+                      {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "unit_price": 1.1
+                      }
+                    ],
+                    "tax_configurations_by_line_item_id": {
+                      "key": {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id",
+                        "name": "name",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "schema_version": 1
+                      }
+                    }
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            InvoicePreviewRes(
+                calculation: InvoiceTaxCalculation1(
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    netAmounts: Optional([
+                        "key": 1.1
+                    ]),
+                    subtotal: 1.1,
+                    taxBreakdown: Optional([
+                        CalculatedInvoiceTax1(
+                            invoiceLineItemId: "invoice_line_item_id",
+                            name: "name",
+                            percentage: 1.1,
+                            taxAmount: 1.1,
+                            taxConfigurationId: "tax_configuration_id",
+                            taxableAmount: 1.1
+                        )
+                    ]),
+                    taxTotal: 1.1,
+                    totalAmount: 1.1
+                ),
+                invoice: InvoiceClientCreate1(
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    description: Optional("description"),
+                    exportRefSageCustomerId: Optional("export_ref__sage__customer_id"),
+                    exportRefSageDepartmentId: Optional("export_ref__sage__department_id"),
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                    name: Optional("name"),
+                    periodEndAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    periodStartAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    schemaVersion: 1
+                ),
+                invoiceLineItems: Optional([
+                    InvoiceLineItem1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        description: "description",
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        unitPrice: 1.1
+                    )
+                ]),
+                taxConfigurationsByLineItemId: Optional([
+                    "key": Optional(TaxConfiguration1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id",
+                        name: "name",
+                        ownedByOrgId: "owned_by_org_id",
+                        schemaVersion: 1
+                    ))
+                ])
+            )
+        ]
+        let response = try await client.billingNew.orders.taxEstimatesV1(
+            orderId: "order_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
 }

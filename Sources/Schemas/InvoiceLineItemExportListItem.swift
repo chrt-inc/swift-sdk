@@ -21,11 +21,12 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
     public let destinationIata: String?
     public let flightNumbers: [String]?
     public let invoiceApprovalTimestamp: Date?
-    public let invoiceLineItemId: String
-    public let invoiceLineItemStatus: InvoiceLineItemStatusEnum1
+    public let invoiceLineItemId: String?
+    public let invoiceLineItemStatus: InvoiceLineItemStatusEnum1?
     public let invoiceNumber: String?
     public let invoiceStatus: InvoiceStatusEnum1?
     public let invoiceType: InvoiceTypeEnum1
+    public let isEstimate: Bool?
     /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     public let lineItemAwbNumber: String?
     public let lineItemDescription: String
@@ -69,11 +70,12 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         destinationIata: String? = nil,
         flightNumbers: [String]? = nil,
         invoiceApprovalTimestamp: Date? = nil,
-        invoiceLineItemId: String,
-        invoiceLineItemStatus: InvoiceLineItemStatusEnum1,
+        invoiceLineItemId: String? = nil,
+        invoiceLineItemStatus: InvoiceLineItemStatusEnum1? = nil,
         invoiceNumber: String? = nil,
         invoiceStatus: InvoiceStatusEnum1? = nil,
         invoiceType: InvoiceTypeEnum1,
+        isEstimate: Bool? = nil,
         lineItemAwbNumber: String? = nil,
         lineItemDescription: String,
         lineItemQuantity: Double,
@@ -119,6 +121,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.invoiceNumber = invoiceNumber
         self.invoiceStatus = invoiceStatus
         self.invoiceType = invoiceType
+        self.isEstimate = isEstimate
         self.lineItemAwbNumber = lineItemAwbNumber
         self.lineItemDescription = lineItemDescription
         self.lineItemQuantity = lineItemQuantity
@@ -162,11 +165,12 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.destinationIata = try container.decodeIfPresent(String.self, forKey: .destinationIata)
         self.flightNumbers = try container.decodeIfPresent([String].self, forKey: .flightNumbers)
         self.invoiceApprovalTimestamp = try container.decodeIfPresent(Date.self, forKey: .invoiceApprovalTimestamp)
-        self.invoiceLineItemId = try container.decode(String.self, forKey: .invoiceLineItemId)
-        self.invoiceLineItemStatus = try container.decode(InvoiceLineItemStatusEnum1.self, forKey: .invoiceLineItemStatus)
+        self.invoiceLineItemId = try container.decodeIfPresent(String.self, forKey: .invoiceLineItemId)
+        self.invoiceLineItemStatus = try container.decodeIfPresent(InvoiceLineItemStatusEnum1.self, forKey: .invoiceLineItemStatus)
         self.invoiceNumber = try container.decodeIfPresent(String.self, forKey: .invoiceNumber)
         self.invoiceStatus = try container.decodeIfPresent(InvoiceStatusEnum1.self, forKey: .invoiceStatus)
         self.invoiceType = try container.decode(InvoiceTypeEnum1.self, forKey: .invoiceType)
+        self.isEstimate = try container.decodeIfPresent(Bool.self, forKey: .isEstimate)
         self.lineItemAwbNumber = try container.decodeIfPresent(String.self, forKey: .lineItemAwbNumber)
         self.lineItemDescription = try container.decode(String.self, forKey: .lineItemDescription)
         self.lineItemQuantity = try container.decode(Double.self, forKey: .lineItemQuantity)
@@ -211,11 +215,12 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.destinationIata, forKey: .destinationIata)
         try container.encodeIfPresent(self.flightNumbers, forKey: .flightNumbers)
         try container.encodeIfPresent(self.invoiceApprovalTimestamp, forKey: .invoiceApprovalTimestamp)
-        try container.encode(self.invoiceLineItemId, forKey: .invoiceLineItemId)
-        try container.encode(self.invoiceLineItemStatus, forKey: .invoiceLineItemStatus)
+        try container.encodeIfPresent(self.invoiceLineItemId, forKey: .invoiceLineItemId)
+        try container.encodeIfPresent(self.invoiceLineItemStatus, forKey: .invoiceLineItemStatus)
         try container.encodeIfPresent(self.invoiceNumber, forKey: .invoiceNumber)
         try container.encodeIfPresent(self.invoiceStatus, forKey: .invoiceStatus)
         try container.encode(self.invoiceType, forKey: .invoiceType)
+        try container.encodeIfPresent(self.isEstimate, forKey: .isEstimate)
         try container.encodeIfPresent(self.lineItemAwbNumber, forKey: .lineItemAwbNumber)
         try container.encode(self.lineItemDescription, forKey: .lineItemDescription)
         try container.encode(self.lineItemQuantity, forKey: .lineItemQuantity)
@@ -263,6 +268,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         case invoiceNumber = "invoice_number"
         case invoiceStatus = "invoice_status"
         case invoiceType = "invoice_type"
+        case isEstimate = "is_estimate"
         case lineItemAwbNumber = "line_item_awb_number"
         case lineItemDescription = "line_item_description"
         case lineItemQuantity = "line_item_quantity"

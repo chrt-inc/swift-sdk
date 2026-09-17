@@ -34,12 +34,6 @@ extension Requests {
         public let pickAndHold: PickAndHoldRate1?
         public let pickAndHoldSetToNone: Bool?
         public let serviceLine: ServiceLineEnum?
-        public let tax1: TaxRate1?
-        public let tax1SetToNone: Bool?
-        public let tax2: TaxRate1?
-        public let tax2SetToNone: Bool?
-        public let tax3: TaxRate1?
-        public let tax3SetToNone: Bool?
         public let vehicleTypes: [VehicleTypeEnum]?
         public let waitTime: WaitTimeRate1?
         public let waitTimeSetToNone: Bool?
@@ -81,12 +75,6 @@ extension Requests {
             pickAndHold: PickAndHoldRate1? = nil,
             pickAndHoldSetToNone: Bool? = nil,
             serviceLine: ServiceLineEnum? = nil,
-            tax1: TaxRate1? = nil,
-            tax1SetToNone: Bool? = nil,
-            tax2: TaxRate1? = nil,
-            tax2SetToNone: Bool? = nil,
-            tax3: TaxRate1? = nil,
-            tax3SetToNone: Bool? = nil,
             vehicleTypes: [VehicleTypeEnum]? = nil,
             waitTime: WaitTimeRate1? = nil,
             waitTimeSetToNone: Bool? = nil,
@@ -126,12 +114,6 @@ extension Requests {
             self.pickAndHold = pickAndHold
             self.pickAndHoldSetToNone = pickAndHoldSetToNone
             self.serviceLine = serviceLine
-            self.tax1 = tax1
-            self.tax1SetToNone = tax1SetToNone
-            self.tax2 = tax2
-            self.tax2SetToNone = tax2SetToNone
-            self.tax3 = tax3
-            self.tax3SetToNone = tax3SetToNone
             self.vehicleTypes = vehicleTypes
             self.waitTime = waitTime
             self.waitTimeSetToNone = waitTimeSetToNone
@@ -174,12 +156,6 @@ extension Requests {
             self.pickAndHold = try container.decodeIfPresent(PickAndHoldRate1.self, forKey: .pickAndHold)
             self.pickAndHoldSetToNone = try container.decodeIfPresent(Bool.self, forKey: .pickAndHoldSetToNone)
             self.serviceLine = try container.decodeIfPresent(ServiceLineEnum.self, forKey: .serviceLine)
-            self.tax1 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax1)
-            self.tax1SetToNone = try container.decodeIfPresent(Bool.self, forKey: .tax1SetToNone)
-            self.tax2 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax2)
-            self.tax2SetToNone = try container.decodeIfPresent(Bool.self, forKey: .tax2SetToNone)
-            self.tax3 = try container.decodeIfPresent(TaxRate1.self, forKey: .tax3)
-            self.tax3SetToNone = try container.decodeIfPresent(Bool.self, forKey: .tax3SetToNone)
             self.vehicleTypes = try container.decodeIfPresent([VehicleTypeEnum].self, forKey: .vehicleTypes)
             self.waitTime = try container.decodeIfPresent(WaitTimeRate1.self, forKey: .waitTime)
             self.waitTimeSetToNone = try container.decodeIfPresent(Bool.self, forKey: .waitTimeSetToNone)
@@ -223,12 +199,6 @@ extension Requests {
             try container.encodeIfPresent(self.pickAndHold, forKey: .pickAndHold)
             try container.encodeIfPresent(self.pickAndHoldSetToNone, forKey: .pickAndHoldSetToNone)
             try container.encodeIfPresent(self.serviceLine, forKey: .serviceLine)
-            try container.encodeIfPresent(self.tax1, forKey: .tax1)
-            try container.encodeIfPresent(self.tax1SetToNone, forKey: .tax1SetToNone)
-            try container.encodeIfPresent(self.tax2, forKey: .tax2)
-            try container.encodeIfPresent(self.tax2SetToNone, forKey: .tax2SetToNone)
-            try container.encodeIfPresent(self.tax3, forKey: .tax3)
-            try container.encodeIfPresent(self.tax3SetToNone, forKey: .tax3SetToNone)
             try container.encodeIfPresent(self.vehicleTypes, forKey: .vehicleTypes)
             try container.encodeIfPresent(self.waitTime, forKey: .waitTime)
             try container.encodeIfPresent(self.waitTimeSetToNone, forKey: .waitTimeSetToNone)
@@ -270,12 +240,6 @@ extension Requests {
             case pickAndHold = "pick_and_hold"
             case pickAndHoldSetToNone = "pick_and_hold__set_to_None"
             case serviceLine = "service_line"
-            case tax1 = "tax_1"
-            case tax1SetToNone = "tax_1__set_to_None"
-            case tax2 = "tax_2"
-            case tax2SetToNone = "tax_2__set_to_None"
-            case tax3 = "tax_3"
-            case tax3SetToNone = "tax_3__set_to_None"
             case vehicleTypes = "vehicle_types"
             case waitTime = "wait_time"
             case waitTimeSetToNone = "wait_time__set_to_None"

@@ -789,46 +789,23 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func createFromAmountV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "created_invoice_line_item_count": 1,
-                  "invoice_id": "invoice_id"
-                }
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = CreateInvoiceLineItemsFromAmountRes(
-            createdInvoiceLineItemCount: 1,
-            invoiceId: "invoice_id"
-        )
-        let response = try await client.billingNew.invoiceLineItems.createFromAmountV1(
-            request: .init(
-                amount: 1.1,
-                currencyCode: .usd,
-                description: "description",
-                invoiceType: .accountsReceivable,
-                lineItemType: .baseRate
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func createFromAwbCostsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
                 {
+                  "charge_groups": [
+                    {
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "created_awb_count": 1,
+                      "created_invoice_line_item_count": 1,
+                      "currency_code": "USD",
+                      "invoice_line_item_ids": [
+                        "invoice_line_item_ids"
+                      ]
+                    }
+                  ],
                   "created_awbs": [
                     {
                       "awb_number": "awb_number",
@@ -837,15 +814,6 @@ import Chrt
                     }
                   ],
                   "created_invoice_line_item_count": 1,
-                  "invoices": [
-                    {
-                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
-                      "created_awb_count": 1,
-                      "created_invoice_line_item_count": 1,
-                      "currency_code": "USD",
-                      "invoice_id": "invoice_id"
-                    }
-                  ],
                   "rejected_awbs": [
                     {
                       "awb_number": "awb_number",
@@ -862,6 +830,17 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = CreateInvoiceLineItemsFromAwbCostsRes(
+            chargeGroups: Optional([
+                CreateInvoiceLineItemsFromAwbCostsGroupRes1(
+                    counterpartyOffChrtOrgDataId: "counterparty_off_chrt_org_data_id",
+                    createdAwbCount: 1,
+                    createdInvoiceLineItemCount: 1,
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    invoiceLineItemIds: Optional([
+                        "invoice_line_item_ids"
+                    ])
+                )
+            ]),
             createdAwbs: Optional([
                 CreateInvoiceLineItemsFromAwbCostsCreatedAwb1(
                     awbNumber: "awb_number",
@@ -870,15 +849,6 @@ import Chrt
                 )
             ]),
             createdInvoiceLineItemCount: 1,
-            invoices: Optional([
-                CreateInvoiceLineItemsFromAwbCostsInvoiceRes1(
-                    counterpartyOffChrtOrgDataId: "counterparty_off_chrt_org_data_id",
-                    createdAwbCount: 1,
-                    createdInvoiceLineItemCount: 1,
-                    currencyCode: BillingCurrencyCodeEnum1.usd,
-                    invoiceId: "invoice_id"
-                )
-            ]),
             rejectedAwbs: Optional([
                 CreateInvoiceLineItemsFromAwbCostsRejectedAwb1(
                     awbNumber: "awb_number",
@@ -896,59 +866,6 @@ import Chrt
                     currencyCode: .usd
                 )
             ]),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func createFromLineItemsV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "created_invoice_line_item_count": 1,
-                  "invoice_id": "invoice_id"
-                }
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = CreateInvoiceLineItemsFromLineItemsRes(
-            createdInvoiceLineItemCount: 1,
-            invoiceId: "invoice_id"
-        )
-        let response = try await client.billingNew.invoiceLineItems.createFromLineItemsV1(
-            request: .init(
-                description: "description",
-                invoiceLineItemAmountTransformation: InvoiceLineItemAmountTransformation1(
-                    transformationType: .percent,
-                    value: 1.1
-                ),
-                invoiceType: .accountsReceivable,
-                lineItemType: .baseRate,
-                sourceInvoiceLineItems: [
-                    InvoiceLineItem1(
-                        id: "_id",
-                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
-                        currencyCode: .usd,
-                        description: "description",
-                        invoiceType: .accountsReceivable,
-                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: .baseRate,
-                        ownedByOrgId: "owned_by_org_id",
-                        quantity: 1.1,
-                        schemaVersion: 1,
-                        unitPrice: 1.1
-                    )
-                ]
-            ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -980,6 +897,152 @@ import Chrt
         let response = try await client.billingNew.invoiceLineItems.deleteManyV1(
             request: .init(invoiceLineItemIds: [
                 "invoice_line_item_ids"
+            ]),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listExportV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "items": [
+                    {
+                      "account_name": "account_name",
+                      "airlines": [
+                        "airlines"
+                      ],
+                      "awb_numbers": [
+                        "awb_numbers"
+                      ],
+                      "billing_period_end_at_timestamp": "2024-01-15T09:30:00Z",
+                      "billing_period_start_at_timestamp": "2024-01-15T09:30:00Z",
+                      "cargo_descriptions": [
+                        "cargo_descriptions"
+                      ],
+                      "cargo_quantity": 1,
+                      "cargo_types": [
+                        "cargo_types"
+                      ],
+                      "conversion_rate": 1.1,
+                      "counterparty_name": "counterparty_name",
+                      "currency_code": "USD",
+                      "currency_conversion_description": "currency_conversion_description",
+                      "delivery_address": "delivery_address",
+                      "delivery_location_name": "delivery_location_name",
+                      "delivery_status": "delivery_status",
+                      "delivery_stop_number": 1,
+                      "delivery_stops_on_order": 1,
+                      "destination_iata": "destination_iata",
+                      "flight_numbers": [
+                        "flight_numbers"
+                      ],
+                      "invoice_approval_timestamp": "2024-01-15T09:30:00Z",
+                      "invoice_line_item_id": "invoice_line_item_id",
+                      "invoice_line_item_status": "draft",
+                      "invoice_number": "invoice_number",
+                      "invoice_status": "draft",
+                      "invoice_type": "accounts_receivable",
+                      "is_estimate": true,
+                      "line_item_awb_number": "line_item_awb_number",
+                      "line_item_description": "line_item_description",
+                      "line_item_quantity": 1.1,
+                      "line_item_total_amount": 1.1,
+                      "line_item_type": "base_rate",
+                      "line_item_unit": "each",
+                      "line_item_unit_price": 1.1,
+                      "mileage_estimated": 1.1,
+                      "off_chrt_reference_id": "off_chrt_reference_id",
+                      "order_placer_comments": "order_placer_comments",
+                      "order_short_id": "order_short_id",
+                      "origin_iata": "origin_iata",
+                      "pod_at_timestamp": "2024-01-15T09:30:00Z",
+                      "pod_name": "pod_name",
+                      "source_currency_code": "USD",
+                      "source_unit_price": 1.1,
+                      "tax_percentage": 1.1,
+                      "weight_pounds": 1.1
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = InvoiceLineItemExportListRes(
+            items: [
+                InvoiceLineItemExportListItem(
+                    accountName: Optional("account_name"),
+                    airlines: Optional([
+                        "airlines"
+                    ]),
+                    awbNumbers: Optional([
+                        "awb_numbers"
+                    ]),
+                    billingPeriodEndAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    billingPeriodStartAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    cargoDescriptions: Optional([
+                        "cargo_descriptions"
+                    ]),
+                    cargoQuantity: Optional(1),
+                    cargoTypes: Optional([
+                        "cargo_types"
+                    ]),
+                    conversionRate: Optional(1.1),
+                    counterpartyName: Optional("counterparty_name"),
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    currencyConversionDescription: Optional("currency_conversion_description"),
+                    deliveryAddress: Optional("delivery_address"),
+                    deliveryLocationName: Optional("delivery_location_name"),
+                    deliveryStatus: Optional("delivery_status"),
+                    deliveryStopNumber: Optional(1),
+                    deliveryStopsOnOrder: Optional(1),
+                    destinationIata: Optional("destination_iata"),
+                    flightNumbers: Optional([
+                        "flight_numbers"
+                    ]),
+                    invoiceApprovalTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    invoiceLineItemId: Optional("invoice_line_item_id"),
+                    invoiceLineItemStatus: Optional(InvoiceLineItemStatusEnum1.draft),
+                    invoiceNumber: Optional("invoice_number"),
+                    invoiceStatus: Optional(InvoiceStatusEnum1.draft),
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                    isEstimate: Optional(true),
+                    lineItemAwbNumber: Optional("line_item_awb_number"),
+                    lineItemDescription: "line_item_description",
+                    lineItemQuantity: 1.1,
+                    lineItemTotalAmount: 1.1,
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    lineItemUnit: Optional(InvoiceLineItemUnitEnum1.each),
+                    lineItemUnitPrice: 1.1,
+                    mileageEstimated: Optional(1.1),
+                    offChrtReferenceId: Optional("off_chrt_reference_id"),
+                    orderPlacerComments: Optional("order_placer_comments"),
+                    orderShortId: Optional("order_short_id"),
+                    originIata: Optional("origin_iata"),
+                    podAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    podName: Optional("pod_name"),
+                    sourceCurrencyCode: Optional(BillingCurrencyCodeEnum1.usd),
+                    sourceUnitPrice: Optional(1.1),
+                    taxPercentage: Optional(1.1),
+                    weightPounds: Optional(1.1)
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.billingNew.invoiceLineItems.listExportV1(
+            page: 1,
+            pageSize: 1,
+            request: .init(orderIds: [
+                "order_ids"
             ]),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -1304,100 +1367,6 @@ import Chrt
             filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func recalculateTaxesV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                [
-                  {
-                    "_id": "_id",
-                    "awb_number": "awb_number",
-                    "billing_period_id": "billing_period_id",
-                    "counterparty_driver_id": "counterparty_driver_id",
-                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
-                    "counterparty_org_id": "counterparty_org_id",
-                    "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "created_by_user_id": "created_by_user_id",
-                    "currency_code": "USD",
-                    "currency_conversion": {
-                      "conversion_rate": 1.1,
-                      "description": "description",
-                      "source_currency_code": "USD",
-                      "source_unit_price": 1.1
-                    },
-                    "description": "description",
-                    "export_ref__sage__item_id": "export_ref__sage__item_id",
-                    "invoice_id": "invoice_id",
-                    "invoice_type": "accounts_receivable",
-                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                    "last_edited_by_user_id": "last_edited_by_user_id",
-                    "line_item_type": "base_rate",
-                    "order_id": "order_id",
-                    "owned_by_org_id": "owned_by_org_id",
-                    "quantity": 1.1,
-                    "rate_sheet_id": "rate_sheet_id",
-                    "schema_version": 1,
-                    "shipper_account_id": "shipper_account_id",
-                    "status": "draft",
-                    "task_group_id": "task_group_id",
-                    "tax_percentage": 1.1,
-                    "unit": "each",
-                    "unit_price": 1.1
-                  }
-                ]
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            InvoiceLineItem1(
-                id: "_id",
-                awbNumber: Optional("awb_number"),
-                billingPeriodId: Optional("billing_period_id"),
-                counterpartyDriverId: Optional("counterparty_driver_id"),
-                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
-                counterpartyOrgId: Optional("counterparty_org_id"),
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
-                currencyCode: BillingCurrencyCodeEnum1.usd,
-                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
-                    conversionRate: 1.1,
-                    description: Optional("description"),
-                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
-                    sourceUnitPrice: 1.1
-                )),
-                description: "description",
-                exportRefSageItemId: Optional("export_ref__sage__item_id"),
-                invoiceId: Optional("invoice_id"),
-                invoiceType: InvoiceTypeEnum1.accountsReceivable,
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
-                orderId: Optional("order_id"),
-                ownedByOrgId: "owned_by_org_id",
-                quantity: 1.1,
-                rateSheetId: Optional("rate_sheet_id"),
-                schemaVersion: 1,
-                shipperAccountId: Optional("shipper_account_id"),
-                status: Optional(InvoiceLineItemStatusEnum1.draft),
-                taskGroupId: Optional("task_group_id"),
-                taxPercentage: Optional(1.1),
-                unit: Optional(InvoiceLineItemUnitEnum1.each),
-                unitPrice: 1.1
-            )
-        ]
-        let response = try await client.billingNew.invoiceLineItems.recalculateTaxesV1(
-            request: .init(orderId: "order_id"),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

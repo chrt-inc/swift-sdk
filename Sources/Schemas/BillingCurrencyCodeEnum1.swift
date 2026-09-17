@@ -11,5 +11,4 @@ public enum BillingCurrencyCodeEnum1: String, Codable, Hashable, CaseIterable, S
     case cny = "CNY"
     case chf = "CHF"
     case inr = "INR"
-    case xxx = "XXX"
 }

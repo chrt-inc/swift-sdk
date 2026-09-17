@@ -128,24 +128,6 @@ import Chrt
                   "schema_version": 1,
                   "service_line": "on_demand",
                   "shipper_account_id": "shipper_account_id",
-                  "tax_1": {
-                    "name": "name",
-                    "note": "note",
-                    "percentage": 1.1,
-                    "sage_item_id": "sage_item_id"
-                  },
-                  "tax_2": {
-                    "name": "name",
-                    "note": "note",
-                    "percentage": 1.1,
-                    "sage_item_id": "sage_item_id"
-                  },
-                  "tax_3": {
-                    "name": "name",
-                    "note": "note",
-                    "percentage": 1.1,
-                    "sage_item_id": "sage_item_id"
-                  },
                   "updated_at_timestamp": "2024-01-15T09:30:00Z",
                   "vehicle_types": [
                     "sedan"
@@ -240,24 +222,6 @@ import Chrt
             schemaVersion: 1,
             serviceLine: Optional(ServiceLineEnum.onDemand),
             shipperAccountId: Optional("shipper_account_id"),
-            tax1: Optional(TaxRate1(
-                name: "name",
-                note: Optional("note"),
-                percentage: 1.1,
-                sageItemId: Optional("sage_item_id")
-            )),
-            tax2: Optional(TaxRate1(
-                name: "name",
-                note: Optional("note"),
-                percentage: 1.1,
-                sageItemId: Optional("sage_item_id")
-            )),
-            tax3: Optional(TaxRate1(
-                name: "name",
-                note: Optional("note"),
-                percentage: 1.1,
-                sageItemId: Optional("sage_item_id")
-            )),
             updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             vehicleTypes: Optional([
                 VehicleTypeEnum.sedan
@@ -341,18 +305,6 @@ import Chrt
                       "schema_version": 1,
                       "service_line": "on_demand",
                       "shipper_account_id": "shipper_account_id",
-                      "tax_1": {
-                        "name": "name",
-                        "percentage": 1.1
-                      },
-                      "tax_2": {
-                        "name": "name",
-                        "percentage": 1.1
-                      },
-                      "tax_3": {
-                        "name": "name",
-                        "percentage": 1.1
-                      },
                       "updated_at_timestamp": "2024-01-15T09:30:00Z",
                       "vehicle_types": [
                         "sedan"
@@ -433,18 +385,6 @@ import Chrt
                     schemaVersion: 1,
                     serviceLine: Optional(ServiceLineEnum.onDemand),
                     shipperAccountId: Optional("shipper_account_id"),
-                    tax1: Optional(TaxRate1(
-                        name: "name",
-                        percentage: 1.1
-                    )),
-                    tax2: Optional(TaxRate1(
-                        name: "name",
-                        percentage: 1.1
-                    )),
-                    tax3: Optional(TaxRate1(
-                        name: "name",
-                        percentage: 1.1
-                    )),
                     updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     vehicleTypes: Optional([
                         VehicleTypeEnum.sedan

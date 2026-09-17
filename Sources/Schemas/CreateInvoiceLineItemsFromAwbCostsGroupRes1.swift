@@ -1,11 +1,11 @@
 import Foundation
 
-public struct CreateInvoiceLineItemsFromAwbCostsInvoiceRes1: Codable, Hashable, Sendable {
+public struct CreateInvoiceLineItemsFromAwbCostsGroupRes1: Codable, Hashable, Sendable {
     public let counterpartyOffChrtOrgDataId: String
     public let createdAwbCount: Int
     public let createdInvoiceLineItemCount: Int
     public let currencyCode: BillingCurrencyCodeEnum1
-    public let invoiceId: String
+    public let invoiceLineItemIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -14,14 +14,14 @@ public struct CreateInvoiceLineItemsFromAwbCostsInvoiceRes1: Codable, Hashable, 
         createdAwbCount: Int,
         createdInvoiceLineItemCount: Int,
         currencyCode: BillingCurrencyCodeEnum1,
-        invoiceId: String,
+        invoiceLineItemIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
         self.createdAwbCount = createdAwbCount
         self.createdInvoiceLineItemCount = createdInvoiceLineItemCount
         self.currencyCode = currencyCode
-        self.invoiceId = invoiceId
+        self.invoiceLineItemIds = invoiceLineItemIds
         self.additionalProperties = additionalProperties
     }
 
@@ -31,7 +31,7 @@ public struct CreateInvoiceLineItemsFromAwbCostsInvoiceRes1: Codable, Hashable, 
         self.createdAwbCount = try container.decode(Int.self, forKey: .createdAwbCount)
         self.createdInvoiceLineItemCount = try container.decode(Int.self, forKey: .createdInvoiceLineItemCount)
         self.currencyCode = try container.decode(BillingCurrencyCodeEnum1.self, forKey: .currencyCode)
-        self.invoiceId = try container.decode(String.self, forKey: .invoiceId)
+        self.invoiceLineItemIds = try container.decodeIfPresent([String].self, forKey: .invoiceLineItemIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -42,7 +42,7 @@ public struct CreateInvoiceLineItemsFromAwbCostsInvoiceRes1: Codable, Hashable, 
         try container.encode(self.createdAwbCount, forKey: .createdAwbCount)
         try container.encode(self.createdInvoiceLineItemCount, forKey: .createdInvoiceLineItemCount)
         try container.encode(self.currencyCode, forKey: .currencyCode)
-        try container.encode(self.invoiceId, forKey: .invoiceId)
+        try container.encodeIfPresent(self.invoiceLineItemIds, forKey: .invoiceLineItemIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -51,6 +51,6 @@ public struct CreateInvoiceLineItemsFromAwbCostsInvoiceRes1: Codable, Hashable, 
         case createdAwbCount = "created_awb_count"
         case createdInvoiceLineItemCount = "created_invoice_line_item_count"
         case currencyCode = "currency_code"
-        case invoiceId = "invoice_id"
+        case invoiceLineItemIds = "invoice_line_item_ids"
     }
 }

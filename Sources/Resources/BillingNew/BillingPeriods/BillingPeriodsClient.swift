@@ -7,7 +7,7 @@ public final class BillingPeriodsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Closes an open billing period and creates one approved line item on the matching draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodExpanded1)
+    /// Closes an open billing period and creates one approved line item without assigning an invoice. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (BillingPeriodCloseRes)
     ///
     /// ```swift
     /// import Foundation
@@ -23,12 +23,12 @@ public final class BillingPeriodsClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func closeV1(billingPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> BillingPeriodExpanded1 {
+    public func closeV1(billingPeriodId: String, requestOptions: RequestOptions? = nil) async throws -> BillingPeriodCloseRes {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/billing_new/billing_periods/close/v1/\(billingPeriodId)",
             requestOptions: requestOptions,
-            responseType: BillingPeriodExpanded1.self
+            responseType: BillingPeriodCloseRes.self
         )
     }
 
