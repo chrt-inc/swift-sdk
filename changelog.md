@@ -1,3 +1,11 @@
+## 6.0.0 - 2026-09-17
+### Breaking Changes
+* **`FlightTrackRes`** — properties `bearing`, `ciriumFlightId`, `heading`, `legacyRoute`, `positions`, and `waypoints` have been removed and replaced with `actualFlightPath`, `faFlightId`, `lastRefreshAttemptAtTimestamp`, `latestPosition`, and `plannedFlightPath`; update all access sites to use the new property names.
+* **`FlightTrackPosition1`** — all properties renamed: `altitudeFt`→`altitudeFeet`, `lat`→`latitude`, `lon`→`longitude`, `dateUtc`→`receivedAtTimestamp`, `source`→`positionSource`, `speedMph`→`groundSpeedKnots`; two new optional fields `headingDegrees` and `name` were also added; update all construction and access sites.
+* **`FlightTrackWaypoint1`** — public struct removed entirely; replace any references with `FlightTrackPosition1` using the new `plannedFlightPath` field on `FlightTrackRes`.
+### Added
+* **`FlightLeg1.faFlightId`** — new optional `String?` field exposing the FlightAware flight identifier on flight leg objects.
+
 ## 5.1.0 - 2026-09-16
 ### Added
 * **`Code`** — new enum with stable file scan and download status codes (`fileScanPending`, `fileMalwareDetected`, `fileScanUnsupported`, `fileScanFailed`, `fileScanAccessDenied`, `fileScanStatusUnavailable`, `fileDownloadUnavailable`, `fileNotFound`) for use in error handling.
