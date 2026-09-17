@@ -1,3 +1,7 @@
+## 6.0.1 - 2026-09-17
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 6.0.0 - 2026-09-17
 ### Breaking Changes
 * **`FlightTrackRes`** — properties `bearing`, `ciriumFlightId`, `heading`, `legacyRoute`, `positions`, and `waypoints` have been removed and replaced with `actualFlightPath`, `faFlightId`, `lastRefreshAttemptAtTimestamp`, `latestPosition`, and `plannedFlightPath`; update all access sites to use the new property names.
