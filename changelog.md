@@ -1,3 +1,13 @@
+## 7.0.0 - 2026-09-18
+### Breaking Changes
+* **`OrderSortByEnum`** — new case `lastDeliveryTaskCompletedAtTimestamp` added; exhaustive `switch` statements without a `default` clause will fail to compile — add a `default` branch or handle the new case explicitly.
+### Added
+* **`lastDeliveryTaskCompletedAtTimestamp`** — new optional `Date?` field added to `Order1`, `OrderLimitedForProvider1`, and `OrderLimitedForShipper1` exposing when the last delivery task was completed.
+* **`filterLastDeliveryTaskCompletedAtTimestampGte` / `filterLastDeliveryTaskCompletedAtTimestampLte`** — new optional `Date?` date-range filter parameters on order list endpoints across coordinator, provider, and shipper resources.
+* **`OrderBillingExpandedListItem1`** — new optional lifecycle timestamp fields added, including `lastDeliveryTaskCompletedAtTimestamp`, `cancelledAtTimestamp`, `completedAtTimestamp`, and others.
+* **`OrderBillingSortByEnum.lastDeliveryTaskCompletedAtTimestamp`** — new enum case allowing billing order lists to be sorted by last delivery task completion time.
+* **`InvoiceLineItem1.totalAmount`** and **`InvoiceLineItemExportListItem.orderLastDeliveryTaskCompletedAtTimestamp`** — new optional fields on invoice line item types.
+
 ## 6.0.1 - 2026-09-17
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
