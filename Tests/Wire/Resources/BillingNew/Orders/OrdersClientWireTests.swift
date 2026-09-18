@@ -94,23 +94,30 @@ import Chrt
                           }
                         }
                       ],
+                      "cancelled_at_timestamp": "2024-01-15T09:30:00Z",
+                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "coordinator_labels": [
                         "coordinator_labels"
                       ],
+                      "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                      "exception_at_timestamp": "2024-01-15T09:30:00Z",
                       "executors": [
                         {
                           "task_group_id": "task_group_id"
                         }
                       ],
+                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "includes_air_waybill_invoice_line_item": true,
                       "invoice_count": 1,
                       "invoice_line_item_count": 1,
                       "invoice_statuses": [
                         "draft"
                       ],
+                      "last_delivery_task_completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "order_id": "order_id",
                       "order_short_id": "order_short_id",
                       "order_status": "draft",
+                      "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "totals_by_currency": [
                         {
                           "accounts_payable_total_amount": 1.1,
@@ -161,23 +168,30 @@ import Chrt
                             )
                         )
                     ]),
+                    cancelledAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     coordinatorLabels: Optional([
                         "coordinator_labels"
                     ]),
+                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     executors: Optional([
                         OrderBillingExecutor1(
                             taskGroupId: "task_group_id"
                         )
                     ]),
+                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     includesAirWaybillInvoiceLineItem: true,
                     invoiceCount: 1,
                     invoiceLineItemCount: 1,
                     invoiceStatuses: Optional([
                         InvoiceStatusEnum1.draft
                     ]),
+                    lastDeliveryTaskCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orderId: "order_id",
                     orderShortId: "order_short_id",
                     orderStatus: OrderStatusEnum1.draft,
+                    stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     totalsByCurrency: Optional([
                         OrderBillingCurrencyTotals1(
                             accountsPayableTotalAmount: 1.1,
@@ -217,6 +231,8 @@ import Chrt
             filterInProgressAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),

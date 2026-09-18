@@ -41,6 +41,7 @@ import Chrt
                     "status": "draft",
                     "task_group_id": "task_group_id",
                     "tax_percentage": 1.1,
+                    "total_amount": 1.1,
                     "unit": "each",
                     "unit_price": 1.1
                   }
@@ -86,6 +87,7 @@ import Chrt
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
+                totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
@@ -257,6 +259,7 @@ import Chrt
                     "status": "draft",
                     "task_group_id": "task_group_id",
                     "tax_percentage": 1.1,
+                    "total_amount": 1.1,
                     "unit": "each",
                     "unit_price": 1.1
                   }
@@ -302,6 +305,7 @@ import Chrt
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
+                totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
@@ -497,6 +501,7 @@ import Chrt
                       "status": "draft",
                       "task_group_id": "task_group_id",
                       "tax_percentage": 1.1,
+                      "total_amount": 1.1,
                       "unit": "each",
                       "unit_price": 1.1
                     }
@@ -742,6 +747,7 @@ import Chrt
                     status: Optional(InvoiceLineItemStatusEnum1.draft),
                     taskGroupId: Optional("task_group_id"),
                     taxPercentage: Optional(1.1),
+                    totalAmount: Optional(1.1),
                     unit: Optional(InvoiceLineItemUnitEnum1.each),
                     unitPrice: 1.1
                 )
@@ -956,6 +962,7 @@ import Chrt
                       "line_item_unit_price": 1.1,
                       "mileage_estimated": 1.1,
                       "off_chrt_reference_id": "off_chrt_reference_id",
+                      "order_last_delivery_task_completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "order_placer_comments": "order_placer_comments",
                       "order_short_id": "order_short_id",
                       "origin_iata": "origin_iata",
@@ -1025,6 +1032,7 @@ import Chrt
                     lineItemUnitPrice: 1.1,
                     mileageEstimated: Optional(1.1),
                     offChrtReferenceId: Optional("off_chrt_reference_id"),
+                    orderLastDeliveryTaskCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orderPlacerComments: Optional("order_placer_comments"),
                     orderShortId: Optional("order_short_id"),
                     originIata: Optional("origin_iata"),
@@ -1087,6 +1095,7 @@ import Chrt
                     "status": "draft",
                     "task_group_id": "task_group_id",
                     "tax_percentage": 1.1,
+                    "total_amount": 1.1,
                     "unit": "each",
                     "unit_price": 1.1
                   }
@@ -1132,6 +1141,7 @@ import Chrt
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
+                totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
@@ -1483,6 +1493,7 @@ import Chrt
                     "status": "draft",
                     "task_group_id": "task_group_id",
                     "tax_percentage": 1.1,
+                    "total_amount": 1.1,
                     "unit": "each",
                     "unit_price": 1.1
                   }
@@ -1528,6 +1539,7 @@ import Chrt
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
                 taxPercentage: Optional(1.1),
+                totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
             )
@@ -1581,6 +1593,7 @@ import Chrt
                   "status": "draft",
                   "task_group_id": "task_group_id",
                   "tax_percentage": 1.1,
+                  "total_amount": 1.1,
                   "unit": "each",
                   "unit_price": 1.1
                 }
@@ -1624,6 +1637,7 @@ import Chrt
             status: Optional(InvoiceLineItemStatusEnum1.draft),
             taskGroupId: Optional("task_group_id"),
             taxPercentage: Optional(1.1),
+            totalAmount: Optional(1.1),
             unit: Optional(InvoiceLineItemUnitEnum1.each),
             unitPrice: 1.1
         )

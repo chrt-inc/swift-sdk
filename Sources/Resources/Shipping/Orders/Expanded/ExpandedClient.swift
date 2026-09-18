@@ -106,6 +106,8 @@ public final class ExpandedClient: Sendable {
     ///         filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -145,13 +147,15 @@ public final class ExpandedClient: Sendable {
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
     /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter filterHasInvoice: Filter by whether the order has any invoice
+    /// - Parameter filterLastDeliveryTaskCompletedAtTimestampLte: Filter by last delivery completion time, inclusive.
+    /// - Parameter filterLastDeliveryTaskCompletedAtTimestampGte: Filter by last delivery completion time, inclusive.
     /// - Parameter filterExecutorDepartmentIds: Filter by executor department IDs
     /// - Parameter filterOffChrtExecutorOrgDataId: Filter by off-CHRT executor org data ID
     /// - Parameter filterCoordinatorShipperAccountIds: Filter by coordinator shipper account IDs
     /// - Parameter filterCoordinatorDepartmentIds: Filter by coordinator department IDs
     /// - Parameter filterCoordinatorLabels: Filter by any of the supplied coordinator labels (exact match).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabels: [String]? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
+    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampLte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabels: [String]? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_provider_operators/v1",
@@ -175,6 +179,8 @@ public final class ExpandedClient: Sendable {
                 "filter_in_progress_at_timestamp_gte": filterInProgressAtTimestampGte.map { .date($0) }, 
                 "filter_completed_at_timestamp_lte": filterCompletedAtTimestampLte.map { .date($0) }, 
                 "filter_completed_at_timestamp_gte": filterCompletedAtTimestampGte.map { .date($0) }, 
+                "filter_last_delivery_task_completed_at_timestamp_lte": filterLastDeliveryTaskCompletedAtTimestampLte.map { .date($0) }, 
+                "filter_last_delivery_task_completed_at_timestamp_gte": filterLastDeliveryTaskCompletedAtTimestampGte.map { .date($0) }, 
                 "filter_cancelled_at_timestamp_lte": filterCancelledAtTimestampLte.map { .date($0) }, 
                 "filter_cancelled_at_timestamp_gte": filterCancelledAtTimestampGte.map { .date($0) }, 
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 
@@ -230,6 +236,8 @@ public final class ExpandedClient: Sendable {
     ///         filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -251,8 +259,10 @@ public final class ExpandedClient: Sendable {
     /// - Parameter filterOrderClassificationByTaskGroupType: Filter by global order classification (OBC takes precedence over flight, then ground)
     /// - Parameter filterAwbNumber: Filter by exact AWB number
     /// - Parameter filterHasInvoice: Filter by whether the order has any invoice
+    /// - Parameter filterLastDeliveryTaskCompletedAtTimestampLte: Filter by last delivery completion time, inclusive.
+    /// - Parameter filterLastDeliveryTaskCompletedAtTimestampGte: Filter by last delivery completion time, inclusive.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForShipperRes {
+    public func listForShipperOperatorsV1(sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampLte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterCoordinatorOrgId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForShipperRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_shipper_operators/v1",
@@ -275,6 +285,8 @@ public final class ExpandedClient: Sendable {
                 "filter_in_progress_at_timestamp_gte": filterInProgressAtTimestampGte.map { .date($0) }, 
                 "filter_completed_at_timestamp_lte": filterCompletedAtTimestampLte.map { .date($0) }, 
                 "filter_completed_at_timestamp_gte": filterCompletedAtTimestampGte.map { .date($0) }, 
+                "filter_last_delivery_task_completed_at_timestamp_lte": filterLastDeliveryTaskCompletedAtTimestampLte.map { .date($0) }, 
+                "filter_last_delivery_task_completed_at_timestamp_gte": filterLastDeliveryTaskCompletedAtTimestampGte.map { .date($0) }, 
                 "filter_cancelled_at_timestamp_lte": filterCancelledAtTimestampLte.map { .date($0) }, 
                 "filter_cancelled_at_timestamp_gte": filterCancelledAtTimestampGte.map { .date($0) }, 
                 "filter_exception_at_timestamp_lte": filterExceptionAtTimestampLte.map { .date($0) }, 

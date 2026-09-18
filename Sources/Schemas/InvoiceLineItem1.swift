@@ -32,6 +32,7 @@ public struct InvoiceLineItem1: Codable, Hashable, Sendable {
     public let status: InvoiceLineItemStatusEnum1?
     public let taskGroupId: String?
     public let taxPercentage: Double?
+    public let totalAmount: Double?
     public let unit: InvoiceLineItemUnitEnum1?
     public let unitPrice: Double
     /// Additional properties that are not explicitly defined in the schema
@@ -64,6 +65,7 @@ public struct InvoiceLineItem1: Codable, Hashable, Sendable {
         status: InvoiceLineItemStatusEnum1? = nil,
         taskGroupId: String? = nil,
         taxPercentage: Double? = nil,
+        totalAmount: Double? = nil,
         unit: InvoiceLineItemUnitEnum1? = nil,
         unitPrice: Double,
         additionalProperties: [String: JSONValue] = .init()
@@ -94,6 +96,7 @@ public struct InvoiceLineItem1: Codable, Hashable, Sendable {
         self.status = status
         self.taskGroupId = taskGroupId
         self.taxPercentage = taxPercentage
+        self.totalAmount = totalAmount
         self.unit = unit
         self.unitPrice = unitPrice
         self.additionalProperties = additionalProperties
@@ -127,6 +130,7 @@ public struct InvoiceLineItem1: Codable, Hashable, Sendable {
         self.status = try container.decodeIfPresent(InvoiceLineItemStatusEnum1.self, forKey: .status)
         self.taskGroupId = try container.decodeIfPresent(String.self, forKey: .taskGroupId)
         self.taxPercentage = try container.decodeIfPresent(Double.self, forKey: .taxPercentage)
+        self.totalAmount = try container.decodeIfPresent(Double.self, forKey: .totalAmount)
         self.unit = try container.decodeIfPresent(InvoiceLineItemUnitEnum1.self, forKey: .unit)
         self.unitPrice = try container.decode(Double.self, forKey: .unitPrice)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -161,6 +165,7 @@ public struct InvoiceLineItem1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.taskGroupId, forKey: .taskGroupId)
         try container.encodeIfPresent(self.taxPercentage, forKey: .taxPercentage)
+        try container.encodeIfPresent(self.totalAmount, forKey: .totalAmount)
         try container.encodeIfPresent(self.unit, forKey: .unit)
         try container.encode(self.unitPrice, forKey: .unitPrice)
     }
@@ -193,6 +198,7 @@ public struct InvoiceLineItem1: Codable, Hashable, Sendable {
         case status
         case taskGroupId = "task_group_id"
         case taxPercentage = "tax_percentage"
+        case totalAmount = "total_amount"
         case unit
         case unitPrice = "unit_price"
     }

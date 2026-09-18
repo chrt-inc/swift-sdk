@@ -37,6 +37,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
     public let lineItemUnitPrice: Double
     public let mileageEstimated: Double?
     public let offChrtReferenceId: String?
+    public let orderLastDeliveryTaskCompletedAtTimestamp: Date?
     public let orderPlacerComments: String?
     public let orderShortId: String?
     public let originIata: String?
@@ -85,6 +86,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         lineItemUnitPrice: Double,
         mileageEstimated: Double? = nil,
         offChrtReferenceId: String? = nil,
+        orderLastDeliveryTaskCompletedAtTimestamp: Date? = nil,
         orderPlacerComments: String? = nil,
         orderShortId: String? = nil,
         originIata: String? = nil,
@@ -131,6 +133,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.lineItemUnitPrice = lineItemUnitPrice
         self.mileageEstimated = mileageEstimated
         self.offChrtReferenceId = offChrtReferenceId
+        self.orderLastDeliveryTaskCompletedAtTimestamp = orderLastDeliveryTaskCompletedAtTimestamp
         self.orderPlacerComments = orderPlacerComments
         self.orderShortId = orderShortId
         self.originIata = originIata
@@ -180,6 +183,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         self.lineItemUnitPrice = try container.decode(Double.self, forKey: .lineItemUnitPrice)
         self.mileageEstimated = try container.decodeIfPresent(Double.self, forKey: .mileageEstimated)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
+        self.orderLastDeliveryTaskCompletedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderLastDeliveryTaskCompletedAtTimestamp)
         self.orderPlacerComments = try container.decodeIfPresent(String.self, forKey: .orderPlacerComments)
         self.orderShortId = try container.decodeIfPresent(String.self, forKey: .orderShortId)
         self.originIata = try container.decodeIfPresent(String.self, forKey: .originIata)
@@ -230,6 +234,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         try container.encode(self.lineItemUnitPrice, forKey: .lineItemUnitPrice)
         try container.encodeIfPresent(self.mileageEstimated, forKey: .mileageEstimated)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
+        try container.encodeIfPresent(self.orderLastDeliveryTaskCompletedAtTimestamp, forKey: .orderLastDeliveryTaskCompletedAtTimestamp)
         try container.encodeIfPresent(self.orderPlacerComments, forKey: .orderPlacerComments)
         try container.encodeIfPresent(self.orderShortId, forKey: .orderShortId)
         try container.encodeIfPresent(self.originIata, forKey: .originIata)
@@ -278,6 +283,7 @@ public struct InvoiceLineItemExportListItem: Codable, Hashable, Sendable {
         case lineItemUnitPrice = "line_item_unit_price"
         case mileageEstimated = "mileage_estimated"
         case offChrtReferenceId = "off_chrt_reference_id"
+        case orderLastDeliveryTaskCompletedAtTimestamp = "order_last_delivery_task_completed_at_timestamp"
         case orderPlacerComments = "order_placer_comments"
         case orderShortId = "order_short_id"
         case originIata = "origin_iata"

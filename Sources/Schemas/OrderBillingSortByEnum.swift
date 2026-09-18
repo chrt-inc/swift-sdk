@@ -5,6 +5,7 @@ public enum OrderBillingSortByEnum: String, Codable, Hashable, CaseIterable, Sen
     case stagedAtTimestamp = "staged_at_timestamp"
     case inProgressAtTimestamp = "in_progress_at_timestamp"
     case completedAtTimestamp = "completed_at_timestamp"
+    case lastDeliveryTaskCompletedAtTimestamp = "last_delivery_task_completed_at_timestamp"
     case cancelledAtTimestamp = "cancelled_at_timestamp"
     case exceptionAtTimestamp = "exception_at_timestamp"
 }

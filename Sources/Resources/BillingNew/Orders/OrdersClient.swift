@@ -76,6 +76,8 @@ public final class OrdersClient: Sendable {
     ///         filterInProgressAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -87,7 +89,7 @@ public final class OrdersClient: Sendable {
     /// try await main()
     /// ```
     ///
-    /// - Parameter sortBy: Order lifecycle timestamp used for sorting.
+    /// - Parameter sortBy: Order lifecycle or last delivery completion timestamp used for sorting.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Full-text search query for order short ID, off-CHRT reference ID, and AWB.
     /// - Parameter filterStatus: Filter by one or more order statuses.
@@ -98,8 +100,10 @@ public final class OrdersClient: Sendable {
     /// - Parameter filterExecutorOrgId: Filter by an on-CHRT executor organization.
     /// - Parameter filterOffChrtExecutorOrgDataId: Filter by an off-CHRT executor.
     /// - Parameter filterCoordinatorLabels: Filter by any of the supplied coordinator labels (exact match).
+    /// - Parameter filterLastDeliveryTaskCompletedAtTimestampGte: Filter by last delivery completion time, inclusive.
+    /// - Parameter filterLastDeliveryTaskCompletedAtTimestampLte: Filter by last delivery completion time, inclusive.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listExpandedForCoordinatorOperatorsV1(sortBy: OrderBillingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterAwbNumber: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorLabels: [String]? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderBillingExpandedListRes {
+    public func listExpandedForCoordinatorOperatorsV1(sortBy: OrderBillingSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterAwbNumber: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorLabels: [String]? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampGte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions? = nil) async throws -> OrderBillingExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/billing_new/orders/expanded/list/for_coordinator_operators/v1",
@@ -125,6 +129,8 @@ public final class OrdersClient: Sendable {
                 "filter_in_progress_at_timestamp_lte": filterInProgressAtTimestampLte.map { .date($0) }, 
                 "filter_completed_at_timestamp_gte": filterCompletedAtTimestampGte.map { .date($0) }, 
                 "filter_completed_at_timestamp_lte": filterCompletedAtTimestampLte.map { .date($0) }, 
+                "filter_last_delivery_task_completed_at_timestamp_gte": filterLastDeliveryTaskCompletedAtTimestampGte.map { .date($0) }, 
+                "filter_last_delivery_task_completed_at_timestamp_lte": filterLastDeliveryTaskCompletedAtTimestampLte.map { .date($0) }, 
                 "filter_cancelled_at_timestamp_gte": filterCancelledAtTimestampGte.map { .date($0) }, 
                 "filter_cancelled_at_timestamp_lte": filterCancelledAtTimestampLte.map { .date($0) }, 
                 "filter_exception_at_timestamp_gte": filterExceptionAtTimestampGte.map { .date($0) }, 

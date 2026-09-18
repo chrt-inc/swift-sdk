@@ -4949,7 +4949,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorLabels: [String]?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorLabels: [String]?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -5010,6 +5010,8 @@ private func main() async throws {
         filterInProgressAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -5033,7 +5035,7 @@ try await main()
 <dl>
 <dd>
 
-**sortBy:** `OrderBillingSortByEnum?` — Order lifecycle timestamp used for sorting.
+**sortBy:** `OrderBillingSortByEnum?` — Order lifecycle or last delivery completion timestamp used for sorting.
     
 </dd>
 </dl>
@@ -5194,6 +5196,22 @@ try await main()
 <dd>
 
 **filterCompletedAtTimestampLte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastDeliveryTaskCompletedAtTimestampGte:** `Date?` — Filter by last delivery completion time, inclusive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastDeliveryTaskCompletedAtTimestampLte:** `Date?` — Filter by last delivery completion time, inclusive.
     
 </dd>
 </dl>
@@ -28198,7 +28216,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentIds: [String]?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentIds: [String]?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabels: [String]?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentIds: [String]?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentIds: [String]?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabels: [String]?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
 <dl>
 <dd>
 
@@ -28257,6 +28275,8 @@ private func main() async throws {
         filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -28454,6 +28474,22 @@ try await main()
 <dl>
 <dd>
 
+**filterLastDeliveryTaskCompletedAtTimestampLte:** `Date?` — Filter by last delivery completion time, inclusive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastDeliveryTaskCompletedAtTimestampGte:** `Date?` — Filter by last delivery completion time, inclusive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterCancelledAtTimestampLte:** `Date?` 
     
 </dd>
@@ -28586,7 +28622,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForShipperOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterCoordinatorOrgId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForShipperRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForShipperOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterCoordinatorOrgId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForShipperRes</code></summary>
 <dl>
 <dd>
 
@@ -28644,6 +28680,8 @@ private func main() async throws {
         filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -28808,6 +28846,22 @@ try await main()
 <dd>
 
 **filterCompletedAtTimestampGte:** `Date?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastDeliveryTaskCompletedAtTimestampLte:** `Date?` — Filter by last delivery completion time, inclusive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastDeliveryTaskCompletedAtTimestampGte:** `Date?` — Filter by last delivery completion time, inclusive.
     
 </dd>
 </dl>

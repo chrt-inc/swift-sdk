@@ -137,6 +137,7 @@ import Chrt
                     "invoice_ids": [
                       "invoice_ids"
                     ],
+                    "last_delivery_task_completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_id": "off_chrt_reference_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_classification_by_task_group_type": "chrt_ground_provider",
@@ -410,6 +411,7 @@ import Chrt
                 invoiceIds: Optional([
                     "invoice_ids"
                 ]),
+                lastDeliveryTaskCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderClassificationByTaskGroupType: Optional(TaskGroupTypeEnum1.chrtGroundProvider),
@@ -608,6 +610,7 @@ import Chrt
                     "invoice_ids": [
                       "invoice_ids"
                     ],
+                    "last_delivery_task_completed_at_timestamp": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_id": "off_chrt_reference_id",
                     "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                     "order_classification_by_task_group_type": "chrt_ground_provider",
@@ -806,6 +809,7 @@ import Chrt
                 invoiceIds: Optional([
                     "invoice_ids"
                 ]),
+                lastDeliveryTaskCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 offChrtReferenceId: Optional("off_chrt_reference_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 orderClassificationByTaskGroupType: Optional(TaskGroupTypeEnum1.chrtGroundProvider),
@@ -1134,6 +1138,8 @@ import Chrt
             filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -1328,6 +1334,8 @@ import Chrt
             filterInProgressAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastDeliveryTaskCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterLastDeliveryTaskCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCancelledAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterCancelledAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterExceptionAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
