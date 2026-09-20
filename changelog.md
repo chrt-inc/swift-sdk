@@ -1,3 +1,12 @@
+## 8.0.0 - 2026-09-20
+### Breaking Changes
+* **`OrgShippingIntegrationEnum1`** — new `courie` case added; exhaustive `switch` statements without a `default` clause will fail to compile — add a `default` branch or handle the new case explicitly.
+### Added
+* **`CourieClient`** — new top-level Courie shipping integration client exposing `creds` (`CourieCredsClient`) and `orders` (`CourieOrdersClient`) sub-clients, accessible via `ShippingIntegrationsClient.courie`.
+* **`CourieCredsClient`** — manages per-provider Courie API credentials with `detailV1`, `listV1`, `testV1`, `createV1`, `updateV1`, and `deleteV1` operations; includes `CourieCredsClientCreate1`, `CourieCredsClientUpdate1`, `CourieCredsListRes`, and `CourieCredsTestRes` supporting types.
+* **`CourieOrdersClient`** — retrieves and syncs mirrored Courie orders via `detailByIntegrationOrderIdV1`, `detailV1`, `listV1`, and `syncOneV1`; backed by a full set of Courie order schema types including `CourieOrderResponse1`, `CourieOrderListRes`, `CourieOrderEventResponse1`, `CourieOrderStatusEnum1`, and related stop, package, and proof-of-delivery types.
+* **`aiGeneratedDescription`** and **`userGeneratedDescription`** — new optional `String?` fields added to all S3 object metadata types (`OrderInternalMessageS3ObjectMetadata1`, `OrgComplianceDocumentS3ObjectMetadata1`, `DriverComplianceDocumentS3ObjectMetadata1`, `TaskArtifactS3ObjectMetadata1`, `TaskGroupS3ObjectMetadata1`).
+
 ## 7.0.0 - 2026-09-18
 ### Breaking Changes
 * **`OrderSortByEnum`** — new case `lastDeliveryTaskCompletedAtTimestamp` added; exhaustive `switch` statements without a `default` clause will fail to compile — add a `default` branch or handle the new case explicitly.
