@@ -5,6 +5,7 @@ public final class ShippingIntegrationsClient: Sendable {
     public let integrationExecutors: IntegrationExecutorsClient
     public let orders: ShippingIntegrationsOrdersClient
     public let atlas: AtlasClient
+    public let courie: CourieClient
     public let cxt: CxtClient
     public let dispatchScience: DispatchScienceClient
     public let ecourier: EcourierClient
@@ -17,6 +18,7 @@ public final class ShippingIntegrationsClient: Sendable {
         self.integrationExecutors = IntegrationExecutorsClient(config: config)
         self.orders = ShippingIntegrationsOrdersClient(config: config)
         self.atlas = AtlasClient(config: config)
+        self.courie = CourieClient(config: config)
         self.cxt = CxtClient(config: config)
         self.dispatchScience = DispatchScienceClient(config: config)
         self.ecourier = EcourierClient(config: config)

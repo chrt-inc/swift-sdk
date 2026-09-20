@@ -10,6 +10,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "ai_generated_description": "ai_generated_description",
                   "ai_image_description": {
                     "cargo_identity_assessment": "cargo_identity_assessment",
                     "completion_evidence": "completion_evidence",
@@ -47,7 +48,8 @@ import Chrt
                   "task_artifact_id": "task_artifact_id",
                   "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
                   "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id"
+                  "uploaded_by_user_id": "uploaded_by_user_id",
+                  "user_generated_description": "user_generated_description"
                 }
                 """#.utf8
             )
@@ -59,6 +61,7 @@ import Chrt
         )
         let expectedResponse = TaskArtifactS3ObjectMetadata1(
             id: "_id",
+            aiGeneratedDescription: Optional("ai_generated_description"),
             aiImageDescription: Optional(AiImageDescription(
                 cargoIdentityAssessment: "cargo_identity_assessment",
                 completionEvidence: "completion_evidence",
@@ -98,7 +101,8 @@ import Chrt
             taskArtifactId: "task_artifact_id",
             uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id"
+            uploadedByUserId: "uploaded_by_user_id",
+            userGeneratedDescription: Optional("user_generated_description")
         )
         let response = try await client.shipping.taskArtifacts.s3Object.addV1(
             taskArtifactId: "task_artifact_id",
@@ -182,6 +186,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "ai_generated_description": "ai_generated_description",
                   "ai_image_description": {
                     "cargo_identity_assessment": "cargo_identity_assessment",
                     "completion_evidence": "completion_evidence",
@@ -219,7 +224,8 @@ import Chrt
                   "task_artifact_id": "task_artifact_id",
                   "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
                   "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id"
+                  "uploaded_by_user_id": "uploaded_by_user_id",
+                  "user_generated_description": "user_generated_description"
                 }
                 """#.utf8
             )
@@ -231,6 +237,7 @@ import Chrt
         )
         let expectedResponse = TaskArtifactS3ObjectMetadata1(
             id: "_id",
+            aiGeneratedDescription: Optional("ai_generated_description"),
             aiImageDescription: Optional(AiImageDescription(
                 cargoIdentityAssessment: "cargo_identity_assessment",
                 completionEvidence: "completion_evidence",
@@ -270,7 +277,8 @@ import Chrt
             taskArtifactId: "task_artifact_id",
             uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id"
+            uploadedByUserId: "uploaded_by_user_id",
+            userGeneratedDescription: Optional("user_generated_description")
         )
         let response = try await client.shipping.taskArtifacts.s3Object.getS3ObjectMetadataV1(
             taskArtifactS3ObjectMetadataId: "task_artifact_s3_object_metadata_id",

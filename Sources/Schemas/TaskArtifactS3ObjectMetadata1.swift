@@ -2,6 +2,7 @@ import Foundation
 
 public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
     public let id: String
+    public let aiGeneratedDescription: String?
     public let aiImageDescription: AiImageDescription?
     public let blurhash: String?
     /// MIME type of the uploaded file (e.g., 'image/jpeg', 'application/pdf')
@@ -16,11 +17,13 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
     public let uploadedByOrgId: String
     /// Must be a string starting with `user_`
     public let uploadedByUserId: String
+    public let userGeneratedDescription: String?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         id: String,
+        aiGeneratedDescription: String? = nil,
         aiImageDescription: AiImageDescription? = nil,
         blurhash: String? = nil,
         contentType: String? = nil,
@@ -31,9 +34,11 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         uploadedAtTimestamp: Date,
         uploadedByOrgId: String,
         uploadedByUserId: String,
+        userGeneratedDescription: String? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.aiGeneratedDescription = aiGeneratedDescription
         self.aiImageDescription = aiImageDescription
         self.blurhash = blurhash
         self.contentType = contentType
@@ -44,12 +49,14 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         self.uploadedAtTimestamp = uploadedAtTimestamp
         self.uploadedByOrgId = uploadedByOrgId
         self.uploadedByUserId = uploadedByUserId
+        self.userGeneratedDescription = userGeneratedDescription
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.aiGeneratedDescription = try container.decodeIfPresent(String.self, forKey: .aiGeneratedDescription)
         self.aiImageDescription = try container.decodeIfPresent(AiImageDescription.self, forKey: .aiImageDescription)
         self.blurhash = try container.decodeIfPresent(String.self, forKey: .blurhash)
         self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
@@ -60,6 +67,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         self.uploadedAtTimestamp = try container.decode(Date.self, forKey: .uploadedAtTimestamp)
         self.uploadedByOrgId = try container.decode(String.self, forKey: .uploadedByOrgId)
         self.uploadedByUserId = try container.decode(String.self, forKey: .uploadedByUserId)
+        self.userGeneratedDescription = try container.decodeIfPresent(String.self, forKey: .userGeneratedDescription)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -67,6 +75,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.aiGeneratedDescription, forKey: .aiGeneratedDescription)
         try container.encodeIfPresent(self.aiImageDescription, forKey: .aiImageDescription)
         try container.encodeIfPresent(self.blurhash, forKey: .blurhash)
         try container.encodeIfPresent(self.contentType, forKey: .contentType)
@@ -77,6 +86,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         try container.encode(self.uploadedAtTimestamp, forKey: .uploadedAtTimestamp)
         try container.encode(self.uploadedByOrgId, forKey: .uploadedByOrgId)
         try container.encode(self.uploadedByUserId, forKey: .uploadedByUserId)
+        try container.encodeIfPresent(self.userGeneratedDescription, forKey: .userGeneratedDescription)
     }
 
     public enum ShippingTaskArtifactS3ObjectMetadata: String, Codable, Hashable, CaseIterable, Sendable {
@@ -86,6 +96,7 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case aiGeneratedDescription = "ai_generated_description"
         case aiImageDescription = "ai_image_description"
         case blurhash
         case contentType = "content_type"
@@ -96,5 +107,6 @@ public struct TaskArtifactS3ObjectMetadata1: Codable, Hashable, Sendable {
         case uploadedAtTimestamp = "uploaded_at_timestamp"
         case uploadedByOrgId = "uploaded_by_org_id"
         case uploadedByUserId = "uploaded_by_user_id"
+        case userGeneratedDescription = "user_generated_description"
     }
 }

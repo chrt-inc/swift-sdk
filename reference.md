@@ -34042,6 +34042,871 @@ try await main()
 </dl>
 </details>
 
+## ShippingIntegrations Courie Creds
+<details><summary><code>client.shippingIntegrations.courie.creds.<a href="/Sources/Resources/ShippingIntegrations/Courie/Creds/CourieCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> CourieCredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's Courie credential for one provider, without API key. | () -> (CourieCredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.creds.<a href="/Sources/Resources/ShippingIntegrations/Courie/Creds/CourieCredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> CourieCredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's Courie credentials, one per connected provider, without API key. | () -> (CourieCredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.creds.<a href="/Sources/Resources/ShippingIntegrations/Courie/Creds/CourieCredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> CourieCredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Tests whether stored Courie credentials can authenticate against the provider. | authz: min_org_role=operator | () -> (CourieCredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.creds.<a href="/Sources/Resources/ShippingIntegrations/Courie/Creds/CourieCredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.CourieCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores Courie credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (CourieCredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            apiKey: "api_key",
+            courierId: "courier_id",
+            schemaVersion: 1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CourieCredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.creds.<a href="/Sources/Resources/ShippingIntegrations/Courie/Creds/CourieCredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes stored Courie credentials for one provider. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.creds.<a href="/Sources/Resources/ShippingIntegrations/Courie/Creds/CourieCredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.CourieCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates stored Courie credentials for one provider. | authz: min_org_role=administrator | (CourieCredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CourieCredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Courie Orders
+<details><summary><code>client.shippingIntegrations.courie.orders.<a href="/Sources/Resources/ShippingIntegrations/Courie/Orders/CourieOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> CourieOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored Courie order by the provider's own order ID. | () -> (CourieOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.orders.detailByIntegrationOrderIdV1(
+        orgId: "org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — Courie's own ID for the order, as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.orders.<a href="/Sources/Resources/ShippingIntegrations/Courie/Orders/CourieOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> CourieOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored Courie order by its Mongo ObjectId. | () -> (CourieOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. Courie's own order ID is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.orders.<a href="/Sources/Resources/ShippingIntegrations/Courie/Orders/CourieOrdersClient.swift">listV1</a>(sortBy: CourieOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterCustomerId: String?, filterProviderStatus: CourieOrderStatusEnum1?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> CourieOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists mirrored Courie orders for the caller's organization with filtering, sorting, and pagination. | () -> (CourieOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterCustomerId: "filter_customer_id",
+        filterProviderStatus: .created,
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `CourieOrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by Courie's exact order ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCustomerId:** `String?` — Filter by the Courie customer the order belongs to
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderStatus:** `CourieOrderStatusEnum1?` — Filter by Courie's own order status
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.courie.orders.<a href="/Sources/Resources/ShippingIntegrations/Courie/Orders/CourieOrdersClient.swift">syncOneV1</a>(request: Requests.CourieOrderSyncOneReq, requestOptions: RequestOptions?) -> CourieOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one Courie order by the provider's own order ID, updating the unified order list alongside it. | authz: min_org_role=operator | (CourieOrderSyncOneReq) -> (CourieOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.courie.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CourieOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ShippingIntegrations Cxt Creds
 <details><summary><code>client.shippingIntegrations.cxt.creds.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Creds/CxtCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> CxtCredsLimited1</code></summary>
 <dl>

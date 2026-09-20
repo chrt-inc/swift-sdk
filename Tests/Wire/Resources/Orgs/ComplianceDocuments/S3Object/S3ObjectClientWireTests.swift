@@ -10,6 +10,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "ai_generated_description": "ai_generated_description",
                   "blurhash": "blurhash",
                   "content_type": "content_type",
                   "filename": "filename",
@@ -18,7 +19,8 @@ import Chrt
                   "schema_version": 1,
                   "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
                   "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id"
+                  "uploaded_by_user_id": "uploaded_by_user_id",
+                  "user_generated_description": "user_generated_description"
                 }
                 """#.utf8
             )
@@ -30,6 +32,7 @@ import Chrt
         )
         let expectedResponse = OrgComplianceDocumentS3ObjectMetadata1(
             id: "_id",
+            aiGeneratedDescription: Optional("ai_generated_description"),
             blurhash: Optional("blurhash"),
             contentType: Optional("content_type"),
             filename: Optional("filename"),
@@ -38,7 +41,8 @@ import Chrt
             schemaVersion: 1,
             uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id"
+            uploadedByUserId: "uploaded_by_user_id",
+            userGeneratedDescription: Optional("user_generated_description")
         )
         let response = try await client.orgs.complianceDocuments.s3Object.addV1(
             orgComplianceDocumentId: "org_compliance_document_id",
@@ -77,6 +81,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "ai_generated_description": "ai_generated_description",
                   "blurhash": "blurhash",
                   "content_type": "content_type",
                   "filename": "filename",
@@ -85,7 +90,8 @@ import Chrt
                   "schema_version": 1,
                   "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
                   "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id"
+                  "uploaded_by_user_id": "uploaded_by_user_id",
+                  "user_generated_description": "user_generated_description"
                 }
                 """#.utf8
             )
@@ -97,6 +103,7 @@ import Chrt
         )
         let expectedResponse = OrgComplianceDocumentS3ObjectMetadata1(
             id: "_id",
+            aiGeneratedDescription: Optional("ai_generated_description"),
             blurhash: Optional("blurhash"),
             contentType: Optional("content_type"),
             filename: Optional("filename"),
@@ -105,7 +112,8 @@ import Chrt
             schemaVersion: 1,
             uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id"
+            uploadedByUserId: "uploaded_by_user_id",
+            userGeneratedDescription: Optional("user_generated_description")
         )
         let response = try await client.orgs.complianceDocuments.s3Object.getS3ObjectMetadataV1(
             orgComplianceDocumentS3ObjectMetadataId: "org_compliance_document_s3_object_metadata_id",
