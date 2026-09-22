@@ -1,3 +1,7 @@
+## 8.0.1 - 2026-09-22
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 8.0.0 - 2026-09-20
 ### Breaking Changes
 * **`OrgShippingIntegrationEnum1`** — new `courie` case added; exhaustive `switch` statements without a `default` clause will fail to compile — add a `default` branch or handle the new case explicitly.
