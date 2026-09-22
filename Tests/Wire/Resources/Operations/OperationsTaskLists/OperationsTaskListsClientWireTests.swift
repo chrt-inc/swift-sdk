@@ -221,6 +221,9 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            filterOperationsTaskListIds: [
+                "filter_operations_task_list_ids"
+            ],
             filterArchived: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -251,6 +254,53 @@ import Chrt
         let response = try await client.operations.operationsTaskLists.removeNotStartedTasksFromOrderV1(
             taskListId: "task_list_id",
             orderId: "order_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "name",
+                    "values": [
+                      {
+                        "operations_task_list_ids": [
+                          "operations_task_list_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            OperationsTaskListTypeaheadResult(
+                type: .name,
+                values: [
+                    OperationsTaskListTypeaheadValue(
+                        operationsTaskListIds: [
+                            "operations_task_list_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.operations.operationsTaskLists.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

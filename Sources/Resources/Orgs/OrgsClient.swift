@@ -97,6 +97,40 @@ public final class OrgsClient: Sendable {
         )
     }
 
+    /// Returns matching member names and user IDs within the caller's organization. | () -> (list[OrgMemberTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.typeaheadMembersV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadMembersV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrgMemberTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/members/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OrgMemberTypeaheadResult].self
+        )
+    }
+
     /// Single onboarding entry point. Sets `org_type` in WorkOS JWT metadata (immutable once set) and idempotently creates `org_private_data` + `org_public_data` for the caller's organization. Required `name` and optional `description` and `handle` populate the public doc on first call; later updates go through PATCH /orgs/org_public_data/v1. Returns True on success (including idempotent retries), 400 on org_type conflict or handle collision. | (SetupOrgReq) -> (bool)
     ///
     /// ```swift

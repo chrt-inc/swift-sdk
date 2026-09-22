@@ -271,6 +271,88 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">typeaheadMembersV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OrgMemberTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching member names and user IDs within the caller's organization. | () -> (list[OrgMemberTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.typeaheadMembersV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">setupOrgV1</a>(request: Requests.SetupOrgReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
@@ -2047,7 +2129,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">listV1</a>(search: String?, sortBy: ChrtGroundProviderRatesSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterServiceLine: [ServiceLineEnum]?, filterInvoiceTypes: [InvoiceTypeEnum1]?, filterCurrencyCodes: [BillingCurrencyCodeEnum1]?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterCounterpartyDriverId: String?, filterCargoTypes: [CargoTypeEnum1]?, filterVehicleTypes: [VehicleTypeEnum]?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ChrtGroundProviderRatesListRes</code></summary>
+<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">listV1</a>(search: String?, sortBy: ChrtGroundProviderRatesSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterChrtGroundProviderRatesIds: [String]?, filterServiceLine: [ServiceLineEnum]?, filterInvoiceTypes: [InvoiceTypeEnum1]?, filterCurrencyCodes: [BillingCurrencyCodeEnum1]?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterShipperAccountId: String?, filterCounterpartyDriverId: String?, filterCargoTypes: [CargoTypeEnum1]?, filterVehicleTypes: [VehicleTypeEnum]?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ChrtGroundProviderRatesListRes</code></summary>
 <dl>
 <dd>
 
@@ -2086,6 +2168,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterChrtGroundProviderRatesIds: [
+            "filter_chrt_ground_provider_rates_ids"
+        ],
         filterServiceLine: [
             .onDemand
         ],
@@ -2160,6 +2245,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterChrtGroundProviderRatesIds:** `[String]?` — Filter by CHRT ground provider rate IDs
     
 </dd>
 </dl>
@@ -2335,6 +2428,88 @@ try await main()
 <dd>
 
 **request:** `Requests.ResolveChrtGroundProviderRatesReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.chrtGroundProviderRates.<a href="/Sources/Resources/BillingNew/ChrtGroundProviderRates/ChrtGroundProviderRatesClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ChrtGroundProviderRatesTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[ChrtGroundProviderRatesTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.chrtGroundProviderRates.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -4179,7 +4354,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">listV1</a>(search: String?, sortBy: InvoiceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatuses: [InvoiceStatusEnum1]?, filterInvoiceTypes: [InvoiceTypeEnum1]?, filterCurrencyCodes: [BillingCurrencyCodeEnum1]?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterCounterpartyAccountId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> InvoiceListRes</code></summary>
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">listV1</a>(search: String?, sortBy: InvoiceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterInvoiceIds: [String]?, filterStatuses: [InvoiceStatusEnum1]?, filterInvoiceTypes: [InvoiceTypeEnum1]?, filterCurrencyCodes: [BillingCurrencyCodeEnum1]?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterCounterpartyAccountId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> InvoiceListRes</code></summary>
 <dl>
 <dd>
 
@@ -4218,6 +4393,9 @@ private func main() async throws {
         sortOrder: .asc,
         page: 1,
         pageSize: 1,
+        filterInvoiceIds: [
+            "filter_invoice_ids"
+        ],
         filterStatuses: [
             .draft
         ],
@@ -4286,6 +4464,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterInvoiceIds:** `[String]?` — Filter by selected invoice ids
     
 </dd>
 </dl>
@@ -4527,6 +4713,88 @@ try await main()
 <dd>
 
 **request:** `InvoiceCreateFromOrdersReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoices.<a href="/Sources/Resources/BillingNew/Invoices/InvoicesClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [InvoiceTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[InvoiceTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoices.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -4949,7 +5217,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorLabels: [String]?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">listExpandedForCoordinatorOperatorsV1</a>(sortBy: OrderBillingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterStatus: [OrderStatusEnum1]?, filterAwbNumber: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorLabels: [String]?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, request: Requests.OrderBillingExpandedListReq, requestOptions: RequestOptions?) -> OrderBillingExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -4988,6 +5256,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
         filterStatus: [
             .draft
         ],
@@ -5075,6 +5346,14 @@ try await main()
 <dl>
 <dd>
 
+**filterOrderIds:** `[String]?` — Filter by selected order ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterStatus:** `[OrderStatusEnum1]?` — Filter by one or more order statuses.
     
 </dd>
@@ -5131,7 +5410,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCoordinatorLabels:** `[String]?` — Filter by any of the supplied coordinator labels (exact match).
+**filterCoordinatorLabels:** `[String]?` — Filter by all supplied coordinator labels (exact matches).
     
 </dd>
 </dl>
@@ -12459,7 +12738,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.departments.<a href="/Sources/Resources/Operations/Departments/DepartmentsClient.swift">listV1</a>(sortBy: DepartmentSortByEnum?, sortOrder: SortOrderEnum?, search: String?, page: Int?, pageSize: Int?, filterDepartmentType: [DepartmentTypeEnum]?, requestOptions: RequestOptions?) -> DepartmentListRes</code></summary>
+<details><summary><code>client.operations.departments.<a href="/Sources/Resources/Operations/Departments/DepartmentsClient.swift">listV1</a>(sortBy: DepartmentSortByEnum?, sortOrder: SortOrderEnum?, search: String?, page: Int?, pageSize: Int?, filterDepartmentIds: [String]?, filterDepartmentType: [DepartmentTypeEnum]?, requestOptions: RequestOptions?) -> DepartmentListRes</code></summary>
 <dl>
 <dd>
 
@@ -12498,6 +12777,9 @@ private func main() async throws {
         search: "search",
         page: 1,
         pageSize: 1,
+        filterDepartmentIds: [
+            "filter_department_ids"
+        ],
         filterDepartmentType: [
             .aerospace
         ]
@@ -12552,6 +12834,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDepartmentIds:** `[String]?` — Filter by selected department ids
     
 </dd>
 </dl>
@@ -12642,6 +12932,88 @@ try await main()
 <dd>
 
 **userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.departments.<a href="/Sources/Resources/Operations/Departments/DepartmentsClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [DepartmentTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name, short_id values and their IDs within the caller's organization. | authz: min_org_role=operator | () -> (list[DepartmentTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.departments.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -13486,7 +13858,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">listV1</a>(sortBy: OperationsTaskListSortByEnum?, sortOrder: SortOrderEnum?, search: String?, page: Int?, pageSize: Int?, filterArchived: Bool?, requestOptions: RequestOptions?) -> OperationsTaskListListRes</code></summary>
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">listV1</a>(sortBy: OperationsTaskListSortByEnum?, sortOrder: SortOrderEnum?, search: String?, page: Int?, pageSize: Int?, filterOperationsTaskListIds: [String]?, filterArchived: Bool?, requestOptions: RequestOptions?) -> OperationsTaskListListRes</code></summary>
 <dl>
 <dd>
 
@@ -13525,6 +13897,9 @@ private func main() async throws {
         search: "search",
         page: 1,
         pageSize: 1,
+        filterOperationsTaskListIds: [
+            "filter_operations_task_list_ids"
+        ],
         filterArchived: true
     )
 }
@@ -13577,6 +13952,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOperationsTaskListIds:** `[String]?` — Filter by selected operations task list ids
     
 </dd>
 </dl>
@@ -13667,6 +14050,88 @@ try await main()
 <dd>
 
 **orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OperationsTaskListTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name values and their IDs within the caller's organization. | authz: min_org_role=operator | () -> (list[OperationsTaskListTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTaskLists.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -14225,7 +14690,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">expandedListV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentIds: [String]?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterEntryTag: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskExpandedListRes</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">expandedListV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOperationsTaskIds: [String]?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentIds: [String]?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterEntryTag: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -14264,6 +14729,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOperationsTaskIds: [
+            "filter_operations_task_ids"
+        ],
         filterOrderIds: [
             "filter_order_ids"
         ],
@@ -14334,6 +14802,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search by title or description
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOperationsTaskIds:** `[String]?` — Filter by selected operations task ids
     
 </dd>
 </dl>
@@ -14441,7 +14917,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentIds: [String]?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterEntryTag: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
+<details><summary><code>client.operations.operationsTasks.<a href="/Sources/Resources/Operations/OperationsTasks/OperationsTasksClient.swift">listV1</a>(sortBy: OperationsTaskSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOperationsTaskIds: [String]?, filterOrderIds: [String]?, filterOrderShortId: String?, filterOrderOffChrtReferenceId: String?, filterDepartmentIds: [String]?, filterTaskType: [OperationsTaskTypeEnum]?, filterStatus: [OperationsTaskStatusEnum]?, filterAssignedUserId: String?, filterSourceTaskListId: String?, filterEntryTag: String?, filterDeadlineGte: Date?, filterDeadlineLte: Date?, requestOptions: RequestOptions?) -> OperationsTaskListRes</code></summary>
 <dl>
 <dd>
 
@@ -14480,6 +14956,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOperationsTaskIds: [
+            "filter_operations_task_ids"
+        ],
         filterOrderIds: [
             "filter_order_ids"
         ],
@@ -14550,6 +15029,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search by title or description
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOperationsTaskIds:** `[String]?` — Filter by selected operations task ids
     
 </dd>
 </dl>
@@ -15872,7 +16359,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.accounts.<a href="/Sources/Resources/Orgs/Accounts/AccountsClient.swift">listV1</a>(search: String?, filterAccountId: String?, filterOrgId: String?, filterOffChrtOrgDataId: String?, sortBy: AccountSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> AccountListRes</code></summary>
+<details><summary><code>client.orgs.accounts.<a href="/Sources/Resources/Orgs/Accounts/AccountsClient.swift">listV1</a>(filterAccountIds: [String]?, search: String?, filterOrgId: String?, filterOffChrtOrgDataId: String?, sortBy: AccountSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> AccountListRes</code></summary>
 <dl>
 <dd>
 
@@ -15906,8 +16393,10 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.accounts.listV1(
+        filterAccountIds: [
+            "filter_account_ids"
+        ],
         search: "search",
-        filterAccountId: "filter_account_id",
         filterOrgId: "filter_org_id",
         filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
         sortBy: .name,
@@ -15932,7 +16421,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text account name search query
+**filterAccountIds:** `[String]?` — Filter by selected account ids
     
 </dd>
 </dl>
@@ -15940,7 +16429,7 @@ try await main()
 <dl>
 <dd>
 
-**filterAccountId:** `String?` — Filter by account ID
+**search:** `String?` — Full-text account name search query
     
 </dd>
 </dl>
@@ -16606,7 +17095,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listCoordinatorsForExecutorV1</a>(search: String?, page: Int?, pageSize: Int?, filterAutoAssignEnabled: Bool?, filterConnected: Bool?, requestOptions: RequestOptions?) -> CoordinatorExecutorConnectionsForExecutorListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listCoordinatorsForExecutorV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterAutoAssignEnabled: Bool?, filterConnected: Bool?, requestOptions: RequestOptions?) -> CoordinatorExecutorConnectionsForExecutorListRes</code></summary>
 <dl>
 <dd>
 
@@ -16643,6 +17132,9 @@ private func main() async throws {
         search: "search",
         page: 1,
         pageSize: 1,
+        filterConnectionIds: [
+            "filter_connection_ids"
+        ],
         filterAutoAssignEnabled: true,
         filterConnected: true
     )
@@ -16687,6 +17179,14 @@ try await main()
 <dl>
 <dd>
 
+**filterConnectionIds:** `[String]?` — Filter by selected connection ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterAutoAssignEnabled:** `Bool?` — Filter by executor auto-assign consent
     
 </dd>
@@ -16715,7 +17215,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listCoordinatorsForShipperV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnected: Bool?, requestOptions: RequestOptions?) -> ShipperCoordinatorConnectionsForShipperListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listCoordinatorsForShipperV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterConnected: Bool?, requestOptions: RequestOptions?) -> ShipperCoordinatorConnectionsForShipperListRes</code></summary>
 <dl>
 <dd>
 
@@ -16752,6 +17252,9 @@ private func main() async throws {
         search: "search",
         page: 1,
         pageSize: 1,
+        filterConnectionIds: [
+            "filter_connection_ids"
+        ],
         filterConnected: true
     )
 }
@@ -16788,6 +17291,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterConnectionIds:** `[String]?` — Filter by selected connection ids
     
 </dd>
 </dl>
@@ -16961,7 +17472,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listExecutorsGeoSearchForCoordinatorV1</a>(nearLatitude: Double, nearLongitude: Double, page: Int?, pageSize: Int?, filterAutoAssignEnabled: Bool?, filterConnected: Bool?, requestOptions: RequestOptions?) -> CoordinatorExecutorConnectionsForCoordinatorGeoSearchListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listExecutorsGeoSearchForCoordinatorV1</a>(nearLatitude: Double, nearLongitude: Double, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterAutoAssignEnabled: Bool?, filterConnected: Bool?, requestOptions: RequestOptions?) -> CoordinatorExecutorConnectionsForCoordinatorGeoSearchListRes</code></summary>
 <dl>
 <dd>
 
@@ -16999,6 +17510,9 @@ private func main() async throws {
         nearLongitude: 1.1,
         page: 1,
         pageSize: 1,
+        filterConnectionIds: [
+            "filter_connection_ids"
+        ],
         filterAutoAssignEnabled: true,
         filterConnected: true
     )
@@ -17051,6 +17565,14 @@ try await main()
 <dl>
 <dd>
 
+**filterConnectionIds:** `[String]?` — Filter by selected connection ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterAutoAssignEnabled:** `Bool?` — Filter by executor auto-assign consent
     
 </dd>
@@ -17079,7 +17601,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listExecutorsForCoordinatorV1</a>(search: String?, page: Int?, pageSize: Int?, filterAutoAssignEnabled: Bool?, filterConnected: Bool?, requestOptions: RequestOptions?) -> CoordinatorExecutorConnectionsForCoordinatorListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listExecutorsForCoordinatorV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterAutoAssignEnabled: Bool?, filterConnected: Bool?, requestOptions: RequestOptions?) -> CoordinatorExecutorConnectionsForCoordinatorListRes</code></summary>
 <dl>
 <dd>
 
@@ -17116,6 +17638,9 @@ private func main() async throws {
         search: "search",
         page: 1,
         pageSize: 1,
+        filterConnectionIds: [
+            "filter_connection_ids"
+        ],
         filterAutoAssignEnabled: true,
         filterConnected: true
     )
@@ -17153,6 +17678,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterConnectionIds:** `[String]?` — Filter by selected connection ids
     
 </dd>
 </dl>
@@ -17352,7 +17885,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listShippersForCoordinatorV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnected: Bool?, requestOptions: RequestOptions?) -> ShipperCoordinatorConnectionsForCoordinatorListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listShippersForCoordinatorV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterConnected: Bool?, requestOptions: RequestOptions?) -> ShipperCoordinatorConnectionsForCoordinatorListRes</code></summary>
 <dl>
 <dd>
 
@@ -17389,6 +17922,9 @@ private func main() async throws {
         search: "search",
         page: 1,
         pageSize: 1,
+        filterConnectionIds: [
+            "filter_connection_ids"
+        ],
         filterConnected: true
     )
 }
@@ -17425,6 +17961,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterConnectionIds:** `[String]?` — Filter by selected connection ids
     
 </dd>
 </dl>
@@ -17762,7 +18306,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.contacts.<a href="/Sources/Resources/Orgs/Contacts/ContactsClient.swift">listV1</a>(search: String?, filterOrgId: String?, filterOffChrtOrgDataId: String?, filterAccountId: String?, sortBy: ContactSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ContactListRes</code></summary>
+<details><summary><code>client.orgs.contacts.<a href="/Sources/Resources/Orgs/Contacts/ContactsClient.swift">listV1</a>(filterContactIds: [String]?, search: String?, filterOrgId: String?, filterOffChrtOrgDataId: String?, filterAccountId: String?, sortBy: ContactSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ContactListRes</code></summary>
 <dl>
 <dd>
 
@@ -17796,6 +18340,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.contacts.listV1(
+        filterContactIds: [
+            "filter_contact_ids"
+        ],
         search: "search",
         filterOrgId: "filter_org_id",
         filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
@@ -17818,6 +18365,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**filterContactIds:** `[String]?` — Filter by selected contact ids
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -17879,6 +18434,88 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.contacts.<a href="/Sources/Resources/Orgs/Contacts/ContactsClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [ContactTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name values and their IDs within the caller's organization. | authz: min_org_role=operator | () -> (list[ContactTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.contacts.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -18127,7 +18764,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.offChrtOrgData.<a href="/Sources/Resources/Orgs/OffChrtOrgData/OffChrtOrgDataClient.swift">listV1</a>(search: String?, filterOrgType: OrgTypeEnum?, sortBy: OffChrtOrgDataSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OffChrtOrgDataListRes</code></summary>
+<details><summary><code>client.orgs.offChrtOrgData.<a href="/Sources/Resources/Orgs/OffChrtOrgData/OffChrtOrgDataClient.swift">listV1</a>(filterOffChrtOrgDataIds: [String]?, search: String?, filterOrgType: OrgTypeEnum?, sortBy: OffChrtOrgDataSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OffChrtOrgDataListRes</code></summary>
 <dl>
 <dd>
 
@@ -18161,6 +18798,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.orgs.offChrtOrgData.listV1(
+        filterOffChrtOrgDataIds: [
+            "filter_off_chrt_org_data_ids"
+        ],
         search: "search",
         filterOrgType: .provider,
         sortBy: .name,
@@ -18181,6 +18821,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**filterOffChrtOrgDataIds:** `[String]?` — Filter by selected off chrt org data ids
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -18226,6 +18874,88 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.offChrtOrgData.<a href="/Sources/Resources/Orgs/OffChrtOrgData/OffChrtOrgDataClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OffChrtOrgDataTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider] | () -> (list[OffChrtOrgDataTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.offChrtOrgData.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -19706,7 +20436,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listV1</a>(sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterWaiting: Bool?, filterAutoAssignEnabled: Bool?, filterVehicleType: [VehicleTypeEnum]?, filterByDriverId: String?, filterArchived: Bool?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, filterStatus: [DriverStatusEnum]?, requestOptions: RequestOptions?) -> DriverListRes</code></summary>
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listV1</a>(sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterDriverIds: [String]?, filterWaiting: Bool?, filterAutoAssignEnabled: Bool?, filterVehicleType: [VehicleTypeEnum]?, filterArchived: Bool?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, filterStatus: [DriverStatusEnum]?, requestOptions: RequestOptions?) -> DriverListRes</code></summary>
 <dl>
 <dd>
 
@@ -19744,12 +20474,14 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterDriverIds: [
+            "filter_driver_ids"
+        ],
         filterWaiting: true,
         filterAutoAssignEnabled: true,
         filterVehicleType: [
             .sedan
         ],
-        filterByDriverId: "filter_by_driver_id",
         filterArchived: true,
         filterAvailableAccordingToDriver: true,
         filterAvailableAccordingToOperators: true,
@@ -19806,6 +20538,14 @@ try await main()
 <dl>
 <dd>
 
+**filterDriverIds:** `[String]?` — Filter by selected driver ids
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterWaiting:** `Bool?` — Filter by waiting status
     
 </dd>
@@ -19823,14 +20563,6 @@ try await main()
 <dd>
 
 **filterVehicleType:** `[VehicleTypeEnum]?` — Filter by any matching vehicle type
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**filterByDriverId:** `String?` — Filter by driver ID
     
 </dd>
 </dl>
@@ -19882,7 +20614,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(search: String?, filterArchived: Bool?, filterRole: [OrgRoleEnum]?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMembersAndDriversListRes</code></summary>
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">listOrgMembersAndDriversV1</a>(filterUserIds: [String]?, search: String?, filterArchived: Bool?, filterRole: [OrgRoleEnum]?, filterAvailableAccordingToDriver: Bool?, filterAvailableAccordingToOperators: Bool?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrgMembersAndDriversListRes</code></summary>
 <dl>
 <dd>
 
@@ -19916,6 +20648,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shipping.drivers.listOrgMembersAndDriversV1(
+        filterUserIds: [
+            "filter_user_ids"
+        ],
         search: "search",
         filterArchived: true,
         filterRole: [
@@ -19941,6 +20676,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**filterUserIds:** `[String]?` — Filter by user IDs
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -20670,6 +21413,88 @@ try await main()
 <dd>
 
 **request:** `Requests.DriverStatsReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [DriverTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching first_name, last_name values and their IDs within the caller's organization, excluding archived drivers. | () -> (list[DriverTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -21678,7 +22503,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterArchived: Bool?, filterOwnedByUserId: String?, filterCoordinatorLabels: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">listV1</a>(sortBy: OrderTemplateNewSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderTemplateNewIds: [String]?, filterArchived: Bool?, filterOwnedByUserId: String?, filterCoordinatorLabels: [String]?, filterExecutorOrgId: String?, filterOffChrtExecutorOrgDataId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastEditedAtTimestampGte: Date?, filterLastEditedAtTimestampLte: Date?, filterLastUsedAtTimestampGte: Date?, filterLastUsedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OrderTemplateNewListRes</code></summary>
 <dl>
 <dd>
 
@@ -21717,6 +22542,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOrderTemplateNewIds: [
+            "filter_order_template_new_ids"
+        ],
         filterArchived: true,
         filterOwnedByUserId: "filter_owned_by_user_id",
         filterCoordinatorLabels: [
@@ -21793,6 +22621,14 @@ try await main()
 <dl>
 <dd>
 
+**filterOrderTemplateNewIds:** `[String]?` — Filter by order template new IDs
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filterArchived:** `Bool?` — Include archived templates instead of active templates.
     
 </dd>
@@ -21809,7 +22645,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCoordinatorLabels:** `[String]?` — Filter by any of the supplied coordinator labels (exact match).
+**filterCoordinatorLabels:** `[String]?` — Filter by all supplied coordinator labels (exact matches).
     
 </dd>
 </dl>
@@ -21898,6 +22734,88 @@ try await main()
 <dd>
 
 **filterLastUsedAtTimestampLte:** `Date?` — Filter last_used_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orderTemplatesNew.<a href="/Sources/Resources/Shipping/OrderTemplatesNew/OrderTemplatesNewClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OrderTemplateNewTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching name values and their IDs within the caller's organization, excluding archived order templates. | authz: min_org_role=operator | () -> (list[OrderTemplateNewTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orderTemplatesNew.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -23076,7 +23994,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">typeaheadLabelV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [String]</code></summary>
+<details><summary><code>client.shipping.orders.<a href="/Sources/Resources/Shipping/Orders/ShippingOrdersClient.swift">typeaheadLabelV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OrderLabelTypeaheadResult]</code></summary>
 <dl>
 <dd>
 
@@ -23088,7 +24006,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct label values matching the query for orders where the caller is coordinator (coordinator_labels) or executor (task_group_details.executor_labels). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[str])
+Returns distinct label values matching the query for orders where the caller is coordinator (coordinator_labels) or executor (task_group_details.executor_labels). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[OrderLabelTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -28216,7 +29134,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentIds: [String]?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentIds: [String]?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabels: [String]?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: OrderProviderRoleFilterEnum?, sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterExecutorDepartmentIds: [String]?, filterOffChrtExecutorOrgDataId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterCoordinatorShipperAccountIds: [String]?, filterCoordinatorDepartmentIds: [String]?, filterCoordinatorAssignedUserIds: [String]?, filterCoordinatorLabels: [String]?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForProviderRes</code></summary>
 <dl>
 <dd>
 
@@ -28256,6 +29174,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
         filterStatus: [
             .draft
         ],
@@ -28363,6 +29284,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderIds:** `[String]?` — Filter by selected order ids
     
 </dd>
 </dl>
@@ -28594,7 +29523,7 @@ try await main()
 <dl>
 <dd>
 
-**filterCoordinatorLabels:** `[String]?` — Filter by any of the supplied coordinator labels (exact match).
+**filterCoordinatorLabels:** `[String]?` — Filter by all supplied coordinator labels (exact matches).
     
 </dd>
 </dl>
@@ -28622,7 +29551,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForShipperOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterCoordinatorOrgId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForShipperRes</code></summary>
+<details><summary><code>client.shipping.orders.expanded.<a href="/Sources/Resources/Shipping/Orders/Expanded/ExpandedClient.swift">listForShipperOperatorsV1</a>(sortBy: OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOrderIds: [String]?, filterStatus: [OrderStatusEnum1]?, filterServiceLine: [ServiceLineEnum]?, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]?, filterAwbNumber: String?, filterHasInvoice: Bool?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterLastDeliveryTaskCompletedAtTimestampLte: Date?, filterLastDeliveryTaskCompletedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterExecutorOrgId: String?, filterCoordinatorOrgId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> OrdersExpandedListForShipperRes</code></summary>
 <dl>
 <dd>
 
@@ -28661,6 +29590,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
         filterStatus: [
             .draft
         ],
@@ -28742,6 +29674,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderIds:** `[String]?` — Filter by selected order ids
     
 </dd>
 </dl>
@@ -31164,7 +32104,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForDriverV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [TaskGroupStatusEnum1]?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForDriverV1</a>(sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterTaskGroupIds: [String]?, filterStatus: [TaskGroupStatusEnum1]?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -31203,6 +32143,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterTaskGroupIds: [
+            "filter_task_group_ids"
+        ],
         filterStatus: [
             .draft
         ],
@@ -31277,6 +32220,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Full-text search query (searches order_short_id, order_off_chrt_reference_id)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTaskGroupIds:** `[String]?` — Filter by selected task group ids
     
 </dd>
 </dl>
@@ -31448,7 +32399,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: TaskGroupProviderRoleFilterEnum?, sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterStatus: [TaskGroupStatusEnum1]?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterDriverId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: TaskGroupProviderRoleFilterEnum?, sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterTaskGroupIds: [String]?, filterStatus: [TaskGroupStatusEnum1]?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterDriverId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -31488,6 +32439,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterTaskGroupIds: [
+            "filter_task_group_ids"
+        ],
         filterStatus: [
             .draft
         ],
@@ -31571,6 +32525,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Full-text search query (searches order_short_id, order_off_chrt_reference_id)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTaskGroupIds:** `[String]?` — Filter by selected task group ids
     
 </dd>
 </dl>
@@ -32483,7 +33445,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listForIntegrationExecutorOperatorsV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listForIntegrationExecutorOperatorsV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegrationOrderIds: [String]?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -32522,6 +33484,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterShippingIntegrationOrderIds: [
+            "filter_shipping_integration_order_ids"
+        ],
         filterShippingIntegration: [
             .xcelerator
         ],
@@ -32587,6 +33552,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search provider order IDs and reference numbers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShippingIntegrationOrderIds:** `[String]?` — Filter by selected shipping integration order ids
     
 </dd>
 </dl>
@@ -32686,7 +33659,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegrationOrderIds: [String]?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -32725,6 +33698,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterShippingIntegrationOrderIds: [
+            "filter_shipping_integration_order_ids"
+        ],
         filterShippingIntegration: [
             .xcelerator
         ],
@@ -32795,6 +33771,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search provider order IDs and reference numbers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShippingIntegrationOrderIds:** `[String]?` — Filter by selected shipping integration order ids
     
 </dd>
 </dl>
@@ -32918,7 +33902,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">statusSummaryV1</a>(filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderStatusSummaryRes</code></summary>
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">statusSummaryV1</a>(filterShippingIntegrationOrderIds: [String]?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterProviderOrgId: [String]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderStatusSummaryRes</code></summary>
 <dl>
 <dd>
 
@@ -32952,6 +33936,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.shippingIntegrations.orders.statusSummaryV1(
+        filterShippingIntegrationOrderIds: [
+            "filter_shipping_integration_order_ids"
+        ],
         filterShippingIntegration: [
             .xcelerator
         ],
@@ -32985,6 +33972,14 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**filterShippingIntegrationOrderIds:** `[String]?` — Filter by selected shipping integration order ids
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -33785,7 +34780,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">listV1</a>(sortBy: AtlasOrderSortByEnum?, sortOrder: SortOrderEnum?, limit: Int?, page: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> AtlasOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">listV1</a>(sortBy: AtlasOrderSortByEnum?, sortOrder: SortOrderEnum?, limit: Int?, page: Int?, search: String?, filterAtlasOrderIds: [String]?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> AtlasOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -33824,6 +34819,9 @@ private func main() async throws {
         limit: 1,
         page: 1,
         search: "search",
+        filterAtlasOrderIds: [
+            "filter_atlas_order_ids"
+        ],
         filterProviderOrgId: [
             "filter_provider_org_id"
         ],
@@ -33885,6 +34883,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search Atlas order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterAtlasOrderIds:** `[String]?` — Filter by atlas order IDs
     
 </dd>
 </dl>
@@ -34023,6 +35029,88 @@ try await main()
 <dd>
 
 **request:** `Requests.AtlasOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.atlas.orders.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Orders/AtlasOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [AtlasOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[AtlasOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.atlas.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -35508,7 +36596,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">listV1</a>(sortBy: CxtOrderSortByEnum?, sortOrder: SortOrderEnum?, limit: Int?, page: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> CxtOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">listV1</a>(sortBy: CxtOrderSortByEnum?, sortOrder: SortOrderEnum?, limit: Int?, page: Int?, search: String?, filterCxtOrderIds: [String]?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> CxtOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -35547,6 +36635,9 @@ private func main() async throws {
         limit: 1,
         page: 1,
         search: "search",
+        filterCxtOrderIds: [
+            "filter_cxt_order_ids"
+        ],
         filterProviderOrgId: [
             "filter_provider_org_id"
         ],
@@ -35608,6 +36699,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search CXT order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCxtOrderIds:** `[String]?` — Filter by cxt order IDs
     
 </dd>
 </dl>
@@ -35746,6 +36845,88 @@ try await main()
 <dd>
 
 **request:** `Requests.CxtOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.cxt.orders.<a href="/Sources/Resources/ShippingIntegrations/Cxt/Orders/CxtOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [CxtOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[CxtOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.cxt.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -36365,7 +37546,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">listV1</a>(sortBy: DispatchScienceOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatus: Int?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DispatchScienceOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">listV1</a>(sortBy: DispatchScienceOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterDispatchScienceOrderIds: [String]?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatus: Int?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> DispatchScienceOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -36404,6 +37585,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterDispatchScienceOrderIds: [
+            "filter_dispatch_science_order_ids"
+        ],
         filterProviderOrgId: [
             "filter_provider_org_id"
         ],
@@ -36466,6 +37650,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search DispatchScience order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDispatchScienceOrderIds:** `[String]?` — Filter by dispatch science order IDs
     
 </dd>
 </dl>
@@ -36612,6 +37804,88 @@ try await main()
 <dd>
 
 **request:** `Requests.DispatchScienceOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.dispatchScience.orders.<a href="/Sources/Resources/ShippingIntegrations/DispatchScience/Orders/DispatchScienceOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [DispatchScienceOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[DispatchScienceOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.dispatchScience.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -38091,7 +39365,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">listV1</a>(sortBy: OnTime360OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusLevel: OnTime360StatusLevelEnum1?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OnTime360OrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">listV1</a>(sortBy: OnTime360OrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterOntime360OrderIds: [String]?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusLevel: OnTime360StatusLevelEnum1?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> OnTime360OrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -38130,6 +39404,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterOntime360OrderIds: [
+            "filter_ontime360_order_ids"
+        ],
         filterProviderOrgId: [
             "filter_provider_org_id"
         ],
@@ -38192,6 +39469,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search OnTime360 order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOntime360OrderIds:** `[String]?` — Filter by ontime360 order IDs
     
 </dd>
 </dl>
@@ -38338,6 +39623,88 @@ try await main()
 <dd>
 
 **request:** `Requests.OnTime360OrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.ontime360.orders.<a href="/Sources/Resources/ShippingIntegrations/Ontime360/Orders/Ontime360OrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OnTime360OrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[OnTime360OrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.ontime360.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -38957,7 +40324,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">listV1</a>(sortBy: XceleratorOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusRaw: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> XceleratorOrderListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">listV1</a>(sortBy: XceleratorOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterXceleratorOrderIds: [String]?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusRaw: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> XceleratorOrderListRes</code></summary>
 <dl>
 <dd>
 
@@ -38996,6 +40363,9 @@ private func main() async throws {
         page: 1,
         pageSize: 1,
         search: "search",
+        filterXceleratorOrderIds: [
+            "filter_xcelerator_order_ids"
+        ],
         filterProviderOrgId: [
             "filter_provider_org_id"
         ],
@@ -39058,6 +40428,14 @@ try await main()
 <dd>
 
 **search:** `String?` — Search Xcelerator order IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterXceleratorOrderIds:** `[String]?` — Filter by xcelerator order IDs
     
 </dd>
 </dl>
@@ -39223,6 +40601,88 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shippingIntegrations.xcelerator.orders.<a href="/Sources/Resources/ShippingIntegrations/Xcelerator/Orders/XceleratorOrdersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [XceleratorOrderTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[XceleratorOrderTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.xcelerator.orders.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Tracking Devices
 <details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">archiveV1</a>(deviceId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
@@ -39366,7 +40826,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, orgScope: TrackingOrgScopeEnum?, filterDeviceId: String?, filterDeviceMacAddress: String?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterHasActiveSession: Bool?, filterHasActiveCargo: Bool?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterFirstSeenAtTimestampGte: Date?, filterFirstSeenAtTimestampLte: Date?, filterArchived: Bool?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">listV1</a>(sortBy: DeviceSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, orgScope: TrackingOrgScopeEnum?, filterDeviceIds: [String]?, filterDeviceMacAddress: String?, filterOffChrtReferenceId: String?, filterType: TrackingDeviceTypeEnum1?, filterActiveCargoId: String?, filterActiveSessionId: String?, filterHasActiveSession: Bool?, filterHasActiveCargo: Bool?, filterRegisteredAtTimestampGte: Date?, filterRegisteredAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterFirstSeenAtTimestampGte: Date?, filterFirstSeenAtTimestampLte: Date?, filterArchived: Bool?, requestOptions: RequestOptions?) -> DeviceListRes</code></summary>
 <dl>
 <dd>
 
@@ -39406,7 +40866,9 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         orgScope: .owned,
-        filterDeviceId: "filter_device_id",
+        filterDeviceIds: [
+            "filter_device_ids"
+        ],
         filterDeviceMacAddress: "filter_device_mac_address",
         filterOffChrtReferenceId: "filter_off_chrt_reference_id",
         filterType: .d15NTag,
@@ -39487,7 +40949,7 @@ try await main()
 <dl>
 <dd>
 
-**filterDeviceId:** `String?` — Filter by device ID (exact match)
+**filterDeviceIds:** `[String]?` — Filter by selected device ids
     
 </dd>
 </dl>
@@ -39764,7 +41226,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">typeaheadV1</a>(query: String, limit: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> [TrackingTypeaheadResult]</code></summary>
+<details><summary><code>client.tracking.devices.<a href="/Sources/Resources/Tracking/Devices/DevicesClient.swift">typeaheadV1</a>(query: String, limit: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> [DeviceTypeaheadResult]</code></summary>
 <dl>
 <dd>
 
@@ -39776,7 +41238,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[DeviceTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -41054,7 +42516,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, orgScope: TrackingOrgScopeEnum?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtReferenceId: String?, filterFlightNumber: String?, filterFlightLoadedStatus: String?, filterHasLastSeen: Bool?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterTerminationScheduledForTimestampGte: Date?, filterTerminationScheduledForTimestampLte: Date?, filterTerminatedAtTimestampGte: Date?, filterTerminatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">listV1</a>(sortBy: SessionSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, orgScope: TrackingOrgScopeEnum?, filterSessionIds: [String]?, filterTerminated: Bool?, filterPublic: Bool?, filterDeviceId: String?, filterOffChrtReferenceId: String?, filterFlightNumber: String?, filterFlightLoadedStatus: String?, filterHasLastSeen: Bool?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterLastSeenAtTimestampGte: Date?, filterLastSeenAtTimestampLte: Date?, filterTerminationScheduledForTimestampGte: Date?, filterTerminationScheduledForTimestampLte: Date?, filterTerminatedAtTimestampGte: Date?, filterTerminatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> SessionListRes</code></summary>
 <dl>
 <dd>
 
@@ -41094,6 +42556,9 @@ private func main() async throws {
         pageSize: 1,
         search: "search",
         orgScope: .owned,
+        filterSessionIds: [
+            "filter_session_ids"
+        ],
         filterTerminated: true,
         filterPublic: true,
         filterDeviceId: "filter_device_id",
@@ -41168,6 +42633,14 @@ try await main()
 <dd>
 
 **orgScope:** `TrackingOrgScopeEnum?` — Filter by org ownership: owned, shared, or owned_and_shared
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterSessionIds:** `[String]?` — Filter by selected session ids
     
 </dd>
 </dl>
@@ -41462,7 +42935,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">typeaheadV1</a>(query: String, limit: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> [TrackingTypeaheadResult]</code></summary>
+<details><summary><code>client.tracking.sessions.<a href="/Sources/Resources/Tracking/Sessions/SessionsClient.swift">typeaheadV1</a>(query: String, limit: Int?, orgScope: TrackingOrgScopeEnum?, requestOptions: RequestOptions?) -> [SessionTypeaheadResult]</code></summary>
 <dl>
 <dd>
 
@@ -41474,7 +42947,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[SessionTypeaheadResult])
 </dd>
 </dl>
 </dd>

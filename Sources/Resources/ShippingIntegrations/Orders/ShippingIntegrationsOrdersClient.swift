@@ -48,6 +48,9 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterShippingIntegrationOrderIds: [
+    ///             "filter_shipping_integration_order_ids"
+    ///         ],
     ///         filterShippingIntegration: [
     ///             .xcelerator
     ///         ],
@@ -71,6 +74,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Search provider order IDs and reference numbers.
+    /// - Parameter filterShippingIntegrationOrderIds: Filter by selected shipping integration order ids
     /// - Parameter filterShippingIntegration: Filter by shipping integration(s)
     /// - Parameter filterStatus: Filter by unified status(es)
     /// - Parameter filterIntegrationOrderId: Filter by the provider's exact order ID
@@ -82,7 +86,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter filterFirstMirroredAtTimestampGte: Filter first_mirrored_at_timestamp >= value
     /// - Parameter filterFirstMirroredAtTimestampLte: Filter first_mirrored_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForIntegrationExecutorOperatorsV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
+    public func listForIntegrationExecutorOperatorsV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterShippingIntegrationOrderIds: [String]? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/list/for_integration_executor_operators/v1",
@@ -92,6 +96,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_shipping_integration_order_ids": filterShippingIntegrationOrderIds.map { .stringArray($0) }, 
                 "filter_shipping_integration": filterShippingIntegration.map { .unknown($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_integration_order_id": filterIntegrationOrderId.map { .string($0) }, 
@@ -123,6 +128,9 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterShippingIntegrationOrderIds: [
+    ///             "filter_shipping_integration_order_ids"
+    ///         ],
     ///         filterShippingIntegration: [
     ///             .xcelerator
     ///         ],
@@ -151,6 +159,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Search provider order IDs and reference numbers.
+    /// - Parameter filterShippingIntegrationOrderIds: Filter by selected shipping integration order ids
     /// - Parameter filterShippingIntegration: Filter by shipping integration(s)
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterStatus: Filter by unified status(es)
@@ -165,7 +174,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter filterFirstMirroredAtTimestampGte: Filter first_mirrored_at_timestamp >= value
     /// - Parameter filterFirstMirroredAtTimestampLte: Filter first_mirrored_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
+    public func listV1(sortBy: ShippingIntegrationOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterShippingIntegrationOrderIds: [String]? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/list/v1",
@@ -175,6 +184,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_shipping_integration_order_ids": filterShippingIntegrationOrderIds.map { .stringArray($0) }, 
                 "filter_shipping_integration": filterShippingIntegration.map { .unknown($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
@@ -204,6 +214,9 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.shippingIntegrations.orders.statusSummaryV1(
+    ///         filterShippingIntegrationOrderIds: [
+    ///             "filter_shipping_integration_order_ids"
+    ///         ],
     ///         filterShippingIntegration: [
     ///             .xcelerator
     ///         ],
@@ -229,6 +242,7 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter filterShippingIntegrationOrderIds: Filter by selected shipping integration order ids
     /// - Parameter filterShippingIntegration: Filter by shipping integration(s)
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterStatus: Filter by unified status(es)
@@ -243,11 +257,12 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
     /// - Parameter filterFirstMirroredAtTimestampGte: Filter first_mirrored_at_timestamp >= value
     /// - Parameter filterFirstMirroredAtTimestampLte: Filter first_mirrored_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func statusSummaryV1(filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderStatusSummaryRes {
+    public func statusSummaryV1(filterShippingIntegrationOrderIds: [String]? = nil, filterShippingIntegration: [OrgShippingIntegrationEnum1]? = nil, filterProviderOrgId: [String]? = nil, filterStatus: [ShippingIntegrationOrderStatusEnum1]? = nil, filterIntegrationOrderId: String? = nil, filterReferenceNumber: String? = nil, filterOrderedAtTimestampGte: Date? = nil, filterOrderedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterLastMirroredAtTimestampGte: Date? = nil, filterLastMirroredAtTimestampLte: Date? = nil, filterFirstMirroredAtTimestampGte: Date? = nil, filterFirstMirroredAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderStatusSummaryRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/orders/status_summary/v1",
             queryParams: [
+                "filter_shipping_integration_order_ids": filterShippingIntegrationOrderIds.map { .stringArray($0) }, 
                 "filter_shipping_integration": filterShippingIntegration.map { .unknown($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 

@@ -100,6 +100,9 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            filterConnectionIds: [
+                "filter_connection_ids"
+            ],
             filterAutoAssignEnabled: true,
             filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -162,6 +165,9 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            filterConnectionIds: [
+                "filter_connection_ids"
+            ],
             filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -290,6 +296,9 @@ import Chrt
             nearLongitude: 1.1,
             page: 1,
             pageSize: 1,
+            filterConnectionIds: [
+                "filter_connection_ids"
+            ],
             filterAutoAssignEnabled: true,
             filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -368,6 +377,9 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            filterConnectionIds: [
+                "filter_connection_ids"
+            ],
             filterAutoAssignEnabled: true,
             filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -492,6 +504,9 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            filterConnectionIds: [
+                "filter_connection_ids"
+            ],
             filterConnected: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )

@@ -533,6 +533,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterDispatchScienceOrderIds: [
+                "filter_dispatch_science_order_ids"
+            ],
             filterProviderOrgId: [
                 "filter_provider_org_id"
             ],
@@ -781,6 +784,53 @@ import Chrt
                 integrationOrderId: "integration_order_id",
                 providerOrgId: "provider_org_id"
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "integration_order_id",
+                    "values": [
+                      {
+                        "dispatch_science_order_ids": [
+                          "dispatch_science_order_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            DispatchScienceOrderTypeaheadResult(
+                type: .integrationOrderId,
+                values: [
+                    DispatchScienceOrderTypeaheadValue(
+                        dispatchScienceOrderIds: [
+                            "dispatch_science_order_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.shippingIntegrations.dispatchScience.orders.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

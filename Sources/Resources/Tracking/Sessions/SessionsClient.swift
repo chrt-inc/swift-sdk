@@ -148,6 +148,9 @@ public final class SessionsClient: Sendable {
     ///         pageSize: 1,
     ///         search: "search",
     ///         orgScope: .owned,
+    ///         filterSessionIds: [
+    ///             "filter_session_ids"
+    ///         ],
     ///         filterTerminated: true,
     ///         filterPublic: true,
     ///         filterDeviceId: "filter_device_id",
@@ -173,6 +176,7 @@ public final class SessionsClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query
     /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
+    /// - Parameter filterSessionIds: Filter by selected session ids
     /// - Parameter filterTerminated: Filter by terminated status
     /// - Parameter filterPublic: Filter by public visibility
     /// - Parameter filterDeviceId: Filter by device ID
@@ -189,7 +193,7 @@ public final class SessionsClient: Sendable {
     /// - Parameter filterTerminatedAtTimestampGte: Filter by terminated_at_timestamp >= value
     /// - Parameter filterTerminatedAtTimestampLte: Filter by terminated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFlightLoadedStatus: String? = nil, filterHasLastSeen: Bool? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
+    public func listV1(sortBy: SessionSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterSessionIds: [String]? = nil, filterTerminated: Bool? = nil, filterPublic: Bool? = nil, filterDeviceId: String? = nil, filterOffChrtReferenceId: String? = nil, filterFlightNumber: String? = nil, filterFlightLoadedStatus: String? = nil, filterHasLastSeen: Bool? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterTerminationScheduledForTimestampGte: Date? = nil, filterTerminationScheduledForTimestampLte: Date? = nil, filterTerminatedAtTimestampGte: Date? = nil, filterTerminatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> SessionListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/list/v1",
@@ -200,6 +204,7 @@ public final class SessionsClient: Sendable {
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
                 "org_scope": orgScope.map { .string($0.rawValue) }, 
+                "filter_session_ids": filterSessionIds.map { .stringArray($0) }, 
                 "filter_terminated": filterTerminated.map { .bool($0) }, 
                 "filter_public": filterPublic.map { .bool($0) }, 
                 "filter_device_id": filterDeviceId.map { .string($0) }, 
@@ -288,7 +293,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[SessionTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation
@@ -311,7 +316,7 @@ public final class SessionsClient: Sendable {
     /// - Parameter limit: Max results per field
     /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func typeaheadV1(query: String, limit: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingTypeaheadResult] {
+    public func typeaheadV1(query: String, limit: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> [SessionTypeaheadResult] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/sessions/typeahead/v1",
@@ -321,7 +326,7 @@ public final class SessionsClient: Sendable {
                 "org_scope": orgScope.map { .string($0.rawValue) }
             ],
             requestOptions: requestOptions,
-            responseType: [TrackingTypeaheadResult].self
+            responseType: [SessionTypeaheadResult].self
         )
     }
 

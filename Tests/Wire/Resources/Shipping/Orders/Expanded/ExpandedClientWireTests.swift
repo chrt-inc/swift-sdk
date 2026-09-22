@@ -1119,6 +1119,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOrderIds: [
+                "filter_order_ids"
+            ],
             filterStatus: [
                 .draft
             ],
@@ -1315,6 +1318,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOrderIds: [
+                "filter_order_ids"
+            ],
             filterStatus: [
                 .draft
             ],

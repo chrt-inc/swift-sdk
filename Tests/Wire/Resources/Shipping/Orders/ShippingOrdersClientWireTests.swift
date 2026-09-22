@@ -252,7 +252,17 @@ import Chrt
             body: Foundation.Data(
                 #"""
                 [
-                  "string"
+                  {
+                    "type": "label",
+                    "values": [
+                      {
+                        "order_ids": [
+                          "order_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
                 ]
                 """#.utf8
             )
@@ -263,7 +273,17 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            "string"
+            OrderLabelTypeaheadResult(
+                type: .label,
+                values: [
+                    OrderTypeaheadValue(
+                        orderIds: [
+                            "order_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
         ]
         let response = try await client.shipping.orders.typeaheadLabelV1(
             query: "query",

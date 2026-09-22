@@ -52,6 +52,9 @@ public final class ConnectionsClient: Sendable {
     ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterConnectionIds: [
+    ///             "filter_connection_ids"
+    ///         ],
     ///         filterAutoAssignEnabled: true,
     ///         filterConnected: true
     ///     )
@@ -61,10 +64,11 @@ public final class ConnectionsClient: Sendable {
     /// ```
     ///
     /// - Parameter search: Search by organization identity details
+    /// - Parameter filterConnectionIds: Filter by selected connection ids
     /// - Parameter filterAutoAssignEnabled: Filter by executor auto-assign consent
     /// - Parameter filterConnected: Filter by connection status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCoordinatorsForExecutorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterAutoAssignEnabled: Bool? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CoordinatorExecutorConnectionsForExecutorListRes {
+    public func listCoordinatorsForExecutorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterAutoAssignEnabled: Bool? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CoordinatorExecutorConnectionsForExecutorListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/coordinators/list/for_executor/v1",
@@ -72,6 +76,7 @@ public final class ConnectionsClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_connection_ids": filterConnectionIds.map { .stringArray($0) }, 
                 "filter_auto_assign_enabled": filterAutoAssignEnabled.map { .bool($0) }, 
                 "filter_connected": filterConnected.map { .bool($0) }
             ],
@@ -93,6 +98,9 @@ public final class ConnectionsClient: Sendable {
     ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterConnectionIds: [
+    ///             "filter_connection_ids"
+    ///         ],
     ///         filterConnected: true
     ///     )
     /// }
@@ -101,9 +109,10 @@ public final class ConnectionsClient: Sendable {
     /// ```
     ///
     /// - Parameter search: Search by organization identity details
+    /// - Parameter filterConnectionIds: Filter by selected connection ids
     /// - Parameter filterConnected: Filter by connection status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listCoordinatorsForShipperV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperCoordinatorConnectionsForShipperListRes {
+    public func listCoordinatorsForShipperV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperCoordinatorConnectionsForShipperListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/coordinators/list/for_shipper/v1",
@@ -111,6 +120,7 @@ public final class ConnectionsClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_connection_ids": filterConnectionIds.map { .stringArray($0) }, 
                 "filter_connected": filterConnected.map { .bool($0) }
             ],
             requestOptions: requestOptions,
@@ -188,6 +198,9 @@ public final class ConnectionsClient: Sendable {
     ///         nearLongitude: 1.1,
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterConnectionIds: [
+    ///             "filter_connection_ids"
+    ///         ],
     ///         filterAutoAssignEnabled: true,
     ///         filterConnected: true
     ///     )
@@ -198,10 +211,11 @@ public final class ConnectionsClient: Sendable {
     ///
     /// - Parameter nearLatitude: Geo-search latitude
     /// - Parameter nearLongitude: Geo-search longitude
+    /// - Parameter filterConnectionIds: Filter by selected connection ids
     /// - Parameter filterAutoAssignEnabled: Filter by executor auto-assign consent
     /// - Parameter filterConnected: Filter by connection status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listExecutorsGeoSearchForCoordinatorV1(nearLatitude: Double, nearLongitude: Double, page: Int? = nil, pageSize: Int? = nil, filterAutoAssignEnabled: Bool? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CoordinatorExecutorConnectionsForCoordinatorGeoSearchListRes {
+    public func listExecutorsGeoSearchForCoordinatorV1(nearLatitude: Double, nearLongitude: Double, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterAutoAssignEnabled: Bool? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CoordinatorExecutorConnectionsForCoordinatorGeoSearchListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/executors/geo_search/list/for_coordinator/v1",
@@ -210,6 +224,7 @@ public final class ConnectionsClient: Sendable {
                 "near_longitude": .double(nearLongitude), 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_connection_ids": filterConnectionIds.map { .stringArray($0) }, 
                 "filter_auto_assign_enabled": filterAutoAssignEnabled.map { .bool($0) }, 
                 "filter_connected": filterConnected.map { .bool($0) }
             ],
@@ -231,6 +246,9 @@ public final class ConnectionsClient: Sendable {
     ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterConnectionIds: [
+    ///             "filter_connection_ids"
+    ///         ],
     ///         filterAutoAssignEnabled: true,
     ///         filterConnected: true
     ///     )
@@ -240,10 +258,11 @@ public final class ConnectionsClient: Sendable {
     /// ```
     ///
     /// - Parameter search: Search by organization identity details
+    /// - Parameter filterConnectionIds: Filter by selected connection ids
     /// - Parameter filterAutoAssignEnabled: Filter by executor auto-assign consent
     /// - Parameter filterConnected: Filter by connection status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listExecutorsForCoordinatorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterAutoAssignEnabled: Bool? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CoordinatorExecutorConnectionsForCoordinatorListRes {
+    public func listExecutorsForCoordinatorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterAutoAssignEnabled: Bool? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> CoordinatorExecutorConnectionsForCoordinatorListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/executors/list/for_coordinator/v1",
@@ -251,6 +270,7 @@ public final class ConnectionsClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_connection_ids": filterConnectionIds.map { .stringArray($0) }, 
                 "filter_auto_assign_enabled": filterAutoAssignEnabled.map { .bool($0) }, 
                 "filter_connected": filterConnected.map { .bool($0) }
             ],
@@ -330,6 +350,9 @@ public final class ConnectionsClient: Sendable {
     ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterConnectionIds: [
+    ///             "filter_connection_ids"
+    ///         ],
     ///         filterConnected: true
     ///     )
     /// }
@@ -338,9 +361,10 @@ public final class ConnectionsClient: Sendable {
     /// ```
     ///
     /// - Parameter search: Search by organization identity details
+    /// - Parameter filterConnectionIds: Filter by selected connection ids
     /// - Parameter filterConnected: Filter by connection status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listShippersForCoordinatorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperCoordinatorConnectionsForCoordinatorListRes {
+    public func listShippersForCoordinatorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperCoordinatorConnectionsForCoordinatorListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/shippers/list/for_coordinator/v1",
@@ -348,6 +372,7 @@ public final class ConnectionsClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_connection_ids": filterConnectionIds.map { .stringArray($0) }, 
                 "filter_connected": filterConnected.map { .bool($0) }
             ],
             requestOptions: requestOptions,

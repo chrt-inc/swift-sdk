@@ -78,6 +78,9 @@ public final class Ontime360OrdersClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterOntime360OrderIds: [
+    ///             "filter_ontime360_order_ids"
+    ///         ],
     ///         filterProviderOrgId: [
     ///             "filter_provider_org_id"
     ///         ],
@@ -98,6 +101,7 @@ public final class Ontime360OrdersClient: Sendable {
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Search OnTime360 order IDs.
+    /// - Parameter filterOntime360OrderIds: Filter by ontime360 order IDs
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterIntegrationOrderId: Filter by OnTime360's exact order GUID
     /// - Parameter filterProviderStatusLevel: Filter by OnTime360's raw status level
@@ -108,7 +112,7 @@ public final class Ontime360OrdersClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
     /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OnTime360OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatusLevel: OnTime360StatusLevelEnum1? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OnTime360OrderListRes {
+    public func listV1(sortBy: OnTime360OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOntime360OrderIds: [String]? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatusLevel: OnTime360StatusLevelEnum1? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OnTime360OrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/ontime360/orders/list/v1",
@@ -118,6 +122,7 @@ public final class Ontime360OrdersClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_ontime360_order_ids": filterOntime360OrderIds.map { .stringArray($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_integration_order_id": filterIntegrationOrderId.map { .string($0) }, 
                 "filter_provider_status_level": filterProviderStatusLevel.map { .unknown($0) }, 
@@ -159,6 +164,40 @@ public final class Ontime360OrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OnTime360Order1.self
+        )
+    }
+
+    /// Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[OnTime360OrderTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.ontime360.orders.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OnTime360OrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/ontime360/orders/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OnTime360OrderTypeaheadResult].self
         )
     }
 }

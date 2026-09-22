@@ -79,7 +79,9 @@ public final class DevicesClient: Sendable {
     ///         pageSize: 1,
     ///         search: "search",
     ///         orgScope: .owned,
-    ///         filterDeviceId: "filter_device_id",
+    ///         filterDeviceIds: [
+    ///             "filter_device_ids"
+    ///         ],
     ///         filterDeviceMacAddress: "filter_device_mac_address",
     ///         filterOffChrtReferenceId: "filter_off_chrt_reference_id",
     ///         filterType: .d15NTag,
@@ -104,7 +106,7 @@ public final class DevicesClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query
     /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
-    /// - Parameter filterDeviceId: Filter by device ID (exact match)
+    /// - Parameter filterDeviceIds: Filter by selected device ids
     /// - Parameter filterDeviceMacAddress: Filter by device MAC address (exact match)
     /// - Parameter filterOffChrtReferenceId: Filter by off-CHRT reference ID (exact match)
     /// - Parameter filterType: Filter by device type
@@ -120,7 +122,7 @@ public final class DevicesClient: Sendable {
     /// - Parameter filterFirstSeenAtTimestampLte: Filter by first_seen_at_timestamp <= value
     /// - Parameter filterArchived: Filter by archived status
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterDeviceId: String? = nil, filterDeviceMacAddress: String? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterHasActiveSession: Bool? = nil, filterHasActiveCargo: Bool? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterFirstSeenAtTimestampGte: Date? = nil, filterFirstSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
+    public func listV1(sortBy: DeviceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, orgScope: TrackingOrgScopeEnum? = nil, filterDeviceIds: [String]? = nil, filterDeviceMacAddress: String? = nil, filterOffChrtReferenceId: String? = nil, filterType: TrackingDeviceTypeEnum1? = nil, filterActiveCargoId: String? = nil, filterActiveSessionId: String? = nil, filterHasActiveSession: Bool? = nil, filterHasActiveCargo: Bool? = nil, filterRegisteredAtTimestampGte: Date? = nil, filterRegisteredAtTimestampLte: Date? = nil, filterLastSeenAtTimestampGte: Date? = nil, filterLastSeenAtTimestampLte: Date? = nil, filterFirstSeenAtTimestampGte: Date? = nil, filterFirstSeenAtTimestampLte: Date? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> DeviceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/list/v1",
@@ -131,7 +133,7 @@ public final class DevicesClient: Sendable {
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
                 "org_scope": orgScope.map { .string($0.rawValue) }, 
-                "filter_device_id": filterDeviceId.map { .string($0) }, 
+                "filter_device_ids": filterDeviceIds.map { .stringArray($0) }, 
                 "filter_device_mac_address": filterDeviceMacAddress.map { .string($0) }, 
                 "filter_off_chrt_reference_id": filterOffChrtReferenceId.map { .string($0) }, 
                 "filter_type": filterType.map { .string($0.rawValue) }, 
@@ -209,7 +211,7 @@ public final class DevicesClient: Sendable {
         )
     }
 
-    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[TrackingTypeaheadResult])
+    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching devices. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[DeviceTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation
@@ -232,7 +234,7 @@ public final class DevicesClient: Sendable {
     /// - Parameter limit: Max results per field
     /// - Parameter orgScope: Filter by org ownership: owned, shared, or owned_and_shared
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func typeaheadV1(query: String, limit: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> [TrackingTypeaheadResult] {
+    public func typeaheadV1(query: String, limit: Int? = nil, orgScope: TrackingOrgScopeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> [DeviceTypeaheadResult] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/tracking/devices/typeahead/v1",
@@ -242,7 +244,7 @@ public final class DevicesClient: Sendable {
                 "org_scope": orgScope.map { .string($0.rawValue) }
             ],
             requestOptions: requestOptions,
-            responseType: [TrackingTypeaheadResult].self
+            responseType: [DeviceTypeaheadResult].self
         )
     }
 

@@ -184,6 +184,9 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.contacts.listV1(
+            filterContactIds: [
+                "filter_contact_ids"
+            ],
             search: "search",
             filterOrgId: "filter_org_id",
             filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
@@ -192,6 +195,53 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "name",
+                    "values": [
+                      {
+                        "contact_ids": [
+                          "contact_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            ContactTypeaheadResult(
+                type: .name,
+                values: [
+                    ContactTypeaheadValue(
+                        contactIds: [
+                            "contact_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.orgs.contacts.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

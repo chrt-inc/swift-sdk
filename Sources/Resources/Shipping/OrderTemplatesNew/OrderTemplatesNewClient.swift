@@ -115,6 +115,9 @@ public final class OrderTemplatesNewClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterOrderTemplateNewIds: [
+    ///             "filter_order_template_new_ids"
+    ///         ],
     ///         filterArchived: true,
     ///         filterOwnedByUserId: "filter_owned_by_user_id",
     ///         filterCoordinatorLabels: [
@@ -142,9 +145,10 @@ public final class OrderTemplatesNewClient: Sendable {
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Full-text search query for template name or description.
+    /// - Parameter filterOrderTemplateNewIds: Filter by order template new IDs
     /// - Parameter filterArchived: Include archived templates instead of active templates.
     /// - Parameter filterOwnedByUserId: Filter by the user that created the template.
-    /// - Parameter filterCoordinatorLabels: Filter by any of the supplied coordinator labels (exact match).
+    /// - Parameter filterCoordinatorLabels: Filter by all supplied coordinator labels (exact matches).
     /// - Parameter filterExecutorOrgId: Filter by an on-CHRT executor organization ID.
     /// - Parameter filterOffChrtExecutorOrgDataId: Filter by an off-CHRT executor organization data ID.
     /// - Parameter filterShipperOrgId: Filter by an on-CHRT shipper organization ID.
@@ -157,7 +161,7 @@ public final class OrderTemplatesNewClient: Sendable {
     /// - Parameter filterLastUsedAtTimestampGte: Filter last_used_at_timestamp >= value (inclusive).
     /// - Parameter filterLastUsedAtTimestampLte: Filter last_used_at_timestamp <= value (inclusive).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCoordinatorLabels: [String]? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
+    public func listV1(sortBy: OrderTemplateNewSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderTemplateNewIds: [String]? = nil, filterArchived: Bool? = nil, filterOwnedByUserId: String? = nil, filterCoordinatorLabels: [String]? = nil, filterExecutorOrgId: String? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, filterLastUsedAtTimestampGte: Date? = nil, filterLastUsedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> OrderTemplateNewListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/order_templates_new/list/v1",
@@ -167,6 +171,7 @@ public final class OrderTemplatesNewClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_order_template_new_ids": filterOrderTemplateNewIds.map { .stringArray($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }, 
                 "filter_owned_by_user_id": filterOwnedByUserId.map { .string($0) }, 
                 "filter_coordinator_labels": filterCoordinatorLabels.map { .stringArray($0) }, 
@@ -184,6 +189,40 @@ public final class OrderTemplatesNewClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: OrderTemplateNewListRes.self
+        )
+    }
+
+    /// Returns matching name values and their IDs within the caller's organization, excluding archived order templates. | authz: min_org_role=operator | () -> (list[OrderTemplateNewTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orderTemplatesNew.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrderTemplateNewTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping/order_templates_new/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OrderTemplateNewTypeaheadResult].self
         )
     }
 

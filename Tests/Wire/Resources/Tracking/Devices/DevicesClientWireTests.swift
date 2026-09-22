@@ -673,7 +673,9 @@ import Chrt
             pageSize: 1,
             search: "search",
             orgScope: .owned,
-            filterDeviceId: "filter_device_id",
+            filterDeviceIds: [
+                "filter_device_ids"
+            ],
             filterDeviceMacAddress: "filter_device_mac_address",
             filterOffChrtReferenceId: "filter_off_chrt_reference_id",
             filterType: .d15NTag,
@@ -749,7 +751,12 @@ import Chrt
                   {
                     "type": "device_mac_address",
                     "values": [
-                      "values"
+                      {
+                        "device_ids": [
+                          "device_ids"
+                        ],
+                        "value": "value"
+                      }
                     ]
                   }
                 ]
@@ -762,10 +769,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            TrackingTypeaheadResult(
+            DeviceTypeaheadResult(
                 type: TrackingTypeaheadFieldEnum.deviceMacAddress,
                 values: [
-                    "values"
+                    DeviceTypeaheadValue(
+                        deviceIds: [
+                            "device_ids"
+                        ],
+                        value: "value"
+                    )
                 ]
             )
         ]

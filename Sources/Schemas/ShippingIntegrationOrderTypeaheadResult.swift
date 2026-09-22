@@ -2,13 +2,13 @@ import Foundation
 
 public struct ShippingIntegrationOrderTypeaheadResult: Codable, Hashable, Sendable {
     public let type: ShippingIntegrationOrderTypeaheadFieldEnum
-    public let values: [String]
+    public let values: [ShippingIntegrationOrderTypeaheadValue]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         type: ShippingIntegrationOrderTypeaheadFieldEnum,
-        values: [String],
+        values: [ShippingIntegrationOrderTypeaheadValue],
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.type = type
@@ -19,7 +19,7 @@ public struct ShippingIntegrationOrderTypeaheadResult: Codable, Hashable, Sendab
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(ShippingIntegrationOrderTypeaheadFieldEnum.self, forKey: .type)
-        self.values = try container.decode([String].self, forKey: .values)
+        self.values = try container.decode([ShippingIntegrationOrderTypeaheadValue].self, forKey: .values)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

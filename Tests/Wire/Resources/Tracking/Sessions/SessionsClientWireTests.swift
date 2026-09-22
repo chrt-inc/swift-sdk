@@ -545,6 +545,9 @@ import Chrt
             pageSize: 1,
             search: "search",
             orgScope: .owned,
+            filterSessionIds: [
+                "filter_session_ids"
+            ],
             filterTerminated: true,
             filterPublic: true,
             filterDeviceId: "filter_device_id",
@@ -631,7 +634,12 @@ import Chrt
                   {
                     "type": "device_mac_address",
                     "values": [
-                      "values"
+                      {
+                        "session_ids": [
+                          "session_ids"
+                        ],
+                        "value": "value"
+                      }
                     ]
                   }
                 ]
@@ -644,10 +652,15 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = [
-            TrackingTypeaheadResult(
+            SessionTypeaheadResult(
                 type: TrackingTypeaheadFieldEnum.deviceMacAddress,
                 values: [
-                    "values"
+                    SessionTypeaheadValue(
+                        sessionIds: [
+                            "session_ids"
+                        ],
+                        value: "value"
+                    )
                 ]
             )
         ]

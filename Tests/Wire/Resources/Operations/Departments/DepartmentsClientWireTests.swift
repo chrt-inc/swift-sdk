@@ -119,6 +119,9 @@ import Chrt
             search: "search",
             page: 1,
             pageSize: 1,
+            filterDepartmentIds: [
+                "filter_department_ids"
+            ],
             filterDepartmentType: [
                 .aerospace
             ],
@@ -145,6 +148,53 @@ import Chrt
         let response = try await client.operations.departments.removeOperatorV1(
             departmentId: "department_id",
             userId: "user_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "name",
+                    "values": [
+                      {
+                        "department_ids": [
+                          "department_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            DepartmentTypeaheadResult(
+                type: DepartmentTypeaheadFieldEnum.name,
+                values: [
+                    DepartmentTypeaheadValue(
+                        departmentIds: [
+                            "department_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.operations.departments.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

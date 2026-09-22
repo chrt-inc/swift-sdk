@@ -428,6 +428,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterShippingIntegrationOrderIds: [
+                "filter_shipping_integration_order_ids"
+            ],
             filterShippingIntegration: [
                 .xcelerator
             ],
@@ -560,6 +563,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterShippingIntegrationOrderIds: [
+                "filter_shipping_integration_order_ids"
+            ],
             filterShippingIntegration: [
                 .xcelerator
             ],
@@ -614,6 +620,9 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.shippingIntegrations.orders.statusSummaryV1(
+            filterShippingIntegrationOrderIds: [
+                "filter_shipping_integration_order_ids"
+            ],
             filterShippingIntegration: [
                 .xcelerator
             ],
@@ -647,7 +656,12 @@ import Chrt
                   {
                     "type": "integration_order_id",
                     "values": [
-                      "values"
+                      {
+                        "shipping_integration_order_ids": [
+                          "shipping_integration_order_ids"
+                        ],
+                        "value": "value"
+                      }
                     ]
                   }
                 ]
@@ -663,7 +677,12 @@ import Chrt
             ShippingIntegrationOrderTypeaheadResult(
                 type: ShippingIntegrationOrderTypeaheadFieldEnum.integrationOrderId,
                 values: [
-                    "values"
+                    ShippingIntegrationOrderTypeaheadValue(
+                        shippingIntegrationOrderIds: [
+                            "shipping_integration_order_ids"
+                        ],
+                        value: "value"
+                    )
                 ]
             )
         ]

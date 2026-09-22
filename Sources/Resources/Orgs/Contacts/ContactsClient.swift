@@ -128,6 +128,9 @@ public final class ContactsClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.orgs.contacts.listV1(
+    ///         filterContactIds: [
+    ///             "filter_contact_ids"
+    ///         ],
     ///         search: "search",
     ///         filterOrgId: "filter_org_id",
     ///         filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
@@ -142,6 +145,7 @@ public final class ContactsClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter filterContactIds: Filter by selected contact ids
     /// - Parameter search: Full-text search query
     /// - Parameter filterOrgId: Filter by associated on-CHRT organization
     /// - Parameter filterOffChrtOrgDataId: Filter by associated off-CHRT organization data
@@ -149,11 +153,12 @@ public final class ContactsClient: Sendable {
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, filterOrgId: String? = nil, filterOffChrtOrgDataId: String? = nil, filterAccountId: String? = nil, sortBy: ContactSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ContactListRes {
+    public func listV1(filterContactIds: [String]? = nil, search: String? = nil, filterOrgId: String? = nil, filterOffChrtOrgDataId: String? = nil, filterAccountId: String? = nil, sortBy: ContactSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ContactListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/contacts/list/v1",
             queryParams: [
+                "filter_contact_ids": filterContactIds.map { .stringArray($0) }, 
                 "search": search.map { .string($0) }, 
                 "filter_org_id": filterOrgId.map { .string($0) }, 
                 "filter_off_chrt_org_data_id": filterOffChrtOrgDataId.map { .string($0) }, 
@@ -165,6 +170,40 @@ public final class ContactsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: ContactListRes.self
+        )
+    }
+
+    /// Returns matching name values and their IDs within the caller's organization. | authz: min_org_role=operator | () -> (list[ContactTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.contacts.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [ContactTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/contacts/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [ContactTypeaheadResult].self
         )
     }
 

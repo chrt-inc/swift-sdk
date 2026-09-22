@@ -406,6 +406,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterChrtGroundProviderRatesIds: [
+                "filter_chrt_ground_provider_rates_ids"
+            ],
             filterServiceLine: [
                 .onDemand
             ],
@@ -593,6 +596,53 @@ import Chrt
         ]
         let response = try await client.billingNew.chrtGroundProviderRates.resolveV1(
             request: .init(orderId: "order_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "name",
+                    "values": [
+                      {
+                        "chrt_ground_provider_rates_ids": [
+                          "chrt_ground_provider_rates_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            ChrtGroundProviderRatesTypeaheadResult(
+                type: .name,
+                values: [
+                    ChrtGroundProviderRatesTypeaheadValue(
+                        chrtGroundProviderRatesIds: [
+                            "chrt_ground_provider_rates_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.billingNew.chrtGroundProviderRates.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

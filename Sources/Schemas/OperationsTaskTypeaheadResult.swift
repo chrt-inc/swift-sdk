@@ -2,13 +2,13 @@ import Foundation
 
 public struct OperationsTaskTypeaheadResult: Codable, Hashable, Sendable {
     public let type: OperationsTaskTypeaheadFieldEnum
-    public let values: [String]?
+    public let values: [OperationsTaskTypeaheadValue]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         type: OperationsTaskTypeaheadFieldEnum,
-        values: [String]? = nil,
+        values: [OperationsTaskTypeaheadValue]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.type = type
@@ -19,7 +19,7 @@ public struct OperationsTaskTypeaheadResult: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(OperationsTaskTypeaheadFieldEnum.self, forKey: .type)
-        self.values = try container.decodeIfPresent([String].self, forKey: .values)
+        self.values = try container.decodeIfPresent([OperationsTaskTypeaheadValue].self, forKey: .values)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

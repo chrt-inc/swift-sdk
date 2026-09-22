@@ -1227,6 +1227,9 @@ import Chrt
             sortOrder: .asc,
             page: 1,
             pageSize: 1,
+            filterInvoiceIds: [
+                "filter_invoice_ids"
+            ],
             filterStatuses: [
                 .draft
             ],
@@ -1705,6 +1708,53 @@ import Chrt
                 ],
                 schemaVersion: 1
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "name",
+                    "values": [
+                      {
+                        "invoice_ids": [
+                          "invoice_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            InvoiceTypeaheadResult(
+                type: .name,
+                values: [
+                    InvoiceTypeaheadValue(
+                        invoiceIds: [
+                            "invoice_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.billingNew.invoices.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

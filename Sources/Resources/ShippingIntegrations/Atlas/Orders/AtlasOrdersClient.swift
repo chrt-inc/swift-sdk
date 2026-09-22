@@ -78,6 +78,9 @@ public final class AtlasOrdersClient: Sendable {
     ///         limit: 1,
     ///         page: 1,
     ///         search: "search",
+    ///         filterAtlasOrderIds: [
+    ///             "filter_atlas_order_ids"
+    ///         ],
     ///         filterProviderOrgId: [
     ///             "filter_provider_org_id"
     ///         ],
@@ -99,6 +102,7 @@ public final class AtlasOrdersClient: Sendable {
     /// - Parameter limit: Max items to return
     /// - Parameter page: Page number (1-indexed)
     /// - Parameter search: Search Atlas order IDs.
+    /// - Parameter filterAtlasOrderIds: Filter by atlas order IDs
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterIntegrationOrderId: Filter by Atlas's exact order ID
     /// - Parameter filterMirroredAtTimestampGte: Filter mirrored_at_timestamp >= value
@@ -108,7 +112,7 @@ public final class AtlasOrdersClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
     /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: AtlasOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, limit: Int? = nil, page: Int? = nil, search: String? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> AtlasOrderListRes {
+    public func listV1(sortBy: AtlasOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, limit: Int? = nil, page: Int? = nil, search: String? = nil, filterAtlasOrderIds: [String]? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> AtlasOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/atlas/orders/list/v1",
@@ -118,6 +122,7 @@ public final class AtlasOrdersClient: Sendable {
                 "limit": limit.map { .int($0) }, 
                 "page": page.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_atlas_order_ids": filterAtlasOrderIds.map { .stringArray($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_integration_order_id": filterIntegrationOrderId.map { .string($0) }, 
                 "filter_mirrored_at_timestamp_gte": filterMirroredAtTimestampGte.map { .date($0) }, 
@@ -158,6 +163,40 @@ public final class AtlasOrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: AtlasOrder1.self
+        )
+    }
+
+    /// Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[AtlasOrderTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.atlas.orders.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [AtlasOrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/atlas/orders/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [AtlasOrderTypeaheadResult].self
         )
     }
 }

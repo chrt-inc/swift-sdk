@@ -687,6 +687,9 @@ import Chrt
             limit: 1,
             page: 1,
             search: "search",
+            filterCxtOrderIds: [
+                "filter_cxt_order_ids"
+            ],
             filterProviderOrgId: [
                 "filter_provider_org_id"
             ],
@@ -938,6 +941,53 @@ import Chrt
                 integrationOrderId: "integration_order_id",
                 providerOrgId: "provider_org_id"
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "integration_order_id",
+                    "values": [
+                      {
+                        "cxt_order_ids": [
+                          "cxt_order_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            CxtOrderTypeaheadResult(
+                type: .integrationOrderId,
+                values: [
+                    CxtOrderTypeaheadValue(
+                        cxtOrderIds: [
+                            "cxt_order_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.shippingIntegrations.cxt.orders.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

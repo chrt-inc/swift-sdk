@@ -78,6 +78,9 @@ public final class XceleratorOrdersClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterXceleratorOrderIds: [
+    ///             "filter_xcelerator_order_ids"
+    ///         ],
     ///         filterProviderOrgId: [
     ///             "filter_provider_org_id"
     ///         ],
@@ -98,6 +101,7 @@ public final class XceleratorOrdersClient: Sendable {
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Search Xcelerator order IDs.
+    /// - Parameter filterXceleratorOrderIds: Filter by xcelerator order IDs
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterIntegrationOrderId: Filter by Xcelerator's exact order tracking ID
     /// - Parameter filterProviderStatusRaw: Filter by Xcelerator's raw status letter
@@ -108,7 +112,7 @@ public final class XceleratorOrdersClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
     /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: XceleratorOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatusRaw: String? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrderListRes {
+    public func listV1(sortBy: XceleratorOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterXceleratorOrderIds: [String]? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatusRaw: String? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> XceleratorOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/xcelerator/orders/list/v1",
@@ -118,6 +122,7 @@ public final class XceleratorOrdersClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_xcelerator_order_ids": filterXceleratorOrderIds.map { .stringArray($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_integration_order_id": filterIntegrationOrderId.map { .string($0) }, 
                 "filter_provider_status_raw": filterProviderStatusRaw.map { .string($0) }, 
@@ -159,6 +164,40 @@ public final class XceleratorOrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: XceleratorOrder1.self
+        )
+    }
+
+    /// Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[XceleratorOrderTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.xcelerator.orders.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [XceleratorOrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/xcelerator/orders/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [XceleratorOrderTypeaheadResult].self
         )
     }
 }

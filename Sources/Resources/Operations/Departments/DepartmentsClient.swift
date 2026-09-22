@@ -51,6 +51,9 @@ public final class DepartmentsClient: Sendable {
     ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterDepartmentIds: [
+    ///             "filter_department_ids"
+    ///         ],
     ///         filterDepartmentType: [
     ///             .aerospace
     ///         ]
@@ -63,9 +66,10 @@ public final class DepartmentsClient: Sendable {
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Search name and short_id using Atlas Search
+    /// - Parameter filterDepartmentIds: Filter by selected department ids
     /// - Parameter filterDepartmentType: Filter by department type(s)
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DepartmentSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentType: [DepartmentTypeEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DepartmentListRes {
+    public func listV1(sortBy: DepartmentSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterDepartmentIds: [String]? = nil, filterDepartmentType: [DepartmentTypeEnum]? = nil, requestOptions: RequestOptions? = nil) async throws -> DepartmentListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/departments/list/v1",
@@ -75,6 +79,7 @@ public final class DepartmentsClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_department_ids": filterDepartmentIds.map { .stringArray($0) }, 
                 "filter_department_type": filterDepartmentType.map { .unknown($0) }
             ],
             requestOptions: requestOptions,
@@ -108,6 +113,40 @@ public final class DepartmentsClient: Sendable {
             path: "/operations/departments/remove_operator/v1/\(departmentId)/\(userId)",
             requestOptions: requestOptions,
             responseType: Bool.self
+        )
+    }
+
+    /// Returns matching name, short_id values and their IDs within the caller's organization. | authz: min_org_role=operator | () -> (list[DepartmentTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.departments.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [DepartmentTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/departments/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [DepartmentTypeaheadResult].self
         )
     }
 

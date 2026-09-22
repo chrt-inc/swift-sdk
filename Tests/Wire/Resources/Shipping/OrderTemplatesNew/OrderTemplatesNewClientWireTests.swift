@@ -500,6 +500,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOrderTemplateNewIds: [
+                "filter_order_template_new_ids"
+            ],
             filterArchived: true,
             filterOwnedByUserId: "filter_owned_by_user_id",
             filterCoordinatorLabels: [
@@ -518,6 +521,53 @@ import Chrt
             filterLastEditedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastUsedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterLastUsedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "name",
+                    "values": [
+                      {
+                        "order_template_new_ids": [
+                          "order_template_new_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            OrderTemplateNewTypeaheadResult(
+                type: .name,
+                values: [
+                    OrderTemplateNewTypeaheadValue(
+                        orderTemplateNewIds: [
+                            "order_template_new_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.shipping.orderTemplatesNew.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

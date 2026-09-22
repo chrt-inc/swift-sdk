@@ -183,6 +183,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOperationsTaskIds: [
+                "filter_operations_task_ids"
+            ],
             filterOrderIds: [
                 "filter_order_ids"
             ],
@@ -292,6 +295,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterOperationsTaskIds: [
+                "filter_operations_task_ids"
+            ],
             filterOrderIds: [
                 "filter_order_ids"
             ],
@@ -387,7 +393,12 @@ import Chrt
                   {
                     "type": "entry_tag",
                     "values": [
-                      "values"
+                      {
+                        "operations_task_ids": [
+                          "operations_task_ids"
+                        ],
+                        "value": "value"
+                      }
                     ]
                   }
                 ]
@@ -403,7 +414,12 @@ import Chrt
             OperationsTaskTypeaheadResult(
                 type: .entryTag,
                 values: Optional([
-                    "values"
+                    OperationsTaskTypeaheadValue(
+                        operationsTaskIds: [
+                            "operations_task_ids"
+                        ],
+                        value: "value"
+                    )
                 ])
             )
         ]

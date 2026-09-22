@@ -78,6 +78,9 @@ public final class DispatchScienceOrdersClient: Sendable {
     ///         page: 1,
     ///         pageSize: 1,
     ///         search: "search",
+    ///         filterDispatchScienceOrderIds: [
+    ///             "filter_dispatch_science_order_ids"
+    ///         ],
     ///         filterProviderOrgId: [
     ///             "filter_provider_org_id"
     ///         ],
@@ -98,6 +101,7 @@ public final class DispatchScienceOrdersClient: Sendable {
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order (asc or desc).
     /// - Parameter search: Search DispatchScience order IDs.
+    /// - Parameter filterDispatchScienceOrderIds: Filter by dispatch science order IDs
     /// - Parameter filterProviderOrgId: Filter by provider org ID(s)
     /// - Parameter filterIntegrationOrderId: Filter by DispatchScience's exact order ID
     /// - Parameter filterProviderStatus: Filter by DispatchScience's raw status integer (0 Received, 1 Assigned, 2 PickedUp, 3 EnRoute, 4 Delivered, 91 Cancelled)
@@ -108,7 +112,7 @@ public final class DispatchScienceOrdersClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter updated_at_timestamp >= value
     /// - Parameter filterUpdatedAtTimestampLte: Filter updated_at_timestamp <= value
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: DispatchScienceOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatus: Int? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> DispatchScienceOrderListRes {
+    public func listV1(sortBy: DispatchScienceOrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterDispatchScienceOrderIds: [String]? = nil, filterProviderOrgId: [String]? = nil, filterIntegrationOrderId: String? = nil, filterProviderStatus: Int? = nil, filterMirroredAtTimestampGte: Date? = nil, filterMirroredAtTimestampLte: Date? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> DispatchScienceOrderListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping_integrations/dispatch_science/orders/list/v1",
@@ -118,6 +122,7 @@ public final class DispatchScienceOrdersClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
+                "filter_dispatch_science_order_ids": filterDispatchScienceOrderIds.map { .stringArray($0) }, 
                 "filter_provider_org_id": filterProviderOrgId.map { .stringArray($0) }, 
                 "filter_integration_order_id": filterIntegrationOrderId.map { .string($0) }, 
                 "filter_provider_status": filterProviderStatus.map { .int($0) }, 
@@ -159,6 +164,40 @@ public final class DispatchScienceOrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: DispatchScienceOrder1.self
+        )
+    }
+
+    /// Returns matching integration_order_id values and their IDs within the caller's organization. | () -> (list[DispatchScienceOrderTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.dispatchScience.orders.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [DispatchScienceOrderTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/dispatch_science/orders/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [DispatchScienceOrderTypeaheadResult].self
         )
     }
 }

@@ -108,8 +108,10 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.orgs.accounts.listV1(
+            filterAccountIds: [
+                "filter_account_ids"
+            ],
             search: "search",
-            filterAccountId: "filter_account_id",
             filterOrgId: "filter_org_id",
             filterOffChrtOrgDataId: "filter_off_chrt_org_data_id",
             sortBy: .name,

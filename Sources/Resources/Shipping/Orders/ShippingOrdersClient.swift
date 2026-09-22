@@ -306,7 +306,7 @@ public final class ShippingOrdersClient: Sendable {
         )
     }
 
-    /// Returns distinct label values matching the query for orders where the caller is coordinator (coordinator_labels) or executor (task_group_details.executor_labels). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[str])
+    /// Returns distinct label values matching the query for orders where the caller is coordinator (coordinator_labels) or executor (task_group_details.executor_labels). | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[OrderLabelTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation
@@ -327,7 +327,7 @@ public final class ShippingOrdersClient: Sendable {
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func typeaheadLabelV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [String] {
+    public func typeaheadLabelV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OrderLabelTypeaheadResult] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/orders/typeahead/label/v1",
@@ -336,7 +336,7 @@ public final class ShippingOrdersClient: Sendable {
                 "limit": limit.map { .int($0) }
             ],
             requestOptions: requestOptions,
-            responseType: [String].self
+            responseType: [OrderLabelTypeaheadResult].self
         )
     }
 

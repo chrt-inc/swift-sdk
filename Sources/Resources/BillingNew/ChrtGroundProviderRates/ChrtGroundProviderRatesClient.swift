@@ -102,6 +102,9 @@ public final class ChrtGroundProviderRatesClient: Sendable {
     ///         sortOrder: .asc,
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterChrtGroundProviderRatesIds: [
+    ///             "filter_chrt_ground_provider_rates_ids"
+    ///         ],
     ///         filterServiceLine: [
     ///             .onDemand
     ///         ],
@@ -134,6 +137,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
     /// - Parameter search: Search rate names and comments.
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order.
+    /// - Parameter filterChrtGroundProviderRatesIds: Filter by CHRT ground provider rate IDs
     /// - Parameter filterServiceLine: Filter by one or more service lines.
     /// - Parameter filterInvoiceTypes: Filter by one or more invoice types.
     /// - Parameter filterCurrencyCodes: Filter by one or more currency codes.
@@ -148,7 +152,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
     /// - Parameter filterUpdatedAtTimestampGte: Filter by updated_at_timestamp greater than or equal.
     /// - Parameter filterUpdatedAtTimestampLte: Filter by updated_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, sortBy: ChrtGroundProviderRatesSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterInvoiceTypes: [InvoiceTypeEnum1]? = nil, filterCurrencyCodes: [BillingCurrencyCodeEnum1]? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterShipperAccountId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCargoTypes: [CargoTypeEnum1]? = nil, filterVehicleTypes: [VehicleTypeEnum]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ChrtGroundProviderRatesListRes {
+    public func listV1(search: String? = nil, sortBy: ChrtGroundProviderRatesSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterChrtGroundProviderRatesIds: [String]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterInvoiceTypes: [InvoiceTypeEnum1]? = nil, filterCurrencyCodes: [BillingCurrencyCodeEnum1]? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterShipperAccountId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCargoTypes: [CargoTypeEnum1]? = nil, filterVehicleTypes: [VehicleTypeEnum]? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterUpdatedAtTimestampGte: Date? = nil, filterUpdatedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> ChrtGroundProviderRatesListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/chrt_ground_provider_rates/list/v1",
@@ -158,6 +162,7 @@ public final class ChrtGroundProviderRatesClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_chrt_ground_provider_rates_ids": filterChrtGroundProviderRatesIds.map { .stringArray($0) }, 
                 "filter_service_line": filterServiceLine.map { .unknown($0) }, 
                 "filter_invoice_types": filterInvoiceTypes.map { .unknown($0) }, 
                 "filter_currency_codes": filterCurrencyCodes.map { .unknown($0) }, 
@@ -200,6 +205,40 @@ public final class ChrtGroundProviderRatesClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: [ResolvedTaskGroupChrtGroundProviderRates1].self
+        )
+    }
+
+    /// Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[ChrtGroundProviderRatesTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.chrtGroundProviderRates.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [ChrtGroundProviderRatesTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/chrt_ground_provider_rates/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [ChrtGroundProviderRatesTypeaheadResult].self
         )
     }
 

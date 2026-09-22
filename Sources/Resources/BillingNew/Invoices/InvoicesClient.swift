@@ -222,6 +222,9 @@ public final class InvoicesClient: Sendable {
     ///         sortOrder: .asc,
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterInvoiceIds: [
+    ///             "filter_invoice_ids"
+    ///         ],
     ///         filterStatuses: [
     ///             .draft
     ///         ],
@@ -248,6 +251,7 @@ public final class InvoicesClient: Sendable {
     /// - Parameter search: Search invoice names and descriptions.
     /// - Parameter sortBy: Field to sort by.
     /// - Parameter sortOrder: Sort order.
+    /// - Parameter filterInvoiceIds: Filter by selected invoice ids
     /// - Parameter filterStatuses: Filter by one or more invoice statuses.
     /// - Parameter filterInvoiceTypes: Filter by one or more invoice types.
     /// - Parameter filterCurrencyCodes: Filter by one or more currency codes.
@@ -260,7 +264,7 @@ public final class InvoicesClient: Sendable {
     /// - Parameter filterLastEditedAtTimestampGte: Filter by last_edited_at_timestamp greater than or equal.
     /// - Parameter filterLastEditedAtTimestampLte: Filter by last_edited_at_timestamp less than or equal.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, sortBy: InvoiceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterStatuses: [InvoiceStatusEnum1]? = nil, filterInvoiceTypes: [InvoiceTypeEnum1]? = nil, filterCurrencyCodes: [BillingCurrencyCodeEnum1]? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCounterpartyAccountId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceListRes {
+    public func listV1(search: String? = nil, sortBy: InvoiceSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, filterInvoiceIds: [String]? = nil, filterStatuses: [InvoiceStatusEnum1]? = nil, filterInvoiceTypes: [InvoiceTypeEnum1]? = nil, filterCurrencyCodes: [BillingCurrencyCodeEnum1]? = nil, filterCounterpartyOrgId: String? = nil, filterCounterpartyOffChrtOrgDataId: String? = nil, filterCounterpartyDriverId: String? = nil, filterCounterpartyAccountId: String? = nil, filterCreatedAtTimestampGte: Date? = nil, filterCreatedAtTimestampLte: Date? = nil, filterLastEditedAtTimestampGte: Date? = nil, filterLastEditedAtTimestampLte: Date? = nil, requestOptions: RequestOptions? = nil) async throws -> InvoiceListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/billing_new/invoices/list/v1",
@@ -270,6 +274,7 @@ public final class InvoicesClient: Sendable {
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_invoice_ids": filterInvoiceIds.map { .stringArray($0) }, 
                 "filter_statuses": filterStatuses.map { .unknown($0) }, 
                 "filter_invoice_types": filterInvoiceTypes.map { .unknown($0) }, 
                 "filter_currency_codes": filterCurrencyCodes.map { .unknown($0) }, 
@@ -347,6 +352,40 @@ public final class InvoicesClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: InvoicePreviewFromOrdersRes.self
+        )
+    }
+
+    /// Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[InvoiceTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoices.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [InvoiceTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/invoices/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [InvoiceTypeaheadResult].self
         )
     }
 

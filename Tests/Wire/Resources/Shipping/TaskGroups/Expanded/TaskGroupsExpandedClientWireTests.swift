@@ -1337,6 +1337,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterTaskGroupIds: [
+                "filter_task_group_ids"
+            ],
             filterStatus: [
                 .draft
             ],
@@ -1509,6 +1512,9 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterTaskGroupIds: [
+                "filter_task_group_ids"
+            ],
             filterStatus: [
                 .draft
             ],

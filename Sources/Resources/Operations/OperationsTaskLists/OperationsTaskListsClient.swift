@@ -210,6 +210,9 @@ public final class OperationsTaskListsClient: Sendable {
     ///         search: "search",
     ///         page: 1,
     ///         pageSize: 1,
+    ///         filterOperationsTaskListIds: [
+    ///             "filter_operations_task_list_ids"
+    ///         ],
     ///         filterArchived: true
     ///     )
     /// }
@@ -220,9 +223,10 @@ public final class OperationsTaskListsClient: Sendable {
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Search name and description using Atlas Search
+    /// - Parameter filterOperationsTaskListIds: Filter by selected operations task list ids
     /// - Parameter filterArchived: Filter by archived flag. None=all, True=archived only, False=unarchived only.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: OperationsTaskListSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListListRes {
+    public func listV1(sortBy: OperationsTaskListSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterOperationsTaskListIds: [String]? = nil, filterArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> OperationsTaskListListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/operations/operations_task_lists/list/v1",
@@ -232,6 +236,7 @@ public final class OperationsTaskListsClient: Sendable {
                 "search": search.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
+                "filter_operations_task_list_ids": filterOperationsTaskListIds.map { .stringArray($0) }, 
                 "filter_archived": filterArchived.map { .bool($0) }
             ],
             requestOptions: requestOptions,
@@ -264,6 +269,40 @@ public final class OperationsTaskListsClient: Sendable {
             path: "/operations/operations_task_lists/remove_not_started_tasks_from_order/v1/\(taskListId)/\(orderId)",
             requestOptions: requestOptions,
             responseType: OperationsTaskListRemoveFromOrderRes1.self
+        )
+    }
+
+    /// Returns matching name values and their IDs within the caller's organization. | authz: min_org_role=operator | () -> (list[OperationsTaskListTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.operations.operationsTaskLists.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OperationsTaskListTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/operations/operations_task_lists/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OperationsTaskListTypeaheadResult].self
         )
     }
 

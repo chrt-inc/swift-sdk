@@ -320,12 +320,14 @@ import Chrt
             page: 1,
             pageSize: 1,
             search: "search",
+            filterDriverIds: [
+                "filter_driver_ids"
+            ],
             filterWaiting: true,
             filterAutoAssignEnabled: true,
             filterVehicleType: [
                 .sedan
             ],
-            filterByDriverId: "filter_by_driver_id",
             filterArchived: true,
             filterAvailableAccordingToDriver: true,
             filterAvailableAccordingToOperators: true,
@@ -385,6 +387,9 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.shipping.drivers.listOrgMembersAndDriversV1(
+            filterUserIds: [
+                "filter_user_ids"
+            ],
             search: "search",
             filterArchived: true,
             filterRole: [
@@ -769,6 +774,53 @@ import Chrt
                 endTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 startTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func typeaheadV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "first_name",
+                    "values": [
+                      {
+                        "driver_ids": [
+                          "driver_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            DriverTypeaheadResult(
+                type: DriverTypeaheadFieldEnum.firstName,
+                values: [
+                    DriverTypeaheadValue(
+                        driverIds: [
+                            "driver_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.shipping.drivers.typeaheadV1(
+            query: "query",
+            limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

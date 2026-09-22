@@ -102,6 +102,53 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func typeaheadMembersV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "type": "first_name",
+                    "values": [
+                      {
+                        "user_ids": [
+                          "user_ids"
+                        ],
+                        "value": "value"
+                      }
+                    ]
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            OrgMemberTypeaheadResult(
+                type: OrgMemberTypeaheadFieldEnum.firstName,
+                values: [
+                    OrgMemberTypeaheadValue(
+                        userIds: [
+                            "user_ids"
+                        ],
+                        value: "value"
+                    )
+                ]
+            )
+        ]
+        let response = try await client.orgs.typeaheadMembersV1(
+            query: "query",
+            limit: 1,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func setupOrgV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

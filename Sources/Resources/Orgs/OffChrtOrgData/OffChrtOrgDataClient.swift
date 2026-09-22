@@ -47,6 +47,9 @@ public final class OffChrtOrgDataClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.orgs.offChrtOrgData.listV1(
+    ///         filterOffChrtOrgDataIds: [
+    ///             "filter_off_chrt_org_data_ids"
+    ///         ],
     ///         search: "search",
     ///         filterOrgType: .provider,
     ///         sortBy: .name,
@@ -59,15 +62,17 @@ public final class OffChrtOrgDataClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter filterOffChrtOrgDataIds: Filter by selected off chrt org data ids
     /// - Parameter search: Search by name, industry, or email
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(search: String? = nil, filterOrgType: OrgTypeEnum? = nil, sortBy: OffChrtOrgDataSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OffChrtOrgDataListRes {
+    public func listV1(filterOffChrtOrgDataIds: [String]? = nil, search: String? = nil, filterOrgType: OrgTypeEnum? = nil, sortBy: OffChrtOrgDataSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> OffChrtOrgDataListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/off_chrt_org_data/list/v1",
             queryParams: [
+                "filter_off_chrt_org_data_ids": filterOffChrtOrgDataIds.map { .stringArray($0) }, 
                 "search": search.map { .string($0) }, 
                 "filter_org_type": filterOrgType.map { .string($0.rawValue) }, 
                 "sort_by": sortBy.map { .unknown($0) }, 
@@ -77,6 +82,40 @@ public final class OffChrtOrgDataClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: OffChrtOrgDataListRes.self
+        )
+    }
+
+    /// Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider] | () -> (list[OffChrtOrgDataTypeaheadResult])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.offChrtOrgData.typeaheadV1(
+    ///         query: "query",
+    ///         limit: 1
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter query: Typeahead search query
+    /// - Parameter limit: Max results per field
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OffChrtOrgDataTypeaheadResult] {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/off_chrt_org_data/typeahead/v1",
+            queryParams: [
+                "query": .string(query), 
+                "limit": limit.map { .int($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: [OffChrtOrgDataTypeaheadResult].self
         )
     }
 
