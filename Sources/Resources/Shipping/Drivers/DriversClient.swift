@@ -473,7 +473,7 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Returns matching first_name, last_name values and their IDs within the caller's organization, excluding archived drivers. | () -> (list[DriverTypeaheadResult])
+    /// Returns matching full_name (first_name + last_name) values and their IDs within the caller's organization, excluding archived drivers. | () -> (list[DriverTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation

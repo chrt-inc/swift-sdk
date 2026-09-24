@@ -1,10 +1,12 @@
 import Foundation
 
-public struct ReceivablesAcrossOrdersCurrencyConversionOrderRes: Codable, Hashable, Sendable {
+public struct InvoiceLineItemsCurrencyConversionForOrdersRes: Codable, Hashable, Sendable {
     public let convertedInvoiceLineItems: [InvoiceLineItem1]?
     public let failureReason: String?
     public let orderId: String
     public let status: StatusType
+    /// Order charges for another direction, counterparty, or original source currency.
+    public let unmatchedInvoiceLineItemIds: [String]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -13,12 +15,14 @@ public struct ReceivablesAcrossOrdersCurrencyConversionOrderRes: Codable, Hashab
         failureReason: String? = nil,
         orderId: String,
         status: StatusType,
+        unmatchedInvoiceLineItemIds: [String]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.convertedInvoiceLineItems = convertedInvoiceLineItems
         self.failureReason = failureReason
         self.orderId = orderId
         self.status = status
+        self.unmatchedInvoiceLineItemIds = unmatchedInvoiceLineItemIds
         self.additionalProperties = additionalProperties
     }
 
@@ -28,6 +32,7 @@ public struct ReceivablesAcrossOrdersCurrencyConversionOrderRes: Codable, Hashab
         self.failureReason = try container.decodeIfPresent(String.self, forKey: .failureReason)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.status = try container.decode(StatusType.self, forKey: .status)
+        self.unmatchedInvoiceLineItemIds = try container.decodeIfPresent([String].self, forKey: .unmatchedInvoiceLineItemIds)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -38,6 +43,7 @@ public struct ReceivablesAcrossOrdersCurrencyConversionOrderRes: Codable, Hashab
         try container.encodeIfPresent(self.failureReason, forKey: .failureReason)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.status, forKey: .status)
+        try container.encodeIfPresent(self.unmatchedInvoiceLineItemIds, forKey: .unmatchedInvoiceLineItemIds)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -46,5 +52,6 @@ public struct ReceivablesAcrossOrdersCurrencyConversionOrderRes: Codable, Hashab
         case failureReason = "failure_reason"
         case orderId = "order_id"
         case status
+        case unmatchedInvoiceLineItemIds = "unmatched_invoice_line_item_ids"
     }
 }

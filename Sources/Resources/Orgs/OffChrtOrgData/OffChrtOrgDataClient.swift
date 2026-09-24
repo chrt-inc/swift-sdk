@@ -85,7 +85,7 @@ public final class OffChrtOrgDataClient: Sendable {
         )
     }
 
-    /// Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider] | () -> (list[OffChrtOrgDataTypeaheadResult])
+    /// Returns matching name values and their IDs within the caller's organization, optionally filtered by org_type. | authz: allowed_org_types=[provider] | () -> (list[OffChrtOrgDataTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation
@@ -96,7 +96,8 @@ public final class OffChrtOrgDataClient: Sendable {
     ///
     ///     _ = try await client.orgs.offChrtOrgData.typeaheadV1(
     ///         query: "query",
-    ///         limit: 1
+    ///         limit: 1,
+    ///         filterOrgType: .provider
     ///     )
     /// }
     ///
@@ -105,14 +106,16 @@ public final class OffChrtOrgDataClient: Sendable {
     ///
     /// - Parameter query: Typeahead search query
     /// - Parameter limit: Max results per field
+    /// - Parameter filterOrgType: Filter by organization type
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func typeaheadV1(query: String, limit: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> [OffChrtOrgDataTypeaheadResult] {
+    public func typeaheadV1(query: String, limit: Int? = nil, filterOrgType: OrgTypeEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> [OffChrtOrgDataTypeaheadResult] {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/off_chrt_org_data/typeahead/v1",
             queryParams: [
                 "query": .string(query), 
-                "limit": limit.map { .int($0) }
+                "limit": limit.map { .int($0) }, 
+                "filter_org_type": filterOrgType.map { .string($0.rawValue) }
             ],
             requestOptions: requestOptions,
             responseType: [OffChrtOrgDataTypeaheadResult].self

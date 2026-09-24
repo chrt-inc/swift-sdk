@@ -786,7 +786,7 @@ import Chrt
                 #"""
                 [
                   {
-                    "type": "first_name",
+                    "type": "full_name",
                     "values": [
                       {
                         "driver_ids": [
@@ -807,7 +807,7 @@ import Chrt
         )
         let expectedResponse = [
             DriverTypeaheadResult(
-                type: DriverTypeaheadFieldEnum.firstName,
+                type: .fullName,
                 values: [
                     DriverTypeaheadValue(
                         driverIds: [

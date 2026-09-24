@@ -653,7 +653,7 @@ import Chrt
         )
         let expectedResponse = [
             SessionTypeaheadResult(
-                type: TrackingTypeaheadFieldEnum.deviceMacAddress,
+                type: SessionTypeaheadFieldEnum.deviceMacAddress,
                 values: [
                     SessionTypeaheadValue(
                         sessionIds: [

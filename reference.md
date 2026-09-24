@@ -3585,7 +3585,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateCurrencyConversionForReceivablesAcrossOrdersV1</a>(request: Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq, requestOptions: RequestOptions?) -> [ReceivablesAcrossOrdersCurrencyConversionOrderRes]</code></summary>
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">revertCurrencyConversionForOrdersV1</a>(request: Requests.InvoiceLineItemsCurrencyConversionRevertForOrdersReq, requestOptions: RequestOptions?) -> [InvoiceLineItemsCurrencyConversionForOrdersRes]</code></summary>
 <dl>
 <dd>
 
@@ -3597,7 +3597,7 @@ try await main()
 <dl>
 <dd>
 
-Applies one currency conversion independently to each selected order and reports each outcome. | authz: allowed_org_types=[provider], min_org_role=operator | (ReceivablesAcrossOrdersCurrencyConversionUpdateReq) -> (list[ReceivablesAcrossOrdersCurrencyConversionOrderRes])
+Restores each selected order's converted charges for one direction, counterparty, and source currency to their original amounts. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionRevertForOrdersReq) -> (list[InvoiceLineItemsCurrencyConversionForOrdersRes])
 </dd>
 </dl>
 </dd>
@@ -3618,10 +3618,90 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForReceivablesAcrossOrdersV1(request: .init(
+    _ = try await client.billingNew.invoiceLineItems.revertCurrencyConversionForOrdersV1(request: .init(
+        invoiceType: .accountsReceivable,
         orderIds: [
             "order_ids"
         ],
+        sourceCurrencyCode: .usd
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.InvoiceLineItemsCurrencyConversionRevertForOrdersReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">updateCurrencyConversionForOrdersV1</a>(request: Requests.InvoiceLineItemsCurrencyConversionUpdateForOrdersReq, requestOptions: RequestOptions?) -> [InvoiceLineItemsCurrencyConversionForOrdersRes]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Converts each selected order's charges for one direction, counterparty, and source currency at one rate. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateForOrdersReq) -> (list[InvoiceLineItemsCurrencyConversionForOrdersRes])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForOrdersV1(request: .init(
+        conversionRate: 1.1,
+        invoiceType: .accountsReceivable,
+        orderIds: [
+            "order_ids"
+        ],
+        sourceCurrencyCode: .usd,
         targetCurrencyCode: .usd
     ))
 }
@@ -3641,7 +3721,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq` 
+**request:** `Requests.InvoiceLineItemsCurrencyConversionUpdateForOrdersReq` 
     
 </dd>
 </dl>
@@ -18893,7 +18973,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.offChrtOrgData.<a href="/Sources/Resources/Orgs/OffChrtOrgData/OffChrtOrgDataClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [OffChrtOrgDataTypeaheadResult]</code></summary>
+<details><summary><code>client.orgs.offChrtOrgData.<a href="/Sources/Resources/Orgs/OffChrtOrgData/OffChrtOrgDataClient.swift">typeaheadV1</a>(query: String, limit: Int?, filterOrgType: OrgTypeEnum?, requestOptions: RequestOptions?) -> [OffChrtOrgDataTypeaheadResult]</code></summary>
 <dl>
 <dd>
 
@@ -18905,7 +18985,7 @@ try await main()
 <dl>
 <dd>
 
-Returns matching name values and their IDs within the caller's organization. | authz: allowed_org_types=[provider] | () -> (list[OffChrtOrgDataTypeaheadResult])
+Returns matching name values and their IDs within the caller's organization, optionally filtered by org_type. | authz: allowed_org_types=[provider] | () -> (list[OffChrtOrgDataTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -18928,7 +19008,8 @@ private func main() async throws {
 
     _ = try await client.orgs.offChrtOrgData.typeaheadV1(
         query: "query",
-        limit: 1
+        limit: 1,
+        filterOrgType: .provider
     )
 }
 
@@ -18956,6 +19037,14 @@ try await main()
 <dd>
 
 **limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrgType:** `OrgTypeEnum?` — Filter by organization type
     
 </dd>
 </dl>
@@ -21444,7 +21533,7 @@ try await main()
 <dl>
 <dd>
 
-Returns matching first_name, last_name values and their IDs within the caller's organization, excluding archived drivers. | () -> (list[DriverTypeaheadResult])
+Returns matching full_name (first_name + last_name) values and their IDs within the caller's organization, excluding archived drivers. | () -> (list[DriverTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -42947,7 +43036,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[SessionTypeaheadResult])
+Returns distinct device_mac_address, off_chrt_reference_id, and flight_numbers values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[SessionTypeaheadResult])
 </dd>
 </dl>
 </dd>

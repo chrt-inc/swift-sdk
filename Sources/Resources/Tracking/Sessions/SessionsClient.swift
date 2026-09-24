@@ -293,7 +293,7 @@ public final class SessionsClient: Sendable {
         )
     }
 
-    /// Returns distinct device_mac_address and off_chrt_reference_id values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[SessionTypeaheadResult])
+    /// Returns distinct device_mac_address, off_chrt_reference_id, and flight_numbers values matching the query via case-insensitive regex, searching sessions. Use org_scope to restrict to owned, shared, or both (default). | auth: api_key | authz: min_org_role=operator | () -> (list[SessionTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation

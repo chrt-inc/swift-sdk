@@ -1,13 +1,13 @@
 import Foundation
 
 public struct SessionTypeaheadResult: Codable, Hashable, Sendable {
-    public let type: TrackingTypeaheadFieldEnum
+    public let type: SessionTypeaheadFieldEnum
     public let values: [SessionTypeaheadValue]
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        type: TrackingTypeaheadFieldEnum,
+        type: SessionTypeaheadFieldEnum,
         values: [SessionTypeaheadValue],
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct SessionTypeaheadResult: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(TrackingTypeaheadFieldEnum.self, forKey: .type)
+        self.type = try container.decode(SessionTypeaheadFieldEnum.self, forKey: .type)
         self.values = try container.decode([SessionTypeaheadValue].self, forKey: .values)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

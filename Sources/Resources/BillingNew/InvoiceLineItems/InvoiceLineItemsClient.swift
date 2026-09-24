@@ -404,7 +404,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Applies one currency conversion independently to each selected order and reports each outcome. | authz: allowed_org_types=[provider], min_org_role=operator | (ReceivablesAcrossOrdersCurrencyConversionUpdateReq) -> (list[ReceivablesAcrossOrdersCurrencyConversionOrderRes])
+    /// Restores each selected order's converted charges for one direction, counterparty, and source currency to their original amounts. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionRevertForOrdersReq) -> (list[InvoiceLineItemsCurrencyConversionForOrdersRes])
     ///
     /// ```swift
     /// import Foundation
@@ -413,10 +413,45 @@ public final class InvoiceLineItemsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForReceivablesAcrossOrdersV1(request: .init(
+    ///     _ = try await client.billingNew.invoiceLineItems.revertCurrencyConversionForOrdersV1(request: .init(
+    ///         invoiceType: .accountsReceivable,
     ///         orderIds: [
     ///             "order_ids"
     ///         ],
+    ///         sourceCurrencyCode: .usd
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func revertCurrencyConversionForOrdersV1(request: Requests.InvoiceLineItemsCurrencyConversionRevertForOrdersReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItemsCurrencyConversionForOrdersRes] {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/billing_new/invoice_line_items/revert_currency_conversion_for_orders/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: [InvoiceLineItemsCurrencyConversionForOrdersRes].self
+        )
+    }
+
+    /// Converts each selected order's charges for one direction, counterparty, and source currency at one rate. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsCurrencyConversionUpdateForOrdersReq) -> (list[InvoiceLineItemsCurrencyConversionForOrdersRes])
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.invoiceLineItems.updateCurrencyConversionForOrdersV1(request: .init(
+    ///         conversionRate: 1.1,
+    ///         invoiceType: .accountsReceivable,
+    ///         orderIds: [
+    ///             "order_ids"
+    ///         ],
+    ///         sourceCurrencyCode: .usd,
     ///         targetCurrencyCode: .usd
     ///     ))
     /// }
@@ -425,13 +460,13 @@ public final class InvoiceLineItemsClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateCurrencyConversionForReceivablesAcrossOrdersV1(request: Requests.ReceivablesAcrossOrdersCurrencyConversionUpdateReq, requestOptions: RequestOptions? = nil) async throws -> [ReceivablesAcrossOrdersCurrencyConversionOrderRes] {
+    public func updateCurrencyConversionForOrdersV1(request: Requests.InvoiceLineItemsCurrencyConversionUpdateForOrdersReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItemsCurrencyConversionForOrdersRes] {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/billing_new/invoice_line_items/update_currency_conversion_for_receivables_across_orders/v1",
+            path: "/billing_new/invoice_line_items/update_currency_conversion_for_orders/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: [ReceivablesAcrossOrdersCurrencyConversionOrderRes].self
+            responseType: [InvoiceLineItemsCurrencyConversionForOrdersRes].self
         )
     }
 

@@ -177,6 +177,7 @@ import Chrt
         let response = try await client.orgs.offChrtOrgData.typeaheadV1(
             query: "query",
             limit: 1,
+            filterOrgType: .provider,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
