@@ -12,7 +12,7 @@ import Chrt
                   "data_points": [
                     {
                       "_id": "_id",
-                      "accuracy_meters": 1,
+                      "accuracy_meters": 1.1,
                       "location": {
                         "geometry": {
                           "geometries": [
@@ -49,7 +49,7 @@ import Chrt
             dataPoints: [
                 ReelablesDataPoint1(
                     id: "_id",
-                    accuracyMeters: Optional(1),
+                    accuracyMeters: Optional(1.1),
                     location: LocationFeature(
                         geometry: Geometry.geometryCollection(
                             .init(
@@ -102,7 +102,7 @@ import Chrt
                   "data_points": [
                     {
                       "_id": "_id",
-                      "accuracy_meters": 1,
+                      "accuracy_meters": 1.1,
                       "location": {
                         "geometry": {
                           "geometries": [
@@ -139,7 +139,7 @@ import Chrt
             dataPoints: [
                 ReelablesDataPoint1(
                     id: "_id",
-                    accuracyMeters: Optional(1),
+                    accuracyMeters: Optional(1.1),
                     location: LocationFeature(
                         geometry: Geometry.geometryCollection(
                             .init(

@@ -2,7 +2,7 @@ import Foundation
 
 public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
     public let id: String
-    public let accuracyMeters: Int?
+    public let accuracyMeters: Double?
     public let location: LocationFeature
     public let metadata: ReelablesDataPointMetadata1
     public let schemaVersion: Int
@@ -14,7 +14,7 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
-        accuracyMeters: Int? = nil,
+        accuracyMeters: Double? = nil,
         location: LocationFeature,
         metadata: ReelablesDataPointMetadata1,
         schemaVersion: Int,
@@ -37,7 +37,7 @@ public struct ReelablesDataPoint1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.accuracyMeters = try container.decodeIfPresent(Int.self, forKey: .accuracyMeters)
+        self.accuracyMeters = try container.decodeIfPresent(Double.self, forKey: .accuracyMeters)
         self.location = try container.decode(LocationFeature.self, forKey: .location)
         self.metadata = try container.decode(ReelablesDataPointMetadata1.self, forKey: .metadata)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
