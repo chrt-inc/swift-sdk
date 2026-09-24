@@ -1,7 +1,3 @@
-## 10.0.0 - 2026-09-24
-### Breaking Changes
-* **`ReelablesDataPoint1.accuracyMeters`** — type changed from `Int?` to `Double?` to support fractional meter precision; update any code that assigns or compares this property as an integer (e.g., change `let meters: Int? = point.accuracyMeters` to `let meters: Double? = point.accuracyMeters`).
-
 ## 9.0.0 - 2026-09-24
 ### Breaking Changes
 * **`ReceivablesAcrossOrdersCurrencyConversionOrderRes`** — removed; replace all references with `InvoiceLineItemsCurrencyConversionForOrdersRes`, which adds the new optional `unmatchedInvoiceLineItemIds` field.
