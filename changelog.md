@@ -1,3 +1,15 @@
+## 9.0.0 - 2026-09-24
+### Breaking Changes
+* **`ReceivablesAcrossOrdersCurrencyConversionOrderRes`** — removed; replace all references with `InvoiceLineItemsCurrencyConversionForOrdersRes`, which adds the new optional `unmatchedInvoiceLineItemIds` field.
+* **`updateCurrencyConversionForReceivablesAcrossOrdersV1`** — removed from `InvoiceLineItemsClient`; migrate to `updateCurrencyConversionForOrdersV1` (new request type `InvoiceLineItemsCurrencyConversionUpdateForOrdersReq` with required `invoiceType` and `sourceCurrencyCode`) or the new `revertCurrencyConversionForOrdersV1` method.
+* **`DriverTypeaheadFieldEnum`** — cases `firstName` and `lastName` removed and replaced with a single `fullName` case; update any exhaustive `switch` statements accordingly.
+* **`StatusType.noReceivables`** — renamed to `noMatchingCharges`; update all switch branches and comparisons.
+* **`SessionTypeaheadResult.type`** — property type changed from `TrackingTypeaheadFieldEnum` to the new `SessionTypeaheadFieldEnum` (which adds `flightNumbers`); update all call sites and switch statements.
+### Added
+* **`revertCurrencyConversionForOrdersV1`** — new `InvoiceLineItemsClient` method that restores converted charges for a given direction, counterparty, and source currency back to their original amounts.
+* **`SessionTypeaheadFieldEnum`** — new enum with `deviceMacAddress`, `offChrtReferenceId`, and `flightNumbers` cases, replacing `TrackingTypeaheadFieldEnum` for session typeahead results.
+* **`filterOrgType`** — new optional `OrgTypeEnum?` parameter on `OffChrtOrgDataClient.typeaheadV1` to restrict results by organization type.
+
 ## 8.0.1 - 2026-09-22
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
