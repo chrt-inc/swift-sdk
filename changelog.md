@@ -1,3 +1,10 @@
+## 2.0.0 - 2026-09-25
+### Breaking Changes
+* **`CalculatedInvoiceTax1.invoiceLineItemId`** — the required `String` property has been removed and replaced by the optional `invoiceLineItemIds: [String]?`; update all initializer call sites to use `invoiceLineItemIds: [yourId]` (or omit the argument entirely) and update any property accesses accordingly.
+### Added
+* **`CalculatedInvoiceTax1.orderId`** — new optional `String?` field associating a tax entry with a specific order.
+* **`CalculatedInvoiceTax1.shipperAccountId`** — new optional `String?` field associating a tax entry with a specific shipper account.
+
 ## 9.0.0 - 2026-09-24
 ### Breaking Changes
 * **`ReceivablesAcrossOrdersCurrencyConversionOrderRes`** — removed; replace all references with `InvoiceLineItemsCurrencyConversionForOrdersRes`, which adds the new optional `unmatchedInvoiceLineItemIds` field.
