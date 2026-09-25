@@ -347,7 +347,6 @@ import Chrt
                       "subtotal": 1.1,
                       "tax_breakdown": [
                         {
-                          "invoice_line_item_id": "invoice_line_item_id",
                           "name": "name",
                           "percentage": 1.1,
                           "tax_amount": 1.1,
@@ -421,7 +420,6 @@ import Chrt
                     subtotal: 1.1,
                     taxBreakdown: Optional([
                         CalculatedInvoiceTax1(
-                            invoiceLineItemId: "invoice_line_item_id",
                             name: "name",
                             percentage: 1.1,
                             taxAmount: 1.1,
