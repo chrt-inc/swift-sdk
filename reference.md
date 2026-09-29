@@ -6307,6 +6307,405 @@ try await main()
 </dl>
 </details>
 
+## CargoOnFlightIntegrations Cargoai
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">bookV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightIntegrationsCargoAiBookReq, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Books a draft booking on CargoAi with one result and rate of one of its searches, with the user's AWB or one from the airline's stock. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightIntegrationsCargoAiBookReq) -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.bookV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        request: .init(
+            cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id",
+            integrationRateId: "integration_rate_id",
+            integrationResultId: "integration_result_id"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightIntegrationsCargoAiBookReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">cancelV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightIntegrationsCargoAiCancelReq, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Asks CargoAi to cancel a confirmed booking; it is CANCELLATION_REQUESTED until the airline answers. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightIntegrationsCargoAiCancelReq) -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.cancelV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        request: .init(cancellationReason: "cancellation_reason")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightIntegrationsCargoAiCancelReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">refreshV1</a>(cargoOnFlightBookingId: String, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Asks CargoAi for an active booking's current status and AWB and applies them, e.g. when its book answer was lost. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.refreshV1(cargoOnFlightBookingId: "cargo_on_flight_booking_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">searchContinueV1</a>(cargoOnFlightBookingSearchId: String, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Collects the remaining CargoAi results of an unfinished search and stores them; a completed search is returned as is. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearch1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.searchContinueV1(cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingSearchId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">searchV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightBookingSearchClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Starts a CargoAi search for flights with space and rates for a draft booking's cargos on a route and date, and stores it. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingSearchClientCreate1) -> (CargoOnFlightBookingSearch1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.searchV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        request: .init(
+            destinationIata: "destination_iata",
+            earliestDepartureDate: "earliest_departure_date",
+            iataCassOfficeId: "iata_cass_office_id",
+            originIata: "origin_iata",
+            schemaVersion: 1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightBookingSearchClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Integrations AirWaybills
 <details><summary><code>client.integrations.airWaybills.<a href="/Sources/Resources/Integrations/AirWaybills/AirWaybillsClient.swift">confirmationsV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> [ChampConfirmationReceipt1]</code></summary>
 <dl>
@@ -18768,6 +19167,340 @@ try await main()
 </dl>
 </details>
 
+## Orgs IataCassOffices
+<details><summary><code>client.orgs.iataCassOffices.<a href="/Sources/Resources/Orgs/IataCassOffices/IataCassOfficesClient.swift">archiveV1</a>(iataCassOfficeId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives an IATA CASS office of the caller's organization so it can no longer be booked under. | authz: min_org_role=admin | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.iataCassOffices.archiveV1(iataCassOfficeId: "iata_cass_office_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**iataCassOfficeId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.iataCassOffices.<a href="/Sources/Resources/Orgs/IataCassOffices/IataCassOfficesClient.swift">listV1</a>(filterArchived: Bool?, sortBy: IataCassOfficeSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> IataCassOfficeListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the IATA CASS offices of the caller's organization, active or archived. | () -> (IataCassOfficeListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.iataCassOffices.listV1(
+        filterArchived: true,
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — List archived offices instead of active offices.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `IataCassOfficeSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.iataCassOffices.<a href="/Sources/Resources/Orgs/IataCassOffices/IataCassOfficesClient.swift">updateV1</a>(iataCassOfficeId: String, request: Requests.IataCassOfficeClientUpdate1, requestOptions: RequestOptions?) -> IataCassOffice1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the name or contact names of an IATA CASS office of the caller's organization. | authz: min_org_role=admin | (IataCassOfficeClientUpdate1) -> (IataCassOffice1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.iataCassOffices.updateV1(
+        iataCassOfficeId: "iata_cass_office_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**iataCassOfficeId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.IataCassOfficeClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.iataCassOffices.<a href="/Sources/Resources/Orgs/IataCassOffices/IataCassOfficesClient.swift">getV1</a>(iataCassOfficeId: String, requestOptions: RequestOptions?) -> IataCassOffice1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an IATA CASS office of the caller's organization. | () -> (IataCassOffice1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.iataCassOffices.getV1(iataCassOfficeId: "iata_cass_office_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**iataCassOfficeId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Orgs OffChrtOrgData
 <details><summary><code>client.orgs.offChrtOrgData.<a href="/Sources/Resources/Orgs/OffChrtOrgData/OffChrtOrgDataClient.swift">createV1</a>(request: Requests.CreateOffChrtOrgReq, requestOptions: RequestOptions?) -> CreateOffChrtOrgRes</code></summary>
 <dl>
@@ -20226,6 +20959,644 @@ try await main()
 <dd>
 
 **limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping CargoOnFlightBookingSearches
+<details><summary><code>client.shipping.cargoOnFlightBookingSearches.<a href="/Sources/Resources/Shipping/CargoOnFlightBookingSearches/CargoOnFlightBookingSearchesClient.swift">listV1</a>(cargoOnFlightBookingId: String, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, sortBy: CargoOnFlightBookingSearchSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearchListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists a cargo-on-flight booking's searches with their results. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearchListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookingSearches.listV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` — The booking whose searches are listed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `CargoOnFlightBookingSearchSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightBookingSearches.<a href="/Sources/Resources/Shipping/CargoOnFlightBookingSearches/CargoOnFlightBookingSearchesClient.swift">getV1</a>(cargoOnFlightBookingSearchId: String, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a cargo-on-flight booking search with its results. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearch1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookingSearches.getV1(cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingSearchId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping CargoOnFlightBookings
+<details><summary><code>client.shipping.cargoOnFlightBookings.<a href="/Sources/Resources/Shipping/CargoOnFlightBookings/CargoOnFlightBookingsClient.swift">cancelV1</a>(cargoOnFlightBookingId: String, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancels a MANUAL booking, removing the flights it created from the task group and its AWB from its cargos; an integration booking is cancelled through its integration. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookings.cancelV1(cargoOnFlightBookingId: "cargo_on_flight_booking_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightBookings.<a href="/Sources/Resources/Shipping/CargoOnFlightBookings/CargoOnFlightBookingsClient.swift">createV1</a>(request: Requests.CargoOnFlightBookingClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a booking for a flight task group's cargos: a draft to search and book through an integration, or a MANUAL booking placed outside CHRT, confirmed with its AWB and itinerary, which sets the task group's flights and the cargos' AWB. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingClientCreate1) -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookings.createV1(request: .init(
+        cargoDimensions: [
+            CargoOnFlightBookingCargoDimension1(
+                heightInches: 1.1,
+                lengthInches: 1.1,
+                quantity: 1,
+                weightPerPiecePounds: 1.1,
+                widthInches: 1.1
+            )
+        ],
+        cargoIds: [
+            "cargo_ids"
+        ],
+        cargoOnFlightIntegration: .cargoai,
+        schemaVersion: 1,
+        taskGroupId: "task_group_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightBookingClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightBookings.<a href="/Sources/Resources/Shipping/CargoOnFlightBookings/CargoOnFlightBookingsClient.swift">deleteDraftV1</a>(cargoOnFlightBookingId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a draft booking that was never booked, with its searches. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookings.deleteDraftV1(cargoOnFlightBookingId: "cargo_on_flight_booking_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightBookings.<a href="/Sources/Resources/Shipping/CargoOnFlightBookings/CargoOnFlightBookingsClient.swift">listV1</a>(taskGroupId: String, filterStatus: [CargoOnFlightBookingStatusEnum1]?, filterDraftStartedAtTimestampGte: Date?, filterDraftStartedAtTimestampLte: Date?, sortBy: CargoOnFlightBookingSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightBookingListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists a flight task group's cargo-on-flight bookings, active and history. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookings.listV1(
+        taskGroupId: "task_group_id",
+        filterStatus: [
+            .draft
+        ],
+        filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        sortBy: .draftStartedAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` — The task group whose bookings are listed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `[CargoOnFlightBookingStatusEnum1]?` — Filter by status(es).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDraftStartedAtTimestampGte:** `Date?` — Filter draft_started_at_timestamp >= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDraftStartedAtTimestampLte:** `Date?` — Filter draft_started_at_timestamp <= value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `CargoOnFlightBookingSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightBookings.<a href="/Sources/Resources/Shipping/CargoOnFlightBookings/CargoOnFlightBookingsClient.swift">getV1</a>(cargoOnFlightBookingId: String, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a cargo-on-flight booking. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightBookings.getV1(cargoOnFlightBookingId: "cargo_on_flight_booking_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
     
 </dd>
 </dl>

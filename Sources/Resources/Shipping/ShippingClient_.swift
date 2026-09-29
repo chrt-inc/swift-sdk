@@ -1,6 +1,8 @@
 import Foundation
 
 public final class ShippingClient_: Sendable {
+    public let cargoOnFlightBookingSearches: CargoOnFlightBookingSearchesClient
+    public let cargoOnFlightBookings: CargoOnFlightBookingsClient
     public let drivers: DriversClient
     public let flights: ShippingFlightsClient
     public let orderTemplatesNew: OrderTemplatesNewClient
@@ -11,6 +13,8 @@ public final class ShippingClient_: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.cargoOnFlightBookingSearches = CargoOnFlightBookingSearchesClient(config: config)
+        self.cargoOnFlightBookings = CargoOnFlightBookingsClient(config: config)
         self.drivers = DriversClient(config: config)
         self.flights = ShippingFlightsClient(config: config)
         self.orderTemplatesNew = OrderTemplatesNewClient(config: config)

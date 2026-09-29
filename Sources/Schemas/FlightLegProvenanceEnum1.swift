@@ -4,4 +4,5 @@ public enum FlightLegProvenanceEnum1: String, Codable, Hashable, CaseIterable, S
     case manual
     case cirium
     case flightaware
+    case cargoOnFlightBooking = "cargo_on_flight_booking"
 }
