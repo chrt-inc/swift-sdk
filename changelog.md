@@ -1,3 +1,11 @@
+## 2.1.0 - 2026-09-29
+### Added
+* **`CargoOnFlightIntegrationsClient`** — new client at `ChrtClient.cargoOnFlightIntegrations` exposing a `cargoai` sub-client with `bookV1`, `cancelV1`, `refreshV1`, `searchV1`, and `searchContinueV1` methods for managing CargoAi flight bookings.
+* **`CargoOnFlightBookingsClient`** — new client at `ShippingClient.cargoOnFlightBookings` with `cancelV1`, `createV1`, `deleteDraftV1`, `listV1`, and `getV1` methods for full cargo-on-flight booking lifecycle management.
+* **`CargoOnFlightBookingSearchesClient`** — new client at `ShippingClient.cargoOnFlightBookingSearches` with `listV1` and `getV1` methods for retrieving booking searches and their results.
+* **`IataCassOfficesClient`** — new client at `OrgsClient.iataCassOffices` with `archiveV1`, `listV1`, `updateV1`, and `getV1` methods for managing an organization's IATA CASS offices.
+* **New schemas and enums** — adds booking, search, and IATA CASS office model types (e.g., `CargoOnFlightBooking1`, `CargoOnFlightBookingSearch1`, `IataCassOffice1`) along with supporting request types, paginated list responses, and new enum cases including `cargoOnFlightBooking` on `FlightLegProvenanceEnum1`.
+
 ## 2.0.0 - 2026-09-25
 ### Breaking Changes
 * **`CalculatedInvoiceTax1.invoiceLineItemId`** — the required `String` property has been removed and replaced by the optional `invoiceLineItemIds: [String]?`; update all initializer call sites to use `invoiceLineItemIds: [yourId]` (or omit the argument entirely) and update any property accesses accordingly.
