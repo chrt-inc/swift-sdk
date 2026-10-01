@@ -3,6 +3,7 @@ import Foundation
 /// One leg of an itinerary: a flight, or a road feeder truck (`surface_transport`).
 public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
     public let aircraftBodyType: CargoOnFlightBookingAircraftBodyTypeEnum1?
+    public let aircraftCode: String?
     public let carrierIata: String
     public let destinationIata: String
     public let flightNumber: String
@@ -16,6 +17,7 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
 
     public init(
         aircraftBodyType: CargoOnFlightBookingAircraftBodyTypeEnum1? = nil,
+        aircraftCode: String? = nil,
         carrierIata: String,
         destinationIata: String,
         flightNumber: String,
@@ -27,6 +29,7 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.aircraftBodyType = aircraftBodyType
+        self.aircraftCode = aircraftCode
         self.carrierIata = carrierIata
         self.destinationIata = destinationIata
         self.flightNumber = flightNumber
@@ -41,6 +44,7 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.aircraftBodyType = try container.decodeIfPresent(CargoOnFlightBookingAircraftBodyTypeEnum1.self, forKey: .aircraftBodyType)
+        self.aircraftCode = try container.decodeIfPresent(String.self, forKey: .aircraftCode)
         self.carrierIata = try container.decode(String.self, forKey: .carrierIata)
         self.destinationIata = try container.decode(String.self, forKey: .destinationIata)
         self.flightNumber = try container.decode(String.self, forKey: .flightNumber)
@@ -56,6 +60,7 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.aircraftBodyType, forKey: .aircraftBodyType)
+        try container.encodeIfPresent(self.aircraftCode, forKey: .aircraftCode)
         try container.encode(self.carrierIata, forKey: .carrierIata)
         try container.encode(self.destinationIata, forKey: .destinationIata)
         try container.encode(self.flightNumber, forKey: .flightNumber)
@@ -69,6 +74,7 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case aircraftBodyType = "aircraft_body_type"
+        case aircraftCode = "aircraft_code"
         case carrierIata = "carrier_iata"
         case destinationIata = "destination_iata"
         case flightNumber = "flight_number"

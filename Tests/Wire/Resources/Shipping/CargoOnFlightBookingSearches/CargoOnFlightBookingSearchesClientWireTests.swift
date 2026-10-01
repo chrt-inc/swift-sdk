@@ -109,12 +109,17 @@ import Chrt
                   "origin_iata": "origin_iata",
                   "results": [
                     {
+                      "airline_conditions": "airline_conditions",
+                      "airline_contacts": [
+                        "airline_contacts"
+                      ],
                       "awb_prefixes": [
                         "awb_prefixes"
                       ],
                       "awb_required": true,
                       "bookable": true,
                       "carrier_iata": "carrier_iata",
+                      "handling_info_link": "handling_info_link",
                       "integration_result_id": "integration_result_id",
                       "latest_acceptance_utc": "2024-01-15T09:30:00Z",
                       "legs": [
@@ -167,12 +172,17 @@ import Chrt
             originIata: "origin_iata",
             results: Optional([
                 CargoOnFlightBookingSearchResult1(
+                    airlineConditions: Optional("airline_conditions"),
+                    airlineContacts: Optional([
+                        "airline_contacts"
+                    ]),
                     awbPrefixes: Optional([
                         "awb_prefixes"
                     ]),
                     awbRequired: true,
                     bookable: true,
                     carrierIata: "carrier_iata",
+                    handlingInfoLink: Optional("handling_info_link"),
                     integrationResultId: "integration_result_id",
                     latestAcceptanceUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     legs: Optional([

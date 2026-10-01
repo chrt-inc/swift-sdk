@@ -1,10 +1,13 @@
 import Foundation
 
 public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
+    public let airlineConditions: String?
+    public let airlineContacts: [String]?
     public let awbPrefixes: [String]?
     public let awbRequired: Bool
     public let bookable: Bool
     public let carrierIata: String
+    public let handlingInfoLink: String?
     public let integrationResultId: String
     public let latestAcceptanceUtc: Date?
     public let legs: [CargoOnFlightBookingItineraryLeg1]?
@@ -17,10 +20,13 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        airlineConditions: String? = nil,
+        airlineContacts: [String]? = nil,
         awbPrefixes: [String]? = nil,
         awbRequired: Bool,
         bookable: Bool,
         carrierIata: String,
+        handlingInfoLink: String? = nil,
         integrationResultId: String,
         latestAcceptanceUtc: Date? = nil,
         legs: [CargoOnFlightBookingItineraryLeg1]? = nil,
@@ -31,10 +37,13 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
         timeOfAvailabilityUtc: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.airlineConditions = airlineConditions
+        self.airlineContacts = airlineContacts
         self.awbPrefixes = awbPrefixes
         self.awbRequired = awbRequired
         self.bookable = bookable
         self.carrierIata = carrierIata
+        self.handlingInfoLink = handlingInfoLink
         self.integrationResultId = integrationResultId
         self.latestAcceptanceUtc = latestAcceptanceUtc
         self.legs = legs
@@ -48,10 +57,13 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.airlineConditions = try container.decodeIfPresent(String.self, forKey: .airlineConditions)
+        self.airlineContacts = try container.decodeIfPresent([String].self, forKey: .airlineContacts)
         self.awbPrefixes = try container.decodeIfPresent([String].self, forKey: .awbPrefixes)
         self.awbRequired = try container.decode(Bool.self, forKey: .awbRequired)
         self.bookable = try container.decode(Bool.self, forKey: .bookable)
         self.carrierIata = try container.decode(String.self, forKey: .carrierIata)
+        self.handlingInfoLink = try container.decodeIfPresent(String.self, forKey: .handlingInfoLink)
         self.integrationResultId = try container.decode(String.self, forKey: .integrationResultId)
         self.latestAcceptanceUtc = try container.decodeIfPresent(Date.self, forKey: .latestAcceptanceUtc)
         self.legs = try container.decodeIfPresent([CargoOnFlightBookingItineraryLeg1].self, forKey: .legs)
@@ -66,10 +78,13 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.airlineConditions, forKey: .airlineConditions)
+        try container.encodeIfPresent(self.airlineContacts, forKey: .airlineContacts)
         try container.encodeIfPresent(self.awbPrefixes, forKey: .awbPrefixes)
         try container.encode(self.awbRequired, forKey: .awbRequired)
         try container.encode(self.bookable, forKey: .bookable)
         try container.encode(self.carrierIata, forKey: .carrierIata)
+        try container.encodeIfPresent(self.handlingInfoLink, forKey: .handlingInfoLink)
         try container.encode(self.integrationResultId, forKey: .integrationResultId)
         try container.encodeIfPresent(self.latestAcceptanceUtc, forKey: .latestAcceptanceUtc)
         try container.encodeIfPresent(self.legs, forKey: .legs)
@@ -82,10 +97,13 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case airlineConditions = "airline_conditions"
+        case airlineContacts = "airline_contacts"
         case awbPrefixes = "awb_prefixes"
         case awbRequired = "awb_required"
         case bookable
         case carrierIata = "carrier_iata"
+        case handlingInfoLink = "handling_info_link"
         case integrationResultId = "integration_result_id"
         case latestAcceptanceUtc = "latest_acceptance_utc"
         case legs
