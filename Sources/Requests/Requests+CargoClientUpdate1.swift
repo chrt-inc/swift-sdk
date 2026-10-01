@@ -16,6 +16,7 @@ extension Requests {
         public let lengthInchesSetToNone: Bool?
         public let quantity: Int?
         public let quantitySetToNone: Bool?
+        public let specialHandlingCodes: [SpecialHandlingCodeEnum1]?
         public let stackable: Bool?
         public let stackableSetToNone: Bool?
         public let turnable: Bool?
@@ -41,6 +42,7 @@ extension Requests {
             lengthInchesSetToNone: Bool? = nil,
             quantity: Int? = nil,
             quantitySetToNone: Bool? = nil,
+            specialHandlingCodes: [SpecialHandlingCodeEnum1]? = nil,
             stackable: Bool? = nil,
             stackableSetToNone: Bool? = nil,
             turnable: Bool? = nil,
@@ -64,6 +66,7 @@ extension Requests {
             self.lengthInchesSetToNone = lengthInchesSetToNone
             self.quantity = quantity
             self.quantitySetToNone = quantitySetToNone
+            self.specialHandlingCodes = specialHandlingCodes
             self.stackable = stackable
             self.stackableSetToNone = stackableSetToNone
             self.turnable = turnable
@@ -90,6 +93,7 @@ extension Requests {
             self.lengthInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .lengthInchesSetToNone)
             self.quantity = try container.decodeIfPresent(Int.self, forKey: .quantity)
             self.quantitySetToNone = try container.decodeIfPresent(Bool.self, forKey: .quantitySetToNone)
+            self.specialHandlingCodes = try container.decodeIfPresent([SpecialHandlingCodeEnum1].self, forKey: .specialHandlingCodes)
             self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
             self.stackableSetToNone = try container.decodeIfPresent(Bool.self, forKey: .stackableSetToNone)
             self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
@@ -117,6 +121,7 @@ extension Requests {
             try container.encodeIfPresent(self.lengthInchesSetToNone, forKey: .lengthInchesSetToNone)
             try container.encodeIfPresent(self.quantity, forKey: .quantity)
             try container.encodeIfPresent(self.quantitySetToNone, forKey: .quantitySetToNone)
+            try container.encodeIfPresent(self.specialHandlingCodes, forKey: .specialHandlingCodes)
             try container.encodeIfPresent(self.stackable, forKey: .stackable)
             try container.encodeIfPresent(self.stackableSetToNone, forKey: .stackableSetToNone)
             try container.encodeIfPresent(self.turnable, forKey: .turnable)
@@ -142,6 +147,7 @@ extension Requests {
             case lengthInchesSetToNone = "length_inches__set_to_None"
             case quantity
             case quantitySetToNone = "quantity__set_to_None"
+            case specialHandlingCodes = "special_handling_codes"
             case stackable
             case stackableSetToNone = "stackable__set_to_None"
             case turnable

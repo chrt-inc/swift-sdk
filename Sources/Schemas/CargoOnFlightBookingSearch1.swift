@@ -13,6 +13,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     public let earliestDepartureDate: String
     public let iataCassOfficeId: String
     public let integrationSearchId: String
+    public let offsetDays: Int?
     public let originIata: String
     public let results: [CargoOnFlightBookingSearchResult1]?
     public let schemaVersion: Int
@@ -32,6 +33,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         earliestDepartureDate: String,
         iataCassOfficeId: String,
         integrationSearchId: String,
+        offsetDays: Int? = nil,
         originIata: String,
         results: [CargoOnFlightBookingSearchResult1]? = nil,
         schemaVersion: Int,
@@ -49,6 +51,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         self.earliestDepartureDate = earliestDepartureDate
         self.iataCassOfficeId = iataCassOfficeId
         self.integrationSearchId = integrationSearchId
+        self.offsetDays = offsetDays
         self.originIata = originIata
         self.results = results
         self.schemaVersion = schemaVersion
@@ -69,6 +72,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         self.earliestDepartureDate = try container.decode(String.self, forKey: .earliestDepartureDate)
         self.iataCassOfficeId = try container.decode(String.self, forKey: .iataCassOfficeId)
         self.integrationSearchId = try container.decode(String.self, forKey: .integrationSearchId)
+        self.offsetDays = try container.decodeIfPresent(Int.self, forKey: .offsetDays)
         self.originIata = try container.decode(String.self, forKey: .originIata)
         self.results = try container.decodeIfPresent([CargoOnFlightBookingSearchResult1].self, forKey: .results)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -90,6 +94,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         try container.encode(self.earliestDepartureDate, forKey: .earliestDepartureDate)
         try container.encode(self.iataCassOfficeId, forKey: .iataCassOfficeId)
         try container.encode(self.integrationSearchId, forKey: .integrationSearchId)
+        try container.encodeIfPresent(self.offsetDays, forKey: .offsetDays)
         try container.encode(self.originIata, forKey: .originIata)
         try container.encodeIfPresent(self.results, forKey: .results)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -109,6 +114,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         case earliestDepartureDate = "earliest_departure_date"
         case iataCassOfficeId = "iata_cass_office_id"
         case integrationSearchId = "integration_search_id"
+        case offsetDays = "offset_days"
         case originIata = "origin_iata"
         case results
         case schemaVersion = "schema_version"

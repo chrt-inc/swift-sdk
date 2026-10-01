@@ -27,6 +27,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
     public let rejectedAtTimestamp: Date?
     public let requestedAtTimestamp: Date?
     public let schemaVersion: Int
+    public let specialHandlingCodes: [SpecialHandlingCodeEnum1]?
     public let status: CargoOnFlightBookingStatusEnum1
     public let taskGroupId: String
     /// Additional properties that are not explicitly defined in the schema
@@ -56,6 +57,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         rejectedAtTimestamp: Date? = nil,
         requestedAtTimestamp: Date? = nil,
         schemaVersion: Int,
+        specialHandlingCodes: [SpecialHandlingCodeEnum1]? = nil,
         status: CargoOnFlightBookingStatusEnum1,
         taskGroupId: String,
         additionalProperties: [String: JSONValue] = .init()
@@ -83,6 +85,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         self.rejectedAtTimestamp = rejectedAtTimestamp
         self.requestedAtTimestamp = requestedAtTimestamp
         self.schemaVersion = schemaVersion
+        self.specialHandlingCodes = specialHandlingCodes
         self.status = status
         self.taskGroupId = taskGroupId
         self.additionalProperties = additionalProperties
@@ -113,6 +116,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         self.rejectedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .rejectedAtTimestamp)
         self.requestedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .requestedAtTimestamp)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.specialHandlingCodes = try container.decodeIfPresent([SpecialHandlingCodeEnum1].self, forKey: .specialHandlingCodes)
         self.status = try container.decode(CargoOnFlightBookingStatusEnum1.self, forKey: .status)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -144,6 +148,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.rejectedAtTimestamp, forKey: .rejectedAtTimestamp)
         try container.encodeIfPresent(self.requestedAtTimestamp, forKey: .requestedAtTimestamp)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.specialHandlingCodes, forKey: .specialHandlingCodes)
         try container.encode(self.status, forKey: .status)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
     }
@@ -173,6 +178,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         case rejectedAtTimestamp = "rejected_at_timestamp"
         case requestedAtTimestamp = "requested_at_timestamp"
         case schemaVersion = "schema_version"
+        case specialHandlingCodes = "special_handling_codes"
         case status
         case taskGroupId = "task_group_id"
     }

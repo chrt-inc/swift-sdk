@@ -119,6 +119,32 @@ import Chrt
                         "order_short_id": "order_short_id",
                         "schema_version": 1
                       },
+                      "cargo_on_flight_booking": {
+                        "_id": "_id",
+                        "cargo_on_flight_integration": "cargoai",
+                        "created_by_org_id": "created_by_org_id",
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                        "order_id": "order_id",
+                        "order_short_id": "order_short_id",
+                        "schema_version": 1,
+                        "status": "draft",
+                        "task_group_id": "task_group_id"
+                      },
+                      "cargo_on_flight_booking_search": {
+                        "_id": "_id",
+                        "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
+                        "cargo_on_flight_integration": "cargoai",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_org_id": "created_by_org_id",
+                        "destination_iata": "destination_iata",
+                        "earliest_departure_date": "earliest_departure_date",
+                        "iata_cass_office_id": "iata_cass_office_id",
+                        "integration_search_id": "integration_search_id",
+                        "origin_iata": "origin_iata",
+                        "schema_version": 1,
+                        "search_completed": true,
+                        "updated_at_timestamp": "2024-01-15T09:30:00Z"
+                      },
                       "contact": {
                         "_id": "_id",
                         "created_by_org_id": "created_by_org_id",
@@ -249,6 +275,32 @@ import Chrt
                         orderId: "order_id",
                         orderShortId: "order_short_id",
                         schemaVersion: 1
+                    )),
+                    cargoOnFlightBooking: Optional(CargoOnFlightBooking1(
+                        id: "_id",
+                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                        createdByOrgId: "created_by_org_id",
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        orderId: "order_id",
+                        orderShortId: "order_short_id",
+                        schemaVersion: 1,
+                        status: CargoOnFlightBookingStatusEnum1.draft,
+                        taskGroupId: "task_group_id"
+                    )),
+                    cargoOnFlightBookingSearch: Optional(CargoOnFlightBookingSearch1(
+                        id: "_id",
+                        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByOrgId: "created_by_org_id",
+                        destinationIata: "destination_iata",
+                        earliestDepartureDate: "earliest_departure_date",
+                        iataCassOfficeId: "iata_cass_office_id",
+                        integrationSearchId: "integration_search_id",
+                        originIata: "origin_iata",
+                        schemaVersion: 1,
+                        searchCompleted: true,
+                        updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )),
                     contact: Optional(Contact1(
                         id: "_id",

@@ -21,6 +21,7 @@ import Chrt
                       "earliest_departure_date": "earliest_departure_date",
                       "iata_cass_office_id": "iata_cass_office_id",
                       "integration_search_id": "integration_search_id",
+                      "offset_days": 1,
                       "origin_iata": "origin_iata",
                       "results": [
                         {
@@ -58,6 +59,7 @@ import Chrt
                     earliestDepartureDate: "earliest_departure_date",
                     iataCassOfficeId: "iata_cass_office_id",
                     integrationSearchId: "integration_search_id",
+                    offsetDays: Optional(1),
                     originIata: "origin_iata",
                     results: Optional([
                         CargoOnFlightBookingSearchResult1(
@@ -103,6 +105,7 @@ import Chrt
                   "earliest_departure_date": "earliest_departure_date",
                   "iata_cass_office_id": "iata_cass_office_id",
                   "integration_search_id": "integration_search_id",
+                  "offset_days": 1,
                   "origin_iata": "origin_iata",
                   "results": [
                     {
@@ -126,6 +129,8 @@ import Chrt
                         }
                       ],
                       "not_bookable_reason": "not_bookable_reason",
+                      "origin_ground_handling_agent_address": "origin_ground_handling_agent_address",
+                      "origin_ground_handling_agent_name": "origin_ground_handling_agent_name",
                       "rates": [
                         {
                           "currency_code": "currency_code",
@@ -158,6 +163,7 @@ import Chrt
             earliestDepartureDate: "earliest_departure_date",
             iataCassOfficeId: "iata_cass_office_id",
             integrationSearchId: "integration_search_id",
+            offsetDays: Optional(1),
             originIata: "origin_iata",
             results: Optional([
                 CargoOnFlightBookingSearchResult1(
@@ -181,6 +187,8 @@ import Chrt
                         )
                     ]),
                     notBookableReason: Optional("not_bookable_reason"),
+                    originGroundHandlingAgentAddress: Optional("origin_ground_handling_agent_address"),
+                    originGroundHandlingAgentName: Optional("origin_ground_handling_agent_name"),
                     rates: Optional([
                         CargoOnFlightBookingRate1(
                             currencyCode: "currency_code",
@@ -196,6 +204,12 @@ import Chrt
         )
         let response = try await client.shipping.cargoOnFlightBookingSearches.getV1(
             cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id",
+            filterBookable: true,
+            filterAwbRequired: true,
+            filterAircraftBodyType: .widebody,
+            filterCurrencyCode: "filter_currency_code",
+            sortBy: .departure,
+            sortOrder: .asc,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

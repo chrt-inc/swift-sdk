@@ -55,6 +55,9 @@ import Chrt
                     "quantity": 1,
                     "schema_version": 1,
                     "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                    "special_handling_codes": [
+                      "ACT"
+                    ],
                     "stackable": true,
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "status": "draft",
@@ -193,6 +196,9 @@ import Chrt
                       "quantity": 1,
                       "schema_version": 1,
                       "skipped_at_timestamp": "2024-01-15T09:30:00Z",
+                      "special_handling_codes": [
+                        "ACT"
+                      ],
                       "stackable": true,
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "status": "draft",
@@ -295,6 +301,9 @@ import Chrt
                 quantity: Optional(1),
                 schemaVersion: 1,
                 skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                specialHandlingCodes: Optional([
+                    SpecialHandlingCodeEnum1.act
+                ]),
                 stackable: Optional(true),
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 status: Optional(CargoStatusEnum1.draft),
@@ -459,6 +468,9 @@ import Chrt
                     quantity: Optional(1),
                     schemaVersion: 1,
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    specialHandlingCodes: Optional([
+                        SpecialHandlingCodeEnum1.act
+                    ]),
                     stackable: Optional(true),
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     status: Optional(CargoStatusEnum1.draft),

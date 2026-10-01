@@ -54,7 +54,7 @@ public final class CargoOnFlightBookingSearchesClient: Sendable {
         )
     }
 
-    /// Retrieves a cargo-on-flight booking search with its results. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearch1)
+    /// Retrieves a cargo-on-flight booking search with its results, optionally filtered and sorted. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearch1)
     ///
     /// ```swift
     /// import Foundation
@@ -63,17 +63,39 @@ public final class CargoOnFlightBookingSearchesClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shipping.cargoOnFlightBookingSearches.getV1(cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id")
+    ///     _ = try await client.shipping.cargoOnFlightBookingSearches.getV1(
+    ///         cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id",
+    ///         filterBookable: true,
+    ///         filterAwbRequired: true,
+    ///         filterAircraftBodyType: .widebody,
+    ///         filterCurrencyCode: "filter_currency_code",
+    ///         sortBy: .departure,
+    ///         sortOrder: .asc
+    ///     )
     /// }
     ///
     /// try await main()
     /// ```
     ///
+    /// - Parameter filterBookable: Filter results the integration accepts through its API.
+    /// - Parameter filterAwbRequired: Filter results that need the user's own AWB.
+    /// - Parameter filterAircraftBodyType: Filter results whose every flown leg is on this body type.
+    /// - Parameter filterCurrencyCode: Keep only rates in this currency, and results with one.
+    /// - Parameter sortBy: Field to sort results by; price needs filter_currency_code.
+    /// - Parameter sortOrder: Sort order.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func getV1(cargoOnFlightBookingSearchId: String, requestOptions: RequestOptions? = nil) async throws -> CargoOnFlightBookingSearch1 {
+    public func getV1(cargoOnFlightBookingSearchId: String, filterBookable: Bool? = nil, filterAwbRequired: Bool? = nil, filterAircraftBodyType: CargoOnFlightBookingAircraftBodyTypeEnum1? = nil, filterCurrencyCode: String? = nil, sortBy: CargoOnFlightBookingSearchResultSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> CargoOnFlightBookingSearch1 {
         return try await httpClient.performRequest(
             method: .get,
             path: "/shipping/cargo_on_flight_booking_searches/v1/\(cargoOnFlightBookingSearchId)",
+            queryParams: [
+                "filter_bookable": filterBookable.map { .bool($0) }, 
+                "filter_awb_required": filterAwbRequired.map { .bool($0) }, 
+                "filter_aircraft_body_type": filterAircraftBodyType.map { .string($0.rawValue) }, 
+                "filter_currency_code": filterCurrencyCode.map { .string($0) }, 
+                "sort_by": sortBy.map { .string($0.rawValue) }, 
+                "sort_order": sortOrder.map { .string($0.rawValue) }
+            ],
             requestOptions: requestOptions,
             responseType: CargoOnFlightBookingSearch1.self
         )

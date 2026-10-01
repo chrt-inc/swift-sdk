@@ -8,4 +8,5 @@ public enum OrderEventSystemActorEnum1: String, Codable, Hashable, CaseIterable,
     case geofenceTracker = "geofence_tracker"
     case orderSchedule = "order_schedule"
     case systemAutomation = "system_automation"
+    case cargoOnFlightIntegrationSync = "cargo_on_flight_integration_sync"
 }

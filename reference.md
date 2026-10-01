@@ -21106,7 +21106,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.cargoOnFlightBookingSearches.<a href="/Sources/Resources/Shipping/CargoOnFlightBookingSearches/CargoOnFlightBookingSearchesClient.swift">getV1</a>(cargoOnFlightBookingSearchId: String, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
+<details><summary><code>client.shipping.cargoOnFlightBookingSearches.<a href="/Sources/Resources/Shipping/CargoOnFlightBookingSearches/CargoOnFlightBookingSearchesClient.swift">getV1</a>(cargoOnFlightBookingSearchId: String, filterBookable: Bool?, filterAwbRequired: Bool?, filterAircraftBodyType: CargoOnFlightBookingAircraftBodyTypeEnum1?, filterCurrencyCode: String?, sortBy: CargoOnFlightBookingSearchResultSortByEnum?, sortOrder: SortOrderEnum?, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
 <dl>
 <dd>
 
@@ -21118,7 +21118,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves a cargo-on-flight booking search with its results. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearch1)
+Retrieves a cargo-on-flight booking search with its results, optionally filtered and sorted. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightBookingSearch1)
 </dd>
 </dl>
 </dd>
@@ -21139,7 +21139,15 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.cargoOnFlightBookingSearches.getV1(cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id")
+    _ = try await client.shipping.cargoOnFlightBookingSearches.getV1(
+        cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id",
+        filterBookable: true,
+        filterAwbRequired: true,
+        filterAircraftBodyType: .widebody,
+        filterCurrencyCode: "filter_currency_code",
+        sortBy: .departure,
+        sortOrder: .asc
+    )
 }
 
 try await main()
@@ -21158,6 +21166,54 @@ try await main()
 <dd>
 
 **cargoOnFlightBookingSearchId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterBookable:** `Bool?` — Filter results the integration accepts through its API.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterAwbRequired:** `Bool?` — Filter results that need the user's own AWB.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterAircraftBodyType:** `CargoOnFlightBookingAircraftBodyTypeEnum1?` — Filter results whose every flown leg is on this body type.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCurrencyCode:** `String?` — Keep only rates in this currency, and results with one.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `CargoOnFlightBookingSearchResultSortByEnum?` — Field to sort results by; price needs filter_currency_code.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
     
 </dd>
 </dl>

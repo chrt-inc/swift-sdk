@@ -3,6 +3,8 @@ import Foundation
 public struct OrderEventEntity1: Codable, Hashable, Sendable {
     public let account: Account1?
     public let cargo: Cargo1?
+    public let cargoOnFlightBooking: CargoOnFlightBooking1?
+    public let cargoOnFlightBookingSearch: CargoOnFlightBookingSearch1?
     public let contact: Contact1?
     public let modification: [String: JSONValue]?
     public let order: Order1?
@@ -17,6 +19,8 @@ public struct OrderEventEntity1: Codable, Hashable, Sendable {
     public init(
         account: Account1? = nil,
         cargo: Cargo1? = nil,
+        cargoOnFlightBooking: CargoOnFlightBooking1? = nil,
+        cargoOnFlightBookingSearch: CargoOnFlightBookingSearch1? = nil,
         contact: Contact1? = nil,
         modification: [String: JSONValue]? = nil,
         order: Order1? = nil,
@@ -29,6 +33,8 @@ public struct OrderEventEntity1: Codable, Hashable, Sendable {
     ) {
         self.account = account
         self.cargo = cargo
+        self.cargoOnFlightBooking = cargoOnFlightBooking
+        self.cargoOnFlightBookingSearch = cargoOnFlightBookingSearch
         self.contact = contact
         self.modification = modification
         self.order = order
@@ -44,6 +50,8 @@ public struct OrderEventEntity1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.account = try container.decodeIfPresent(Account1.self, forKey: .account)
         self.cargo = try container.decodeIfPresent(Cargo1.self, forKey: .cargo)
+        self.cargoOnFlightBooking = try container.decodeIfPresent(CargoOnFlightBooking1.self, forKey: .cargoOnFlightBooking)
+        self.cargoOnFlightBookingSearch = try container.decodeIfPresent(CargoOnFlightBookingSearch1.self, forKey: .cargoOnFlightBookingSearch)
         self.contact = try container.decodeIfPresent(Contact1.self, forKey: .contact)
         self.modification = try container.decodeIfPresent([String: JSONValue].self, forKey: .modification)
         self.order = try container.decodeIfPresent(Order1.self, forKey: .order)
@@ -60,6 +68,8 @@ public struct OrderEventEntity1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.account, forKey: .account)
         try container.encodeIfPresent(self.cargo, forKey: .cargo)
+        try container.encodeIfPresent(self.cargoOnFlightBooking, forKey: .cargoOnFlightBooking)
+        try container.encodeIfPresent(self.cargoOnFlightBookingSearch, forKey: .cargoOnFlightBookingSearch)
         try container.encodeIfPresent(self.contact, forKey: .contact)
         try container.encodeIfPresent(self.modification, forKey: .modification)
         try container.encodeIfPresent(self.order, forKey: .order)
@@ -74,6 +84,8 @@ public struct OrderEventEntity1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case account
         case cargo
+        case cargoOnFlightBooking = "cargo_on_flight_booking"
+        case cargoOnFlightBookingSearch = "cargo_on_flight_booking_search"
         case contact
         case modification
         case order

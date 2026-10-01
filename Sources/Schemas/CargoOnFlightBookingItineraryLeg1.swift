@@ -2,9 +2,11 @@ import Foundation
 
 /// One leg of an itinerary: a flight, or a road feeder truck (`surface_transport`).
 public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
+    public let aircraftBodyType: CargoOnFlightBookingAircraftBodyTypeEnum1?
     public let carrierIata: String
     public let destinationIata: String
     public let flightNumber: String
+    public let integrationBodyType: String?
     public let originIata: String
     public let scheduledArrivalUtc: Date
     public let scheduledDepartureUtc: Date
@@ -13,18 +15,22 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        aircraftBodyType: CargoOnFlightBookingAircraftBodyTypeEnum1? = nil,
         carrierIata: String,
         destinationIata: String,
         flightNumber: String,
+        integrationBodyType: String? = nil,
         originIata: String,
         scheduledArrivalUtc: Date,
         scheduledDepartureUtc: Date,
         surfaceTransport: Bool,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.aircraftBodyType = aircraftBodyType
         self.carrierIata = carrierIata
         self.destinationIata = destinationIata
         self.flightNumber = flightNumber
+        self.integrationBodyType = integrationBodyType
         self.originIata = originIata
         self.scheduledArrivalUtc = scheduledArrivalUtc
         self.scheduledDepartureUtc = scheduledDepartureUtc
@@ -34,9 +40,11 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.aircraftBodyType = try container.decodeIfPresent(CargoOnFlightBookingAircraftBodyTypeEnum1.self, forKey: .aircraftBodyType)
         self.carrierIata = try container.decode(String.self, forKey: .carrierIata)
         self.destinationIata = try container.decode(String.self, forKey: .destinationIata)
         self.flightNumber = try container.decode(String.self, forKey: .flightNumber)
+        self.integrationBodyType = try container.decodeIfPresent(String.self, forKey: .integrationBodyType)
         self.originIata = try container.decode(String.self, forKey: .originIata)
         self.scheduledArrivalUtc = try container.decode(Date.self, forKey: .scheduledArrivalUtc)
         self.scheduledDepartureUtc = try container.decode(Date.self, forKey: .scheduledDepartureUtc)
@@ -47,9 +55,11 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encodeIfPresent(self.aircraftBodyType, forKey: .aircraftBodyType)
         try container.encode(self.carrierIata, forKey: .carrierIata)
         try container.encode(self.destinationIata, forKey: .destinationIata)
         try container.encode(self.flightNumber, forKey: .flightNumber)
+        try container.encodeIfPresent(self.integrationBodyType, forKey: .integrationBodyType)
         try container.encode(self.originIata, forKey: .originIata)
         try container.encode(self.scheduledArrivalUtc, forKey: .scheduledArrivalUtc)
         try container.encode(self.scheduledDepartureUtc, forKey: .scheduledDepartureUtc)
@@ -58,9 +68,11 @@ public struct CargoOnFlightBookingItineraryLeg1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case aircraftBodyType = "aircraft_body_type"
         case carrierIata = "carrier_iata"
         case destinationIata = "destination_iata"
         case flightNumber = "flight_number"
+        case integrationBodyType = "integration_body_type"
         case originIata = "origin_iata"
         case scheduledArrivalUtc = "scheduled_arrival_utc"
         case scheduledDepartureUtc = "scheduled_departure_utc"

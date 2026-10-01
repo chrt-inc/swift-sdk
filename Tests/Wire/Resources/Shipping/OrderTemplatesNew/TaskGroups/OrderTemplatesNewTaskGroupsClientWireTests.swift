@@ -22,6 +22,9 @@ import Chrt
                       "length_inches": 1.1,
                       "quantity": 1,
                       "schema_version": 1,
+                      "special_handling_codes": [
+                        "ACT"
+                      ],
                       "stackable": true,
                       "turnable": true,
                       "weight_pounds": 1.1,
@@ -113,6 +116,9 @@ import Chrt
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
                     schemaVersion: Optional(1),
+                    specialHandlingCodes: Optional([
+                        SpecialHandlingCodeEnum1.act
+                    ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),
@@ -209,6 +215,9 @@ import Chrt
                       "length_inches": 1.1,
                       "quantity": 1,
                       "schema_version": 1,
+                      "special_handling_codes": [
+                        "ACT"
+                      ],
                       "stackable": true,
                       "turnable": true,
                       "weight_pounds": 1.1,
@@ -300,6 +309,9 @@ import Chrt
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
                     schemaVersion: Optional(1),
+                    specialHandlingCodes: Optional([
+                        SpecialHandlingCodeEnum1.act
+                    ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),
@@ -396,6 +408,9 @@ import Chrt
                       "length_inches": 1.1,
                       "quantity": 1,
                       "schema_version": 1,
+                      "special_handling_codes": [
+                        "ACT"
+                      ],
                       "stackable": true,
                       "turnable": true,
                       "weight_pounds": 1.1,
@@ -487,6 +502,9 @@ import Chrt
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
                     schemaVersion: Optional(1),
+                    specialHandlingCodes: Optional([
+                        SpecialHandlingCodeEnum1.act
+                    ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),
@@ -583,6 +601,9 @@ import Chrt
                       "length_inches": 1.1,
                       "quantity": 1,
                       "schema_version": 1,
+                      "special_handling_codes": [
+                        "ACT"
+                      ],
                       "stackable": true,
                       "turnable": true,
                       "weight_pounds": 1.1,
@@ -674,6 +695,9 @@ import Chrt
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
                     schemaVersion: Optional(1),
+                    specialHandlingCodes: Optional([
+                        SpecialHandlingCodeEnum1.act
+                    ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
                     weightPounds: Optional(1.1),

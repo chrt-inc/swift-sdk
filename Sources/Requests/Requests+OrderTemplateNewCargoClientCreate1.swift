@@ -11,6 +11,7 @@ extension Requests {
         public let lengthInches: Double?
         public let quantity: Int?
         public let schemaVersion: Int?
+        public let specialHandlingCodes: [SpecialHandlingCodeEnum1]?
         public let stackable: Bool?
         public let turnable: Bool?
         public let weightPounds: Double?
@@ -27,6 +28,7 @@ extension Requests {
             lengthInches: Double? = nil,
             quantity: Int? = nil,
             schemaVersion: Int? = nil,
+            specialHandlingCodes: [SpecialHandlingCodeEnum1]? = nil,
             stackable: Bool? = nil,
             turnable: Bool? = nil,
             weightPounds: Double? = nil,
@@ -41,6 +43,7 @@ extension Requests {
             self.lengthInches = lengthInches
             self.quantity = quantity
             self.schemaVersion = schemaVersion
+            self.specialHandlingCodes = specialHandlingCodes
             self.stackable = stackable
             self.turnable = turnable
             self.weightPounds = weightPounds
@@ -58,6 +61,7 @@ extension Requests {
             self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
             self.quantity = try container.decodeIfPresent(Int.self, forKey: .quantity)
             self.schemaVersion = try container.decodeIfPresent(Int.self, forKey: .schemaVersion)
+            self.specialHandlingCodes = try container.decodeIfPresent([SpecialHandlingCodeEnum1].self, forKey: .specialHandlingCodes)
             self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
             self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
             self.weightPounds = try container.decodeIfPresent(Double.self, forKey: .weightPounds)
@@ -76,6 +80,7 @@ extension Requests {
             try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
             try container.encodeIfPresent(self.quantity, forKey: .quantity)
             try container.encodeIfPresent(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.specialHandlingCodes, forKey: .specialHandlingCodes)
             try container.encodeIfPresent(self.stackable, forKey: .stackable)
             try container.encodeIfPresent(self.turnable, forKey: .turnable)
             try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
@@ -92,6 +97,7 @@ extension Requests {
             case lengthInches = "length_inches"
             case quantity
             case schemaVersion = "schema_version"
+            case specialHandlingCodes = "special_handling_codes"
             case stackable
             case turnable
             case weightPounds = "weight_pounds"

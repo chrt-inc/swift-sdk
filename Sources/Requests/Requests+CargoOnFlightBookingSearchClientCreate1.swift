@@ -5,6 +5,7 @@ extension Requests {
         public let destinationIata: String
         public let earliestDepartureDate: String
         public let iataCassOfficeId: String
+        public let offsetDays: Int?
         public let originIata: String
         public let schemaVersion: Int
         /// Additional properties that are not explicitly defined in the schema
@@ -14,6 +15,7 @@ extension Requests {
             destinationIata: String,
             earliestDepartureDate: String,
             iataCassOfficeId: String,
+            offsetDays: Int? = nil,
             originIata: String,
             schemaVersion: Int,
             additionalProperties: [String: JSONValue] = .init()
@@ -21,6 +23,7 @@ extension Requests {
             self.destinationIata = destinationIata
             self.earliestDepartureDate = earliestDepartureDate
             self.iataCassOfficeId = iataCassOfficeId
+            self.offsetDays = offsetDays
             self.originIata = originIata
             self.schemaVersion = schemaVersion
             self.additionalProperties = additionalProperties
@@ -31,6 +34,7 @@ extension Requests {
             self.destinationIata = try container.decode(String.self, forKey: .destinationIata)
             self.earliestDepartureDate = try container.decode(String.self, forKey: .earliestDepartureDate)
             self.iataCassOfficeId = try container.decode(String.self, forKey: .iataCassOfficeId)
+            self.offsetDays = try container.decodeIfPresent(Int.self, forKey: .offsetDays)
             self.originIata = try container.decode(String.self, forKey: .originIata)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -42,6 +46,7 @@ extension Requests {
             try container.encode(self.destinationIata, forKey: .destinationIata)
             try container.encode(self.earliestDepartureDate, forKey: .earliestDepartureDate)
             try container.encode(self.iataCassOfficeId, forKey: .iataCassOfficeId)
+            try container.encodeIfPresent(self.offsetDays, forKey: .offsetDays)
             try container.encode(self.originIata, forKey: .originIata)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
         }
@@ -51,6 +56,7 @@ extension Requests {
             case destinationIata = "destination_iata"
             case earliestDepartureDate = "earliest_departure_date"
             case iataCassOfficeId = "iata_cass_office_id"
+            case offsetDays = "offset_days"
             case originIata = "origin_iata"
             case schemaVersion = "schema_version"
         }

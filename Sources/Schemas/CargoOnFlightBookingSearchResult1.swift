@@ -9,6 +9,8 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
     public let latestAcceptanceUtc: Date?
     public let legs: [CargoOnFlightBookingItineraryLeg1]?
     public let notBookableReason: String?
+    public let originGroundHandlingAgentAddress: String?
+    public let originGroundHandlingAgentName: String?
     public let rates: [CargoOnFlightBookingRate1]?
     public let timeOfAvailabilityUtc: Date?
     /// Additional properties that are not explicitly defined in the schema
@@ -23,6 +25,8 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
         latestAcceptanceUtc: Date? = nil,
         legs: [CargoOnFlightBookingItineraryLeg1]? = nil,
         notBookableReason: String? = nil,
+        originGroundHandlingAgentAddress: String? = nil,
+        originGroundHandlingAgentName: String? = nil,
         rates: [CargoOnFlightBookingRate1]? = nil,
         timeOfAvailabilityUtc: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
@@ -35,6 +39,8 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
         self.latestAcceptanceUtc = latestAcceptanceUtc
         self.legs = legs
         self.notBookableReason = notBookableReason
+        self.originGroundHandlingAgentAddress = originGroundHandlingAgentAddress
+        self.originGroundHandlingAgentName = originGroundHandlingAgentName
         self.rates = rates
         self.timeOfAvailabilityUtc = timeOfAvailabilityUtc
         self.additionalProperties = additionalProperties
@@ -50,6 +56,8 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
         self.latestAcceptanceUtc = try container.decodeIfPresent(Date.self, forKey: .latestAcceptanceUtc)
         self.legs = try container.decodeIfPresent([CargoOnFlightBookingItineraryLeg1].self, forKey: .legs)
         self.notBookableReason = try container.decodeIfPresent(String.self, forKey: .notBookableReason)
+        self.originGroundHandlingAgentAddress = try container.decodeIfPresent(String.self, forKey: .originGroundHandlingAgentAddress)
+        self.originGroundHandlingAgentName = try container.decodeIfPresent(String.self, forKey: .originGroundHandlingAgentName)
         self.rates = try container.decodeIfPresent([CargoOnFlightBookingRate1].self, forKey: .rates)
         self.timeOfAvailabilityUtc = try container.decodeIfPresent(Date.self, forKey: .timeOfAvailabilityUtc)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -66,6 +74,8 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.latestAcceptanceUtc, forKey: .latestAcceptanceUtc)
         try container.encodeIfPresent(self.legs, forKey: .legs)
         try container.encodeIfPresent(self.notBookableReason, forKey: .notBookableReason)
+        try container.encodeIfPresent(self.originGroundHandlingAgentAddress, forKey: .originGroundHandlingAgentAddress)
+        try container.encodeIfPresent(self.originGroundHandlingAgentName, forKey: .originGroundHandlingAgentName)
         try container.encodeIfPresent(self.rates, forKey: .rates)
         try container.encodeIfPresent(self.timeOfAvailabilityUtc, forKey: .timeOfAvailabilityUtc)
     }
@@ -80,6 +90,8 @@ public struct CargoOnFlightBookingSearchResult1: Codable, Hashable, Sendable {
         case latestAcceptanceUtc = "latest_acceptance_utc"
         case legs
         case notBookableReason = "not_bookable_reason"
+        case originGroundHandlingAgentAddress = "origin_ground_handling_agent_address"
+        case originGroundHandlingAgentName = "origin_ground_handling_agent_name"
         case rates
         case timeOfAvailabilityUtc = "time_of_availability_utc"
     }

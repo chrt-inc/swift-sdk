@@ -25,12 +25,34 @@ import Chrt
                         "surface_transport": true
                       }
                     ],
+                    "origin_ground_handling_agent_address": "origin_ground_handling_agent_address",
+                    "origin_ground_handling_agent_name": "origin_ground_handling_agent_name",
                     "time_of_availability_utc": "2024-01-15T09:30:00Z"
                   },
                   "booked_rate": {
+                    "all_in_rate_per_kilogram": 1.1,
+                    "chargeable_weight_kilograms": 1.1,
+                    "charges": [
+                      {
+                        "basis": "basis",
+                        "label": "label",
+                        "rate": 1.1
+                      }
+                    ],
                     "currency_code": "currency_code",
                     "integration_rate_id": "integration_rate_id",
+                    "net_rate_per_kilogram": 1.1,
+                    "other_charges_due_carrier": [
+                      {
+                        "basis": "basis",
+                        "label": "label",
+                        "rate": 1.1
+                      }
+                    ],
                     "rate_name": "rate_name",
+                    "special_handling_codes": [
+                      "special_handling_codes"
+                    ],
                     "total_amount": 1.1
                   },
                   "cancellation_requested_at_timestamp": "2024-01-15T09:30:00Z",
@@ -66,6 +88,9 @@ import Chrt
                   "rejected_at_timestamp": "2024-01-15T09:30:00Z",
                   "requested_at_timestamp": "2024-01-15T09:30:00Z",
                   "schema_version": 1,
+                  "special_handling_codes": [
+                    "ACT"
+                  ],
                   "status": "draft",
                   "task_group_id": "task_group_id"
                 }
@@ -94,12 +119,34 @@ import Chrt
                         surfaceTransport: true
                     )
                 ]),
+                originGroundHandlingAgentAddress: Optional("origin_ground_handling_agent_address"),
+                originGroundHandlingAgentName: Optional("origin_ground_handling_agent_name"),
                 timeOfAvailabilityUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
             bookedRate: Optional(CargoOnFlightBookingRate1(
+                allInRatePerKilogram: Optional(1.1),
+                chargeableWeightKilograms: Optional(1.1),
+                charges: Optional([
+                    CargoOnFlightBookingRateCharge1(
+                        basis: "basis",
+                        label: "label",
+                        rate: 1.1
+                    )
+                ]),
                 currencyCode: "currency_code",
                 integrationRateId: Optional("integration_rate_id"),
+                netRatePerKilogram: Optional(1.1),
+                otherChargesDueCarrier: Optional([
+                    CargoOnFlightBookingRateCharge1(
+                        basis: "basis",
+                        label: "label",
+                        rate: 1.1
+                    )
+                ]),
                 rateName: Optional("rate_name"),
+                specialHandlingCodes: Optional([
+                    "special_handling_codes"
+                ]),
                 totalAmount: 1.1
             )),
             cancellationRequestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -135,6 +182,9 @@ import Chrt
             rejectedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             requestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             schemaVersion: 1,
+            specialHandlingCodes: Optional([
+                SpecialHandlingCodeEnum1.act
+            ]),
             status: CargoOnFlightBookingStatusEnum1.draft,
             taskGroupId: "task_group_id"
         )
@@ -167,12 +217,34 @@ import Chrt
                         "surface_transport": true
                       }
                     ],
+                    "origin_ground_handling_agent_address": "origin_ground_handling_agent_address",
+                    "origin_ground_handling_agent_name": "origin_ground_handling_agent_name",
                     "time_of_availability_utc": "2024-01-15T09:30:00Z"
                   },
                   "booked_rate": {
+                    "all_in_rate_per_kilogram": 1.1,
+                    "chargeable_weight_kilograms": 1.1,
+                    "charges": [
+                      {
+                        "basis": "basis",
+                        "label": "label",
+                        "rate": 1.1
+                      }
+                    ],
                     "currency_code": "currency_code",
                     "integration_rate_id": "integration_rate_id",
+                    "net_rate_per_kilogram": 1.1,
+                    "other_charges_due_carrier": [
+                      {
+                        "basis": "basis",
+                        "label": "label",
+                        "rate": 1.1
+                      }
+                    ],
                     "rate_name": "rate_name",
+                    "special_handling_codes": [
+                      "special_handling_codes"
+                    ],
                     "total_amount": 1.1
                   },
                   "cancellation_requested_at_timestamp": "2024-01-15T09:30:00Z",
@@ -208,6 +280,9 @@ import Chrt
                   "rejected_at_timestamp": "2024-01-15T09:30:00Z",
                   "requested_at_timestamp": "2024-01-15T09:30:00Z",
                   "schema_version": 1,
+                  "special_handling_codes": [
+                    "ACT"
+                  ],
                   "status": "draft",
                   "task_group_id": "task_group_id"
                 }
@@ -236,12 +311,34 @@ import Chrt
                         surfaceTransport: true
                     )
                 ]),
+                originGroundHandlingAgentAddress: Optional("origin_ground_handling_agent_address"),
+                originGroundHandlingAgentName: Optional("origin_ground_handling_agent_name"),
                 timeOfAvailabilityUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
             bookedRate: Optional(CargoOnFlightBookingRate1(
+                allInRatePerKilogram: Optional(1.1),
+                chargeableWeightKilograms: Optional(1.1),
+                charges: Optional([
+                    CargoOnFlightBookingRateCharge1(
+                        basis: "basis",
+                        label: "label",
+                        rate: 1.1
+                    )
+                ]),
                 currencyCode: "currency_code",
                 integrationRateId: Optional("integration_rate_id"),
+                netRatePerKilogram: Optional(1.1),
+                otherChargesDueCarrier: Optional([
+                    CargoOnFlightBookingRateCharge1(
+                        basis: "basis",
+                        label: "label",
+                        rate: 1.1
+                    )
+                ]),
                 rateName: Optional("rate_name"),
+                specialHandlingCodes: Optional([
+                    "special_handling_codes"
+                ]),
                 totalAmount: 1.1
             )),
             cancellationRequestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -277,6 +374,9 @@ import Chrt
             rejectedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             requestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             schemaVersion: 1,
+            specialHandlingCodes: Optional([
+                SpecialHandlingCodeEnum1.act
+            ]),
             status: CargoOnFlightBookingStatusEnum1.draft,
             taskGroupId: "task_group_id"
         )
@@ -373,6 +473,9 @@ import Chrt
                       "rejected_at_timestamp": "2024-01-15T09:30:00Z",
                       "requested_at_timestamp": "2024-01-15T09:30:00Z",
                       "schema_version": 1,
+                      "special_handling_codes": [
+                        "ACT"
+                      ],
                       "status": "draft",
                       "task_group_id": "task_group_id"
                     }
@@ -430,6 +533,9 @@ import Chrt
                     rejectedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     requestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     schemaVersion: 1,
+                    specialHandlingCodes: Optional([
+                        SpecialHandlingCodeEnum1.act
+                    ]),
                     status: CargoOnFlightBookingStatusEnum1.draft,
                     taskGroupId: "task_group_id"
                 )
@@ -474,12 +580,34 @@ import Chrt
                         "surface_transport": true
                       }
                     ],
+                    "origin_ground_handling_agent_address": "origin_ground_handling_agent_address",
+                    "origin_ground_handling_agent_name": "origin_ground_handling_agent_name",
                     "time_of_availability_utc": "2024-01-15T09:30:00Z"
                   },
                   "booked_rate": {
+                    "all_in_rate_per_kilogram": 1.1,
+                    "chargeable_weight_kilograms": 1.1,
+                    "charges": [
+                      {
+                        "basis": "basis",
+                        "label": "label",
+                        "rate": 1.1
+                      }
+                    ],
                     "currency_code": "currency_code",
                     "integration_rate_id": "integration_rate_id",
+                    "net_rate_per_kilogram": 1.1,
+                    "other_charges_due_carrier": [
+                      {
+                        "basis": "basis",
+                        "label": "label",
+                        "rate": 1.1
+                      }
+                    ],
                     "rate_name": "rate_name",
+                    "special_handling_codes": [
+                      "special_handling_codes"
+                    ],
                     "total_amount": 1.1
                   },
                   "cancellation_requested_at_timestamp": "2024-01-15T09:30:00Z",
@@ -515,6 +643,9 @@ import Chrt
                   "rejected_at_timestamp": "2024-01-15T09:30:00Z",
                   "requested_at_timestamp": "2024-01-15T09:30:00Z",
                   "schema_version": 1,
+                  "special_handling_codes": [
+                    "ACT"
+                  ],
                   "status": "draft",
                   "task_group_id": "task_group_id"
                 }
@@ -543,12 +674,34 @@ import Chrt
                         surfaceTransport: true
                     )
                 ]),
+                originGroundHandlingAgentAddress: Optional("origin_ground_handling_agent_address"),
+                originGroundHandlingAgentName: Optional("origin_ground_handling_agent_name"),
                 timeOfAvailabilityUtc: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
             )),
             bookedRate: Optional(CargoOnFlightBookingRate1(
+                allInRatePerKilogram: Optional(1.1),
+                chargeableWeightKilograms: Optional(1.1),
+                charges: Optional([
+                    CargoOnFlightBookingRateCharge1(
+                        basis: "basis",
+                        label: "label",
+                        rate: 1.1
+                    )
+                ]),
                 currencyCode: "currency_code",
                 integrationRateId: Optional("integration_rate_id"),
+                netRatePerKilogram: Optional(1.1),
+                otherChargesDueCarrier: Optional([
+                    CargoOnFlightBookingRateCharge1(
+                        basis: "basis",
+                        label: "label",
+                        rate: 1.1
+                    )
+                ]),
                 rateName: Optional("rate_name"),
+                specialHandlingCodes: Optional([
+                    "special_handling_codes"
+                ]),
                 totalAmount: 1.1
             )),
             cancellationRequestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -584,6 +737,9 @@ import Chrt
             rejectedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             requestedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             schemaVersion: 1,
+            specialHandlingCodes: Optional([
+                SpecialHandlingCodeEnum1.act
+            ]),
             status: CargoOnFlightBookingStatusEnum1.draft,
             taskGroupId: "task_group_id"
         )

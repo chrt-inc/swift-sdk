@@ -10,6 +10,7 @@ extension Requests {
         public let cargoIds: [String]
         public let cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1
         public let schemaVersion: Int
+        public let specialHandlingCodes: [SpecialHandlingCodeEnum1]?
         public let taskGroupId: String
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
@@ -22,6 +23,7 @@ extension Requests {
             cargoIds: [String],
             cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1,
             schemaVersion: Int,
+            specialHandlingCodes: [SpecialHandlingCodeEnum1]? = nil,
             taskGroupId: String,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -32,6 +34,7 @@ extension Requests {
             self.cargoIds = cargoIds
             self.cargoOnFlightIntegration = cargoOnFlightIntegration
             self.schemaVersion = schemaVersion
+            self.specialHandlingCodes = specialHandlingCodes
             self.taskGroupId = taskGroupId
             self.additionalProperties = additionalProperties
         }
@@ -45,6 +48,7 @@ extension Requests {
             self.cargoIds = try container.decode([String].self, forKey: .cargoIds)
             self.cargoOnFlightIntegration = try container.decode(CargoOnFlightIntegrationEnum1.self, forKey: .cargoOnFlightIntegration)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.specialHandlingCodes = try container.decodeIfPresent([SpecialHandlingCodeEnum1].self, forKey: .specialHandlingCodes)
             self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
@@ -59,6 +63,7 @@ extension Requests {
             try container.encode(self.cargoIds, forKey: .cargoIds)
             try container.encode(self.cargoOnFlightIntegration, forKey: .cargoOnFlightIntegration)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.specialHandlingCodes, forKey: .specialHandlingCodes)
             try container.encode(self.taskGroupId, forKey: .taskGroupId)
         }
 
@@ -71,6 +76,7 @@ extension Requests {
             case cargoIds = "cargo_ids"
             case cargoOnFlightIntegration = "cargo_on_flight_integration"
             case schemaVersion = "schema_version"
+            case specialHandlingCodes = "special_handling_codes"
             case taskGroupId = "task_group_id"
         }
     }

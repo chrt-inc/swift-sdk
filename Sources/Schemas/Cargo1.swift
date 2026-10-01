@@ -25,6 +25,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let quantity: Int?
     public let schemaVersion: Int
     public let skippedAtTimestamp: Date?
+    public let specialHandlingCodes: [SpecialHandlingCodeEnum1]?
     public let stackable: Bool?
     public let stagedAtTimestamp: Date?
     public let status: CargoStatusEnum1?
@@ -56,6 +57,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         quantity: Int? = nil,
         schemaVersion: Int,
         skippedAtTimestamp: Date? = nil,
+        specialHandlingCodes: [SpecialHandlingCodeEnum1]? = nil,
         stackable: Bool? = nil,
         stagedAtTimestamp: Date? = nil,
         status: CargoStatusEnum1? = nil,
@@ -85,6 +87,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.quantity = quantity
         self.schemaVersion = schemaVersion
         self.skippedAtTimestamp = skippedAtTimestamp
+        self.specialHandlingCodes = specialHandlingCodes
         self.stackable = stackable
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
@@ -117,6 +120,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.quantity = try container.decodeIfPresent(Int.self, forKey: .quantity)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
+        self.specialHandlingCodes = try container.decodeIfPresent([SpecialHandlingCodeEnum1].self, forKey: .specialHandlingCodes)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(CargoStatusEnum1.self, forKey: .status)
@@ -150,6 +154,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
+        try container.encodeIfPresent(self.specialHandlingCodes, forKey: .specialHandlingCodes)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
@@ -181,6 +186,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case quantity
         case schemaVersion = "schema_version"
         case skippedAtTimestamp = "skipped_at_timestamp"
+        case specialHandlingCodes = "special_handling_codes"
         case stackable
         case stagedAtTimestamp = "staged_at_timestamp"
         case status
