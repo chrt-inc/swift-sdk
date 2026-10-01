@@ -1,3 +1,12 @@
+## 1.1014.0 - 2026-10-01
+### Added
+* **`CargoOnFlightBookingAircraftBodyTypeEnum1`** — new enum with `widebody`, `narrowbody`, `freighter`, and `unknown` cases for classifying aircraft body types on flight legs.
+* **`SpecialHandlingCodeEnum1`** — new enum covering 90+ IATA special handling codes; added as an optional `specialHandlingCodes` field on cargo booking, cargo item, and order template models.
+* **`CargoOnFlightBookingRateCharge1`** — new struct representing a single charge in a rate breakdown; `CargoOnFlightBookingRate1` extended with richer optional fields including `allInRatePerKilogram`, `chargeableWeightKilograms`, `charges`, `netRatePerKilogram`, and `otherChargesDueCarrier`.
+* **`CargoOnFlightBookingSearchesClient.getV1`** — now accepts six new optional query parameters (`filterBookable`, `filterAwbRequired`, `filterAircraftBodyType`, `filterCurrencyCode`, `sortBy`, `sortOrder`) for filtering and sorting booking search results.
+* **New fields across cargo-on-flight schemas** — `aircraftBodyType` and `integrationBodyType` on `CargoOnFlightBookingItineraryLeg1`; `originGroundHandlingAgentAddress` and `originGroundHandlingAgentName` on `CargoOnFlightBookingFlightLeg1`, `CargoOnFlightBookingItinerary1`, and `CargoOnFlightBookingSearchResult1`; `offsetDays` on `CargoOnFlightBookingSearch1` and `CargoOnFlightBookingSearchClientCreate1`.
+* **New event and enum values** — `cargoOnFlightBooking` and `cargoOnFlightBookingSearch` entities on `OrderEventEntity1`; 10 new `shippingCargoOnFlightBooking.*` cases on `OrderEventActionEnum1`; `cargoOnFlightCargoManifested`, `cargoOnFlightCargoRecovered` on `CargoOnFlightTaskActionEnum1`; `cargoOnFlightIntegrationSync` on `OrderEventSystemActorEnum1`; and `CargoOnFlightBookingSearchResultSortByEnum` with `departure`, `latestAcceptance`, and `price` cases.
+
 ## 2.1.0 - 2026-09-29
 ### Added
 * **`CargoOnFlightIntegrationsClient`** — new client at `ChrtClient.cargoOnFlightIntegrations` exposing a `cargoai` sub-client with `bookV1`, `cancelV1`, `refreshV1`, `searchV1`, and `searchContinueV1` methods for managing CargoAi flight bookings.
