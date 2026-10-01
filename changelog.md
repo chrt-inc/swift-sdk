@@ -1,3 +1,11 @@
+## 1.1015.0 - 2026-10-01
+### Added
+* **`TasksClient.stageV1(taskId:requestOptions:)`** — new method that returns a task to `STAGED` status, correcting accidental completions, skips, or attempts; returns `Bool` indicating success.
+* **`CargoOnFlightBookingSearchResult1.airlineConditions`** — new optional `String?` field carrying airline-specific conditions for a booking search result.
+* **`CargoOnFlightBookingSearchResult1.airlineContacts`** — new optional `[String]?` field listing airline contact information on a booking search result.
+* **`CargoOnFlightBookingSearchResult1.handlingInfoLink`** — new optional `String?` field providing a URL to handling information for a booking search result.
+* **`CargoOnFlightBookingItineraryLeg1.aircraftCode`** — new optional `String?` field identifying the aircraft code on an itinerary leg.
+
 ## 1.1014.0 - 2026-10-01
 ### Added
 * **`CargoOnFlightBookingAircraftBodyTypeEnum1`** — new enum with `widebody`, `narrowbody`, `freighter`, and `unknown` cases for classifying aircraft body types on flight legs.
