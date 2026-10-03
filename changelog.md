@@ -1,3 +1,7 @@
+## 1.1015.1 - 2026-10-03
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 1.1015.0 - 2026-10-01
 ### Added
 * **`TasksClient.stageV1(taskId:requestOptions:)`** — new method that returns a task to `STAGED` status, correcting accidental completions, skips, or attempts; returns `Bool` indicating success.
