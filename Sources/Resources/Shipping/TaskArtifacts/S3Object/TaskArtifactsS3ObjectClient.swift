@@ -57,7 +57,7 @@ public final class TaskArtifactsS3ObjectClient: Sendable {
     ///                 "location_identifiers"
     ///             ],
     ///             model: StoredModel.model(
-    ///                 .gpt56Terra
+    ///                 .gpt6Astra
     ///             ),
     ///             packageAppearance: "package_appearance",
     ///             packageTypes: [

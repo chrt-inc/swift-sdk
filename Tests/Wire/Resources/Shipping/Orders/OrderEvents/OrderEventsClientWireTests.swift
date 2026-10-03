@@ -119,6 +119,39 @@ import Chrt
                         "order_short_id": "order_short_id",
                         "schema_version": 1
                       },
+                      "cargo_on_flight_air_waybill": {
+                        "_id": "_id",
+                        "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
+                        "carriers_execution": {
+                          "authorisation_signature": "authorisation_signature",
+                          "executed_on_date": "executed_on_date",
+                          "place": "place"
+                        },
+                        "charges_declaration": {
+                          "charge_code": "CA",
+                          "currency_code": "currency_code"
+                        },
+                        "consignee": {
+                          "address_line_1": "address_line_1",
+                          "city_name": "city_name",
+                          "country_code": "country_code",
+                          "name": "name"
+                        },
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_org_id": "created_by_org_id",
+                        "iata_cass_office_id": "iata_cass_office_id",
+                        "order_id": "order_id",
+                        "schema_version": 1,
+                        "shipper": {
+                          "address_line_1": "address_line_1",
+                          "city_name": "city_name",
+                          "country_code": "country_code",
+                          "name": "name"
+                        },
+                        "shippers_certification": "shippers_certification",
+                        "task_group_id": "task_group_id",
+                        "updated_at_timestamp": "2024-01-15T09:30:00Z"
+                      },
                       "cargo_on_flight_booking": {
                         "_id": "_id",
                         "cargo_on_flight_integration": "cargoai",
@@ -143,6 +176,22 @@ import Chrt
                         "origin_iata": "origin_iata",
                         "schema_version": 1,
                         "search_completed": true,
+                        "updated_at_timestamp": "2024-01-15T09:30:00Z"
+                      },
+                      "cargo_on_flight_house_air_waybill": {
+                        "_id": "_id",
+                        "cargo_on_flight_air_waybill_id": "cargo_on_flight_air_waybill_id",
+                        "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_org_id": "created_by_org_id",
+                        "destination_iata": "destination_iata",
+                        "gross_weight_kilograms": 1.1,
+                        "house_air_waybill_number": "house_air_waybill_number",
+                        "manifest_description_of_goods": "manifest_description_of_goods",
+                        "number_of_pieces": 1,
+                        "origin_iata": "origin_iata",
+                        "schema_version": 1,
+                        "task_group_id": "task_group_id",
                         "updated_at_timestamp": "2024-01-15T09:30:00Z"
                       },
                       "contact": {
@@ -276,6 +325,39 @@ import Chrt
                         orderShortId: "order_short_id",
                         schemaVersion: 1
                     )),
+                    cargoOnFlightAirWaybill: Optional(CargoOnFlightAirWaybill1(
+                        id: "_id",
+                        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+                        carriersExecution: CargoOnFlightAirWaybillCarriersExecution1(
+                            authorisationSignature: "authorisation_signature",
+                            executedOnDate: "executed_on_date",
+                            place: "place"
+                        ),
+                        chargesDeclaration: CargoOnFlightAirWaybillChargesDeclaration1(
+                            chargeCode: CargoOnFlightAirWaybillChargeCodeEnum1.ca,
+                            currencyCode: "currency_code"
+                        ),
+                        consignee: CargoOnFlightAirWaybillParty1(
+                            addressLine1: "address_line_1",
+                            cityName: "city_name",
+                            countryCode: "country_code",
+                            name: "name"
+                        ),
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByOrgId: "created_by_org_id",
+                        iataCassOfficeId: "iata_cass_office_id",
+                        orderId: "order_id",
+                        schemaVersion: 1,
+                        shipper: CargoOnFlightAirWaybillParty1(
+                            addressLine1: "address_line_1",
+                            cityName: "city_name",
+                            countryCode: "country_code",
+                            name: "name"
+                        ),
+                        shippersCertification: "shippers_certification",
+                        taskGroupId: "task_group_id",
+                        updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    )),
                     cargoOnFlightBooking: Optional(CargoOnFlightBooking1(
                         id: "_id",
                         cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
@@ -300,6 +382,22 @@ import Chrt
                         originIata: "origin_iata",
                         schemaVersion: 1,
                         searchCompleted: true,
+                        updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                    )),
+                    cargoOnFlightHouseAirWaybill: Optional(CargoOnFlightHouseAirWaybill1(
+                        id: "_id",
+                        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+                        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByOrgId: "created_by_org_id",
+                        destinationIata: "destination_iata",
+                        grossWeightKilograms: 1.1,
+                        houseAirWaybillNumber: "house_air_waybill_number",
+                        manifestDescriptionOfGoods: "manifest_description_of_goods",
+                        numberOfPieces: 1,
+                        originIata: "origin_iata",
+                        schemaVersion: 1,
+                        taskGroupId: "task_group_id",
                         updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                     )),
                     contact: Optional(Contact1(

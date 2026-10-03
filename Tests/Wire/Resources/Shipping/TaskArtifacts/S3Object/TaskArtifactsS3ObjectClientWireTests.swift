@@ -19,7 +19,7 @@ import Chrt
                     "location_identifiers": [
                       "location_identifiers"
                     ],
-                    "model": "gpt-5.6-terra",
+                    "model": "gpt-6-astra",
                     "package_appearance": "package_appearance",
                     "package_count": 1,
                     "package_types": [
@@ -71,7 +71,7 @@ import Chrt
                     "location_identifiers"
                 ],
                 model: StoredModel.model(
-                    Model.gpt56Terra
+                    Model.gpt6Astra
                 ),
                 packageAppearance: "package_appearance",
                 packageCount: Optional(1),
@@ -138,7 +138,7 @@ import Chrt
                     "location_identifiers"
                 ],
                 model: StoredModel.model(
-                    .gpt56Terra
+                    .gpt6Astra
                 ),
                 packageAppearance: "package_appearance",
                 packageTypes: [
@@ -195,7 +195,7 @@ import Chrt
                     "location_identifiers": [
                       "location_identifiers"
                     ],
-                    "model": "gpt-5.6-terra",
+                    "model": "gpt-6-astra",
                     "package_appearance": "package_appearance",
                     "package_count": 1,
                     "package_types": [
@@ -247,7 +247,7 @@ import Chrt
                     "location_identifiers"
                 ],
                 model: StoredModel.model(
-                    Model.gpt56Terra
+                    Model.gpt6Astra
                 ),
                 packageAppearance: "package_appearance",
                 packageCount: Optional(1),

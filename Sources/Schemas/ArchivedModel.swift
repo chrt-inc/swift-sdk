@@ -8,4 +8,8 @@ public enum ArchivedModel: String, Codable, Hashable, CaseIterable, Sendable {
     case claudeOpus47 = "claude-opus-4-7"
     case claudeSonnet46 = "claude-sonnet-4-6"
     case claudeHaiku45 = "claude-haiku-4-5"
+    case gpt56Terra = "gpt-5.6-terra"
+    case gpt56Luna = "gpt-5.6-luna"
+    case gpt56Sol = "gpt-5.6-sol"
+    case gpt6Sol = "gpt-6-sol"
 }

@@ -1,11 +1,11 @@
 import Foundation
 
 public final class AgentClient: Sendable {
-    public let orderInformation: OrderInformationClient
+    public let livekit: LivekitClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
-        self.orderInformation = OrderInformationClient(config: config)
+        self.livekit = LivekitClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

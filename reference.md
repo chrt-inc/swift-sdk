@@ -1,4 +1,76 @@
 # Reference
+## ChrtGpt
+<details><summary><code>client.chrtGpt.<a href="/Sources/Resources/ChrtGpt/ChrtGptClient.swift">messageV1</a>(request: Requests.ChrtGptMessageReq, requestOptions: RequestOptions?) -> ChrtGptMessageRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends a message to ChrtGPT and returns its reply, starting a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTMessageReq) -> (ChrtGPTMessageRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.messageV1(request: .init(message: "message"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChrtGptMessageReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Flights
 <details><summary><code>client.flights.<a href="/Sources/Resources/Flights/FlightsClient.swift">searchConnectionsV1</a>(request: Requests.FlightConnectionsSearchReq, requestOptions: RequestOptions?) -> FlightConnectionsSearchRes</code></summary>
 <dl>
@@ -573,8 +645,8 @@ try await main()
 </dl>
 </details>
 
-## Agent OrderInformation
-<details><summary><code>client.agent.orderInformation.<a href="/Sources/Resources/Agent/OrderInformation/OrderInformationClient.swift">messageV1</a>(conversationId: String, request: Requests.OrderInformationConversationMessageReq, requestOptions: RequestOptions?) -> OrderInformationConversationRes</code></summary>
+## Agent Livekit HelloWorld
+<details><summary><code>client.agent.livekit.helloWorld.<a href="/Sources/Resources/Agent/Livekit/HelloWorld/HelloWorldClient.swift">startV1</a>(requestOptions: RequestOptions?) -> LiveKitHelloWorldStartRes</code></summary>
 <dl>
 <dd>
 
@@ -586,7 +658,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a message to an existing order-information conversation for its owner. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationMessageReq) -> (OrderInformationConversationRes)
+Creates a LiveKit room token that also dispatches the hello-world voice agent into the room. | () -> (LiveKitHelloWorldStartRes)
 </dd>
 </dl>
 </dd>
@@ -607,10 +679,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.agent.orderInformation.messageV1(
-        conversationId: "conversation_id",
-        request: .init(message: "message")
-    )
+    _ = try await client.agent.livekit.helloWorld.startV1()
 }
 
 try await main()
@@ -624,175 +693,6 @@ try await main()
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**conversationId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderInformationConversationMessageReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.agent.orderInformation.<a href="/Sources/Resources/Agent/OrderInformation/OrderInformationClient.swift">startV1</a>(request: Requests.OrderInformationConversationStartReq, requestOptions: RequestOptions?) -> OrderInformationConversationRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Starts an order-information conversation for the authenticated operator. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationStartReq) -> (OrderInformationConversationRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.agent.orderInformation.startV1(request: .init(message: "message"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderInformationConversationStartReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.agent.orderInformation.<a href="/Sources/Resources/Agent/OrderInformation/OrderInformationClient.swift">updateV1</a>(conversationId: String, request: Requests.OrderInformationConversationClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an order-information conversation's title for its owner. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (OrderInformationConversationClientUpdate1) -> (bool)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.agent.orderInformation.updateV1(
-        conversationId: "conversation_id",
-        request: .init()
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**conversationId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Requests.OrderInformationConversationClientUpdate1` 
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -6308,6 +6208,297 @@ try await main()
 </details>
 
 ## CargoOnFlightIntegrations Cargoai
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">listAirWaybillMessagesV1</a>(cargoOnFlightAirWaybillId: String, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, sortBy: CargoAiAirWaybillMessageSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightIntegrationsCargoAiAirWaybillMessageListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists what was sent to CargoAi for an air waybill and every airline answer received for each send. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightIntegrationsCargoAiAirWaybillMessageListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.listAirWaybillMessagesV1(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` — The air waybill whose sends are listed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Only sends created at or after this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Only sends created at or before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `CargoAiAirWaybillMessageSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">sendAirWaybillV1</a>(cargoOnFlightAirWaybillId: String, request: Requests.CargoOnFlightIntegrationsCargoAiSendAirWaybillReq, requestOptions: RequestOptions?) -> CargoAiAirWaybillMessage1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends an air waybill's FWB and/or the FHL for chosen house air waybills to the airline through CargoAi; the airline answers later. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightIntegrationsCargoAiSendAirWaybillReq) -> (CargoAiAirWaybillMessage1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.sendAirWaybillV1(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        request: .init(sendFwb: true)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightIntegrationsCargoAiSendAirWaybillReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">simulateAirlineResponseV1</a>(cargoOnFlightAirWaybillId: String, request: Requests.CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReq, requestOptions: RequestOptions?) -> CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+For demos and testing: answers a sent FWB and/or the FHLs of chosen house air waybills as the airline would, accepted or rejected, for a demo AWB (prefix 000) whose Mock Airline never answers. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReq) -> (CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.cargoai.simulateAirlineResponseV1(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">bookV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightIntegrationsCargoAiBookReq, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
 <dl>
 <dd>
@@ -20978,6 +21169,535 @@ try await main()
 </dl>
 </details>
 
+## Shipping CargoOnFlightAirWaybills
+<details><summary><code>client.shipping.cargoOnFlightAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightAirWaybills/CargoOnFlightAirWaybillsClient.swift">createV1</a>(request: Requests.CargoOnFlightAirWaybillClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightAirWaybill1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates the air waybill for a confirmed cargo-on-flight booking: the parties, rating, charges, and security declaration sent to the airline as an FWB. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightAirWaybillClientCreate1) -> (CargoOnFlightAirWaybill1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightAirWaybills.createV1(request: .init(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        carriersExecution: CargoOnFlightAirWaybillCarriersExecution1(
+            authorisationSignature: "authorisation_signature",
+            executedOnDate: "executed_on_date",
+            place: "place"
+        ),
+        chargesDeclaration: CargoOnFlightAirWaybillChargesDeclaration1(
+            chargeCode: .ca,
+            currencyCode: "currency_code"
+        ),
+        consignee: CargoOnFlightAirWaybillParty1(
+            addressLine1: "address_line_1",
+            cityName: "city_name",
+            countryCode: "country_code",
+            name: "name"
+        ),
+        rateLines: [
+            CargoOnFlightAirWaybillRateLine1(
+                grossWeightKilograms: 1.1,
+                natureAndQuantityOfGoods: "nature_and_quantity_of_goods",
+                numberOfPieces: 1,
+                rateClassCode: .b
+            )
+        ],
+        schemaVersion: 1,
+        shipper: CargoOnFlightAirWaybillParty1(
+            addressLine1: "address_line_1",
+            cityName: "city_name",
+            countryCode: "country_code",
+            name: "name"
+        ),
+        shippersCertification: "shippers_certification"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightAirWaybillClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightAirWaybills/CargoOnFlightAirWaybillsClient.swift">deleteV1</a>(cargoOnFlightAirWaybillId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an air waybill and its house air waybills, while none of them has been sent to the airline. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightAirWaybills.deleteV1(cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightAirWaybills/CargoOnFlightAirWaybillsClient.swift">listV1</a>(taskGroupId: String, filterCargoOnFlightBookingId: String?, sortBy: CargoOnFlightAirWaybillSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightAirWaybillListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists a flight task group's air waybills, one per cargo-on-flight booking. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightAirWaybillListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightAirWaybills.listV1(
+        taskGroupId: "task_group_id",
+        filterCargoOnFlightBookingId: "filter_cargo_on_flight_booking_id",
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` — The task group whose air waybills are listed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCargoOnFlightBookingId:** `String?` — Filter by booking.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `CargoOnFlightAirWaybillSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightAirWaybills/CargoOnFlightAirWaybillsClient.swift">markAcceptedV1</a>(cargoOnFlightAirWaybillId: String, request: Requests.CargoOnFlightAirWaybillsMarkAcceptedReq, requestOptions: RequestOptions?) -> CargoOnFlightAirWaybillsMarkAcceptedRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks a sent FWB and/or the FHLs of chosen house air waybills accepted, for an airline that never answered; a later airline answer replaces it. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightAirWaybillsMarkAcceptedReq) -> (CargoOnFlightAirWaybillsMarkAcceptedRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightAirWaybills.markAcceptedV1(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        request: .init(markFwb: true)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightAirWaybillsMarkAcceptedReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightAirWaybills/CargoOnFlightAirWaybillsClient.swift">updateV1</a>(cargoOnFlightAirWaybillId: String, request: Requests.CargoOnFlightAirWaybillClientUpdate1, requestOptions: RequestOptions?) -> CargoOnFlightAirWaybill1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an air waybill; an FWB already sent is replaced at the airline only when it is sent again. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightAirWaybillClientUpdate1) -> (CargoOnFlightAirWaybill1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightAirWaybills.updateV1(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightAirWaybillClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightAirWaybills/CargoOnFlightAirWaybillsClient.swift">getV1</a>(cargoOnFlightAirWaybillId: String, requestOptions: RequestOptions?) -> CargoOnFlightAirWaybill1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an air waybill. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightAirWaybill1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightAirWaybills.getV1(cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Shipping CargoOnFlightBookingSearches
 <details><summary><code>client.shipping.cargoOnFlightBookingSearches.<a href="/Sources/Resources/Shipping/CargoOnFlightBookingSearches/CargoOnFlightBookingSearchesClient.swift">listV1</a>(cargoOnFlightBookingId: String, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, sortBy: CargoOnFlightBookingSearchSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearchListRes</code></summary>
 <dl>
@@ -21653,6 +22373,420 @@ try await main()
 <dd>
 
 **cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping CargoOnFlightHouseAirWaybills
+<details><summary><code>client.shipping.cargoOnFlightHouseAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightHouseAirWaybills/CargoOnFlightHouseAirWaybillsClient.swift">createV1</a>(request: Requests.CargoOnFlightHouseAirWaybillClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightHouseAirWaybill1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a house air waybill to an air waybill's consolidation, sent to the airline in its FHL. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightHouseAirWaybillClientCreate1) -> (CargoOnFlightHouseAirWaybill1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightHouseAirWaybills.createV1(request: .init(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        destinationIata: "destination_iata",
+        grossWeightKilograms: 1.1,
+        houseAirWaybillNumber: "house_air_waybill_number",
+        manifestDescriptionOfGoods: "manifest_description_of_goods",
+        numberOfPieces: 1,
+        originIata: "origin_iata",
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightHouseAirWaybillClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightHouseAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightHouseAirWaybills/CargoOnFlightHouseAirWaybillsClient.swift">deleteV1</a>(cargoOnFlightHouseAirWaybillId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a house air waybill that has never been sent to the airline. | authz_personas=[task_group_coordinator_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightHouseAirWaybills.deleteV1(cargoOnFlightHouseAirWaybillId: "cargo_on_flight_house_air_waybill_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightHouseAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightHouseAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightHouseAirWaybills/CargoOnFlightHouseAirWaybillsClient.swift">listV1</a>(cargoOnFlightAirWaybillId: String, sortBy: CargoOnFlightHouseAirWaybillSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightHouseAirWaybillListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the house air waybills consolidated under an air waybill. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightHouseAirWaybillListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightHouseAirWaybills.listV1(
+        cargoOnFlightAirWaybillId: "cargo_on_flight_air_waybill_id",
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightAirWaybillId:** `String` — The air waybill whose houses are listed.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `CargoOnFlightHouseAirWaybillSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightHouseAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightHouseAirWaybills/CargoOnFlightHouseAirWaybillsClient.swift">updateV1</a>(cargoOnFlightHouseAirWaybillId: String, request: Requests.CargoOnFlightHouseAirWaybillClientUpdate1, requestOptions: RequestOptions?) -> CargoOnFlightHouseAirWaybill1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a house air waybill, all but its number; one already sent is replaced at the airline only when it is sent again. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightHouseAirWaybillClientUpdate1) -> (CargoOnFlightHouseAirWaybill1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightHouseAirWaybills.updateV1(
+        cargoOnFlightHouseAirWaybillId: "cargo_on_flight_house_air_waybill_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightHouseAirWaybillId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightHouseAirWaybillClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.cargoOnFlightHouseAirWaybills.<a href="/Sources/Resources/Shipping/CargoOnFlightHouseAirWaybills/CargoOnFlightHouseAirWaybillsClient.swift">getV1</a>(cargoOnFlightHouseAirWaybillId: String, requestOptions: RequestOptions?) -> CargoOnFlightHouseAirWaybill1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a house air waybill. | authz_personas=[task_group_coordinator_operators] | () -> (CargoOnFlightHouseAirWaybill1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.cargoOnFlightHouseAirWaybills.getV1(cargoOnFlightHouseAirWaybillId: "cargo_on_flight_house_air_waybill_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightHouseAirWaybillId:** `String` 
     
 </dd>
 </dl>
@@ -32988,7 +34122,7 @@ private func main() async throws {
                 "location_identifiers"
             ],
             model: StoredModel.model(
-                .gpt56Terra
+                .gpt6Astra
             ),
             packageAppearance: "package_appearance",
             packageTypes: [
@@ -49177,148 +50311,6 @@ try await main()
 </details>
 
 ## Utils Dev
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentGeographyV1</a>(request: Requests.GeographyReq, requestOptions: RequestOptions?) -> GeographyRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Runs the Pydantic AI Temporal geography sample workflow and returns the response. | (GeographyReq) -> (GeographyRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.utils.dev.postAgentGeographyV1(request: .init(prompt: "prompt"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.GeographyReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentOpenaiPingV1</a>(request: Requests.PingOpenAiReq, requestOptions: RequestOptions?) -> PingOpenAiRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Runs a minimal Temporal workflow that sends a prompt to OpenAI and returns the response. | (PingOpenAIReq) -> (PingOpenAIRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.utils.dev.postAgentOpenaiPingV1(request: .init(prompt: "prompt"))
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Requests.PingOpenAiReq` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.utils.dev.<a href="/Sources/Resources/Utils/Dev/DevClient.swift">postAgentPingV1</a>(request: Requests.PingReq, requestOptions: RequestOptions?) -> PingRes</code></summary>
 <dl>
 <dd>

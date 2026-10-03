@@ -7,58 +7,6 @@ public final class DevClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Runs the Pydantic AI Temporal geography sample workflow and returns the response. | (GeographyReq) -> (GeographyRes)
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import Chrt
-    ///
-    /// private func main() async throws {
-    ///     let client = ChrtClient(token: "<token>")
-    ///
-    ///     _ = try await client.utils.dev.postAgentGeographyV1(request: .init(prompt: "prompt"))
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentGeographyV1(request: Requests.GeographyReq, requestOptions: RequestOptions? = nil) async throws -> GeographyRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/dev/agent/geography/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: GeographyRes.self
-        )
-    }
-
-    /// Runs a minimal Temporal workflow that sends a prompt to OpenAI and returns the response. | (PingOpenAIReq) -> (PingOpenAIRes)
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import Chrt
-    ///
-    /// private func main() async throws {
-    ///     let client = ChrtClient(token: "<token>")
-    ///
-    ///     _ = try await client.utils.dev.postAgentOpenaiPingV1(request: .init(prompt: "prompt"))
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func postAgentOpenaiPingV1(request: Requests.PingOpenAiReq, requestOptions: RequestOptions? = nil) async throws -> PingOpenAiRes {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/dev/agent/openai/ping/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: PingOpenAiRes.self
-        )
-    }
-
     /// Runs a lightweight Temporal workflow and activity round trip for developer diagnostics. | (PingReq) -> (PingRes)
     ///
     /// ```swift

@@ -20,13 +20,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -59,13 +54,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -98,13 +88,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -139,13 +124,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -178,13 +158,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -219,13 +194,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -258,13 +228,8 @@ import Testing
         )
 
         do {
-            _ = try await client.flights.searchConnectionsV1(
-                request: .init(
-                    destination: "destination",
-                    localDateTime: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    origin: "origin",
-                    searchBy: .departureTime
-                ),
+            _ = try await client.chrtGpt.messageV1(
+                request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 

@@ -3,58 +3,6 @@ import Testing
 import Chrt
 
 @Suite("DevClient Wire Tests") struct DevClientWireTests {
-    @Test func postAgentGeographyV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "response": "response"
-                }
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = GeographyRes(
-            response: "response"
-        )
-        let response = try await client.utils.dev.postAgentGeographyV1(
-            request: .init(prompt: "prompt"),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func postAgentOpenaiPingV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                {
-                  "response": "response"
-                }
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = PingOpenAiRes(
-            response: "response"
-        )
-        let response = try await client.utils.dev.postAgentOpenaiPingV1(
-            request: .init(prompt: "prompt"),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func postAgentPingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

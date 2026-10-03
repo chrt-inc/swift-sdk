@@ -1,0 +1,30 @@
+import Foundation
+
+/// IATA Cargo-IMP method of payment codes, e.g. PP all charges prepaid, CC all charges collect.
+public enum CargoOnFlightAirWaybillChargeCodeEnum1: String, Codable, Hashable, CaseIterable, Sendable {
+    case ca = "CA"
+    case cb = "CB"
+    case cc = "CC"
+    case ce = "CE"
+    case cg = "CG"
+    case ch = "CH"
+    case cm = "CM"
+    case cp = "CP"
+    case cx = "CX"
+    case cz = "CZ"
+    case nc = "NC"
+    case ng = "NG"
+    case np = "NP"
+    case nt = "NT"
+    case nx = "NX"
+    case nz = "NZ"
+    case pc = "PC"
+    case pd = "PD"
+    case pe = "PE"
+    case pf = "PF"
+    case pg = "PG"
+    case ph = "PH"
+    case pp = "PP"
+    case px = "PX"
+    case pz = "PZ"
+}
