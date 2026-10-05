@@ -3,14 +3,14 @@ import Foundation
 extension Requests {
     public struct CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReq: Codable, Hashable, Sendable {
         public let airlineResponse: String?
-        public let fwbStatus: CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus?
+        public let fwbStatus: CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum?
         public let houses: [CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseHouse]?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
         public init(
             airlineResponse: String? = nil,
-            fwbStatus: CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus? = nil,
+            fwbStatus: CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum? = nil,
             houses: [CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseHouse]? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
@@ -23,7 +23,7 @@ extension Requests {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.airlineResponse = try container.decodeIfPresent(String.self, forKey: .airlineResponse)
-            self.fwbStatus = try container.decodeIfPresent(CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus.self, forKey: .fwbStatus)
+            self.fwbStatus = try container.decodeIfPresent(CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum.self, forKey: .fwbStatus)
             self.houses = try container.decodeIfPresent([CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseHouse].self, forKey: .houses)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }

@@ -206,6 +206,9 @@ public final class TaskGroupsExpandedClient: Sendable {
     ///         filterTaskGroupIds: [
     ///             "filter_task_group_ids"
     ///         ],
+    ///         filterOrderIds: [
+    ///             "filter_order_ids"
+    ///         ],
     ///         filterStatus: [
     ///             .draft
     ///         ],
@@ -239,8 +242,9 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id)
     /// - Parameter filterTaskGroupIds: Filter by selected task group ids
+    /// - Parameter filterOrderIds: Filter by selected order ids
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: TaskGroupProviderRoleFilterEnum? = nil, sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterTaskGroupIds: [String]? = nil, filterStatus: [TaskGroupStatusEnum1]? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterDriverId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForProviderOperatorsV1(providerRole: TaskGroupProviderRoleFilterEnum? = nil, sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterTaskGroupIds: [String]? = nil, filterOrderIds: [String]? = nil, filterStatus: [TaskGroupStatusEnum1]? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterDriverId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/expanded/list/for_provider_operators/v1",
@@ -252,6 +256,7 @@ public final class TaskGroupsExpandedClient: Sendable {
                 "page_size": pageSize.map { .int($0) }, 
                 "search": search.map { .string($0) }, 
                 "filter_task_group_ids": filterTaskGroupIds.map { .stringArray($0) }, 
+                "filter_order_ids": filterOrderIds.map { .stringArray($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 

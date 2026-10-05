@@ -2,13 +2,13 @@ import Foundation
 
 public struct CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseHouse: Codable, Hashable, Sendable {
     public let cargoOnFlightHouseAirWaybillId: String
-    public let status: StatusType
+    public let status: CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         cargoOnFlightHouseAirWaybillId: String,
-        status: StatusType,
+        status: CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.cargoOnFlightHouseAirWaybillId = cargoOnFlightHouseAirWaybillId
@@ -19,7 +19,7 @@ public struct CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseHouse: Coda
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.cargoOnFlightHouseAirWaybillId = try container.decode(String.self, forKey: .cargoOnFlightHouseAirWaybillId)
-        self.status = try container.decode(StatusType.self, forKey: .status)
+        self.status = try container.decode(CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum.self, forKey: .status)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

@@ -1515,6 +1515,9 @@ import Chrt
             filterTaskGroupIds: [
                 "filter_task_group_ids"
             ],
+            filterOrderIds: [
+                "filter_order_ids"
+            ],
             filterStatus: [
                 .draft
             ],
