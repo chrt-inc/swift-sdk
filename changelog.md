@@ -1,3 +1,10 @@
+## 2.0.0 - 2026-10-05
+### Breaking Changes
+* **`CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus`** — renamed to `CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum`; update all references to the old enum name.
+* **`CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseHouse.status`** — type changed from `StatusType` to `CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum`; update any code that constructs or pattern-matches on this property.
+### Added
+* **`TaskGroupsExpandedClient.listForProviderOperatorsV1(filterOrderIds:)`** — new optional `filterOrderIds: [String]?` parameter for filtering expanded task group listings by order IDs.
+
 ## 1.1015.1 - 2026-10-03
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.
