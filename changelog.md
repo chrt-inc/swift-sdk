@@ -1,12 +1,3 @@
-## 2.0.0 - 2026-10-06
-### Breaking Changes
-* **`Uom`** — public enum removed; replace `Uom` with `CargoAiFwbAndFhlWeightOrVolumeUomEnum1` (for weight/volume contexts) or `CargoAiFwbAndFhlDimensionUomEnum1` (for dimension contexts) at every usage site.
-* **`ShippingTaskAddedWebhookPayload`, `ShippingTaskAttemptedWebhookPayload`, `ShippingTaskCompletedWebhookPayload`, `ShippingTaskDeletedWebhookPayload`, `ShippingTaskExecutorOrgNoteAddedWebhookPayload`, `ShippingTaskSkippedWebhookPayload`, `ShippingTaskTaskArtifactCompletedWebhookPayload`** — new required `taskShortId: String` parameter added to each initializer; update all construction call-sites to supply this value.
-* **`Task1`** — new required `shortId: String` parameter added to the initializer; update all construction call-sites to supply this value.
-### Added
-* **`CargoAiFwbAndFhlWeightOrVolumeUomEnum1`** — new enum replacing `Uom` for weight/volume unit-of-measure fields, with cases `k`, `l`, `mc`, and `cf`.
-* **`CargoAiFwbAndFhlDimensionUomEnum1`** — new enum replacing `Uom` for dimension unit-of-measure fields, with cases `cmt` and `inh`.
-
 ## 2.0.0 - 2026-10-05
 ### Breaking Changes
 * **`CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus`** — renamed to `CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum`; update all references to the old enum name.
