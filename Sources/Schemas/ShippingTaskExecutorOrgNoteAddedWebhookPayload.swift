@@ -12,6 +12,8 @@ public struct ShippingTaskExecutorOrgNoteAddedWebhookPayload: Codable, Hashable,
     public let taskGroupId: String
     /// The task the note was added to
     public let taskId: String
+    /// Human-facing short ID of the task
+    public let taskShortId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -22,6 +24,7 @@ public struct ShippingTaskExecutorOrgNoteAddedWebhookPayload: Codable, Hashable,
         orderId: String,
         taskGroupId: String,
         taskId: String,
+        taskShortId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventTimestamp = eventTimestamp
@@ -30,6 +33,7 @@ public struct ShippingTaskExecutorOrgNoteAddedWebhookPayload: Codable, Hashable,
         self.orderId = orderId
         self.taskGroupId = taskGroupId
         self.taskId = taskId
+        self.taskShortId = taskShortId
         self.additionalProperties = additionalProperties
     }
 
@@ -41,6 +45,7 @@ public struct ShippingTaskExecutorOrgNoteAddedWebhookPayload: Codable, Hashable,
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.taskShortId = try container.decode(String.self, forKey: .taskShortId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -53,6 +58,7 @@ public struct ShippingTaskExecutorOrgNoteAddedWebhookPayload: Codable, Hashable,
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskId, forKey: .taskId)
+        try container.encode(self.taskShortId, forKey: .taskShortId)
     }
 
     public enum ShippingTaskExecutorOrgNoteAdded: String, Codable, Hashable, CaseIterable, Sendable {
@@ -67,5 +73,6 @@ public struct ShippingTaskExecutorOrgNoteAddedWebhookPayload: Codable, Hashable,
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
         case taskId = "task_id"
+        case taskShortId = "task_short_id"
     }
 }

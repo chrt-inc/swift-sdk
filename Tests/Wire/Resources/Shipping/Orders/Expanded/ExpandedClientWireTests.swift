@@ -214,6 +214,7 @@ import Chrt
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
                             "schema_version": 1,
+                            "short_id": "short_id",
                             "task_group_id": "task_group_id"
                           }
                         }
@@ -491,6 +492,7 @@ import Chrt
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 schemaVersion: 1,
+                                shortId: "short_id",
                                 taskGroupId: "task_group_id"
                             )
                         )
@@ -690,6 +692,7 @@ import Chrt
                             "order_id": "order_id",
                             "order_short_id": "order_short_id",
                             "schema_version": 1,
+                            "short_id": "short_id",
                             "task_group_id": "task_group_id"
                           }
                         }
@@ -892,6 +895,7 @@ import Chrt
                                 orderId: "order_id",
                                 orderShortId: "order_short_id",
                                 schemaVersion: 1,
+                                shortId: "short_id",
                                 taskGroupId: "task_group_id"
                             )
                         )

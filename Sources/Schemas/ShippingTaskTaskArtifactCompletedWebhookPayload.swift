@@ -14,6 +14,8 @@ public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable
     public let taskGroupId: String
     /// The task the artifact belongs to
     public let taskId: String
+    /// Human-facing short ID of the task
+    public let taskShortId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -25,6 +27,7 @@ public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable
         taskArtifactType: TaskArtifactTypeEnum1,
         taskGroupId: String,
         taskId: String,
+        taskShortId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.eventTimestamp = eventTimestamp
@@ -34,6 +37,7 @@ public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable
         self.taskArtifactType = taskArtifactType
         self.taskGroupId = taskGroupId
         self.taskId = taskId
+        self.taskShortId = taskShortId
         self.additionalProperties = additionalProperties
     }
 
@@ -46,6 +50,7 @@ public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable
         self.taskArtifactType = try container.decode(TaskArtifactTypeEnum1.self, forKey: .taskArtifactType)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.taskShortId = try container.decode(String.self, forKey: .taskShortId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -59,6 +64,7 @@ public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable
         try container.encode(self.taskArtifactType, forKey: .taskArtifactType)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskId, forKey: .taskId)
+        try container.encode(self.taskShortId, forKey: .taskShortId)
     }
 
     public enum ShippingTaskTaskArtifactCompleted: String, Codable, Hashable, CaseIterable, Sendable {
@@ -74,5 +80,6 @@ public struct ShippingTaskTaskArtifactCompletedWebhookPayload: Codable, Hashable
         case taskArtifactType = "task_artifact_type"
         case taskGroupId = "task_group_id"
         case taskId = "task_id"
+        case taskShortId = "task_short_id"
     }
 }

@@ -16,6 +16,8 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
     public let taskGroupType: TaskGroupTypeEnum1
     /// The task that was completed
     public let taskId: String
+    /// Human-facing short ID of the task
+    public let taskShortId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -28,6 +30,7 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         taskGroupId: String,
         taskGroupType: TaskGroupTypeEnum1,
         taskId: String,
+        taskShortId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.action = action
@@ -38,6 +41,7 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         self.taskGroupId = taskGroupId
         self.taskGroupType = taskGroupType
         self.taskId = taskId
+        self.taskShortId = taskShortId
         self.additionalProperties = additionalProperties
     }
 
@@ -51,6 +55,7 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.taskShortId = try container.decode(String.self, forKey: .taskShortId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -65,6 +70,7 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
         try container.encode(self.taskId, forKey: .taskId)
+        try container.encode(self.taskShortId, forKey: .taskShortId)
     }
 
     public enum ShippingTaskCompleted: String, Codable, Hashable, CaseIterable, Sendable {
@@ -81,5 +87,6 @@ public struct ShippingTaskCompletedWebhookPayload: Codable, Hashable, Sendable {
         case taskGroupId = "task_group_id"
         case taskGroupType = "task_group_type"
         case taskId = "task_id"
+        case taskShortId = "task_short_id"
     }
 }

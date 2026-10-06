@@ -1,13 +1,13 @@
 import Foundation
 
 public struct CargoAiFwbAndFhlWeightOrVolume1: Codable, Hashable, Sendable {
-    public let uom: Uom
+    public let uom: CargoAiFwbAndFhlWeightOrVolumeUomEnum1
     public let value: Double
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        uom: Uom,
+        uom: CargoAiFwbAndFhlWeightOrVolumeUomEnum1,
         value: Double,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -18,7 +18,7 @@ public struct CargoAiFwbAndFhlWeightOrVolume1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.uom = try container.decode(Uom.self, forKey: .uom)
+        self.uom = try container.decode(CargoAiFwbAndFhlWeightOrVolumeUomEnum1.self, forKey: .uom)
         self.value = try container.decode(Double.self, forKey: .value)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

@@ -4,7 +4,7 @@ public struct CargoAiFwbAndFhlDimension1: Codable, Hashable, Sendable {
     public let height: Double
     public let length: Double
     public let pcs: Int
-    public let uom: Uom
+    public let uom: CargoAiFwbAndFhlDimensionUomEnum1
     public let width: Double
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -13,7 +13,7 @@ public struct CargoAiFwbAndFhlDimension1: Codable, Hashable, Sendable {
         height: Double,
         length: Double,
         pcs: Int,
-        uom: Uom,
+        uom: CargoAiFwbAndFhlDimensionUomEnum1,
         width: Double,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -30,7 +30,7 @@ public struct CargoAiFwbAndFhlDimension1: Codable, Hashable, Sendable {
         self.height = try container.decode(Double.self, forKey: .height)
         self.length = try container.decode(Double.self, forKey: .length)
         self.pcs = try container.decode(Int.self, forKey: .pcs)
-        self.uom = try container.decode(Uom.self, forKey: .uom)
+        self.uom = try container.decode(CargoAiFwbAndFhlDimensionUomEnum1.self, forKey: .uom)
         self.width = try container.decode(Double.self, forKey: .width)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }

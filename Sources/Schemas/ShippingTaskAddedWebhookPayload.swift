@@ -14,6 +14,8 @@ public struct ShippingTaskAddedWebhookPayload: Codable, Hashable, Sendable {
     public let taskGroupId: String
     /// The task that was added
     public let taskId: String
+    /// Human-facing short ID of the task
+    public let taskShortId: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -25,6 +27,7 @@ public struct ShippingTaskAddedWebhookPayload: Codable, Hashable, Sendable {
         orderId: String,
         taskGroupId: String,
         taskId: String,
+        taskShortId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.action = action
@@ -34,6 +37,7 @@ public struct ShippingTaskAddedWebhookPayload: Codable, Hashable, Sendable {
         self.orderId = orderId
         self.taskGroupId = taskGroupId
         self.taskId = taskId
+        self.taskShortId = taskShortId
         self.additionalProperties = additionalProperties
     }
 
@@ -46,6 +50,7 @@ public struct ShippingTaskAddedWebhookPayload: Codable, Hashable, Sendable {
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskId = try container.decode(String.self, forKey: .taskId)
+        self.taskShortId = try container.decode(String.self, forKey: .taskShortId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -59,6 +64,7 @@ public struct ShippingTaskAddedWebhookPayload: Codable, Hashable, Sendable {
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskId, forKey: .taskId)
+        try container.encode(self.taskShortId, forKey: .taskShortId)
     }
 
     public enum ShippingTaskAdded: String, Codable, Hashable, CaseIterable, Sendable {
@@ -74,5 +80,6 @@ public struct ShippingTaskAddedWebhookPayload: Codable, Hashable, Sendable {
         case orderId = "order_id"
         case taskGroupId = "task_group_id"
         case taskId = "task_id"
+        case taskShortId = "task_short_id"
     }
 }

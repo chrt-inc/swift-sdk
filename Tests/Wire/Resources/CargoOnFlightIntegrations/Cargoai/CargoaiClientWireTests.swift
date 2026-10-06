@@ -361,7 +361,7 @@ import Chrt
                 hawbs: Optional([
                     CargoAiFwbAndFhlHouse1(
                         grossWeight: CargoAiFwbAndFhlWeightOrVolume1(
-                            uom: Uom.k,
+                            uom: CargoAiFwbAndFhlWeightOrVolumeUomEnum1.k,
                             value: 1.1
                         ),
                         hawbNumber: "hawb_number",
@@ -410,7 +410,7 @@ import Chrt
                 rates: Optional([
                     CargoAiFwbAndFhlRate1(
                         grossWeight: CargoAiFwbAndFhlWeightOrVolume1(
-                            uom: Uom.k,
+                            uom: CargoAiFwbAndFhlWeightOrVolumeUomEnum1.k,
                             value: 1.1
                         ),
                         numberOfPieces: 1,
