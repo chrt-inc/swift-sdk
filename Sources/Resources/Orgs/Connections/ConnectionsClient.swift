@@ -337,6 +337,35 @@ public final class ConnectionsClient: Sendable {
         )
     }
 
+    /// Sets the coordinator's known-shipper designation for an on- or off-CHRT shipper and records who changed it and when. | authz: allowed_org_types=[provider], min_org_role=operator | (ShipperCoordinatorUpdateKnownShipperReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.connections.setShipperCoordinatorKnownShipperV1(
+    ///         connectionId: "connection_id",
+    ///         request: .init(knownShipper: true)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func setShipperCoordinatorKnownShipperV1(connectionId: String, request: Requests.ShipperCoordinatorUpdateKnownShipperReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/orgs/connections/set_shipper_coordinator_known_shipper/v1/\(connectionId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Lists the caller's shipper connections with filtering, pagination, and identity search. | authz: allowed_org_types=[provider] | () -> (ShipperCoordinatorConnectionsForCoordinatorListRes)
     ///
     /// ```swift
@@ -353,7 +382,8 @@ public final class ConnectionsClient: Sendable {
     ///         filterConnectionIds: [
     ///             "filter_connection_ids"
     ///         ],
-    ///         filterConnected: true
+    ///         filterConnected: true,
+    ///         filterKnownShipper: true
     ///     )
     /// }
     ///
@@ -363,8 +393,9 @@ public final class ConnectionsClient: Sendable {
     /// - Parameter search: Search by organization identity details
     /// - Parameter filterConnectionIds: Filter by selected connection ids
     /// - Parameter filterConnected: Filter by connection status
+    /// - Parameter filterKnownShipper: Filter by the coordinator's known-shipper designation
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listShippersForCoordinatorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterConnected: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperCoordinatorConnectionsForCoordinatorListRes {
+    public func listShippersForCoordinatorV1(search: String? = nil, page: Int? = nil, pageSize: Int? = nil, filterConnectionIds: [String]? = nil, filterConnected: Bool? = nil, filterKnownShipper: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> ShipperCoordinatorConnectionsForCoordinatorListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/orgs/connections/shippers/list/for_coordinator/v1",
@@ -373,7 +404,8 @@ public final class ConnectionsClient: Sendable {
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "filter_connection_ids": filterConnectionIds.map { .stringArray($0) }, 
-                "filter_connected": filterConnected.map { .bool($0) }
+                "filter_connected": filterConnected.map { .bool($0) }, 
+                "filter_known_shipper": filterKnownShipper.map { .bool($0) }
             ],
             requestOptions: requestOptions,
             responseType: ShipperCoordinatorConnectionsForCoordinatorListRes.self

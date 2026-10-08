@@ -13,6 +13,9 @@ import Chrt
                   "connected": true,
                   "coordinator_default_department_id": "coordinator_default_department_id",
                   "coordinator_org_id": "coordinator_org_id",
+                  "known_shipper": true,
+                  "known_shipper_last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                  "known_shipper_last_edited_by_user_id": "known_shipper_last_edited_by_user_id",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "schema_version": 1,
                   "shipper_customer_id_for_coordinator_stripe_connect_account": "shipper_customer_id_for_coordinator_stripe_connect_account",
@@ -32,6 +35,9 @@ import Chrt
                 connected: Optional(true),
                 coordinatorDefaultDepartmentId: Optional("coordinator_default_department_id"),
                 coordinatorOrgId: "coordinator_org_id",
+                knownShipper: Optional(true),
+                knownShipperLastEditedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                knownShipperLastEditedByUserId: Optional("known_shipper_last_edited_by_user_id"),
                 offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
                 schemaVersion: 1,
                 shipperCustomerIdForCoordinatorStripeConnectAccount: Optional("shipper_customer_id_for_coordinator_stripe_connect_account"),
@@ -433,6 +439,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func setShipperCoordinatorKnownShipperV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.orgs.connections.setShipperCoordinatorKnownShipperV1(
+            connectionId: "connection_id",
+            request: .init(knownShipper: true),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listShippersForCoordinatorV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -508,6 +537,7 @@ import Chrt
                 "filter_connection_ids"
             ],
             filterConnected: true,
+            filterKnownShipper: true,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

@@ -1,9 +1,11 @@
 import Foundation
 
 public final class PublicDataClient: Sendable {
+    public let s3Object: PublicDataS3ObjectClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.s3Object = PublicDataS3ObjectClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

@@ -22,6 +22,9 @@ import Chrt
                     "industry": "industry",
                     "name": "name",
                     "org_id": "org_id",
+                    "org_public_data_s3_object_metadata_ids": [
+                      "org_public_data_s3_object_metadata_ids"
+                    ],
                     "org_type": "provider",
                     "phone_number": "phone_number",
                     "schema_version": 1,
@@ -83,6 +86,9 @@ import Chrt
                 industry: Optional("industry"),
                 name: "name",
                 orgId: "org_id",
+                orgPublicDataS3ObjectMetadataIds: Optional([
+                    "org_public_data_s3_object_metadata_ids"
+                ]),
                 orgType: OrgTypeEnum.provider,
                 phoneNumber: Optional("phone_number"),
                 schemaVersion: 1,
@@ -163,6 +169,9 @@ import Chrt
                     "industry": "industry",
                     "name": "name",
                     "org_id": "org_id",
+                    "org_public_data_s3_object_metadata_ids": [
+                      "org_public_data_s3_object_metadata_ids"
+                    ],
                     "org_type": "provider",
                     "phone_number": "phone_number",
                     "schema_version": 1,
@@ -224,6 +233,9 @@ import Chrt
                 industry: Optional("industry"),
                 name: "name",
                 orgId: "org_id",
+                orgPublicDataS3ObjectMetadataIds: Optional([
+                    "org_public_data_s3_object_metadata_ids"
+                ]),
                 orgType: OrgTypeEnum.provider,
                 phoneNumber: Optional("phone_number"),
                 schemaVersion: 1,

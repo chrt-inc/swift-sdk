@@ -10,6 +10,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
     public let name: String
     /// Must be a string starting with `org_`
     public let orgId: String
+    public let orgPublicDataS3ObjectMetadataIds: [String]?
     public let orgType: OrgTypeEnum
     public let phoneNumber: String?
     public let schemaVersion: Int
@@ -25,6 +26,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
         industry: String? = nil,
         name: String,
         orgId: String,
+        orgPublicDataS3ObjectMetadataIds: [String]? = nil,
         orgType: OrgTypeEnum,
         phoneNumber: String? = nil,
         schemaVersion: Int,
@@ -38,6 +40,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
         self.industry = industry
         self.name = name
         self.orgId = orgId
+        self.orgPublicDataS3ObjectMetadataIds = orgPublicDataS3ObjectMetadataIds
         self.orgType = orgType
         self.phoneNumber = phoneNumber
         self.schemaVersion = schemaVersion
@@ -54,6 +57,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
         self.industry = try container.decodeIfPresent(String.self, forKey: .industry)
         self.name = try container.decode(String.self, forKey: .name)
         self.orgId = try container.decode(String.self, forKey: .orgId)
+        self.orgPublicDataS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .orgPublicDataS3ObjectMetadataIds)
         self.orgType = try container.decode(OrgTypeEnum.self, forKey: .orgType)
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -71,6 +75,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.industry, forKey: .industry)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.orgId, forKey: .orgId)
+        try container.encodeIfPresent(self.orgPublicDataS3ObjectMetadataIds, forKey: .orgPublicDataS3ObjectMetadataIds)
         try container.encode(self.orgType, forKey: .orgType)
         try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -86,6 +91,7 @@ public struct OrgPublicData1: Codable, Hashable, Sendable {
         case industry
         case name
         case orgId = "org_id"
+        case orgPublicDataS3ObjectMetadataIds = "org_public_data_s3_object_metadata_ids"
         case orgType = "org_type"
         case phoneNumber = "phone_number"
         case schemaVersion = "schema_version"

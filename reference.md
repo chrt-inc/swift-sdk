@@ -18555,7 +18555,89 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listShippersForCoordinatorV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterConnected: Bool?, requestOptions: RequestOptions?) -> ShipperCoordinatorConnectionsForCoordinatorListRes</code></summary>
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">setShipperCoordinatorKnownShipperV1</a>(connectionId: String, request: Requests.ShipperCoordinatorUpdateKnownShipperReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the coordinator's known-shipper designation for an on- or off-CHRT shipper and records who changed it and when. | authz: allowed_org_types=[provider], min_org_role=operator | (ShipperCoordinatorUpdateKnownShipperReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.connections.setShipperCoordinatorKnownShipperV1(
+        connectionId: "connection_id",
+        request: .init(knownShipper: true)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**connectionId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ShipperCoordinatorUpdateKnownShipperReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.connections.<a href="/Sources/Resources/Orgs/Connections/ConnectionsClient.swift">listShippersForCoordinatorV1</a>(search: String?, page: Int?, pageSize: Int?, filterConnectionIds: [String]?, filterConnected: Bool?, filterKnownShipper: Bool?, requestOptions: RequestOptions?) -> ShipperCoordinatorConnectionsForCoordinatorListRes</code></summary>
 <dl>
 <dd>
 
@@ -18595,7 +18677,8 @@ private func main() async throws {
         filterConnectionIds: [
             "filter_connection_ids"
         ],
-        filterConnected: true
+        filterConnected: true,
+        filterKnownShipper: true
     )
 }
 
@@ -18647,6 +18730,14 @@ try await main()
 <dd>
 
 **filterConnected:** `Bool?` — Filter by connection status
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterKnownShipper:** `Bool?` — Filter by the coordinator's known-shipper designation
     
 </dd>
 </dl>
@@ -21150,6 +21241,291 @@ try await main()
 <dd>
 
 **limit:** `Int?` — Max results per field
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Orgs PublicData S3Object
+<details><summary><code>client.orgs.publicData.s3Object.<a href="/Sources/Resources/Orgs/PublicData/S3Object/PublicDataS3ObjectClient.swift">addV1</a>(request: Requests.BodyPostOrgPublicDataS3ObjectAddV1, requestOptions: RequestOptions?) -> OrgPublicDataS3ObjectMetadata1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads a file, such as a logo, to the caller's organization public data. Retains uploaded files; previews require a clean malware scan. | authz: min_org_role=operator | (UploadFile) -> (OrgPublicDataS3ObjectMetadata1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.publicData.s3Object.addV1(request: .init(file: .init(data: Data("".utf8))))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.BodyPostOrgPublicDataS3ObjectAddV1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.publicData.s3Object.<a href="/Sources/Resources/Orgs/PublicData/S3Object/PublicDataS3ObjectClient.swift">deleteV1</a>(orgPublicDataS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an S3 object and its metadata from the caller's organization public data. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.publicData.s3Object.deleteV1(orgPublicDataS3ObjectMetadataId: "org_public_data_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgPublicDataS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.publicData.s3Object.<a href="/Sources/Resources/Orgs/PublicData/S3Object/PublicDataS3ObjectClient.swift">getS3ObjectMetadataV1</a>(orgPublicDataS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> OrgPublicDataS3ObjectMetadata1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves metadata for an organization public data S3 object. | () -> (OrgPublicDataS3ObjectMetadata1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.publicData.s3Object.getS3ObjectMetadataV1(orgPublicDataS3ObjectMetadataId: "org_public_data_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgPublicDataS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.publicData.s3Object.<a href="/Sources/Resources/Orgs/PublicData/S3Object/PublicDataS3ObjectClient.swift">getV1</a>(orgPublicDataS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams an organization public data S3 object file from storage. | () -> (binary)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.publicData.s3Object.getV1(orgPublicDataS3ObjectMetadataId: "org_public_data_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgPublicDataS3ObjectMetadataId:** `String` 
     
 </dd>
 </dl>
