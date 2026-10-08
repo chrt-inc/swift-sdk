@@ -1,3 +1,11 @@
+## 1.1024.0 - 2026-10-08
+### Added
+* **`PublicDataS3ObjectClient`** — new sub-client at `client.orgs.publicData.s3Object` with `addV1`, `deleteV1`, `getS3ObjectMetadataV1`, and `getV1` methods for managing organization public data S3 objects such as logos.
+* **`OrgPublicDataS3ObjectMetadata1`** — new response type returned by `PublicDataS3ObjectClient` methods, carrying file metadata fields including `contentType`, `filename`, `blurhash`, `id`, `s3KeyPrefix`, and upload provenance fields.
+* **`ConnectionsClient.setShipperCoordinatorKnownShipperV1(connectionId:request:requestOptions:)`** — new method that sets the coordinator's known-shipper designation for a shipper connection and records who changed it and when.
+* **`ConnectionsClient.listShippersForCoordinatorV1`** — gains a new optional `filterKnownShipper: Bool?` parameter; `ShipperCoordinatorConnection1` gains optional `knownShipper`, `knownShipperLastEditedAtTimestamp`, and `knownShipperLastEditedByUserId` fields.
+* **`SpecialHandlingCodeEnum1`** and **`OrgPublicData1`** — approximately 45 new cargo special handling codes added to `SpecialHandlingCodeEnum1`; `OrgPublicData1` gains a new optional `orgPublicDataS3ObjectMetadataIds: [String]?` field.
+
 ## 2.0.0 - 2026-10-05
 ### Breaking Changes
 * **`CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus`** — renamed to `CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum`; update all references to the old enum name.
