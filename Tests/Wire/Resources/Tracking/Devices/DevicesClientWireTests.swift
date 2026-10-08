@@ -25,6 +25,46 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func forCargoV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                [
+                  {
+                    "device_id": "device_id",
+                    "device_mac_address": "device_mac_address",
+                    "is_currently_linked": true,
+                    "last_seen_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_seen_battery_level": "last_seen_battery_level",
+                    "type": "D15N-tag"
+                  }
+                ]
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = [
+            DeviceForCargoRes(
+                deviceId: "device_id",
+                deviceMacAddress: "device_mac_address",
+                isCurrentlyLinked: true,
+                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                lastSeenBatteryLevel: Optional("last_seen_battery_level"),
+                type: Optional(TrackingDeviceTypeEnum1.d15NTag)
+            )
+        ]
+        let response = try await client.tracking.devices.forCargoV1(
+            cargoId: "cargo_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -559,6 +599,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func linkToCargoV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.tracking.devices.linkToCargoV1(
+            deviceId: "device_id",
+            cargoId: "cargo_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -797,6 +860,28 @@ import Chrt
             query: "query",
             limit: 1,
             orgScope: .owned,
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func unlinkFromCargoV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.tracking.devices.unlinkFromCargoV1(
+            deviceId: "device_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

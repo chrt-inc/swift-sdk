@@ -1,3 +1,10 @@
+## 1.1021.0 - 2026-10-08
+### Added
+* **`DevicesClient.forCargoV1(cargoId:requestOptions:)`** — new method that lists all devices currently or previously linked to a cargo, ordered by MAC address, returning `[DeviceForCargoRes]`.
+* **`DevicesClient.linkToCargoV1(deviceId:cargoId:requestOptions:)`** — new method that links an owned device to a cargo and activates its tracker; relinking the same cargo reactivates a stopped tracker.
+* **`DevicesClient.unlinkFromCargoV1(deviceId:requestOptions:)`** — new method that unlinks an owned device from its cargo and deactivates its tracker, returning `false` when the device is not linked.
+* **`DeviceForCargoRes`** — new response struct representing a device as seen by cargo order parties, with fields `deviceId`, `deviceMacAddress`, `isCurrentlyLinked`, `lastSeenAtTimestamp`, `lastSeenBatteryLevel`, and `type`.
+
 ## 2.0.0 - 2026-10-05
 ### Breaking Changes
 * **`CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseReqFwbStatus`** — renamed to `CargoOnFlightIntegrationsCargoAiSimulateAirlineResponseStatusEnum`; update all references to the old enum name.
