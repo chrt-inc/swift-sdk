@@ -1,13 +1,15 @@
 import Foundation
 
 public final class ChrtGptClient: Sendable {
+    public let conversations: ConversationsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.conversations = ConversationsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Sends a message to ChrtGPT and returns its reply, starting a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTMessageReq) -> (ChrtGPTMessageRes)
+    /// Sends a message to ChrtGPT and streams its reply, starting and titling a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTReq) -> (stream[ChrtGPTEvent])
     ///
     /// ```swift
     /// import Foundation
@@ -16,20 +18,20 @@ public final class ChrtGptClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.chrtGpt.messageV1(request: .init(message: "message"))
+    ///     _ = try await client.chrtGpt.postV1(request: .init(message: "message"))
     /// }
     ///
     /// try await main()
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func messageV1(request: Requests.ChrtGptMessageReq, requestOptions: RequestOptions? = nil) async throws -> ChrtGptMessageRes {
+    public func postV1(request: Requests.ChrtGptReq, requestOptions: RequestOptions? = nil) async throws -> JSONValue {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/chrt_gpt/message/v1",
+            path: "/chrt_gpt/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: ChrtGptMessageRes.self
+            responseType: JSONValue.self
         )
     }
 }

@@ -21,7 +21,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -49,7 +49,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -77,7 +77,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -104,7 +104,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -130,7 +130,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -157,7 +157,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -184,7 +184,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -216,7 +216,7 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -258,7 +258,7 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -296,7 +296,7 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
@@ -345,7 +345,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers)
             )
@@ -368,7 +368,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers)
             )
@@ -395,7 +395,7 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.messageV1(
+            _ = try await client.chrtGpt.postV1(
                 request: .init(message: "message"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )

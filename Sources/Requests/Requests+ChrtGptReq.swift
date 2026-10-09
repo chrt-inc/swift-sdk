@@ -1,7 +1,7 @@
 import Foundation
 
 extension Requests {
-    public struct ChrtGptMessageReq: Codable, Hashable, Sendable {
+    public struct ChrtGptReq: Codable, Hashable, Sendable {
         /// Omit to start a new conversation.
         public let conversationId: String?
         public let message: String

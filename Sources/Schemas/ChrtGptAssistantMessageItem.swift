@@ -1,38 +1,39 @@
 import Foundation
 
-public struct ChrtGptMessageRes: Codable, Hashable, Sendable {
-    public let conversationId: String
-    public let responseText: String
+public struct ChrtGptAssistantMessageItem: Codable, Hashable, Sendable {
+    /// Matches the item_id of the text_delta events that streamed it.
+    public let itemId: String
+    public let text: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        conversationId: String,
-        responseText: String,
+        itemId: String,
+        text: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
-        self.conversationId = conversationId
-        self.responseText = responseText
+        self.itemId = itemId
+        self.text = text
         self.additionalProperties = additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.conversationId = try container.decode(String.self, forKey: .conversationId)
-        self.responseText = try container.decode(String.self, forKey: .responseText)
+        self.itemId = try container.decode(String.self, forKey: .itemId)
+        self.text = try container.decode(String.self, forKey: .text)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encode(self.conversationId, forKey: .conversationId)
-        try container.encode(self.responseText, forKey: .responseText)
+        try container.encode(self.itemId, forKey: .itemId)
+        try container.encode(self.text, forKey: .text)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case conversationId = "conversation_id"
-        case responseText = "response_text"
+        case itemId = "item_id"
+        case text
     }
 }

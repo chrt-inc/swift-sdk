@@ -55,7 +55,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.chrtGpt.messageV1(request: .init(message: "message"))
+    _ = try await client.chrtGpt.postV1(request: .init(message: "message"))
 }
 
 try await main()
@@ -84,7 +84,7 @@ import Chrt
 let client = ChrtClient(token: "YOUR_API_KEY")
 
 do {
-    let response = try await client.chrtGpt.messageV1(...)
+    let response = try await client.chrtGpt.postV1(...)
     // Handle successful response
 } catch let error as ChrtError {
     switch error {
@@ -111,7 +111,7 @@ The SDK exports all request types as Swift structs. Simply import the SDK module
 ```swift
 import Chrt
 
-let request = Requests.ChrtGptMessageReq(
+let request = Requests.ChrtGptReq(
     ...
 )
 ```
@@ -123,7 +123,7 @@ let request = Requests.ChrtGptMessageReq(
 If you would like to send additional headers as part of the request, use the `additionalHeaders` request option.
 
 ```swift
-try await client.chrtGpt.messageV1(..., requestOptions: .init(
+try await client.chrtGpt.postV1(..., requestOptions: .init(
     additionalHeaders: [
         "X-Custom-Header": "custom value"
     ]
@@ -135,7 +135,7 @@ try await client.chrtGpt.messageV1(..., requestOptions: .init(
 If you would like to send additional query string parameters as part of the request, use the `additionalQueryParameters` request option.
 
 ```swift
-try await client.chrtGpt.messageV1(..., requestOptions: .init(
+try await client.chrtGpt.postV1(..., requestOptions: .init(
     additionalQueryParameters: [
         "custom_query_param_key": "custom_query_param_value"
     ]
@@ -147,7 +147,7 @@ try await client.chrtGpt.messageV1(..., requestOptions: .init(
 The SDK defaults to a 60-second timeout. Use the `timeout` option to configure this behavior.
 
 ```swift
-try await client.chrtGpt.messageV1(..., requestOptions: .init(
+try await client.chrtGpt.postV1(..., requestOptions: .init(
     timeout: 30
 ))
 ```

@@ -1,6 +1,6 @@
 # Reference
 ## ChrtGpt
-<details><summary><code>client.chrtGpt.<a href="/Sources/Resources/ChrtGpt/ChrtGptClient.swift">messageV1</a>(request: Requests.ChrtGptMessageReq, requestOptions: RequestOptions?) -> ChrtGptMessageRes</code></summary>
+<details><summary><code>client.chrtGpt.<a href="/Sources/Resources/ChrtGpt/ChrtGptClient.swift">postV1</a>(request: Requests.ChrtGptReq, requestOptions: RequestOptions?) -> JSONValue</code></summary>
 <dl>
 <dd>
 
@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Sends a message to ChrtGPT and returns its reply, starting a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTMessageReq) -> (ChrtGPTMessageRes)
+Sends a message to ChrtGPT and streams its reply, starting and titling a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTReq) -> (stream[ChrtGPTEvent])
 </dd>
 </dl>
 </dd>
@@ -33,7 +33,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.chrtGpt.messageV1(request: .init(message: "message"))
+    _ = try await client.chrtGpt.postV1(request: .init(message: "message"))
 }
 
 try await main()
@@ -51,7 +51,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.ChrtGptMessageReq` 
+**request:** `Requests.ChrtGptReq` 
     
 </dd>
 </dl>
@@ -6878,6 +6878,178 @@ try await main()
 <dd>
 
 **request:** `Requests.CargoOnFlightBookingSearchClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ChrtGpt Conversations
+<details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">listV1</a>(sortBy: ChrtGptConversationSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ChrtGptConversationListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's ChrtGPT conversations, most recently active first by default. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.listV1(
+        sortBy: .updatedAt,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `ChrtGptConversationSortByEnum?` — Field to sort by
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">getV1</a>(conversationId: String, requestOptions: RequestOptions?) -> ChrtGptConversationRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets one of the caller's ChrtGPT conversations with its history of messages, tool calls, and web searches. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.getV1(conversationId: "conversation_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `String` 
     
 </dd>
 </dl>
