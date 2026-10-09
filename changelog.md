@@ -1,3 +1,9 @@
+## 2.1.0 - 2026-10-09
+### Added
+* **`RequestOptions.additionalBodyProperties`** — new optional `[String: JSONValue]?` field that merges arbitrary JSON values (booleans, numbers, arrays, objects, or `null`) into the request body; takes precedence over generated fields and `additionalBodyParameters` entries with the same key.
+* **`JSONValue` literal conformances** — `JSONValue` now conforms to `ExpressibleByStringLiteral`, `ExpressibleByIntegerLiteral`, `ExpressibleByFloatLiteral`, `ExpressibleByBooleanLiteral`, `ExpressibleByArrayLiteral`, and `ExpressibleByDictionaryLiteral`, enabling ergonomic literal construction without explicit enum cases.
+* **Per-endpoint retry opt-out** — internal `retriesDisabled` flag allows individual endpoints to suppress all retries, taking precedence over both client-level and per-request `maxRetries` configuration.
+
 ## 2.0.0 - 2026-10-09
 ### Added
 * **`ChrtGptToolOutputEvent`** — new public struct representing a tool call result event, carrying `callId` and `output` fields.
