@@ -1,3 +1,9 @@
+## 2.0.0 - 2026-10-09
+### Added
+* **`ChrtGptToolOutputEvent`** — new public struct representing a tool call result event, carrying `callId` and `output` fields.
+* **`ChrtGptUserMessageItem`** — new public struct representing a user message payload with a `text` field.
+* **`ChrtGptWebSearchEvent`** — new public struct representing an OpenAI web search event, with `action`, `itemId`, `queries`, and an optional `url` field.
+
 ## 1.1024.0 - 2026-10-08
 ### Added
 * **`PublicDataS3ObjectClient`** — new sub-client at `client.orgs.publicData.s3Object` with `addV1`, `deleteV1`, `getS3ObjectMetadataV1`, and `getV1` methods for managing organization public data S3 objects such as logos.
