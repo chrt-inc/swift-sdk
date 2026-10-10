@@ -1,3 +1,15 @@
+## 2.0.0 - 2026-10-10
+### Breaking Changes
+* **`ChrtGptTitleEvent`** — type removed and the `.title(ChrtGptTitleEvent)` case removed from `ChrtGptEvent`; update exhaustive `switch` statements over `ChrtGptEvent` to remove the `title` arm.
+* **`ChrtGptConversationRes`** — gains a new required `contextLimitTokens: Int` field; update all call sites that construct this type to supply the new argument.
+* **`ChrtGptCompletedEvent`** — gains two new required fields `contextLimitTokens: Int` and `contextTokens: Int`; update all constructors accordingly.
+* **`ChrtGptConversation1`** — gains a new required `titleSource: ChrtGptConversationTitleSourceEnum1` field and several new optional fields (`awbNumbers`, `contextTokens`, `offChrtReferenceIds`, `orderShortIds`, `summarizedTurnCount`, `summary`); update all constructors to pass `titleSource`.
+### Added
+* **`ConversationsClient.deleteManyV1`** — permanently deletes multiple ChrtGPT conversations by ID, skipping any that don't exist or don't belong to the caller.
+* **`ConversationsClient.updateTitleV1`** — renames a ChrtGPT conversation; ChrtGPT will not auto-retitle it afterward.
+* **`ChrtGptReqReasoningEffort`** and **`Verbosity`** — new enums controlling how thoroughly ChrtGPT reasons and how detailed its reply is; exposed as optional `reasoningEffort` and `verbosity` fields on `ChrtGptReq`.
+* **`ChrtGptConversationTitleSourceEnum1`** — new enum (`fallback`, `ai`, `user`) indicating how a conversation's title was set.
+
 ## 2.1.0 - 2026-10-09
 ### Added
 * **`RequestOptions.additionalBodyProperties`** — new optional `[String: JSONValue]?` field that merges arbitrary JSON values (booleans, numbers, arrays, objects, or `null`) into the request body; takes precedence over generated fields and `additionalBodyParameters` entries with the same key.
