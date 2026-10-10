@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Sends a message to ChrtGPT and streams its reply, starting and titling a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTReq) -> (stream[ChrtGPTEvent])
+Sends a message to ChrtGPT and streams its reply, starting a new conversation when no conversation_id is given. In the background, retitles the conversation after each of its first 3 turns and updates its summary and order identifiers after every turn. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTReq) -> (stream[ChrtGPTEvent])
 </dd>
 </dl>
 </dd>
@@ -6898,6 +6898,79 @@ try await main()
 </details>
 
 ## ChrtGpt Conversations
+<details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">deleteManyV1</a>(request: Requests.ChrtGptConversationsDeleteManyReq, requestOptions: RequestOptions?) -> ChrtGptConversationsDeleteManyRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently deletes the caller's ChrtGPT conversations and their history, skipping IDs that don't exist or aren't the caller's. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsDeleteManyReq) -> (ChrtGPTConversationsDeleteManyRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.deleteManyV1(request: .init(conversationIds: [
+        "conversation_ids"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChrtGptConversationsDeleteManyReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">listV1</a>(sortBy: ChrtGptConversationSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ChrtGptConversationListRes</code></summary>
 <dl>
 <dd>
@@ -6979,6 +7052,88 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">updateTitleV1</a>(conversationId: String, request: Requests.ChrtGptConversationsUpdateTitleReq, requestOptions: RequestOptions?) -> ChrtGptConversation1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Renames one of the caller's ChrtGPT conversations; ChrtGPT never retitles it after that. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsUpdateTitleReq) -> (ChrtGPTConversation1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.updateTitleV1(
+        conversationId: "conversation_id",
+        request: .init(title: "title")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChrtGptConversationsUpdateTitleReq` 
     
 </dd>
 </dl>

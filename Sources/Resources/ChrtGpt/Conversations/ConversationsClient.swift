@@ -7,6 +7,34 @@ public final class ConversationsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
+    /// Permanently deletes the caller's ChrtGPT conversations and their history, skipping IDs that don't exist or aren't the caller's. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsDeleteManyReq) -> (ChrtGPTConversationsDeleteManyRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.chrtGpt.conversations.deleteManyV1(request: .init(conversationIds: [
+    ///         "conversation_ids"
+    ///     ]))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteManyV1(request: Requests.ChrtGptConversationsDeleteManyReq, requestOptions: RequestOptions? = nil) async throws -> ChrtGptConversationsDeleteManyRes {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/chrt_gpt/conversations/delete_many/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ChrtGptConversationsDeleteManyRes.self
+        )
+    }
+
     /// Lists the caller's ChrtGPT conversations, most recently active first by default. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationListRes)
     ///
     /// ```swift
@@ -42,6 +70,35 @@ public final class ConversationsClient: Sendable {
             ],
             requestOptions: requestOptions,
             responseType: ChrtGptConversationListRes.self
+        )
+    }
+
+    /// Renames one of the caller's ChrtGPT conversations; ChrtGPT never retitles it after that. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsUpdateTitleReq) -> (ChrtGPTConversation1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.chrtGpt.conversations.updateTitleV1(
+    ///         conversationId: "conversation_id",
+    ///         request: .init(title: "title")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateTitleV1(conversationId: String, request: Requests.ChrtGptConversationsUpdateTitleReq, requestOptions: RequestOptions? = nil) async throws -> ChrtGptConversation1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/chrt_gpt/conversations/update_title/v1/\(conversationId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: ChrtGptConversation1.self
         )
     }
 

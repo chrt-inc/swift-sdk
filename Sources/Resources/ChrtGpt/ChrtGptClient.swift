@@ -9,7 +9,7 @@ public final class ChrtGptClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Sends a message to ChrtGPT and streams its reply, starting and titling a new conversation when no conversation_id is given. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTReq) -> (stream[ChrtGPTEvent])
+    /// Sends a message to ChrtGPT and streams its reply, starting a new conversation when no conversation_id is given. In the background, retitles the conversation after each of its first 3 turns and updates its summary and order identifiers after every turn. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTReq) -> (stream[ChrtGPTEvent])
     ///
     /// ```swift
     /// import Foundation

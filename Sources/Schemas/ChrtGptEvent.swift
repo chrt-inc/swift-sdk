@@ -5,7 +5,6 @@ public enum ChrtGptEvent: Codable, Hashable, Sendable {
     case error(ChrtGptErrorEvent)
     case started(ChrtGptStartedEvent)
     case textDelta(ChrtGptTextDeltaEvent)
-    case title(ChrtGptTitleEvent)
     case toolCalled(ChrtGptToolCalledEvent)
     case toolOutput(ChrtGptToolOutputEvent)
     case webSearch(ChrtGptWebSearchEvent)
@@ -22,8 +21,6 @@ public enum ChrtGptEvent: Codable, Hashable, Sendable {
             self = .started(try ChrtGptStartedEvent(from: decoder))
         case "text_delta":
             self = .textDelta(try ChrtGptTextDeltaEvent(from: decoder))
-        case "title":
-            self = .title(try ChrtGptTitleEvent(from: decoder))
         case "tool_called":
             self = .toolCalled(try ChrtGptToolCalledEvent(from: decoder))
         case "tool_output":
@@ -54,9 +51,6 @@ public enum ChrtGptEvent: Codable, Hashable, Sendable {
             try data.encode(to: encoder)
         case .textDelta(let data):
             try container.encode("text_delta", forKey: .type)
-            try data.encode(to: encoder)
-        case .title(let data):
-            try container.encode("title", forKey: .type)
             try data.encode(to: encoder)
         case .toolCalled(let data):
             try container.encode("tool_called", forKey: .type)
