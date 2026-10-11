@@ -1,3 +1,14 @@
+## 3.0.0 - 2026-10-11
+### Breaking Changes
+* **`ChrtClient.agent`** — the `agent` property and `AgentClient` type are removed; access `LivekitClient` directly via `client.livekit` instead of `client.agent.livekit`.
+* **`HelloWorldClient.startV1`** — the underlying HTTP path changed from `/agent/livekit/hello_world/start/v1` to `/livekit/hello_world/start/v1`; no code change needed but existing requests will fail until the server is updated.
+### Added
+* **`ChrtGptClient.voice`** — new `VoiceClient` sub-client accessible via `client.chrtGpt.voice`, exposing `startV1(request:requestOptions:)` to create a LiveKit room with a ChrtGPT voice agent and return a participant token.
+* **`ChrtGptVoiceDelegationEnum`**, **`ChrtGptVoiceReq`**, and **`ChrtGptVoiceStartRes`** — new public types supporting the voice start endpoint.
+* **`InternalDelegationOriginEnum`** — new enum (`temporalWorker`, `livekitVoiceAgent`) added as an optional `internalDelegationOrigin` field on `Caller`.
+### Changed
+* **`ConversationsClient.listV1`** — gains an optional `search: String?` parameter for full-text search over conversation summaries, titles, order short IDs, AWB numbers, and off-CHRT reference IDs.
+
 ## 2.0.0 - 2026-10-10
 ### Breaking Changes
 * **`ChrtGptTitleEvent`** — type removed and the `.title(ChrtGptTitleEvent)` case removed from `ChrtGptEvent`; update exhaustive `switch` statements over `ChrtGptEvent` to remove the `title` arm.
