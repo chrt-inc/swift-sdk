@@ -44,6 +44,7 @@ import Chrt
                   "caller": {
                     "credential": "credential",
                     "credential_type": "session_jwt",
+                    "internal_delegation_origin": "temporal_worker",
                     "org_id": "org_id",
                     "org_role": "owner",
                     "org_subscription": true,
@@ -68,6 +69,7 @@ import Chrt
             caller: Caller(
                 credential: Optional("credential"),
                 credentialType: CallerCredentialTypeEnum.sessionJwt,
+                internalDelegationOrigin: Optional(InternalDelegationOriginEnum.temporalWorker),
                 orgId: "org_id",
                 orgRole: Optional(OrgRoleEnum.owner),
                 orgSubscription: Optional(true),

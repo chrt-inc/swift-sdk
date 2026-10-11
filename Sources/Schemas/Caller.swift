@@ -3,6 +3,7 @@ import Foundation
 public struct Caller: Codable, Hashable, Sendable {
     public let credential: String?
     public let credentialType: CallerCredentialTypeEnum
+    public let internalDelegationOrigin: InternalDelegationOriginEnum?
     /// Must be a string starting with `org_`
     public let orgId: String
     public let orgRole: OrgRoleEnum?
@@ -17,6 +18,7 @@ public struct Caller: Codable, Hashable, Sendable {
     public init(
         credential: String? = nil,
         credentialType: CallerCredentialTypeEnum,
+        internalDelegationOrigin: InternalDelegationOriginEnum? = nil,
         orgId: String,
         orgRole: OrgRoleEnum? = nil,
         orgSubscription: Bool? = nil,
@@ -27,6 +29,7 @@ public struct Caller: Codable, Hashable, Sendable {
     ) {
         self.credential = credential
         self.credentialType = credentialType
+        self.internalDelegationOrigin = internalDelegationOrigin
         self.orgId = orgId
         self.orgRole = orgRole
         self.orgSubscription = orgSubscription
@@ -40,6 +43,7 @@ public struct Caller: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.credential = try container.decodeIfPresent(String.self, forKey: .credential)
         self.credentialType = try container.decode(CallerCredentialTypeEnum.self, forKey: .credentialType)
+        self.internalDelegationOrigin = try container.decodeIfPresent(InternalDelegationOriginEnum.self, forKey: .internalDelegationOrigin)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.orgRole = try container.decodeIfPresent(OrgRoleEnum.self, forKey: .orgRole)
         self.orgSubscription = try container.decodeIfPresent(Bool.self, forKey: .orgSubscription)
@@ -54,6 +58,7 @@ public struct Caller: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encodeIfPresent(self.credential, forKey: .credential)
         try container.encode(self.credentialType, forKey: .credentialType)
+        try container.encodeIfPresent(self.internalDelegationOrigin, forKey: .internalDelegationOrigin)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.orgRole, forKey: .orgRole)
         try container.encodeIfPresent(self.orgSubscription, forKey: .orgSubscription)
@@ -66,6 +71,7 @@ public struct Caller: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case credential
         case credentialType = "credential_type"
+        case internalDelegationOrigin = "internal_delegation_origin"
         case orgId = "org_id"
         case orgRole = "org_role"
         case orgSubscription = "org_subscription"

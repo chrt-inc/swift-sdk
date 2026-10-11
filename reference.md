@@ -645,70 +645,6 @@ try await main()
 </dl>
 </details>
 
-## Agent Livekit HelloWorld
-<details><summary><code>client.agent.livekit.helloWorld.<a href="/Sources/Resources/Agent/Livekit/HelloWorld/HelloWorldClient.swift">startV1</a>(requestOptions: RequestOptions?) -> LiveKitHelloWorldStartRes</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a LiveKit room token that also dispatches the hello-world voice agent into the room. | () -> (LiveKitHelloWorldStartRes)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.agent.livekit.helloWorld.startV1()
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Analytics Shipping
 <details><summary><code>client.analytics.shipping.<a href="/Sources/Resources/Analytics/Shipping/ShippingClient.swift">retrieveOrdersCountV1</a>(request: Requests.AnalyticsTimePeriodReq, requestOptions: RequestOptions?) -> AnalyticsTimeBucketRes</code></summary>
 <dl>
@@ -6971,7 +6907,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">listV1</a>(sortBy: ChrtGptConversationSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> ChrtGptConversationListRes</code></summary>
+<details><summary><code>client.chrtGpt.conversations.<a href="/Sources/Resources/ChrtGpt/Conversations/ConversationsClient.swift">listV1</a>(sortBy: ChrtGptConversationSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, requestOptions: RequestOptions?) -> ChrtGptConversationListRes</code></summary>
 <dl>
 <dd>
 
@@ -6983,7 +6919,7 @@ try await main()
 <dl>
 <dd>
 
-Lists the caller's ChrtGPT conversations, most recently active first by default. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationListRes)
+Lists the caller's ChrtGPT conversations, most recently active first by default, with optional search over summaries, titles, and order identifiers. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationListRes)
 </dd>
 </dl>
 </dd>
@@ -7008,7 +6944,8 @@ private func main() async throws {
         sortBy: .updatedAt,
         sortOrder: .asc,
         page: 1,
-        pageSize: 1
+        pageSize: 1,
+        search: "search"
     )
 }
 
@@ -7052,6 +6989,14 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `String?` — Full-text search query for conversation summary, title, order short IDs, AWB numbers, or off-CHRT reference IDs.
     
 </dd>
 </dl>
@@ -7205,6 +7150,78 @@ try await main()
 <dd>
 
 **conversationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ChrtGpt Voice
+<details><summary><code>client.chrtGpt.voice.<a href="/Sources/Resources/ChrtGpt/Voice/VoiceClient.swift">startV1</a>(request: Requests.ChrtGptVoiceStartReq, requestOptions: RequestOptions?) -> ChrtGptVoiceStartRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a LiveKit room with a ChrtGPT voice agent acting as the caller, using the chosen delegation, and returns a token to join it. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTVoiceStartReq) -> (ChrtGPTVoiceStartRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.voice.startV1(request: .init(delegation: .responses))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.ChrtGptVoiceStartReq` 
     
 </dd>
 </dl>
@@ -11739,6 +11756,70 @@ try await main()
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Livekit HelloWorld
+<details><summary><code>client.livekit.helloWorld.<a href="/Sources/Resources/Livekit/HelloWorld/HelloWorldClient.swift">startV1</a>(requestOptions: RequestOptions?) -> LiveKitHelloWorldStartRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a LiveKit room token that also dispatches the hello-world voice agent into the room. | () -> (LiveKitHelloWorldStartRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.livekit.helloWorld.startV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
 
 <dl>
 <dd>

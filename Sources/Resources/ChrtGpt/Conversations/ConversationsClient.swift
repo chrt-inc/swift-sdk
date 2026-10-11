@@ -35,7 +35,7 @@ public final class ConversationsClient: Sendable {
         )
     }
 
-    /// Lists the caller's ChrtGPT conversations, most recently active first by default. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationListRes)
+    /// Lists the caller's ChrtGPT conversations, most recently active first by default, with optional search over summaries, titles, and order identifiers. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -48,7 +48,8 @@ public final class ConversationsClient: Sendable {
     ///         sortBy: .updatedAt,
     ///         sortOrder: .asc,
     ///         page: 1,
-    ///         pageSize: 1
+    ///         pageSize: 1,
+    ///         search: "search"
     ///     )
     /// }
     ///
@@ -57,8 +58,9 @@ public final class ConversationsClient: Sendable {
     ///
     /// - Parameter sortBy: Field to sort by
     /// - Parameter sortOrder: Sort order (asc or desc)
+    /// - Parameter search: Full-text search query for conversation summary, title, order short IDs, AWB numbers, or off-CHRT reference IDs.
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(sortBy: ChrtGptConversationSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, requestOptions: RequestOptions? = nil) async throws -> ChrtGptConversationListRes {
+    public func listV1(sortBy: ChrtGptConversationSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, requestOptions: RequestOptions? = nil) async throws -> ChrtGptConversationListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/chrt_gpt/conversations/list/v1",
@@ -66,7 +68,8 @@ public final class ConversationsClient: Sendable {
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 
-                "page_size": pageSize.map { .int($0) }
+                "page_size": pageSize.map { .int($0) }, 
+                "search": search.map { .string($0) }
             ],
             requestOptions: requestOptions,
             responseType: ChrtGptConversationListRes.self
