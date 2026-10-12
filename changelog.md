@@ -1,3 +1,15 @@
+## 4.0.0 - 2026-10-12
+### Breaking Changes
+* **`Requests.CargoOnFlightBookingSearchClientCreate1`** — type removed from the `Requests` namespace; replace all references to `Requests.CargoOnFlightBookingSearchClientCreate1` with the top-level `CargoOnFlightBookingSearchClientCreate1` type directly.
+* **`CargoaiClient.searchV1`** — the `request` parameter type changed from `Requests.CargoOnFlightBookingSearchClientCreate1` to `CargoOnFlightBookingSearchClientCreate1`; update call sites to pass the top-level type.
+* **`CargoOnFlightIntegrationEnum1`** — gains a new `airCanada` case; exhaustive `switch` statements must add a `case .airCanada:` arm or a `default:` clause to compile.
+### Added
+* **`AirCanadaClient`** — new sub-client at `client.cargoOnFlightIntegrations.airCanada` exposing `bookV1`, `cancelV1`, and `searchV1` for the Air Canada cargo-on-flight integration.
+* **`AirWaybillStockNumbersClient`** — new sub-client at `client.orgs.airWaybillStockNumbers` exposing `addV1`, `deleteV1`, `listV1`, `markAvailableV1`, `markUsedV1`, `summaryV1`, and `voidV1` to manage an organisation's AWB stock numbers.
+* **`CargoOnFlightBookingSearchClientCreate1`** — new top-level public struct used as the request body for Air Canada flight searches, carrying origin/destination IATA codes, earliest departure date, IATA CASS office ID, schema version, and an optional `offsetDays`.
+* **New AWB stock number types** — `AirWaybillStockNumber1`, `AirWaybillStockNumberListRes`, `AirWaybillStockNumbersAddRes`, `AirWaybillStockNumbersSummaryRes`, `AirWaybillStockNumberStatusEnum1`, `AirWaybillStockNumberSortByEnum`, and several request types added to support the new AWB stock number endpoints.
+* **New Air Canada request types** — `CargoOnFlightIntegrationsAirCanadaBookReq` and `CargoOnFlightIntegrationsAirCanadaCancelReq` added to support the Air Canada integration endpoints.
+
 ## 3.0.0 - 2026-10-11
 ### Breaking Changes
 * **`ChrtClient.agent`** — the `agent` property and `AgentClient` type are removed; access `LivekitClient` directly via `client.livekit` instead of `client.agent.livekit`.
