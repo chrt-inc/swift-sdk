@@ -6143,6 +6143,263 @@ try await main()
 </dl>
 </details>
 
+## CargoOnFlightIntegrations AirCanada
+<details><summary><code>client.cargoOnFlightIntegrations.airCanada.<a href="/Sources/Resources/CargoOnFlightIntegrations/AirCanada/AirCanadaClient.swift">bookV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightIntegrationsAirCanadaBookReq, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Books a draft booking on Air Canada with one result and rate of one of its searches, with the user's Air Canada AWB or one Air Canada assigns. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightIntegrationsAirCanadaBookReq) -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.airCanada.bookV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        request: .init(
+            cargoOnFlightBookingSearchId: "cargo_on_flight_booking_search_id",
+            integrationRateId: "integration_rate_id",
+            integrationResultId: "integration_result_id"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightIntegrationsAirCanadaBookReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.airCanada.<a href="/Sources/Resources/CargoOnFlightIntegrations/AirCanada/AirCanadaClient.swift">cancelV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightIntegrationsAirCanadaCancelReq, requestOptions: RequestOptions?) -> CargoOnFlightBooking1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a booking on Air Canada and cancels it: a confirmed or requested one with an AWB, Air Canada's or else the requested one. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightIntegrationsAirCanadaCancelReq) -> (CargoOnFlightBooking1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.airCanada.cancelV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        request: .init(cancellationReason: "cancellation_reason")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoOnFlightIntegrationsAirCanadaCancelReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cargoOnFlightIntegrations.airCanada.<a href="/Sources/Resources/CargoOnFlightIntegrations/AirCanada/AirCanadaClient.swift">searchV1</a>(cargoOnFlightBookingId: String, request: CargoOnFlightBookingSearchClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Quotes Air Canada flights with space and rates for a draft booking's cargos on a route and dates, and stores the search. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingSearchClientCreate1) -> (CargoOnFlightBookingSearch1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.cargoOnFlightIntegrations.airCanada.searchV1(
+        cargoOnFlightBookingId: "cargo_on_flight_booking_id",
+        request: CargoOnFlightBookingSearchClientCreate1(
+            destinationIata: "destination_iata",
+            earliestDepartureDate: "earliest_departure_date",
+            iataCassOfficeId: "iata_cass_office_id",
+            originIata: "origin_iata",
+            schemaVersion: 1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoOnFlightBookingId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CargoOnFlightBookingSearchClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## CargoOnFlightIntegrations Cargoai
 <details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">listAirWaybillMessagesV1</a>(cargoOnFlightAirWaybillId: String, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, sortBy: CargoAiAirWaybillMessageSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> CargoOnFlightIntegrationsCargoAiAirWaybillMessageListRes</code></summary>
 <dl>
@@ -6745,7 +7002,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">searchV1</a>(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightBookingSearchClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
+<details><summary><code>client.cargoOnFlightIntegrations.cargoai.<a href="/Sources/Resources/CargoOnFlightIntegrations/Cargoai/CargoaiClient.swift">searchV1</a>(cargoOnFlightBookingId: String, request: CargoOnFlightBookingSearchClientCreate1, requestOptions: RequestOptions?) -> CargoOnFlightBookingSearch1</code></summary>
 <dl>
 <dd>
 
@@ -6780,7 +7037,7 @@ private func main() async throws {
 
     _ = try await client.cargoOnFlightIntegrations.cargoai.searchV1(
         cargoOnFlightBookingId: "cargo_on_flight_booking_id",
-        request: .init(
+        request: CargoOnFlightBookingSearchClientCreate1(
             destinationIata: "destination_iata",
             earliestDepartureDate: "earliest_departure_date",
             iataCassOfficeId: "iata_cass_office_id",
@@ -6813,7 +7070,7 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.CargoOnFlightBookingSearchClientCreate1` 
+**request:** `CargoOnFlightBookingSearchClientCreate1` 
     
 </dd>
 </dl>
@@ -17810,6 +18067,553 @@ try await main()
 </dl>
 </details>
 
+## Orgs AirWaybillStockNumbers
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">addV1</a>(request: Requests.AirWaybillStockNumbersAddReq, requestOptions: RequestOptions?) -> AirWaybillStockNumbersAddRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds AWB numbers an airline gave the caller's organization to its AWB stock, skipping numbers already in it. | authz: min_org_role=operator | (AirWaybillStockNumbersAddReq) -> (AirWaybillStockNumbersAddRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.addV1(request: .init(awbNumbers: [
+        "awb_numbers"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AirWaybillStockNumbersAddReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">deleteV1</a>(airWaybillStockNumberId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an available AWB number from the caller's organization's AWB stock, e.g. one added by mistake. | authz: min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.deleteV1(airWaybillStockNumberId: "air_waybill_stock_number_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**airWaybillStockNumberId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">listV1</a>(filterAwbPrefix: String?, filterStatus: [AirWaybillStockNumberStatusEnum1]?, sortBy: AirWaybillStockNumberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> AirWaybillStockNumberListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the AWB numbers in the caller's organization's AWB stock, by airline prefix and status. | () -> (AirWaybillStockNumberListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.listV1(
+        filterAwbPrefix: "filter_awb_prefix",
+        filterStatus: [
+            .available
+        ],
+        sortBy: .awbNumber,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterAwbPrefix:** `String?` — Filter by the airline's 3-digit AWB prefix, e.g. 014.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `[AirWaybillStockNumberStatusEnum1]?` — Filter by status(es).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `AirWaybillStockNumberSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">markAvailableV1</a>(request: Requests.AirWaybillStockNumbersMarkAvailableReq, requestOptions: RequestOptions?) -> [AirWaybillStockNumber1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks AWB numbers of the caller's organization's AWB stock as available, whatever their status, taking them off their booking. | authz: min_org_role=operator | (AirWaybillStockNumbersMarkAvailableReq) -> (list[AirWaybillStockNumber1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.markAvailableV1(request: .init(awbNumbers: [
+        "awb_numbers"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AirWaybillStockNumbersMarkAvailableReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">markUsedV1</a>(request: Requests.AirWaybillStockNumbersMarkUsedReq, requestOptions: RequestOptions?) -> [AirWaybillStockNumber1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks AWB numbers of the caller's organization's AWB stock as used, whatever their status, e.g. booked outside CHRT. | authz: min_org_role=operator | (AirWaybillStockNumbersMarkUsedReq) -> (list[AirWaybillStockNumber1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.markUsedV1(request: .init(awbNumbers: [
+        "awb_numbers"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AirWaybillStockNumbersMarkUsedReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">summaryV1</a>(requestOptions: RequestOptions?) -> [AirWaybillStockNumbersSummaryRes]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Counts the caller's organization's AWB stock per airline prefix and status. | () -> (list[AirWaybillStockNumbersSummaryRes])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.summaryV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airWaybillStockNumbers.<a href="/Sources/Resources/Orgs/AirWaybillStockNumbers/AirWaybillStockNumbersClient.swift">voidV1</a>(request: Requests.AirWaybillStockNumbersVoidReq, requestOptions: RequestOptions?) -> [AirWaybillStockNumber1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Voids available AWB numbers of the caller's organization's AWB stock, e.g. spoiled or returned to the airline. | authz: min_org_role=operator | (AirWaybillStockNumbersVoidReq) -> (list[AirWaybillStockNumber1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airWaybillStockNumbers.voidV1(request: .init(awbNumbers: [
+        "awb_numbers"
+    ]))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AirWaybillStockNumbersVoidReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Orgs ComplianceDocuments
 <details><summary><code>client.orgs.complianceDocuments.<a href="/Sources/Resources/Orgs/ComplianceDocuments/ComplianceDocumentsClient.swift">createV1</a>(request: Requests.OrgComplianceDocumentClientCreate1, requestOptions: RequestOptions?) -> OrgComplianceDocument1</code></summary>
 <dl>
@@ -22855,7 +23659,7 @@ private func main() async throws {
         cargoIds: [
             "cargo_ids"
         ],
-        cargoOnFlightIntegration: .cargoai,
+        cargoOnFlightIntegration: .airCanada,
         schemaVersion: 1,
         taskGroupId: "task_group_id"
     ))

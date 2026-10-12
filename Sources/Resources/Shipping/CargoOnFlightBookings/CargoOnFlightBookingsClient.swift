@@ -54,7 +54,7 @@ public final class CargoOnFlightBookingsClient: Sendable {
     ///         cargoIds: [
     ///             "cargo_ids"
     ///         ],
-    ///         cargoOnFlightIntegration: .cargoai,
+    ///         cargoOnFlightIntegration: .airCanada,
     ///         schemaVersion: 1,
     ///         taskGroupId: "task_group_id"
     ///     ))

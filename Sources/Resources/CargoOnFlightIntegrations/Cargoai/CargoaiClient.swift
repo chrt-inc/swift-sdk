@@ -235,7 +235,7 @@ public final class CargoaiClient: Sendable {
     ///
     ///     _ = try await client.cargoOnFlightIntegrations.cargoai.searchV1(
     ///         cargoOnFlightBookingId: "cargo_on_flight_booking_id",
-    ///         request: .init(
+    ///         request: CargoOnFlightBookingSearchClientCreate1(
     ///             destinationIata: "destination_iata",
     ///             earliestDepartureDate: "earliest_departure_date",
     ///             iataCassOfficeId: "iata_cass_office_id",
@@ -249,7 +249,7 @@ public final class CargoaiClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func searchV1(cargoOnFlightBookingId: String, request: Requests.CargoOnFlightBookingSearchClientCreate1, requestOptions: RequestOptions? = nil) async throws -> CargoOnFlightBookingSearch1 {
+    public func searchV1(cargoOnFlightBookingId: String, request: CargoOnFlightBookingSearchClientCreate1, requestOptions: RequestOptions? = nil) async throws -> CargoOnFlightBookingSearch1 {
         return try await httpClient.performRequest(
             method: .post,
             path: "/cargo_on_flight_integrations/cargoai/search/v1/\(cargoOnFlightBookingId)",

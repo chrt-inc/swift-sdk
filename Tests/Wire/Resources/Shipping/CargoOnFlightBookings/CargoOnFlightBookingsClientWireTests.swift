@@ -72,7 +72,7 @@ import Chrt
                     "cargo_ids"
                   ],
                   "cargo_on_flight_booking_search_id": "cargo_on_flight_booking_search_id",
-                  "cargo_on_flight_integration": "cargoai",
+                  "cargo_on_flight_integration": "air_canada",
                   "confirmed_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
@@ -166,7 +166,7 @@ import Chrt
                 "cargo_ids"
             ]),
             cargoOnFlightBookingSearchId: Optional("cargo_on_flight_booking_search_id"),
-            cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+            cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
             confirmedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             createdByOrgId: "created_by_org_id",
             createdByUserId: Optional("created_by_user_id"),
@@ -264,7 +264,7 @@ import Chrt
                     "cargo_ids"
                   ],
                   "cargo_on_flight_booking_search_id": "cargo_on_flight_booking_search_id",
-                  "cargo_on_flight_integration": "cargoai",
+                  "cargo_on_flight_integration": "air_canada",
                   "confirmed_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
@@ -358,7 +358,7 @@ import Chrt
                 "cargo_ids"
             ]),
             cargoOnFlightBookingSearchId: Optional("cargo_on_flight_booking_search_id"),
-            cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+            cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
             confirmedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             createdByOrgId: "created_by_org_id",
             createdByUserId: Optional("created_by_user_id"),
@@ -394,7 +394,7 @@ import Chrt
                 cargoIds: [
                     "cargo_ids"
                 ],
-                cargoOnFlightIntegration: .cargoai,
+                cargoOnFlightIntegration: .airCanada,
                 schemaVersion: 1,
                 taskGroupId: "task_group_id"
             ),
@@ -457,7 +457,7 @@ import Chrt
                         "cargo_ids"
                       ],
                       "cargo_on_flight_booking_search_id": "cargo_on_flight_booking_search_id",
-                      "cargo_on_flight_integration": "cargoai",
+                      "cargo_on_flight_integration": "air_canada",
                       "confirmed_at_timestamp": "2024-01-15T09:30:00Z",
                       "created_by_org_id": "created_by_org_id",
                       "created_by_user_id": "created_by_user_id",
@@ -517,7 +517,7 @@ import Chrt
                         "cargo_ids"
                     ]),
                     cargoOnFlightBookingSearchId: Optional("cargo_on_flight_booking_search_id"),
-                    cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                    cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                     confirmedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     createdByOrgId: "created_by_org_id",
                     createdByUserId: Optional("created_by_user_id"),
@@ -627,7 +627,7 @@ import Chrt
                     "cargo_ids"
                   ],
                   "cargo_on_flight_booking_search_id": "cargo_on_flight_booking_search_id",
-                  "cargo_on_flight_integration": "cargoai",
+                  "cargo_on_flight_integration": "air_canada",
                   "confirmed_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
@@ -721,7 +721,7 @@ import Chrt
                 "cargo_ids"
             ]),
             cargoOnFlightBookingSearchId: Optional("cargo_on_flight_booking_search_id"),
-            cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+            cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
             confirmedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             createdByOrgId: "created_by_org_id",
             createdByUserId: Optional("created_by_user_id"),

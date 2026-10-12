@@ -29,7 +29,7 @@ import Chrt
                   "house_air_waybill_number": "house_air_waybill_number",
                   "latest_fhl_message": {
                     "airline_response": "airline_response",
-                    "cargo_on_flight_integration": "cargoai",
+                    "cargo_on_flight_integration": "air_canada",
                     "responded_at_timestamp": "2024-01-15T09:30:00Z",
                     "responded_by_user_id": "responded_by_user_id",
                     "response_provenance": "airline",
@@ -73,7 +73,7 @@ import Chrt
             houseAirWaybillNumber: "house_air_waybill_number",
             latestFhlMessage: Optional(CargoOnFlightHouseAirWaybillFhlMessage1(
                 airlineResponse: Optional("airline_response"),
-                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                 respondedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 respondedByUserId: Optional("responded_by_user_id"),
                 responseProvenance: Optional(CargoOnFlightAirWaybillMessageResponseProvenanceEnum1.airline),
@@ -148,7 +148,7 @@ import Chrt
                       "gross_weight_kilograms": 1.1,
                       "house_air_waybill_number": "house_air_waybill_number",
                       "latest_fhl_message": {
-                        "cargo_on_flight_integration": "cargoai",
+                        "cargo_on_flight_integration": "air_canada",
                         "sent_at_timestamp": "2024-01-15T09:30:00Z",
                         "status": "sent"
                       },
@@ -188,7 +188,7 @@ import Chrt
                     grossWeightKilograms: 1.1,
                     houseAirWaybillNumber: "house_air_waybill_number",
                     latestFhlMessage: Optional(CargoOnFlightHouseAirWaybillFhlMessage1(
-                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                         sentAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         status: CargoOnFlightAirWaybillMessageStatusEnum1.sent
                     )),
@@ -240,7 +240,7 @@ import Chrt
                   "house_air_waybill_number": "house_air_waybill_number",
                   "latest_fhl_message": {
                     "airline_response": "airline_response",
-                    "cargo_on_flight_integration": "cargoai",
+                    "cargo_on_flight_integration": "air_canada",
                     "responded_at_timestamp": "2024-01-15T09:30:00Z",
                     "responded_by_user_id": "responded_by_user_id",
                     "response_provenance": "airline",
@@ -284,7 +284,7 @@ import Chrt
             houseAirWaybillNumber: "house_air_waybill_number",
             latestFhlMessage: Optional(CargoOnFlightHouseAirWaybillFhlMessage1(
                 airlineResponse: Optional("airline_response"),
-                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                 respondedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 respondedByUserId: Optional("responded_by_user_id"),
                 responseProvenance: Optional(CargoOnFlightAirWaybillMessageResponseProvenanceEnum1.airline),
@@ -333,7 +333,7 @@ import Chrt
                   "house_air_waybill_number": "house_air_waybill_number",
                   "latest_fhl_message": {
                     "airline_response": "airline_response",
-                    "cargo_on_flight_integration": "cargoai",
+                    "cargo_on_flight_integration": "air_canada",
                     "responded_at_timestamp": "2024-01-15T09:30:00Z",
                     "responded_by_user_id": "responded_by_user_id",
                     "response_provenance": "airline",
@@ -377,7 +377,7 @@ import Chrt
             houseAirWaybillNumber: "house_air_waybill_number",
             latestFhlMessage: Optional(CargoOnFlightHouseAirWaybillFhlMessage1(
                 airlineResponse: Optional("airline_response"),
-                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                 respondedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 respondedByUserId: Optional("responded_by_user_id"),
                 responseProvenance: Optional(CargoOnFlightAirWaybillMessageResponseProvenanceEnum1.airline),

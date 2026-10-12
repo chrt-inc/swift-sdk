@@ -154,7 +154,7 @@ import Chrt
                       },
                       "cargo_on_flight_booking": {
                         "_id": "_id",
-                        "cargo_on_flight_integration": "cargoai",
+                        "cargo_on_flight_integration": "air_canada",
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
@@ -166,7 +166,7 @@ import Chrt
                       "cargo_on_flight_booking_search": {
                         "_id": "_id",
                         "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
-                        "cargo_on_flight_integration": "cargoai",
+                        "cargo_on_flight_integration": "air_canada",
                         "created_at_timestamp": "2024-01-15T09:30:00Z",
                         "created_by_org_id": "created_by_org_id",
                         "destination_iata": "destination_iata",
@@ -364,7 +364,7 @@ import Chrt
                     )),
                     cargoOnFlightBooking: Optional(CargoOnFlightBooking1(
                         id: "_id",
-                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
@@ -376,7 +376,7 @@ import Chrt
                     cargoOnFlightBookingSearch: Optional(CargoOnFlightBookingSearch1(
                         id: "_id",
                         cargoOnFlightBookingId: "cargo_on_flight_booking_id",
-                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.cargoai,
+                        cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         createdByOrgId: "created_by_org_id",
                         destinationIata: "destination_iata",
