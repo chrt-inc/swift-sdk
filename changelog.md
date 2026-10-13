@@ -1,3 +1,17 @@
+## 5.0.0 - 2026-10-13
+* feat!: replace VoiceClient/LivekitClient with CharlieClient and add new types
+* Replace the `chrtGpt.voice` and `livekit` sub-clients with a new top-level
+* `charlie` sub-client exposing CHRT's voice assistant. Several associated
+* types are renamed or removed, and new Air Canada raw request/response types
+* and a `Method` enum are introduced. User private data gains an optional
+* `timeZone` field throughout.
+* Key changes:
+* Remove `ChrtGptClient.voice` (`VoiceClient`) and `ChrtClient.livekit` (`LivekitClient`); replace with `ChrtClient.charlie` (`CharlieClient`) exposing `startV1(request:requestOptions:)`
+* Remove `ChrtGptVoiceDelegationEnum`, `ChrtGptVoiceStartRes`, and `Requests.ChrtGptVoiceStartReq`; replace with `CharlieStartRes` and `Requests.CharlieStartReq` (optional `timeZone` field)
+* Rename `LiveKitHelloWorldStartRes` → `CharlieStartRes`; add `CargoOnFlightIntegrationsAirCanadaRawReq`, `CargoOnFlightIntegrationsAirCanadaRawRes`, and `Method` enum
+* Add optional `timeZone: String?` to `UserPrivateData1`, `Requests.UserPrivateDataClientCreate1`, and `Requests.UserPrivateDataClientUpdate1` (with `timeZoneSetToNone`)
+* 🌿 Generated with Fern
+
 ## 4.0.0 - 2026-10-12
 ### Breaking Changes
 * **`Requests.CargoOnFlightBookingSearchClientCreate1`** — type removed from the `Requests` namespace; replace all references to `Requests.CargoOnFlightBookingSearchClientCreate1` with the top-level `CargoOnFlightBookingSearchClientCreate1` type directly.
