@@ -10,6 +10,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "airline_cargo_account_id": "airline_cargo_account_id",
                   "awb_number": "awb_number",
                   "booked_itinerary": {
                     "carrier_iata": "carrier_iata",
@@ -104,6 +105,7 @@ import Chrt
         )
         let expectedResponse = CargoOnFlightBooking1(
             id: "_id",
+            airlineCargoAccountId: Optional("airline_cargo_account_id"),
             awbNumber: Optional("awb_number"),
             bookedItinerary: Optional(CargoOnFlightBookingItinerary1(
                 carrierIata: "carrier_iata",
@@ -202,6 +204,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "airline_cargo_account_id": "airline_cargo_account_id",
                   "awb_number": "awb_number",
                   "booked_itinerary": {
                     "carrier_iata": "carrier_iata",
@@ -296,6 +299,7 @@ import Chrt
         )
         let expectedResponse = CargoOnFlightBooking1(
             id: "_id",
+            airlineCargoAccountId: Optional("airline_cargo_account_id"),
             awbNumber: Optional("awb_number"),
             bookedItinerary: Optional(CargoOnFlightBookingItinerary1(
                 carrierIata: "carrier_iata",
@@ -434,6 +438,7 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "airline_cargo_account_id": "airline_cargo_account_id",
                       "awb_number": "awb_number",
                       "booked_itinerary": {
                         "carrier_iata": "carrier_iata"
@@ -494,6 +499,7 @@ import Chrt
             items: [
                 CargoOnFlightBooking1(
                     id: "_id",
+                    airlineCargoAccountId: Optional("airline_cargo_account_id"),
                     awbNumber: Optional("awb_number"),
                     bookedItinerary: Optional(CargoOnFlightBookingItinerary1(
                         carrierIata: "carrier_iata"
@@ -565,6 +571,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "airline_cargo_account_id": "airline_cargo_account_id",
                   "awb_number": "awb_number",
                   "booked_itinerary": {
                     "carrier_iata": "carrier_iata",
@@ -659,6 +666,7 @@ import Chrt
         )
         let expectedResponse = CargoOnFlightBooking1(
             id: "_id",
+            airlineCargoAccountId: Optional("airline_cargo_account_id"),
             awbNumber: Optional("awb_number"),
             bookedItinerary: Optional(CargoOnFlightBookingItinerary1(
                 carrierIata: "carrier_iata",

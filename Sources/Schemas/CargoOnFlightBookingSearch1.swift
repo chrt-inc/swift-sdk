@@ -2,6 +2,7 @@ import Foundation
 
 public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     public let id: String
+    public let airlineCargoAccountId: String?
     public let cargoOnFlightBookingId: String
     public let cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1
     public let createdAtTimestamp: Date
@@ -11,7 +12,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     public let createdByUserId: String?
     public let destinationIata: String
     public let earliestDepartureDate: String
-    public let iataCassOfficeId: String
+    public let iataCassOfficeId: String?
     public let integrationSearchId: String
     public let offsetDays: Int?
     public let originIata: String
@@ -24,6 +25,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        airlineCargoAccountId: String? = nil,
         cargoOnFlightBookingId: String,
         cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1,
         createdAtTimestamp: Date,
@@ -31,7 +33,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         createdByUserId: String? = nil,
         destinationIata: String,
         earliestDepartureDate: String,
-        iataCassOfficeId: String,
+        iataCassOfficeId: String? = nil,
         integrationSearchId: String,
         offsetDays: Int? = nil,
         originIata: String,
@@ -42,6 +44,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.airlineCargoAccountId = airlineCargoAccountId
         self.cargoOnFlightBookingId = cargoOnFlightBookingId
         self.cargoOnFlightIntegration = cargoOnFlightIntegration
         self.createdAtTimestamp = createdAtTimestamp
@@ -63,6 +66,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.airlineCargoAccountId = try container.decodeIfPresent(String.self, forKey: .airlineCargoAccountId)
         self.cargoOnFlightBookingId = try container.decode(String.self, forKey: .cargoOnFlightBookingId)
         self.cargoOnFlightIntegration = try container.decode(CargoOnFlightIntegrationEnum1.self, forKey: .cargoOnFlightIntegration)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
@@ -70,7 +74,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.destinationIata = try container.decode(String.self, forKey: .destinationIata)
         self.earliestDepartureDate = try container.decode(String.self, forKey: .earliestDepartureDate)
-        self.iataCassOfficeId = try container.decode(String.self, forKey: .iataCassOfficeId)
+        self.iataCassOfficeId = try container.decodeIfPresent(String.self, forKey: .iataCassOfficeId)
         self.integrationSearchId = try container.decode(String.self, forKey: .integrationSearchId)
         self.offsetDays = try container.decodeIfPresent(Int.self, forKey: .offsetDays)
         self.originIata = try container.decode(String.self, forKey: .originIata)
@@ -85,6 +89,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.airlineCargoAccountId, forKey: .airlineCargoAccountId)
         try container.encode(self.cargoOnFlightBookingId, forKey: .cargoOnFlightBookingId)
         try container.encode(self.cargoOnFlightIntegration, forKey: .cargoOnFlightIntegration)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
@@ -92,7 +97,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.destinationIata, forKey: .destinationIata)
         try container.encode(self.earliestDepartureDate, forKey: .earliestDepartureDate)
-        try container.encode(self.iataCassOfficeId, forKey: .iataCassOfficeId)
+        try container.encodeIfPresent(self.iataCassOfficeId, forKey: .iataCassOfficeId)
         try container.encode(self.integrationSearchId, forKey: .integrationSearchId)
         try container.encodeIfPresent(self.offsetDays, forKey: .offsetDays)
         try container.encode(self.originIata, forKey: .originIata)
@@ -105,6 +110,7 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case airlineCargoAccountId = "airline_cargo_account_id"
         case cargoOnFlightBookingId = "cargo_on_flight_booking_id"
         case cargoOnFlightIntegration = "cargo_on_flight_integration"
         case createdAtTimestamp = "created_at_timestamp"

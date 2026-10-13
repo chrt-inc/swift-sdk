@@ -3,6 +3,7 @@ import Foundation
 public final class OrgsClient: Sendable {
     public let accounts: AccountsClient
     public let airWaybillStockNumbers: AirWaybillStockNumbersClient
+    public let airlineCargoAccounts: AirlineCargoAccountsClient
     public let complianceDocuments: ComplianceDocumentsClient
     public let connections: ConnectionsClient
     public let contacts: ContactsClient
@@ -15,6 +16,7 @@ public final class OrgsClient: Sendable {
     init(config: ClientConfig) {
         self.accounts = AccountsClient(config: config)
         self.airWaybillStockNumbers = AirWaybillStockNumbersClient(config: config)
+        self.airlineCargoAccounts = AirlineCargoAccountsClient(config: config)
         self.complianceDocuments = ComplianceDocumentsClient(config: config)
         self.connections = ConnectionsClient(config: config)
         self.contacts = ContactsClient(config: config)

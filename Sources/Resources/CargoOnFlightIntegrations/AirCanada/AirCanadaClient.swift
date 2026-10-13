@@ -83,7 +83,6 @@ public final class AirCanadaClient: Sendable {
     ///         request: CargoOnFlightBookingSearchClientCreate1(
     ///             destinationIata: "destination_iata",
     ///             earliestDepartureDate: "earliest_departure_date",
-    ///             iataCassOfficeId: "iata_cass_office_id",
     ///             originIata: "origin_iata",
     ///             schemaVersion: 1
     ///         )

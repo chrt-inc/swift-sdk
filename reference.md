@@ -6422,7 +6422,6 @@ private func main() async throws {
         request: CargoOnFlightBookingSearchClientCreate1(
             destinationIata: "destination_iata",
             earliestDepartureDate: "earliest_departure_date",
-            iataCassOfficeId: "iata_cass_office_id",
             originIata: "origin_iata",
             schemaVersion: 1
         )
@@ -7112,7 +7111,6 @@ private func main() async throws {
         request: CargoOnFlightBookingSearchClientCreate1(
             destinationIata: "destination_iata",
             earliestDepartureDate: "earliest_departure_date",
-            iataCassOfficeId: "iata_cass_office_id",
             originIata: "origin_iata",
             schemaVersion: 1
         )
@@ -18531,6 +18529,269 @@ try await main()
 <dd>
 
 **request:** `Requests.AirWaybillStockNumbersVoidReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Orgs AirlineCargoAccounts
+<details><summary><code>client.orgs.airlineCargoAccounts.<a href="/Sources/Resources/Orgs/AirlineCargoAccounts/AirlineCargoAccountsClient.swift">archiveV1</a>(airlineCargoAccountId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives an airline cargo account of the caller's organization so it can no longer be booked under. | authz: min_org_role=admin | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airlineCargoAccounts.archiveV1(airlineCargoAccountId: "airline_cargo_account_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**airlineCargoAccountId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airlineCargoAccounts.<a href="/Sources/Resources/Orgs/AirlineCargoAccounts/AirlineCargoAccountsClient.swift">listV1</a>(filterArchived: Bool?, sortBy: AirlineCargoAccountSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> AirlineCargoAccountListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's organization's airline cargo accounts (e.g. its Air Canada cargo account), active or archived. | () -> (AirlineCargoAccountListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airlineCargoAccounts.listV1(
+        filterArchived: true,
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` — List archived accounts instead of active accounts.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `AirlineCargoAccountSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.airlineCargoAccounts.<a href="/Sources/Resources/Orgs/AirlineCargoAccounts/AirlineCargoAccountsClient.swift">updateV1</a>(airlineCargoAccountId: String, request: Requests.AirlineCargoAccountClientUpdate1, requestOptions: RequestOptions?) -> AirlineCargoAccount1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the name of an airline cargo account of the caller's organization. | authz: min_org_role=admin | (AirlineCargoAccountClientUpdate1) -> (AirlineCargoAccount1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.airlineCargoAccounts.updateV1(
+        airlineCargoAccountId: "airline_cargo_account_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**airlineCargoAccountId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AirlineCargoAccountClientUpdate1` 
     
 </dd>
 </dl>

@@ -12,6 +12,7 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "airline_cargo_account_id": "airline_cargo_account_id",
                       "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
                       "cargo_on_flight_integration": "air_canada",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -50,6 +51,7 @@ import Chrt
             items: [
                 CargoOnFlightBookingSearch1(
                     id: "_id",
+                    airlineCargoAccountId: Optional("airline_cargo_account_id"),
                     cargoOnFlightBookingId: "cargo_on_flight_booking_id",
                     cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -57,7 +59,7 @@ import Chrt
                     createdByUserId: Optional("created_by_user_id"),
                     destinationIata: "destination_iata",
                     earliestDepartureDate: "earliest_departure_date",
-                    iataCassOfficeId: "iata_cass_office_id",
+                    iataCassOfficeId: Optional("iata_cass_office_id"),
                     integrationSearchId: "integration_search_id",
                     offsetDays: Optional(1),
                     originIata: "origin_iata",
@@ -96,6 +98,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "airline_cargo_account_id": "airline_cargo_account_id",
                   "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
                   "cargo_on_flight_integration": "air_canada",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
@@ -159,6 +162,7 @@ import Chrt
         )
         let expectedResponse = CargoOnFlightBookingSearch1(
             id: "_id",
+            airlineCargoAccountId: Optional("airline_cargo_account_id"),
             cargoOnFlightBookingId: "cargo_on_flight_booking_id",
             cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -166,7 +170,7 @@ import Chrt
             createdByUserId: Optional("created_by_user_id"),
             destinationIata: "destination_iata",
             earliestDepartureDate: "earliest_departure_date",
-            iataCassOfficeId: "iata_cass_office_id",
+            iataCassOfficeId: Optional("iata_cass_office_id"),
             integrationSearchId: "integration_search_id",
             offsetDays: Optional(1),
             originIata: "origin_iata",

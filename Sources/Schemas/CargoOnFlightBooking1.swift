@@ -2,6 +2,7 @@ import Foundation
 
 public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
     public let id: String
+    public let airlineCargoAccountId: String?
     /// IATA Air Waybill number: 3-digit airline prefix + 8-digit serial, e.g. '020-12345678'.
     public let awbNumber: String?
     public let bookedItinerary: CargoOnFlightBookingItinerary1?
@@ -35,6 +36,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        airlineCargoAccountId: String? = nil,
         awbNumber: String? = nil,
         bookedItinerary: CargoOnFlightBookingItinerary1? = nil,
         bookedRate: CargoOnFlightBookingRate1? = nil,
@@ -63,6 +65,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.airlineCargoAccountId = airlineCargoAccountId
         self.awbNumber = awbNumber
         self.bookedItinerary = bookedItinerary
         self.bookedRate = bookedRate
@@ -94,6 +97,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.airlineCargoAccountId = try container.decodeIfPresent(String.self, forKey: .airlineCargoAccountId)
         self.awbNumber = try container.decodeIfPresent(String.self, forKey: .awbNumber)
         self.bookedItinerary = try container.decodeIfPresent(CargoOnFlightBookingItinerary1.self, forKey: .bookedItinerary)
         self.bookedRate = try container.decodeIfPresent(CargoOnFlightBookingRate1.self, forKey: .bookedRate)
@@ -126,6 +130,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.airlineCargoAccountId, forKey: .airlineCargoAccountId)
         try container.encodeIfPresent(self.awbNumber, forKey: .awbNumber)
         try container.encodeIfPresent(self.bookedItinerary, forKey: .bookedItinerary)
         try container.encodeIfPresent(self.bookedRate, forKey: .bookedRate)
@@ -156,6 +161,7 @@ public struct CargoOnFlightBooking1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case airlineCargoAccountId = "airline_cargo_account_id"
         case awbNumber = "awb_number"
         case bookedItinerary = "booked_itinerary"
         case bookedRate = "booked_rate"
