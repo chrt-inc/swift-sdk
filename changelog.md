@@ -1,3 +1,12 @@
+## 2.0.0 - 2026-10-13
+### Breaking Changes
+* **`CargoOnFlightBookingSearch1.iataCassOfficeId`** — type changed from `String` to `String?`; update exhaustive pattern matches and direct uses to unwrap the optional.
+* **`CargoOnFlightBookingSearchClientCreate1.iataCassOfficeId`** — changed from a required `String` parameter to an optional `String? = nil`; update call sites that pass it as a required positional argument.
+### Added
+* **`AirlineCargoAccountsClient`** — new sub-client at `client.orgs.airlineCargoAccounts` exposing `archiveV1`, `listV1`, and `updateV1` to manage an organisation's airline cargo accounts.
+* **`AirlineCargoAccount1`**, **`AirlineCargoAccountListRes`**, **`AirlineCargoAccountIntegrationEnum1`**, **`AirlineCargoAccountSortByEnum`**, and **`Requests.AirlineCargoAccountClientUpdate1`** — new public types supporting the airline cargo accounts endpoints.
+* **`airlineCargoAccountId`** — new optional `String?` field added to `CargoOnFlightBookingSearch1`, `CargoOnFlightBookingSearchClientCreate1`, and `CargoOnFlightBooking1` linking bookings to their airline cargo account.
+
 ## 5.0.0 - 2026-10-13
 * feat!: replace VoiceClient/LivekitClient with CharlieClient and add new types
 * Replace the `chrtGpt.voice` and `livekit` sub-clients with a new top-level
