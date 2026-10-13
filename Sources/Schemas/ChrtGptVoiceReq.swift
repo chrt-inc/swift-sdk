@@ -1,6 +1,6 @@
 import Foundation
 
-/// A transcribed request from the ChrtGPT voice agent. The voice route fixes reasoning effort and verbosity for speed.
+/// A transcribed request Charlie hands ChrtGPT. The voice route fixes reasoning effort and verbosity for speed.
 public struct ChrtGptVoiceReq: Codable, Hashable, Sendable {
     /// Omit on the call's first request to start a new conversation.
     public let conversationId: String?

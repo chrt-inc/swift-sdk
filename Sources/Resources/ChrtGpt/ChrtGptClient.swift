@@ -2,12 +2,10 @@ import Foundation
 
 public final class ChrtGptClient: Sendable {
     public let conversations: ConversationsClient
-    public let voice: VoiceClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.conversations = ConversationsClient(config: config)
-        self.voice = VoiceClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 

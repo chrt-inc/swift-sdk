@@ -1,13 +1,13 @@
 import Foundation
 
-public final class VoiceClient: Sendable {
+public final class CharlieClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates a LiveKit room with a ChrtGPT voice agent acting as the caller, using the chosen delegation, and returns a token to join it. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTVoiceStartReq) -> (ChrtGPTVoiceStartRes)
+    /// Creates a LiveKit room with Charlie, CHRT's voice assistant, acting as the caller and returns a token to join it. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (CharlieStartReq) -> (CharlieStartRes)
     ///
     /// ```swift
     /// import Foundation
@@ -16,20 +16,20 @@ public final class VoiceClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.chrtGpt.voice.startV1(request: .init(delegation: .responses))
+    ///     _ = try await client.charlie.startV1(request: .init())
     /// }
     ///
     /// try await main()
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func startV1(request: Requests.ChrtGptVoiceStartReq, requestOptions: RequestOptions? = nil) async throws -> ChrtGptVoiceStartRes {
+    public func startV1(request: Requests.CharlieStartReq, requestOptions: RequestOptions? = nil) async throws -> CharlieStartRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/chrt_gpt/voice/start/v1",
+            path: "/charlie/start/v1",
             body: request,
             requestOptions: requestOptions,
-            responseType: ChrtGptVoiceStartRes.self
+            responseType: CharlieStartRes.self
         )
     }
 }

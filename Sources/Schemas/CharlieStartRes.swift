@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LiveKitHelloWorldStartRes: Codable, Hashable, Sendable {
+public struct CharlieStartRes: Codable, Hashable, Sendable {
     public let participantToken: String
     public let roomName: String
     public let serverUrl: String

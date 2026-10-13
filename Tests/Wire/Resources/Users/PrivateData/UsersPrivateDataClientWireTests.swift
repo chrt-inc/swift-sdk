@@ -22,6 +22,7 @@ import Chrt
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
+                  "time_zone": "America/New_York",
                   "user_id": "user_id"
                 }
                 """#.utf8
@@ -46,6 +47,7 @@ import Chrt
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
+            timeZone: Optional("America/New_York"),
             userId: "user_id"
         )
         let response = try await client.users.privateData.upsertFirebaseCloudMessagingTokenV1(
@@ -74,6 +76,7 @@ import Chrt
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
+                  "time_zone": "America/New_York",
                   "user_id": "user_id"
                 }
                 """#.utf8
@@ -98,6 +101,7 @@ import Chrt
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
+            timeZone: Optional("America/New_York"),
             userId: "user_id"
         )
         let response = try await client.users.privateData.updateNameV1(
@@ -126,6 +130,7 @@ import Chrt
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
+                  "time_zone": "America/New_York",
                   "user_id": "user_id"
                 }
                 """#.utf8
@@ -150,6 +155,7 @@ import Chrt
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
+            timeZone: Optional("America/New_York"),
             userId: "user_id"
         )
         let response = try await client.users.privateData.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
@@ -175,6 +181,7 @@ import Chrt
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
+                  "time_zone": "America/New_York",
                   "user_id": "user_id"
                 }
                 """#.utf8
@@ -199,6 +206,7 @@ import Chrt
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
+            timeZone: Optional("America/New_York"),
             userId: "user_id"
         )
         let response = try await client.users.privateData.createV1(
@@ -227,6 +235,7 @@ import Chrt
                   "phone_number": "phone_number",
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
+                  "time_zone": "America/New_York",
                   "user_id": "user_id"
                 }
                 """#.utf8
@@ -251,6 +260,7 @@ import Chrt
             phoneNumber: Optional("phone_number"),
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
+            timeZone: Optional("America/New_York"),
             userId: "user_id"
         )
         let response = try await client.users.privateData.updateV1(

@@ -8,6 +8,8 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
     public let phoneNumber: String?
     public let primaryEmailAddress: String?
     public let schemaVersion: Int
+    /// IANA time zone name (e.g. `America/New_York`).
+    public let timeZone: String?
     /// Must be a string starting with `user_`
     public let userId: String
     /// Additional properties that are not explicitly defined in the schema
@@ -21,6 +23,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         phoneNumber: String? = nil,
         primaryEmailAddress: String? = nil,
         schemaVersion: Int,
+        timeZone: String? = nil,
         userId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -31,6 +34,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.phoneNumber = phoneNumber
         self.primaryEmailAddress = primaryEmailAddress
         self.schemaVersion = schemaVersion
+        self.timeZone = timeZone
         self.userId = userId
         self.additionalProperties = additionalProperties
     }
@@ -44,6 +48,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
         self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.timeZone = try container.decodeIfPresent(String.self, forKey: .timeZone)
         self.userId = try container.decode(String.self, forKey: .userId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -58,6 +63,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
         try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
+        try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
         try container.encode(self.userId, forKey: .userId)
     }
 
@@ -70,6 +76,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         case phoneNumber = "phone_number"
         case primaryEmailAddress = "primary_email_address"
         case schemaVersion = "schema_version"
+        case timeZone = "time_zone"
         case userId = "user_id"
     }
 }

@@ -2,6 +2,7 @@ import Foundation
 
 /// Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 public final class ChrtClient: Sendable {
+    public let charlie: CharlieClient
     public let chrtGpt: ChrtGptClient
     public let flights: FlightsClient
     public let orgs: OrgsClient
@@ -12,7 +13,6 @@ public final class ChrtClient: Sendable {
     public let cargoOnFlightIntegrations: CargoOnFlightIntegrationsClient
     public let integrations: IntegrationsClient
     public let listing: ListingClient
-    public let livekit: LivekitClient
     public let notifications: NotificationsClient
     public let operations: OperationsClient
     public let shipping: ShippingClient_
@@ -102,6 +102,7 @@ public final class ChrtClient: Sendable {
             maxRetries: maxRetries,
             urlSession: urlSession
         )
+        self.charlie = CharlieClient(config: config)
         self.chrtGpt = ChrtGptClient(config: config)
         self.flights = FlightsClient(config: config)
         self.orgs = OrgsClient(config: config)
@@ -112,7 +113,6 @@ public final class ChrtClient: Sendable {
         self.cargoOnFlightIntegrations = CargoOnFlightIntegrationsClient(config: config)
         self.integrations = IntegrationsClient(config: config)
         self.listing = ListingClient(config: config)
-        self.livekit = LivekitClient(config: config)
         self.notifications = NotificationsClient(config: config)
         self.operations = OperationsClient(config: config)
         self.shipping = ShippingClient_(config: config)

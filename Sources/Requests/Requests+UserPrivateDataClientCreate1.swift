@@ -5,6 +5,8 @@ extension Requests {
         public let phoneNumber: String?
         public let primaryEmailAddress: String?
         public let schemaVersion: Int
+        /// IANA time zone name (e.g. `America/New_York`).
+        public let timeZone: String?
         /// Additional properties that are not explicitly defined in the schema
         public let additionalProperties: [String: JSONValue]
 
@@ -12,11 +14,13 @@ extension Requests {
             phoneNumber: String? = nil,
             primaryEmailAddress: String? = nil,
             schemaVersion: Int,
+            timeZone: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
             self.phoneNumber = phoneNumber
             self.primaryEmailAddress = primaryEmailAddress
             self.schemaVersion = schemaVersion
+            self.timeZone = timeZone
             self.additionalProperties = additionalProperties
         }
 
@@ -25,6 +29,7 @@ extension Requests {
             self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
             self.primaryEmailAddress = try container.decodeIfPresent(String.self, forKey: .primaryEmailAddress)
             self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+            self.timeZone = try container.decodeIfPresent(String.self, forKey: .timeZone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
         }
 
@@ -34,6 +39,7 @@ extension Requests {
             try container.encodeIfPresent(self.phoneNumber, forKey: .phoneNumber)
             try container.encodeIfPresent(self.primaryEmailAddress, forKey: .primaryEmailAddress)
             try container.encode(self.schemaVersion, forKey: .schemaVersion)
+            try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
         }
 
         /// Keys for encoding/decoding struct properties.
@@ -41,6 +47,7 @@ extension Requests {
             case phoneNumber = "phone_number"
             case primaryEmailAddress = "primary_email_address"
             case schemaVersion = "schema_version"
+            case timeZone = "time_zone"
         }
     }
 }
