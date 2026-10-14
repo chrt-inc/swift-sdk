@@ -212,6 +212,12 @@ public final class TaskGroupsExpandedClient: Sendable {
     ///         filterStatus: [
     ///             .draft
     ///         ],
+    ///         filterTaskGroupType: [
+    ///             .chrtGroundProvider
+    ///         ],
+    ///         filterVehicleType: [
+    ///             .sedan
+    ///         ],
     ///         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
     ///         filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -243,8 +249,10 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id)
     /// - Parameter filterTaskGroupIds: Filter by selected task group ids
     /// - Parameter filterOrderIds: Filter by selected order ids
+    /// - Parameter filterTaskGroupType: Filter by task group type
+    /// - Parameter filterVehicleType: Filter by any matching vehicle type
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: TaskGroupProviderRoleFilterEnum? = nil, sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterTaskGroupIds: [String]? = nil, filterOrderIds: [String]? = nil, filterStatus: [TaskGroupStatusEnum1]? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterDriverId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
+    public func listForProviderOperatorsV1(providerRole: TaskGroupProviderRoleFilterEnum? = nil, sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterTaskGroupIds: [String]? = nil, filterOrderIds: [String]? = nil, filterStatus: [TaskGroupStatusEnum1]? = nil, filterTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterVehicleType: [VehicleTypeEnum]? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterDriverId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/task_groups/expanded/list/for_provider_operators/v1",
@@ -258,6 +266,8 @@ public final class TaskGroupsExpandedClient: Sendable {
                 "filter_task_group_ids": filterTaskGroupIds.map { .stringArray($0) }, 
                 "filter_order_ids": filterOrderIds.map { .stringArray($0) }, 
                 "filter_status": filterStatus.map { .unknown($0) }, 
+                "filter_task_group_type": filterTaskGroupType.map { .unknown($0) }, 
+                "filter_vehicle_type": filterVehicleType.map { .unknown($0) }, 
                 "filter_draft_started_at_timestamp_lte": filterDraftStartedAtTimestampLte.map { .date($0) }, 
                 "filter_draft_started_at_timestamp_gte": filterDraftStartedAtTimestampGte.map { .date($0) }, 
                 "filter_staged_at_timestamp_lte": filterStagedAtTimestampLte.map { .date($0) }, 

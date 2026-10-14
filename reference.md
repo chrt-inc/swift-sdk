@@ -36905,7 +36905,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: TaskGroupProviderRoleFilterEnum?, sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterTaskGroupIds: [String]?, filterOrderIds: [String]?, filterStatus: [TaskGroupStatusEnum1]?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterDriverId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
+<details><summary><code>client.shipping.taskGroups.expanded.<a href="/Sources/Resources/Shipping/TaskGroups/Expanded/TaskGroupsExpandedClient.swift">listForProviderOperatorsV1</a>(providerRole: TaskGroupProviderRoleFilterEnum?, sortBy: TaskGroupSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterTaskGroupIds: [String]?, filterOrderIds: [String]?, filterStatus: [TaskGroupStatusEnum1]?, filterTaskGroupType: [TaskGroupTypeEnum1]?, filterVehicleType: [VehicleTypeEnum]?, filterDraftStartedAtTimestampLte: Date?, filterDraftStartedAtTimestampGte: Date?, filterStagedAtTimestampLte: Date?, filterStagedAtTimestampGte: Date?, filterInProgressAtTimestampLte: Date?, filterInProgressAtTimestampGte: Date?, filterCompletedAtTimestampLte: Date?, filterCompletedAtTimestampGte: Date?, filterSkippedAtTimestampLte: Date?, filterSkippedAtTimestampGte: Date?, filterCancelledAtTimestampLte: Date?, filterCancelledAtTimestampGte: Date?, filterExceptionAtTimestampLte: Date?, filterExceptionAtTimestampGte: Date?, filterDriverId: String?, filterCoordinatorOrgId: String?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions?) -> TaskGroupExpandedListRes</code></summary>
 <dl>
 <dd>
 
@@ -36953,6 +36953,12 @@ private func main() async throws {
         ],
         filterStatus: [
             .draft
+        ],
+        filterTaskGroupType: [
+            .chrtGroundProvider
+        ],
+        filterVehicleType: [
+            .sedan
         ],
         filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
         filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
@@ -37058,6 +37064,22 @@ try await main()
 <dd>
 
 **filterStatus:** `[TaskGroupStatusEnum1]?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTaskGroupType:** `[TaskGroupTypeEnum1]?` — Filter by task group type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterVehicleType:** `[VehicleTypeEnum]?` — Filter by any matching vehicle type
     
 </dd>
 </dl>

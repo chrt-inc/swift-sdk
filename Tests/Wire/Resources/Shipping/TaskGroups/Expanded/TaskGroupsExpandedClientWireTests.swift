@@ -1531,6 +1531,12 @@ import Chrt
             filterStatus: [
                 .draft
             ],
+            filterTaskGroupType: [
+                .chrtGroundProvider
+            ],
+            filterVehicleType: [
+                .sedan
+            ],
             filterDraftStartedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterDraftStartedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             filterStagedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
