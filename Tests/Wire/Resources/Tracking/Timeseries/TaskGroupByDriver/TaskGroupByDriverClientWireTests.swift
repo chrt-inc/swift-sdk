@@ -120,148 +120,59 @@ import Chrt
                 )
             ],
             drivers: Optional([
-                Driver1(
-                    id: "_id",
-                    archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    autoAssignEnabled: Optional(true),
-                    availableAccordingToDriver: Optional(true),
-                    availableAccordingToOperators: Optional(true),
-                    emailAddressPrimary: Optional("email_address_primary"),
-                    emailAddressSecondary: Optional("email_address_secondary"),
-                    firstName: Optional("first_name"),
-                    lastName: Optional("last_name"),
-                    lastSeenAtLocation: Optional(LocationFeature(
-                        geometry: Geometry.geometryCollection(
-                            .init(
-                                geometries: [
-                                    GeometriesItem.lineString(
-                                        .init(
-                                            coordinates: [
-                                                CoordinatesItem.position2D(
-                                                    []
-                                                )
-                                            ],
-                                            additionalProperties: [
-                                                "type": JSONValue.string("LineString")
-                                            ]
+                DriversItem.driver1(
+                    Driver1(
+                        id: "_id",
+                        archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                        autoAssignEnabled: Optional(true),
+                        availableAccordingToDriver: Optional(true),
+                        availableAccordingToOperators: Optional(true),
+                        emailAddressPrimary: Optional("email_address_primary"),
+                        emailAddressSecondary: Optional("email_address_secondary"),
+                        firstName: Optional("first_name"),
+                        lastName: Optional("last_name"),
+                        lastSeenAtLocation: Optional(LocationFeature(
+                            geometry: Geometry.geometryCollection(
+                                .init(
+                                    geometries: [
+                                        GeometriesItem.lineString(
+                                            .init(
+                                                coordinates: [
+                                                    CoordinatesItem.position2D(
+                                                        []
+                                                    )
+                                                ],
+                                                additionalProperties: [
+                                                    "type": JSONValue.string("LineString")
+                                                ]
+                                            )
                                         )
-                                    )
-                                ],
-                                additionalProperties: [
-                                    "type": JSONValue.string("GeometryCollection")
-                                ]
-                            )
-                        ),
-                        type: .feature
-                    )),
-                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
-                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    orgId: "org_id",
-                    phoneNumberPrimary: Optional("phone_number_primary"),
-                    phoneNumberSecondary: Optional("phone_number_secondary"),
-                    schemaVersion: 1,
-                    status: Optional(DriverStatusEnum.unassigned),
-                    userId: "user_id",
-                    vehicleTypes: Optional([
-                        VehicleTypeEnum.sedan
-                    ]),
-                    waiting: Optional(true)
+                                    ],
+                                    additionalProperties: [
+                                        "type": JSONValue.string("GeometryCollection")
+                                    ]
+                                )
+                            ),
+                            type: .feature
+                        )),
+                        lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                        lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                        lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                        orgId: "org_id",
+                        phoneNumberPrimary: Optional("phone_number_primary"),
+                        phoneNumberSecondary: Optional("phone_number_secondary"),
+                        schemaVersion: 1,
+                        status: Optional(DriverStatusEnum.unassigned),
+                        userId: "user_id",
+                        vehicleTypes: Optional([
+                            VehicleTypeEnum.sedan
+                        ]),
+                        waiting: Optional(true)
+                    )
                 )
             ])
         )
         let response = try await client.tracking.timeseries.taskGroupByDriver.dataPointsV1(
-            taskGroupId: "task_group_id",
-            limit: 1,
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func dataPointsPublicV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                [
-                  {
-                    "_id": "_id",
-                    "location": {
-                      "geometry": {
-                        "geometries": [
-                          {
-                            "coordinates": [
-                              []
-                            ],
-                            "type": "LineString"
-                          }
-                        ],
-                        "type": "GeometryCollection"
-                      },
-                      "id": 1,
-                      "type": "Feature"
-                    },
-                    "metadata": {
-                      "driver_id": "driver_id",
-                      "outlier": true,
-                      "outlier_labeller": "movingpandas",
-                      "pytest": true,
-                      "task_group_id": "task_group_id"
-                    },
-                    "schema_version": 1,
-                    "timestamp": "2024-01-15T09:30:00Z"
-                  }
-                ]
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            TaskGroupByDriverDataPoint1(
-                id: "_id",
-                location: LocationFeature(
-                    geometry: Geometry.geometryCollection(
-                        .init(
-                            geometries: [
-                                GeometriesItem.lineString(
-                                    .init(
-                                        coordinates: [
-                                            CoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ],
-                                        additionalProperties: [
-                                            "type": JSONValue.string("LineString")
-                                        ]
-                                    )
-                                )
-                            ],
-                            additionalProperties: [
-                                "type": JSONValue.string("GeometryCollection")
-                            ]
-                        )
-                    ),
-                    id: Optional(Id.int(
-                        1
-                    )),
-                    type: .feature
-                ),
-                metadata: TaskGroupByDriverDataPointMetadata1(
-                    driverId: "driver_id",
-                    outlier: Optional(true),
-                    outlierLabeller: Optional(OutlierLabellerEnum.movingpandas),
-                    pytest: Optional(true),
-                    taskGroupId: "task_group_id"
-                ),
-                schemaVersion: 1,
-                timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-            )
-        ]
-        let response = try await client.tracking.timeseries.taskGroupByDriver.dataPointsPublicV1(
             taskGroupId: "task_group_id",
             limit: 1,
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -390,56 +301,58 @@ import Chrt
                 schemaVersion: 1,
                 timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
             ),
-            driver: Optional(Driver1(
-                id: "_id",
-                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                autoAssignEnabled: Optional(true),
-                availableAccordingToDriver: Optional(true),
-                availableAccordingToOperators: Optional(true),
-                emailAddressPrimary: Optional("email_address_primary"),
-                emailAddressSecondary: Optional("email_address_secondary"),
-                firstName: Optional("first_name"),
-                lastName: Optional("last_name"),
-                lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: Geometry.geometryCollection(
-                        .init(
-                            geometries: [
-                                GeometriesItem.lineString(
-                                    .init(
-                                        coordinates: [
-                                            CoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ],
-                                        additionalProperties: [
-                                            "type": JSONValue.string("LineString")
-                                        ]
+            driver: Optional(Driver.driver1(
+                Driver1(
+                    id: "_id",
+                    archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    autoAssignEnabled: Optional(true),
+                    availableAccordingToDriver: Optional(true),
+                    availableAccordingToOperators: Optional(true),
+                    emailAddressPrimary: Optional("email_address_primary"),
+                    emailAddressSecondary: Optional("email_address_secondary"),
+                    firstName: Optional("first_name"),
+                    lastName: Optional("last_name"),
+                    lastSeenAtLocation: Optional(LocationFeature(
+                        geometry: Geometry.geometryCollection(
+                            .init(
+                                geometries: [
+                                    GeometriesItem.lineString(
+                                        .init(
+                                            coordinates: [
+                                                CoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
+                                            ]
+                                        )
                                     )
-                                )
-                            ],
-                            additionalProperties: [
-                                "type": JSONValue.string("GeometryCollection")
-                            ]
-                        )
-                    ),
-                    id: Optional(Id.int(
-                        1
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
+                                ]
+                            )
+                        ),
+                        id: Optional(Id.int(
+                            1
+                        )),
+                        type: .feature
                     )),
-                    type: .feature
-                )),
-                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orgId: "org_id",
-                phoneNumberPrimary: Optional("phone_number_primary"),
-                phoneNumberSecondary: Optional("phone_number_secondary"),
-                schemaVersion: 1,
-                status: Optional(DriverStatusEnum.unassigned),
-                userId: "user_id",
-                vehicleTypes: Optional([
-                    VehicleTypeEnum.sedan
-                ]),
-                waiting: Optional(true)
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    orgId: "org_id",
+                    phoneNumberPrimary: Optional("phone_number_primary"),
+                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    schemaVersion: 1,
+                    status: Optional(DriverStatusEnum.unassigned),
+                    userId: "user_id",
+                    vehicleTypes: Optional([
+                        VehicleTypeEnum.sedan
+                    ]),
+                    waiting: Optional(true)
+                )
             ))
         ))
         let response = try await client.tracking.timeseries.taskGroupByDriver.lastSeenV1(
@@ -449,13 +362,12 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func lastSeenPublicV11() async throws -> Void {
+    @Test func lastSeenPublicV21() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
                 #"""
                 {
-                  "_id": "_id",
                   "location": {
                     "bbox": [
                       {
@@ -480,14 +392,8 @@ import Chrt
                     },
                     "type": "Feature"
                   },
-                  "metadata": {
-                    "driver_id": "driver_id",
-                    "outlier": true,
-                    "outlier_labeller": "movingpandas",
-                    "pytest": true,
-                    "task_group_id": "task_group_id"
-                  },
-                  "schema_version": 1,
+                  "public_link_expires_at_timestamp": "2024-01-15T09:30:00Z",
+                  "task_group_status": "draft",
                   "timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
@@ -498,9 +404,8 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = Optional(TaskGroupByDriverDataPoint1(
-            id: "_id",
-            location: LocationFeature(
+        let expectedResponse = TaskGroupByDriverLastSeenPublicRes(
+            location: Optional(LocationFeature(
                 bbox: Optional([
                     JSONValue.object(
                         [
@@ -537,19 +442,13 @@ import Chrt
                     name: Optional("name")
                 )),
                 type: .feature
-            ),
-            metadata: TaskGroupByDriverDataPointMetadata1(
-                driverId: "driver_id",
-                outlier: Optional(true),
-                outlierLabeller: Optional(OutlierLabellerEnum.movingpandas),
-                pytest: Optional(true),
-                taskGroupId: "task_group_id"
-            ),
-            schemaVersion: 1,
-            timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
-        ))
-        let response = try await client.tracking.timeseries.taskGroupByDriver.lastSeenPublicV1(
-            taskGroupId: "task_group_id",
+            )),
+            publicLinkExpiresAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            taskGroupStatus: TaskGroupStatusEnum1.draft,
+            timestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+        )
+        let response = try await client.tracking.timeseries.taskGroupByDriver.lastSeenPublicV2(
+            publicLinkToken: "public_link_token",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

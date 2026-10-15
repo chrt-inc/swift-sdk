@@ -200,56 +200,58 @@ import Chrt
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
             coordinatorOrgHandle: Optional("coordinator_org_handle"),
             coordinatorOrgId: Optional("coordinator_org_id"),
-            driver: Optional(Driver1(
-                id: "_id",
-                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                autoAssignEnabled: Optional(true),
-                availableAccordingToDriver: Optional(true),
-                availableAccordingToOperators: Optional(true),
-                emailAddressPrimary: Optional("email_address_primary"),
-                emailAddressSecondary: Optional("email_address_secondary"),
-                firstName: Optional("first_name"),
-                lastName: Optional("last_name"),
-                lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: Geometry.geometryCollection(
-                        .init(
-                            geometries: [
-                                GeometriesItem.lineString(
-                                    .init(
-                                        coordinates: [
-                                            CoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ],
-                                        additionalProperties: [
-                                            "type": JSONValue.string("LineString")
-                                        ]
+            driver: Optional(Driver.driver1(
+                Driver1(
+                    id: "_id",
+                    archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    autoAssignEnabled: Optional(true),
+                    availableAccordingToDriver: Optional(true),
+                    availableAccordingToOperators: Optional(true),
+                    emailAddressPrimary: Optional("email_address_primary"),
+                    emailAddressSecondary: Optional("email_address_secondary"),
+                    firstName: Optional("first_name"),
+                    lastName: Optional("last_name"),
+                    lastSeenAtLocation: Optional(LocationFeature(
+                        geometry: Geometry.geometryCollection(
+                            .init(
+                                geometries: [
+                                    GeometriesItem.lineString(
+                                        .init(
+                                            coordinates: [
+                                                CoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
+                                            ]
+                                        )
                                     )
-                                )
-                            ],
-                            additionalProperties: [
-                                "type": JSONValue.string("GeometryCollection")
-                            ]
-                        )
-                    ),
-                    id: Optional(Id.int(
-                        1
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
+                                ]
+                            )
+                        ),
+                        id: Optional(Id.int(
+                            1
+                        )),
+                        type: .feature
                     )),
-                    type: .feature
-                )),
-                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orgId: "org_id",
-                phoneNumberPrimary: Optional("phone_number_primary"),
-                phoneNumberSecondary: Optional("phone_number_secondary"),
-                schemaVersion: 1,
-                status: Optional(DriverStatusEnum.unassigned),
-                userId: "user_id",
-                vehicleTypes: Optional([
-                    VehicleTypeEnum.sedan
-                ]),
-                waiting: Optional(true)
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    orgId: "org_id",
+                    phoneNumberPrimary: Optional("phone_number_primary"),
+                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    schemaVersion: 1,
+                    status: Optional(DriverStatusEnum.unassigned),
+                    userId: "user_id",
+                    vehicleTypes: Optional([
+                        VehicleTypeEnum.sedan
+                    ]),
+                    waiting: Optional(true)
+                )
             )),
             executorDepartments: Optional([
                 Department1(
@@ -599,56 +601,58 @@ import Chrt
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
             coordinatorOrgHandle: Optional("coordinator_org_handle"),
             coordinatorOrgId: Optional("coordinator_org_id"),
-            driver: Optional(Driver1(
-                id: "_id",
-                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                autoAssignEnabled: Optional(true),
-                availableAccordingToDriver: Optional(true),
-                availableAccordingToOperators: Optional(true),
-                emailAddressPrimary: Optional("email_address_primary"),
-                emailAddressSecondary: Optional("email_address_secondary"),
-                firstName: Optional("first_name"),
-                lastName: Optional("last_name"),
-                lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: Geometry.geometryCollection(
-                        .init(
-                            geometries: [
-                                GeometriesItem.lineString(
-                                    .init(
-                                        coordinates: [
-                                            CoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ],
-                                        additionalProperties: [
-                                            "type": JSONValue.string("LineString")
-                                        ]
+            driver: Optional(Driver.driver1(
+                Driver1(
+                    id: "_id",
+                    archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    autoAssignEnabled: Optional(true),
+                    availableAccordingToDriver: Optional(true),
+                    availableAccordingToOperators: Optional(true),
+                    emailAddressPrimary: Optional("email_address_primary"),
+                    emailAddressSecondary: Optional("email_address_secondary"),
+                    firstName: Optional("first_name"),
+                    lastName: Optional("last_name"),
+                    lastSeenAtLocation: Optional(LocationFeature(
+                        geometry: Geometry.geometryCollection(
+                            .init(
+                                geometries: [
+                                    GeometriesItem.lineString(
+                                        .init(
+                                            coordinates: [
+                                                CoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
+                                            ]
+                                        )
                                     )
-                                )
-                            ],
-                            additionalProperties: [
-                                "type": JSONValue.string("GeometryCollection")
-                            ]
-                        )
-                    ),
-                    id: Optional(Id.int(
-                        1
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
+                                ]
+                            )
+                        ),
+                        id: Optional(Id.int(
+                            1
+                        )),
+                        type: .feature
                     )),
-                    type: .feature
-                )),
-                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orgId: "org_id",
-                phoneNumberPrimary: Optional("phone_number_primary"),
-                phoneNumberSecondary: Optional("phone_number_secondary"),
-                schemaVersion: 1,
-                status: Optional(DriverStatusEnum.unassigned),
-                userId: "user_id",
-                vehicleTypes: Optional([
-                    VehicleTypeEnum.sedan
-                ]),
-                waiting: Optional(true)
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    orgId: "org_id",
+                    phoneNumberPrimary: Optional("phone_number_primary"),
+                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    schemaVersion: 1,
+                    status: Optional(DriverStatusEnum.unassigned),
+                    userId: "user_id",
+                    vehicleTypes: Optional([
+                        VehicleTypeEnum.sedan
+                    ]),
+                    waiting: Optional(true)
+                )
             )),
             executorDepartments: Optional([
                 Department1(
@@ -998,56 +1002,58 @@ import Chrt
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
             coordinatorOrgHandle: Optional("coordinator_org_handle"),
             coordinatorOrgId: Optional("coordinator_org_id"),
-            driver: Optional(Driver1(
-                id: "_id",
-                archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                autoAssignEnabled: Optional(true),
-                availableAccordingToDriver: Optional(true),
-                availableAccordingToOperators: Optional(true),
-                emailAddressPrimary: Optional("email_address_primary"),
-                emailAddressSecondary: Optional("email_address_secondary"),
-                firstName: Optional("first_name"),
-                lastName: Optional("last_name"),
-                lastSeenAtLocation: Optional(LocationFeature(
-                    geometry: Geometry.geometryCollection(
-                        .init(
-                            geometries: [
-                                GeometriesItem.lineString(
-                                    .init(
-                                        coordinates: [
-                                            CoordinatesItem.position2D(
-                                                []
-                                            )
-                                        ],
-                                        additionalProperties: [
-                                            "type": JSONValue.string("LineString")
-                                        ]
+            driver: Optional(Driver.driver1(
+                Driver1(
+                    id: "_id",
+                    archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    autoAssignEnabled: Optional(true),
+                    availableAccordingToDriver: Optional(true),
+                    availableAccordingToOperators: Optional(true),
+                    emailAddressPrimary: Optional("email_address_primary"),
+                    emailAddressSecondary: Optional("email_address_secondary"),
+                    firstName: Optional("first_name"),
+                    lastName: Optional("last_name"),
+                    lastSeenAtLocation: Optional(LocationFeature(
+                        geometry: Geometry.geometryCollection(
+                            .init(
+                                geometries: [
+                                    GeometriesItem.lineString(
+                                        .init(
+                                            coordinates: [
+                                                CoordinatesItem.position2D(
+                                                    []
+                                                )
+                                            ],
+                                            additionalProperties: [
+                                                "type": JSONValue.string("LineString")
+                                            ]
+                                        )
                                     )
-                                )
-                            ],
-                            additionalProperties: [
-                                "type": JSONValue.string("GeometryCollection")
-                            ]
-                        )
-                    ),
-                    id: Optional(Id.int(
-                        1
+                                ],
+                                additionalProperties: [
+                                    "type": JSONValue.string("GeometryCollection")
+                                ]
+                            )
+                        ),
+                        id: Optional(Id.int(
+                            1
+                        )),
+                        type: .feature
                     )),
-                    type: .feature
-                )),
-                lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
-                lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
-                lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                orgId: "org_id",
-                phoneNumberPrimary: Optional("phone_number_primary"),
-                phoneNumberSecondary: Optional("phone_number_secondary"),
-                schemaVersion: 1,
-                status: Optional(DriverStatusEnum.unassigned),
-                userId: "user_id",
-                vehicleTypes: Optional([
-                    VehicleTypeEnum.sedan
-                ]),
-                waiting: Optional(true)
+                    lastSeenAtLocationCity: Optional("last_seen_at_location_city"),
+                    lastSeenAtLocationLargeCity: Optional("last_seen_at_location_large_city"),
+                    lastSeenAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    orgId: "org_id",
+                    phoneNumberPrimary: Optional("phone_number_primary"),
+                    phoneNumberSecondary: Optional("phone_number_secondary"),
+                    schemaVersion: 1,
+                    status: Optional(DriverStatusEnum.unassigned),
+                    userId: "user_id",
+                    vehicleTypes: Optional([
+                        VehicleTypeEnum.sedan
+                    ]),
+                    waiting: Optional(true)
+                )
             )),
             executorDepartments: Optional([
                 Department1(
@@ -1285,11 +1291,13 @@ import Chrt
                     coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
                     coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
-                    driver: Optional(Driver1(
-                        id: "_id",
-                        orgId: "org_id",
-                        schemaVersion: 1,
-                        userId: "user_id"
+                    driver: Optional(Driver.driver1(
+                        Driver1(
+                            id: "_id",
+                            orgId: "org_id",
+                            schemaVersion: 1,
+                            userId: "user_id"
+                        )
                     )),
                     executorDepartments: Optional([
                         Department1(
@@ -1461,11 +1469,13 @@ import Chrt
                     coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
                     coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
-                    driver: Optional(Driver1(
-                        id: "_id",
-                        orgId: "org_id",
-                        schemaVersion: 1,
-                        userId: "user_id"
+                    driver: Optional(Driver.driver1(
+                        Driver1(
+                            id: "_id",
+                            orgId: "org_id",
+                            schemaVersion: 1,
+                            userId: "user_id"
+                        )
                     )),
                     executorDepartments: Optional([
                         Department1(

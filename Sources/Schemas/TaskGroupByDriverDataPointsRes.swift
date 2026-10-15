@@ -2,13 +2,13 @@ import Foundation
 
 public struct TaskGroupByDriverDataPointsRes: Codable, Hashable, Sendable {
     public let dataPoints: [TaskGroupByDriverDataPoint1]
-    public let drivers: [Driver1]?
+    public let drivers: [DriversItem]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         dataPoints: [TaskGroupByDriverDataPoint1],
-        drivers: [Driver1]? = nil,
+        drivers: [DriversItem]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.dataPoints = dataPoints
@@ -19,7 +19,7 @@ public struct TaskGroupByDriverDataPointsRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.dataPoints = try container.decode([TaskGroupByDriverDataPoint1].self, forKey: .dataPoints)
-        self.drivers = try container.decodeIfPresent([Driver1].self, forKey: .drivers)
+        self.drivers = try container.decodeIfPresent([DriversItem].self, forKey: .drivers)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 

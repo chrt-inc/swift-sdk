@@ -327,6 +327,121 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func exportV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "items": [
+                    {
+                      "_id": "_id",
+                      "completed_at_provenance": "reported",
+                      "completed_at_timestamp": "2024-01-15T09:30:00Z",
+                      "destination": {
+                        "label": "label"
+                      },
+                      "first_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "in_progress_at_provenance": "reported",
+                      "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
+                      "integration_order_id": "integration_order_id",
+                      "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "ordered_at_timestamp": "2024-01-15T09:30:00Z",
+                      "org_id": "org_id",
+                      "origin": {
+                        "label": "label"
+                      },
+                      "provider_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "provider_org_id": "provider_org_id",
+                      "provider_status_raw": "provider_status_raw",
+                      "reference_numbers": [
+                        "reference_numbers"
+                      ],
+                      "schema_version": 1,
+                      "shipper_org": {
+                        "_id": "_id",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "org_type": "provider",
+                        "schema_version": 1
+                      },
+                      "shipping_integration": "xcelerator",
+                      "source_provider_payload_hash": "source_provider_payload_hash",
+                      "status": "staged",
+                      "stop_count": 1
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = ShippingIntegrationOrderListRes(
+            items: [
+                ShippingIntegrationOrderExpanded1(
+                    id: "_id",
+                    completedAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
+                    completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    destination: Optional(ShippingIntegrationOrderPlace1(
+                        label: "label"
+                    )),
+                    firstMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    inProgressAtProvenance: Optional(ShippingIntegrationOrderStatusTimestampProvenanceEnum1.reported),
+                    inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    integrationOrderId: "integration_order_id",
+                    lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    orgId: "org_id",
+                    origin: Optional(ShippingIntegrationOrderPlace1(
+                        label: "label"
+                    )),
+                    providerOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: OrgTypeEnum.provider,
+                        schemaVersion: 1
+                    )),
+                    providerOrgId: "provider_org_id",
+                    providerStatusRaw: Optional("provider_status_raw"),
+                    referenceNumbers: Optional([
+                        "reference_numbers"
+                    ]),
+                    schemaVersion: 1,
+                    shipperOrg: Optional(OrgPublicData1(
+                        id: "_id",
+                        name: "name",
+                        orgId: "org_id",
+                        orgType: OrgTypeEnum.provider,
+                        schemaVersion: 1
+                    )),
+                    shippingIntegration: OrgShippingIntegrationEnum1.xcelerator,
+                    sourceProviderPayloadHash: "source_provider_payload_hash",
+                    status: ShippingIntegrationOrderStatusEnum1.staged,
+                    stopCount: Optional(1)
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.shippingIntegrations.orders.exportV1(
+            filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listForIntegrationExecutorOperatorsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

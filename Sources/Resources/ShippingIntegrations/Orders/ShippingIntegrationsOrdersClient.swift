@@ -33,6 +33,40 @@ public final class ShippingIntegrationsOrdersClient: Sendable {
         )
     }
 
+    /// Exports all the caller's integration orders within an inclusive completion timestamp range, newest completions first, without pagination. | () -> (ShippingIntegrationOrderListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shippingIntegrations.orders.exportV1(
+    ///         filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+    ///         filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter filterCompletedAtTimestampGte: Include orders completed at or after this timestamp.
+    /// - Parameter filterCompletedAtTimestampLte: Include orders completed at or before this timestamp.
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func exportV1(filterCompletedAtTimestampGte: Date, filterCompletedAtTimestampLte: Date, requestOptions: RequestOptions? = nil) async throws -> ShippingIntegrationOrderListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/shipping_integrations/orders/export/v1",
+            queryParams: [
+                "filter_completed_at_timestamp_gte": .date(filterCompletedAtTimestampGte), 
+                "filter_completed_at_timestamp_lte": .date(filterCompletedAtTimestampLte)
+            ],
+            requestOptions: requestOptions,
+            responseType: ShippingIntegrationOrderListRes.self
+        )
+    }
+
     /// Lists orders assigned to the caller's integration executor organization across all shipping integrations with integration coordinator organizations expanded, filtering, sorting, pagination, and optional search. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (ShippingIntegrationOrderListRes)
     ///
     /// ```swift

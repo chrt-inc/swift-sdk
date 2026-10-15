@@ -14,6 +14,8 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case shippingTaskGroupMessage = "shipping.task_group.message"
     case shippingTaskGroupTasksOrderingUpdated = "shipping.task_group.tasks_ordering_updated"
     case shippingTaskGroupFlightInfoUpdated = "shipping.task_group.flight_info_updated"
+    case shippingTaskGroupTrackingSharingUpdated = "shipping.task_group.tracking_sharing_updated"
+    case shippingCargoTrackingSharingUpdated = "shipping.cargo.tracking_sharing_updated"
     case shippingTaskAdded = "shipping.task.added"
     case shippingTaskAttempted = "shipping.task.attempted"
     case shippingTaskCompleted = "shipping.task.completed"

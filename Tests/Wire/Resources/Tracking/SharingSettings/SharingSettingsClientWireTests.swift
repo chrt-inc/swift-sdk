@@ -12,11 +12,11 @@ import Chrt
                   {
                     "sharing_settings": {
                       "_id": "_id",
-                      "driver_id": "driver_id",
                       "last_changed_by_org_id": "last_changed_by_org_id",
                       "last_changed_by_user_id": "last_changed_by_user_id",
                       "last_changed_timestamp": "2024-01-15T09:30:00Z",
                       "public": true,
+                      "public_link_token": "public_link_token",
                       "schema_version": 1,
                       "task_group_id": "task_group_id"
                     },
@@ -36,11 +36,11 @@ import Chrt
                 sharingSettings: TrackingSharingSettingsResSharingSettings.taskGroupByDriverSharingSettings1(
                     TaskGroupByDriverSharingSettings1(
                         id: "_id",
-                        driverId: Optional("driver_id"),
                         lastChangedByOrgId: Optional("last_changed_by_org_id"),
                         lastChangedByUserId: Optional("last_changed_by_user_id"),
                         lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                         public: Optional(true),
+                        publicLinkToken: Optional("public_link_token"),
                         schemaVersion: 1,
                         taskGroupId: "task_group_id"
                     )
@@ -110,11 +110,11 @@ import Chrt
                 {
                   "_id": "_id",
                   "cargo_id": "cargo_id",
-                  "driver_id": "driver_id",
                   "last_changed_by_org_id": "last_changed_by_org_id",
                   "last_changed_by_user_id": "last_changed_by_user_id",
                   "last_changed_timestamp": "2024-01-15T09:30:00Z",
                   "public": true,
+                  "public_link_token": "public_link_token",
                   "schema_version": 1,
                   "task_group_id": "task_group_id"
                 }
@@ -129,11 +129,11 @@ import Chrt
         let expectedResponse = CargoByDriverSharingSettings1(
             id: "_id",
             cargoId: "cargo_id",
-            driverId: Optional("driver_id"),
             lastChangedByOrgId: Optional("last_changed_by_org_id"),
             lastChangedByUserId: Optional("last_changed_by_user_id"),
             lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             public: Optional(true),
+            publicLinkToken: Optional("public_link_token"),
             schemaVersion: 1,
             taskGroupId: "task_group_id"
         )
@@ -148,6 +148,55 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func getCargoByDriverV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "public_link_expires_at_timestamp": "2024-01-15T09:30:00Z",
+                  "sharing_settings": {
+                    "_id": "_id",
+                    "cargo_id": "cargo_id",
+                    "last_changed_by_org_id": "last_changed_by_org_id",
+                    "last_changed_by_user_id": "last_changed_by_user_id",
+                    "last_changed_timestamp": "2024-01-15T09:30:00Z",
+                    "public": true,
+                    "public_link_token": "public_link_token",
+                    "schema_version": 1,
+                    "task_group_id": "task_group_id"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = CargoByDriverSharingSettingsRes(
+            publicLinkExpiresAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            sharingSettings: Optional(CargoByDriverSharingSettings1(
+                id: "_id",
+                cargoId: "cargo_id",
+                lastChangedByOrgId: Optional("last_changed_by_org_id"),
+                lastChangedByUserId: Optional("last_changed_by_user_id"),
+                lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                public: Optional(true),
+                publicLinkToken: Optional("public_link_token"),
+                schemaVersion: 1,
+                taskGroupId: "task_group_id"
+            ))
+        )
+        let response = try await client.tracking.sharingSettings.getCargoByDriverV1(
+            taskGroupId: "task_group_id",
+            cargoId: "cargo_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func taskGroupByDriverSharingSettingsV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -155,11 +204,11 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
-                  "driver_id": "driver_id",
                   "last_changed_by_org_id": "last_changed_by_org_id",
                   "last_changed_by_user_id": "last_changed_by_user_id",
                   "last_changed_timestamp": "2024-01-15T09:30:00Z",
                   "public": true,
+                  "public_link_token": "public_link_token",
                   "schema_version": 1,
                   "task_group_id": "task_group_id"
                 }
@@ -173,11 +222,11 @@ import Chrt
         )
         let expectedResponse = TaskGroupByDriverSharingSettings1(
             id: "_id",
-            driverId: Optional("driver_id"),
             lastChangedByOrgId: Optional("last_changed_by_org_id"),
             lastChangedByUserId: Optional("last_changed_by_user_id"),
             lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             public: Optional(true),
+            publicLinkToken: Optional("public_link_token"),
             schemaVersion: 1,
             taskGroupId: "task_group_id"
         )
@@ -186,6 +235,52 @@ import Chrt
                 public: true,
                 taskGroupId: "task_group_id"
             ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func getTaskGroupByDriverV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "public_link_expires_at_timestamp": "2024-01-15T09:30:00Z",
+                  "sharing_settings": {
+                    "_id": "_id",
+                    "last_changed_by_org_id": "last_changed_by_org_id",
+                    "last_changed_by_user_id": "last_changed_by_user_id",
+                    "last_changed_timestamp": "2024-01-15T09:30:00Z",
+                    "public": true,
+                    "public_link_token": "public_link_token",
+                    "schema_version": 1,
+                    "task_group_id": "task_group_id"
+                  }
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = TaskGroupByDriverSharingSettingsRes(
+            publicLinkExpiresAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            sharingSettings: Optional(TaskGroupByDriverSharingSettings1(
+                id: "_id",
+                lastChangedByOrgId: Optional("last_changed_by_org_id"),
+                lastChangedByUserId: Optional("last_changed_by_user_id"),
+                lastChangedTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                public: Optional(true),
+                publicLinkToken: Optional("public_link_token"),
+                schemaVersion: 1,
+                taskGroupId: "task_group_id"
+            ))
+        )
+        let response = try await client.tracking.sharingSettings.getTaskGroupByDriverV1(
+            taskGroupId: "task_group_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

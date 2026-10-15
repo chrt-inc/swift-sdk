@@ -7,7 +7,7 @@ public final class SharingSettingsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. Note: looking up by off_chrt_reference_id requires authentication because it is only org-level unique and needs the caller's org_id to resolve unambiguously. | () -> (list[TrackingSharingSettingsRes])
+    /// Lists the tracking datasets on an order that the caller is authorized for, with their sharing settings. | auth: api_key | authz_personas=[shipper_org_operators, coordinator_org_operators, executor_org_operators, driver_for_executor] | () -> (list[TrackingSharingSettingsRes])
     ///
     /// ```swift
     /// import Foundation
@@ -64,7 +64,7 @@ public final class SharingSettingsClient: Sendable {
         )
     }
 
-    /// Updates the sharing settings for a cargo by driver tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
+    /// Updates the sharing settings for a cargo by driver tracking dataset. Making it public issues a public link token; making it private revokes it. | auth: api_key | authz_personas=[coordinator_org_operators, executor_org_operators, driver_for_executor] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
     ///
     /// ```swift
     /// import Foundation
@@ -94,7 +94,35 @@ public final class SharingSettingsClient: Sendable {
         )
     }
 
-    /// Updates the sharing settings for a task group by driver tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
+    /// Returns a cargo's driver tracking sharing settings and when its public link expires; sharing_settings is null when tracking was never shared. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (CargoByDriverSharingSettingsRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sharingSettings.getCargoByDriverV1(
+    ///         taskGroupId: "task_group_id",
+    ///         cargoId: "cargo_id"
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getCargoByDriverV1(taskGroupId: String, cargoId: String, requestOptions: RequestOptions? = nil) async throws -> CargoByDriverSharingSettingsRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/sharing_settings/cargo_by_driver/v1/\(taskGroupId)/\(cargoId)",
+            requestOptions: requestOptions,
+            responseType: CargoByDriverSharingSettingsRes.self
+        )
+    }
+
+    /// Updates the sharing settings for a task group by driver tracking dataset. Making it public issues a public link token; making it private revokes it. | auth: api_key | authz_personas=[coordinator_org_operators, executor_org_operators, driver_for_executor] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
     ///
     /// ```swift
     /// import Foundation
@@ -120,6 +148,31 @@ public final class SharingSettingsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: TaskGroupByDriverSharingSettings1.self
+        )
+    }
+
+    /// Returns a task group's driver tracking sharing settings and when its public link expires; sharing_settings is null when tracking was never shared. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (TaskGroupByDriverSharingSettingsRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.tracking.sharingSettings.getTaskGroupByDriverV1(taskGroupId: "task_group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getTaskGroupByDriverV1(taskGroupId: String, requestOptions: RequestOptions? = nil) async throws -> TaskGroupByDriverSharingSettingsRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/tracking/sharing_settings/task_group_by_driver/v1/\(taskGroupId)",
+            requestOptions: requestOptions,
+            responseType: TaskGroupByDriverSharingSettingsRes.self
         )
     }
 }

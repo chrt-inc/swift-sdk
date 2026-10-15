@@ -447,11 +447,13 @@ import Chrt
                     coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
                     coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
-                    driver: Optional(Driver1(
-                        id: "_id",
-                        orgId: "org_id",
-                        schemaVersion: 1,
-                        userId: "user_id"
+                    driver: Optional(Driver.driver1(
+                        Driver1(
+                            id: "_id",
+                            orgId: "org_id",
+                            schemaVersion: 1,
+                            userId: "user_id"
+                        )
                     )),
                     executorDepartments: Optional([
                         Department1(
@@ -850,11 +852,13 @@ import Chrt
                     coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
                     coordinatorOrgHandle: Optional("coordinator_org_handle"),
                     coordinatorOrgId: Optional("coordinator_org_id"),
-                    driver: Optional(Driver1(
-                        id: "_id",
-                        orgId: "org_id",
-                        schemaVersion: 1,
-                        userId: "user_id"
+                    driver: Optional(Driver.driver1(
+                        Driver1(
+                            id: "_id",
+                            orgId: "org_id",
+                            schemaVersion: 1,
+                            userId: "user_id"
+                        )
                     )),
                     executorDepartments: Optional([
                         Department1(

@@ -37984,6 +37984,88 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">exportV1</a>(filterCompletedAtTimestampGte: Date, filterCompletedAtTimestampLte: Date, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exports all the caller's integration orders within an inclusive completion timestamp range, newest completions first, without pagination. | () -> (ShippingIntegrationOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.orders.exportV1(
+        filterCompletedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCompletedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterCompletedAtTimestampGte:** `Date` — Include orders completed at or after this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCompletedAtTimestampLte:** `Date` — Include orders completed at or before this timestamp.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shippingIntegrations.orders.<a href="/Sources/Resources/ShippingIntegrations/Orders/ShippingIntegrationsOrdersClient.swift">listForIntegrationExecutorOperatorsV1</a>(sortBy: ShippingIntegrationOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, filterShippingIntegrationOrderIds: [String]?, filterShippingIntegration: [OrgShippingIntegrationEnum1]?, filterStatus: [ShippingIntegrationOrderStatusEnum1]?, filterIntegrationOrderId: String?, filterReferenceNumber: String?, filterOrderedAtTimestampGte: Date?, filterOrderedAtTimestampLte: Date?, filterLastMirroredAtTimestampGte: Date?, filterLastMirroredAtTimestampLte: Date?, filterFirstMirroredAtTimestampGte: Date?, filterFirstMirroredAtTimestampLte: Date?, requestOptions: RequestOptions?) -> ShippingIntegrationOrderListRes</code></summary>
 <dl>
 <dd>
@@ -46317,7 +46399,7 @@ try await main()
 <dl>
 <dd>
 
-Records driver location updates with a client-supplied capture timestamp. Writes a driver_by_driver ping on every call, updates the driver's last seen, and records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | auth: api_key | (DriverByDriverDataPointClientCreate1) -> (DriverUpdateRes)
+Records driver location updates with a client-supplied capture timestamp. Drops pings from off-duty drivers (unavailable and no in-progress task group); otherwise writes a driver_by_driver ping, updates the driver's last seen, and records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | auth: api_key | (DriverByDriverDataPointClientCreate1) -> (DriverUpdateRes)
 </dd>
 </dl>
 </dd>
@@ -48387,7 +48469,7 @@ try await main()
 <dl>
 <dd>
 
-Get all tracking datasets and their sharing settings for a given order. If authenticated, returns datasets the user has direct access to plus public datasets. If unauthenticated, returns only datasets with public=True. Note: looking up by off_chrt_reference_id requires authentication because it is only org-level unique and needs the caller's org_id to resolve unambiguously. | () -> (list[TrackingSharingSettingsRes])
+Lists the tracking datasets on an order that the caller is authorized for, with their sharing settings. | auth: api_key | authz_personas=[shipper_org_operators, coordinator_org_operators, executor_org_operators, driver_for_executor] | () -> (list[TrackingSharingSettingsRes])
 </dd>
 </dl>
 </dd>
@@ -48534,7 +48616,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the sharing settings for a cargo by driver tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
+Updates the sharing settings for a cargo by driver tracking dataset. Making it public issues a public link token; making it private revokes it. | auth: api_key | authz_personas=[coordinator_org_operators, executor_org_operators, driver_for_executor] | (CargoByDriverSharingSettingsUpdateReq) -> (CargoByDriverSharingSettings1)
 </dd>
 </dl>
 </dd>
@@ -48597,6 +48679,88 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">getCargoByDriverV1</a>(taskGroupId: String, cargoId: String, requestOptions: RequestOptions?) -> CargoByDriverSharingSettingsRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a cargo's driver tracking sharing settings and when its public link expires; sharing_settings is null when tracking was never shared. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (CargoByDriverSharingSettingsRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sharingSettings.getCargoByDriverV1(
+        taskGroupId: "task_group_id",
+        cargoId: "cargo_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cargoId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">taskGroupByDriverSharingSettingsV1</a>(request: Requests.TaskGroupByDriverSharingSettingsUpdateReq, requestOptions: RequestOptions?) -> TaskGroupByDriverSharingSettings1</code></summary>
 <dl>
 <dd>
@@ -48609,7 +48773,7 @@ try await main()
 <dl>
 <dd>
 
-Updates the sharing settings for a task group by driver tracking dataset. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
+Updates the sharing settings for a task group by driver tracking dataset. Making it public issues a public link token; making it private revokes it. | auth: api_key | authz_personas=[coordinator_org_operators, executor_org_operators, driver_for_executor] | (TaskGroupByDriverSharingSettingsUpdateReq) -> (TaskGroupByDriverSharingSettings1)
 </dd>
 </dl>
 </dd>
@@ -48652,6 +48816,77 @@ try await main()
 <dd>
 
 **request:** `Requests.TaskGroupByDriverSharingSettingsUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tracking.sharingSettings.<a href="/Sources/Resources/Tracking/SharingSettings/SharingSettingsClient.swift">getTaskGroupByDriverV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverSharingSettingsRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a task group's driver tracking sharing settings and when its public link expires; sharing_settings is null when tracking was never shared. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (TaskGroupByDriverSharingSettingsRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.tracking.sharingSettings.getTaskGroupByDriverV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
     
 </dd>
 </dl>
@@ -49107,7 +49342,7 @@ try await main()
 <dl>
 <dd>
 
-Returns up to the specified number of data points for a cargo within a task group, intelligently sampled across the time range. Excludes outliers. | auth: api_key | () -> (list[CargoByDriverDataPoint1])
+Returns up to the specified number of data points for a cargo within a task group, intelligently sampled across the time range. Excludes outliers. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (list[CargoByDriverDataPoint1])
 </dd>
 </dl>
 </dd>
@@ -49186,97 +49421,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.cargoByDriver.<a href="/Sources/Resources/Tracking/Timeseries/CargoByDriver/CargoByDriverClient.swift">dataPointsPublicV1</a>(cargoId: String, taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [CargoByDriverDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns up to the specified number of data points for a cargo within a public task group, intelligently sampled across the time range. Excludes outliers. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (list[CargoByDriverDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.timeseries.cargoByDriver.dataPointsPublicV1(
-        cargoId: "cargo_id",
-        taskGroupId: "task_group_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**cargoId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.tracking.timeseries.cargoByDriver.<a href="/Sources/Resources/Tracking/Timeseries/CargoByDriver/CargoByDriverClient.swift">lastSeenV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDriverDataPoint1?</code></summary>
 <dl>
 <dd>
@@ -49289,7 +49433,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for cargo within a task group. Access granted to courier or shipper organization. Data written by the driver update endpoint. | auth: api_key | () -> (CargoByDriverDataPoint1 | None)
+Returns the most recent driver location data point for cargo within a task group. Data written by the driver update endpoint. | auth: api_key | authz_personas=[coordinator_org_operators, shipper_org_operators, executor_org_operators, driver_for_executor] | () -> (CargoByDriverDataPoint1 | None)
 </dd>
 </dl>
 </dd>
@@ -49359,7 +49503,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.cargoByDriver.<a href="/Sources/Resources/Tracking/Timeseries/CargoByDriver/CargoByDriverClient.swift">lastSeenPublicV1</a>(cargoId: String, taskGroupId: String, requestOptions: RequestOptions?) -> CargoByDriverDataPoint1?</code></summary>
+<details><summary><code>client.tracking.timeseries.cargoByDriver.<a href="/Sources/Resources/Tracking/Timeseries/CargoByDriver/CargoByDriverClient.swift">lastSeenPublicV2</a>(publicLinkToken: String, requestOptions: RequestOptions?) -> CargoByDriverLastSeenPublicRes</code></summary>
 <dl>
 <dd>
 
@@ -49371,7 +49515,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a cargo within a public task group. No authentication required if cargo has public visibility enabled via sharing settings. | () -> (CargoByDriverDataPoint1 | None)
+Returns the last-seen location and status for a publicly shared cargo by its public link token. No authentication required; returns 410 once the link has expired. | () -> (CargoByDriverLastSeenPublicRes)
 </dd>
 </dl>
 </dd>
@@ -49392,10 +49536,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.timeseries.cargoByDriver.lastSeenPublicV1(
-        cargoId: "cargo_id",
-        taskGroupId: "task_group_id"
-    )
+    _ = try await client.tracking.timeseries.cargoByDriver.lastSeenPublicV2(publicLinkToken: "public_link_token")
 }
 
 try await main()
@@ -49413,15 +49554,7 @@ try await main()
 <dl>
 <dd>
 
-**cargoId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
+**publicLinkToken:** `String` 
     
 </dd>
 </dl>
@@ -49943,88 +50076,6 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">dataPointsPublicV1</a>(taskGroupId: String, limit: Int?, requestOptions: RequestOptions?) -> [TaskGroupByDriverDataPoint1]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns sampled driver location data points for a publicly shared task group. Excludes outliers. No authentication required. | () -> (list[TaskGroupByDriverDataPoint1])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.tracking.timeseries.taskGroupByDriver.dataPointsPublicV1(
-        taskGroupId: "task_group_id",
-        limit: 1
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**taskGroupId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**limit:** `Int?` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverLastSeenRes?</code></summary>
 <dl>
 <dd>
@@ -50096,7 +50147,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenPublicV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupByDriverDataPoint1?</code></summary>
+<details><summary><code>client.tracking.timeseries.taskGroupByDriver.<a href="/Sources/Resources/Tracking/Timeseries/TaskGroupByDriver/TaskGroupByDriverClient.swift">lastSeenPublicV2</a>(publicLinkToken: String, requestOptions: RequestOptions?) -> TaskGroupByDriverLastSeenPublicRes</code></summary>
 <dl>
 <dd>
 
@@ -50108,7 +50159,7 @@ try await main()
 <dl>
 <dd>
 
-Returns the most recent driver location data point for a publicly shared task group. No authentication required. | () -> (TaskGroupByDriverDataPoint1 | None)
+Returns the last-seen location and status for a publicly shared task group by its public link token. No authentication required; returns 410 once the link has expired. | () -> (TaskGroupByDriverLastSeenPublicRes)
 </dd>
 </dl>
 </dd>
@@ -50129,7 +50180,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.tracking.timeseries.taskGroupByDriver.lastSeenPublicV1(taskGroupId: "task_group_id")
+    _ = try await client.tracking.timeseries.taskGroupByDriver.lastSeenPublicV2(publicLinkToken: "public_link_token")
 }
 
 try await main()
@@ -50147,7 +50198,7 @@ try await main()
 <dl>
 <dd>
 
-**taskGroupId:** `String` 
+**publicLinkToken:** `String` 
     
 </dd>
 </dl>

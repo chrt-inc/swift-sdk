@@ -3,13 +3,13 @@ import Foundation
 public struct CargoByDriverSharingSettings1: Codable, Hashable, Sendable {
     public let id: String
     public let cargoId: String
-    public let driverId: String?
     /// Must be a string starting with `org_`
     public let lastChangedByOrgId: String?
     /// Must be a string starting with `user_`
     public let lastChangedByUserId: String?
     public let lastChangedTimestamp: Date?
     public let `public`: Bool?
+    public let publicLinkToken: String?
     public let schemaVersion: Int
     public let taskGroupId: String
     /// Additional properties that are not explicitly defined in the schema
@@ -18,22 +18,22 @@ public struct CargoByDriverSharingSettings1: Codable, Hashable, Sendable {
     public init(
         id: String,
         cargoId: String,
-        driverId: String? = nil,
         lastChangedByOrgId: String? = nil,
         lastChangedByUserId: String? = nil,
         lastChangedTimestamp: Date? = nil,
         public: Bool? = nil,
+        publicLinkToken: String? = nil,
         schemaVersion: Int,
         taskGroupId: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
         self.cargoId = cargoId
-        self.driverId = driverId
         self.lastChangedByOrgId = lastChangedByOrgId
         self.lastChangedByUserId = lastChangedByUserId
         self.lastChangedTimestamp = lastChangedTimestamp
         self.public = `public`
+        self.publicLinkToken = publicLinkToken
         self.schemaVersion = schemaVersion
         self.taskGroupId = taskGroupId
         self.additionalProperties = additionalProperties
@@ -43,11 +43,11 @@ public struct CargoByDriverSharingSettings1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.cargoId = try container.decode(String.self, forKey: .cargoId)
-        self.driverId = try container.decodeIfPresent(String.self, forKey: .driverId)
         self.lastChangedByOrgId = try container.decodeIfPresent(String.self, forKey: .lastChangedByOrgId)
         self.lastChangedByUserId = try container.decodeIfPresent(String.self, forKey: .lastChangedByUserId)
         self.lastChangedTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastChangedTimestamp)
         self.public = try container.decodeIfPresent(Bool.self, forKey: .public)
+        self.publicLinkToken = try container.decodeIfPresent(String.self, forKey: .publicLinkToken)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -58,11 +58,11 @@ public struct CargoByDriverSharingSettings1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.cargoId, forKey: .cargoId)
-        try container.encodeIfPresent(self.driverId, forKey: .driverId)
         try container.encodeIfPresent(self.lastChangedByOrgId, forKey: .lastChangedByOrgId)
         try container.encodeIfPresent(self.lastChangedByUserId, forKey: .lastChangedByUserId)
         try container.encodeIfPresent(self.lastChangedTimestamp, forKey: .lastChangedTimestamp)
         try container.encodeIfPresent(self.public, forKey: .public)
+        try container.encodeIfPresent(self.publicLinkToken, forKey: .publicLinkToken)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
     }
@@ -71,11 +71,11 @@ public struct CargoByDriverSharingSettings1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
         case cargoId = "cargo_id"
-        case driverId = "driver_id"
         case lastChangedByOrgId = "last_changed_by_org_id"
         case lastChangedByUserId = "last_changed_by_user_id"
         case lastChangedTimestamp = "last_changed_timestamp"
         case `public`
+        case publicLinkToken = "public_link_token"
         case schemaVersion = "schema_version"
         case taskGroupId = "task_group_id"
     }

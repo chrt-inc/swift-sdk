@@ -7,7 +7,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
     public let coordinatorOrgHandle: String?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
-    public let driver: Driver1?
+    public let driver: Driver?
     public let executorDepartments: [Department1]?
     public let executorOrgCompanyName: String?
     /// Must be a string starting with `@`. May only contain a-z, A-Z, 0-9, _, -. May not be longer than 30 characters.
@@ -31,7 +31,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         coordinatorOrgCompanyName: String? = nil,
         coordinatorOrgHandle: String? = nil,
         coordinatorOrgId: String? = nil,
-        driver: Driver1? = nil,
+        driver: Driver? = nil,
         executorDepartments: [Department1]? = nil,
         executorOrgCompanyName: String? = nil,
         executorOrgHandle: String? = nil,
@@ -72,7 +72,7 @@ public struct TaskGroupExpanded: Codable, Hashable, Sendable {
         self.coordinatorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgCompanyName)
         self.coordinatorOrgHandle = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgHandle)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
-        self.driver = try container.decodeIfPresent(Driver1.self, forKey: .driver)
+        self.driver = try container.decodeIfPresent(Driver.self, forKey: .driver)
         self.executorDepartments = try container.decodeIfPresent([Department1].self, forKey: .executorDepartments)
         self.executorOrgCompanyName = try container.decodeIfPresent(String.self, forKey: .executorOrgCompanyName)
         self.executorOrgHandle = try container.decodeIfPresent(String.self, forKey: .executorOrgHandle)

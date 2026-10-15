@@ -7,7 +7,7 @@ public final class DriverClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Records driver location updates with a client-supplied capture timestamp. Writes a driver_by_driver ping on every call, updates the driver's last seen, and records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | auth: api_key | (DriverByDriverDataPointClientCreate1) -> (DriverUpdateRes)
+    /// Records driver location updates with a client-supplied capture timestamp. Drops pings from off-duty drivers (unavailable and no in-progress task group); otherwise writes a driver_by_driver ping, updates the driver's last seen, and records tracking data for all IN_PROGRESS task groups and their associated IN_TRANSIT cargos. | auth: api_key | (DriverByDriverDataPointClientCreate1) -> (DriverUpdateRes)
     ///
     /// ```swift
     /// import Foundation
