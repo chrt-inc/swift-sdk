@@ -1,3 +1,16 @@
+## 2.0.0 - 2026-10-15
+### Breaking Changes
+* **`CargoByDriverClient.dataPointsPublicV1`** and **`TaskGroupByDriverClient.dataPointsPublicV1`** — both methods removed; migrate `CargoByDriverClient` callers to `lastSeenPublicV2(publicLinkToken:)` and `TaskGroupByDriverClient` callers to the authenticated `dataPointsV1` endpoint.
+* **`CargoByDriverClient.lastSeenPublicV1`** and **`TaskGroupByDriverClient.lastSeenPublicV1`** — removed; replace with `lastSeenPublicV2(publicLinkToken:)` on the respective client, passing the token from sharing settings.
+* **`CargoByDriverSharingSettings1.driverId`** and **`TaskGroupByDriverSharingSettings1.driverId`** — `driverId: String?` property removed from both types; remove any code reading or constructing these fields.
+* **`Driver1` (as `driver` field type)** — the `driver` field on task group and cargo types now uses a `Driver` enum wrapper; update all usages from `Driver1(...)` to `Driver.driver1(Driver1(...))`.
+### Added
+* **`SharingSettingsClient.getCargoByDriverV1(taskGroupId:cargoId:)`** and **`SharingSettingsClient.getTaskGroupByDriverV1(taskGroupId:)`** — new methods to retrieve driver tracking sharing settings and public link expiry for cargo and task groups respectively.
+* **`publicLinkToken: String?`** — new optional field on `CargoByDriverSharingSettings1` and `TaskGroupByDriverSharingSettings1` carrying the token used with the v2 public endpoints.
+* **`CargoByDriverLastSeenPublicRes`** — new response type returned by `lastSeenPublicV2`, containing `cargoStatus`, `location`, `publicLinkExpiresAtTimestamp`, and `timestamp`.
+* **`CargoByDriverSharingSettingsRes`**, **`TaskGroupByDriverSharingSettingsRes`**, and **`TaskGroupByDriverLastSeenPublicRes`** — new response wrapper types exposing sharing settings alongside `publicLinkExpiresAtTimestamp`.
+* **`ShippingTaskGroupTrackingSharingUpdatedWebhookPayload`** — new struct representing webhook events fired when a task group's driver tracking sharing is toggled public or private.
+
 ## 2.0.0 - 2026-10-13
 ### Breaking Changes
 * **`CargoOnFlightBookingSearch1.iataCassOfficeId`** — type changed from `String` to `String?`; update exhaustive pattern matches and direct uses to unwrap the optional.
