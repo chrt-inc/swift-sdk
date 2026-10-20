@@ -2,9 +2,11 @@ import Foundation
 
 public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     public let id: String
+    public let airCanadaProduct: AirCanadaProductEnum1?
     public let airlineCargoAccountId: String?
     public let cargoOnFlightBookingId: String
     public let cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1
+    public let cargoaiProduct: CargoAiProductEnum1?
     public let createdAtTimestamp: Date
     /// Must be a string starting with `org_`
     public let createdByOrgId: String
@@ -25,9 +27,11 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        airCanadaProduct: AirCanadaProductEnum1? = nil,
         airlineCargoAccountId: String? = nil,
         cargoOnFlightBookingId: String,
         cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1,
+        cargoaiProduct: CargoAiProductEnum1? = nil,
         createdAtTimestamp: Date,
         createdByOrgId: String,
         createdByUserId: String? = nil,
@@ -44,9 +48,11 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.airCanadaProduct = airCanadaProduct
         self.airlineCargoAccountId = airlineCargoAccountId
         self.cargoOnFlightBookingId = cargoOnFlightBookingId
         self.cargoOnFlightIntegration = cargoOnFlightIntegration
+        self.cargoaiProduct = cargoaiProduct
         self.createdAtTimestamp = createdAtTimestamp
         self.createdByOrgId = createdByOrgId
         self.createdByUserId = createdByUserId
@@ -66,9 +72,11 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.airCanadaProduct = try container.decodeIfPresent(AirCanadaProductEnum1.self, forKey: .airCanadaProduct)
         self.airlineCargoAccountId = try container.decodeIfPresent(String.self, forKey: .airlineCargoAccountId)
         self.cargoOnFlightBookingId = try container.decode(String.self, forKey: .cargoOnFlightBookingId)
         self.cargoOnFlightIntegration = try container.decode(CargoOnFlightIntegrationEnum1.self, forKey: .cargoOnFlightIntegration)
+        self.cargoaiProduct = try container.decodeIfPresent(CargoAiProductEnum1.self, forKey: .cargoaiProduct)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.createdByOrgId = try container.decode(String.self, forKey: .createdByOrgId)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
@@ -89,9 +97,11 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.airCanadaProduct, forKey: .airCanadaProduct)
         try container.encodeIfPresent(self.airlineCargoAccountId, forKey: .airlineCargoAccountId)
         try container.encode(self.cargoOnFlightBookingId, forKey: .cargoOnFlightBookingId)
         try container.encode(self.cargoOnFlightIntegration, forKey: .cargoOnFlightIntegration)
+        try container.encodeIfPresent(self.cargoaiProduct, forKey: .cargoaiProduct)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encode(self.createdByOrgId, forKey: .createdByOrgId)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
@@ -110,9 +120,11 @@ public struct CargoOnFlightBookingSearch1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case airCanadaProduct = "air_canada_product"
         case airlineCargoAccountId = "airline_cargo_account_id"
         case cargoOnFlightBookingId = "cargo_on_flight_booking_id"
         case cargoOnFlightIntegration = "cargo_on_flight_integration"
+        case cargoaiProduct = "cargoai_product"
         case createdAtTimestamp = "created_at_timestamp"
         case createdByOrgId = "created_by_org_id"
         case createdByUserId = "created_by_user_id"

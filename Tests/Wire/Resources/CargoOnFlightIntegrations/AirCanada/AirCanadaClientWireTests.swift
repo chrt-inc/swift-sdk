@@ -404,9 +404,11 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "air_canada_product": "AFR",
                   "airline_cargo_account_id": "airline_cargo_account_id",
                   "cargo_on_flight_booking_id": "cargo_on_flight_booking_id",
                   "cargo_on_flight_integration": "air_canada",
+                  "cargoai_product": "GCR",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_org_id": "created_by_org_id",
                   "created_by_user_id": "created_by_user_id",
@@ -468,9 +470,11 @@ import Chrt
         )
         let expectedResponse = CargoOnFlightBookingSearch1(
             id: "_id",
+            airCanadaProduct: Optional(AirCanadaProductEnum1.afr),
             airlineCargoAccountId: Optional("airline_cargo_account_id"),
             cargoOnFlightBookingId: "cargo_on_flight_booking_id",
             cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
+            cargoaiProduct: Optional(CargoAiProductEnum1.gcr),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByOrgId: "created_by_org_id",
             createdByUserId: Optional("created_by_user_id"),

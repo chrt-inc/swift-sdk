@@ -69,7 +69,7 @@ public final class AirCanadaClient: Sendable {
         )
     }
 
-    /// Quotes Air Canada flights with space and rates for a draft booking's cargos on a route and dates, and stores the search. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingSearchClientCreate1) -> (CargoOnFlightBookingSearch1)
+    /// Quotes Air Canada flights with space and rates for a draft booking's cargos on a route and dates, as the chosen Air Canada product or the one its special handling codes imply, and stores the search. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingSearchClientCreate1) -> (CargoOnFlightBookingSearch1)
     ///
     /// ```swift
     /// import Foundation

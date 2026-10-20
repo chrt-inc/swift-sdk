@@ -224,7 +224,7 @@ public final class CargoaiClient: Sendable {
         )
     }
 
-    /// Starts a CargoAi search for flights with space and rates for a draft booking's cargos on a route and date, and stores it. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingSearchClientCreate1) -> (CargoOnFlightBookingSearch1)
+    /// Starts a CargoAi search for flights with space and rates for a draft booking's cargos on a route and date, as the chosen CargoAi product or the one its special handling codes imply, and stores it. | authz_personas=[task_group_coordinator_operators] | (CargoOnFlightBookingSearchClientCreate1) -> (CargoOnFlightBookingSearch1)
     ///
     /// ```swift
     /// import Foundation
