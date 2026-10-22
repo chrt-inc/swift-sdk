@@ -2,14 +2,14 @@ import Foundation
 
 /// A transcribed request Charlie hands ChrtGPT. The voice route fixes reasoning effort and verbosity for speed.
 public struct ChrtGptVoiceReq: Codable, Hashable, Sendable {
-    /// Omit on the call's first request to start a new conversation.
-    public let conversationId: String?
+    /// The call's conversation, from Charlie's dispatch metadata. Created on the call's first request.
+    public let conversationId: String
     public let message: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
-        conversationId: String? = nil,
+        conversationId: String,
         message: String,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -20,7 +20,7 @@ public struct ChrtGptVoiceReq: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.conversationId = try container.decodeIfPresent(String.self, forKey: .conversationId)
+        self.conversationId = try container.decode(String.self, forKey: .conversationId)
         self.message = try container.decode(String.self, forKey: .message)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -28,7 +28,7 @@ public struct ChrtGptVoiceReq: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
-        try container.encodeIfPresent(self.conversationId, forKey: .conversationId)
+        try container.encode(self.conversationId, forKey: .conversationId)
         try container.encode(self.message, forKey: .message)
     }
 

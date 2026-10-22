@@ -9,8 +9,8 @@ import Chrt
             body: Foundation.Data(
                 #"""
                 {
+                  "conversation_id": "conversation_id",
                   "participant_token": "participant_token",
-                  "room_name": "room_name",
                   "server_url": "server_url"
                 }
                 """#.utf8
@@ -22,8 +22,8 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = CharlieStartRes(
+            conversationId: "conversation_id",
             participantToken: "participant_token",
-            roomName: "room_name",
             serverUrl: "server_url"
         )
         let response = try await client.charlie.startV1(

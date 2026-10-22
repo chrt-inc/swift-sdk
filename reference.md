@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Creates a LiveKit room with Charlie, CHRT's voice assistant, acting as the caller and returns a token to join it. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (CharlieStartReq) -> (CharlieStartRes)
+Creates a voice call room with Charlie, CHRT's voice assistant, acting as the caller and returns a token to join it. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (CharlieStartReq) -> (CharlieStartRes)
 </dd>
 </dl>
 </dd>
