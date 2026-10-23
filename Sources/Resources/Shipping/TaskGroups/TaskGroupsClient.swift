@@ -2,12 +2,14 @@ import Foundation
 
 public final class TaskGroupsClient: Sendable {
     public let expanded: TaskGroupsExpandedClient
+    public let messages: MessagesClient
     public let s3Object: TaskGroupsS3ObjectClient
     public let taskGroupId: TaskGroupIdClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
         self.expanded = TaskGroupsExpandedClient(config: config)
+        self.messages = MessagesClient(config: config)
         self.s3Object = TaskGroupsS3ObjectClient(config: config)
         self.taskGroupId = TaskGroupIdClient(config: config)
         self.httpClient = HTTPClient(config: config)

@@ -17257,6 +17257,290 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.operations.orderInternalMessages.<a href="/Sources/Resources/Operations/OrderInternalMessages/OrderInternalMessagesClient.swift">markReadV1</a>(orderId: String, request: Requests.OrderInternalMessagesMarkReadReq, requestOptions: RequestOptions?) -> OrderInternalMessagesReadState1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the caller's org internal messages on this order as read by the caller up to the given message timestamp; clients should batch calls. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderInternalMessagesMarkReadReq) -> (OrderInternalMessagesReadState1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.orderInternalMessages.markReadV1(
+        orderId: "order_id",
+        request: .init(lastReadMessageTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderInternalMessagesMarkReadReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.orderInternalMessages.<a href="/Sources/Resources/Operations/OrderInternalMessages/OrderInternalMessagesClient.swift">listReadStatesV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderInternalMessagesReadStateListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists each of the caller's org users' read markers on the org's internal messages for this order; a message is seen by a user when their last_read_message_timestamp is at or after it. | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderInternalMessagesReadStateListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.orderInternalMessages.listReadStatesV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.orderInternalMessages.<a href="/Sources/Resources/Operations/OrderInternalMessages/OrderInternalMessagesClient.swift">listThreadsV1</a>(filterOrderStatuses: [OrderStatusEnum1]?, filterOrderIds: [String]?, filterUnread: Bool?, filterLastMessageAtTimestampGte: Date?, filterLastMessageAtTimestampLte: Date?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> OrderInternalMessageThreadListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's org internal message threads across orders, newest message first, each with its last message and the caller's unread count. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderInternalMessageThreadListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.orderInternalMessages.listThreadsV1(
+        filterOrderStatuses: [
+            .draft
+        ],
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
+        filterUnread: true,
+        filterLastMessageAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMessageAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterOrderStatuses:** `[OrderStatusEnum1]?` — Filter by order status(es); defaults to draft, staged, and in_progress
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderIds:** `[String]?` — Filter by order id(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUnread:** `Bool?` — True keeps threads with messages the caller hasn't read; False keeps fully read threads
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampGte:** `Date?` — Filter last message timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampLte:** `Date?` — Filter last message timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Operations OrderInternalMessages S3Objects
 <details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
 <dl>
@@ -37232,6 +37516,627 @@ try await main()
 <dd>
 
 **request:** `OrderAndTaskGroupExpandedReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Shipping TaskGroups Messages
+<details><summary><code>client.shipping.taskGroups.messages.<a href="/Sources/Resources/Shipping/TaskGroups/Messages/MessagesClient.swift">listDriversForProviderOperatorsV1</a>(includeDriversWithoutMessages: Bool?, page: Int?, pageSize: Int?, filterStatuses: [TaskGroupStatusEnum1]?, filterDriverIds: [String]?, filterDriverStatuses: [DriverStatusEnum]?, filterLastMessageAtTimestampGte: Date?, filterLastMessageAtTimestampLte: Date?, requestOptions: RequestOptions?) -> TaskGroupMessageDriverListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's org drivers with the newest message across their task group threads, most recently messaged first. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (TaskGroupMessageDriverListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskGroups.messages.listDriversForProviderOperatorsV1(
+        includeDriversWithoutMessages: true,
+        page: 1,
+        pageSize: 1,
+        filterStatuses: [
+            .draft
+        ],
+        filterDriverIds: [
+            "filter_driver_ids"
+        ],
+        filterDriverStatuses: [
+            .unassigned
+        ],
+        filterLastMessageAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMessageAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeDriversWithoutMessages:** `Bool?` — Include drivers with no matching messages, listed last
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatuses:** `[TaskGroupStatusEnum1]?` — Filter by task group status(es); defaults to staged and in_progress
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDriverIds:** `[String]?` — Filter by driver id(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDriverStatuses:** `[DriverStatusEnum]?` — Filter by driver status(es); assigned and in_progress are drivers with active task groups
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampGte:** `Date?` — Filter last message timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampLte:** `Date?` — Filter last message timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.taskGroups.messages.<a href="/Sources/Resources/Shipping/TaskGroups/Messages/MessagesClient.swift">markReadV1</a>(taskGroupId: String, request: Requests.TaskGroupMessagesMarkReadReq, requestOptions: RequestOptions?) -> TaskGroupMessageReadState1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the caller's messages on a task group as read up to the given message timestamp; clients should batch calls (e.g. every few seconds). | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | (TaskGroupMessagesMarkReadReq) -> (TaskGroupMessageReadState1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskGroups.messages.markReadV1(
+        taskGroupId: "task_group_id",
+        request: .init(lastReadMessageTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskGroupMessagesMarkReadReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.taskGroups.messages.<a href="/Sources/Resources/Shipping/TaskGroups/Messages/MessagesClient.swift">listReadStatesV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> TaskGroupMessageReadStateListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists every participant's read marker on a task group's messages; a message is seen by a user when their last_read_message_timestamp is at or after it. | authz_personas=[driver_for_executor, executor_org_operators, coordinator_org_operators, shipper_org_operators] | () -> (TaskGroupMessageReadStateListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskGroups.messages.listReadStatesV1(taskGroupId: "task_group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskGroupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.taskGroups.messages.<a href="/Sources/Resources/Shipping/TaskGroups/Messages/MessagesClient.swift">listThreadsForDriverV1</a>(filterStatuses: [TaskGroupStatusEnum1]?, filterUnread: Bool?, filterLastMessageAtTimestampGte: Date?, filterLastMessageAtTimestampLte: Date?, includeThreadsWithoutMessages: Bool?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> TaskGroupMessageThreadListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists message threads on task groups assigned to the caller (a driver), newest message first, each with its last message and the caller's unread count. | authz: allowed_org_types=[provider], min_org_role=member | () -> (TaskGroupMessageThreadListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskGroups.messages.listThreadsForDriverV1(
+        filterStatuses: [
+            .draft
+        ],
+        filterUnread: true,
+        filterLastMessageAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMessageAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        includeThreadsWithoutMessages: true,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterStatuses:** `[TaskGroupStatusEnum1]?` — Filter by task group status(es); defaults to staged and in_progress
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUnread:** `Bool?` — True keeps threads with messages the caller hasn't read; False keeps fully read threads
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampGte:** `Date?` — Filter last message timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampLte:** `Date?` — Filter last message timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeThreadsWithoutMessages:** `Bool?` — Include task groups that have no messages yet
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.taskGroups.messages.<a href="/Sources/Resources/Shipping/TaskGroups/Messages/MessagesClient.swift">listThreadsForProviderOperatorsV1</a>(providerRole: TaskGroupProviderRoleFilterEnum?, includeThreadsWithoutMessages: Bool?, page: Int?, pageSize: Int?, filterStatuses: [TaskGroupStatusEnum1]?, filterDriverId: String?, filterTaskGroupTypes: [TaskGroupTypeEnum1]?, filterOrderIds: [String]?, filterShipperOrgId: String?, filterOffChrtShipperOrgDataId: String?, filterLastMessageFromDriver: Bool?, filterUnread: Bool?, filterLastMessageAtTimestampGte: Date?, filterLastMessageAtTimestampLte: Date?, requestOptions: RequestOptions?) -> TaskGroupMessageThreadListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists message threads on task groups the caller's provider org coordinates or executes, newest message first, each with its last message. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (TaskGroupMessageThreadListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.taskGroups.messages.listThreadsForProviderOperatorsV1(
+        providerRole: .all,
+        includeThreadsWithoutMessages: true,
+        page: 1,
+        pageSize: 1,
+        filterStatuses: [
+            .draft
+        ],
+        filterDriverId: "filter_driver_id",
+        filterTaskGroupTypes: [
+            .chrtGroundProvider
+        ],
+        filterOrderIds: [
+            "filter_order_ids"
+        ],
+        filterShipperOrgId: "filter_shipper_org_id",
+        filterOffChrtShipperOrgDataId: "filter_off_chrt_shipper_org_data_id",
+        filterLastMessageFromDriver: true,
+        filterUnread: true,
+        filterLastMessageAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterLastMessageAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerRole:** `TaskGroupProviderRoleFilterEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeThreadsWithoutMessages:** `Bool?` — Include task groups that have no messages yet
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatuses:** `[TaskGroupStatusEnum1]?` — Filter by task group status(es); defaults to staged and in_progress
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterDriverId:** `String?` — Filter by assigned driver
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterTaskGroupTypes:** `[TaskGroupTypeEnum1]?` — Filter by task group type(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOrderIds:** `[String]?` — Filter by order id(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShipperOrgId:** `String?` — Filter by on-chrt shipper org
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterOffChrtShipperOrgDataId:** `String?` — Filter by off-chrt shipper org
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageFromDriver:** `Bool?` — True keeps threads whose last message was sent by the assigned driver (needs reply); False keeps the rest
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUnread:** `Bool?` — True keeps threads with messages the caller hasn't read; False keeps fully read threads
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampGte:** `Date?` — Filter last message timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterLastMessageAtTimestampLte:** `Date?` — Filter last message timestamp <= value
     
 </dd>
 </dl>
