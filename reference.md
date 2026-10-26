@@ -13473,6 +13473,89 @@ try await main()
 </dl>
 </details>
 
+## Notifications Previews
+<details><summary><code>client.notifications.previews.<a href="/Sources/Resources/Notifications/Previews/PreviewsClient.swift">getV1</a>(event: NotificationEventsForOrgsEnum, audience: NotificationPreviewAudienceEnum, requestOptions: RequestOptions?) -> NotificationPreviewRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a shipping notification's email, SMS, and push as one audience receives them for a sample order. | () -> (NotificationPreviewRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.notifications.previews.getV1(
+        event: .shippingOrderStaged,
+        audience: .wholeOrder
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**event:** `NotificationEventsForOrgsEnum` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**audience:** `NotificationPreviewAudienceEnum` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Notifications UserPreferences
 <details><summary><code>client.notifications.userPreferences.<a href="/Sources/Resources/Notifications/UserPreferences/UserPreferencesClient.swift">createV1</a>(requestOptions: RequestOptions?) -> NotificationUserPreferences1</code></summary>
 <dl>
