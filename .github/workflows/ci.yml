@@ -1,13 +1,74 @@
 name: ci
 
-on: [push]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: macos-latest
+    name: Package (${{ matrix.swift }})
+    runs-on: macos-26
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        swift: [current, '6.4.1']
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
-      - name: Build
-        run: swift build
+      - name: Select Swift
+        uses: SwiftyLab/setup-swift@d60245579ea3836a3f2fa65ebbe1e8891d577c76 # v1.14.2
+        with:
+          swift-version: ${{ matrix.swift }}
+
+      - name: Show toolchain
+        run: swift --version
+
+      - name: Build release library
+        run: swift build --configuration release
+
+      - name: Run all tests with coverage
+        run: swift test --enable-code-coverage
+
+  apple-platforms:
+    name: Build ${{ matrix.platform }}
+    runs-on: macos-26
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: iOS
+            sdk: iphoneos
+            triple: arm64-apple-ios15.0
+          - platform: tvOS
+            sdk: appletvos
+            triple: arm64-apple-tvos15.0
+          - platform: watchOS
+            sdk: watchos
+            # Current Xcode SDKs compile watchOS 9 and later. The package still supports watchOS 8.
+            triple: arm64_32-apple-watchos9.0
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build library for platform
+        env:
+          SDK: ${{ matrix.sdk }}
+          TRIPLE: ${{ matrix.triple }}
+        run: >-
+          swift build --configuration release --triple "$TRIPLE"
+          --sdk "$(xcrun --sdk "$SDK" --show-sdk-path)"
