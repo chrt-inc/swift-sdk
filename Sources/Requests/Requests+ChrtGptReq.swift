@@ -4,6 +4,7 @@ extension Requests {
     public struct ChrtGptReq: Codable, Hashable, Sendable {
         /// Omit to start a new conversation.
         public let conversationId: String?
+        /// Can't start with <speech>, which marks what was said on a voice call.
         public let message: String
         /// How much ChrtGPT reasons before answering this message. Higher is slower and more thorough.
         public let reasoningEffort: ChrtGptReqReasoningEffort?

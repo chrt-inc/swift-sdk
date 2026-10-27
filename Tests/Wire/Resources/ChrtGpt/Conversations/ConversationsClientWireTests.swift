@@ -210,6 +210,7 @@ import Chrt
                   "items": [
                     {
                       "item_id": "item_id",
+                      "speech": true,
                       "text": "text",
                       "type": "assistant_message"
                     }
@@ -250,7 +251,8 @@ import Chrt
             items: [
                 ChrtGptHistoryItem.assistantMessage(
                     .init(
-                        itemId: "item_id",
+                        itemId: Optional("item_id"),
+                        speech: true,
                         text: "text",
                         additionalProperties: [
                             "type": JSONValue.string("assistant_message")

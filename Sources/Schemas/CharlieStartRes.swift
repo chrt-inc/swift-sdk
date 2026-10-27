@@ -1,7 +1,7 @@
 import Foundation
 
 public struct CharlieStartRes: Codable, Hashable, Sendable {
-    /// The call's ChrtGPT conversation, created on Charlie's first question to ChrtGPT; until then it isn't found.
+    /// The call's ChrtGPT conversation: the one in the request, or a new one created on Charlie's first question to ChrtGPT, and until then not found.
     public let conversationId: String
     /// Joins only this call's room, as the caller.
     public let participantToken: String
