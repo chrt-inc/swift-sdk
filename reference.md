@@ -7496,6 +7496,70 @@ try await main()
 </dl>
 </details>
 
+## ChrtGpt Dictation
+<details><summary><code>client.chrtGpt.dictation.<a href="/Sources/Resources/ChrtGpt/Dictation/DictationClient.swift">startV1</a>(requestOptions: RequestOptions?) -> ChrtGptDictationStartRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Starts a live dictation room whose agent transcribes the caller's speech as they talk, and returns a token to join it. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTDictationStartRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.dictation.startV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Integrations AirWaybills
 <details><summary><code>client.integrations.airWaybills.<a href="/Sources/Resources/Integrations/AirWaybills/AirWaybillsClient.swift">confirmationsV1</a>(taskGroupId: String, requestOptions: RequestOptions?) -> [ChampConfirmationReceipt1]</code></summary>
 <dl>
