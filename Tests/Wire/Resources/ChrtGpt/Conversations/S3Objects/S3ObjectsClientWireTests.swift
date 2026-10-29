@@ -13,14 +13,15 @@ import Chrt
                   "ai_generated_description": "ai_generated_description",
                   "blurhash": "blurhash",
                   "content_type": "content_type",
+                  "conversation_id": "conversation_id",
                   "filename": "filename",
-                  "order_internal_messages_id": "order_internal_messages_id",
-                  "s3_key_prefix": "operations/order_internal_message_s3_object_metadata",
+                  "object_type": "image",
+                  "s3_key_prefix": "chrt_gpt/conversation_s3_object_metadata",
                   "schema_version": 1,
+                  "size_bytes": 1,
                   "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
                   "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id",
-                  "user_generated_description": "user_generated_description"
+                  "uploaded_by_user_id": "uploaded_by_user_id"
                 }
                 """#.utf8
             )
@@ -30,45 +31,24 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OrderInternalMessageS3ObjectMetadata1(
+        let expectedResponse = ChrtGptConversationS3ObjectMetadata1(
             id: "_id",
-            aiGeneratedDescription: Optional("ai_generated_description"),
+            aiGeneratedDescription: "ai_generated_description",
             blurhash: Optional("blurhash"),
-            contentType: Optional("content_type"),
+            contentType: "content_type",
+            conversationId: "conversation_id",
             filename: Optional("filename"),
-            orderInternalMessagesId: "order_internal_messages_id",
-            s3KeyPrefix: Optional(.operationsOrderInternalMessageS3ObjectMetadata),
+            objectType: ChrtGptConversationS3ObjectTypeEnum1.image,
+            s3KeyPrefix: Optional(.chrtGptConversationS3ObjectMetadata),
             schemaVersion: 1,
+            sizeBytes: 1,
             uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id",
-            userGeneratedDescription: Optional("user_generated_description")
+            uploadedByUserId: "uploaded_by_user_id"
         )
-        let response = try await client.operations.orderInternalMessages.s3Objects.addV1(
-            orderId: "order_id",
+        let response = try await client.chrtGpt.conversations.s3Objects.addV1(
+            conversationId: "conversation_id",
             request: .init(file: .init(data: Data("".utf8))),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func deleteV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                true
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = true
-        let response = try await client.operations.orderInternalMessages.s3Objects.deleteV1(
-            orderInternalMessageS3ObjectMetadataId: "order_internal_message_s3_object_metadata_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)
@@ -84,14 +64,15 @@ import Chrt
                   "ai_generated_description": "ai_generated_description",
                   "blurhash": "blurhash",
                   "content_type": "content_type",
+                  "conversation_id": "conversation_id",
                   "filename": "filename",
-                  "order_internal_messages_id": "order_internal_messages_id",
-                  "s3_key_prefix": "operations/order_internal_message_s3_object_metadata",
+                  "object_type": "image",
+                  "s3_key_prefix": "chrt_gpt/conversation_s3_object_metadata",
                   "schema_version": 1,
+                  "size_bytes": 1,
                   "uploaded_at_timestamp": "2024-01-15T09:30:00Z",
                   "uploaded_by_org_id": "uploaded_by_org_id",
-                  "uploaded_by_user_id": "uploaded_by_user_id",
-                  "user_generated_description": "user_generated_description"
+                  "uploaded_by_user_id": "uploaded_by_user_id"
                 }
                 """#.utf8
             )
@@ -101,22 +82,23 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = OrderInternalMessageS3ObjectMetadata1(
+        let expectedResponse = ChrtGptConversationS3ObjectMetadata1(
             id: "_id",
-            aiGeneratedDescription: Optional("ai_generated_description"),
+            aiGeneratedDescription: "ai_generated_description",
             blurhash: Optional("blurhash"),
-            contentType: Optional("content_type"),
+            contentType: "content_type",
+            conversationId: "conversation_id",
             filename: Optional("filename"),
-            orderInternalMessagesId: "order_internal_messages_id",
-            s3KeyPrefix: Optional(.operationsOrderInternalMessageS3ObjectMetadata),
+            objectType: ChrtGptConversationS3ObjectTypeEnum1.image,
+            s3KeyPrefix: Optional(.chrtGptConversationS3ObjectMetadata),
             schemaVersion: 1,
+            sizeBytes: 1,
             uploadedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             uploadedByOrgId: "uploaded_by_org_id",
-            uploadedByUserId: "uploaded_by_user_id",
-            userGeneratedDescription: Optional("user_generated_description")
+            uploadedByUserId: "uploaded_by_user_id"
         )
-        let response = try await client.operations.orderInternalMessages.s3Objects.getS3ObjectMetadataV1(
-            orderInternalMessageS3ObjectMetadataId: "order_internal_message_s3_object_metadata_id",
+        let response = try await client.chrtGpt.conversations.s3Objects.getS3ObjectMetadataV1(
+            conversationS3ObjectMetadataId: "conversation_s3_object_metadata_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

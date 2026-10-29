@@ -90,8 +90,8 @@ import Testing
         )
 
         do {
-            _ = try await client.chrtGpt.postV1(
-                request: .init(message: "message"),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers, additionalBodyParameters: additionalBodyParameters, additionalBodyProperties: additionalBodyProperties)
             )
 

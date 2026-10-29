@@ -4,6 +4,7 @@ public struct ChrtGptConversation1: Codable, Hashable, Sendable {
     public let id: String
     public let awbNumbers: [String]?
     public let contextTokens: Int?
+    public let conversationS3ObjectMetadataIds: [String]?
     public let createdAt: Date
     public let offChrtReferenceIds: [String]?
     public let orderShortIds: [String]?
@@ -24,6 +25,7 @@ public struct ChrtGptConversation1: Codable, Hashable, Sendable {
         id: String,
         awbNumbers: [String]? = nil,
         contextTokens: Int? = nil,
+        conversationS3ObjectMetadataIds: [String]? = nil,
         createdAt: Date,
         offChrtReferenceIds: [String]? = nil,
         orderShortIds: [String]? = nil,
@@ -40,6 +42,7 @@ public struct ChrtGptConversation1: Codable, Hashable, Sendable {
         self.id = id
         self.awbNumbers = awbNumbers
         self.contextTokens = contextTokens
+        self.conversationS3ObjectMetadataIds = conversationS3ObjectMetadataIds
         self.createdAt = createdAt
         self.offChrtReferenceIds = offChrtReferenceIds
         self.orderShortIds = orderShortIds
@@ -59,6 +62,7 @@ public struct ChrtGptConversation1: Codable, Hashable, Sendable {
         self.id = try container.decode(String.self, forKey: .id)
         self.awbNumbers = try container.decodeIfPresent([String].self, forKey: .awbNumbers)
         self.contextTokens = try container.decodeIfPresent(Int.self, forKey: .contextTokens)
+        self.conversationS3ObjectMetadataIds = try container.decodeIfPresent([String].self, forKey: .conversationS3ObjectMetadataIds)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.offChrtReferenceIds = try container.decodeIfPresent([String].self, forKey: .offChrtReferenceIds)
         self.orderShortIds = try container.decodeIfPresent([String].self, forKey: .orderShortIds)
@@ -79,6 +83,7 @@ public struct ChrtGptConversation1: Codable, Hashable, Sendable {
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.awbNumbers, forKey: .awbNumbers)
         try container.encodeIfPresent(self.contextTokens, forKey: .contextTokens)
+        try container.encodeIfPresent(self.conversationS3ObjectMetadataIds, forKey: .conversationS3ObjectMetadataIds)
         try container.encode(self.createdAt, forKey: .createdAt)
         try container.encodeIfPresent(self.offChrtReferenceIds, forKey: .offChrtReferenceIds)
         try container.encodeIfPresent(self.orderShortIds, forKey: .orderShortIds)
@@ -97,6 +102,7 @@ public struct ChrtGptConversation1: Codable, Hashable, Sendable {
         case id = "_id"
         case awbNumbers = "awb_numbers"
         case contextTokens = "context_tokens"
+        case conversationS3ObjectMetadataIds = "conversation_s3_object_metadata_ids"
         case createdAt = "created_at"
         case offChrtReferenceIds = "off_chrt_reference_ids"
         case orderShortIds = "order_short_ids"

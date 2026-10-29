@@ -1,13 +1,15 @@
 import Foundation
 
 public final class ConversationsClient: Sendable {
+    public let s3Objects: S3ObjectsClient
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {
+        self.s3Objects = S3ObjectsClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Permanently deletes the caller's ChrtGPT conversations and their history, skipping IDs that don't exist or aren't the caller's. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsDeleteManyReq) -> (ChrtGPTConversationsDeleteManyRes)
+    /// Permanently deletes the caller's ChrtGPT conversations, their history, and the files uploaded into them, skipping IDs that don't exist or aren't the caller's. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsDeleteManyReq) -> (ChrtGPTConversationsDeleteManyRes)
     ///
     /// ```swift
     /// import Foundation

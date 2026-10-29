@@ -48,6 +48,9 @@ import Chrt
                         "awb_numbers"
                       ],
                       "context_tokens": 1,
+                      "conversation_s3_object_metadata_ids": [
+                        "conversation_s3_object_metadata_ids"
+                      ],
                       "created_at": "2024-01-15T09:30:00Z",
                       "off_chrt_reference_ids": [
                         "off_chrt_reference_ids"
@@ -83,6 +86,9 @@ import Chrt
                         "awb_numbers"
                     ]),
                     contextTokens: Optional(1),
+                    conversationS3ObjectMetadataIds: Optional([
+                        "conversation_s3_object_metadata_ids"
+                    ]),
                     createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     offChrtReferenceIds: Optional([
                         "off_chrt_reference_ids"
@@ -124,6 +130,9 @@ import Chrt
                     "awb_numbers"
                   ],
                   "context_tokens": 1,
+                  "conversation_s3_object_metadata_ids": [
+                    "conversation_s3_object_metadata_ids"
+                  ],
                   "created_at": "2024-01-15T09:30:00Z",
                   "off_chrt_reference_ids": [
                     "off_chrt_reference_ids"
@@ -154,6 +163,9 @@ import Chrt
                 "awb_numbers"
             ]),
             contextTokens: Optional(1),
+            conversationS3ObjectMetadataIds: Optional([
+                "conversation_s3_object_metadata_ids"
+            ]),
             createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             offChrtReferenceIds: Optional([
                 "off_chrt_reference_ids"
@@ -191,6 +203,9 @@ import Chrt
                       "awb_numbers"
                     ],
                     "context_tokens": 1,
+                    "conversation_s3_object_metadata_ids": [
+                      "conversation_s3_object_metadata_ids"
+                    ],
                     "created_at": "2024-01-15T09:30:00Z",
                     "off_chrt_reference_ids": [
                       "off_chrt_reference_ids"
@@ -232,6 +247,9 @@ import Chrt
                     "awb_numbers"
                 ]),
                 contextTokens: Optional(1),
+                conversationS3ObjectMetadataIds: Optional([
+                    "conversation_s3_object_metadata_ids"
+                ]),
                 createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 offChrtReferenceIds: Optional([
                     "off_chrt_reference_ids"

@@ -3,6 +3,7 @@ import Foundation
 public struct ChrtGptUserMessageItem: Codable, Hashable, Sendable {
     /// Said aloud on a Charlie call rather than typed.
     public let speech: Bool
+    /// A file upload adds one message, kept with its tags: <object_upload>, whose <object_id> is the conversation S3 object metadata id to render the file from, followed by what the file is.
     public let text: String
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]

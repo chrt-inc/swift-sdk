@@ -2,6 +2,7 @@ import Foundation
 
 /// Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 public final class ChrtClient: Sendable {
+    public let ai: AiClient
     public let charlie: CharlieClient
     public let chrtGpt: ChrtGptClient
     public let flights: FlightsClient
@@ -102,6 +103,7 @@ public final class ChrtClient: Sendable {
             maxRetries: maxRetries,
             urlSession: urlSession
         )
+        self.ai = AiClient(config: config)
         self.charlie = CharlieClient(config: config)
         self.chrtGpt = ChrtGptClient(config: config)
         self.flights = FlightsClient(config: config)

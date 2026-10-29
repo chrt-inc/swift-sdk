@@ -21,8 +21,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -49,8 +49,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -77,8 +77,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -104,8 +104,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -130,8 +130,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -157,8 +157,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -184,8 +184,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -216,8 +216,8 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -258,8 +258,8 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -296,8 +296,8 @@ import Testing
 
         let startTime = Date()
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 
@@ -345,8 +345,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(maxRetries: 5, additionalHeaders: stub.headers)
             )
 
@@ -368,8 +368,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(maxRetries: 0, additionalHeaders: stub.headers)
             )
 
@@ -395,8 +395,8 @@ import Testing
         )
 
         do {
-            _ = try await client.charlie.startV1(
-                request: .init(),
+            _ = try await client.ai.rewriteV1(
+                request: .init(text: "text"),
                 requestOptions: RequestOptions(additionalHeaders: stub.headers)
             )
 

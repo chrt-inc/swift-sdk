@@ -1,6 +1,6 @@
 import Foundation
 
-public final class S3ObjectsClient: Sendable {
+public final class OrderInternalMessagesS3ObjectsClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {

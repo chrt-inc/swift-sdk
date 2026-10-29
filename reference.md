@@ -1,4 +1,76 @@
 # Reference
+## Ai
+<details><summary><code>client.ai.<a href="/Sources/Resources/Ai/AiClient.swift">rewriteV1</a>(request: Requests.AiRewriteReq, requestOptions: RequestOptions?) -> AiRewriteRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Drafts a rewrite of the caller's text in the requested tone and length, for them to review. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (AIRewriteReq) -> (AIRewriteRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.ai.rewriteV1(request: .init(text: "text"))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AiRewriteReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Charlie
 <details><summary><code>client.charlie.<a href="/Sources/Resources/Charlie/CharlieClient.swift">startV1</a>(request: Requests.CharlieStartReq, requestOptions: RequestOptions?) -> CharlieStartRes</code></summary>
 <dl>
@@ -7173,7 +7245,7 @@ try await main()
 <dl>
 <dd>
 
-Permanently deletes the caller's ChrtGPT conversations and their history, skipping IDs that don't exist or aren't the caller's. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsDeleteManyReq) -> (ChrtGPTConversationsDeleteManyRes)
+Permanently deletes the caller's ChrtGPT conversations, their history, and the files uploaded into them, skipping IDs that don't exist or aren't the caller's. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (ChrtGPTConversationsDeleteManyReq) -> (ChrtGPTConversationsDeleteManyRes)
 </dd>
 </dl>
 </dd>
@@ -7544,6 +7616,231 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ChrtGpt Conversations S3Objects
+<details><summary><code>client.chrtGpt.conversations.s3Objects.<a href="/Sources/Resources/ChrtGpt/Conversations/S3Objects/S3ObjectsClient.swift">addV1</a>(conversationId: String, request: Requests.BodyPostChrtGptConversationsS3ObjectsAddV1, requestOptions: RequestOptions?) -> ChrtGptConversationS3ObjectMetadata1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads an image, PDF, document, presentation, spreadsheet, or audio file into one of the caller's ChrtGPT conversations, creating it if needed, once it passes a malware scan, and adds the file's description to the conversation for ChrtGPT's next reply. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | (UploadFile) -> (ChrtGPTConversationS3ObjectMetadata1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.s3Objects.addV1(
+        conversationId: "conversation_id",
+        request: .init(file: .init(data: Data("".utf8)))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.BodyPostChrtGptConversationsS3ObjectsAddV1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chrtGpt.conversations.s3Objects.<a href="/Sources/Resources/ChrtGpt/Conversations/S3Objects/S3ObjectsClient.swift">getS3ObjectMetadataV1</a>(conversationS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> ChrtGptConversationS3ObjectMetadata1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a file the caller uploaded into one of their ChrtGPT conversations: what it is, its description, and its preview. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (ChrtGPTConversationS3ObjectMetadata1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.s3Objects.getS3ObjectMetadataV1(conversationS3ObjectMetadataId: "conversation_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chrtGpt.conversations.s3Objects.<a href="/Sources/Resources/ChrtGpt/Conversations/S3Objects/S3ObjectsClient.swift">getV1</a>(conversationS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams a file the caller uploaded into one of their ChrtGPT conversations. | authz: allowed_org_types=[shipper, provider], min_org_role=operator | () -> (binary)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.chrtGpt.conversations.s3Objects.getV1(conversationS3ObjectMetadataId: "conversation_s3_object_metadata_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationS3ObjectMetadataId:** `String` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -17689,7 +17986,7 @@ try await main()
 </details>
 
 ## Operations OrderInternalMessages S3Objects
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">addV1</a>(orderId: String, request: Requests.BodyPostOrderInternalMessagesS3ObjectsAddV1, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -17771,7 +18068,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">deleteV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">deleteV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -17842,7 +18139,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">getS3ObjectMetadataV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">getS3ObjectMetadataV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> OrderInternalMessageS3ObjectMetadata1</code></summary>
 <dl>
 <dd>
 
@@ -17913,7 +18210,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/S3ObjectsClient.swift">getV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
+<details><summary><code>client.operations.orderInternalMessages.s3Objects.<a href="/Sources/Resources/Operations/OrderInternalMessages/S3Objects/OrderInternalMessagesS3ObjectsClient.swift">getV1</a>(orderInternalMessageS3ObjectMetadataId: String, requestOptions: RequestOptions?) -> Data</code></summary>
 <dl>
 <dd>
 
