@@ -6,7 +6,6 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
     public let cargoKey: String
     public let cargoType: CargoTypeEnum1
     public let description: String?
-    public let girthInches: Double?
     public let heightInches: Double?
     public let lengthInches: Double?
     public let quantity: Int?
@@ -14,7 +13,7 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
     public let specialHandlingCodes: [SpecialHandlingCodeEnum1]?
     public let stackable: Bool?
     public let turnable: Bool?
-    public let weightPounds: Double?
+    public let weightPerPiecePounds: Double?
     public let widthInches: Double?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -24,7 +23,6 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         cargoKey: String,
         cargoType: CargoTypeEnum1,
         description: String? = nil,
-        girthInches: Double? = nil,
         heightInches: Double? = nil,
         lengthInches: Double? = nil,
         quantity: Int? = nil,
@@ -32,7 +30,7 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         specialHandlingCodes: [SpecialHandlingCodeEnum1]? = nil,
         stackable: Bool? = nil,
         turnable: Bool? = nil,
-        weightPounds: Double? = nil,
+        weightPerPiecePounds: Double? = nil,
         widthInches: Double? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -40,7 +38,6 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         self.cargoKey = cargoKey
         self.cargoType = cargoType
         self.description = description
-        self.girthInches = girthInches
         self.heightInches = heightInches
         self.lengthInches = lengthInches
         self.quantity = quantity
@@ -48,7 +45,7 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         self.specialHandlingCodes = specialHandlingCodes
         self.stackable = stackable
         self.turnable = turnable
-        self.weightPounds = weightPounds
+        self.weightPerPiecePounds = weightPerPiecePounds
         self.widthInches = widthInches
         self.additionalProperties = additionalProperties
     }
@@ -59,7 +56,6 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         self.cargoKey = try container.decode(String.self, forKey: .cargoKey)
         self.cargoType = try container.decode(CargoTypeEnum1.self, forKey: .cargoType)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
-        self.girthInches = try container.decodeIfPresent(Double.self, forKey: .girthInches)
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
         self.quantity = try container.decodeIfPresent(Int.self, forKey: .quantity)
@@ -67,7 +63,7 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         self.specialHandlingCodes = try container.decodeIfPresent([SpecialHandlingCodeEnum1].self, forKey: .specialHandlingCodes)
         self.stackable = try container.decodeIfPresent(Bool.self, forKey: .stackable)
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
-        self.weightPounds = try container.decodeIfPresent(Double.self, forKey: .weightPounds)
+        self.weightPerPiecePounds = try container.decodeIfPresent(Double.self, forKey: .weightPerPiecePounds)
         self.widthInches = try container.decodeIfPresent(Double.self, forKey: .widthInches)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -79,7 +75,6 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         try container.encode(self.cargoKey, forKey: .cargoKey)
         try container.encode(self.cargoType, forKey: .cargoType)
         try container.encodeIfPresent(self.description, forKey: .description)
-        try container.encodeIfPresent(self.girthInches, forKey: .girthInches)
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
@@ -87,7 +82,7 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.specialHandlingCodes, forKey: .specialHandlingCodes)
         try container.encodeIfPresent(self.stackable, forKey: .stackable)
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
-        try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
+        try container.encodeIfPresent(self.weightPerPiecePounds, forKey: .weightPerPiecePounds)
         try container.encodeIfPresent(self.widthInches, forKey: .widthInches)
     }
 
@@ -97,7 +92,6 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         case cargoKey = "cargo_key"
         case cargoType = "cargo_type"
         case description
-        case girthInches = "girth_inches"
         case heightInches = "height_inches"
         case lengthInches = "length_inches"
         case quantity
@@ -105,7 +99,7 @@ public struct OrderTemplateNewCargo1: Codable, Hashable, Sendable {
         case specialHandlingCodes = "special_handling_codes"
         case stackable
         case turnable
-        case weightPounds = "weight_pounds"
+        case weightPerPiecePounds = "weight_per_piece_pounds"
         case widthInches = "width_inches"
     }
 }

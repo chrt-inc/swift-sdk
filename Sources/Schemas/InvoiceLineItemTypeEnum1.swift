@@ -24,9 +24,14 @@ public enum InvoiceLineItemTypeEnum1: String, Codable, Hashable, CaseIterable, S
     case offNetworkCarrier = "off_network_carrier"
     case obcDayRate = "obc_day_rate"
     case flightTicket = "flight_ticket"
+    case pieceCount = "piece_count"
+    case weight
+    case revenueShare = "revenue_share"
+    case minimumCharge = "minimum_charge"
     case trackingDeviceLabel = "tracking_device_label"
     case trackingDeviceTag = "tracking_device_tag"
     case trackingDeviceOther = "tracking_device_other"
     case tax
+    case adjustment
     case other
 }

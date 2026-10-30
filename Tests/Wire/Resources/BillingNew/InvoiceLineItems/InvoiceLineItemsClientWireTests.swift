@@ -12,6 +12,7 @@ import Chrt
                   {
                     "_id": "_id",
                     "awb_number": "awb_number",
+                    "billing_line_key": "billing_line_key",
                     "billing_period_id": "billing_period_id",
                     "counterparty_driver_id": "counterparty_driver_id",
                     "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -26,20 +27,31 @@ import Chrt
                       "source_unit_price": 1.1
                     },
                     "description": "description",
+                    "edited_by_user": true,
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "generated_by_pricing": true,
                     "invoice_id": "invoice_id",
                     "invoice_type": "accounts_receivable",
                     "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_edited_by_user_id": "last_edited_by_user_id",
                     "line_item_type": "base_rate",
+                    "needs_review": true,
                     "order_id": "order_id",
                     "owned_by_org_id": "owned_by_org_id",
                     "quantity": 1.1,
                     "rate_sheet_id": "rate_sheet_id",
+                    "rate_sheet_revision": 1,
                     "schema_version": 1,
                     "shipper_account_id": "shipper_account_id",
+                    "source_order_billing_quote_id": "source_order_billing_quote_id",
                     "status": "draft",
                     "task_group_id": "task_group_id",
+                    "task_ids": [
+                      "task_ids"
+                    ],
+                    "task_short_ids": [
+                      "task_short_ids"
+                    ],
                     "tax_percentage": 1.1,
                     "total_amount": 1.1,
                     "unit": "each",
@@ -58,6 +70,7 @@ import Chrt
             InvoiceLineItem1(
                 id: "_id",
                 awbNumber: Optional("awb_number"),
+                billingLineKey: Optional("billing_line_key"),
                 billingPeriodId: Optional("billing_period_id"),
                 counterpartyDriverId: Optional("counterparty_driver_id"),
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -72,20 +85,31 @@ import Chrt
                     sourceUnitPrice: 1.1
                 )),
                 description: "description",
+                editedByUser: Optional(true),
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                generatedByPricing: Optional(true),
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                needsReview: Optional(true),
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
+                rateSheetRevision: Optional(1),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
+                sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
+                taskIds: Optional([
+                    "task_ids"
+                ]),
+                taskShortIds: Optional([
+                    "task_short_ids"
+                ]),
                 taxPercentage: Optional(1.1),
                 totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
@@ -122,6 +146,7 @@ import Chrt
                 [
                   {
                     "awb_number": "awb_number",
+                    "billing_line_key": "billing_line_key",
                     "billing_period_id": "billing_period_id",
                     "counterparty_driver_id": "counterparty_driver_id",
                     "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -136,20 +161,31 @@ import Chrt
                       "source_unit_price": 1.1
                     },
                     "description": "description",
+                    "edited_by_user": true,
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "generated_by_pricing": true,
                     "invoice_id": "invoice_id",
                     "invoice_type": "accounts_receivable",
                     "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_edited_by_user_id": "last_edited_by_user_id",
                     "line_item_type": "base_rate",
+                    "needs_review": true,
                     "order_id": "order_id",
                     "owned_by_org_id": "owned_by_org_id",
                     "quantity": 1.1,
                     "rate_sheet_id": "rate_sheet_id",
+                    "rate_sheet_revision": 1,
                     "schema_version": 1,
                     "shipper_account_id": "shipper_account_id",
+                    "source_order_billing_quote_id": "source_order_billing_quote_id",
                     "status": "draft",
                     "task_group_id": "task_group_id",
+                    "task_ids": [
+                      "task_ids"
+                    ],
+                    "task_short_ids": [
+                      "task_short_ids"
+                    ],
                     "tax_percentage": 1.1,
                     "unit": "each",
                     "unit_price": 1.1
@@ -166,6 +202,7 @@ import Chrt
         let expectedResponse = [
             InvoiceLineItemServerCreate1(
                 awbNumber: Optional("awb_number"),
+                billingLineKey: Optional("billing_line_key"),
                 billingPeriodId: Optional("billing_period_id"),
                 counterpartyDriverId: Optional("counterparty_driver_id"),
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -180,20 +217,31 @@ import Chrt
                     sourceUnitPrice: 1.1
                 )),
                 description: "description",
+                editedByUser: Optional(true),
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                generatedByPricing: Optional(true),
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                needsReview: Optional(true),
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
+                rateSheetRevision: Optional(1),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
+                sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
+                taskIds: Optional([
+                    "task_ids"
+                ]),
+                taskShortIds: Optional([
+                    "task_short_ids"
+                ]),
                 taxPercentage: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
                 unitPrice: 1.1
@@ -230,6 +278,7 @@ import Chrt
                   {
                     "_id": "_id",
                     "awb_number": "awb_number",
+                    "billing_line_key": "billing_line_key",
                     "billing_period_id": "billing_period_id",
                     "counterparty_driver_id": "counterparty_driver_id",
                     "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -244,20 +293,31 @@ import Chrt
                       "source_unit_price": 1.1
                     },
                     "description": "description",
+                    "edited_by_user": true,
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "generated_by_pricing": true,
                     "invoice_id": "invoice_id",
                     "invoice_type": "accounts_receivable",
                     "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_edited_by_user_id": "last_edited_by_user_id",
                     "line_item_type": "base_rate",
+                    "needs_review": true,
                     "order_id": "order_id",
                     "owned_by_org_id": "owned_by_org_id",
                     "quantity": 1.1,
                     "rate_sheet_id": "rate_sheet_id",
+                    "rate_sheet_revision": 1,
                     "schema_version": 1,
                     "shipper_account_id": "shipper_account_id",
+                    "source_order_billing_quote_id": "source_order_billing_quote_id",
                     "status": "draft",
                     "task_group_id": "task_group_id",
+                    "task_ids": [
+                      "task_ids"
+                    ],
+                    "task_short_ids": [
+                      "task_short_ids"
+                    ],
                     "tax_percentage": 1.1,
                     "total_amount": 1.1,
                     "unit": "each",
@@ -276,6 +336,7 @@ import Chrt
             InvoiceLineItem1(
                 id: "_id",
                 awbNumber: Optional("awb_number"),
+                billingLineKey: Optional("billing_line_key"),
                 billingPeriodId: Optional("billing_period_id"),
                 counterpartyDriverId: Optional("counterparty_driver_id"),
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -290,20 +351,31 @@ import Chrt
                     sourceUnitPrice: 1.1
                 )),
                 description: "description",
+                editedByUser: Optional(true),
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                generatedByPricing: Optional(true),
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                needsReview: Optional(true),
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
+                rateSheetRevision: Optional(1),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
+                sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
+                taskIds: Optional([
+                    "task_ids"
+                ]),
+                taskShortIds: Optional([
+                    "task_short_ids"
+                ]),
                 taxPercentage: Optional(1.1),
                 totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
@@ -476,6 +548,7 @@ import Chrt
                     {
                       "_id": "_id",
                       "awb_number": "awb_number",
+                      "billing_line_key": "billing_line_key",
                       "billing_period_id": "billing_period_id",
                       "counterparty_driver_id": "counterparty_driver_id",
                       "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -489,20 +562,31 @@ import Chrt
                         "source_unit_price": 1.1
                       },
                       "description": "description",
+                      "edited_by_user": true,
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
+                      "generated_by_pricing": true,
                       "invoice_id": "invoice_id",
                       "invoice_type": "accounts_receivable",
                       "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_edited_by_user_id": "last_edited_by_user_id",
                       "line_item_type": "base_rate",
+                      "needs_review": true,
                       "order_id": "order_id",
                       "owned_by_org_id": "owned_by_org_id",
                       "quantity": 1.1,
                       "rate_sheet_id": "rate_sheet_id",
+                      "rate_sheet_revision": 1,
                       "schema_version": 1,
                       "shipper_account_id": "shipper_account_id",
+                      "source_order_billing_quote_id": "source_order_billing_quote_id",
                       "status": "draft",
                       "task_group_id": "task_group_id",
+                      "task_ids": [
+                        "task_ids"
+                      ],
+                      "task_short_ids": [
+                        "task_short_ids"
+                      ],
                       "tax_percentage": 1.1,
                       "total_amount": 1.1,
                       "unit": "each",
@@ -725,6 +809,7 @@ import Chrt
                 InvoiceLineItem1(
                     id: "_id",
                     awbNumber: Optional("awb_number"),
+                    billingLineKey: Optional("billing_line_key"),
                     billingPeriodId: Optional("billing_period_id"),
                     counterpartyDriverId: Optional("counterparty_driver_id"),
                     counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -738,20 +823,31 @@ import Chrt
                         sourceUnitPrice: 1.1
                     )),
                     description: "description",
+                    editedByUser: Optional(true),
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                    generatedByPricing: Optional(true),
                     invoiceId: Optional("invoice_id"),
                     invoiceType: InvoiceTypeEnum1.accountsReceivable,
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     lastEditedByUserId: "last_edited_by_user_id",
                     lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    needsReview: Optional(true),
                     orderId: Optional("order_id"),
                     ownedByOrgId: "owned_by_org_id",
                     quantity: 1.1,
                     rateSheetId: Optional("rate_sheet_id"),
+                    rateSheetRevision: Optional(1),
                     schemaVersion: 1,
                     shipperAccountId: Optional("shipper_account_id"),
+                    sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
                     status: Optional(InvoiceLineItemStatusEnum1.draft),
                     taskGroupId: Optional("task_group_id"),
+                    taskIds: Optional([
+                        "task_ids"
+                    ]),
+                    taskShortIds: Optional([
+                        "task_short_ids"
+                    ]),
                     taxPercentage: Optional(1.1),
                     totalAmount: Optional(1.1),
                     unit: Optional(InvoiceLineItemUnitEnum1.each),
@@ -1072,6 +1168,7 @@ import Chrt
                   {
                     "_id": "_id",
                     "awb_number": "awb_number",
+                    "billing_line_key": "billing_line_key",
                     "billing_period_id": "billing_period_id",
                     "counterparty_driver_id": "counterparty_driver_id",
                     "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -1086,20 +1183,31 @@ import Chrt
                       "source_unit_price": 1.1
                     },
                     "description": "description",
+                    "edited_by_user": true,
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "generated_by_pricing": true,
                     "invoice_id": "invoice_id",
                     "invoice_type": "accounts_receivable",
                     "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_edited_by_user_id": "last_edited_by_user_id",
                     "line_item_type": "base_rate",
+                    "needs_review": true,
                     "order_id": "order_id",
                     "owned_by_org_id": "owned_by_org_id",
                     "quantity": 1.1,
                     "rate_sheet_id": "rate_sheet_id",
+                    "rate_sheet_revision": 1,
                     "schema_version": 1,
                     "shipper_account_id": "shipper_account_id",
+                    "source_order_billing_quote_id": "source_order_billing_quote_id",
                     "status": "draft",
                     "task_group_id": "task_group_id",
+                    "task_ids": [
+                      "task_ids"
+                    ],
+                    "task_short_ids": [
+                      "task_short_ids"
+                    ],
                     "tax_percentage": 1.1,
                     "total_amount": 1.1,
                     "unit": "each",
@@ -1118,6 +1226,7 @@ import Chrt
             InvoiceLineItem1(
                 id: "_id",
                 awbNumber: Optional("awb_number"),
+                billingLineKey: Optional("billing_line_key"),
                 billingPeriodId: Optional("billing_period_id"),
                 counterpartyDriverId: Optional("counterparty_driver_id"),
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -1132,20 +1241,31 @@ import Chrt
                     sourceUnitPrice: 1.1
                 )),
                 description: "description",
+                editedByUser: Optional(true),
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                generatedByPricing: Optional(true),
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                needsReview: Optional(true),
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
+                rateSheetRevision: Optional(1),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
+                sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
+                taskIds: Optional([
+                    "task_ids"
+                ]),
+                taskShortIds: Optional([
+                    "task_short_ids"
+                ]),
                 taxPercentage: Optional(1.1),
                 totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
@@ -1559,6 +1679,7 @@ import Chrt
                   {
                     "_id": "_id",
                     "awb_number": "awb_number",
+                    "billing_line_key": "billing_line_key",
                     "billing_period_id": "billing_period_id",
                     "counterparty_driver_id": "counterparty_driver_id",
                     "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -1573,20 +1694,31 @@ import Chrt
                       "source_unit_price": 1.1
                     },
                     "description": "description",
+                    "edited_by_user": true,
                     "export_ref__sage__item_id": "export_ref__sage__item_id",
+                    "generated_by_pricing": true,
                     "invoice_id": "invoice_id",
                     "invoice_type": "accounts_receivable",
                     "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                     "last_edited_by_user_id": "last_edited_by_user_id",
                     "line_item_type": "base_rate",
+                    "needs_review": true,
                     "order_id": "order_id",
                     "owned_by_org_id": "owned_by_org_id",
                     "quantity": 1.1,
                     "rate_sheet_id": "rate_sheet_id",
+                    "rate_sheet_revision": 1,
                     "schema_version": 1,
                     "shipper_account_id": "shipper_account_id",
+                    "source_order_billing_quote_id": "source_order_billing_quote_id",
                     "status": "draft",
                     "task_group_id": "task_group_id",
+                    "task_ids": [
+                      "task_ids"
+                    ],
+                    "task_short_ids": [
+                      "task_short_ids"
+                    ],
                     "tax_percentage": 1.1,
                     "total_amount": 1.1,
                     "unit": "each",
@@ -1605,6 +1737,7 @@ import Chrt
             InvoiceLineItem1(
                 id: "_id",
                 awbNumber: Optional("awb_number"),
+                billingLineKey: Optional("billing_line_key"),
                 billingPeriodId: Optional("billing_period_id"),
                 counterpartyDriverId: Optional("counterparty_driver_id"),
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -1619,20 +1752,31 @@ import Chrt
                     sourceUnitPrice: 1.1
                 )),
                 description: "description",
+                editedByUser: Optional(true),
                 exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                generatedByPricing: Optional(true),
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 lastEditedByUserId: "last_edited_by_user_id",
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                needsReview: Optional(true),
                 orderId: Optional("order_id"),
                 ownedByOrgId: "owned_by_org_id",
                 quantity: 1.1,
                 rateSheetId: Optional("rate_sheet_id"),
+                rateSheetRevision: Optional(1),
                 schemaVersion: 1,
                 shipperAccountId: Optional("shipper_account_id"),
+                sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
                 status: Optional(InvoiceLineItemStatusEnum1.draft),
                 taskGroupId: Optional("task_group_id"),
+                taskIds: Optional([
+                    "task_ids"
+                ]),
+                taskShortIds: Optional([
+                    "task_short_ids"
+                ]),
                 taxPercentage: Optional(1.1),
                 totalAmount: Optional(1.1),
                 unit: Optional(InvoiceLineItemUnitEnum1.each),
@@ -1659,6 +1803,7 @@ import Chrt
                 {
                   "_id": "_id",
                   "awb_number": "awb_number",
+                  "billing_line_key": "billing_line_key",
                   "billing_period_id": "billing_period_id",
                   "counterparty_driver_id": "counterparty_driver_id",
                   "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
@@ -1673,20 +1818,31 @@ import Chrt
                     "source_unit_price": 1.1
                   },
                   "description": "description",
+                  "edited_by_user": true,
                   "export_ref__sage__item_id": "export_ref__sage__item_id",
+                  "generated_by_pricing": true,
                   "invoice_id": "invoice_id",
                   "invoice_type": "accounts_receivable",
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_edited_by_user_id": "last_edited_by_user_id",
                   "line_item_type": "base_rate",
+                  "needs_review": true,
                   "order_id": "order_id",
                   "owned_by_org_id": "owned_by_org_id",
                   "quantity": 1.1,
                   "rate_sheet_id": "rate_sheet_id",
+                  "rate_sheet_revision": 1,
                   "schema_version": 1,
                   "shipper_account_id": "shipper_account_id",
+                  "source_order_billing_quote_id": "source_order_billing_quote_id",
                   "status": "draft",
                   "task_group_id": "task_group_id",
+                  "task_ids": [
+                    "task_ids"
+                  ],
+                  "task_short_ids": [
+                    "task_short_ids"
+                  ],
                   "tax_percentage": 1.1,
                   "total_amount": 1.1,
                   "unit": "each",
@@ -1703,6 +1859,7 @@ import Chrt
         let expectedResponse = InvoiceLineItem1(
             id: "_id",
             awbNumber: Optional("awb_number"),
+            billingLineKey: Optional("billing_line_key"),
             billingPeriodId: Optional("billing_period_id"),
             counterpartyDriverId: Optional("counterparty_driver_id"),
             counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
@@ -1717,20 +1874,31 @@ import Chrt
                 sourceUnitPrice: 1.1
             )),
             description: "description",
+            editedByUser: Optional(true),
             exportRefSageItemId: Optional("export_ref__sage__item_id"),
+            generatedByPricing: Optional(true),
             invoiceId: Optional("invoice_id"),
             invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastEditedByUserId: "last_edited_by_user_id",
             lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+            needsReview: Optional(true),
             orderId: Optional("order_id"),
             ownedByOrgId: "owned_by_org_id",
             quantity: 1.1,
             rateSheetId: Optional("rate_sheet_id"),
+            rateSheetRevision: Optional(1),
             schemaVersion: 1,
             shipperAccountId: Optional("shipper_account_id"),
+            sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
             status: Optional(InvoiceLineItemStatusEnum1.draft),
             taskGroupId: Optional("task_group_id"),
+            taskIds: Optional([
+                "task_ids"
+            ]),
+            taskShortIds: Optional([
+                "task_short_ids"
+            ]),
             taxPercentage: Optional(1.1),
             totalAmount: Optional(1.1),
             unit: Optional(InvoiceLineItemUnitEnum1.each),

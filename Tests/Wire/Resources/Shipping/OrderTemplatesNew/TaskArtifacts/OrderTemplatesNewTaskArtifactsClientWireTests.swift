@@ -17,7 +17,6 @@ import Chrt
                       "cargo_key": "cargo_key",
                       "cargo_type": "spare_parts",
                       "description": "description",
-                      "girth_inches": 1.1,
                       "height_inches": 1.1,
                       "length_inches": 1.1,
                       "quantity": 1,
@@ -27,7 +26,7 @@ import Chrt
                       ],
                       "stackable": true,
                       "turnable": true,
-                      "weight_pounds": 1.1,
+                      "weight_per_piece_pounds": 1.1,
                       "width_inches": 1.1
                     }
                   ],
@@ -111,7 +110,6 @@ import Chrt
                     cargoKey: "cargo_key",
                     cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
-                    girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
@@ -121,7 +119,7 @@ import Chrt
                     ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
-                    weightPounds: Optional(1.1),
+                    weightPerPiecePounds: Optional(1.1),
                     widthInches: Optional(1.1)
                 )
             ]),
@@ -211,7 +209,6 @@ import Chrt
                       "cargo_key": "cargo_key",
                       "cargo_type": "spare_parts",
                       "description": "description",
-                      "girth_inches": 1.1,
                       "height_inches": 1.1,
                       "length_inches": 1.1,
                       "quantity": 1,
@@ -221,7 +218,7 @@ import Chrt
                       ],
                       "stackable": true,
                       "turnable": true,
-                      "weight_pounds": 1.1,
+                      "weight_per_piece_pounds": 1.1,
                       "width_inches": 1.1
                     }
                   ],
@@ -305,7 +302,6 @@ import Chrt
                     cargoKey: "cargo_key",
                     cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
-                    girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
@@ -315,7 +311,7 @@ import Chrt
                     ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
-                    weightPounds: Optional(1.1),
+                    weightPerPiecePounds: Optional(1.1),
                     widthInches: Optional(1.1)
                 )
             ]),
@@ -405,7 +401,6 @@ import Chrt
                       "cargo_key": "cargo_key",
                       "cargo_type": "spare_parts",
                       "description": "description",
-                      "girth_inches": 1.1,
                       "height_inches": 1.1,
                       "length_inches": 1.1,
                       "quantity": 1,
@@ -415,7 +410,7 @@ import Chrt
                       ],
                       "stackable": true,
                       "turnable": true,
-                      "weight_pounds": 1.1,
+                      "weight_per_piece_pounds": 1.1,
                       "width_inches": 1.1
                     }
                   ],
@@ -499,7 +494,6 @@ import Chrt
                     cargoKey: "cargo_key",
                     cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
-                    girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
@@ -509,7 +503,7 @@ import Chrt
                     ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
-                    weightPounds: Optional(1.1),
+                    weightPerPiecePounds: Optional(1.1),
                     widthInches: Optional(1.1)
                 )
             ]),
@@ -598,7 +592,6 @@ import Chrt
                       "cargo_key": "cargo_key",
                       "cargo_type": "spare_parts",
                       "description": "description",
-                      "girth_inches": 1.1,
                       "height_inches": 1.1,
                       "length_inches": 1.1,
                       "quantity": 1,
@@ -608,7 +601,7 @@ import Chrt
                       ],
                       "stackable": true,
                       "turnable": true,
-                      "weight_pounds": 1.1,
+                      "weight_per_piece_pounds": 1.1,
                       "width_inches": 1.1
                     }
                   ],
@@ -692,7 +685,6 @@ import Chrt
                     cargoKey: "cargo_key",
                     cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
-                    girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
@@ -702,7 +694,7 @@ import Chrt
                     ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
-                    weightPounds: Optional(1.1),
+                    weightPerPiecePounds: Optional(1.1),
                     widthInches: Optional(1.1)
                 )
             ]),
@@ -792,7 +784,6 @@ import Chrt
                       "cargo_key": "cargo_key",
                       "cargo_type": "spare_parts",
                       "description": "description",
-                      "girth_inches": 1.1,
                       "height_inches": 1.1,
                       "length_inches": 1.1,
                       "quantity": 1,
@@ -802,7 +793,7 @@ import Chrt
                       ],
                       "stackable": true,
                       "turnable": true,
-                      "weight_pounds": 1.1,
+                      "weight_per_piece_pounds": 1.1,
                       "width_inches": 1.1
                     }
                   ],
@@ -886,7 +877,6 @@ import Chrt
                     cargoKey: "cargo_key",
                     cargoType: CargoTypeEnum1.spareParts,
                     description: Optional("description"),
-                    girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
                     lengthInches: Optional(1.1),
                     quantity: Optional(1),
@@ -896,7 +886,7 @@ import Chrt
                     ]),
                     stackable: Optional(true),
                     turnable: Optional(true),
-                    weightPounds: Optional(1.1),
+                    weightPerPiecePounds: Optional(1.1),
                     widthInches: Optional(1.1)
                 )
             ]),

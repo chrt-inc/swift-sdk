@@ -475,7 +475,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Voids a draft or approved invoice owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceVoidReq) -> (Invoice1)
+    /// Voids a draft or approved invoice owned by the caller's organization and releases its charges back to draft so they can be invoiced again; the void invoice keeps its totals and tax rows. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceVoidReq) -> (Invoice1)
     ///
     /// ```swift
     /// import Foundation

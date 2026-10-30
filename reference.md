@@ -2591,6 +2591,466 @@ try await main()
 </dl>
 </details>
 
+## BillingNew FuelSurchargeConfigurations
+<details><summary><code>client.billingNew.fuelSurchargeConfigurations.<a href="/Sources/Resources/BillingNew/FuelSurchargeConfigurations/FuelSurchargeConfigurationsClient.swift">archiveV1</a>(fuelSurchargeConfigurationId: String, requestOptions: RequestOptions?) -> FuelSurchargeConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a fuel surcharge configuration so pricing falls back to the counterparty default, or reports fuel unpriced. Repeated archival is unchanged. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (FuelSurchargeConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.fuelSurchargeConfigurations.archiveV1(fuelSurchargeConfigurationId: "fuel_surcharge_configuration_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fuelSurchargeConfigurationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.fuelSurchargeConfigurations.<a href="/Sources/Resources/BillingNew/FuelSurchargeConfigurations/FuelSurchargeConfigurationsClient.swift">createV1</a>(request: Requests.FuelSurchargeConfigurationClientCreate1, requestOptions: RequestOptions?) -> FuelSurchargeConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a counterparty fuel surcharge default or store (account) override with dated percentages. | authz: allowed_org_types=[provider], min_org_role=operator | (FuelSurchargeConfigurationClientCreate1) -> (FuelSurchargeConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.fuelSurchargeConfigurations.createV1(request: .init(
+        invoiceType: .accountsReceivable,
+        name: "name",
+        rates: [
+            FuelSurchargeConfigurationRate1(
+                effectiveFromDate: "effective_from_date",
+                surchargePercentage: 1.1
+            )
+        ],
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.FuelSurchargeConfigurationClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.fuelSurchargeConfigurations.<a href="/Sources/Resources/BillingNew/FuelSurchargeConfigurations/FuelSurchargeConfigurationsClient.swift">getV1</a>(fuelSurchargeConfigurationId: String, requestOptions: RequestOptions?) -> FuelSurchargeConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an active or archived fuel surcharge configuration owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (FuelSurchargeConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.fuelSurchargeConfigurations.getV1(fuelSurchargeConfigurationId: "fuel_surcharge_configuration_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fuelSurchargeConfigurationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.fuelSurchargeConfigurations.<a href="/Sources/Resources/BillingNew/FuelSurchargeConfigurations/FuelSurchargeConfigurationsClient.swift">listV1</a>(filterInvoiceType: InvoiceTypeEnum1?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterCounterpartyDriverId: String?, filterShipperAccountId: String?, filterArchived: Bool?, sortBy: FuelSurchargeConfigurationSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, requestOptions: RequestOptions?) -> FuelSurchargeConfigurationListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists owner-scoped fuel surcharge configurations with direction, counterparty, account and archive filters, sorting and pagination. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (FuelSurchargeConfigurationListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.fuelSurchargeConfigurations.listV1(
+        filterInvoiceType: .accountsReceivable,
+        filterCounterpartyOrgId: "filter_counterparty_org_id",
+        filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+        filterCounterpartyDriverId: "filter_counterparty_driver_id",
+        filterShipperAccountId: "filter_shipper_account_id",
+        filterArchived: true,
+        sortBy: .name,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filterInvoiceType:** `InvoiceTypeEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOffChrtOrgDataId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyDriverId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterShipperAccountId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterArchived:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `FuelSurchargeConfigurationSortByEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.fuelSurchargeConfigurations.<a href="/Sources/Resources/BillingNew/FuelSurchargeConfigurations/FuelSurchargeConfigurationsClient.swift">updateV1</a>(fuelSurchargeConfigurationId: String, request: Requests.FuelSurchargeConfigurationClientUpdate1, requestOptions: RequestOptions?) -> FuelSurchargeConfiguration1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an active fuel surcharge configuration's name or rates; given rates replace the stored ones in full. | authz: allowed_org_types=[provider], min_org_role=operator | (FuelSurchargeConfigurationClientUpdate1) -> (FuelSurchargeConfiguration1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.fuelSurchargeConfigurations.updateV1(
+        fuelSurchargeConfigurationId: "fuel_surcharge_configuration_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fuelSurchargeConfigurationId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.FuelSurchargeConfigurationClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## BillingNew InvoiceLineItems
 <details><summary><code>client.billingNew.invoiceLineItems.<a href="/Sources/Resources/BillingNew/InvoiceLineItems/InvoiceLineItemsClient.swift">createAdHocV1</a>(request: AdHocInvoiceLineItemsReq, requestOptions: RequestOptions?) -> [InvoiceLineItem1]</code></summary>
 <dl>
@@ -2999,7 +3459,7 @@ try await main()
 <dl>
 <dd>
 
-Deletes owner-scoped line items and rebuilds every affected draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsDeleteManyReq) -> (InvoiceLineItemsDeleteManyRes)
+Deletes owner-scoped line items and rebuilds every affected draft invoice. Deleting a generated line not on an invoice resets it: the order is re-priced, so it comes back at the sheet's price if its charge still applies. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsDeleteManyReq) -> (InvoiceLineItemsDeleteManyRes)
 </dd>
 </dl>
 </dd>
@@ -5124,7 +5584,7 @@ try await main()
 <dl>
 <dd>
 
-Voids a draft or approved invoice owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceVoidReq) -> (Invoice1)
+Voids a draft or approved invoice owned by the caller's organization and releases its charges back to draft so they can be invoiced again; the void invoice keeps its totals and tax rows. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceVoidReq) -> (Invoice1)
 </dd>
 </dl>
 </dd>
@@ -5258,6 +5718,77 @@ try await main()
 <dd>
 
 **pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">getEstimateV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderBillingEstimate1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves what the order was expected to cost the caller organization when it was staged; 404 when nothing was priced then. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderBillingEstimate1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.getEstimateV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
     
 </dd>
 </dl>
@@ -5610,6 +6141,317 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">updateRateSheetSelectionV1</a>(orderId: String, request: Requests.OrderRateSheetSelectionUpdateReq, requestOptions: RequestOptions?) -> OrderPricingRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Chooses the rate sheet for one billing relationship on one segment of an order, overriding the default, or marks it not billed (rate_sheet_id null), then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderRateSheetSelectionUpdateReq) -> (OrderPricingRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.updateRateSheetSelectionV1(
+        orderId: "order_id",
+        request: .init(
+            relationshipType: .receivable,
+            taskGroupId: "task_group_id"
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderRateSheetSelectionUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">refreshPricingV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderPricingRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Prices an order (drafts included) for the caller's organization from its rate sheets and syncs the generated line items. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderPricingRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.refreshPricingV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">updateSurchargesV1</a>(orderId: String, request: Requests.OrderSurchargesUpdateReq, requestOptions: RequestOptions?) -> OrderPricingRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the surcharges switched on for an order (dangerous goods, equipment, after hours, weekend, holiday), replacing the list, then re-prices. Each applies the rule of the same type on every sheet that prices the order. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderSurchargesUpdateReq) -> (OrderPricingRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.updateSurchargesV1(
+        orderId: "order_id",
+        request: .init(enabledSurchargeTypes: [
+            .equipment
+        ])
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderSurchargesUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">getPricingV1</a>(orderId: String, requestOptions: RequestOptions?) -> OrderPricingRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the caller organization's rate-sheet selections and generated line items for an order, as last priced. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderPricingRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.getPricingV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">generateRateSheetLineItemsManyV1</a>(request: Requests.OrderRateSheetLineItemsGenerateManyReq, requestOptions: RequestOptions?) -> OrderRateSheetLineItemsGenerateManyRes</code></summary>
 <dl>
 <dd>
@@ -5735,6 +6577,1678 @@ try await main()
 <dd>
 
 **orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## BillingNew PricingZones
+<details><summary><code>client.billingNew.pricingZones.<a href="/Sources/Resources/BillingNew/PricingZones/PricingZonesClient.swift">archiveV1</a>(pricingZoneId: String, requestOptions: RequestOptions?) -> PricingZone1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a pricing zone so it can no longer be added to rate sheets; sheets already using it keep it. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (PricingZone1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.pricingZones.archiveV1(pricingZoneId: "pricing_zone_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**pricingZoneId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.pricingZones.<a href="/Sources/Resources/BillingNew/PricingZones/PricingZonesClient.swift">createV1</a>(request: Requests.PricingZoneClientCreate1, requestOptions: RequestOptions?) -> PricingZone1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a pricing zone from stores, postal codes or a map area for zone rate-sheet rules. | authz: allowed_org_types=[provider], min_org_role=operator | (PricingZoneClientCreate1) -> (PricingZone1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.pricingZones.createV1(request: .init(
+        name: "name",
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.PricingZoneClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.pricingZones.<a href="/Sources/Resources/BillingNew/PricingZones/PricingZonesClient.swift">getV1</a>(pricingZoneId: String, requestOptions: RequestOptions?) -> PricingZone1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an active or archived pricing zone owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (PricingZone1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.pricingZones.getV1(pricingZoneId: "pricing_zone_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**pricingZoneId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.pricingZones.<a href="/Sources/Resources/BillingNew/PricingZones/PricingZonesClient.swift">listV1</a>(includeArchived: Bool?, requestOptions: RequestOptions?) -> [PricingZone1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller organization's pricing zones by name, active zones only unless archived ones are requested. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[PricingZone1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.pricingZones.listV1(includeArchived: true)
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**includeArchived:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.pricingZones.<a href="/Sources/Resources/BillingNew/PricingZones/PricingZonesClient.swift">updateV1</a>(pricingZoneId: String, request: Requests.PricingZoneClientUpdate1, requestOptions: RequestOptions?) -> PricingZone1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an active pricing zone's name or membership; every sheet using it prices with the new zone. | authz: allowed_org_types=[provider], min_org_role=operator | (PricingZoneClientUpdate1) -> (PricingZone1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.pricingZones.updateV1(
+        pricingZoneId: "pricing_zone_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**pricingZoneId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.PricingZoneClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## BillingNew Quotes
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">acceptV1</a>(quoteId: String, requestOptions: RequestOptions?) -> OrderBillingQuote1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Accepts a draft quote, supersedes the customer's previously accepted quote on the order and re-prices the order. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | () -> (OrderBillingQuote1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.acceptV1(quoteId: "quote_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**quoteId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">createV1</a>(request: Requests.OrderBillingQuoteClientCreate1, requestOptions: RequestOptions?) -> OrderBillingQuote1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a draft non-binding or fixed-price quote for an order's customer. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderBillingQuoteClientCreate1) -> (OrderBillingQuote1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.createV1(request: .init(
+        currencyCode: .usd,
+        orderId: "order_id",
+        quoteType: .nonBinding,
+        schemaVersion: 1
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderBillingQuoteClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">deleteV1</a>(quoteId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Hard-deletes a draft quote the operator no longer wants; other quotes are kept as history. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.deleteV1(quoteId: "quote_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**quoteId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">getV1</a>(quoteId: String, requestOptions: RequestOptions?) -> OrderBillingQuote1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a quote owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderBillingQuote1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.getV1(quoteId: "quote_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**quoteId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">listV1</a>(orderId: String, requestOptions: RequestOptions?) -> [OrderBillingQuote1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller organization's quotes on an order, newest first. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[OrderBillingQuote1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.listV1(orderId: "order_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">updateV1</a>(quoteId: String, request: Requests.OrderBillingQuoteClientUpdate1, requestOptions: RequestOptions?) -> OrderBillingQuote1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a draft quote's type, currency, store account or lines; lines sent replace the old ones. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderBillingQuoteClientUpdate1) -> (OrderBillingQuote1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.updateV1(
+        quoteId: "quote_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**quoteId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderBillingQuoteClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.quotes.<a href="/Sources/Resources/BillingNew/Quotes/QuotesClient.swift">withdrawV1</a>(quoteId: String, requestOptions: RequestOptions?) -> OrderBillingQuote1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Withdraws an accepted quote with no replacement and re-prices the order, so a fixed-price customer goes back to rate sheets. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | () -> (OrderBillingQuote1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.quotes.withdrawV1(quoteId: "quote_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**quoteId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## BillingNew RateSheetDefaults
+<details><summary><code>client.billingNew.rateSheetDefaults.<a href="/Sources/Resources/BillingNew/RateSheetDefaults/RateSheetDefaultsClient.swift">deleteV1</a>(rateSheetDefaultId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a rate-sheet default; orders already priced keep the sheet they were priced with. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheetDefaults.deleteV1(rateSheetDefaultId: "rate_sheet_default_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetDefaultId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheetDefaults.<a href="/Sources/Resources/BillingNew/RateSheetDefaults/RateSheetDefaultsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [RateSheetDefault1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller organization's rate-sheet defaults. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[RateSheetDefault1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheetDefaults.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheetDefaults.<a href="/Sources/Resources/BillingNew/RateSheetDefaults/RateSheetDefaultsClient.swift">setV1</a>(request: Requests.RateSheetDefaultClientCreate1, requestOptions: RequestOptions?) -> RateSheetDefault1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the rate sheet used for one counterparty, direction, service line and segment type when no sheet is chosen by hand; a null rate_sheet_id marks those segments not billed. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetDefaultClientCreate1) -> (RateSheetDefault1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheetDefaults.setV1(request: .init(
+        invoiceType: .accountsReceivable,
+        schemaVersion: 1,
+        serviceLine: .onDemand,
+        taskGroupType: .chrtGroundProvider
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.RateSheetDefaultClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## BillingNew RateSheets
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">archiveV1</a>(rateSheetId: String, requestOptions: RequestOptions?) -> RateSheet1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a rate sheet so it can no longer be chosen; orders already priced with it keep it. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheet1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.archiveV1(rateSheetId: "rate_sheet_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">createV1</a>(request: RateSheetClientCreate1, requestOptions: RequestOptions?) -> RateSheet1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a rate sheet that prices one segment type for one counterparty. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetClientCreate1) -> (RateSheet1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.createV1(request: RateSheetClientCreate1(
+        currencyCode: .usd,
+        invoiceType: .accountsReceivable,
+        name: "name",
+        rules: [
+            RulesItem.afterHours(
+                AfterHoursChargeRule1(
+                    flatRate: 1.1,
+                    lineItemDescription: "line_item_description"
+                )
+            )
+        ],
+        schemaVersion: 1,
+        taskGroupType: .chrtGroundProvider
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `RateSheetClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">getV1</a>(rateSheetId: String, requestOptions: RequestOptions?) -> RateSheet1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an active or archived rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheet1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.getV1(rateSheetId: "rate_sheet_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">listV1</a>(invoiceType: InvoiceTypeEnum1?, taskGroupType: TaskGroupTypeEnum1?, includeArchived: Bool?, requestOptions: RequestOptions?) -> [RateSheet1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller organization's rate sheets by name, optionally for one direction or segment type, active only unless archived ones are requested. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[RateSheet1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.listV1(
+        invoiceType: .accountsReceivable,
+        taskGroupType: .chrtGroundProvider,
+        includeArchived: true
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceType:** `InvoiceTypeEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupType:** `TaskGroupTypeEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeArchived:** `Bool?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">previewV1</a>(request: Requests.RateSheetPreviewReq, requestOptions: RequestOptions?) -> RateSheetPreviewRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Prices one of the caller's orders with a rate sheet as written, saved or not, and returns the lines it would charge without writing anything. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (RateSheetPreviewReq) -> (RateSheetPreviewRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.previewV1(request: .init(
+        orderId: "order_id",
+        rateSheet: RateSheetClientCreate1(
+            currencyCode: .usd,
+            invoiceType: .accountsReceivable,
+            name: "name",
+            rules: [
+                RulesItem.afterHours(
+                    AfterHoursChargeRule1(
+                        flatRate: 1.1,
+                        lineItemDescription: "line_item_description"
+                    )
+                )
+            ],
+            schemaVersion: 1,
+            taskGroupType: .chrtGroundProvider
+        )
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.RateSheetPreviewReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">updateV1</a>(rateSheetId: String, request: Requests.RateSheetUpdateReq, requestOptions: RequestOptions?) -> RateSheet1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces an active rate sheet's fields and rules; orders priced later use the new rules. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetUpdateReq) -> (RateSheet1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.updateV1(
+        rateSheetId: "rate_sheet_id",
+        request: .init(
+            expectedRevision: 1,
+            rateSheet: RateSheetClientCreate1(
+                currencyCode: .usd,
+                invoiceType: .accountsReceivable,
+                name: "name",
+                rules: [
+                    RulesItem.afterHours(
+                        AfterHoursChargeRule1(
+                            flatRate: 1.1,
+                            lineItemDescription: "line_item_description"
+                        )
+                    )
+                ],
+                schemaVersion: 1,
+                taskGroupType: .chrtGroundProvider
+            )
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.RateSheetUpdateReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">usageV1</a>(rateSheetId: String, requestOptions: RequestOptions?) -> RateSheetUsageRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Counts the caller organization's orders priced with a rate sheet and the defaults that name it, so an operator knows what an edit affects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetUsageRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.usageV1(rateSheetId: "rate_sheet_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateSheetId:** `String` 
     
 </dd>
 </dl>

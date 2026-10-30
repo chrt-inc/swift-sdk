@@ -8,8 +8,6 @@ extension Requests {
         public let cargoType: CargoTypeEnum1?
         public let description: String?
         public let descriptionSetToNone: Bool?
-        public let girthInches: Double?
-        public let girthInchesSetToNone: Bool?
         public let heightInches: Double?
         public let heightInchesSetToNone: Bool?
         public let lengthInches: Double?
@@ -21,8 +19,8 @@ extension Requests {
         public let stackableSetToNone: Bool?
         public let turnable: Bool?
         public let turnableSetToNone: Bool?
-        public let weightPounds: Double?
-        public let weightPoundsSetToNone: Bool?
+        public let weightPerPiecePounds: Double?
+        public let weightPerPiecePoundsSetToNone: Bool?
         public let widthInches: Double?
         public let widthInchesSetToNone: Bool?
         /// Additional properties that are not explicitly defined in the schema
@@ -34,8 +32,6 @@ extension Requests {
             cargoType: CargoTypeEnum1? = nil,
             description: String? = nil,
             descriptionSetToNone: Bool? = nil,
-            girthInches: Double? = nil,
-            girthInchesSetToNone: Bool? = nil,
             heightInches: Double? = nil,
             heightInchesSetToNone: Bool? = nil,
             lengthInches: Double? = nil,
@@ -47,8 +43,8 @@ extension Requests {
             stackableSetToNone: Bool? = nil,
             turnable: Bool? = nil,
             turnableSetToNone: Bool? = nil,
-            weightPounds: Double? = nil,
-            weightPoundsSetToNone: Bool? = nil,
+            weightPerPiecePounds: Double? = nil,
+            weightPerPiecePoundsSetToNone: Bool? = nil,
             widthInches: Double? = nil,
             widthInchesSetToNone: Bool? = nil,
             additionalProperties: [String: JSONValue] = .init()
@@ -58,8 +54,6 @@ extension Requests {
             self.cargoType = cargoType
             self.description = description
             self.descriptionSetToNone = descriptionSetToNone
-            self.girthInches = girthInches
-            self.girthInchesSetToNone = girthInchesSetToNone
             self.heightInches = heightInches
             self.heightInchesSetToNone = heightInchesSetToNone
             self.lengthInches = lengthInches
@@ -71,8 +65,8 @@ extension Requests {
             self.stackableSetToNone = stackableSetToNone
             self.turnable = turnable
             self.turnableSetToNone = turnableSetToNone
-            self.weightPounds = weightPounds
-            self.weightPoundsSetToNone = weightPoundsSetToNone
+            self.weightPerPiecePounds = weightPerPiecePounds
+            self.weightPerPiecePoundsSetToNone = weightPerPiecePoundsSetToNone
             self.widthInches = widthInches
             self.widthInchesSetToNone = widthInchesSetToNone
             self.additionalProperties = additionalProperties
@@ -85,8 +79,6 @@ extension Requests {
             self.cargoType = try container.decodeIfPresent(CargoTypeEnum1.self, forKey: .cargoType)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
-            self.girthInches = try container.decodeIfPresent(Double.self, forKey: .girthInches)
-            self.girthInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .girthInchesSetToNone)
             self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
             self.heightInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .heightInchesSetToNone)
             self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
@@ -98,8 +90,8 @@ extension Requests {
             self.stackableSetToNone = try container.decodeIfPresent(Bool.self, forKey: .stackableSetToNone)
             self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
             self.turnableSetToNone = try container.decodeIfPresent(Bool.self, forKey: .turnableSetToNone)
-            self.weightPounds = try container.decodeIfPresent(Double.self, forKey: .weightPounds)
-            self.weightPoundsSetToNone = try container.decodeIfPresent(Bool.self, forKey: .weightPoundsSetToNone)
+            self.weightPerPiecePounds = try container.decodeIfPresent(Double.self, forKey: .weightPerPiecePounds)
+            self.weightPerPiecePoundsSetToNone = try container.decodeIfPresent(Bool.self, forKey: .weightPerPiecePoundsSetToNone)
             self.widthInches = try container.decodeIfPresent(Double.self, forKey: .widthInches)
             self.widthInchesSetToNone = try container.decodeIfPresent(Bool.self, forKey: .widthInchesSetToNone)
             self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -113,8 +105,6 @@ extension Requests {
             try container.encodeIfPresent(self.cargoType, forKey: .cargoType)
             try container.encodeIfPresent(self.description, forKey: .description)
             try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
-            try container.encodeIfPresent(self.girthInches, forKey: .girthInches)
-            try container.encodeIfPresent(self.girthInchesSetToNone, forKey: .girthInchesSetToNone)
             try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
             try container.encodeIfPresent(self.heightInchesSetToNone, forKey: .heightInchesSetToNone)
             try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
@@ -126,8 +116,8 @@ extension Requests {
             try container.encodeIfPresent(self.stackableSetToNone, forKey: .stackableSetToNone)
             try container.encodeIfPresent(self.turnable, forKey: .turnable)
             try container.encodeIfPresent(self.turnableSetToNone, forKey: .turnableSetToNone)
-            try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
-            try container.encodeIfPresent(self.weightPoundsSetToNone, forKey: .weightPoundsSetToNone)
+            try container.encodeIfPresent(self.weightPerPiecePounds, forKey: .weightPerPiecePounds)
+            try container.encodeIfPresent(self.weightPerPiecePoundsSetToNone, forKey: .weightPerPiecePoundsSetToNone)
             try container.encodeIfPresent(self.widthInches, forKey: .widthInches)
             try container.encodeIfPresent(self.widthInchesSetToNone, forKey: .widthInchesSetToNone)
         }
@@ -139,8 +129,6 @@ extension Requests {
             case cargoType = "cargo_type"
             case description
             case descriptionSetToNone = "description__set_to_None"
-            case girthInches = "girth_inches"
-            case girthInchesSetToNone = "girth_inches__set_to_None"
             case heightInches = "height_inches"
             case heightInchesSetToNone = "height_inches__set_to_None"
             case lengthInches = "length_inches"
@@ -152,8 +140,8 @@ extension Requests {
             case stackableSetToNone = "stackable__set_to_None"
             case turnable
             case turnableSetToNone = "turnable__set_to_None"
-            case weightPounds = "weight_pounds"
-            case weightPoundsSetToNone = "weight_pounds__set_to_None"
+            case weightPerPiecePounds = "weight_per_piece_pounds"
+            case weightPerPiecePoundsSetToNone = "weight_per_piece_pounds__set_to_None"
             case widthInches = "width_inches"
             case widthInchesSetToNone = "width_inches__set_to_None"
         }

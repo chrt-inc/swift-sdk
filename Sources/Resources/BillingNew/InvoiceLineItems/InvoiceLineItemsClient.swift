@@ -176,7 +176,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Deletes owner-scoped line items and rebuilds every affected draft invoice. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsDeleteManyReq) -> (InvoiceLineItemsDeleteManyRes)
+    /// Deletes owner-scoped line items and rebuilds every affected draft invoice. Deleting a generated line not on an invoice resets it: the order is re-priced, so it comes back at the sheet's price if its charge still applies. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceLineItemsDeleteManyReq) -> (InvoiceLineItemsDeleteManyRes)
     ///
     /// ```swift
     /// import Foundation

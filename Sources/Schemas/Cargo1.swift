@@ -16,7 +16,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let deviceIds: [String]?
     public let draftStartedAtTimestamp: Date
     public let exceptionAtTimestamp: Date?
-    public let girthInches: Double?
     public let heightInches: Double?
     public let inTransitAtTimestamp: Date?
     public let lengthInches: Double?
@@ -30,7 +29,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
     public let stagedAtTimestamp: Date?
     public let status: CargoStatusEnum1?
     public let turnable: Bool?
-    public let weightPounds: Double?
+    public let weightPerPiecePounds: Double?
     public let widthInches: Double?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
@@ -48,7 +47,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         deviceIds: [String]? = nil,
         draftStartedAtTimestamp: Date,
         exceptionAtTimestamp: Date? = nil,
-        girthInches: Double? = nil,
         heightInches: Double? = nil,
         inTransitAtTimestamp: Date? = nil,
         lengthInches: Double? = nil,
@@ -62,7 +60,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         stagedAtTimestamp: Date? = nil,
         status: CargoStatusEnum1? = nil,
         turnable: Bool? = nil,
-        weightPounds: Double? = nil,
+        weightPerPiecePounds: Double? = nil,
         widthInches: Double? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
@@ -78,7 +76,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.deviceIds = deviceIds
         self.draftStartedAtTimestamp = draftStartedAtTimestamp
         self.exceptionAtTimestamp = exceptionAtTimestamp
-        self.girthInches = girthInches
         self.heightInches = heightInches
         self.inTransitAtTimestamp = inTransitAtTimestamp
         self.lengthInches = lengthInches
@@ -92,7 +89,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
         self.turnable = turnable
-        self.weightPounds = weightPounds
+        self.weightPerPiecePounds = weightPerPiecePounds
         self.widthInches = widthInches
         self.additionalProperties = additionalProperties
     }
@@ -111,7 +108,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.deviceIds = try container.decodeIfPresent([String].self, forKey: .deviceIds)
         self.draftStartedAtTimestamp = try container.decode(Date.self, forKey: .draftStartedAtTimestamp)
         self.exceptionAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .exceptionAtTimestamp)
-        self.girthInches = try container.decodeIfPresent(Double.self, forKey: .girthInches)
         self.heightInches = try container.decodeIfPresent(Double.self, forKey: .heightInches)
         self.inTransitAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inTransitAtTimestamp)
         self.lengthInches = try container.decodeIfPresent(Double.self, forKey: .lengthInches)
@@ -125,7 +121,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(CargoStatusEnum1.self, forKey: .status)
         self.turnable = try container.decodeIfPresent(Bool.self, forKey: .turnable)
-        self.weightPounds = try container.decodeIfPresent(Double.self, forKey: .weightPounds)
+        self.weightPerPiecePounds = try container.decodeIfPresent(Double.self, forKey: .weightPerPiecePounds)
         self.widthInches = try container.decodeIfPresent(Double.self, forKey: .widthInches)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -145,7 +141,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.deviceIds, forKey: .deviceIds)
         try container.encode(self.draftStartedAtTimestamp, forKey: .draftStartedAtTimestamp)
         try container.encodeIfPresent(self.exceptionAtTimestamp, forKey: .exceptionAtTimestamp)
-        try container.encodeIfPresent(self.girthInches, forKey: .girthInches)
         try container.encodeIfPresent(self.heightInches, forKey: .heightInches)
         try container.encodeIfPresent(self.inTransitAtTimestamp, forKey: .inTransitAtTimestamp)
         try container.encodeIfPresent(self.lengthInches, forKey: .lengthInches)
@@ -159,7 +154,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.turnable, forKey: .turnable)
-        try container.encodeIfPresent(self.weightPounds, forKey: .weightPounds)
+        try container.encodeIfPresent(self.weightPerPiecePounds, forKey: .weightPerPiecePounds)
         try container.encodeIfPresent(self.widthInches, forKey: .widthInches)
     }
 
@@ -177,7 +172,6 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case deviceIds = "device_ids"
         case draftStartedAtTimestamp = "draft_started_at_timestamp"
         case exceptionAtTimestamp = "exception_at_timestamp"
-        case girthInches = "girth_inches"
         case heightInches = "height_inches"
         case inTransitAtTimestamp = "in_transit_at_timestamp"
         case lengthInches = "length_inches"
@@ -191,7 +185,7 @@ public struct Cargo1: Codable, Hashable, Sendable {
         case stagedAtTimestamp = "staged_at_timestamp"
         case status
         case turnable
-        case weightPounds = "weight_pounds"
+        case weightPerPiecePounds = "weight_per_piece_pounds"
         case widthInches = "width_inches"
     }
 }

@@ -86,7 +86,6 @@ import Chrt
                     ],
                     "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                     "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                    "girth_inches": 1.1,
                     "height_inches": 1.1,
                     "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                     "length_inches": 1.1,
@@ -102,7 +101,7 @@ import Chrt
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "status": "draft",
                     "turnable": true,
-                    "weight_pounds": 1.1,
+                    "weight_per_piece_pounds": 1.1,
                     "width_inches": 1.1
                   },
                   "active_session": {
@@ -227,7 +226,6 @@ import Chrt
                       ],
                       "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                       "exception_at_timestamp": "2024-01-15T09:30:00Z",
-                      "girth_inches": 1.1,
                       "height_inches": 1.1,
                       "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                       "length_inches": 1.1,
@@ -243,7 +241,7 @@ import Chrt
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "status": "draft",
                       "turnable": true,
-                      "weight_pounds": 1.1,
+                      "weight_per_piece_pounds": 1.1,
                       "width_inches": 1.1
                     }
                   ],
@@ -332,7 +330,6 @@ import Chrt
                 ]),
                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                girthInches: Optional(1.1),
                 heightInches: Optional(1.1),
                 inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 lengthInches: Optional(1.1),
@@ -348,7 +345,7 @@ import Chrt
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 status: Optional(CargoStatusEnum1.draft),
                 turnable: Optional(true),
-                weightPounds: Optional(1.1),
+                weightPerPiecePounds: Optional(1.1),
                 widthInches: Optional(1.1)
             )),
             activeSession: Optional(Session2(
@@ -499,7 +496,6 @@ import Chrt
                     ]),
                     draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     exceptionAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    girthInches: Optional(1.1),
                     heightInches: Optional(1.1),
                     inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lengthInches: Optional(1.1),
@@ -515,7 +511,7 @@ import Chrt
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     status: Optional(CargoStatusEnum1.draft),
                     turnable: Optional(true),
-                    weightPounds: Optional(1.1),
+                    weightPerPiecePounds: Optional(1.1),
                     widthInches: Optional(1.1)
                 )
             ]),

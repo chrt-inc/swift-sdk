@@ -256,7 +256,9 @@ import Chrt
                     "id": 1,
                     "properties": {
                       "address": "address",
-                      "name": "name"
+                      "country_code": "country_code",
+                      "name": "name",
+                      "postal_code": "postal_code"
                     },
                     "type": "Feature"
                   },
@@ -315,7 +317,9 @@ import Chrt
                 )),
                 properties: Optional(LocationProperties(
                     address: Optional("address"),
-                    name: Optional("name")
+                    countryCode: Optional("country_code"),
+                    name: Optional("name"),
+                    postalCode: Optional("postal_code")
                 )),
                 type: .feature
             )),

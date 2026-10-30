@@ -39,6 +39,31 @@ public final class OrdersClient: Sendable {
         )
     }
 
+    /// Retrieves what the order was expected to cost the caller organization when it was staged; 404 when nothing was priced then. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderBillingEstimate1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.getEstimateV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getEstimateV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderBillingEstimate1 {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/orders/estimate/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: OrderBillingEstimate1.self
+        )
+    }
+
     /// Lists coordinator orders with billing summaries and optional party-name expansion. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderBillingExpandedListReq) -> (OrderBillingExpandedListRes)
     ///
     /// ```swift
@@ -144,6 +169,119 @@ public final class OrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OrderBillingExpandedListRes.self
+        )
+    }
+
+    /// Chooses the rate sheet for one billing relationship on one segment of an order, overriding the default, or marks it not billed (rate_sheet_id null), then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderRateSheetSelectionUpdateReq) -> (OrderPricingRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.updateRateSheetSelectionV1(
+    ///         orderId: "order_id",
+    ///         request: .init(
+    ///             relationshipType: .receivable,
+    ///             taskGroupId: "task_group_id"
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateRateSheetSelectionV1(orderId: String, request: Requests.OrderRateSheetSelectionUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrderPricingRes {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/billing_new/orders/pricing/rate_sheet_selection/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderPricingRes.self
+        )
+    }
+
+    /// Prices an order (drafts included) for the caller's organization from its rate sheets and syncs the generated line items. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderPricingRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.refreshPricingV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func refreshPricingV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderPricingRes {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/billing_new/orders/pricing/refresh/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: OrderPricingRes.self
+        )
+    }
+
+    /// Sets the surcharges switched on for an order (dangerous goods, equipment, after hours, weekend, holiday), replacing the list, then re-prices. Each applies the rule of the same type on every sheet that prices the order. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderSurchargesUpdateReq) -> (OrderPricingRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.updateSurchargesV1(
+    ///         orderId: "order_id",
+    ///         request: .init(enabledSurchargeTypes: [
+    ///             .equipment
+    ///         ])
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateSurchargesV1(orderId: String, request: Requests.OrderSurchargesUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrderPricingRes {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/billing_new/orders/pricing/surcharges/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderPricingRes.self
+        )
+    }
+
+    /// Retrieves the caller organization's rate-sheet selections and generated line items for an order, as last priced. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | () -> (OrderPricingRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.getPricingV1(orderId: "order_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func getPricingV1(orderId: String, requestOptions: RequestOptions? = nil) async throws -> OrderPricingRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/orders/pricing/v1/\(orderId)",
+            requestOptions: requestOptions,
+            responseType: OrderPricingRes.self
         )
     }
 
