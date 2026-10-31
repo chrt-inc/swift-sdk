@@ -10,6 +10,9 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "applies_to_line_item_types": [
+                    "base_rate"
+                  ],
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
                   "archived_by_user_id": "archived_by_user_id",
                   "counterparty_driver_id": "counterparty_driver_id",
@@ -41,6 +44,9 @@ import Chrt
         )
         let expectedResponse = FuelSurchargeConfiguration1(
             id: "_id",
+            appliesToLineItemTypes: [
+                InvoiceLineItemTypeEnum1.baseRate
+            ],
             archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             archivedByUserId: Optional("archived_by_user_id"),
             counterpartyDriverId: Optional("counterparty_driver_id"),
@@ -76,6 +82,9 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "applies_to_line_item_types": [
+                    "base_rate"
+                  ],
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
                   "archived_by_user_id": "archived_by_user_id",
                   "counterparty_driver_id": "counterparty_driver_id",
@@ -107,6 +116,9 @@ import Chrt
         )
         let expectedResponse = FuelSurchargeConfiguration1(
             id: "_id",
+            appliesToLineItemTypes: [
+                InvoiceLineItemTypeEnum1.baseRate
+            ],
             archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             archivedByUserId: Optional("archived_by_user_id"),
             counterpartyDriverId: Optional("counterparty_driver_id"),
@@ -130,6 +142,9 @@ import Chrt
         )
         let response = try await client.billingNew.fuelSurchargeConfigurations.createV1(
             request: .init(
+                appliesToLineItemTypes: [
+                    .baseRate
+                ],
                 invoiceType: .accountsReceivable,
                 name: "name",
                 rates: [
@@ -152,6 +167,9 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "applies_to_line_item_types": [
+                    "base_rate"
+                  ],
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
                   "archived_by_user_id": "archived_by_user_id",
                   "counterparty_driver_id": "counterparty_driver_id",
@@ -183,6 +201,9 @@ import Chrt
         )
         let expectedResponse = FuelSurchargeConfiguration1(
             id: "_id",
+            appliesToLineItemTypes: [
+                InvoiceLineItemTypeEnum1.baseRate
+            ],
             archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             archivedByUserId: Optional("archived_by_user_id"),
             counterpartyDriverId: Optional("counterparty_driver_id"),
@@ -220,6 +241,9 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "applies_to_line_item_types": [
+                        "base_rate"
+                      ],
                       "archived_at_timestamp": "2024-01-15T09:30:00Z",
                       "archived_by_user_id": "archived_by_user_id",
                       "counterparty_driver_id": "counterparty_driver_id",
@@ -256,6 +280,9 @@ import Chrt
             items: Optional([
                 FuelSurchargeConfiguration1(
                     id: "_id",
+                    appliesToLineItemTypes: [
+                        InvoiceLineItemTypeEnum1.baseRate
+                    ],
                     archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     archivedByUserId: Optional("archived_by_user_id"),
                     counterpartyDriverId: Optional("counterparty_driver_id"),
@@ -303,6 +330,9 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "applies_to_line_item_types": [
+                    "base_rate"
+                  ],
                   "archived_at_timestamp": "2024-01-15T09:30:00Z",
                   "archived_by_user_id": "archived_by_user_id",
                   "counterparty_driver_id": "counterparty_driver_id",
@@ -334,6 +364,9 @@ import Chrt
         )
         let expectedResponse = FuelSurchargeConfiguration1(
             id: "_id",
+            appliesToLineItemTypes: [
+                InvoiceLineItemTypeEnum1.baseRate
+            ],
             archivedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             archivedByUserId: Optional("archived_by_user_id"),
             counterpartyDriverId: Optional("counterparty_driver_id"),

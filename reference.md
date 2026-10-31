@@ -2697,6 +2697,9 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.billingNew.fuelSurchargeConfigurations.createV1(request: .init(
+        appliesToLineItemTypes: [
+            .baseRate
+        ],
         invoiceType: .accountsReceivable,
         name: "name",
         rates: [
@@ -2981,7 +2984,7 @@ try await main()
 <dl>
 <dd>
 
-Updates an active fuel surcharge configuration's name or rates; given rates replace the stored ones in full. | authz: allowed_org_types=[provider], min_org_role=operator | (FuelSurchargeConfigurationClientUpdate1) -> (FuelSurchargeConfiguration1)
+Updates an active fuel surcharge configuration's name, line item types or rates; given lists replace the stored ones in full. | authz: allowed_org_types=[provider], min_org_role=operator | (FuelSurchargeConfigurationClientUpdate1) -> (FuelSurchargeConfiguration1)
 </dd>
 </dl>
 </dd>

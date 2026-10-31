@@ -2,6 +2,7 @@ import Foundation
 
 public struct FuelSurchargeConfiguration1: Codable, Hashable, Sendable {
     public let id: String
+    public let appliesToLineItemTypes: [InvoiceLineItemTypeEnum1]
     public let archivedAtTimestamp: Date?
     /// Must be a string starting with `user_`
     public let archivedByUserId: String?
@@ -27,6 +28,7 @@ public struct FuelSurchargeConfiguration1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        appliesToLineItemTypes: [InvoiceLineItemTypeEnum1],
         archivedAtTimestamp: Date? = nil,
         archivedByUserId: String? = nil,
         counterpartyDriverId: String? = nil,
@@ -45,6 +47,7 @@ public struct FuelSurchargeConfiguration1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.appliesToLineItemTypes = appliesToLineItemTypes
         self.archivedAtTimestamp = archivedAtTimestamp
         self.archivedByUserId = archivedByUserId
         self.counterpartyDriverId = counterpartyDriverId
@@ -66,6 +69,7 @@ public struct FuelSurchargeConfiguration1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.appliesToLineItemTypes = try container.decode([InvoiceLineItemTypeEnum1].self, forKey: .appliesToLineItemTypes)
         self.archivedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .archivedAtTimestamp)
         self.archivedByUserId = try container.decodeIfPresent(String.self, forKey: .archivedByUserId)
         self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
@@ -88,6 +92,7 @@ public struct FuelSurchargeConfiguration1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.appliesToLineItemTypes, forKey: .appliesToLineItemTypes)
         try container.encodeIfPresent(self.archivedAtTimestamp, forKey: .archivedAtTimestamp)
         try container.encodeIfPresent(self.archivedByUserId, forKey: .archivedByUserId)
         try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
@@ -108,6 +113,7 @@ public struct FuelSurchargeConfiguration1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case appliesToLineItemTypes = "applies_to_line_item_types"
         case archivedAtTimestamp = "archived_at_timestamp"
         case archivedByUserId = "archived_by_user_id"
         case counterpartyDriverId = "counterparty_driver_id"

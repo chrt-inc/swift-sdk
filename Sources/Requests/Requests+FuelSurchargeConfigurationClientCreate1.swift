@@ -2,6 +2,7 @@ import Foundation
 
 extension Requests {
     public struct FuelSurchargeConfigurationClientCreate1: Codable, Hashable, Sendable {
+        public let appliesToLineItemTypes: [InvoiceLineItemTypeEnum1]
         public let counterpartyDriverId: String?
         public let counterpartyOffChrtOrgDataId: String?
         /// Must be a string starting with `org_`
@@ -15,6 +16,7 @@ extension Requests {
         public let additionalProperties: [String: JSONValue]
 
         public init(
+            appliesToLineItemTypes: [InvoiceLineItemTypeEnum1],
             counterpartyDriverId: String? = nil,
             counterpartyOffChrtOrgDataId: String? = nil,
             counterpartyOrgId: String? = nil,
@@ -25,6 +27,7 @@ extension Requests {
             shipperAccountId: String? = nil,
             additionalProperties: [String: JSONValue] = .init()
         ) {
+            self.appliesToLineItemTypes = appliesToLineItemTypes
             self.counterpartyDriverId = counterpartyDriverId
             self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
             self.counterpartyOrgId = counterpartyOrgId
@@ -38,6 +41,7 @@ extension Requests {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.appliesToLineItemTypes = try container.decode([InvoiceLineItemTypeEnum1].self, forKey: .appliesToLineItemTypes)
             self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
             self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
             self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
@@ -52,6 +56,7 @@ extension Requests {
         public func encode(to encoder: Encoder) throws -> Void {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try encoder.encodeAdditionalProperties(self.additionalProperties)
+            try container.encode(self.appliesToLineItemTypes, forKey: .appliesToLineItemTypes)
             try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
             try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
             try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
@@ -64,6 +69,7 @@ extension Requests {
 
         /// Keys for encoding/decoding struct properties.
         enum CodingKeys: String, CodingKey, CaseIterable {
+            case appliesToLineItemTypes = "applies_to_line_item_types"
             case counterpartyDriverId = "counterparty_driver_id"
             case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
             case counterpartyOrgId = "counterparty_org_id"

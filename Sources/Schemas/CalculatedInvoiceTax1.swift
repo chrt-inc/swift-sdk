@@ -1,6 +1,7 @@
 import Foundation
 
 public struct CalculatedInvoiceTax1: Codable, Hashable, Sendable {
+    public let appliesToLineItemTypes: [InvoiceLineItemTypeEnum1]
     public let exportRefSageItemId: String?
     public let invoiceLineItemIds: [String]?
     public let name: String
@@ -14,6 +15,7 @@ public struct CalculatedInvoiceTax1: Codable, Hashable, Sendable {
     public let additionalProperties: [String: JSONValue]
 
     public init(
+        appliesToLineItemTypes: [InvoiceLineItemTypeEnum1],
         exportRefSageItemId: String? = nil,
         invoiceLineItemIds: [String]? = nil,
         name: String,
@@ -25,6 +27,7 @@ public struct CalculatedInvoiceTax1: Codable, Hashable, Sendable {
         taxableAmount: Double,
         additionalProperties: [String: JSONValue] = .init()
     ) {
+        self.appliesToLineItemTypes = appliesToLineItemTypes
         self.exportRefSageItemId = exportRefSageItemId
         self.invoiceLineItemIds = invoiceLineItemIds
         self.name = name
@@ -39,6 +42,7 @@ public struct CalculatedInvoiceTax1: Codable, Hashable, Sendable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.appliesToLineItemTypes = try container.decode([InvoiceLineItemTypeEnum1].self, forKey: .appliesToLineItemTypes)
         self.exportRefSageItemId = try container.decodeIfPresent(String.self, forKey: .exportRefSageItemId)
         self.invoiceLineItemIds = try container.decodeIfPresent([String].self, forKey: .invoiceLineItemIds)
         self.name = try container.decode(String.self, forKey: .name)
@@ -54,6 +58,7 @@ public struct CalculatedInvoiceTax1: Codable, Hashable, Sendable {
     public func encode(to encoder: Encoder) throws -> Void {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.appliesToLineItemTypes, forKey: .appliesToLineItemTypes)
         try container.encodeIfPresent(self.exportRefSageItemId, forKey: .exportRefSageItemId)
         try container.encodeIfPresent(self.invoiceLineItemIds, forKey: .invoiceLineItemIds)
         try container.encode(self.name, forKey: .name)
@@ -67,6 +72,7 @@ public struct CalculatedInvoiceTax1: Codable, Hashable, Sendable {
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case appliesToLineItemTypes = "applies_to_line_item_types"
         case exportRefSageItemId = "export_ref__sage__item_id"
         case invoiceLineItemIds = "invoice_line_item_ids"
         case name

@@ -24,6 +24,9 @@ import Chrt
                   "shipper_account_id": "shipper_account_id",
                   "tax_rules": [
                     {
+                      "applies_to_line_item_types": [
+                        "base_rate"
+                      ],
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
                       "name": "name",
                       "percentage": 1.1
@@ -54,6 +57,9 @@ import Chrt
             shipperAccountId: Optional("shipper_account_id"),
             taxRules: Optional([
                 TaxRule1(
+                    appliesToLineItemTypes: [
+                        InvoiceLineItemTypeEnum1.baseRate
+                    ],
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     name: "name",
                     percentage: 1.1
@@ -88,6 +94,9 @@ import Chrt
                   "shipper_account_id": "shipper_account_id",
                   "tax_rules": [
                     {
+                      "applies_to_line_item_types": [
+                        "base_rate"
+                      ],
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
                       "name": "name",
                       "percentage": 1.1
@@ -118,6 +127,9 @@ import Chrt
             shipperAccountId: Optional("shipper_account_id"),
             taxRules: Optional([
                 TaxRule1(
+                    appliesToLineItemTypes: [
+                        InvoiceLineItemTypeEnum1.baseRate
+                    ],
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     name: "name",
                     percentage: 1.1
@@ -155,6 +167,9 @@ import Chrt
                   "shipper_account_id": "shipper_account_id",
                   "tax_rules": [
                     {
+                      "applies_to_line_item_types": [
+                        "base_rate"
+                      ],
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
                       "name": "name",
                       "percentage": 1.1
@@ -185,6 +200,9 @@ import Chrt
             shipperAccountId: Optional("shipper_account_id"),
             taxRules: Optional([
                 TaxRule1(
+                    appliesToLineItemTypes: [
+                        InvoiceLineItemTypeEnum1.baseRate
+                    ],
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     name: "name",
                     percentage: 1.1
@@ -221,6 +239,9 @@ import Chrt
                       "shipper_account_id": "shipper_account_id",
                       "tax_rules": [
                         {
+                          "applies_to_line_item_types": [
+                            "base_rate"
+                          ],
                           "name": "name",
                           "percentage": 1.1
                         }
@@ -255,6 +276,9 @@ import Chrt
                     shipperAccountId: Optional("shipper_account_id"),
                     taxRules: Optional([
                         TaxRule1(
+                            appliesToLineItemTypes: [
+                                InvoiceLineItemTypeEnum1.baseRate
+                            ],
                             name: "name",
                             percentage: 1.1
                         )
@@ -301,6 +325,9 @@ import Chrt
                   "shipper_account_id": "shipper_account_id",
                   "tax_rules": [
                     {
+                      "applies_to_line_item_types": [
+                        "base_rate"
+                      ],
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
                       "name": "name",
                       "percentage": 1.1
@@ -331,6 +358,9 @@ import Chrt
             shipperAccountId: Optional("shipper_account_id"),
             taxRules: Optional([
                 TaxRule1(
+                    appliesToLineItemTypes: [
+                        InvoiceLineItemTypeEnum1.baseRate
+                    ],
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     name: "name",
                     percentage: 1.1
@@ -365,6 +395,9 @@ import Chrt
                   "shipper_account_id": "shipper_account_id",
                   "tax_rules": [
                     {
+                      "applies_to_line_item_types": [
+                        "base_rate"
+                      ],
                       "export_ref__sage__item_id": "export_ref__sage__item_id",
                       "name": "name",
                       "percentage": 1.1
@@ -395,6 +428,9 @@ import Chrt
             shipperAccountId: Optional("shipper_account_id"),
             taxRules: Optional([
                 TaxRule1(
+                    appliesToLineItemTypes: [
+                        InvoiceLineItemTypeEnum1.baseRate
+                    ],
                     exportRefSageItemId: Optional("export_ref__sage__item_id"),
                     name: "name",
                     percentage: 1.1

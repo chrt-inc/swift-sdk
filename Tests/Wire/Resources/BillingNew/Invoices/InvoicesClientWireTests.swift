@@ -1272,6 +1272,9 @@ import Chrt
                     "subtotal": 1.1,
                     "tax_breakdown": [
                       {
+                        "applies_to_line_item_types": [
+                          "base_rate"
+                        ],
                         "name": "name",
                         "percentage": 1.1,
                         "tax_amount": 1.1,
@@ -1362,6 +1365,9 @@ import Chrt
                       "shipper_account_id": "shipper_account_id",
                       "tax_rules": [
                         {
+                          "applies_to_line_item_types": [
+                            "base_rate"
+                          ],
                           "name": "name",
                           "percentage": 1.1
                         }
@@ -1386,6 +1392,9 @@ import Chrt
                 subtotal: 1.1,
                 taxBreakdown: Optional([
                     CalculatedInvoiceTax1(
+                        appliesToLineItemTypes: [
+                            InvoiceLineItemTypeEnum1.baseRate
+                        ],
                         name: "name",
                         percentage: 1.1,
                         taxAmount: 1.1,
@@ -1476,6 +1485,9 @@ import Chrt
                     shipperAccountId: Optional("shipper_account_id"),
                     taxRules: Optional([
                         TaxRule1(
+                            appliesToLineItemTypes: [
+                                InvoiceLineItemTypeEnum1.baseRate
+                            ],
                             name: "name",
                             percentage: 1.1
                         )
@@ -1511,6 +1523,9 @@ import Chrt
                     "subtotal": 1.1,
                     "tax_breakdown": [
                       {
+                        "applies_to_line_item_types": [
+                          "base_rate"
+                        ],
                         "name": "name",
                         "percentage": 1.1,
                         "tax_amount": 1.1,
@@ -1607,6 +1622,9 @@ import Chrt
                       "shipper_account_id": "shipper_account_id",
                       "tax_rules": [
                         {
+                          "applies_to_line_item_types": [
+                            "base_rate"
+                          ],
                           "name": "name",
                           "percentage": 1.1
                         }
@@ -1640,6 +1658,9 @@ import Chrt
                 subtotal: 1.1,
                 taxBreakdown: Optional([
                     CalculatedInvoiceTax1(
+                        appliesToLineItemTypes: [
+                            InvoiceLineItemTypeEnum1.baseRate
+                        ],
                         name: "name",
                         percentage: 1.1,
                         taxAmount: 1.1,
@@ -1736,6 +1757,9 @@ import Chrt
                     shipperAccountId: Optional("shipper_account_id"),
                     taxRules: Optional([
                         TaxRule1(
+                            appliesToLineItemTypes: [
+                                InvoiceLineItemTypeEnum1.baseRate
+                            ],
                             name: "name",
                             percentage: 1.1
                         )
