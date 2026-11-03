@@ -8,7 +8,7 @@
     "environmentEnumName": "ChrtEnvironment",
     "nullableAsOptional": true
   },
-  "originGitCommit": "96b0a77d4382a121999ddf9aa19a4b948b5ff84b",
+  "originGitCommit": "8576ec683d4c798497d1ce91c3b6e7618618f112",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
   "requestedVersion": "1.1074.0",
