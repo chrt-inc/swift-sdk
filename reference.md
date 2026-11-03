@@ -33560,7 +33560,7 @@ try await main()
 <dl>
 <dd>
 
-Overrides wait-time timestamps or geofence distance for a task. | authz_personas=[executor_org_operators] | (WaitTimeOverrideReq) -> (bool)
+Overrides wait-time timestamps or geofence distance for a task. The task group needs no assigned driver. | authz_personas=[executor_org_operators, task_group_coordinator_operators (off-chrt executor only)] | (WaitTimeOverrideReq) -> (bool)
 </dd>
 </dl>
 </dd>
