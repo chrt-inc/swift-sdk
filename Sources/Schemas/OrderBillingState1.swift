@@ -4,11 +4,11 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
     public let id: String
     public let createdAtTimestamp: Date
     /// Must be a string starting with `user_`
-    public let createdByUserId: String
+    public let createdByUserId: String?
     public let enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]?
     public let lastEditedAtTimestamp: Date
     /// Must be a string starting with `user_`
-    public let lastEditedByUserId: String
+    public let lastEditedByUserId: String?
     public let orderId: String
     /// Must be a string starting with `org_`
     public let ownedByOrgId: String
@@ -21,10 +21,10 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
     public init(
         id: String,
         createdAtTimestamp: Date,
-        createdByUserId: String,
+        createdByUserId: String? = nil,
         enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]? = nil,
         lastEditedAtTimestamp: Date,
-        lastEditedByUserId: String,
+        lastEditedByUserId: String? = nil,
         orderId: String,
         ownedByOrgId: String,
         rateSheetSelections: [RateSheetSelection1]? = nil,
@@ -50,10 +50,10 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
-        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.enabledSurchargeTypes = try container.decodeIfPresent([OrderBillingSurchargeTypeEnum1].self, forKey: .enabledSurchargeTypes)
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
-        self.lastEditedByUserId = try container.decode(String.self, forKey: .lastEditedByUserId)
+        self.lastEditedByUserId = try container.decodeIfPresent(String.self, forKey: .lastEditedByUserId)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
         self.rateSheetSelections = try container.decodeIfPresent([RateSheetSelection1].self, forKey: .rateSheetSelections)
@@ -67,10 +67,10 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
-        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.enabledSurchargeTypes, forKey: .enabledSurchargeTypes)
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
-        try container.encode(self.lastEditedByUserId, forKey: .lastEditedByUserId)
+        try container.encodeIfPresent(self.lastEditedByUserId, forKey: .lastEditedByUserId)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)
         try container.encodeIfPresent(self.rateSheetSelections, forKey: .rateSheetSelections)

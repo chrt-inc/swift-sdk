@@ -11,7 +11,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
     public let counterpartyOrgId: String?
     public let createdAtTimestamp: Date
     /// Must be a string starting with `user_`
-    public let createdByUserId: String
+    public let createdByUserId: String?
     public let currencyCode: BillingCurrencyCodeEnum1
     public let currencyConversion: InvoiceLineItemCurrencyConversion1?
     public let description: String
@@ -22,7 +22,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
     public let invoiceType: InvoiceTypeEnum1
     public let lastEditedAtTimestamp: Date
     /// Must be a string starting with `user_`
-    public let lastEditedByUserId: String
+    public let lastEditedByUserId: String?
     public let lineItemType: InvoiceLineItemTypeEnum1
     public let needsReview: Bool?
     public let orderId: String?
@@ -52,7 +52,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         counterpartyOffChrtOrgDataId: String? = nil,
         counterpartyOrgId: String? = nil,
         createdAtTimestamp: Date,
-        createdByUserId: String,
+        createdByUserId: String? = nil,
         currencyCode: BillingCurrencyCodeEnum1,
         currencyConversion: InvoiceLineItemCurrencyConversion1? = nil,
         description: String,
@@ -62,7 +62,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         invoiceId: String? = nil,
         invoiceType: InvoiceTypeEnum1,
         lastEditedAtTimestamp: Date,
-        lastEditedByUserId: String,
+        lastEditedByUserId: String? = nil,
         lineItemType: InvoiceLineItemTypeEnum1,
         needsReview: Bool? = nil,
         orderId: String? = nil,
@@ -129,7 +129,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
         self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
-        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.currencyCode = try container.decode(BillingCurrencyCodeEnum1.self, forKey: .currencyCode)
         self.currencyConversion = try container.decodeIfPresent(InvoiceLineItemCurrencyConversion1.self, forKey: .currencyConversion)
         self.description = try container.decode(String.self, forKey: .description)
@@ -139,7 +139,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         self.invoiceId = try container.decodeIfPresent(String.self, forKey: .invoiceId)
         self.invoiceType = try container.decode(InvoiceTypeEnum1.self, forKey: .invoiceType)
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
-        self.lastEditedByUserId = try container.decode(String.self, forKey: .lastEditedByUserId)
+        self.lastEditedByUserId = try container.decodeIfPresent(String.self, forKey: .lastEditedByUserId)
         self.lineItemType = try container.decode(InvoiceLineItemTypeEnum1.self, forKey: .lineItemType)
         self.needsReview = try container.decodeIfPresent(Bool.self, forKey: .needsReview)
         self.orderId = try container.decodeIfPresent(String.self, forKey: .orderId)
@@ -170,7 +170,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
         try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
-        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encode(self.currencyCode, forKey: .currencyCode)
         try container.encodeIfPresent(self.currencyConversion, forKey: .currencyConversion)
         try container.encode(self.description, forKey: .description)
@@ -180,7 +180,7 @@ public struct InvoiceLineItemServerCreate1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.invoiceId, forKey: .invoiceId)
         try container.encode(self.invoiceType, forKey: .invoiceType)
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
-        try container.encode(self.lastEditedByUserId, forKey: .lastEditedByUserId)
+        try container.encodeIfPresent(self.lastEditedByUserId, forKey: .lastEditedByUserId)
         try container.encode(self.lineItemType, forKey: .lineItemType)
         try container.encodeIfPresent(self.needsReview, forKey: .needsReview)
         try container.encodeIfPresent(self.orderId, forKey: .orderId)

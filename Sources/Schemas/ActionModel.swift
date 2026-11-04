@@ -3,6 +3,7 @@ import Foundation
 public enum ActionModel: Codable, Hashable, Sendable {
     case chrtGroundProviderTaskActionEnum1(ChrtGroundProviderTaskActionEnum1)
     case cargoOnFlightTaskActionEnum1(CargoOnFlightTaskActionEnum1)
+    case cargoOnVesselTaskActionEnum1(CargoOnVesselTaskActionEnum1)
     case onboardCourierTaskActionEnum1(OnboardCourierTaskActionEnum1)
 
     public init(from decoder: Decoder) throws {
@@ -11,6 +12,8 @@ public enum ActionModel: Codable, Hashable, Sendable {
             self = .chrtGroundProviderTaskActionEnum1(value)
         } else if let value = try? container.decode(CargoOnFlightTaskActionEnum1.self) {
             self = .cargoOnFlightTaskActionEnum1(value)
+        } else if let value = try? container.decode(CargoOnVesselTaskActionEnum1.self) {
+            self = .cargoOnVesselTaskActionEnum1(value)
         } else if let value = try? container.decode(OnboardCourierTaskActionEnum1.self) {
             self = .onboardCourierTaskActionEnum1(value)
         } else {
@@ -27,6 +30,8 @@ public enum ActionModel: Codable, Hashable, Sendable {
         case .chrtGroundProviderTaskActionEnum1(let value):
             try container.encode(value)
         case .cargoOnFlightTaskActionEnum1(let value):
+            try container.encode(value)
+        case .cargoOnVesselTaskActionEnum1(let value):
             try container.encode(value)
         case .onboardCourierTaskActionEnum1(let value):
             try container.encode(value)

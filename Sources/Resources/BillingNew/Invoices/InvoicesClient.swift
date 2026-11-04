@@ -32,7 +32,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Creates a new draft invoice, optionally attaching selected uninvoiced charges atomically. Omitted dates derive from completed deliveries; empty drafts and charges without completed delivery dates require explicit bounds. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateReq) -> (PydanticObjectId)
+    /// Creates a new draft invoice, optionally attaching selected uninvoiced charges atomically. Omitted dates derive from completed or attempted deliveries; empty drafts and charges without a delivery date require explicit bounds. | authz: allowed_org_types=[provider], min_org_role=operator | (InvoiceCreateReq) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation

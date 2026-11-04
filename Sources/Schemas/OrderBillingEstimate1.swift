@@ -4,7 +4,7 @@ public struct OrderBillingEstimate1: Codable, Hashable, Sendable {
     public let id: String
     public let createdAtTimestamp: Date
     /// Must be a string starting with `user_`
-    public let createdByUserId: String
+    public let createdByUserId: String?
     public let lineItems: [OrderBillingEstimateLineItem1]?
     public let orderId: String
     /// Must be a string starting with `org_`
@@ -16,7 +16,7 @@ public struct OrderBillingEstimate1: Codable, Hashable, Sendable {
     public init(
         id: String,
         createdAtTimestamp: Date,
-        createdByUserId: String,
+        createdByUserId: String? = nil,
         lineItems: [OrderBillingEstimateLineItem1]? = nil,
         orderId: String,
         ownedByOrgId: String,
@@ -37,7 +37,7 @@ public struct OrderBillingEstimate1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
-        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.lineItems = try container.decodeIfPresent([OrderBillingEstimateLineItem1].self, forKey: .lineItems)
         self.orderId = try container.decode(String.self, forKey: .orderId)
         self.ownedByOrgId = try container.decode(String.self, forKey: .ownedByOrgId)
@@ -50,7 +50,7 @@ public struct OrderBillingEstimate1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
-        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.lineItems, forKey: .lineItems)
         try container.encode(self.orderId, forKey: .orderId)
         try container.encode(self.ownedByOrgId, forKey: .ownedByOrgId)

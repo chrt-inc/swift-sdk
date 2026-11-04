@@ -19,6 +19,7 @@ public enum RulesItem: Codable, Hashable, Sendable {
     case pickAndHold(PickAndHoldChargeRule1)
     case pieceCount(PieceCountChargeRule1)
     case revenueShare(RevenueShareChargeRule1)
+    case stopFee(StopFeeChargeRule1)
     case supplierMarkup(SupplierMarkupChargeRule1)
     case vehicleSurcharge(VehicleSurchargeChargeRule1)
     case waitTime(WaitTimeChargeRule1)
@@ -66,6 +67,8 @@ public enum RulesItem: Codable, Hashable, Sendable {
             self = .pieceCount(try PieceCountChargeRule1(from: decoder))
         case "revenue_share":
             self = .revenueShare(try RevenueShareChargeRule1(from: decoder))
+        case "stop_fee":
+            self = .stopFee(try StopFeeChargeRule1(from: decoder))
         case "supplier_markup":
             self = .supplierMarkup(try SupplierMarkupChargeRule1(from: decoder))
         case "vehicle_surcharge":
@@ -144,6 +147,9 @@ public enum RulesItem: Codable, Hashable, Sendable {
             try data.encode(to: encoder)
         case .revenueShare(let data):
             try container.encode("revenue_share", forKey: .ruleType)
+            try data.encode(to: encoder)
+        case .stopFee(let data):
+            try container.encode("stop_fee", forKey: .ruleType)
             try data.encode(to: encoder)
         case .supplierMarkup(let data):
             try container.encode("supplier_markup", forKey: .ruleType)

@@ -2,7 +2,6 @@ import Foundation
 
 public final class BillingNewClient: Sendable {
     public let billingPeriods: BillingPeriodsClient
-    public let chrtGroundProviderRates: ChrtGroundProviderRatesClient
     public let fuelSurchargeConfigurations: FuelSurchargeConfigurationsClient
     public let invoiceLineItems: InvoiceLineItemsClient
     public let invoices: InvoicesClient
@@ -16,7 +15,6 @@ public final class BillingNewClient: Sendable {
 
     init(config: ClientConfig) {
         self.billingPeriods = BillingPeriodsClient(config: config)
-        self.chrtGroundProviderRates = ChrtGroundProviderRatesClient(config: config)
         self.fuelSurchargeConfigurations = FuelSurchargeConfigurationsClient(config: config)
         self.invoiceLineItems = InvoiceLineItemsClient(config: config)
         self.invoices = InvoicesClient(config: config)

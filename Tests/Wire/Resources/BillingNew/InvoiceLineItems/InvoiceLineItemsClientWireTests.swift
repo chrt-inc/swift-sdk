@@ -76,7 +76,7 @@ import Chrt
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
+                createdByUserId: Optional("created_by_user_id"),
                 currencyCode: BillingCurrencyCodeEnum1.usd,
                 currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
                     conversionRate: 1.1,
@@ -91,7 +91,7 @@ import Chrt
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
+                lastEditedByUserId: Optional("last_edited_by_user_id"),
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 needsReview: Optional(true),
                 orderId: Optional("order_id"),
@@ -208,7 +208,7 @@ import Chrt
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
+                createdByUserId: Optional("created_by_user_id"),
                 currencyCode: BillingCurrencyCodeEnum1.usd,
                 currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
                     conversionRate: 1.1,
@@ -223,7 +223,7 @@ import Chrt
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
+                lastEditedByUserId: Optional("last_edited_by_user_id"),
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 needsReview: Optional(true),
                 orderId: Optional("order_id"),
@@ -342,7 +342,7 @@ import Chrt
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
+                createdByUserId: Optional("created_by_user_id"),
                 currencyCode: BillingCurrencyCodeEnum1.usd,
                 currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
                     conversionRate: 1.1,
@@ -357,7 +357,7 @@ import Chrt
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
+                lastEditedByUserId: Optional("last_edited_by_user_id"),
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 needsReview: Optional(true),
                 orderId: Optional("order_id"),
@@ -431,12 +431,10 @@ import Chrt
                       "invoice_line_item": {
                         "_id": "_id",
                         "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "created_by_user_id": "created_by_user_id",
                         "currency_code": "USD",
                         "description": "description",
                         "invoice_type": "accounts_receivable",
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_by_user_id": "last_edited_by_user_id",
                         "line_item_type": "base_rate",
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
@@ -662,12 +660,10 @@ import Chrt
                     invoiceLineItem: Optional(InvoiceLineItem1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
                         currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
                         invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
                         lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
@@ -815,7 +811,7 @@ import Chrt
                     counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                     counterpartyOrgId: Optional("counterparty_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    createdByUserId: "created_by_user_id",
+                    createdByUserId: Optional("created_by_user_id"),
                     currencyCode: BillingCurrencyCodeEnum1.usd,
                     currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
                         conversionRate: 1.1,
@@ -829,7 +825,7 @@ import Chrt
                     invoiceId: Optional("invoice_id"),
                     invoiceType: InvoiceTypeEnum1.accountsReceivable,
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    lastEditedByUserId: "last_edited_by_user_id",
+                    lastEditedByUserId: Optional("last_edited_by_user_id"),
                     lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                     needsReview: Optional(true),
                     orderId: Optional("order_id"),
@@ -1159,238 +1155,6 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func createFromRateSheetsV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                [
-                  {
-                    "_id": "_id",
-                    "awb_number": "awb_number",
-                    "billing_line_key": "billing_line_key",
-                    "billing_period_id": "billing_period_id",
-                    "counterparty_driver_id": "counterparty_driver_id",
-                    "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
-                    "counterparty_org_id": "counterparty_org_id",
-                    "created_at_timestamp": "2024-01-15T09:30:00Z",
-                    "created_by_user_id": "created_by_user_id",
-                    "currency_code": "USD",
-                    "currency_conversion": {
-                      "conversion_rate": 1.1,
-                      "description": "description",
-                      "source_currency_code": "USD",
-                      "source_unit_price": 1.1
-                    },
-                    "description": "description",
-                    "edited_by_user": true,
-                    "export_ref__sage__item_id": "export_ref__sage__item_id",
-                    "generated_by_pricing": true,
-                    "invoice_id": "invoice_id",
-                    "invoice_type": "accounts_receivable",
-                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                    "last_edited_by_user_id": "last_edited_by_user_id",
-                    "line_item_type": "base_rate",
-                    "needs_review": true,
-                    "order_id": "order_id",
-                    "owned_by_org_id": "owned_by_org_id",
-                    "quantity": 1.1,
-                    "rate_sheet_id": "rate_sheet_id",
-                    "rate_sheet_revision": 1,
-                    "schema_version": 1,
-                    "shipper_account_id": "shipper_account_id",
-                    "source_order_billing_quote_id": "source_order_billing_quote_id",
-                    "status": "draft",
-                    "task_group_id": "task_group_id",
-                    "task_ids": [
-                      "task_ids"
-                    ],
-                    "task_short_ids": [
-                      "task_short_ids"
-                    ],
-                    "tax_percentage": 1.1,
-                    "total_amount": 1.1,
-                    "unit": "each",
-                    "unit_price": 1.1
-                  }
-                ]
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            InvoiceLineItem1(
-                id: "_id",
-                awbNumber: Optional("awb_number"),
-                billingLineKey: Optional("billing_line_key"),
-                billingPeriodId: Optional("billing_period_id"),
-                counterpartyDriverId: Optional("counterparty_driver_id"),
-                counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
-                counterpartyOrgId: Optional("counterparty_org_id"),
-                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
-                currencyCode: BillingCurrencyCodeEnum1.usd,
-                currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
-                    conversionRate: 1.1,
-                    description: Optional("description"),
-                    sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
-                    sourceUnitPrice: 1.1
-                )),
-                description: "description",
-                editedByUser: Optional(true),
-                exportRefSageItemId: Optional("export_ref__sage__item_id"),
-                generatedByPricing: Optional(true),
-                invoiceId: Optional("invoice_id"),
-                invoiceType: InvoiceTypeEnum1.accountsReceivable,
-                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
-                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
-                needsReview: Optional(true),
-                orderId: Optional("order_id"),
-                ownedByOrgId: "owned_by_org_id",
-                quantity: 1.1,
-                rateSheetId: Optional("rate_sheet_id"),
-                rateSheetRevision: Optional(1),
-                schemaVersion: 1,
-                shipperAccountId: Optional("shipper_account_id"),
-                sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
-                status: Optional(InvoiceLineItemStatusEnum1.draft),
-                taskGroupId: Optional("task_group_id"),
-                taskIds: Optional([
-                    "task_ids"
-                ]),
-                taskShortIds: Optional([
-                    "task_short_ids"
-                ]),
-                taxPercentage: Optional(1.1),
-                totalAmount: Optional(1.1),
-                unit: Optional(InvoiceLineItemUnitEnum1.each),
-                unitPrice: 1.1
-            )
-        ]
-        let response = try await client.billingNew.invoiceLineItems.createFromRateSheetsV1(
-            request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
-                taskGroupChrtGroundProviderRateSheetIds: [
-                    TaskGroupChrtGroundProviderRateSheetIds1(
-                        rateSheetIds: [
-                            "rate_sheet_ids"
-                        ],
-                        taskGroupId: "task_group_id"
-                    )
-                ]
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
-    @Test func previewFromRateSheetsV11() async throws -> Void {
-        let stub = HTTPStub()
-        stub.setResponse(
-            body: Foundation.Data(
-                #"""
-                [
-                  {
-                    "accounts_payable_invoice_line_items": [
-                      {
-                        "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "created_by_user_id": "created_by_user_id",
-                        "currency_code": "USD",
-                        "description": "description",
-                        "invoice_type": "accounts_receivable",
-                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_by_user_id": "last_edited_by_user_id",
-                        "line_item_type": "base_rate",
-                        "owned_by_org_id": "owned_by_org_id",
-                        "quantity": 1.1,
-                        "schema_version": 1,
-                        "unit_price": 1.1
-                      }
-                    ],
-                    "accounts_receivable_invoice_line_items": [
-                      {
-                        "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "created_by_user_id": "created_by_user_id",
-                        "currency_code": "USD",
-                        "description": "description",
-                        "invoice_type": "accounts_receivable",
-                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_by_user_id": "last_edited_by_user_id",
-                        "line_item_type": "base_rate",
-                        "owned_by_org_id": "owned_by_org_id",
-                        "quantity": 1.1,
-                        "schema_version": 1,
-                        "unit_price": 1.1
-                      }
-                    ],
-                    "task_group_id": "task_group_id"
-                  }
-                ]
-                """#.utf8
-            )
-        )
-        let client = ChrtClient(
-            baseURL: "https://api.fern.com",
-            token: "<token>",
-            urlSession: stub.urlSession
-        )
-        let expectedResponse = [
-            TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1(
-                accountsPayableInvoiceLineItems: Optional([
-                    InvoiceLineItemServerCreate1(
-                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
-                        currencyCode: BillingCurrencyCodeEnum1.usd,
-                        description: "description",
-                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
-                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
-                        ownedByOrgId: "owned_by_org_id",
-                        quantity: 1.1,
-                        schemaVersion: 1,
-                        unitPrice: 1.1
-                    )
-                ]),
-                accountsReceivableInvoiceLineItems: Optional([
-                    InvoiceLineItemServerCreate1(
-                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
-                        currencyCode: BillingCurrencyCodeEnum1.usd,
-                        description: "description",
-                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
-                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
-                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
-                        ownedByOrgId: "owned_by_org_id",
-                        quantity: 1.1,
-                        schemaVersion: 1,
-                        unitPrice: 1.1
-                    )
-                ]),
-                taskGroupId: "task_group_id"
-            )
-        ]
-        let response = try await client.billingNew.invoiceLineItems.previewFromRateSheetsV1(
-            request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
-                taskGroupChrtGroundProviderRateSheetIds: [
-                    TaskGroupChrtGroundProviderRateSheetIds1(
-                        rateSheetIds: [
-                            "rate_sheet_ids"
-                        ],
-                        taskGroupId: "task_group_id"
-                    )
-                ]
-            ),
-            requestOptions: RequestOptions(additionalHeaders: stub.headers)
-        )
-        try #require(response == expectedResponse)
-    }
-
     @Test func listV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -1415,12 +1179,10 @@ import Chrt
                       "invoice_line_item": {
                         "_id": "_id",
                         "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "created_by_user_id": "created_by_user_id",
                         "currency_code": "USD",
                         "description": "description",
                         "invoice_type": "accounts_receivable",
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_by_user_id": "last_edited_by_user_id",
                         "line_item_type": "base_rate",
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
@@ -1458,12 +1220,10 @@ import Chrt
                     invoiceLineItem: InvoiceLineItem1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
                         currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
                         invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
                         lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
@@ -1519,12 +1279,10 @@ import Chrt
                       {
                         "_id": "_id",
                         "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "created_by_user_id": "created_by_user_id",
                         "currency_code": "USD",
                         "description": "description",
                         "invoice_type": "accounts_receivable",
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_by_user_id": "last_edited_by_user_id",
                         "line_item_type": "base_rate",
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
@@ -1554,12 +1312,10 @@ import Chrt
                     InvoiceLineItem1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
                         currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
                         invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
                         lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
@@ -1599,12 +1355,10 @@ import Chrt
                       {
                         "_id": "_id",
                         "created_at_timestamp": "2024-01-15T09:30:00Z",
-                        "created_by_user_id": "created_by_user_id",
                         "currency_code": "USD",
                         "description": "description",
                         "invoice_type": "accounts_receivable",
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                        "last_edited_by_user_id": "last_edited_by_user_id",
                         "line_item_type": "base_rate",
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
@@ -1634,12 +1388,10 @@ import Chrt
                     InvoiceLineItem1(
                         id: "_id",
                         createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        createdByUserId: "created_by_user_id",
                         currencyCode: BillingCurrencyCodeEnum1.usd,
                         description: "description",
                         invoiceType: InvoiceTypeEnum1.accountsReceivable,
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        lastEditedByUserId: "last_edited_by_user_id",
                         lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
@@ -1743,7 +1495,7 @@ import Chrt
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                 counterpartyOrgId: Optional("counterparty_org_id"),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                createdByUserId: "created_by_user_id",
+                createdByUserId: Optional("created_by_user_id"),
                 currencyCode: BillingCurrencyCodeEnum1.usd,
                 currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
                     conversionRate: 1.1,
@@ -1758,7 +1510,7 @@ import Chrt
                 invoiceId: Optional("invoice_id"),
                 invoiceType: InvoiceTypeEnum1.accountsReceivable,
                 lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                lastEditedByUserId: "last_edited_by_user_id",
+                lastEditedByUserId: Optional("last_edited_by_user_id"),
                 lineItemType: InvoiceLineItemTypeEnum1.baseRate,
                 needsReview: Optional(true),
                 orderId: Optional("order_id"),
@@ -1865,7 +1617,7 @@ import Chrt
             counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
             counterpartyOrgId: Optional("counterparty_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            createdByUserId: "created_by_user_id",
+            createdByUserId: Optional("created_by_user_id"),
             currencyCode: BillingCurrencyCodeEnum1.usd,
             currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
                 conversionRate: 1.1,
@@ -1880,7 +1632,7 @@ import Chrt
             invoiceId: Optional("invoice_id"),
             invoiceType: InvoiceTypeEnum1.accountsReceivable,
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-            lastEditedByUserId: "last_edited_by_user_id",
+            lastEditedByUserId: Optional("last_edited_by_user_id"),
             lineItemType: InvoiceLineItemTypeEnum1.baseRate,
             needsReview: Optional(true),
             orderId: Optional("order_id"),

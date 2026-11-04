@@ -16,7 +16,7 @@ extension Requests {
         public let includeAirlines: [String]?
         /// Restrict connections to pass through these airports.
         public let includeAirports: [String]?
-        /// Airport-local date+time (naive, no offset). Origin-local for DEPARTURE_TIME, destination-local for ARRIVAL_TIME.
+        /// Airport-local date+time (naive, no offset). Origin-local for DEPARTURE_TIME, destination-local for ARRIVAL_TIME. Must be yesterday (UTC) or later; Cirium connections do not cover earlier schedules.
         public let localDateTime: Date
         /// Max stops per itinerary. 0 returns nonstop only.
         public let maxConnections: Int?

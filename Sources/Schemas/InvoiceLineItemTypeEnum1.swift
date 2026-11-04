@@ -9,6 +9,7 @@ public enum InvoiceLineItemTypeEnum1: String, Codable, Hashable, CaseIterable, S
     case waitTime = "wait_time"
     case attempt
     case pickAndHold = "pick_and_hold"
+    case stopFee = "stop_fee"
     case parking
     case tolls
     case additionalFee = "additional_fee"

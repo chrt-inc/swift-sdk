@@ -7,7 +7,7 @@ public final class InvoiceLineItemsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates account-split ad-hoc line items without assigning invoices. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
+    /// Creates account-split ad-hoc line items without assigning invoices; a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
     ///
     /// ```swift
     /// import Foundation
@@ -48,7 +48,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Previews account-split ad-hoc line items without persisting them. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
+    /// Previews account-split ad-hoc line items without persisting them; a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
     ///
     /// ```swift
     /// import Foundation
@@ -237,76 +237,6 @@ public final class InvoiceLineItemsClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: InvoiceLineItemExportListRes.self
-        )
-    }
-
-    /// Creates rate-sheet-derived line items without assigning invoices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[InvoiceLineItem1])
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import Chrt
-    ///
-    /// private func main() async throws {
-    ///     let client = ChrtClient(token: "<token>")
-    ///
-    ///     _ = try await client.billingNew.invoiceLineItems.createFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
-    ///         taskGroupChrtGroundProviderRateSheetIds: [
-    ///             TaskGroupChrtGroundProviderRateSheetIds1(
-    ///                 rateSheetIds: [
-    ///                     "rate_sheet_ids"
-    ///                 ],
-    ///                 taskGroupId: "task_group_id"
-    ///             )
-    ///         ]
-    ///     ))
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> [InvoiceLineItem1] {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing_new/invoice_line_items/from_rate_sheets/create/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: [InvoiceLineItem1].self
-        )
-    }
-
-    /// Previews accounts-payable, accounts-receivable, and tax line items from selected active rate sheets. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[task_group_coordinator_operators] | (InvoiceLineItemsFromChrtGroundProviderRateSheetsReq) -> (list[TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1])
-    ///
-    /// ```swift
-    /// import Foundation
-    /// import Chrt
-    ///
-    /// private func main() async throws {
-    ///     let client = ChrtClient(token: "<token>")
-    ///
-    ///     _ = try await client.billingNew.invoiceLineItems.previewFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq(
-    ///         taskGroupChrtGroundProviderRateSheetIds: [
-    ///             TaskGroupChrtGroundProviderRateSheetIds1(
-    ///                 rateSheetIds: [
-    ///                     "rate_sheet_ids"
-    ///                 ],
-    ///                 taskGroupId: "task_group_id"
-    ///             )
-    ///         ]
-    ///     ))
-    /// }
-    ///
-    /// try await main()
-    /// ```
-    ///
-    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func previewFromRateSheetsV1(request: InvoiceLineItemsFromChrtGroundProviderRateSheetsReq, requestOptions: RequestOptions? = nil) async throws -> [TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1] {
-        return try await httpClient.performRequest(
-            method: .post,
-            path: "/billing_new/invoice_line_items/from_rate_sheets/preview/v1",
-            body: request,
-            requestOptions: requestOptions,
-            responseType: [TaskGroupInvoiceLineItemsFromChrtGroundProviderRateSheetsPreview1].self
         )
     }
 
