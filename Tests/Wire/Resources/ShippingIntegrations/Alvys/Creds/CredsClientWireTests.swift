@@ -10,16 +10,20 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "access_token_expires_at_timestamp": "2024-01-15T09:30:00Z",
+                  "access_token_updated_at_timestamp": "2024-01-15T09:30:00Z",
                   "active": true,
-                  "base_url": "base_url",
+                  "client_id": "client_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
+                  "customer_id": "customer_id",
+                  "description": "description",
                   "high_water_mark_timestamp": "2024-01-15T09:30:00Z",
-                  "notes": "notes",
                   "org_id": "org_id",
                   "owned_by_user_id": "owned_by_user_id",
+                  "provider_account_label": "provider_account_label",
                   "provider_org_id": "provider_org_id",
                   "schema_version": 1,
-                  "shipping_integration": "atlas",
+                  "shipping_integration": "alvys",
                   "updated_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
@@ -30,21 +34,25 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = AtlasCredsLimited1(
+        let expectedResponse = AlvysCredsLimited1(
             id: "_id",
+            accessTokenExpiresAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            accessTokenUpdatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             active: Optional(true),
-            baseUrl: "base_url",
+            clientId: "client_id",
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            customerId: "customer_id",
+            description: Optional("description"),
             highWaterMarkTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-            notes: Optional("notes"),
             orgId: "org_id",
             ownedByUserId: "owned_by_user_id",
+            providerAccountLabel: Optional("provider_account_label"),
             providerOrgId: "provider_org_id",
             schemaVersion: 1,
-            shippingIntegration: .atlas,
+            shippingIntegration: .alvys,
             updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
         )
-        let response = try await client.shippingIntegrations.atlas.creds.detailV1(
+        let response = try await client.shippingIntegrations.alvys.creds.detailV1(
             providerOrgId: "provider_org_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -60,16 +68,20 @@ import Chrt
                   "items": [
                     {
                       "_id": "_id",
+                      "access_token_expires_at_timestamp": "2024-01-15T09:30:00Z",
+                      "access_token_updated_at_timestamp": "2024-01-15T09:30:00Z",
                       "active": true,
-                      "base_url": "base_url",
+                      "client_id": "client_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "customer_id": "customer_id",
+                      "description": "description",
                       "high_water_mark_timestamp": "2024-01-15T09:30:00Z",
-                      "notes": "notes",
                       "org_id": "org_id",
                       "owned_by_user_id": "owned_by_user_id",
+                      "provider_account_label": "provider_account_label",
                       "provider_org_id": "provider_org_id",
                       "schema_version": 1,
-                      "shipping_integration": "atlas",
+                      "shipping_integration": "alvys",
                       "updated_at_timestamp": "2024-01-15T09:30:00Z"
                     }
                   ],
@@ -83,26 +95,30 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = AtlasCredsListRes(
+        let expectedResponse = AlvysCredsListRes(
             items: [
-                AtlasCredsLimited1(
+                AlvysCredsLimited1(
                     id: "_id",
+                    accessTokenExpiresAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    accessTokenUpdatedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     active: Optional(true),
-                    baseUrl: "base_url",
+                    clientId: "client_id",
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    customerId: "customer_id",
+                    description: Optional("description"),
                     highWaterMarkTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                    notes: Optional("notes"),
                     orgId: "org_id",
                     ownedByUserId: "owned_by_user_id",
+                    providerAccountLabel: Optional("provider_account_label"),
                     providerOrgId: "provider_org_id",
                     schemaVersion: 1,
-                    shippingIntegration: .atlas,
+                    shippingIntegration: .alvys,
                     updatedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
                 )
             ],
             totalCount: 1
         )
-        let response = try await client.shippingIntegrations.atlas.creds.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        let response = try await client.shippingIntegrations.alvys.creds.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
     }
 
@@ -113,7 +129,8 @@ import Chrt
                 #"""
                 {
                   "failure_reason": "failure_reason",
-                  "ok": true
+                  "ok": true,
+                  "provider_account_label": "provider_account_label"
                 }
                 """#.utf8
             )
@@ -123,11 +140,12 @@ import Chrt
             token: "<token>",
             urlSession: stub.urlSession
         )
-        let expectedResponse = AtlasCredsTestRes(
+        let expectedResponse = AlvysCredsTestRes(
             failureReason: Optional("failure_reason"),
-            ok: true
+            ok: true,
+            providerAccountLabel: Optional("provider_account_label")
         )
-        let response = try await client.shippingIntegrations.atlas.creds.testV1(
+        let response = try await client.shippingIntegrations.alvys.creds.testV1(
             providerOrgId: "provider_org_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -149,10 +167,12 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = "string"
-        let response = try await client.shippingIntegrations.atlas.creds.createV1(
+        let response = try await client.shippingIntegrations.alvys.creds.createV1(
             providerOrgId: "provider_org_id",
             request: .init(
-                apiKey: "api_key",
+                clientId: "client_id",
+                clientSecret: "client_secret",
+                customerId: "customer_id",
                 schemaVersion: 1
             ),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
@@ -175,7 +195,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shippingIntegrations.atlas.creds.deleteV1(
+        let response = try await client.shippingIntegrations.alvys.creds.deleteV1(
             providerOrgId: "provider_org_id",
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
@@ -197,7 +217,7 @@ import Chrt
             urlSession: stub.urlSession
         )
         let expectedResponse = true
-        let response = try await client.shippingIntegrations.atlas.creds.updateV1(
+        let response = try await client.shippingIntegrations.alvys.creds.updateV1(
             providerOrgId: "provider_org_id",
             request: .init(),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)

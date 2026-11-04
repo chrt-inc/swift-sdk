@@ -8,4 +8,5 @@ public enum OrgShippingIntegrationEnum1: String, Codable, Hashable, CaseIterable
     case atlas
     case ecourier
     case courie
+    case alvys
 }

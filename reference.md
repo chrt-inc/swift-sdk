@@ -41736,8 +41736,865 @@ try await main()
 </dl>
 </details>
 
+## ShippingIntegrations Alvys Creds
+<details><summary><code>client.shippingIntegrations.alvys.creds.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Creds/CredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AlvysCredsLimited1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the caller's Alvys credential for one provider, without client secret or access token. | () -> (AlvysCredsLimited1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.creds.detailV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.creds.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Creds/CredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> AlvysCredsListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's Alvys credentials, one per connected provider, without client secret or access token. | () -> (AlvysCredsListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.creds.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.creds.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Creds/CredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AlvysCredsTestRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Confirms the caller's stored Alvys credentials for one provider can still obtain a read-only access token, and refreshes the account label read from that token. | authz: min_org_role=operator | () -> (AlvysCredsTestRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.creds.testV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.creds.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Creds/CredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.AlvysCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stores Alvys client credentials and the Alvys customer to read for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (AlvysCredsClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.creds.createV1(
+        providerOrgId: "provider_org_id",
+        request: .init(
+            clientId: "client_id",
+            clientSecret: "client_secret",
+            customerId: "customer_id",
+            schemaVersion: 1
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AlvysCredsClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.creds.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Creds/CredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the caller's Alvys credentials for one provider, stopping future syncs. | authz: min_org_role=administrator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.creds.deleteV1(providerOrgId: "provider_org_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.creds.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Creds/CredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.AlvysCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the caller's Alvys credentials for one provider. | authz: min_org_role=administrator | (AlvysCredsClientUpdate1) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.creds.updateV1(
+        providerOrgId: "provider_org_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerOrgId:** `String` — Must be a string starting with `org_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.AlvysCredsClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ShippingIntegrations Alvys Orders
+<details><summary><code>client.shippingIntegrations.alvys.orders.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Orders/AlvysOrdersClient.swift">detailByIntegrationOrderIdV1</a>(orgId: String, integrationOrderId: String, requestOptions: RequestOptions?) -> AlvysOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored Alvys load by the provider's own load ID. | () -> (AlvysOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.orders.detailByIntegrationOrderIdV1(
+        orgId: "org_id",
+        integrationOrderId: "integration_order_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `String` — CHRT org ID of the other party (executor if caller is coordinator, coordinator if caller is executor)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationOrderId:** `String` — The Alvys load Id (32 hex), as carried on a unified order row
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.orders.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Orders/AlvysOrdersClient.swift">detailV1</a>(id: String, requestOptions: RequestOptions?) -> AlvysOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns one mirrored Alvys load by its Mongo ObjectId. | () -> (AlvysOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.orders.detailV1(id: "id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Mongo ObjectId of the mirror document. The Alvys load Id is the integration_order_id, accepted by the by_integration_order_id route.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.orders.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Orders/AlvysOrdersClient.swift">listV1</a>(sortBy: AlvysOrderSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterProviderOrgId: [String]?, filterIntegrationOrderId: String?, filterProviderStatusRaw: String?, filterMirroredAtTimestampGte: Date?, filterMirroredAtTimestampLte: Date?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterUpdatedAtTimestampGte: Date?, filterUpdatedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> AlvysOrderListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists mirrored Alvys loads for the caller's organization with filtering, sorting, and pagination. | () -> (AlvysOrderListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.orders.listV1(
+        sortBy: .mirroredAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterProviderOrgId: [
+            "filter_provider_org_id"
+        ],
+        filterIntegrationOrderId: "filter_integration_order_id",
+        filterProviderStatusRaw: "filter_provider_status_raw",
+        filterMirroredAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterMirroredAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterUpdatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `AlvysOrderSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderOrgId:** `[String]?` — Filter by provider org ID(s)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterIntegrationOrderId:** `String?` — Filter by the exact Alvys load Id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterProviderStatusRaw:** `String?` — Filter by Alvys' own load status, e.g. Open or Invoiced
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampGte:** `Date?` — Filter mirrored_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterMirroredAtTimestampLte:** `Date?` — Filter mirrored_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampGte:** `Date?` — Filter updated_at_timestamp >= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUpdatedAtTimestampLte:** `Date?` — Filter updated_at_timestamp <= value
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shippingIntegrations.alvys.orders.<a href="/Sources/Resources/ShippingIntegrations/Alvys/Orders/AlvysOrdersClient.swift">syncOneV1</a>(request: Requests.AlvysOrderSyncOneReq, requestOptions: RequestOptions?) -> AlvysOrder1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches and mirrors one Alvys load by the provider's own load ID, updating the unified order list alongside it. | authz: min_org_role=operator | (AlvysOrderSyncOneReq) -> (AlvysOrder1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shippingIntegrations.alvys.orders.syncOneV1(request: .init(
+        integrationOrderId: "integration_order_id",
+        providerOrgId: "provider_org_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AlvysOrderSyncOneReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ShippingIntegrations Atlas Creds
-<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AtlasCredsLimited1</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/AtlasCredsClient.swift">detailV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AtlasCredsLimited1</code></summary>
 <dl>
 <dd>
 
@@ -41808,7 +42665,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> AtlasCredsListRes</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/AtlasCredsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> AtlasCredsListRes</code></summary>
 <dl>
 <dd>
 
@@ -41871,7 +42728,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AtlasCredsTestRes</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/AtlasCredsClient.swift">testV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> AtlasCredsTestRes</code></summary>
 <dl>
 <dd>
 
@@ -41942,7 +42799,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.AtlasCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/AtlasCredsClient.swift">createV1</a>(providerOrgId: String, request: Requests.AtlasCredsClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -42027,7 +42884,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/AtlasCredsClient.swift">deleteV1</a>(providerOrgId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -42098,7 +42955,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/CredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.AtlasCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shippingIntegrations.atlas.creds.<a href="/Sources/Resources/ShippingIntegrations/Atlas/Creds/AtlasCredsClient.swift">updateV1</a>(providerOrgId: String, request: Requests.AtlasCredsClientUpdate1, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 

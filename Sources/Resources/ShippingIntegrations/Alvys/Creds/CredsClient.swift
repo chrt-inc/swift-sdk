@@ -7,7 +7,7 @@ public final class CredsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Returns the caller's Atlas credential for one provider, without API key. | () -> (AtlasCredsLimited1)
+    /// Returns the caller's Alvys credential for one provider, without client secret or access token. | () -> (AlvysCredsLimited1)
     ///
     /// ```swift
     /// import Foundation
@@ -16,7 +16,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.atlas.creds.detailV1(providerOrgId: "provider_org_id")
+    ///     _ = try await client.shippingIntegrations.alvys.creds.detailV1(providerOrgId: "provider_org_id")
     /// }
     ///
     /// try await main()
@@ -24,16 +24,16 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func detailV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> AtlasCredsLimited1 {
+    public func detailV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> AlvysCredsLimited1 {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/atlas/creds/detail/v1/\(providerOrgId)",
+            path: "/shipping_integrations/alvys/creds/detail/v1/\(providerOrgId)",
             requestOptions: requestOptions,
-            responseType: AtlasCredsLimited1.self
+            responseType: AlvysCredsLimited1.self
         )
     }
 
-    /// Lists the caller's Atlas credentials, one per connected provider, without API key. | () -> (AtlasCredsListRes)
+    /// Lists the caller's Alvys credentials, one per connected provider, without client secret or access token. | () -> (AlvysCredsListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -42,23 +42,23 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.atlas.creds.listV1()
+    ///     _ = try await client.shippingIntegrations.alvys.creds.listV1()
     /// }
     ///
     /// try await main()
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(requestOptions: RequestOptions? = nil) async throws -> AtlasCredsListRes {
+    public func listV1(requestOptions: RequestOptions? = nil) async throws -> AlvysCredsListRes {
         return try await httpClient.performRequest(
             method: .get,
-            path: "/shipping_integrations/atlas/creds/list/v1",
+            path: "/shipping_integrations/alvys/creds/list/v1",
             requestOptions: requestOptions,
-            responseType: AtlasCredsListRes.self
+            responseType: AlvysCredsListRes.self
         )
     }
 
-    /// Tests whether stored Atlas credentials can authenticate against the provider. | authz: min_org_role=operator | () -> (AtlasCredsTestRes)
+    /// Confirms the caller's stored Alvys credentials for one provider can still obtain a read-only access token, and refreshes the account label read from that token. | authz: min_org_role=operator | () -> (AlvysCredsTestRes)
     ///
     /// ```swift
     /// import Foundation
@@ -67,7 +67,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.atlas.creds.testV1(providerOrgId: "provider_org_id")
+    ///     _ = try await client.shippingIntegrations.alvys.creds.testV1(providerOrgId: "provider_org_id")
     /// }
     ///
     /// try await main()
@@ -75,16 +75,16 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func testV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> AtlasCredsTestRes {
+    public func testV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> AlvysCredsTestRes {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping_integrations/atlas/creds/test/v1/\(providerOrgId)",
+            path: "/shipping_integrations/alvys/creds/test/v1/\(providerOrgId)",
             requestOptions: requestOptions,
-            responseType: AtlasCredsTestRes.self
+            responseType: AlvysCredsTestRes.self
         )
     }
 
-    /// Stores Atlas credentials for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (AtlasCredsClientCreate1) -> (PydanticObjectId)
+    /// Stores Alvys client credentials and the Alvys customer to read for one provider on behalf of the caller's organization. | authz: min_org_role=administrator | (AlvysCredsClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -93,10 +93,12 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.atlas.creds.createV1(
+    ///     _ = try await client.shippingIntegrations.alvys.creds.createV1(
     ///         providerOrgId: "provider_org_id",
     ///         request: .init(
-    ///             apiKey: "api_key",
+    ///             clientId: "client_id",
+    ///             clientSecret: "client_secret",
+    ///             customerId: "customer_id",
     ///             schemaVersion: 1
     ///         )
     ///     )
@@ -107,17 +109,17 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(providerOrgId: String, request: Requests.AtlasCredsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createV1(providerOrgId: String, request: Requests.AlvysCredsClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
-            path: "/shipping_integrations/atlas/creds/v1/\(providerOrgId)",
+            path: "/shipping_integrations/alvys/creds/v1/\(providerOrgId)",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self
         )
     }
 
-    /// Deletes stored Atlas credentials for one provider. | authz: min_org_role=administrator | () -> (bool)
+    /// Deletes the caller's Alvys credentials for one provider, stopping future syncs. | authz: min_org_role=administrator | () -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -126,7 +128,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.atlas.creds.deleteV1(providerOrgId: "provider_org_id")
+    ///     _ = try await client.shippingIntegrations.alvys.creds.deleteV1(providerOrgId: "provider_org_id")
     /// }
     ///
     /// try await main()
@@ -137,13 +139,13 @@ public final class CredsClient: Sendable {
     public func deleteV1(providerOrgId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .delete,
-            path: "/shipping_integrations/atlas/creds/v1/\(providerOrgId)",
+            path: "/shipping_integrations/alvys/creds/v1/\(providerOrgId)",
             requestOptions: requestOptions,
             responseType: Bool.self
         )
     }
 
-    /// Updates stored Atlas credentials for one provider. | authz: min_org_role=administrator | (AtlasCredsClientUpdate1) -> (bool)
+    /// Updates the caller's Alvys credentials for one provider. | authz: min_org_role=administrator | (AlvysCredsClientUpdate1) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -152,7 +154,7 @@ public final class CredsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shippingIntegrations.atlas.creds.updateV1(
+    ///     _ = try await client.shippingIntegrations.alvys.creds.updateV1(
     ///         providerOrgId: "provider_org_id",
     ///         request: .init()
     ///     )
@@ -163,10 +165,10 @@ public final class CredsClient: Sendable {
     ///
     /// - Parameter providerOrgId: Must be a string starting with `org_`
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func updateV1(providerOrgId: String, request: Requests.AtlasCredsClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func updateV1(providerOrgId: String, request: Requests.AlvysCredsClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .patch,
-            path: "/shipping_integrations/atlas/creds/v1/\(providerOrgId)",
+            path: "/shipping_integrations/alvys/creds/v1/\(providerOrgId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
