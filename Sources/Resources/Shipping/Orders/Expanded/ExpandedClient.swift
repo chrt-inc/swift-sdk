@@ -71,7 +71,7 @@ public final class ExpandedClient: Sendable {
         )
     }
 
-    /// Lists expanded orders where the caller's provider org is the coordinator, an executor, or both. Each order appears once with role-filtered task-group details. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListForProviderRes)
+    /// Lists expanded orders where the caller's provider org is the coordinator, an executor, or both. Each order appears once with role-filtered task-group details. filter_status matches the order status where the caller coordinates and the caller's own task group statuses where it only executes. | authz: allowed_org_types=[provider], min_org_role=operator | (OrderAndTaskGroupExpandedReq) -> (OrdersExpandedListForProviderRes)
     ///
     /// ```swift
     /// import Foundation
@@ -82,6 +82,9 @@ public final class ExpandedClient: Sendable {
     ///
     ///     _ = try await client.shipping.orders.expanded.listForProviderOperatorsV1(
     ///         providerRole: .all,
+    ///         filterExecutorTaskGroupStatus: [
+    ///             .draft
+    ///         ],
     ///         sortBy: .draftStartedAtTimestamp,
     ///         sortOrder: .asc,
     ///         page: 1,
@@ -144,6 +147,7 @@ public final class ExpandedClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter filterExecutorTaskGroupStatus: Filter to orders where at least one task group executed by the caller's org has one of these statuses
     /// - Parameter sortOrder: Sort order (asc or desc)
     /// - Parameter search: Full-text search query (searches order short ID, off-CHRT reference ID, and AWB)
     /// - Parameter filterOrderIds: Filter by selected order ids
@@ -159,12 +163,13 @@ public final class ExpandedClient: Sendable {
     /// - Parameter filterCoordinatorDepartmentIds: Filter by coordinator department IDs
     /// - Parameter filterCoordinatorLabels: Filter by all supplied coordinator labels (exact matches).
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampLte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabels: [String]? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
+    public func listForProviderOperatorsV1(providerRole: OrderProviderRoleFilterEnum? = nil, filterExecutorTaskGroupStatus: [TaskGroupStatusEnum1]? = nil, sortBy: OrderSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterOrderIds: [String]? = nil, filterStatus: [OrderStatusEnum1]? = nil, filterServiceLine: [ServiceLineEnum]? = nil, filterOrderClassificationByTaskGroupType: [TaskGroupTypeEnum1]? = nil, filterAwbNumber: String? = nil, filterHasInvoice: Bool? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampLte: Date? = nil, filterLastDeliveryTaskCompletedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterExecutorOrgId: String? = nil, filterExecutorDepartmentIds: [String]? = nil, filterOffChrtExecutorOrgDataId: String? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, filterCoordinatorShipperAccountIds: [String]? = nil, filterCoordinatorDepartmentIds: [String]? = nil, filterCoordinatorAssignedUserIds: [String]? = nil, filterCoordinatorLabels: [String]? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> OrdersExpandedListForProviderRes {
         return try await httpClient.performRequest(
             method: .post,
             path: "/shipping/orders/expanded/list/for_provider_operators/v1",
             queryParams: [
                 "provider_role": providerRole.map { .string($0.rawValue) }, 
+                "filter_executor_task_group_status": filterExecutorTaskGroupStatus.map { .unknown($0) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 
                 "sort_order": sortOrder.map { .string($0.rawValue) }, 
                 "page": page.map { .int($0) }, 

@@ -152,6 +152,7 @@ import Chrt
                     "status": "draft",
                     "task_group_details": [
                       {
+                        "status": "draft",
                         "task_group_id": "task_group_id",
                         "task_group_type": "chrt_ground_provider"
                       }
@@ -429,6 +430,7 @@ import Chrt
                 status: Optional(OrderStatusEnum1.draft),
                 taskGroupDetails: Optional([
                     OrderTaskGroupExecutorDetails1(
+                        status: TaskGroupStatusEnum1.draft,
                         taskGroupId: "task_group_id",
                         taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )
@@ -633,6 +635,7 @@ import Chrt
                     "status": "draft",
                     "task_group_details": [
                       {
+                        "status": "draft",
                         "task_group_id": "task_group_id",
                         "task_group_type": "chrt_ground_provider"
                       }
@@ -835,6 +838,7 @@ import Chrt
                 status: Optional(OrderStatusEnum1.draft),
                 taskGroupDetails: Optional([
                     OrderTaskGroupSharedDetails1(
+                        status: TaskGroupStatusEnum1.draft,
                         taskGroupId: "task_group_id",
                         taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )
@@ -1130,6 +1134,9 @@ import Chrt
         )
         let response = try await client.shipping.orders.expanded.listForProviderOperatorsV1(
             providerRole: .all,
+            filterExecutorTaskGroupStatus: [
+                .draft
+            ],
             sortBy: .draftStartedAtTimestamp,
             sortOrder: .asc,
             page: 1,

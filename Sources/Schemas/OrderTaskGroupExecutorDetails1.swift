@@ -7,6 +7,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let executorOrgId: String?
     public let offChrtExecutorOrgDataId: String?
+    public let status: TaskGroupStatusEnum1
     public let taskGroupId: String
     public let taskGroupType: TaskGroupTypeEnum1
     /// Additional properties that are not explicitly defined in the schema
@@ -18,6 +19,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         executorLabels: [String]? = nil,
         executorOrgId: String? = nil,
         offChrtExecutorOrgDataId: String? = nil,
+        status: TaskGroupStatusEnum1,
         taskGroupId: String,
         taskGroupType: TaskGroupTypeEnum1,
         additionalProperties: [String: JSONValue] = .init()
@@ -27,6 +29,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         self.executorLabels = executorLabels
         self.executorOrgId = executorOrgId
         self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
+        self.status = status
         self.taskGroupId = taskGroupId
         self.taskGroupType = taskGroupType
         self.additionalProperties = additionalProperties
@@ -39,6 +42,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         self.executorLabels = try container.decodeIfPresent([String].self, forKey: .executorLabels)
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
         self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
+        self.status = try container.decode(TaskGroupStatusEnum1.self, forKey: .status)
         self.taskGroupId = try container.decode(String.self, forKey: .taskGroupId)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
@@ -52,6 +56,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.executorLabels, forKey: .executorLabels)
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
+        try container.encode(self.status, forKey: .status)
         try container.encode(self.taskGroupId, forKey: .taskGroupId)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
     }
@@ -63,6 +68,7 @@ public struct OrderTaskGroupExecutorDetails1: Codable, Hashable, Sendable {
         case executorLabels = "executor_labels"
         case executorOrgId = "executor_org_id"
         case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
+        case status
         case taskGroupId = "task_group_id"
         case taskGroupType = "task_group_type"
     }
