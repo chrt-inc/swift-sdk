@@ -1,3 +1,12 @@
+## 2.0.0 - 2026-11-10
+### Breaking Changes
+* **`DispatchScienceContactInfoResponse1.id`** — type changed from `String?` to `Int?`; update all call sites that read or pass this field to use `Int` instead of `String`.
+### Added
+* **`CounterpartyOrgDataClient`** — new sub-client at `client.orgs.counterpartyOrgData` exposing `createV1(request:)`, `getV1(counterpartyOrgDataId:)`, `listV1(...)`, and `updateV1(counterpartyOrgDataId:request:)` for managing counterparty organisation records.
+* **`CounterpartyOrgData1`** and **`CounterpartyOrgDataListRes`** — new response types returned by `CounterpartyOrgDataClient` methods, the latter including an `items` array and `totalCount`.
+* **`CounterpartyInvoiceDetails1`**, **`CounterpartyInvoiceAddressBlock1`**, **`CounterpartyInvoiceRecipient1`**, and related enums — new supporting types for structured invoice configuration on counterparty records.
+* **`Requests.CounterpartyOrgDataClientCreate1`** and **`Requests.CounterpartyOrgDataClientUpdate1`** — new request body types for creating and updating counterparty org data records.
+
 ## 2.0.0 - 2026-10-15
 ### Breaking Changes
 * **`CargoByDriverClient.dataPointsPublicV1`** and **`TaskGroupByDriverClient.dataPointsPublicV1`** — both methods removed; migrate `CargoByDriverClient` callers to `lastSeenPublicV2(publicLinkToken:)` and `TaskGroupByDriverClient` callers to the authenticated `dataPointsV1` endpoint.
