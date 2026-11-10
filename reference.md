@@ -23170,6 +23170,340 @@ try await main()
 </dl>
 </details>
 
+## Orgs CounterpartyOrgData
+<details><summary><code>client.orgs.counterpartyOrgData.<a href="/Sources/Resources/Orgs/CounterpartyOrgData/CounterpartyOrgDataClient.swift">createV1</a>(request: Requests.CounterpartyOrgDataClientCreate1, requestOptions: RequestOptions?) -> CounterpartyOrgData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates the caller's record about another organization, on CHRT or off; one per counterparty. | authz: min_org_role=operator | (CounterpartyOrgDataClientCreate1) -> (CounterpartyOrgData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.counterpartyOrgData.createV1(request: .init(schemaVersion: 1))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CounterpartyOrgDataClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.counterpartyOrgData.<a href="/Sources/Resources/Orgs/CounterpartyOrgData/CounterpartyOrgDataClient.swift">getV1</a>(counterpartyOrgDataId: String, requestOptions: RequestOptions?) -> CounterpartyOrgData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves what the caller's organization keeps about another organization. | authz: min_org_role=operator | () -> (CounterpartyOrgData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.counterpartyOrgData.getV1(counterpartyOrgDataId: "counterparty_org_data_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**counterpartyOrgDataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.counterpartyOrgData.<a href="/Sources/Resources/Orgs/CounterpartyOrgData/CounterpartyOrgDataClient.swift">listV1</a>(page: Int?, pageSize: Int?, filterCounterpartyOrgId: String?, filterCounterpartyOffChrtOrgDataId: String?, filterStatus: CounterpartyOrgStatusEnum1?, requestOptions: RequestOptions?) -> CounterpartyOrgDataListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists what the caller's organization keeps about other organizations, filtered by counterparty or status, newest first. | authz: min_org_role=operator | () -> (CounterpartyOrgDataListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.counterpartyOrgData.listV1(
+        page: 1,
+        pageSize: 1,
+        filterCounterpartyOrgId: "filter_counterparty_org_id",
+        filterCounterpartyOffChrtOrgDataId: "filter_counterparty_off_chrt_org_data_id",
+        filterStatus: .onboarding
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOrgId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCounterpartyOffChrtOrgDataId:** `String?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `CounterpartyOrgStatusEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.orgs.counterpartyOrgData.<a href="/Sources/Resources/Orgs/CounterpartyOrgData/CounterpartyOrgDataClient.swift">updateV1</a>(counterpartyOrgDataId: String, request: Requests.CounterpartyOrgDataClientUpdate1, requestOptions: RequestOptions?) -> CounterpartyOrgData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the caller's record about another organization; a sent list replaces the stored one. | authz: min_org_role=operator | (CounterpartyOrgDataClientUpdate1) -> (CounterpartyOrgData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.counterpartyOrgData.updateV1(
+        counterpartyOrgDataId: "counterparty_org_data_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**counterpartyOrgDataId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CounterpartyOrgDataClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Orgs IataCassOffices
 <details><summary><code>client.orgs.iataCassOffices.<a href="/Sources/Resources/Orgs/IataCassOffices/IataCassOfficesClient.swift">archiveV1</a>(iataCassOfficeId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>

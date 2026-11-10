@@ -2,7 +2,7 @@ import Foundation
 
 public struct DispatchScienceContactInfoResponse1: Codable, Hashable, Sendable {
     public let email: String?
-    public let id: String?
+    public let id: Int?
     public let language: String?
     public let name: String?
     public let phoneNumber: String?
@@ -11,7 +11,7 @@ public struct DispatchScienceContactInfoResponse1: Codable, Hashable, Sendable {
 
     public init(
         email: String? = nil,
-        id: String? = nil,
+        id: Int? = nil,
         language: String? = nil,
         name: String? = nil,
         phoneNumber: String? = nil,
@@ -28,7 +28,7 @@ public struct DispatchScienceContactInfoResponse1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.email = try container.decodeIfPresent(String.self, forKey: .email)
-        self.id = try container.decodeIfPresent(String.self, forKey: .id)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id)
         self.language = try container.decodeIfPresent(String.self, forKey: .language)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
