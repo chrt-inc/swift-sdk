@@ -1,3 +1,16 @@
+## 2.0.1 - 2026-11-10
+* chore: update InvoiceCreateFromOrdersReq.periodStartAtTimestamp doc comment
+* Clarify the documentation for `periodStartAtTimestamp` on
+* `InvoiceCreateFromOrdersReq` to note that the period can also be
+* derived from a cancelled order's cancellation day, in addition to
+* completed or attempted delivery days.
+* Key changes:
+* Updated the doc comment on `periodStartAtTimestamp` to mention
+* cancelled order cancellation days as a valid source for period
+* derivation
+* No public API surface, types, or behavior changed
+* 🌿 Generated with Fern
+
 ## 2.0.0 - 2026-11-10
 ### Breaking Changes
 * **`DispatchScienceContactInfoResponse1.id`** — type changed from `String?` to `Int?`; update all call sites that read or pass this field to use `Int` instead of `String`.

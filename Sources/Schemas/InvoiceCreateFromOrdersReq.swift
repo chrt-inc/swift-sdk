@@ -14,7 +14,7 @@ public struct InvoiceCreateFromOrdersReq: Codable, Hashable, Sendable {
     public let orderIds: [String]
     /// When derived, the exclusive UTC midnight after the last delivery day. Explicit bounds are preserved.
     public let periodEndAtTimestamp: Date?
-    /// Supply both bounds or omit both to derive the period from completed or attempted delivery days in UTC.
+    /// Supply both bounds or omit both to derive the period from completed or attempted delivery days, or a cancelled order's cancellation day, in UTC.
     public let periodStartAtTimestamp: Date?
     public let schemaVersion: Int
     /// Additional properties that are not explicitly defined in the schema
