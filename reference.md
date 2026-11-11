@@ -17503,6 +17503,215 @@ try await main()
 </dl>
 </details>
 
+## Operations OperationsTaskListDefaults
+<details><summary><code>client.operations.operationsTaskListDefaults.<a href="/Sources/Resources/Operations/OperationsTaskListDefaults/OperationsTaskListDefaultsClient.swift">deleteV1</a>(operationsTaskListDefaultId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a task-list default; tasks it already put on orders are kept, and drafts staged afterwards no longer get its staging lists. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTaskListDefaults.deleteV1(operationsTaskListDefaultId: "operations_task_list_default_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**operationsTaskListDefaultId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTaskListDefaults.<a href="/Sources/Resources/Operations/OperationsTaskListDefaults/OperationsTaskListDefaultsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> [OperationsTaskListDefault1]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller organization's default task lists by shipper and service line. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (list[OperationsTaskListDefault1])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTaskListDefaults.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.operations.operationsTaskListDefaults.<a href="/Sources/Resources/Operations/OperationsTaskListDefaults/OperationsTaskListDefaultsClient.swift">setV1</a>(request: Requests.OperationsTaskListDefaultClientCreate1, requestOptions: RequestOptions?) -> OperationsTaskListDefault1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the task lists applied at order creation and at staging to every order with one shipper on one service line, added to any chosen on a template or by hand. | authz: allowed_org_types=[provider], min_org_role=operator | (OperationsTaskListDefaultClientCreate1) -> (OperationsTaskListDefault1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.operations.operationsTaskListDefaults.setV1(request: .init(
+        schemaVersion: 1,
+        serviceLine: .onDemand
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OperationsTaskListDefaultClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Operations OperationsTaskLists
 <details><summary><code>client.operations.operationsTaskLists.<a href="/Sources/Resources/Operations/OperationsTaskLists/OperationsTaskListsClient.swift">applyToOrderV1</a>(taskListId: String, orderId: String, departmentId: String?, entryTag: String?, initialDeadlineTimestamp: Date?, requestOptions: RequestOptions?) -> [String]</code></summary>
 <dl>
@@ -17625,7 +17834,7 @@ try await main()
 <dl>
 <dd>
 
-Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Orders are unaffected. | authz: min_org_role=operator | () -> (bool)
+Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Orders are unaffected; templates, task-list defaults and pending staging lists keep referencing it but skip it until it's unarchived. | authz: min_org_role=operator | () -> (bool)
 </dd>
 </dl>
 </dd>

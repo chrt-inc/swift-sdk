@@ -46,7 +46,7 @@ public final class OperationsTaskListsClient: Sendable {
         )
     }
 
-    /// Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Orders are unaffected. | authz: min_org_role=operator | () -> (bool)
+    /// Soft-deletes an OperationsTaskList by setting `archived=True`. Tasks already applied to Orders are unaffected; templates, task-list defaults and pending staging lists keep referencing it but skip it until it's unarchived. | authz: min_org_role=operator | () -> (bool)
     ///
     /// ```swift
     /// import Foundation

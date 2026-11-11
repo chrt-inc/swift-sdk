@@ -4,20 +4,23 @@ import Foundation
 /// per-type functional-queue index). Granular SOP specifics live in the Task's
 /// `title`/`description`, not here.
 ///
-/// Ordered roughly along the shipment lifecycle (review -> research -> book ->
-/// track/verify -> contact -> billing). The buckets are the distinct *modes of
-/// work* an operator sits down and batches; the exact SOP step (e.g. "Send
-/// Shipping Label", "CBC Call", "Get Pack Time") is captured in the title.
+/// Ordered roughly along the shipment lifecycle (review -> quote -> research ->
+/// book -> dispatch -> track/verify -> contact -> billing). The buckets are the
+/// distinct *modes of work* an operator sits down and batches; the exact SOP
+/// step (e.g. "Send Shipping Label", "CBC Call", "Get Pack Time") is captured
+/// in the title.
 ///
 /// Contact is split by *who* (customer, agent, airline, other), not by
 /// *channel* (call vs. email) — the recipient is what a dispatcher batches
 /// around, and the channel is captured in title/description detail.
 public enum OperationsTaskTypeEnum: String, Codable, Hashable, CaseIterable, Sendable {
     case reviewOrderDetails = "review_order_details"
+    case quote
     case flightCheck = "flight_check"
     case facilityCheck = "facility_check"
     case weatherCheck = "weather_check"
     case bookCargo = "book_cargo"
+    case dispatch
     case customs
     case trackAndVerify = "track_and_verify"
     case contactCustomer = "contact_customer"

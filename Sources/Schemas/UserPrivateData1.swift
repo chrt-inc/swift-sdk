@@ -12,6 +12,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
     public let timeZone: String?
     /// Must be a string starting with `user_`
     public let userId: String
+    public let workosSyncedAtTimestamp: Date?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -25,6 +26,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         schemaVersion: Int,
         timeZone: String? = nil,
         userId: String,
+        workosSyncedAtTimestamp: Date? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
@@ -36,6 +38,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.schemaVersion = schemaVersion
         self.timeZone = timeZone
         self.userId = userId
+        self.workosSyncedAtTimestamp = workosSyncedAtTimestamp
         self.additionalProperties = additionalProperties
     }
 
@@ -50,6 +53,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.timeZone = try container.decodeIfPresent(String.self, forKey: .timeZone)
         self.userId = try container.decode(String.self, forKey: .userId)
+        self.workosSyncedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .workosSyncedAtTimestamp)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -65,6 +69,7 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
         try container.encode(self.userId, forKey: .userId)
+        try container.encodeIfPresent(self.workosSyncedAtTimestamp, forKey: .workosSyncedAtTimestamp)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -78,5 +83,6 @@ public struct UserPrivateData1: Codable, Hashable, Sendable {
         case schemaVersion = "schema_version"
         case timeZone = "time_zone"
         case userId = "user_id"
+        case workosSyncedAtTimestamp = "workos_synced_at_timestamp"
     }
 }

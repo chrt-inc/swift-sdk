@@ -23,7 +23,8 @@ import Chrt
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
                   "time_zone": "America/New_York",
-                  "user_id": "user_id"
+                  "user_id": "user_id",
+                  "workos_synced_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
             )
@@ -48,7 +49,8 @@ import Chrt
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
             timeZone: Optional("America/New_York"),
-            userId: "user_id"
+            userId: "user_id",
+            workosSyncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.users.privateData.upsertFirebaseCloudMessagingTokenV1(
             request: .init(firebaseCloudMessagingToken: "firebase_cloud_messaging_token"),
@@ -77,7 +79,8 @@ import Chrt
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
                   "time_zone": "America/New_York",
-                  "user_id": "user_id"
+                  "user_id": "user_id",
+                  "workos_synced_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
             )
@@ -102,7 +105,8 @@ import Chrt
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
             timeZone: Optional("America/New_York"),
-            userId: "user_id"
+            userId: "user_id",
+            workosSyncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.users.privateData.updateNameV1(
             request: .init(name: "name"),
@@ -131,7 +135,8 @@ import Chrt
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
                   "time_zone": "America/New_York",
-                  "user_id": "user_id"
+                  "user_id": "user_id",
+                  "workos_synced_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
             )
@@ -156,7 +161,8 @@ import Chrt
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
             timeZone: Optional("America/New_York"),
-            userId: "user_id"
+            userId: "user_id",
+            workosSyncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.users.privateData.getV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
         try #require(response == expectedResponse)
@@ -182,7 +188,8 @@ import Chrt
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
                   "time_zone": "America/New_York",
-                  "user_id": "user_id"
+                  "user_id": "user_id",
+                  "workos_synced_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
             )
@@ -207,7 +214,8 @@ import Chrt
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
             timeZone: Optional("America/New_York"),
-            userId: "user_id"
+            userId: "user_id",
+            workosSyncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.users.privateData.createV1(
             request: .init(schemaVersion: 1),
@@ -236,7 +244,8 @@ import Chrt
                   "primary_email_address": "primary_email_address",
                   "schema_version": 1,
                   "time_zone": "America/New_York",
-                  "user_id": "user_id"
+                  "user_id": "user_id",
+                  "workos_synced_at_timestamp": "2024-01-15T09:30:00Z"
                 }
                 """#.utf8
             )
@@ -261,7 +270,8 @@ import Chrt
             primaryEmailAddress: Optional("primary_email_address"),
             schemaVersion: 1,
             timeZone: Optional("America/New_York"),
-            userId: "user_id"
+            userId: "user_id",
+            workosSyncedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
         )
         let response = try await client.users.privateData.updateV1(
             request: .init(),

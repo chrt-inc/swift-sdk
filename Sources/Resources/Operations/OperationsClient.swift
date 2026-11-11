@@ -2,6 +2,7 @@ import Foundation
 
 public final class OperationsClient: Sendable {
     public let departments: DepartmentsClient
+    public let operationsTaskListDefaults: OperationsTaskListDefaultsClient
     public let operationsTaskLists: OperationsTaskListsClient
     public let operationsTasks: OperationsTasksClient
     public let orderInternalMessages: OrderInternalMessagesClient
@@ -9,6 +10,7 @@ public final class OperationsClient: Sendable {
 
     init(config: ClientConfig) {
         self.departments = DepartmentsClient(config: config)
+        self.operationsTaskListDefaults = OperationsTaskListDefaultsClient(config: config)
         self.operationsTaskLists = OperationsTaskListsClient(config: config)
         self.operationsTasks = OperationsTasksClient(config: config)
         self.orderInternalMessages = OrderInternalMessagesClient(config: config)
