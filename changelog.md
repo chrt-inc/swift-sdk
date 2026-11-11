@@ -1,3 +1,12 @@
+## 3.0.0 - 2026-11-11
+### Breaking Changes
+* **`OperationsTaskTypeEnum`** — two new cases (`quote` and `dispatch`) were added; exhaustive `switch` statements over this enum will fail to compile. Add a `default` case or handle the new values explicitly.
+### Added
+* **`OperationsTaskListDefaultsClient`** — new sub-client at `client.operations.operationsTaskListDefaults` with `deleteV1(operationsTaskListDefaultId:)`, `listV1()`, and `setV1(request:)` for managing per-shipper/service-line task-list defaults.
+* **`OperationsTaskListDefault1`** — new response type returned by `OperationsTaskListDefaultsClient` methods, carrying counterparty identifiers, ownership metadata, and task lists to apply at order creation and staging.
+* **`Requests.OperationsTaskListDefaultClientCreate1`** — new request body type for `setV1(request:)`.
+* **`UserPrivateData1.workosSyncedAtTimestamp`** — new optional `Date?` field indicating when the user record was last synced with WorkOS.
+
 ## 2.0.0 - 2026-11-11
 ### Breaking Changes
 * **`UsersClient`** — renamed to `UsersClient_`; update all type annotations and references from `UsersClient` to `UsersClient_` (the `client.users` property type changes accordingly).
