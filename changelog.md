@@ -1,3 +1,14 @@
+## 2.0.0 - 2026-11-11
+### Breaking Changes
+* **`UsersClient`** — renamed to `UsersClient_`; update all type annotations and references from `UsersClient` to `UsersClient_` (the `client.users` property type changes accordingly).
+* **`GroupsClient`** — renamed to `NotificationsGroupsClient`; update all type annotations and references from `GroupsClient` to `NotificationsGroupsClient` (the `client.notifications.groups` property type changes accordingly).
+### Added
+* **`AuthzClient`** — new sub-client at `client.authz` exposing `catalog`, `customRoles`, `groups`, and `users` sub-clients for authorization management.
+* **`CustomRolesClient`** and **`GroupsClient`** (authz) — new sub-clients under `client.authz` for managing organization-scoped custom roles and authz groups, each with `createV1`, `getV1`, `listV1`, and `updateV1` methods.
+* **`UsersClient`** (authz) — new sub-client at `client.authz.users` with `getV1(userId:)` and `updateAccessV1(userId:request:)` for reading and modifying a user's roles and group memberships.
+* **`CatalogClient.getV1()`** — new method at `client.authz.catalog.getV1()` that lists all permissions a custom role can bundle and what each CHRT-managed role grants, returning `AuthzCatalogRes`.
+* **`TaskClient`** — four new focused update methods (`updateAccountsV1`, `updateCommentsV1`, `updateContactsV1`, `updateOperationsV1`) replacing the deprecated general `updateV1`; new supporting response types (`CustomRole1`, `Group1`, `User1`, and list/enum types) added across the authz domain.
+
 ## 2.0.1 - 2026-11-10
 * chore: update InvoiceCreateFromOrdersReq.periodStartAtTimestamp doc comment
 * Clarify the documentation for `periodStartAtTimestamp` on
