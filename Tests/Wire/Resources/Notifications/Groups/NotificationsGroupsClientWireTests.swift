@@ -2,7 +2,7 @@ import Foundation
 import Testing
 import Chrt
 
-@Suite("GroupsClient Wire Tests") struct GroupsClientWireTests {
+@Suite("NotificationsGroupsClient Wire Tests") struct NotificationsGroupsClientWireTests {
     @Test func addEventV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

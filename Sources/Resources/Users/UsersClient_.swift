@@ -1,6 +1,6 @@
 import Foundation
 
-public final class UsersClient: Sendable {
+public final class UsersClient_: Sendable {
     public let privateData: UsersPrivateDataClient
     public let publicData: UsersPublicDataClient
     private let httpClient: HTTPClient

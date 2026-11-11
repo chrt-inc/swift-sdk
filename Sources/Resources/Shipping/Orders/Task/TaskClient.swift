@@ -63,7 +63,7 @@ public final class TaskClient: Sendable {
         )
     }
 
-    /// Updates task details with lifecycle-specific authorization and synchronizes task-group mileage and order account references. | (TaskClientUpdate1) -> (PydanticObjectId)
+    /// (DEPRECATED) Use update_operations, update_comments, update_contacts, or update_accounts. Updates task details with lifecycle-specific authorization and synchronizes task-group mileage and order account references. | (TaskClientUpdate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -86,6 +86,122 @@ public final class TaskClient: Sendable {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/shipping/orders/task/update/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Replaces a task's coordinator shipper accounts and syncs the order's account references; a task without a location takes one from them. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (TaskClientUpdateAccounts1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.task.updateAccountsV1(
+    ///         taskId: "task_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateAccountsV1(taskId: String, request: Requests.TaskClientUpdateAccounts1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/task/update_accounts/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Updates a task's order placer comments. | authz_personas=[draft_creator_org_operator, order_creator_org_operators] | (TaskClientUpdateComments1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.task.updateCommentsV1(
+    ///         taskId: "task_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateCommentsV1(taskId: String, request: Requests.TaskClientUpdateComments1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/task/update_comments/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Replaces a task's contacts; a task without a location takes one from them. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators] | (TaskClientUpdateContacts1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.task.updateContactsV1(
+    ///         taskId: "task_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateContactsV1(taskId: String, request: Requests.TaskClientUpdateContacts1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/task/update_contacts/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Updates a task's location, action, and datetime windows, and syncs task-group mileage and order and cargo statuses. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (TaskClientUpdateOperations1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.task.updateOperationsV1(
+    ///         taskId: "task_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateOperationsV1(taskId: String, request: Requests.TaskClientUpdateOperations1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/task/update_operations/v1/\(taskId)",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self

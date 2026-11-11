@@ -9,6 +9,7 @@ public final class ChrtClient: Sendable {
     public let orgs: OrgsClient
     public let utils: UtilsClient
     public let analytics: AnalyticsClient
+    public let authz: AuthzClient
     public let billing: BillingClient
     public let billingNew: BillingNewClient
     public let cargoOnFlightIntegrations: CargoOnFlightIntegrationsClient
@@ -20,7 +21,7 @@ public final class ChrtClient: Sendable {
     public let shippingIntegrations: ShippingIntegrationsClient
     public let tracking: TrackingClient
     public let trackingIntegrations: TrackingIntegrationsClient
-    public let users: UsersClient
+    public let users: UsersClient_
     private let httpClient: HTTPClient
 
     /// Initialize the client with the specified configuration and a static bearer token.
@@ -110,6 +111,7 @@ public final class ChrtClient: Sendable {
         self.orgs = OrgsClient(config: config)
         self.utils = UtilsClient(config: config)
         self.analytics = AnalyticsClient(config: config)
+        self.authz = AuthzClient(config: config)
         self.billing = BillingClient(config: config)
         self.billingNew = BillingNewClient(config: config)
         self.cargoOnFlightIntegrations = CargoOnFlightIntegrationsClient(config: config)
@@ -121,7 +123,7 @@ public final class ChrtClient: Sendable {
         self.shippingIntegrations = ShippingIntegrationsClient(config: config)
         self.tracking = TrackingClient(config: config)
         self.trackingIntegrations = TrackingIntegrationsClient(config: config)
-        self.users = UsersClient(config: config)
+        self.users = UsersClient_(config: config)
         self.httpClient = HTTPClient(config: config)
     }
 }

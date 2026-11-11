@@ -1,6 +1,6 @@
 import Foundation
 
-public final class GroupsClient: Sendable {
+public final class NotificationsGroupsClient: Sendable {
     private let httpClient: HTTPClient
 
     init(config: ClientConfig) {

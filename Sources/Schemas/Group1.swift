@@ -1,0 +1,88 @@
+import Foundation
+
+public struct Group1: Codable, Hashable, Sendable {
+    public let id: String
+    public let chrtManagedRoles: [ChrtManagedRoleEnum1]?
+    public let createdAtTimestamp: Date
+    /// Must be a string starting with `user_`
+    public let createdByUserId: String
+    public let customRoleIds: [String]?
+    public let description: String?
+    public let lastEditedAtTimestamp: Date
+    public let name: String
+    /// Must be a string starting with `org_`
+    public let orgId: String
+    public let schemaVersion: Int
+    /// Additional properties that are not explicitly defined in the schema
+    public let additionalProperties: [String: JSONValue]
+
+    public init(
+        id: String,
+        chrtManagedRoles: [ChrtManagedRoleEnum1]? = nil,
+        createdAtTimestamp: Date,
+        createdByUserId: String,
+        customRoleIds: [String]? = nil,
+        description: String? = nil,
+        lastEditedAtTimestamp: Date,
+        name: String,
+        orgId: String,
+        schemaVersion: Int,
+        additionalProperties: [String: JSONValue] = .init()
+    ) {
+        self.id = id
+        self.chrtManagedRoles = chrtManagedRoles
+        self.createdAtTimestamp = createdAtTimestamp
+        self.createdByUserId = createdByUserId
+        self.customRoleIds = customRoleIds
+        self.description = description
+        self.lastEditedAtTimestamp = lastEditedAtTimestamp
+        self.name = name
+        self.orgId = orgId
+        self.schemaVersion = schemaVersion
+        self.additionalProperties = additionalProperties
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.chrtManagedRoles = try container.decodeIfPresent([ChrtManagedRoleEnum1].self, forKey: .chrtManagedRoles)
+        self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
+        self.createdByUserId = try container.decode(String.self, forKey: .createdByUserId)
+        self.customRoleIds = try container.decodeIfPresent([String].self, forKey: .customRoleIds)
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.orgId = try container.decode(String.self, forKey: .orgId)
+        self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
+    }
+
+    public func encode(to encoder: Encoder) throws -> Void {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try encoder.encodeAdditionalProperties(self.additionalProperties)
+        try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.chrtManagedRoles, forKey: .chrtManagedRoles)
+        try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
+        try container.encode(self.createdByUserId, forKey: .createdByUserId)
+        try container.encodeIfPresent(self.customRoleIds, forKey: .customRoleIds)
+        try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.orgId, forKey: .orgId)
+        try container.encode(self.schemaVersion, forKey: .schemaVersion)
+    }
+
+    /// Keys for encoding/decoding struct properties.
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case id = "_id"
+        case chrtManagedRoles = "chrt_managed_roles"
+        case createdAtTimestamp = "created_at_timestamp"
+        case createdByUserId = "created_by_user_id"
+        case customRoleIds = "custom_role_ids"
+        case description
+        case lastEditedAtTimestamp = "last_edited_at_timestamp"
+        case name
+        case orgId = "org_id"
+        case schemaVersion = "schema_version"
+    }
+}

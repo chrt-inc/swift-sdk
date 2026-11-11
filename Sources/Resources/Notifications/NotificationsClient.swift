@@ -2,7 +2,7 @@ import Foundation
 
 public final class NotificationsClient: Sendable {
     public let adHoc: AdHocClient
-    public let groups: GroupsClient
+    public let groups: NotificationsGroupsClient
     public let previews: PreviewsClient
     public let userPreferences: UserPreferencesClient
     public let webhookSetup: WebhookSetupClient
@@ -10,7 +10,7 @@ public final class NotificationsClient: Sendable {
 
     init(config: ClientConfig) {
         self.adHoc = AdHocClient(config: config)
-        self.groups = GroupsClient(config: config)
+        self.groups = NotificationsGroupsClient(config: config)
         self.previews = PreviewsClient(config: config)
         self.userPreferences = UserPreferencesClient(config: config)
         self.webhookSetup = WebhookSetupClient(config: config)
