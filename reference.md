@@ -1656,6 +1656,368 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">addGroupV1</a>(userId: String, groupId: String, requestOptions: RequestOptions?) -> User1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a user to a group in the caller's organization, preserving their other access assignments. | authz: cedar=updateUserAccess | () -> (User1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.addGroupV1(
+        userId: "user_id",
+        groupId: "group_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**groupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">removeGroupV1</a>(userId: String, groupId: String, requestOptions: RequestOptions?) -> User1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a user from a group in the caller's organization, preserving their other access assignments. | authz: cedar=updateUserAccess | () -> (User1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.removeGroupV1(
+        userId: "user_id",
+        groupId: "group_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**groupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">listV1</a>(page: Int?, pageSize: Int?, sortBy: UserSortByEnum?, sortOrder: SortOrderEnum?, filterGroupId: String?, filterChrtManagedRole: ChrtManagedRoleEnum1?, filterCustomRoleId: String?, requestOptions: RequestOptions?) -> UserListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists provisioned authz users by group and roles assigned directly or through groups. Filters combine with AND. | authz: cedar=listUsers | () -> (UserListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.listV1(
+        page: 1,
+        pageSize: 1,
+        sortBy: .displayName,
+        sortOrder: .asc,
+        filterGroupId: "filter_group_id",
+        filterChrtManagedRole: .superUser,
+        filterCustomRoleId: "filter_custom_role_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortBy:** `UserSortByEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterGroupId:** `String?` — Filter by group membership
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterChrtManagedRole:** `ChrtManagedRoleEnum1?` — Filter by exact CHRT-managed role, directly or through groups
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCustomRoleId:** `String?` — Filter by custom role, directly or through groups
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">getPermissionsV1</a>(userId: String, requestOptions: RequestOptions?) -> AuthzUserPermissionsRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists catalog permission grants and their role/group sources, excluding resource-specific decisions and WorkOS administration rights. | authz: cedar=readUser | () -> (AuthzUserPermissionsRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.getPermissionsV1(userId: "user_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">updateAccessV1</a>(userId: String, request: Requests.UserClientUpdate1, requestOptions: RequestOptions?) -> User1</code></summary>
 <dl>
 <dd>

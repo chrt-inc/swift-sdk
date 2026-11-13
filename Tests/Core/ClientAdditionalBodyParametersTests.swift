@@ -134,7 +134,11 @@ import Testing
         )
 
         do {
-            _ = try await client.billing.stripe.createCustomerPortalSessionV1(requestOptions: RequestOptions(additionalHeaders: stub.headers, additionalBodyParameters: additionalBodyParameters, additionalBodyProperties: additionalBodyProperties))
+            _ = try await client.authz.users.addGroupV1(
+                userId: "user_id",
+                groupId: "group_id",
+                requestOptions: RequestOptions(additionalHeaders: stub.headers, additionalBodyParameters: additionalBodyParameters, additionalBodyProperties: additionalBodyProperties)
+            )
 
         } catch {
         }
