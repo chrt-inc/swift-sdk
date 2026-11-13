@@ -1,3 +1,11 @@
+## 1.1093.0 - 2026-11-13
+### Added
+* **`UsersClient.addGroupV1(userId:groupId:)`** — adds a user to a group in the caller's organization while preserving their other access assignments, returning the updated `User1`.
+* **`UsersClient.removeGroupV1(userId:groupId:)`** — removes a user from a group in the caller's organization while preserving their other access assignments, returning the updated `User1`.
+* **`UsersClient.listV1(...)`** — lists provisioned authz users with optional filtering by group, CHRT-managed role, or custom role, and supports pagination and sorting via `UserSortByEnum`.
+* **`UsersClient.getPermissionsV1(userId:)`** — retrieves a user's catalog permission grants along with the role and group sources that confer each permission, returning `AuthzUserPermissionsRes`.
+* **`AuthzUserPermissionsRes`**, **`AuthzUserPermissionRes`**, **`AuthzUserPermissionGroupRes`**, **`AuthzUserPermissionCustomRoleSourceRes`**, **`AuthzUserPermissionManagedRoleSourceRes`**, **`SourcesItem`**, **`UserListRes`**, and **`UserSortByEnum`** — new schema types supporting the permissions and user-list endpoints.
+
 ## 3.0.0 - 2026-11-11
 ### Breaking Changes
 * **`OperationsTaskTypeEnum`** — two new cases (`quote` and `dispatch`) were added; exhaustive `switch` statements over this enum will fail to compile. Add a `default` case or handle the new values explicitly.
