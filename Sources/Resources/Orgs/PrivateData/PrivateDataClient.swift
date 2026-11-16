@@ -31,4 +31,30 @@ public final class PrivateDataClient: Sendable {
             responseType: OrgPrivateData1.self
         )
     }
+
+    /// Updates the IAC legal name and TSA assigned number printed on the caller's tender security forms. | authz: allowed_org_types=[provider], min_org_role=admin | (OrgPrivateDataClientUpdate1) -> (OrgPrivateData1)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.privateData.updateV1(request: .init())
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateV1(request: Requests.OrgPrivateDataClientUpdate1, requestOptions: RequestOptions? = nil) async throws -> OrgPrivateData1 {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/orgs/org_private_data/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrgPrivateData1.self
+        )
+    }
 }

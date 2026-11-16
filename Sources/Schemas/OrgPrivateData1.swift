@@ -2,6 +2,7 @@ import Foundation
 
 public struct OrgPrivateData1: Codable, Hashable, Sendable {
     public let id: String
+    public let iacLegalName: String?
     /// Must be a string starting with `org_`
     public let orgId: String
     public let orgSubscription: Bool?
@@ -10,6 +11,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     public let stripeConnectAccountId: String?
     public let stripeCustomerId: String?
     public let svixAppId: String?
+    public let tsaAssignedNumber: String?
     public let webcargoApiKey: String?
     public let webcargoCountries: [String]?
     public let webcargoEmail: String?
@@ -19,6 +21,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        iacLegalName: String? = nil,
         orgId: String,
         orgSubscription: Bool? = nil,
         orgType: OrgTypeEnum,
@@ -26,6 +29,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         stripeConnectAccountId: String? = nil,
         stripeCustomerId: String? = nil,
         svixAppId: String? = nil,
+        tsaAssignedNumber: String? = nil,
         webcargoApiKey: String? = nil,
         webcargoCountries: [String]? = nil,
         webcargoEmail: String? = nil,
@@ -33,6 +37,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.iacLegalName = iacLegalName
         self.orgId = orgId
         self.orgSubscription = orgSubscription
         self.orgType = orgType
@@ -40,6 +45,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.stripeConnectAccountId = stripeConnectAccountId
         self.stripeCustomerId = stripeCustomerId
         self.svixAppId = svixAppId
+        self.tsaAssignedNumber = tsaAssignedNumber
         self.webcargoApiKey = webcargoApiKey
         self.webcargoCountries = webcargoCountries
         self.webcargoEmail = webcargoEmail
@@ -50,6 +56,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.iacLegalName = try container.decodeIfPresent(String.self, forKey: .iacLegalName)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.orgSubscription = try container.decodeIfPresent(Bool.self, forKey: .orgSubscription)
         self.orgType = try container.decode(OrgTypeEnum.self, forKey: .orgType)
@@ -57,6 +64,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         self.stripeConnectAccountId = try container.decodeIfPresent(String.self, forKey: .stripeConnectAccountId)
         self.stripeCustomerId = try container.decodeIfPresent(String.self, forKey: .stripeCustomerId)
         self.svixAppId = try container.decodeIfPresent(String.self, forKey: .svixAppId)
+        self.tsaAssignedNumber = try container.decodeIfPresent(String.self, forKey: .tsaAssignedNumber)
         self.webcargoApiKey = try container.decodeIfPresent(String.self, forKey: .webcargoApiKey)
         self.webcargoCountries = try container.decodeIfPresent([String].self, forKey: .webcargoCountries)
         self.webcargoEmail = try container.decodeIfPresent(String.self, forKey: .webcargoEmail)
@@ -68,6 +76,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.iacLegalName, forKey: .iacLegalName)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.orgSubscription, forKey: .orgSubscription)
         try container.encode(self.orgType, forKey: .orgType)
@@ -75,6 +84,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.stripeConnectAccountId, forKey: .stripeConnectAccountId)
         try container.encodeIfPresent(self.stripeCustomerId, forKey: .stripeCustomerId)
         try container.encodeIfPresent(self.svixAppId, forKey: .svixAppId)
+        try container.encodeIfPresent(self.tsaAssignedNumber, forKey: .tsaAssignedNumber)
         try container.encodeIfPresent(self.webcargoApiKey, forKey: .webcargoApiKey)
         try container.encodeIfPresent(self.webcargoCountries, forKey: .webcargoCountries)
         try container.encodeIfPresent(self.webcargoEmail, forKey: .webcargoEmail)
@@ -84,6 +94,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case iacLegalName = "iac_legal_name"
         case orgId = "org_id"
         case orgSubscription = "org_subscription"
         case orgType = "org_type"
@@ -91,6 +102,7 @@ public struct OrgPrivateData1: Codable, Hashable, Sendable {
         case stripeConnectAccountId = "stripe_connect_account_id"
         case stripeCustomerId = "stripe_customer_id"
         case svixAppId = "svix_app_id"
+        case tsaAssignedNumber = "tsa_assigned_number"
         case webcargoApiKey = "webcargo_api_key"
         case webcargoCountries = "webcargo_countries"
         case webcargoEmail = "webcargo_email"

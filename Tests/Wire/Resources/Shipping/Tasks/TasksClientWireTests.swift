@@ -26,6 +26,29 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func updateAttemptTimestampV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.tasks.updateAttemptTimestampV1(
+            taskId: "task_id",
+            request: .init(attemptedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func completeV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -135,6 +158,30 @@ import Chrt
         let expectedResponse = true
         let response = try await client.shipping.tasks.skipV1(
             taskId: "task_id",
+            request: .init(),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateSkipTimestampV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.shipping.tasks.updateSkipTimestampV1(
+            taskId: "task_id",
+            request: .init(skippedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             requestOptions: RequestOptions(additionalHeaders: stub.headers)
         )
         try #require(response == expectedResponse)

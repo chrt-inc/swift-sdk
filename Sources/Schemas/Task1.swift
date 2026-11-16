@@ -3,6 +3,7 @@ import Foundation
 public struct Task1: Codable, Hashable, Sendable {
     public let id: String
     public let action: ActionModel?
+    public let attemptSubmittedAtTimestamp: Date?
     public let attemptedAtTimestamp: Date?
     public let cancelledAtTimestamp: Date?
     public let cargoIds: [String]?
@@ -32,6 +33,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public let receivedBy: CustodyParty1?
     public let schemaVersion: Int
     public let shortId: String
+    public let skipSubmittedAtTimestamp: Date?
     public let skippedAtTimestamp: Date?
     public let stagedAtTimestamp: Date?
     public let status: TaskStatusEnum1?
@@ -49,6 +51,7 @@ public struct Task1: Codable, Hashable, Sendable {
     public init(
         id: String,
         action: ActionModel? = nil,
+        attemptSubmittedAtTimestamp: Date? = nil,
         attemptedAtTimestamp: Date? = nil,
         cancelledAtTimestamp: Date? = nil,
         cargoIds: [String]? = nil,
@@ -74,6 +77,7 @@ public struct Task1: Codable, Hashable, Sendable {
         receivedBy: CustodyParty1? = nil,
         schemaVersion: Int,
         shortId: String,
+        skipSubmittedAtTimestamp: Date? = nil,
         skippedAtTimestamp: Date? = nil,
         stagedAtTimestamp: Date? = nil,
         status: TaskStatusEnum1? = nil,
@@ -88,6 +92,7 @@ public struct Task1: Codable, Hashable, Sendable {
     ) {
         self.id = id
         self.action = action
+        self.attemptSubmittedAtTimestamp = attemptSubmittedAtTimestamp
         self.attemptedAtTimestamp = attemptedAtTimestamp
         self.cancelledAtTimestamp = cancelledAtTimestamp
         self.cargoIds = cargoIds
@@ -113,6 +118,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.receivedBy = receivedBy
         self.schemaVersion = schemaVersion
         self.shortId = shortId
+        self.skipSubmittedAtTimestamp = skipSubmittedAtTimestamp
         self.skippedAtTimestamp = skippedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
@@ -130,6 +136,7 @@ public struct Task1: Codable, Hashable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.action = try container.decodeIfPresent(ActionModel.self, forKey: .action)
+        self.attemptSubmittedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .attemptSubmittedAtTimestamp)
         self.attemptedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .attemptedAtTimestamp)
         self.cancelledAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .cancelledAtTimestamp)
         self.cargoIds = try container.decodeIfPresent([String].self, forKey: .cargoIds)
@@ -155,6 +162,7 @@ public struct Task1: Codable, Hashable, Sendable {
         self.receivedBy = try container.decodeIfPresent(CustodyParty1.self, forKey: .receivedBy)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shortId = try container.decode(String.self, forKey: .shortId)
+        self.skipSubmittedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skipSubmittedAtTimestamp)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(TaskStatusEnum1.self, forKey: .status)
@@ -173,6 +181,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
         try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.attemptSubmittedAtTimestamp, forKey: .attemptSubmittedAtTimestamp)
         try container.encodeIfPresent(self.attemptedAtTimestamp, forKey: .attemptedAtTimestamp)
         try container.encodeIfPresent(self.cancelledAtTimestamp, forKey: .cancelledAtTimestamp)
         try container.encodeIfPresent(self.cargoIds, forKey: .cargoIds)
@@ -198,6 +207,7 @@ public struct Task1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.receivedBy, forKey: .receivedBy)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encode(self.shortId, forKey: .shortId)
+        try container.encodeIfPresent(self.skipSubmittedAtTimestamp, forKey: .skipSubmittedAtTimestamp)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
@@ -214,6 +224,7 @@ public struct Task1: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
         case action
+        case attemptSubmittedAtTimestamp = "attempt_submitted_at_timestamp"
         case attemptedAtTimestamp = "attempted_at_timestamp"
         case cancelledAtTimestamp = "cancelled_at_timestamp"
         case cargoIds = "cargo_ids"
@@ -239,6 +250,7 @@ public struct Task1: Codable, Hashable, Sendable {
         case receivedBy = "received_by"
         case schemaVersion = "schema_version"
         case shortId = "short_id"
+        case skipSubmittedAtTimestamp = "skip_submitted_at_timestamp"
         case skippedAtTimestamp = "skipped_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case status

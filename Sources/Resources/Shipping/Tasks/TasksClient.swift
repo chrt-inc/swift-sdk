@@ -9,7 +9,7 @@ public final class TasksClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Marks a task as ATTEMPT with an optional executor organization note. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (AttemptTaskReq) -> (bool)
+    /// Marks a task as ATTEMPT at the supplied time or now, with an optional executor note; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (AttemptTaskReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -32,6 +32,35 @@ public final class TasksClient: Sendable {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/attempt/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Corrects when a task was attempted and restamps its submission time; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskAttemptTimestampUpdateReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.tasks.updateAttemptTimestampV1(
+    ///         taskId: "task_id",
+    ///         request: .init(attemptedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateAttemptTimestampV1(taskId: String, request: Requests.TaskAttemptTimestampUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/tasks/attempt_timestamp/update/v1/\(taskId)",
             body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
@@ -154,7 +183,7 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Marks a task as SKIPPED. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
+    /// Marks a task as SKIPPED at the supplied time or now; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskSkipReq) -> (bool)
     ///
     /// ```swift
     /// import Foundation
@@ -163,17 +192,50 @@ public final class TasksClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.shipping.tasks.skipV1(taskId: "task_id")
+    ///     _ = try await client.shipping.tasks.skipV1(
+    ///         taskId: "task_id",
+    ///         request: .init()
+    ///     )
     /// }
     ///
     /// try await main()
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func skipV1(taskId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+    public func skipV1(taskId: String, request: Requests.TaskSkipReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
         return try await httpClient.performRequest(
             method: .put,
             path: "/shipping/tasks/skip/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
+    /// Corrects when a task was skipped and restamps its submission time; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskSkipTimestampUpdateReq) -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.tasks.updateSkipTimestampV1(
+    ///         taskId: "task_id",
+    ///         request: .init(skippedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateSkipTimestampV1(taskId: String, request: Requests.TaskSkipTimestampUpdateReq, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/tasks/skip_timestamp/update/v1/\(taskId)",
+            body: request,
             requestOptions: requestOptions,
             responseType: Bool.self
         )

@@ -25796,6 +25796,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orgs.privateData.<a href="/Sources/Resources/Orgs/PrivateData/PrivateDataClient.swift">updateV1</a>(request: Requests.OrgPrivateDataClientUpdate1, requestOptions: RequestOptions?) -> OrgPrivateData1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the IAC legal name and TSA assigned number printed on the caller's tender security forms. | authz: allowed_org_types=[provider], min_org_role=admin | (OrgPrivateDataClientUpdate1) -> (OrgPrivateData1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.privateData.updateV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrgPrivateDataClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Orgs PublicData
 <details><summary><code>client.orgs.publicData.<a href="/Sources/Resources/Orgs/PublicData/PublicDataClient.swift">getAvatarV1</a>(handle: String, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
@@ -33712,7 +33783,7 @@ try await main()
 <dl>
 <dd>
 
-Marks a task as ATTEMPT with an optional executor organization note. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (AttemptTaskReq) -> (bool)
+Marks a task as ATTEMPT at the supplied time or now, with an optional executor note; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (AttemptTaskReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -33763,6 +33834,88 @@ try await main()
 <dd>
 
 **request:** `Requests.AttemptTaskReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">updateAttemptTimestampV1</a>(taskId: String, request: Requests.TaskAttemptTimestampUpdateReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Corrects when a task was attempted and restamps its submission time; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskAttemptTimestampUpdateReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.tasks.updateAttemptTimestampV1(
+        taskId: "task_id",
+        request: .init(attemptedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskAttemptTimestampUpdateReq` 
     
 </dd>
 </dl>
@@ -34110,7 +34263,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">skipV1</a>(taskId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">skipV1</a>(taskId: String, request: Requests.TaskSkipReq, requestOptions: RequestOptions?) -> Bool</code></summary>
 <dl>
 <dd>
 
@@ -34122,7 +34275,7 @@ try await main()
 <dl>
 <dd>
 
-Marks a task as SKIPPED. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | () -> (bool)
+Marks a task as SKIPPED at the supplied time or now; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskSkipReq) -> (bool)
 </dd>
 </dl>
 </dd>
@@ -34143,7 +34296,10 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.shipping.tasks.skipV1(taskId: "task_id")
+    _ = try await client.shipping.tasks.skipV1(
+        taskId: "task_id",
+        request: .init()
+    )
 }
 
 try await main()
@@ -34162,6 +34318,96 @@ try await main()
 <dd>
 
 **taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskSkipReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">updateSkipTimestampV1</a>(taskId: String, request: Requests.TaskSkipTimestampUpdateReq, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Corrects when a task was skipped and restamps its submission time; times more than five minutes ahead are rejected. | authz_personas=[driver_for_executor, coordinator_org_operators, executor_org_operators] (depending on type) | (TaskSkipTimestampUpdateReq) -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.tasks.updateSkipTimestampV1(
+        taskId: "task_id",
+        request: .init(skippedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601))
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskSkipTimestampUpdateReq` 
     
 </dd>
 </dl>
