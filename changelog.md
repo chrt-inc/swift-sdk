@@ -1,3 +1,12 @@
+## 2.0.0 - 2026-11-16
+### Breaking Changes
+* **`TasksClient.skipV1(taskId:requestOptions:)`** — now requires a new `request: Requests.TaskSkipReq` parameter; existing callers must add `request: .init()` (or a populated `TaskSkipReq`) to compile.
+### Added
+* **`TasksClient.updateAttemptTimestampV1(taskId:request:)`** — corrects when a task was attempted and restamps its submission time; accepts a `TaskAttemptTimestampUpdateReq` with a required `attemptedAtTimestamp`.
+* **`TasksClient.updateSkipTimestampV1(taskId:request:)`** — corrects when a task was skipped and restamps its submission time; accepts a `TaskSkipTimestampUpdateReq` with a required `skippedAtTimestamp`.
+* **`PrivateDataClient.updateV1(request:)`** — updates the IAC legal name and TSA assigned number printed on tender security forms, returning the updated `OrgPrivateData1`.
+* **`OrgPrivateData1.iacLegalName`** and **`OrgPrivateData1.tsaAssignedNumber`** — new optional `String?` fields on the org private data schema; **`Task1.attemptSubmittedAtTimestamp`** and **`Task1.skipSubmittedAtTimestamp`** — new optional `Date?` fields tracking when attempt/skip actions were submitted.
+
 ## 1.1093.0 - 2026-11-13
 ### Added
 * **`UsersClient.addGroupV1(userId:groupId:)`** — adds a user to a group in the caller's organization while preserving their other access assignments, returning the updated `User1`.
