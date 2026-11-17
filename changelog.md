@@ -1,3 +1,12 @@
+## 3.0.0 - 2026-11-17
+### Breaking Changes
+* **`RateSheetUsageRes`** — gains a new required `orderTemplateCount: Int` field; existing code constructing or decoding this struct will fail to compile or throw at runtime. Add `orderTemplateCount:` to all call sites and ensure server responses include `order_template_count`.
+* **`RateSheetSelectionSourceEnum1`** — new `template` case added; exhaustive `switch` statements over this enum will fail to compile. Add a `default` case or handle the new value explicitly.
+### Added
+* **`OrderTemplateNewRateSheetSelection1`** — new schema type representing a per-task-group rate sheet selection, carrying counterparty identifiers, an optional rate sheet ID, and a required `relationshipType`.
+* **`enabledSurchargeTypes`** — new optional `[OrderBillingSurchargeTypeEnum1]?` field on `OrderTemplateNew1`, `OrderTemplateNewCore1`, `OrderTemplateNewExpanded1`, and the corresponding create/update request types.
+* **`rateSheetSelections`** — new optional `[OrderTemplateNewRateSheetSelection1]?` field on `OrderTemplateNewTaskGroup1` and the task group create/update request types, enabling rate sheet assignments at the task-group level within order templates.
+
 ## 2.0.0 - 2026-11-16
 ### Breaking Changes
 * **`TasksClient.skipV1(taskId:requestOptions:)`** — now requires a new `request: Requests.TaskSkipReq` parameter; existing callers must add `request: .init()` (or a populated `TaskSkipReq`) to compile.
