@@ -55,6 +55,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
     public let voidedAtTimestamp: Date?
     /// Must be a string starting with `user_`
     public let voidedByUserId: String?
+    public let voidedInvoiceLineItems: [InvoiceVoidedLineItem1]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -104,6 +105,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         voidReason: String? = nil,
         voidedAtTimestamp: Date? = nil,
         voidedByUserId: String? = nil,
+        voidedInvoiceLineItems: [InvoiceVoidedLineItem1]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
@@ -151,6 +153,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         self.voidReason = voidReason
         self.voidedAtTimestamp = voidedAtTimestamp
         self.voidedByUserId = voidedByUserId
+        self.voidedInvoiceLineItems = voidedInvoiceLineItems
         self.additionalProperties = additionalProperties
     }
 
@@ -201,6 +204,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         self.voidReason = try container.decodeIfPresent(String.self, forKey: .voidReason)
         self.voidedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .voidedAtTimestamp)
         self.voidedByUserId = try container.decodeIfPresent(String.self, forKey: .voidedByUserId)
+        self.voidedInvoiceLineItems = try container.decodeIfPresent([InvoiceVoidedLineItem1].self, forKey: .voidedInvoiceLineItems)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -252,6 +256,7 @@ public struct Invoice1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.voidReason, forKey: .voidReason)
         try container.encodeIfPresent(self.voidedAtTimestamp, forKey: .voidedAtTimestamp)
         try container.encodeIfPresent(self.voidedByUserId, forKey: .voidedByUserId)
+        try container.encodeIfPresent(self.voidedInvoiceLineItems, forKey: .voidedInvoiceLineItems)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -301,5 +306,6 @@ public struct Invoice1: Codable, Hashable, Sendable {
         case voidReason = "void_reason"
         case voidedAtTimestamp = "voided_at_timestamp"
         case voidedByUserId = "voided_by_user_id"
+        case voidedInvoiceLineItems = "voided_invoice_line_items"
     }
 }

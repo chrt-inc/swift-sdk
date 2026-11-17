@@ -364,7 +364,23 @@ import Chrt
                     "total_amount": 1.1,
                     "void_reason": "void_reason",
                     "voided_at_timestamp": "2024-01-15T09:30:00Z",
-                    "voided_by_user_id": "voided_by_user_id"
+                    "voided_by_user_id": "voided_by_user_id",
+                    "voided_invoice_line_items": [
+                      {
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_line_item_id": "invoice_line_item_id",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "total_amount": 1.1,
+                        "unit_price": 1.1
+                      }
+                    ]
                   },
                   "invoice_line_item": {
                     "_id": "_id",
@@ -500,7 +516,23 @@ import Chrt
                 totalAmount: Optional(1.1),
                 voidReason: Optional("void_reason"),
                 voidedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
-                voidedByUserId: Optional("voided_by_user_id")
+                voidedByUserId: Optional("voided_by_user_id"),
+                voidedInvoiceLineItems: Optional([
+                    InvoiceVoidedLineItem1(
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        description: "description",
+                        invoiceLineItemId: "invoice_line_item_id",
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        totalAmount: 1.1,
+                        unitPrice: 1.1
+                    )
+                ])
             )),
             invoiceLineItem: Optional(InvoiceLineItem1(
                 id: "_id",
