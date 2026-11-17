@@ -1,3 +1,25 @@
+## 2.0.0 - 2026-11-17
+* feat!: add required billingType field to rate sheet request and schema types
+* Several public request and schema structs gain a new required `billingType`
+* field of type `RateSheetBillingTypeEnum1`. Because Swift struct initializers
+* are positional and the field is non-optional, all existing call sites that
+* construct `OrderRateSheetSelectionUpdateReq`, `RateSheetDefaultClientCreate1`,
+* `RateSheetDefault1`, `RateSheetSelection1`, or
+* `OrderTemplateNewRateSheetSelection1` will fail to compile without adding the
+* new argument.
+* Alongside the breaking changes, several new capabilities are introduced:
+* `RateSheetsClient.listExpandedV1` returns a counterparty-enriched rate sheet
+* list, `OrgsClient.listV1` lists the signed-in user's active organizations, and
+* `InvoiceExpandedRes` now surfaces voided line items via the new
+* `InvoiceVoidedLineItemExpandedRes` schema type.
+* Key changes:
+* `billingType: RateSheetBillingTypeEnum1` added as a required field/parameter to `OrderRateSheetSelectionUpdateReq`, `RateSheetDefaultClientCreate1`, `RateSheetDefault1`, `RateSheetSelection1`, and `OrderTemplateNewRateSheetSelection1`
+* New `RateSheetBillingTypeEnum1` enum with `billed` and `notBilled` cases
+* New `RateSheetsClient.listExpandedV1` method returning `RateSheetsExpandedListRes` with counterparty details
+* New `OrgsClient.listV1` method returning `OrgListRes` / `OrgListItem` for the signed-in user's organizations
+* New `InvoiceVoidedLineItemExpandedRes` schema type and `voidedInvoiceLineItems` optional field on `InvoiceExpandedRes`
+* 🌿 Generated with Fern
+
 ## 1.1098.0 - 2026-11-17
 ### Added
 * **`InvoiceVoidedLineItem1`** — new schema type representing a snapshot of a voided invoice line item, carrying billing fields such as `invoiceLineItemId`, `currencyCode`, `quantity`, `unitPrice`, `totalAmount`, and optional AWB, task, and rate-sheet associations.
