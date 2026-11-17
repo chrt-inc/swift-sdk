@@ -1,3 +1,10 @@
+## 1.1098.0 - 2026-11-17
+### Added
+* **`InvoiceVoidedLineItem1`** — new schema type representing a snapshot of a voided invoice line item, carrying billing fields such as `invoiceLineItemId`, `currencyCode`, `quantity`, `unitPrice`, `totalAmount`, and optional AWB, task, and rate-sheet associations.
+* **`voidedInvoiceLineItems`** — new optional `[InvoiceVoidedLineItem1]?` field added to both the invoice void response and `Invoice1`, exposing a copy of every line item the voided invoice held; defaults to `nil` so existing code is unaffected.
+### Changed
+* **`InvoicesClient.voidV1`** — updated void behavior: charges now return to their pre-approval state (finalized charges revert to approved rather than draft), tax rows are deleted, and the voided invoice retains a copy of all line items and its total.
+
 ## 3.1.0 - 2026-11-17
 ### Added
 * **`OrdersClient.updateAirWaybillBillingSelectionV1(orderId:request:)`** — marks one AWB on an order as `billed` or `tracked_only`; tracked-only deletes uninvoiced charges and re-prices, returning an `OrderPricingRes`.
