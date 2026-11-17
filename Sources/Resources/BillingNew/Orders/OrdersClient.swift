@@ -204,7 +204,7 @@ public final class OrdersClient: Sendable {
         )
     }
 
-    /// Chooses the rate sheet for one billing relationship on one segment of an order, overriding the default, or marks it not billed (rate_sheet_id null), then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderRateSheetSelectionUpdateReq) -> (OrderPricingRes)
+    /// Chooses the rate sheet for one billing relationship on one segment of an order, overriding the default, or marks it not billed (billing_type not_billed, rate_sheet_id null), then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderRateSheetSelectionUpdateReq) -> (OrderPricingRes)
     ///
     /// ```swift
     /// import Foundation
@@ -216,6 +216,7 @@ public final class OrdersClient: Sendable {
     ///     _ = try await client.billingNew.orders.updateRateSheetSelectionV1(
     ///         orderId: "order_id",
     ///         request: .init(
+    ///             billingType: .billed,
     ///             relationshipType: .receivable,
     ///             taskGroupId: "task_group_id"
     ///         )

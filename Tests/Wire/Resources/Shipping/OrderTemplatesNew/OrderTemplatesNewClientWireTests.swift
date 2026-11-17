@@ -88,6 +88,7 @@ import Chrt
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "rate_sheet_selections": [
                         {
+                          "billing_type": "billed",
                           "relationship_type": "receivable"
                         }
                       ],
@@ -189,6 +190,7 @@ import Chrt
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     rateSheetSelections: Optional([
                         OrderTemplateNewRateSheetSelection1(
+                            billingType: RateSheetBillingTypeEnum1.billed,
                             relationshipType: BillingRelationshipTypeEnum1.receivable
                         )
                     ]),
@@ -684,6 +686,7 @@ import Chrt
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "rate_sheet_selections": [
                         {
+                          "billing_type": "billed",
                           "relationship_type": "receivable"
                         }
                       ],
@@ -785,6 +788,7 @@ import Chrt
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     rateSheetSelections: Optional([
                         OrderTemplateNewRateSheetSelection1(
+                            billingType: RateSheetBillingTypeEnum1.billed,
                             relationshipType: BillingRelationshipTypeEnum1.receivable
                         )
                     ]),
@@ -891,6 +895,7 @@ import Chrt
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "rate_sheet_selections": [
                         {
+                          "billing_type": "billed",
                           "relationship_type": "receivable"
                         }
                       ],
@@ -992,6 +997,7 @@ import Chrt
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     rateSheetSelections: Optional([
                         OrderTemplateNewRateSheetSelection1(
+                            billingType: RateSheetBillingTypeEnum1.billed,
                             relationshipType: BillingRelationshipTypeEnum1.receivable
                         )
                     ]),
@@ -1100,6 +1106,7 @@ import Chrt
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
                       "rate_sheet_selections": [
                         {
+                          "billing_type": "billed",
                           "relationship_type": "receivable"
                         }
                       ],
@@ -1201,6 +1208,7 @@ import Chrt
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
                     rateSheetSelections: Optional([
                         OrderTemplateNewRateSheetSelection1(
+                            billingType: RateSheetBillingTypeEnum1.billed,
                             relationshipType: BillingRelationshipTypeEnum1.receivable
                         )
                     ]),

@@ -356,6 +356,69 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">listV1</a>(requestOptions: RequestOptions?) -> OrgListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all of the signed-in user's active organizations. | () -> (OrgListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.orgs.listV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.orgs.<a href="/Sources/Resources/Orgs/OrgsClient.swift">listMembersV1</a>(filterRole: [OrgRoleEnum]?, filterUserIds: [String]?, sortBy: OrgMemberSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, search: String?, requestOptions: RequestOptions?) -> OrgMemberListRes</code></summary>
 <dl>
 <dd>
@@ -5026,7 +5089,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves an owner-scoped invoice with line-item orders, counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
+Retrieves an owner-scoped invoice with line-item orders (live and voided copies), counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
 </dd>
 </dl>
 </dd>
@@ -6617,7 +6680,7 @@ try await main()
 <dl>
 <dd>
 
-Chooses the rate sheet for one billing relationship on one segment of an order, overriding the default, or marks it not billed (rate_sheet_id null), then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderRateSheetSelectionUpdateReq) -> (OrderPricingRes)
+Chooses the rate sheet for one billing relationship on one segment of an order, overriding the default, or marks it not billed (billing_type not_billed, rate_sheet_id null), then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators, order_executor_org_operators] | (OrderRateSheetSelectionUpdateReq) -> (OrderPricingRes)
 </dd>
 </dl>
 </dd>
@@ -6641,6 +6704,7 @@ private func main() async throws {
     _ = try await client.billingNew.orders.updateRateSheetSelectionV1(
         orderId: "order_id",
         request: .init(
+            billingType: .billed,
             relationshipType: .receivable,
             taskGroupId: "task_group_id"
         )
@@ -8018,7 +8082,7 @@ try await main()
 <dl>
 <dd>
 
-Sets the rate sheet used for one counterparty, direction, service line and segment type when no sheet is chosen by hand; a null rate_sheet_id marks those segments not billed. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetDefaultClientCreate1) -> (RateSheetDefault1)
+Sets the rate sheet used for one counterparty, direction, service line and segment type when no sheet is chosen by hand; billing_type not_billed (rate_sheet_id null) marks those segments not billed. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetDefaultClientCreate1) -> (RateSheetDefault1)
 </dd>
 </dl>
 </dd>
@@ -8040,6 +8104,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.billingNew.rateSheetDefaults.setV1(request: .init(
+        billingType: .billed,
         invoiceType: .accountsReceivable,
         schemaVersion: 1,
         serviceLine: .onDemand,
@@ -8220,6 +8285,97 @@ try await main()
 <dd>
 
 **request:** `RateSheetClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.rateSheets.<a href="/Sources/Resources/BillingNew/RateSheets/RateSheetsClient.swift">listExpandedV1</a>(invoiceType: InvoiceTypeEnum1?, taskGroupType: TaskGroupTypeEnum1?, includeArchived: Bool?, requestOptions: RequestOptions?) -> RateSheetsExpandedListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller organization's rate sheets like the plain list, with each counterparty org, off-chrt org and driver the sheets name, so a list can show counterparty names without a lookup per sheet. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetsExpandedListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.rateSheets.listExpandedV1(
+        invoiceType: .accountsReceivable,
+        taskGroupType: .chrtGroundProvider,
+        includeArchived: true
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceType:** `InvoiceTypeEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**taskGroupType:** `TaskGroupTypeEnum1?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**includeArchived:** `Bool?` 
     
 </dd>
 </dl>

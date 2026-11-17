@@ -57,7 +57,7 @@ public final class RateSheetDefaultsClient: Sendable {
         )
     }
 
-    /// Sets the rate sheet used for one counterparty, direction, service line and segment type when no sheet is chosen by hand; a null rate_sheet_id marks those segments not billed. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetDefaultClientCreate1) -> (RateSheetDefault1)
+    /// Sets the rate sheet used for one counterparty, direction, service line and segment type when no sheet is chosen by hand; billing_type not_billed (rate_sheet_id null) marks those segments not billed. | authz: allowed_org_types=[provider], min_org_role=operator | (RateSheetDefaultClientCreate1) -> (RateSheetDefault1)
     ///
     /// ```swift
     /// import Foundation
@@ -67,6 +67,7 @@ public final class RateSheetDefaultsClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.billingNew.rateSheetDefaults.setV1(request: .init(
+    ///         billingType: .billed,
     ///         invoiceType: .accountsReceivable,
     ///         schemaVersion: 1,
     ///         serviceLine: .onDemand,

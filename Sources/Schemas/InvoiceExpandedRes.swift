@@ -7,6 +7,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
     public let counterpartyOrg: OrgPublicData1?
     public let invoice: Invoice1
     public let invoiceLineItems: [InvoiceLineItemExpandedRes]?
+    public let voidedInvoiceLineItems: [InvoiceVoidedLineItemExpandedRes]?
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
@@ -17,6 +18,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         counterpartyOrg: OrgPublicData1? = nil,
         invoice: Invoice1,
         invoiceLineItems: [InvoiceLineItemExpandedRes]? = nil,
+        voidedInvoiceLineItems: [InvoiceVoidedLineItemExpandedRes]? = nil,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.counterpartyAccounts = counterpartyAccounts
@@ -25,6 +27,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         self.counterpartyOrg = counterpartyOrg
         self.invoice = invoice
         self.invoiceLineItems = invoiceLineItems
+        self.voidedInvoiceLineItems = voidedInvoiceLineItems
         self.additionalProperties = additionalProperties
     }
 
@@ -36,6 +39,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         self.counterpartyOrg = try container.decodeIfPresent(OrgPublicData1.self, forKey: .counterpartyOrg)
         self.invoice = try container.decode(Invoice1.self, forKey: .invoice)
         self.invoiceLineItems = try container.decodeIfPresent([InvoiceLineItemExpandedRes].self, forKey: .invoiceLineItems)
+        self.voidedInvoiceLineItems = try container.decodeIfPresent([InvoiceVoidedLineItemExpandedRes].self, forKey: .voidedInvoiceLineItems)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
 
@@ -48,6 +52,7 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.counterpartyOrg, forKey: .counterpartyOrg)
         try container.encode(self.invoice, forKey: .invoice)
         try container.encodeIfPresent(self.invoiceLineItems, forKey: .invoiceLineItems)
+        try container.encodeIfPresent(self.voidedInvoiceLineItems, forKey: .voidedInvoiceLineItems)
     }
 
     /// Keys for encoding/decoding struct properties.
@@ -58,5 +63,6 @@ public struct InvoiceExpandedRes: Codable, Hashable, Sendable {
         case counterpartyOrg = "counterparty_org"
         case invoice
         case invoiceLineItems = "invoice_line_items"
+        case voidedInvoiceLineItems = "voided_invoice_line_items"
     }
 }

@@ -33,6 +33,7 @@ import Chrt
                 [
                   {
                     "_id": "_id",
+                    "billing_type": "billed",
                     "counterparty_driver_id": "counterparty_driver_id",
                     "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
                     "counterparty_org_id": "counterparty_org_id",
@@ -59,6 +60,7 @@ import Chrt
         let expectedResponse = [
             RateSheetDefault1(
                 id: "_id",
+                billingType: RateSheetBillingTypeEnum1.billed,
                 counterpartyDriverId: Optional("counterparty_driver_id"),
                 counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
                 counterpartyOrgId: Optional("counterparty_org_id"),
@@ -85,6 +87,7 @@ import Chrt
                 #"""
                 {
                   "_id": "_id",
+                  "billing_type": "billed",
                   "counterparty_driver_id": "counterparty_driver_id",
                   "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
                   "counterparty_org_id": "counterparty_org_id",
@@ -109,6 +112,7 @@ import Chrt
         )
         let expectedResponse = RateSheetDefault1(
             id: "_id",
+            billingType: RateSheetBillingTypeEnum1.billed,
             counterpartyDriverId: Optional("counterparty_driver_id"),
             counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
             counterpartyOrgId: Optional("counterparty_org_id"),
@@ -125,6 +129,7 @@ import Chrt
         )
         let response = try await client.billingNew.rateSheetDefaults.setV1(
             request: .init(
+                billingType: .billed,
                 invoiceType: .accountsReceivable,
                 schemaVersion: 1,
                 serviceLine: .onDemand,

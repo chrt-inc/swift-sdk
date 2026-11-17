@@ -50,6 +50,41 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func listV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "items": [
+                    {
+                      "name": "name",
+                      "org_id": "org_id"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrgListRes(
+            items: [
+                OrgListItem(
+                    name: Optional("name"),
+                    orgId: "org_id"
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.orgs.listV1(requestOptions: RequestOptions(additionalHeaders: stub.headers))
+        try #require(response == expectedResponse)
+    }
+
     @Test func listMembersV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

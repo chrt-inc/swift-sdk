@@ -403,6 +403,7 @@ import Chrt
                     "owned_by_org_id": "owned_by_org_id",
                     "rate_sheet_selections": [
                       {
+                        "billing_type": "billed",
                         "relationship_type": "receivable",
                         "selection_source": "default",
                         "task_group_id": "task_group_id"
@@ -519,6 +520,7 @@ import Chrt
                 ownedByOrgId: "owned_by_org_id",
                 rateSheetSelections: Optional([
                     RateSheetSelection1(
+                        billingType: RateSheetBillingTypeEnum1.billed,
                         relationshipType: BillingRelationshipTypeEnum1.receivable,
                         selectionSource: RateSheetSelectionSourceEnum1.default,
                         taskGroupId: "task_group_id"
@@ -643,6 +645,7 @@ import Chrt
                     "owned_by_org_id": "owned_by_org_id",
                     "rate_sheet_selections": [
                       {
+                        "billing_type": "billed",
                         "relationship_type": "receivable",
                         "selection_source": "default",
                         "task_group_id": "task_group_id"
@@ -759,6 +762,7 @@ import Chrt
                 ownedByOrgId: "owned_by_org_id",
                 rateSheetSelections: Optional([
                     RateSheetSelection1(
+                        billingType: RateSheetBillingTypeEnum1.billed,
                         relationshipType: BillingRelationshipTypeEnum1.receivable,
                         selectionSource: RateSheetSelectionSourceEnum1.default,
                         taskGroupId: "task_group_id"
@@ -788,6 +792,7 @@ import Chrt
         let response = try await client.billingNew.orders.updateRateSheetSelectionV1(
             orderId: "order_id",
             request: .init(
+                billingType: .billed,
                 relationshipType: .receivable,
                 taskGroupId: "task_group_id"
             ),
@@ -883,6 +888,7 @@ import Chrt
                     "owned_by_org_id": "owned_by_org_id",
                     "rate_sheet_selections": [
                       {
+                        "billing_type": "billed",
                         "relationship_type": "receivable",
                         "selection_source": "default",
                         "task_group_id": "task_group_id"
@@ -999,6 +1005,7 @@ import Chrt
                 ownedByOrgId: "owned_by_org_id",
                 rateSheetSelections: Optional([
                     RateSheetSelection1(
+                        billingType: RateSheetBillingTypeEnum1.billed,
                         relationshipType: BillingRelationshipTypeEnum1.receivable,
                         selectionSource: RateSheetSelectionSourceEnum1.default,
                         taskGroupId: "task_group_id"
@@ -1119,6 +1126,7 @@ import Chrt
                     "owned_by_org_id": "owned_by_org_id",
                     "rate_sheet_selections": [
                       {
+                        "billing_type": "billed",
                         "relationship_type": "receivable",
                         "selection_source": "default",
                         "task_group_id": "task_group_id"
@@ -1235,6 +1243,7 @@ import Chrt
                 ownedByOrgId: "owned_by_org_id",
                 rateSheetSelections: Optional([
                     RateSheetSelection1(
+                        billingType: RateSheetBillingTypeEnum1.billed,
                         relationshipType: BillingRelationshipTypeEnum1.receivable,
                         selectionSource: RateSheetSelectionSourceEnum1.default,
                         taskGroupId: "task_group_id"
@@ -1358,6 +1367,7 @@ import Chrt
                     "owned_by_org_id": "owned_by_org_id",
                     "rate_sheet_selections": [
                       {
+                        "billing_type": "billed",
                         "relationship_type": "receivable",
                         "selection_source": "default",
                         "task_group_id": "task_group_id"
@@ -1474,6 +1484,7 @@ import Chrt
                 ownedByOrgId: "owned_by_org_id",
                 rateSheetSelections: Optional([
                     RateSheetSelection1(
+                        billingType: RateSheetBillingTypeEnum1.billed,
                         relationshipType: BillingRelationshipTypeEnum1.receivable,
                         selectionSource: RateSheetSelectionSourceEnum1.default,
                         taskGroupId: "task_group_id"

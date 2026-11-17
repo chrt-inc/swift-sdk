@@ -711,6 +711,31 @@ import Chrt
                         "schema_version": 1
                       }
                     }
+                  ],
+                  "voided_invoice_line_items": [
+                    {
+                      "order": {
+                        "_id": "_id",
+                        "created_by_org_id": "created_by_org_id",
+                        "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                        "schema_version": 1,
+                        "short_id": "short_id"
+                      },
+                      "voided_invoice_line_item": {
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "currency_code": "USD",
+                        "description": "description",
+                        "invoice_line_item_id": "invoice_line_item_id",
+                        "invoice_type": "accounts_receivable",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "line_item_type": "base_rate",
+                        "owned_by_org_id": "owned_by_org_id",
+                        "quantity": 1.1,
+                        "schema_version": 1,
+                        "total_amount": 1.1,
+                        "unit_price": 1.1
+                      }
+                    }
                   ]
                 }
                 """#.utf8
@@ -1006,6 +1031,31 @@ import Chrt
                         name: "name",
                         schemaVersion: 1
                     ))
+                )
+            ]),
+            voidedInvoiceLineItems: Optional([
+                InvoiceVoidedLineItemExpandedRes(
+                    order: Optional(OrderLimitedForProvider1(
+                        id: "_id",
+                        createdByOrgId: "created_by_org_id",
+                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        schemaVersion: 1,
+                        shortId: "short_id"
+                    )),
+                    voidedInvoiceLineItem: InvoiceVoidedLineItem1(
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        currencyCode: BillingCurrencyCodeEnum1.usd,
+                        description: "description",
+                        invoiceLineItemId: "invoice_line_item_id",
+                        invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                        ownedByOrgId: "owned_by_org_id",
+                        quantity: 1.1,
+                        schemaVersion: 1,
+                        totalAmount: 1.1,
+                        unitPrice: 1.1
+                    )
                 )
             ])
         )

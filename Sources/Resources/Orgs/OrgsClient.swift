@@ -54,6 +54,31 @@ public final class OrgsClient: Sendable {
         )
     }
 
+    /// Lists all of the signed-in user's active organizations. | () -> (OrgListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.orgs.listV1()
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listV1(requestOptions: RequestOptions? = nil) async throws -> OrgListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/orgs/list/v1",
+            requestOptions: requestOptions,
+            responseType: OrgListRes.self
+        )
+    }
+
     /// Lists all members of the caller's organization with their roles and details. Supports search by name, filtering by role and user IDs, sorting, and pagination. | () -> (OrgMemberListRes)
     ///
     /// ```swift

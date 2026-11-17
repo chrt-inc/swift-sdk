@@ -2,6 +2,7 @@ import Foundation
 
 public struct RateSheetDefault1: Codable, Hashable, Sendable {
     public let id: String
+    public let billingType: RateSheetBillingTypeEnum1
     public let counterpartyDriverId: String?
     public let counterpartyOffChrtOrgDataId: String?
     /// Must be a string starting with `org_`
@@ -24,6 +25,7 @@ public struct RateSheetDefault1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        billingType: RateSheetBillingTypeEnum1,
         counterpartyDriverId: String? = nil,
         counterpartyOffChrtOrgDataId: String? = nil,
         counterpartyOrgId: String? = nil,
@@ -40,6 +42,7 @@ public struct RateSheetDefault1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.billingType = billingType
         self.counterpartyDriverId = counterpartyDriverId
         self.counterpartyOffChrtOrgDataId = counterpartyOffChrtOrgDataId
         self.counterpartyOrgId = counterpartyOrgId
@@ -59,6 +62,7 @@ public struct RateSheetDefault1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.billingType = try container.decode(RateSheetBillingTypeEnum1.self, forKey: .billingType)
         self.counterpartyDriverId = try container.decodeIfPresent(String.self, forKey: .counterpartyDriverId)
         self.counterpartyOffChrtOrgDataId = try container.decodeIfPresent(String.self, forKey: .counterpartyOffChrtOrgDataId)
         self.counterpartyOrgId = try container.decodeIfPresent(String.self, forKey: .counterpartyOrgId)
@@ -79,6 +83,7 @@ public struct RateSheetDefault1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encode(self.billingType, forKey: .billingType)
         try container.encodeIfPresent(self.counterpartyDriverId, forKey: .counterpartyDriverId)
         try container.encodeIfPresent(self.counterpartyOffChrtOrgDataId, forKey: .counterpartyOffChrtOrgDataId)
         try container.encodeIfPresent(self.counterpartyOrgId, forKey: .counterpartyOrgId)
@@ -97,6 +102,7 @@ public struct RateSheetDefault1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case billingType = "billing_type"
         case counterpartyDriverId = "counterparty_driver_id"
         case counterpartyOffChrtOrgDataId = "counterparty_off_chrt_org_data_id"
         case counterpartyOrgId = "counterparty_org_id"

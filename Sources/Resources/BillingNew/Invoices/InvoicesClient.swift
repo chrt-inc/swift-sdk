@@ -120,7 +120,7 @@ public final class InvoicesClient: Sendable {
         )
     }
 
-    /// Retrieves an owner-scoped invoice with line-item orders, counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
+    /// Retrieves an owner-scoped invoice with line-item orders (live and voided copies), counterparties, and accounts expanded. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (InvoiceExpandedRes)
     ///
     /// ```swift
     /// import Foundation

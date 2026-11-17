@@ -72,6 +72,40 @@ public final class RateSheetsClient: Sendable {
         )
     }
 
+    /// Lists the caller organization's rate sheets like the plain list, with each counterparty org, off-chrt org and driver the sheets name, so a list can show counterparty names without a lookup per sheet. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetsExpandedListRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.rateSheets.listExpandedV1(
+    ///         invoiceType: .accountsReceivable,
+    ///         taskGroupType: .chrtGroundProvider,
+    ///         includeArchived: true
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func listExpandedV1(invoiceType: InvoiceTypeEnum1? = nil, taskGroupType: TaskGroupTypeEnum1? = nil, includeArchived: Bool? = nil, requestOptions: RequestOptions? = nil) async throws -> RateSheetsExpandedListRes {
+        return try await httpClient.performRequest(
+            method: .get,
+            path: "/billing_new/rate_sheets/expanded/list/v1",
+            queryParams: [
+                "invoice_type": invoiceType.map { .string($0.rawValue) }, 
+                "task_group_type": taskGroupType.map { .string($0.rawValue) }, 
+                "include_archived": includeArchived.map { .bool($0) }
+            ],
+            requestOptions: requestOptions,
+            responseType: RateSheetsExpandedListRes.self
+        )
+    }
+
     /// Retrieves an active or archived rate sheet owned by the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheet1)
     ///
     /// ```swift
