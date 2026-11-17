@@ -615,6 +615,7 @@ import Chrt
                 #"""
                 {
                   "order_count": 1,
+                  "order_template_count": 1,
                   "rate_sheet_default_count": 1
                 }
                 """#.utf8
@@ -627,6 +628,7 @@ import Chrt
         )
         let expectedResponse = RateSheetUsageRes(
             orderCount: 1,
+            orderTemplateCount: 1,
             rateSheetDefaultCount: 1
         )
         let response = try await client.billingNew.rateSheets.usageV1(

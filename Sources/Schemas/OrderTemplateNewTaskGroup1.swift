@@ -7,6 +7,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
     /// Must be a string starting with `org_`
     public let executorOrgId: String?
     public let offChrtExecutorOrgDataId: String?
+    public let rateSheetSelections: [OrderTemplateNewRateSheetSelection1]?
     public let taskGroupKey: String
     public let taskGroupType: TaskGroupTypeEnum1
     public let tasks: [OrderTemplateNewTask1]?
@@ -20,6 +21,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         executorAssignedUserIds: [String]? = nil,
         executorOrgId: String? = nil,
         offChrtExecutorOrgDataId: String? = nil,
+        rateSheetSelections: [OrderTemplateNewRateSheetSelection1]? = nil,
         taskGroupKey: String,
         taskGroupType: TaskGroupTypeEnum1,
         tasks: [OrderTemplateNewTask1]? = nil,
@@ -31,6 +33,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         self.executorAssignedUserIds = executorAssignedUserIds
         self.executorOrgId = executorOrgId
         self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
+        self.rateSheetSelections = rateSheetSelections
         self.taskGroupKey = taskGroupKey
         self.taskGroupType = taskGroupType
         self.tasks = tasks
@@ -45,6 +48,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         self.executorAssignedUserIds = try container.decodeIfPresent([String].self, forKey: .executorAssignedUserIds)
         self.executorOrgId = try container.decodeIfPresent(String.self, forKey: .executorOrgId)
         self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
+        self.rateSheetSelections = try container.decodeIfPresent([OrderTemplateNewRateSheetSelection1].self, forKey: .rateSheetSelections)
         self.taskGroupKey = try container.decode(String.self, forKey: .taskGroupKey)
         self.taskGroupType = try container.decode(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
         self.tasks = try container.decodeIfPresent([OrderTemplateNewTask1].self, forKey: .tasks)
@@ -60,6 +64,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.executorAssignedUserIds, forKey: .executorAssignedUserIds)
         try container.encodeIfPresent(self.executorOrgId, forKey: .executorOrgId)
         try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
+        try container.encodeIfPresent(self.rateSheetSelections, forKey: .rateSheetSelections)
         try container.encode(self.taskGroupKey, forKey: .taskGroupKey)
         try container.encode(self.taskGroupType, forKey: .taskGroupType)
         try container.encodeIfPresent(self.tasks, forKey: .tasks)
@@ -73,6 +78,7 @@ public struct OrderTemplateNewTaskGroup1: Codable, Hashable, Sendable {
         case executorAssignedUserIds = "executor_assigned_user_ids"
         case executorOrgId = "executor_org_id"
         case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
+        case rateSheetSelections = "rate_sheet_selections"
         case taskGroupKey = "task_group_key"
         case taskGroupType = "task_group_type"
         case tasks

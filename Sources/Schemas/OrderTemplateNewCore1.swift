@@ -7,6 +7,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
     public let coordinatorLabels: [String]?
     /// Must be a string starting with `org_`
     public let coordinatorOrgId: String?
+    public let enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]?
     /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
     public let offChrtReferenceId: String?
     public let offChrtShipperOrgDataId: String?
@@ -26,6 +27,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         coordinatorDepartmentIds: [String]? = nil,
         coordinatorLabels: [String]? = nil,
         coordinatorOrgId: String? = nil,
+        enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]? = nil,
         offChrtReferenceId: String? = nil,
         offChrtShipperOrgDataId: String? = nil,
         schemaVersion: Int,
@@ -41,6 +43,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         self.coordinatorDepartmentIds = coordinatorDepartmentIds
         self.coordinatorLabels = coordinatorLabels
         self.coordinatorOrgId = coordinatorOrgId
+        self.enabledSurchargeTypes = enabledSurchargeTypes
         self.offChrtReferenceId = offChrtReferenceId
         self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
         self.schemaVersion = schemaVersion
@@ -59,6 +62,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         self.coordinatorDepartmentIds = try container.decodeIfPresent([String].self, forKey: .coordinatorDepartmentIds)
         self.coordinatorLabels = try container.decodeIfPresent([String].self, forKey: .coordinatorLabels)
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
+        self.enabledSurchargeTypes = try container.decodeIfPresent([OrderBillingSurchargeTypeEnum1].self, forKey: .enabledSurchargeTypes)
         self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
         self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
@@ -78,6 +82,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.coordinatorDepartmentIds, forKey: .coordinatorDepartmentIds)
         try container.encodeIfPresent(self.coordinatorLabels, forKey: .coordinatorLabels)
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
+        try container.encodeIfPresent(self.enabledSurchargeTypes, forKey: .enabledSurchargeTypes)
         try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
         try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
@@ -95,6 +100,7 @@ public struct OrderTemplateNewCore1: Codable, Hashable, Sendable {
         case coordinatorDepartmentIds = "coordinator_department_ids"
         case coordinatorLabels = "coordinator_labels"
         case coordinatorOrgId = "coordinator_org_id"
+        case enabledSurchargeTypes = "enabled_surcharge_types"
         case offChrtReferenceId = "off_chrt_reference_id"
         case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"
         case schemaVersion = "schema_version"

@@ -2,16 +2,19 @@ import Foundation
 
 public struct RateSheetUsageRes: Codable, Hashable, Sendable {
     public let orderCount: Int
+    public let orderTemplateCount: Int
     public let rateSheetDefaultCount: Int
     /// Additional properties that are not explicitly defined in the schema
     public let additionalProperties: [String: JSONValue]
 
     public init(
         orderCount: Int,
+        orderTemplateCount: Int,
         rateSheetDefaultCount: Int,
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.orderCount = orderCount
+        self.orderTemplateCount = orderTemplateCount
         self.rateSheetDefaultCount = rateSheetDefaultCount
         self.additionalProperties = additionalProperties
     }
@@ -19,6 +22,7 @@ public struct RateSheetUsageRes: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.orderCount = try container.decode(Int.self, forKey: .orderCount)
+        self.orderTemplateCount = try container.decode(Int.self, forKey: .orderTemplateCount)
         self.rateSheetDefaultCount = try container.decode(Int.self, forKey: .rateSheetDefaultCount)
         self.additionalProperties = try decoder.decodeAdditionalProperties(using: CodingKeys.self)
     }
@@ -27,12 +31,14 @@ public struct RateSheetUsageRes: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.orderCount, forKey: .orderCount)
+        try container.encode(self.orderTemplateCount, forKey: .orderTemplateCount)
         try container.encode(self.rateSheetDefaultCount, forKey: .rateSheetDefaultCount)
     }
 
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case orderCount = "order_count"
+        case orderTemplateCount = "order_template_count"
         case rateSheetDefaultCount = "rate_sheet_default_count"
     }
 }

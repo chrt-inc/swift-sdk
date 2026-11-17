@@ -64,6 +64,9 @@ import Chrt
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
+                  "enabled_surcharge_types": [
+                    "equipment"
+                  ],
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
@@ -83,6 +86,11 @@ import Chrt
                       ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
+                      "rate_sheet_selections": [
+                        {
+                          "relationship_type": "receivable"
+                        }
+                      ],
                       "task_group_key": "task_group_key",
                       "task_group_type": "chrt_ground_provider",
                       "tasks": [
@@ -157,6 +165,9 @@ import Chrt
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
+            enabledSurchargeTypes: Optional([
+                OrderBillingSurchargeTypeEnum1.equipment
+            ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
@@ -176,6 +187,11 @@ import Chrt
                     ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
+                    rateSheetSelections: Optional([
+                        OrderTemplateNewRateSheetSelection1(
+                            relationshipType: BillingRelationshipTypeEnum1.receivable
+                        )
+                    ]),
                     taskGroupKey: "task_group_key",
                     taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
@@ -302,6 +318,9 @@ import Chrt
                       "coordinator_org_id": "coordinator_org_id",
                       "created_at_timestamp": "2024-01-15T09:30:00Z",
                       "description": "description",
+                      "enabled_surcharge_types": [
+                        "equipment"
+                      ],
                       "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                       "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                       "name": "name",
@@ -425,6 +444,9 @@ import Chrt
                     coordinatorOrgId: Optional("coordinator_org_id"),
                     createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     description: Optional("description"),
+                    enabledSurchargeTypes: Optional([
+                        OrderBillingSurchargeTypeEnum1.equipment
+                    ]),
                     lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                     lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     name: "name",
@@ -638,6 +660,9 @@ import Chrt
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
+                  "enabled_surcharge_types": [
+                    "equipment"
+                  ],
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
@@ -657,6 +682,11 @@ import Chrt
                       ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
+                      "rate_sheet_selections": [
+                        {
+                          "relationship_type": "receivable"
+                        }
+                      ],
                       "task_group_key": "task_group_key",
                       "task_group_type": "chrt_ground_provider",
                       "tasks": [
@@ -731,6 +761,9 @@ import Chrt
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
+            enabledSurchargeTypes: Optional([
+                OrderBillingSurchargeTypeEnum1.equipment
+            ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
@@ -750,6 +783,11 @@ import Chrt
                     ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
+                    rateSheetSelections: Optional([
+                        OrderTemplateNewRateSheetSelection1(
+                            relationshipType: BillingRelationshipTypeEnum1.receivable
+                        )
+                    ]),
                     taskGroupKey: "task_group_key",
                     taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
@@ -829,6 +867,9 @@ import Chrt
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
+                  "enabled_surcharge_types": [
+                    "equipment"
+                  ],
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
@@ -848,6 +889,11 @@ import Chrt
                       ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
+                      "rate_sheet_selections": [
+                        {
+                          "relationship_type": "receivable"
+                        }
+                      ],
                       "task_group_key": "task_group_key",
                       "task_group_type": "chrt_ground_provider",
                       "tasks": [
@@ -922,6 +968,9 @@ import Chrt
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
+            enabledSurchargeTypes: Optional([
+                OrderBillingSurchargeTypeEnum1.equipment
+            ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
@@ -941,6 +990,11 @@ import Chrt
                     ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
+                    rateSheetSelections: Optional([
+                        OrderTemplateNewRateSheetSelection1(
+                            relationshipType: BillingRelationshipTypeEnum1.receivable
+                        )
+                    ]),
                     taskGroupKey: "task_group_key",
                     taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([
@@ -1022,6 +1076,9 @@ import Chrt
                   "coordinator_org_id": "coordinator_org_id",
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "description": "description",
+                  "enabled_surcharge_types": [
+                    "equipment"
+                  ],
                   "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                   "last_used_at_timestamp": "2024-01-15T09:30:00Z",
                   "name": "name",
@@ -1041,6 +1098,11 @@ import Chrt
                       ],
                       "executor_org_id": "executor_org_id",
                       "off_chrt_executor_org_data_id": "off_chrt_executor_org_data_id",
+                      "rate_sheet_selections": [
+                        {
+                          "relationship_type": "receivable"
+                        }
+                      ],
                       "task_group_key": "task_group_key",
                       "task_group_type": "chrt_ground_provider",
                       "tasks": [
@@ -1115,6 +1177,9 @@ import Chrt
             coordinatorOrgId: Optional("coordinator_org_id"),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             description: Optional("description"),
+            enabledSurchargeTypes: Optional([
+                OrderBillingSurchargeTypeEnum1.equipment
+            ]),
             lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             lastUsedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             name: "name",
@@ -1134,6 +1199,11 @@ import Chrt
                     ]),
                     executorOrgId: Optional("executor_org_id"),
                     offChrtExecutorOrgDataId: Optional("off_chrt_executor_org_data_id"),
+                    rateSheetSelections: Optional([
+                        OrderTemplateNewRateSheetSelection1(
+                            relationshipType: BillingRelationshipTypeEnum1.receivable
+                        )
+                    ]),
                     taskGroupKey: "task_group_key",
                     taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider,
                     tasks: Optional([

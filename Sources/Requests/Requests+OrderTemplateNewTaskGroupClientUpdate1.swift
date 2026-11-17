@@ -12,6 +12,7 @@ extension Requests {
         public let executorOrgIdSetToNone: Bool?
         public let offChrtExecutorOrgDataId: String?
         public let offChrtExecutorOrgDataIdSetToNone: Bool?
+        public let rateSheetSelections: [OrderTemplateNewRateSheetSelection1]?
         public let taskGroupType: TaskGroupTypeEnum1?
         public let vehicleType: VehicleTypeEnum?
         public let vehicleTypeSetToNone: Bool?
@@ -28,6 +29,7 @@ extension Requests {
             executorOrgIdSetToNone: Bool? = nil,
             offChrtExecutorOrgDataId: String? = nil,
             offChrtExecutorOrgDataIdSetToNone: Bool? = nil,
+            rateSheetSelections: [OrderTemplateNewRateSheetSelection1]? = nil,
             taskGroupType: TaskGroupTypeEnum1? = nil,
             vehicleType: VehicleTypeEnum? = nil,
             vehicleTypeSetToNone: Bool? = nil,
@@ -42,6 +44,7 @@ extension Requests {
             self.executorOrgIdSetToNone = executorOrgIdSetToNone
             self.offChrtExecutorOrgDataId = offChrtExecutorOrgDataId
             self.offChrtExecutorOrgDataIdSetToNone = offChrtExecutorOrgDataIdSetToNone
+            self.rateSheetSelections = rateSheetSelections
             self.taskGroupType = taskGroupType
             self.vehicleType = vehicleType
             self.vehicleTypeSetToNone = vehicleTypeSetToNone
@@ -59,6 +62,7 @@ extension Requests {
             self.executorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .executorOrgIdSetToNone)
             self.offChrtExecutorOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtExecutorOrgDataId)
             self.offChrtExecutorOrgDataIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtExecutorOrgDataIdSetToNone)
+            self.rateSheetSelections = try container.decodeIfPresent([OrderTemplateNewRateSheetSelection1].self, forKey: .rateSheetSelections)
             self.taskGroupType = try container.decodeIfPresent(TaskGroupTypeEnum1.self, forKey: .taskGroupType)
             self.vehicleType = try container.decodeIfPresent(VehicleTypeEnum.self, forKey: .vehicleType)
             self.vehicleTypeSetToNone = try container.decodeIfPresent(Bool.self, forKey: .vehicleTypeSetToNone)
@@ -77,6 +81,7 @@ extension Requests {
             try container.encodeIfPresent(self.executorOrgIdSetToNone, forKey: .executorOrgIdSetToNone)
             try container.encodeIfPresent(self.offChrtExecutorOrgDataId, forKey: .offChrtExecutorOrgDataId)
             try container.encodeIfPresent(self.offChrtExecutorOrgDataIdSetToNone, forKey: .offChrtExecutorOrgDataIdSetToNone)
+            try container.encodeIfPresent(self.rateSheetSelections, forKey: .rateSheetSelections)
             try container.encodeIfPresent(self.taskGroupType, forKey: .taskGroupType)
             try container.encodeIfPresent(self.vehicleType, forKey: .vehicleType)
             try container.encodeIfPresent(self.vehicleTypeSetToNone, forKey: .vehicleTypeSetToNone)
@@ -93,6 +98,7 @@ extension Requests {
             case executorOrgIdSetToNone = "executor_org_id__set_to_None"
             case offChrtExecutorOrgDataId = "off_chrt_executor_org_data_id"
             case offChrtExecutorOrgDataIdSetToNone = "off_chrt_executor_org_data_id__set_to_None"
+            case rateSheetSelections = "rate_sheet_selections"
             case taskGroupType = "task_group_type"
             case vehicleType = "vehicle_type"
             case vehicleTypeSetToNone = "vehicle_type__set_to_None"

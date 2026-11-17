@@ -9,6 +9,7 @@ extension Requests {
         /// Must be a string starting with `org_`
         public let coordinatorOrgId: String?
         public let description: String?
+        public let enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]?
         public let name: String
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
@@ -30,6 +31,7 @@ extension Requests {
             coordinatorLabels: [String]? = nil,
             coordinatorOrgId: String? = nil,
             description: String? = nil,
+            enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]? = nil,
             name: String,
             offChrtReferenceId: String? = nil,
             offChrtShipperOrgDataId: String? = nil,
@@ -47,6 +49,7 @@ extension Requests {
             self.coordinatorLabels = coordinatorLabels
             self.coordinatorOrgId = coordinatorOrgId
             self.description = description
+            self.enabledSurchargeTypes = enabledSurchargeTypes
             self.name = name
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtShipperOrgDataId = offChrtShipperOrgDataId
@@ -67,6 +70,7 @@ extension Requests {
             self.coordinatorLabels = try container.decodeIfPresent([String].self, forKey: .coordinatorLabels)
             self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
+            self.enabledSurchargeTypes = try container.decodeIfPresent([OrderBillingSurchargeTypeEnum1].self, forKey: .enabledSurchargeTypes)
             self.name = try container.decode(String.self, forKey: .name)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtShipperOrgDataId = try container.decodeIfPresent(String.self, forKey: .offChrtShipperOrgDataId)
@@ -88,6 +92,7 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorLabels, forKey: .coordinatorLabels)
             try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
             try container.encodeIfPresent(self.description, forKey: .description)
+            try container.encodeIfPresent(self.enabledSurchargeTypes, forKey: .enabledSurchargeTypes)
             try container.encode(self.name, forKey: .name)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtShipperOrgDataId, forKey: .offChrtShipperOrgDataId)
@@ -107,6 +112,7 @@ extension Requests {
             case coordinatorLabels = "coordinator_labels"
             case coordinatorOrgId = "coordinator_org_id"
             case description
+            case enabledSurchargeTypes = "enabled_surcharge_types"
             case name
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtShipperOrgDataId = "off_chrt_shipper_org_data_id"

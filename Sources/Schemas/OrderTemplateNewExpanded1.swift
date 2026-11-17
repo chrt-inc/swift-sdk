@@ -13,6 +13,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
     public let coordinatorOrgId: String?
     public let createdAtTimestamp: Date
     public let description: String?
+    public let enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]?
     public let lastEditedAtTimestamp: Date
     public let lastUsedAtTimestamp: Date?
     public let name: String
@@ -48,6 +49,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         coordinatorOrgId: String? = nil,
         createdAtTimestamp: Date,
         description: String? = nil,
+        enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]? = nil,
         lastEditedAtTimestamp: Date,
         lastUsedAtTimestamp: Date? = nil,
         name: String,
@@ -77,6 +79,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         self.coordinatorOrgId = coordinatorOrgId
         self.createdAtTimestamp = createdAtTimestamp
         self.description = description
+        self.enabledSurchargeTypes = enabledSurchargeTypes
         self.lastEditedAtTimestamp = lastEditedAtTimestamp
         self.lastUsedAtTimestamp = lastUsedAtTimestamp
         self.name = name
@@ -109,6 +112,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         self.coordinatorOrgId = try container.decodeIfPresent(String.self, forKey: .coordinatorOrgId)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.enabledSurchargeTypes = try container.decodeIfPresent([OrderBillingSurchargeTypeEnum1].self, forKey: .enabledSurchargeTypes)
         self.lastEditedAtTimestamp = try container.decode(Date.self, forKey: .lastEditedAtTimestamp)
         self.lastUsedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .lastUsedAtTimestamp)
         self.name = try container.decode(String.self, forKey: .name)
@@ -142,6 +146,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.coordinatorOrgId, forKey: .coordinatorOrgId)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.description, forKey: .description)
+        try container.encodeIfPresent(self.enabledSurchargeTypes, forKey: .enabledSurchargeTypes)
         try container.encode(self.lastEditedAtTimestamp, forKey: .lastEditedAtTimestamp)
         try container.encodeIfPresent(self.lastUsedAtTimestamp, forKey: .lastUsedAtTimestamp)
         try container.encode(self.name, forKey: .name)
@@ -173,6 +178,7 @@ public struct OrderTemplateNewExpanded1: Codable, Hashable, Sendable {
         case coordinatorOrgId = "coordinator_org_id"
         case createdAtTimestamp = "created_at_timestamp"
         case description
+        case enabledSurchargeTypes = "enabled_surcharge_types"
         case lastEditedAtTimestamp = "last_edited_at_timestamp"
         case lastUsedAtTimestamp = "last_used_at_timestamp"
         case name

@@ -8515,7 +8515,7 @@ try await main()
 <dl>
 <dd>
 
-Counts the caller organization's orders priced with a rate sheet and the defaults that name it, so an operator knows what an edit affects. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetUsageRes)
+Counts the caller organization's orders priced with a rate sheet and the defaults and order templates (archived ones included) that name it, so an operator knows what an edit affects and what blocks archiving it. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (RateSheetUsageRes)
 </dd>
 </dl>
 </dd>

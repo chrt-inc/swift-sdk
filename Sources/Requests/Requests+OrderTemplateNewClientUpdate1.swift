@@ -10,6 +10,7 @@ extension Requests {
         public let coordinatorOrgIdSetToNone: Bool?
         public let description: String?
         public let descriptionSetToNone: Bool?
+        public let enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]?
         public let name: String?
         /// Must be a URL-safe string of 1-64 characters. Allowed characters: A-Z, a-z, 0-9, '.', '_', '~', '-' (RFC 3986 unreserved).
         public let offChrtReferenceId: String?
@@ -33,6 +34,7 @@ extension Requests {
             coordinatorOrgIdSetToNone: Bool? = nil,
             description: String? = nil,
             descriptionSetToNone: Bool? = nil,
+            enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]? = nil,
             name: String? = nil,
             offChrtReferenceId: String? = nil,
             offChrtReferenceIdSetToNone: Bool? = nil,
@@ -52,6 +54,7 @@ extension Requests {
             self.coordinatorOrgIdSetToNone = coordinatorOrgIdSetToNone
             self.description = description
             self.descriptionSetToNone = descriptionSetToNone
+            self.enabledSurchargeTypes = enabledSurchargeTypes
             self.name = name
             self.offChrtReferenceId = offChrtReferenceId
             self.offChrtReferenceIdSetToNone = offChrtReferenceIdSetToNone
@@ -74,6 +77,7 @@ extension Requests {
             self.coordinatorOrgIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .coordinatorOrgIdSetToNone)
             self.description = try container.decodeIfPresent(String.self, forKey: .description)
             self.descriptionSetToNone = try container.decodeIfPresent(Bool.self, forKey: .descriptionSetToNone)
+            self.enabledSurchargeTypes = try container.decodeIfPresent([OrderBillingSurchargeTypeEnum1].self, forKey: .enabledSurchargeTypes)
             self.name = try container.decodeIfPresent(String.self, forKey: .name)
             self.offChrtReferenceId = try container.decodeIfPresent(String.self, forKey: .offChrtReferenceId)
             self.offChrtReferenceIdSetToNone = try container.decodeIfPresent(Bool.self, forKey: .offChrtReferenceIdSetToNone)
@@ -97,6 +101,7 @@ extension Requests {
             try container.encodeIfPresent(self.coordinatorOrgIdSetToNone, forKey: .coordinatorOrgIdSetToNone)
             try container.encodeIfPresent(self.description, forKey: .description)
             try container.encodeIfPresent(self.descriptionSetToNone, forKey: .descriptionSetToNone)
+            try container.encodeIfPresent(self.enabledSurchargeTypes, forKey: .enabledSurchargeTypes)
             try container.encodeIfPresent(self.name, forKey: .name)
             try container.encodeIfPresent(self.offChrtReferenceId, forKey: .offChrtReferenceId)
             try container.encodeIfPresent(self.offChrtReferenceIdSetToNone, forKey: .offChrtReferenceIdSetToNone)
@@ -118,6 +123,7 @@ extension Requests {
             case coordinatorOrgIdSetToNone = "coordinator_org_id__set_to_None"
             case description
             case descriptionSetToNone = "description__set_to_None"
+            case enabledSurchargeTypes = "enabled_surcharge_types"
             case name
             case offChrtReferenceId = "off_chrt_reference_id"
             case offChrtReferenceIdSetToNone = "off_chrt_reference_id__set_to_None"
