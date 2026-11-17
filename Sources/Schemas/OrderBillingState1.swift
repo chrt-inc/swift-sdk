@@ -2,6 +2,7 @@ import Foundation
 
 public struct OrderBillingState1: Codable, Hashable, Sendable {
     public let id: String
+    public let airWaybillBillingSelections: [AirWaybillBillingSelection1]?
     public let createdAtTimestamp: Date
     /// Must be a string starting with `user_`
     public let createdByUserId: String?
@@ -20,6 +21,7 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
 
     public init(
         id: String,
+        airWaybillBillingSelections: [AirWaybillBillingSelection1]? = nil,
         createdAtTimestamp: Date,
         createdByUserId: String? = nil,
         enabledSurchargeTypes: [OrderBillingSurchargeTypeEnum1]? = nil,
@@ -33,6 +35,7 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
         additionalProperties: [String: JSONValue] = .init()
     ) {
         self.id = id
+        self.airWaybillBillingSelections = airWaybillBillingSelections
         self.createdAtTimestamp = createdAtTimestamp
         self.createdByUserId = createdByUserId
         self.enabledSurchargeTypes = enabledSurchargeTypes
@@ -49,6 +52,7 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
+        self.airWaybillBillingSelections = try container.decodeIfPresent([AirWaybillBillingSelection1].self, forKey: .airWaybillBillingSelections)
         self.createdAtTimestamp = try container.decode(Date.self, forKey: .createdAtTimestamp)
         self.createdByUserId = try container.decodeIfPresent(String.self, forKey: .createdByUserId)
         self.enabledSurchargeTypes = try container.decodeIfPresent([OrderBillingSurchargeTypeEnum1].self, forKey: .enabledSurchargeTypes)
@@ -66,6 +70,7 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try encoder.encodeAdditionalProperties(self.additionalProperties)
         try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.airWaybillBillingSelections, forKey: .airWaybillBillingSelections)
         try container.encode(self.createdAtTimestamp, forKey: .createdAtTimestamp)
         try container.encodeIfPresent(self.createdByUserId, forKey: .createdByUserId)
         try container.encodeIfPresent(self.enabledSurchargeTypes, forKey: .enabledSurchargeTypes)
@@ -81,6 +86,7 @@ public struct OrderBillingState1: Codable, Hashable, Sendable {
     /// Keys for encoding/decoding struct properties.
     enum CodingKeys: String, CodingKey, CaseIterable {
         case id = "_id"
+        case airWaybillBillingSelections = "air_waybill_billing_selections"
         case createdAtTimestamp = "created_at_timestamp"
         case createdByUserId = "created_by_user_id"
         case enabledSurchargeTypes = "enabled_surcharge_types"

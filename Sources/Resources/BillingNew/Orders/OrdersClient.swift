@@ -7,7 +7,7 @@ public final class OrdersClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Lists completed, unbilled AWBs with delivery account allocations. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderAwbBillingListRes)
+    /// Lists completed, unbilled AWBs with delivery account allocations, leaving out AWBs marked tracked only. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderAwbBillingListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -169,6 +169,38 @@ public final class OrdersClient: Sendable {
             body: request,
             requestOptions: requestOptions,
             responseType: OrderBillingExpandedListRes.self
+        )
+    }
+
+    /// Marks one AWB on an order billed or tracked only; tracked only deletes its uninvoiced charges, then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderAirWaybillBillingSelectionUpdateReq) -> (OrderPricingRes)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.billingNew.orders.updateAirWaybillBillingSelectionV1(
+    ///         orderId: "order_id",
+    ///         request: .init(
+    ///             awbNumber: "awb_number",
+    ///             billingType: .billed
+    ///         )
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateAirWaybillBillingSelectionV1(orderId: String, request: Requests.OrderAirWaybillBillingSelectionUpdateReq, requestOptions: RequestOptions? = nil) async throws -> OrderPricingRes {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/billing_new/orders/pricing/air_waybill_billing_selection/v1/\(orderId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: OrderPricingRes.self
         )
     }
 

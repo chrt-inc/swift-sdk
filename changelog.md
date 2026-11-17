@@ -1,3 +1,11 @@
+## 3.1.0 - 2026-11-17
+### Added
+* **`OrdersClient.updateAirWaybillBillingSelectionV1(orderId:request:)`** — marks one AWB on an order as `billed` or `tracked_only`; tracked-only deletes uninvoiced charges and re-prices, returning an `OrderPricingRes`.
+* **`AirWaybillBillingTypeEnum1`** — new enum with `billed` and `trackedOnly` cases representing how an AWB is treated for billing.
+* **`AirWaybillBillingSelection1`** — new schema type capturing an AWB's billing type selection along with audit timestamps and user ID.
+* **`Requests.OrderAirWaybillBillingSelectionUpdateReq`** — new request type accepted by `updateAirWaybillBillingSelectionV1`, carrying `awbNumber` and `billingType`.
+* **`OrderBillingState1.airWaybillBillingSelections`** — new optional `[AirWaybillBillingSelection1]?` field surfacing per-AWB billing selections on the order billing state; **`CreateInvoiceLineItemsFromAwbCostsRejectedReasonEnum1.trackedOnly`** — new rejection reason case for AWBs marked tracked-only.
+
 ## 3.0.0 - 2026-11-17
 ### Breaking Changes
 * **`RateSheetUsageRes`** — gains a new required `orderTemplateCount: Int` field; existing code constructing or decoding this struct will fail to compile or throw at runtime. Add `orderTemplateCount:` to all call sites and ensure server responses include `order_template_count`.

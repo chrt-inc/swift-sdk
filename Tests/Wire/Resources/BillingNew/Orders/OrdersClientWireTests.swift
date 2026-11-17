@@ -316,7 +316,7 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
-    @Test func updateRateSheetSelectionV11() async throws -> Void {
+    @Test func updateAirWaybillBillingSelectionV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
             body: Foundation.Data(
@@ -384,6 +384,14 @@ import Chrt
                   ],
                   "order_billing_state": {
                     "_id": "_id",
+                    "air_waybill_billing_selections": [
+                      {
+                        "awb_number": "awb_number",
+                        "billing_type": "billed",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id"
+                      }
+                    ],
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "enabled_surcharge_types": [
@@ -492,6 +500,254 @@ import Chrt
             ]),
             orderBillingState: Optional(OrderBillingState1(
                 id: "_id",
+                airWaybillBillingSelections: Optional([
+                    AirWaybillBillingSelection1(
+                        awbNumber: "awb_number",
+                        billingType: AirWaybillBillingTypeEnum1.billed,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id"
+                    )
+                ]),
+                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                createdByUserId: Optional("created_by_user_id"),
+                enabledSurchargeTypes: Optional([
+                    OrderBillingSurchargeTypeEnum1.equipment
+                ]),
+                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                lastEditedByUserId: Optional("last_edited_by_user_id"),
+                orderId: "order_id",
+                ownedByOrgId: "owned_by_org_id",
+                rateSheetSelections: Optional([
+                    RateSheetSelection1(
+                        relationshipType: BillingRelationshipTypeEnum1.receivable,
+                        selectionSource: RateSheetSelectionSourceEnum1.default,
+                        taskGroupId: "task_group_id"
+                    )
+                ]),
+                schemaVersion: 1,
+                unpricedReasons: Optional([
+                    UnpricedReason1(
+                        code: UnpricedReasonCodeEnum1.noRateSheet
+                    )
+                ])
+            )),
+            taskGroupIds: Optional([
+                "task_group_ids"
+            ]),
+            unpricedReasons: Optional([
+                UnpricedReason1(
+                    code: UnpricedReasonCodeEnum1.noRateSheet,
+                    rateSheetId: Optional("rate_sheet_id"),
+                    relationshipType: Optional(BillingRelationshipTypeEnum1.receivable),
+                    ruleKey: Optional("rule_key"),
+                    taskGroupId: Optional("task_group_id"),
+                    taskId: Optional("task_id")
+                )
+            ])
+        )
+        let response = try await client.billingNew.orders.updateAirWaybillBillingSelectionV1(
+            orderId: "order_id",
+            request: .init(
+                awbNumber: "awb_number",
+                billingType: .billed
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func updateRateSheetSelectionV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "agreed_prices": [
+                    {
+                      "bid_thread_id": "bid_thread_id",
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "order_billing_quote_id": "order_billing_quote_id",
+                      "relationship_type": "receivable",
+                      "task_group_id": "task_group_id"
+                    }
+                  ],
+                  "invoice_line_items": [
+                    {
+                      "_id": "_id",
+                      "awb_number": "awb_number",
+                      "billing_line_key": "billing_line_key",
+                      "billing_period_id": "billing_period_id",
+                      "counterparty_driver_id": "counterparty_driver_id",
+                      "counterparty_off_chrt_org_data_id": "counterparty_off_chrt_org_data_id",
+                      "counterparty_org_id": "counterparty_org_id",
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "created_by_user_id": "created_by_user_id",
+                      "currency_code": "USD",
+                      "currency_conversion": {
+                        "conversion_rate": 1.1,
+                        "source_currency_code": "USD",
+                        "source_unit_price": 1.1
+                      },
+                      "description": "description",
+                      "edited_by_user": true,
+                      "export_ref__sage__item_id": "export_ref__sage__item_id",
+                      "generated_by_pricing": true,
+                      "invoice_id": "invoice_id",
+                      "invoice_type": "accounts_receivable",
+                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                      "last_edited_by_user_id": "last_edited_by_user_id",
+                      "line_item_type": "base_rate",
+                      "needs_review": true,
+                      "order_id": "order_id",
+                      "owned_by_org_id": "owned_by_org_id",
+                      "quantity": 1.1,
+                      "rate_sheet_id": "rate_sheet_id",
+                      "rate_sheet_revision": 1,
+                      "schema_version": 1,
+                      "shipper_account_id": "shipper_account_id",
+                      "source_order_billing_quote_id": "source_order_billing_quote_id",
+                      "status": "draft",
+                      "task_group_id": "task_group_id",
+                      "task_ids": [
+                        "task_ids"
+                      ],
+                      "task_short_ids": [
+                        "task_short_ids"
+                      ],
+                      "tax_percentage": 1.1,
+                      "total_amount": 1.1,
+                      "unit": "each",
+                      "unit_price": 1.1
+                    }
+                  ],
+                  "order_billing_state": {
+                    "_id": "_id",
+                    "air_waybill_billing_selections": [
+                      {
+                        "awb_number": "awb_number",
+                        "billing_type": "billed",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id"
+                      }
+                    ],
+                    "created_at_timestamp": "2024-01-15T09:30:00Z",
+                    "created_by_user_id": "created_by_user_id",
+                    "enabled_surcharge_types": [
+                      "equipment"
+                    ],
+                    "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                    "last_edited_by_user_id": "last_edited_by_user_id",
+                    "order_id": "order_id",
+                    "owned_by_org_id": "owned_by_org_id",
+                    "rate_sheet_selections": [
+                      {
+                        "relationship_type": "receivable",
+                        "selection_source": "default",
+                        "task_group_id": "task_group_id"
+                      }
+                    ],
+                    "schema_version": 1,
+                    "unpriced_reasons": [
+                      {
+                        "code": "no_rate_sheet"
+                      }
+                    ]
+                  },
+                  "task_group_ids": [
+                    "task_group_ids"
+                  ],
+                  "unpriced_reasons": [
+                    {
+                      "code": "no_rate_sheet",
+                      "rate_sheet_id": "rate_sheet_id",
+                      "relationship_type": "receivable",
+                      "rule_key": "rule_key",
+                      "task_group_id": "task_group_id",
+                      "task_id": "task_id"
+                    }
+                  ]
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = OrderPricingRes(
+            agreedPrices: Optional([
+                OrderAgreedPrice1(
+                    bidThreadId: Optional("bid_thread_id"),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    orderBillingQuoteId: Optional("order_billing_quote_id"),
+                    relationshipType: BillingRelationshipTypeEnum1.receivable,
+                    taskGroupId: "task_group_id"
+                )
+            ]),
+            invoiceLineItems: Optional([
+                InvoiceLineItem1(
+                    id: "_id",
+                    awbNumber: Optional("awb_number"),
+                    billingLineKey: Optional("billing_line_key"),
+                    billingPeriodId: Optional("billing_period_id"),
+                    counterpartyDriverId: Optional("counterparty_driver_id"),
+                    counterpartyOffChrtOrgDataId: Optional("counterparty_off_chrt_org_data_id"),
+                    counterpartyOrgId: Optional("counterparty_org_id"),
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    createdByUserId: Optional("created_by_user_id"),
+                    currencyCode: BillingCurrencyCodeEnum1.usd,
+                    currencyConversion: Optional(InvoiceLineItemCurrencyConversion1(
+                        conversionRate: 1.1,
+                        sourceCurrencyCode: BillingCurrencyCodeEnum1.usd,
+                        sourceUnitPrice: 1.1
+                    )),
+                    description: "description",
+                    editedByUser: Optional(true),
+                    exportRefSageItemId: Optional("export_ref__sage__item_id"),
+                    generatedByPricing: Optional(true),
+                    invoiceId: Optional("invoice_id"),
+                    invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    lastEditedByUserId: Optional("last_edited_by_user_id"),
+                    lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                    needsReview: Optional(true),
+                    orderId: Optional("order_id"),
+                    ownedByOrgId: "owned_by_org_id",
+                    quantity: 1.1,
+                    rateSheetId: Optional("rate_sheet_id"),
+                    rateSheetRevision: Optional(1),
+                    schemaVersion: 1,
+                    shipperAccountId: Optional("shipper_account_id"),
+                    sourceOrderBillingQuoteId: Optional("source_order_billing_quote_id"),
+                    status: Optional(InvoiceLineItemStatusEnum1.draft),
+                    taskGroupId: Optional("task_group_id"),
+                    taskIds: Optional([
+                        "task_ids"
+                    ]),
+                    taskShortIds: Optional([
+                        "task_short_ids"
+                    ]),
+                    taxPercentage: Optional(1.1),
+                    totalAmount: Optional(1.1),
+                    unit: Optional(InvoiceLineItemUnitEnum1.each),
+                    unitPrice: 1.1
+                )
+            ]),
+            orderBillingState: Optional(OrderBillingState1(
+                id: "_id",
+                airWaybillBillingSelections: Optional([
+                    AirWaybillBillingSelection1(
+                        awbNumber: "awb_number",
+                        billingType: AirWaybillBillingTypeEnum1.billed,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id"
+                    )
+                ]),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: Optional("created_by_user_id"),
                 enabledSurchargeTypes: Optional([
@@ -608,6 +864,14 @@ import Chrt
                   ],
                   "order_billing_state": {
                     "_id": "_id",
+                    "air_waybill_billing_selections": [
+                      {
+                        "awb_number": "awb_number",
+                        "billing_type": "billed",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id"
+                      }
+                    ],
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "enabled_surcharge_types": [
@@ -716,6 +980,14 @@ import Chrt
             ]),
             orderBillingState: Optional(OrderBillingState1(
                 id: "_id",
+                airWaybillBillingSelections: Optional([
+                    AirWaybillBillingSelection1(
+                        awbNumber: "awb_number",
+                        billingType: AirWaybillBillingTypeEnum1.billed,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id"
+                    )
+                ]),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: Optional("created_by_user_id"),
                 enabledSurchargeTypes: Optional([
@@ -828,6 +1100,14 @@ import Chrt
                   ],
                   "order_billing_state": {
                     "_id": "_id",
+                    "air_waybill_billing_selections": [
+                      {
+                        "awb_number": "awb_number",
+                        "billing_type": "billed",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id"
+                      }
+                    ],
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "enabled_surcharge_types": [
@@ -936,6 +1216,14 @@ import Chrt
             ]),
             orderBillingState: Optional(OrderBillingState1(
                 id: "_id",
+                airWaybillBillingSelections: Optional([
+                    AirWaybillBillingSelection1(
+                        awbNumber: "awb_number",
+                        billingType: AirWaybillBillingTypeEnum1.billed,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id"
+                    )
+                ]),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: Optional("created_by_user_id"),
                 enabledSurchargeTypes: Optional([
@@ -1051,6 +1339,14 @@ import Chrt
                   ],
                   "order_billing_state": {
                     "_id": "_id",
+                    "air_waybill_billing_selections": [
+                      {
+                        "awb_number": "awb_number",
+                        "billing_type": "billed",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "last_edited_by_user_id": "last_edited_by_user_id"
+                      }
+                    ],
                     "created_at_timestamp": "2024-01-15T09:30:00Z",
                     "created_by_user_id": "created_by_user_id",
                     "enabled_surcharge_types": [
@@ -1159,6 +1455,14 @@ import Chrt
             ]),
             orderBillingState: Optional(OrderBillingState1(
                 id: "_id",
+                airWaybillBillingSelections: Optional([
+                    AirWaybillBillingSelection1(
+                        awbNumber: "awb_number",
+                        billingType: AirWaybillBillingTypeEnum1.billed,
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        lastEditedByUserId: "last_edited_by_user_id"
+                    )
+                ]),
                 createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                 createdByUserId: Optional("created_by_user_id"),
                 enabledSurchargeTypes: Optional([

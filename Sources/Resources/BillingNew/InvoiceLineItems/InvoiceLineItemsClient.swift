@@ -7,7 +7,7 @@ public final class InvoiceLineItemsClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates account-split ad-hoc line items without assigning invoices; a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
+    /// Creates account-split ad-hoc line items without assigning invoices; a line for an AWB marked tracked only is refused (409); a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
     ///
     /// ```swift
     /// import Foundation
@@ -48,7 +48,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Previews account-split ad-hoc line items without persisting them; a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
+    /// Previews account-split ad-hoc line items without persisting them; a line for an AWB marked tracked only is refused (409); a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
     ///
     /// ```swift
     /// import Foundation
@@ -142,7 +142,7 @@ public final class InvoiceLineItemsClient: Sendable {
         )
     }
 
-    /// Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
+    /// Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. AWBs marked tracked only are rejected. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
     ///
     /// ```swift
     /// import Foundation

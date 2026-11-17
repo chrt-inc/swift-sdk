@@ -3603,7 +3603,7 @@ try await main()
 <dl>
 <dd>
 
-Creates account-split ad-hoc line items without assigning invoices; a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
+Creates account-split ad-hoc line items without assigning invoices; a line for an AWB marked tracked only is refused (409); a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItem1])
 </dd>
 </dl>
 </dd>
@@ -3689,7 +3689,7 @@ try await main()
 <dl>
 <dd>
 
-Previews account-split ad-hoc line items without persisting them; a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
+Previews account-split ad-hoc line items without persisting them; a line for an AWB marked tracked only is refused (409); a line can name one stop on the task group, and a receivable with no accounts goes to that stop's store when it has exactly one. | authz: allowed_org_types=[provider], min_org_role=operator | (AdHocInvoiceLineItemsReq) -> (list[InvoiceLineItemServerCreate1])
 </dd>
 </dl>
 </dd>
@@ -3919,7 +3919,7 @@ try await main()
 <dl>
 <dd>
 
-Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
+Creates account-scoped airline payables from AWB costs; receivables remain rate-sheet-driven. AWBs marked tracked only are rejected. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateInvoiceLineItemsFromAwbCostsReq) -> (CreateInvoiceLineItemsFromAwbCostsRes)
 </dd>
 </dl>
 </dd>
@@ -6046,7 +6046,7 @@ try await main()
 <dl>
 <dd>
 
-Lists completed, unbilled AWBs with delivery account allocations. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderAwbBillingListRes)
+Lists completed, unbilled AWBs with delivery account allocations, leaving out AWBs marked tracked only. | authz: allowed_org_types=[provider], min_org_role=operator | () -> (OrderAwbBillingListRes)
 </dd>
 </dl>
 </dd>
@@ -6501,6 +6501,91 @@ try await main()
 <dd>
 
 **request:** `Requests.OrderBillingExpandedListReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billingNew.orders.<a href="/Sources/Resources/BillingNew/Orders/OrdersClient.swift">updateAirWaybillBillingSelectionV1</a>(orderId: String, request: Requests.OrderAirWaybillBillingSelectionUpdateReq, requestOptions: RequestOptions?) -> OrderPricingRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks one AWB on an order billed or tracked only; tracked only deletes its uninvoiced charges, then re-prices. | authz: allowed_org_types=[provider], min_org_role=operator | authz_personas=[coordinator_org_operators] | (OrderAirWaybillBillingSelectionUpdateReq) -> (OrderPricingRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.billingNew.orders.updateAirWaybillBillingSelectionV1(
+        orderId: "order_id",
+        request: .init(
+            awbNumber: "awb_number",
+            billingType: .billed
+        )
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orderId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.OrderAirWaybillBillingSelectionUpdateReq` 
     
 </dd>
 </dl>

@@ -4,4 +4,5 @@ public enum CreateInvoiceLineItemsFromAwbCostsRejectedReasonEnum1: String, Codab
     case alreadyBilled = "already_billed"
     case multipleOrders = "multiple_orders"
     case notResolvable = "not_resolvable"
+    case trackedOnly = "tracked_only"
 }
