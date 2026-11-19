@@ -2,6 +2,8 @@ name: ci
 
 on:
   push:
+    branches: [main]
+    tags: ['*']
   pull_request:
   workflow_dispatch:
 
@@ -35,11 +37,8 @@ jobs:
       - name: Show toolchain
         run: swift --version
 
-      - name: Build release library
-        run: swift build --configuration release
-
-      - name: Run all tests with coverage
-        run: swift test --enable-code-coverage
+      - name: Build and test release package
+        run: swift test --configuration release
 
   apple-platforms:
     name: Build ${{ matrix.platform }}
