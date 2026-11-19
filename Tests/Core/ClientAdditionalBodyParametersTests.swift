@@ -134,9 +134,8 @@ import Testing
         )
 
         do {
-            _ = try await client.authz.users.addGroupV1(
-                userId: "user_id",
-                groupId: "group_id",
+            _ = try await client.authz.customRoles.deleteV1(
+                customRoleId: "custom_role_id",
                 requestOptions: RequestOptions(additionalHeaders: stub.headers, additionalBodyParameters: additionalBodyParameters, additionalBodyProperties: additionalBodyProperties)
             )
 

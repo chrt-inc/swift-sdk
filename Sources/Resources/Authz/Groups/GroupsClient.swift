@@ -36,6 +36,31 @@ public final class GroupsClient: Sendable {
         )
     }
 
+    /// Deletes an authz group and removes it from every member, who lose the roles it granted. | authz: cedar=deleteGroup | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.authz.groups.deleteV1(groupId: "group_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(groupId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/authz/groups/delete/v1/\(groupId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Retrieves one authz group. | authz: cedar=readGroup | () -> (Group1)
     ///
     /// ```swift
@@ -61,7 +86,7 @@ public final class GroupsClient: Sendable {
         )
     }
 
-    /// Lists the authz groups in the caller's organization. | authz: cedar=listGroups | () -> (GroupListRes)
+    /// Lists the authz groups in the caller's organization with their member counts, optionally filtered by a role they grant. Filters combine with AND. | authz: cedar=listGroups | () -> (GroupListRes)
     ///
     /// ```swift
     /// import Foundation
@@ -71,6 +96,8 @@ public final class GroupsClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.authz.groups.listV1(
+    ///         filterChrtManagedRole: .superUser,
+    ///         filterCustomRoleId: "filter_custom_role_id",
     ///         page: 1,
     ///         pageSize: 1,
     ///         sortBy: .name,
@@ -81,12 +108,16 @@ public final class GroupsClient: Sendable {
     /// try await main()
     /// ```
     ///
+    /// - Parameter filterChrtManagedRole: Filter by a CHRT-managed role the group grants
+    /// - Parameter filterCustomRoleId: Filter by a custom role the group grants
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func listV1(page: Int? = nil, pageSize: Int? = nil, sortBy: GroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> GroupListRes {
+    public func listV1(filterChrtManagedRole: ChrtManagedRoleEnum1? = nil, filterCustomRoleId: String? = nil, page: Int? = nil, pageSize: Int? = nil, sortBy: GroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, requestOptions: RequestOptions? = nil) async throws -> GroupListRes {
         return try await httpClient.performRequest(
             method: .get,
             path: "/authz/groups/list/v1",
             queryParams: [
+                "filter_chrt_managed_role": filterChrtManagedRole.map { .string($0.rawValue) }, 
+                "filter_custom_role_id": filterCustomRoleId.map { .string($0) }, 
                 "page": page.map { .int($0) }, 
                 "page_size": pageSize.map { .int($0) }, 
                 "sort_by": sortBy.map { .string($0.rawValue) }, 

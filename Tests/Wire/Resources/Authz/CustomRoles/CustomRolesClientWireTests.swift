@@ -52,6 +52,28 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func deleteV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                true
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = true
+        let response = try await client.authz.customRoles.deleteV1(
+            customRoleId: "custom_role_id",
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func getV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -106,17 +128,16 @@ import Chrt
                 {
                   "items": [
                     {
-                      "_id": "_id",
-                      "created_at_timestamp": "2024-01-15T09:30:00Z",
-                      "created_by_user_id": "created_by_user_id",
-                      "description": "description",
-                      "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
-                      "name": "name",
-                      "org_id": "org_id",
-                      "permissions": [
-                        "authz.readAccess"
-                      ],
-                      "schema_version": 1
+                      "custom_role": {
+                        "_id": "_id",
+                        "created_at_timestamp": "2024-01-15T09:30:00Z",
+                        "created_by_user_id": "created_by_user_id",
+                        "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                        "name": "name",
+                        "org_id": "org_id",
+                        "schema_version": 1
+                      },
+                      "user_count": 1
                     }
                   ],
                   "total_count": 1
@@ -131,18 +152,17 @@ import Chrt
         )
         let expectedResponse = CustomRoleListRes(
             items: [
-                CustomRole1(
-                    id: "_id",
-                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    createdByUserId: "created_by_user_id",
-                    description: Optional("description"),
-                    lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                    name: "name",
-                    orgId: "org_id",
-                    permissions: Optional([
-                        PermissionEnum1.authzReadAccess
-                    ]),
-                    schemaVersion: 1
+                CustomRoleListItem(
+                    customRole: CustomRole1(
+                        id: "_id",
+                        createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        createdByUserId: "created_by_user_id",
+                        lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                        name: "name",
+                        orgId: "org_id",
+                        schemaVersion: 1
+                    ),
+                    userCount: 1
                 )
             ],
             totalCount: 1

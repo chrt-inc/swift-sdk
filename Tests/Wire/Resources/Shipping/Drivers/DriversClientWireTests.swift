@@ -25,6 +25,53 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func createForOrgMemberV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                string
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.drivers.createForOrgMemberV1(
+            request: .init(
+                schemaVersion: 1,
+                targetUserId: "target_user_id"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createForSelfV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                string
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.drivers.createForSelfV1(
+            request: .init(schemaVersion: 1),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(

@@ -7,7 +7,7 @@ public final class TaskClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Adds a task to an order task group. Draft tasks default to append and DRAFT status; operational tasks require an index and STAGED or COMPLETED status. | (OrdersAddTaskReq) -> (PydanticObjectId)
+    /// Adds a task to an order task group. Draft tasks default to append and DRAFT status; operational tasks require an index and STAGED or COMPLETED status. Coordinator shipper accounts are set afterwards with update_accounts. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (OrdersAddTaskReq) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation

@@ -34,7 +34,62 @@ public final class DriversClient: Sendable {
         )
     }
 
-    /// Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Provider orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
+    /// Creates or retrieves a driver profile for an active member of the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateDriverForOrgMemberReq) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.drivers.createForOrgMemberV1(request: .init(
+    ///         schemaVersion: 1,
+    ///         targetUserId: "target_user_id"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createForOrgMemberV1(request: Requests.CreateDriverForOrgMemberReq, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/create/for_org_member/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Creates or retrieves the caller's driver profile. | authz: allowed_org_types=[provider], min_org_role=member | (CreateDriverForSelfReq) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.drivers.createForSelfV1(request: .init(schemaVersion: 1))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createForSelfV1(request: Requests.CreateDriverForSelfReq, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/shipping/drivers/create/self/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// (DEPRECATED) Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Provider orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation

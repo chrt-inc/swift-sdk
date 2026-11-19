@@ -36,6 +36,31 @@ public final class CustomRolesClient: Sendable {
         )
     }
 
+    /// Deletes a custom role and removes it from every user and group holding it, who lose its permissions. | authz: cedar=deleteCustomRole | () -> (bool)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.authz.customRoles.deleteV1(customRoleId: "custom_role_id")
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func deleteV1(customRoleId: String, requestOptions: RequestOptions? = nil) async throws -> Bool {
+        return try await httpClient.performRequest(
+            method: .delete,
+            path: "/authz/custom_roles/delete/v1/\(customRoleId)",
+            requestOptions: requestOptions,
+            responseType: Bool.self
+        )
+    }
+
     /// Retrieves one of the organization's custom roles and the permissions it bundles. | authz: cedar=readCustomRole | () -> (CustomRole1)
     ///
     /// ```swift
@@ -61,7 +86,7 @@ public final class CustomRolesClient: Sendable {
         )
     }
 
-    /// Lists the custom roles in the caller's organization. | authz: cedar=listCustomRoles | () -> (CustomRoleListRes)
+    /// Lists the custom roles in the caller's organization with how many users hold each. | authz: cedar=listCustomRoles | () -> (CustomRoleListRes)
     ///
     /// ```swift
     /// import Foundation

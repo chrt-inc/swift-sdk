@@ -154,7 +154,65 @@ public final class TasksClient: Sendable {
         )
     }
 
-    /// Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
+    /// Overrides a draft or staged task location from one of the caller org's contacts and associates the contact. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators] | (TaskLocationFromContactReq) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.tasks.locationFromContactV1(
+    ///         taskId: "task_id",
+    ///         request: .init(contactId: "contact_id")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func locationFromContactV1(taskId: String, request: Requests.TaskLocationFromContactReq, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/tasks/location/from_contact/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Overrides a draft or staged task location from one of the coordinator's shipper accounts and associates the account. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (TaskLocationFromCoordinatorShipperAccountReq) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.tasks.locationFromCoordinatorShipperAccountV1(
+    ///         taskId: "task_id",
+    ///         request: .init(coordinatorShipperAccountId: "coordinator_shipper_account_id")
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func locationFromCoordinatorShipperAccountV1(taskId: String, request: Requests.TaskLocationFromCoordinatorShipperAccountReq, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .put,
+            path: "/shipping/tasks/location/from_coordinator_shipper_account/v1/\(taskId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// (DEPRECATED) Use location/from_contact or location/from_coordinator_shipper_account. Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation

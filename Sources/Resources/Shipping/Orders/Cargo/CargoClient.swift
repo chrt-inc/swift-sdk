@@ -149,7 +149,7 @@ public final class CargoClient: Sendable {
         )
     }
 
-    /// Updates cargo details and synchronizes the parent order's AWB list. | (CargoClientUpdate1) -> (PydanticObjectId)
+    /// (DEPRECATED) Use update_details or update_awb_number. Updates cargo details and synchronizes the parent order's AWB list. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -172,6 +172,64 @@ public final class CargoClient: Sendable {
         return try await httpClient.performRequest(
             method: .patch,
             path: "/shipping/orders/cargo/update/v1/\(cargoId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Sets or clears the cargo's air waybill number and synchronizes the parent order's AWB list. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (CargoClientUpdateAwbNumber1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.cargo.updateAwbNumberV1(
+    ///         cargoId: "cargo_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateAwbNumberV1(cargoId: String, request: Requests.CargoClientUpdateAwbNumber1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/cargo/update_awb_number/v1/\(cargoId)",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Updates cargo type, quantity, weight, dimensions, handling flags, description, and special handling codes. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (CargoClientUpdateDetails1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.shipping.orders.cargo.updateDetailsV1(
+    ///         cargoId: "cargo_id",
+    ///         request: .init()
+    ///     )
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func updateDetailsV1(cargoId: String, request: Requests.CargoClientUpdateDetails1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .patch,
+            path: "/shipping/orders/cargo/update_details/v1/\(cargoId)",
             body: request,
             requestOptions: requestOptions,
             responseType: String.self

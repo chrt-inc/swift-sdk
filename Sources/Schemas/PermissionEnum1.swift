@@ -3,9 +3,11 @@ import Foundation
 public enum PermissionEnum1: String, Codable, Hashable, CaseIterable, Sendable {
     case authzReadAccess = "authz.readAccess"
     case shippingReadOrders = "shipping.readOrders"
-    case shippingListOrders = "shipping.listOrders"
-    case shippingUpdateOrderLabels = "shipping.updateOrderLabels"
-    case shippingCancelOrders = "shipping.cancelOrders"
-    case shippingOpenOrderDrafts = "shipping.openOrderDrafts"
-    case shippingUpdateTasks = "shipping.updateTasks"
+    case shippingManageOrders = "shipping.manageOrders"
+    case shippingRecordTaskProgress = "shipping.recordTaskProgress"
+    case shippingCorrectTaskProgress = "shipping.correctTaskProgress"
+    case shippingBookCargoOnFlight = "shipping.bookCargoOnFlight"
+    case shippingManageOrderTemplates = "shipping.manageOrderTemplates"
+    case shippingManageDrivers = "shipping.manageDrivers"
+    case shippingManageDriverCompliance = "shipping.manageDriverCompliance"
 }

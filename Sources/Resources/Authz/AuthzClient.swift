@@ -4,6 +4,7 @@ public final class AuthzClient: Sendable {
     public let catalog: CatalogClient
     public let customRoles: CustomRolesClient
     public let groups: GroupsClient
+    public let permissions: PermissionsClient
     public let users: UsersClient
     private let httpClient: HTTPClient
 
@@ -11,6 +12,7 @@ public final class AuthzClient: Sendable {
         self.catalog = CatalogClient(config: config)
         self.customRoles = CustomRolesClient(config: config)
         self.groups = GroupsClient(config: config)
+        self.permissions = PermissionsClient(config: config)
         self.users = UsersClient(config: config)
         self.httpClient = HTTPClient(config: config)
     }

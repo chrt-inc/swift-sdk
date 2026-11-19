@@ -90,7 +90,7 @@ public final class TaskGroupClient: Sendable {
         )
     }
 
-    /// Clears the driver from an order task group. DRAFT task groups require executor_org_operators; operational task groups require executor_org_operators or driver_for_executor and STAGED or IN_PROGRESS status. | authz_personas=[executor_org_operators, driver_for_executor] | () -> (bool)
+    /// Clears the driver from an order task group. Requires executor_org_operators; being the assigned driver grants nothing. | authz_personas=[executor_org_operators] | () -> (bool)
     ///
     /// ```swift
     /// import Foundation

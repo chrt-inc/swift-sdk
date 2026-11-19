@@ -1066,6 +1066,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.authz.customRoles.<a href="/Sources/Resources/Authz/CustomRoles/CustomRolesClient.swift">deleteV1</a>(customRoleId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a custom role and removes it from every user and group holding it, who lose its permissions. | authz: cedar=deleteCustomRole | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.customRoles.deleteV1(customRoleId: "custom_role_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customRoleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.authz.customRoles.<a href="/Sources/Resources/Authz/CustomRoles/CustomRolesClient.swift">getV1</a>(customRoleId: String, requestOptions: RequestOptions?) -> CustomRole1</code></summary>
 <dl>
 <dd>
@@ -1149,7 +1220,7 @@ try await main()
 <dl>
 <dd>
 
-Lists the custom roles in the caller's organization. | authz: cedar=listCustomRoles | () -> (CustomRoleListRes)
+Lists the custom roles in the caller's organization with how many users hold each. | authz: cedar=listCustomRoles | () -> (CustomRoleListRes)
 </dd>
 </dl>
 </dd>
@@ -1394,6 +1465,77 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.authz.groups.<a href="/Sources/Resources/Authz/Groups/GroupsClient.swift">deleteV1</a>(groupId: String, requestOptions: RequestOptions?) -> Bool</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an authz group and removes it from every member, who lose the roles it granted. | authz: cedar=deleteGroup | () -> (bool)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.groups.deleteV1(groupId: "group_id")
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**groupId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.authz.groups.<a href="/Sources/Resources/Authz/Groups/GroupsClient.swift">getV1</a>(groupId: String, requestOptions: RequestOptions?) -> Group1</code></summary>
 <dl>
 <dd>
@@ -1465,7 +1607,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.authz.groups.<a href="/Sources/Resources/Authz/Groups/GroupsClient.swift">listV1</a>(page: Int?, pageSize: Int?, sortBy: GroupSortByEnum?, sortOrder: SortOrderEnum?, requestOptions: RequestOptions?) -> GroupListRes</code></summary>
+<details><summary><code>client.authz.groups.<a href="/Sources/Resources/Authz/Groups/GroupsClient.swift">listV1</a>(filterChrtManagedRole: ChrtManagedRoleEnum1?, filterCustomRoleId: String?, page: Int?, pageSize: Int?, sortBy: GroupSortByEnum?, sortOrder: SortOrderEnum?, requestOptions: RequestOptions?) -> GroupListRes</code></summary>
 <dl>
 <dd>
 
@@ -1477,7 +1619,7 @@ try await main()
 <dl>
 <dd>
 
-Lists the authz groups in the caller's organization. | authz: cedar=listGroups | () -> (GroupListRes)
+Lists the authz groups in the caller's organization with their member counts, optionally filtered by a role they grant. Filters combine with AND. | authz: cedar=listGroups | () -> (GroupListRes)
 </dd>
 </dl>
 </dd>
@@ -1499,6 +1641,8 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.authz.groups.listV1(
+        filterChrtManagedRole: .superUser,
+        filterCustomRoleId: "filter_custom_role_id",
         page: 1,
         pageSize: 1,
         sortBy: .name,
@@ -1517,6 +1661,22 @@ try await main()
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**filterChrtManagedRole:** `ChrtManagedRoleEnum1?` — Filter by a CHRT-managed role the group grants
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCustomRoleId:** `String?` — Filter by a custom role the group grants
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -1647,7 +1807,470 @@ try await main()
 </dl>
 </details>
 
+## Authz Permissions
+<details><summary><code>client.authz.permissions.<a href="/Sources/Resources/Authz/Permissions/PermissionsClient.swift">previewV1</a>(request: Requests.AuthzPermissionsPreviewReq, requestOptions: RequestOptions?) -> AuthzPermissionGrantsRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Previews the catalog permissions a set of CHRT-managed roles, custom roles, and groups would grant, with their sources and any ids not in the organization. | authz: cedar=listUsers | (AuthzPermissionsPreviewReq) -> (AuthzPermissionGrantsRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.permissions.previewV1(request: .init())
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.AuthzPermissionsPreviewReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Authz Users
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">addChrtManagedRoleV1</a>(userId: String, chrtManagedRole: String, requestOptions: RequestOptions?) -> User1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gives a user one CHRT-managed role in the caller's organization, preserving their other access assignments. | authz: cedar=updateUserAccess | () -> (User1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.addChrtManagedRoleV1(
+        userId: "user_id",
+        chrtManagedRole: "superUser"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**chrtManagedRole:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">removeChrtManagedRoleV1</a>(userId: String, chrtManagedRole: String, requestOptions: RequestOptions?) -> User1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Takes one CHRT-managed role away from a user in the caller's organization, preserving their other access assignments. | authz: cedar=updateUserAccess | () -> (User1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.removeChrtManagedRoleV1(
+        userId: "user_id",
+        chrtManagedRole: "superUser"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**chrtManagedRole:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">addCustomRoleV1</a>(userId: String, customRoleId: String, requestOptions: RequestOptions?) -> User1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gives a user one of the organization's custom roles, preserving their other access assignments. | authz: cedar=updateUserAccess | () -> (User1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.addCustomRoleV1(
+        userId: "user_id",
+        customRoleId: "custom_role_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customRoleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">removeCustomRoleV1</a>(userId: String, customRoleId: String, requestOptions: RequestOptions?) -> User1</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Takes one custom role away from a user in the caller's organization, preserving their other access assignments. | authz: cedar=updateUserAccess | () -> (User1)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.removeCustomRoleV1(
+        userId: "user_id",
+        customRoleId: "custom_role_id"
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**customRoleId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">getSelfV1</a>(requestOptions: RequestOptions?) -> AuthzUserSelfRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the caller's own catalog permission grants and the org-level authz actions they may take, such as listing users or creating groups. | () -> (AuthzUserSelfRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.getSelfV1()
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">getV1</a>(userId: String, requestOptions: RequestOptions?) -> User1</code></summary>
 <dl>
 <dd>
@@ -1883,7 +2506,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">listV1</a>(page: Int?, pageSize: Int?, sortBy: UserSortByEnum?, sortOrder: SortOrderEnum?, filterGroupId: String?, filterChrtManagedRole: ChrtManagedRoleEnum1?, filterCustomRoleId: String?, requestOptions: RequestOptions?) -> UserListRes</code></summary>
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">listV1</a>(page: Int?, pageSize: Int?, sortBy: UserSortByEnum?, sortOrder: SortOrderEnum?, filterUserIds: [String]?, filterGroupId: String?, filterChrtManagedRole: ChrtManagedRoleEnum1?, filterCustomRoleId: String?, requestOptions: RequestOptions?) -> UserListRes</code></summary>
 <dl>
 <dd>
 
@@ -1895,7 +2518,7 @@ try await main()
 <dl>
 <dd>
 
-Lists provisioned authz users by group and roles assigned directly or through groups. Filters combine with AND. | authz: cedar=listUsers | () -> (UserListRes)
+Lists provisioned authz users with their group and custom role names, filtered by user, group, and roles held directly or through groups. Filters combine with AND. | authz: cedar=listUsers | () -> (UserListRes)
 </dd>
 </dl>
 </dd>
@@ -1921,6 +2544,9 @@ private func main() async throws {
         pageSize: 1,
         sortBy: .displayName,
         sortOrder: .asc,
+        filterUserIds: [
+            "filter_user_ids"
+        ],
         filterGroupId: "filter_group_id",
         filterChrtManagedRole: .superUser,
         filterCustomRoleId: "filter_custom_role_id"
@@ -1967,6 +2593,14 @@ try await main()
 <dd>
 
 **sortOrder:** `SortOrderEnum?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterUserIds:** `[String]?` — Filter by WorkOS user ID(s), e.g. from the users typeahead
     
 </dd>
 </dl>
@@ -2022,7 +2656,7 @@ try await main()
 <dl>
 <dd>
 
-Lists catalog permission grants and their role/group sources, excluding resource-specific decisions and WorkOS administration rights. | authz: cedar=readUser | () -> (AuthzUserPermissionsRes)
+Lists catalog permission grants and their role/group sources, and flags assigned ids that no longer resolve, excluding resource-specific decisions and WorkOS administration rights. | authz: cedar=readUser | () -> (AuthzUserPermissionsRes)
 </dd>
 </dl>
 </dd>
@@ -2062,6 +2696,88 @@ try await main()
 <dd>
 
 **userId:** `String` — Must be a string starting with `user_`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authz.users.<a href="/Sources/Resources/Authz/Users/UsersClient.swift">typeaheadV1</a>(query: String, limit: Int?, requestOptions: RequestOptions?) -> [UserTypeaheadResult]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns matching display_name, email_address values and their WorkOS user IDs among the organization's provisioned authz users. | authz: cedar=listUsers | () -> (list[UserTypeaheadResult])
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.authz.users.typeaheadV1(
+        query: "query",
+        limit: 1
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**query:** `String` — Typeahead search query
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `Int?` — Max results per field
     
 </dd>
 </dl>
@@ -29066,6 +29782,151 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">createForOrgMemberV1</a>(request: Requests.CreateDriverForOrgMemberReq, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates or retrieves a driver profile for an active member of the caller's organization. | authz: allowed_org_types=[provider], min_org_role=operator | (CreateDriverForOrgMemberReq) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.createForOrgMemberV1(request: .init(
+        schemaVersion: 1,
+        targetUserId: "target_user_id"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CreateDriverForOrgMemberReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">createForSelfV1</a>(request: Requests.CreateDriverForSelfReq, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates or retrieves the caller's driver profile. | authz: allowed_org_types=[provider], min_org_role=member | (CreateDriverForSelfReq) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.drivers.createForSelfV1(request: .init(schemaVersion: 1))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Requests.CreateDriverForSelfReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.drivers.<a href="/Sources/Resources/Shipping/Drivers/DriversClient.swift">createV1</a>(targetUserId: String?, request: Requests.DriverClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
@@ -29078,7 +29939,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Provider orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
+(DEPRECATED) Creates a new driver profile for the target user (defaults to caller). Drivers can create themselves; operators+ can create any org member. Provider orgs only. | (DriverClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -34422,6 +35283,170 @@ try await main()
 </dl>
 </details>
 
+<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">locationFromContactV1</a>(taskId: String, request: Requests.TaskLocationFromContactReq, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Overrides a draft or staged task location from one of the caller org's contacts and associates the contact. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators] | (TaskLocationFromContactReq) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.tasks.locationFromContactV1(
+        taskId: "task_id",
+        request: .init(contactId: "contact_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskLocationFromContactReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">locationFromCoordinatorShipperAccountV1</a>(taskId: String, request: Requests.TaskLocationFromCoordinatorShipperAccountReq, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Overrides a draft or staged task location from one of the coordinator's shipper accounts and associates the account. | authz_personas=[draft_creator_org_operator, coordinator_org_operators] | (TaskLocationFromCoordinatorShipperAccountReq) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.tasks.locationFromCoordinatorShipperAccountV1(
+        taskId: "task_id",
+        request: .init(coordinatorShipperAccountId: "coordinator_shipper_account_id")
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**taskId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.TaskLocationFromCoordinatorShipperAccountReq` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.shipping.tasks.<a href="/Sources/Resources/Shipping/Tasks/TasksClient.swift">locationFromReferenceV1</a>(taskId: String, request: Requests.TaskLocationFromReferenceReq, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
@@ -34434,7 +35459,7 @@ try await main()
 <dl>
 <dd>
 
-Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
+(DEPRECATED) Use location/from_contact or location/from_coordinator_shipper_account. Overrides a draft or staged task location from a contact or coordinator shipper account and associates the reference. | authz_personas=[draft_creator_org_operator, order_creator_org_operators, task_group_operating_org_operators, coordinator_org_operators] | (TaskLocationFromReferenceReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -37836,7 +38861,7 @@ try await main()
 <dl>
 <dd>
 
-Updates cargo details and synchronizes the parent order's AWB list. | (CargoClientUpdate1) -> (PydanticObjectId)
+(DEPRECATED) Use update_details or update_awb_number. Updates cargo details and synchronizes the parent order's AWB list. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (CargoClientUpdate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -37887,6 +38912,170 @@ try await main()
 <dd>
 
 **request:** `Requests.CargoClientUpdate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orders.cargo.<a href="/Sources/Resources/Shipping/Orders/Cargo/CargoClient.swift">updateAwbNumberV1</a>(cargoId: String, request: Requests.CargoClientUpdateAwbNumber1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets or clears the cargo's air waybill number and synchronizes the parent order's AWB list. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (CargoClientUpdateAwbNumber1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.cargo.updateAwbNumberV1(
+        cargoId: "cargo_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoClientUpdateAwbNumber1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.shipping.orders.cargo.<a href="/Sources/Resources/Shipping/Orders/Cargo/CargoClient.swift">updateDetailsV1</a>(cargoId: String, request: Requests.CargoClientUpdateDetails1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates cargo type, quantity, weight, dimensions, handling flags, description, and special handling codes. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (CargoClientUpdateDetails1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.shipping.orders.cargo.updateDetailsV1(
+        cargoId: "cargo_id",
+        request: .init()
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cargoId:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Requests.CargoClientUpdateDetails1` 
     
 </dd>
 </dl>
@@ -39213,7 +40402,7 @@ try await main()
 <dl>
 <dd>
 
-Adds a task to an order task group. Draft tasks default to append and DRAFT status; operational tasks require an index and STAGED or COMPLETED status. | (OrdersAddTaskReq) -> (PydanticObjectId)
+Adds a task to an order task group. Draft tasks default to append and DRAFT status; operational tasks require an index and STAGED or COMPLETED status. Coordinator shipper accounts are set afterwards with update_accounts. | authz_personas=[draft_creator_org_operator, task_group_operating_org_operators] | (OrdersAddTaskReq) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -40155,7 +41344,7 @@ try await main()
 <dl>
 <dd>
 
-Clears the driver from an order task group. DRAFT task groups require executor_org_operators; operational task groups require executor_org_operators or driver_for_executor and STAGED or IN_PROGRESS status. | authz_personas=[executor_org_operators, driver_for_executor] | () -> (bool)
+Clears the driver from an order task group. Requires executor_org_operators; being the assigned driver grants nothing. | authz_personas=[executor_org_operators] | () -> (bool)
 </dd>
 </dl>
 </dd>
@@ -43066,160 +44255,6 @@ try await main()
 <dd>
 
 **taskGroupS3ObjectMetadataId:** `String` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Shipping TaskGroups TaskGroupId
-<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forDriverV1</a>(orderRef: String, requestOptions: RequestOptions?) -> [String]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves the task group IDs assigned to the caller (a driver of the executor provider) for an order. | authz_personas=[driver_for_executor] | () -> (list[PydanticObjectId])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.taskGroupId.forDriverV1(orderRef: "order_ref")
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.shipping.taskGroups.taskGroupId.<a href="/Sources/Resources/Shipping/TaskGroups/TaskGroupId/TaskGroupIdClient.swift">forProviderOperatorsV1</a>(orderRef: String, providerRole: TaskGroupProviderRoleFilterEnum?, requestOptions: RequestOptions?) -> [String]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves task group IDs where the caller's provider org is the coordinator, executor, or both. | authz_personas=[coordinator_org_operators, executor_org_operators] | () -> (list[PydanticObjectId])
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```swift
-import Foundation
-import Chrt
-
-private func main() async throws {
-    let client = ChrtClient(token: "<token>")
-
-    _ = try await client.shipping.taskGroups.taskGroupId.forProviderOperatorsV1(
-        orderRef: "order_ref",
-        providerRole: .all
-    )
-}
-
-try await main()
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orderRef:** `String` — Order ID, short ID, or off-chrt reference ID
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**providerRole:** `TaskGroupProviderRoleFilterEnum?` 
     
 </dd>
 </dl>

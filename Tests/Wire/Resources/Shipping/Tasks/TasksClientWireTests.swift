@@ -118,6 +118,52 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func locationFromContactV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                string
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.tasks.locationFromContactV1(
+            taskId: "task_id",
+            request: .init(contactId: "contact_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func locationFromCoordinatorShipperAccountV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                string
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.shipping.tasks.locationFromCoordinatorShipperAccountV1(
+            taskId: "task_id",
+            request: .init(coordinatorShipperAccountId: "coordinator_shipper_account_id"),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func locationFromReferenceV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
