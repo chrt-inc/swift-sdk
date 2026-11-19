@@ -1,3 +1,14 @@
+## 3.0.0 - 2026-11-19
+### Breaking Changes
+* **`AuthzUserPermissionsRes`** — two new required fields `missingCustomRoleIds` and `missingGroupIds` were added to the struct initializer; update all call sites to supply both arguments.
+* **`ChrtManagedRoleEnum1`** — new `.admin` case added to the enum; exhaustive `switch` statements without a `default` branch will fail to compile and must add a `.admin` case.
+### Added
+* **`AuthzClient.permissions`** — new `PermissionsClient` sub-client exposing `previewV1(request:)` to preview permission grants for CHRT-managed roles, custom roles, and groups.
+* **`AuthzPermissionGrantsRes`**, **`AuthzUserSelfRes`**, **`AuthzActionEnum`**, **`CustomRoleListItem`**, and **`GroupListItem`** — new schema types supporting the permissions preview and enriched authz responses.
+* **`UserListItem`**, **`UserListItemCustomRole`**, and **`UserListItemGroup`** — new schema types representing users in list responses with their associated custom roles and groups.
+* **`UserTypeaheadResult`**, **`UserTypeaheadValue`**, and **`UserTypeaheadFieldEnum`** — new schema types enabling user typeahead/autocomplete responses keyed by `displayName` or `emailAddress`.
+* **`CreateDriverForOrgMemberReq`**, **`CreateDriverForSelfReq`**, **`TaskLocationFromContactReq`**, **`TaskLocationFromCoordinatorShipperAccountReq`**, and **`CargoClientUpdateDetails1`** — new request types for driver creation, task location resolution, and cargo detail updates.
+
 ## 2.0.0 - 2026-11-17
 * feat!: add required billingType field to rate sheet request and schema types
 * Several public request and schema structs gain a new required `billingType`
