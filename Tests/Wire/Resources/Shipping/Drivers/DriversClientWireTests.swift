@@ -770,8 +770,9 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
+                        "short_id": "123-456-789",
                         "task_group_type": "chrt_ground_provider"
                       }
                     }
@@ -812,8 +813,9 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
+                        shortId: "123-456-789",
                         taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )
                 )

@@ -10,7 +10,7 @@ import Chrt
                 #"""
                 {
                   "order_id": "order_id",
-                  "order_short_id": "order_short_id"
+                  "order_short_id": "1234-5678"
                 }
                 """#.utf8
             )
@@ -22,7 +22,7 @@ import Chrt
         )
         let expectedResponse = OrdersOpenDraftRes(
             orderId: "order_id",
-            orderShortId: "order_short_id"
+            orderShortId: "1234-5678"
         )
         let response = try await client.shipping.orders.drafts.createFromOrderTemplateNewV1(
             request: .init(),
@@ -38,7 +38,7 @@ import Chrt
                 #"""
                 {
                   "order_id": "order_id",
-                  "order_short_id": "order_short_id"
+                  "order_short_id": "1234-5678"
                 }
                 """#.utf8
             )
@@ -50,7 +50,7 @@ import Chrt
         )
         let expectedResponse = OrdersOpenDraftRes(
             orderId: "order_id",
-            orderShortId: "order_short_id"
+            orderShortId: "1234-5678"
         )
         let response = try await client.shipping.orders.drafts.openV1(
             request: .init(),

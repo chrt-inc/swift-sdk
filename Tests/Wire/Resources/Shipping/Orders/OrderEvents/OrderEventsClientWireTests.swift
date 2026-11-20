@@ -15,10 +15,70 @@ import Chrt
                       "action": "shipping.order.draft_started",
                       "actor": {},
                       "entities": [
-                        {}
+                        {
+                          "cargo": {
+                            "_id": "_id",
+                            "cargo_type": "spare_parts",
+                            "created_by_org_id": "created_by_org_id",
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                            "order_id": "order_id",
+                            "order_short_id": "1234-5678",
+                            "schema_version": 1
+                          },
+                          "cargo_on_flight_booking": {
+                            "_id": "_id",
+                            "cargo_on_flight_integration": "air_canada",
+                            "created_by_org_id": "created_by_org_id",
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                            "order_id": "order_id",
+                            "order_short_id": "1234-5678",
+                            "schema_version": 1,
+                            "status": "draft",
+                            "task_group_id": "task_group_id"
+                          },
+                          "order": {
+                            "_id": "_id",
+                            "created_by_org_id": "created_by_org_id",
+                            "created_by_user_id": "created_by_user_id",
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                            "schema_version": 1,
+                            "short_id": "1234-5678"
+                          },
+                          "task": {
+                            "_id": "_id",
+                            "created_by_org_id": "created_by_org_id",
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                            "order_id": "order_id",
+                            "order_short_id": "1234-5678",
+                            "schema_version": 1,
+                            "short_id": "12345-67890",
+                            "task_group_id": "task_group_id"
+                          },
+                          "task_artifact": {
+                            "_id": "_id",
+                            "created_by_org_id": "created_by_org_id",
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                            "order_id": "order_id",
+                            "order_short_id": "1234-5678",
+                            "schema_version": 1,
+                            "task_group_id": "task_group_id",
+                            "task_id": "task_id",
+                            "type": "image"
+                          },
+                          "task_group": {
+                            "_id": "_id",
+                            "created_by_org_id": "created_by_org_id",
+                            "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                            "order_id": "order_id",
+                            "order_short_id": "1234-5678",
+                            "schema_version": 1,
+                            "short_id": "123-456-789",
+                            "task_group_type": "chrt_ground_provider"
+                          }
+                        }
                       ],
                       "order_id": "order_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "org_public_data": {
                         "_id": "_id",
                         "name": "name",
@@ -51,11 +111,69 @@ import Chrt
                     ),
                     entities: Optional([
                         OrderEventEntity1(
-
+                            cargo: Optional(Cargo1(
+                                id: "_id",
+                                cargoType: CargoTypeEnum1.spareParts,
+                                createdByOrgId: "created_by_org_id",
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                orderId: "order_id",
+                                orderShortId: "1234-5678",
+                                schemaVersion: 1
+                            )),
+                            cargoOnFlightBooking: Optional(CargoOnFlightBooking1(
+                                id: "_id",
+                                cargoOnFlightIntegration: CargoOnFlightIntegrationEnum1.airCanada,
+                                createdByOrgId: "created_by_org_id",
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                orderId: "order_id",
+                                orderShortId: "1234-5678",
+                                schemaVersion: 1,
+                                status: CargoOnFlightBookingStatusEnum1.draft,
+                                taskGroupId: "task_group_id"
+                            )),
+                            order: Optional(Order1(
+                                id: "_id",
+                                createdByOrgId: "created_by_org_id",
+                                createdByUserId: "created_by_user_id",
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                schemaVersion: 1,
+                                shortId: "1234-5678"
+                            )),
+                            task: Optional(Task1(
+                                id: "_id",
+                                createdByOrgId: "created_by_org_id",
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                orderId: "order_id",
+                                orderShortId: "1234-5678",
+                                schemaVersion: 1,
+                                shortId: "12345-67890",
+                                taskGroupId: "task_group_id"
+                            )),
+                            taskArtifact: Optional(TaskArtifact1(
+                                id: "_id",
+                                createdByOrgId: "created_by_org_id",
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                orderId: "order_id",
+                                orderShortId: "1234-5678",
+                                schemaVersion: 1,
+                                taskGroupId: "task_group_id",
+                                taskId: "task_id",
+                                type: TaskArtifactTypeEnum1.image
+                            )),
+                            taskGroup: Optional(TaskGroup1(
+                                id: "_id",
+                                createdByOrgId: "created_by_org_id",
+                                draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                orderId: "order_id",
+                                orderShortId: "1234-5678",
+                                schemaVersion: 1,
+                                shortId: "123-456-789",
+                                taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
+                            ))
                         )
                     ]),
                     orderId: "order_id",
-                    orderShortId: Optional("order_short_id"),
+                    orderShortId: Optional("1234-5678"),
                     orgPublicData: Optional(OrgPublicData1(
                         id: "_id",
                         name: "name",
@@ -116,7 +234,7 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1
                       },
                       "cargo_on_flight_air_waybill": {
@@ -158,7 +276,7 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
                         "status": "draft",
                         "task_group_id": "task_group_id"
@@ -208,16 +326,16 @@ import Chrt
                         "created_by_user_id": "created_by_user_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1,
-                        "short_id": "short_id"
+                        "short_id": "1234-5678"
                       },
                       "task": {
                         "_id": "_id",
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
-                        "short_id": "short_id",
+                        "short_id": "12345-67890",
                         "task_group_id": "task_group_id"
                       },
                       "task_artifact": {
@@ -225,7 +343,7 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
                         "task_group_id": "task_group_id",
                         "task_id": "task_id",
@@ -244,8 +362,9 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
+                        "short_id": "123-456-789",
                         "task_group_type": "chrt_ground_provider"
                       },
                       "task_group_s3_object_metadata": {
@@ -259,7 +378,7 @@ import Chrt
                     }
                   ],
                   "order_id": "order_id",
-                  "order_short_id": "order_short_id",
+                  "order_short_id": "1234-5678",
                   "org_public_data": {
                     "_id": "_id",
                     "description": "description",
@@ -325,7 +444,7 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1
                     )),
                     cargoOnFlightAirWaybill: Optional(CargoOnFlightAirWaybill1(
@@ -367,7 +486,7 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
                         status: CargoOnFlightBookingStatusEnum1.draft,
                         taskGroupId: "task_group_id"
@@ -417,16 +536,16 @@ import Chrt
                         createdByUserId: "created_by_user_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1,
-                        shortId: "short_id"
+                        shortId: "1234-5678"
                     )),
                     task: Optional(Task1(
                         id: "_id",
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
-                        shortId: "short_id",
+                        shortId: "12345-67890",
                         taskGroupId: "task_group_id"
                     )),
                     taskArtifact: Optional(TaskArtifact1(
@@ -434,7 +553,7 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
                         taskGroupId: "task_group_id",
                         taskId: "task_id",
@@ -453,8 +572,9 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
+                        shortId: "123-456-789",
                         taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     )),
                     taskGroupS3ObjectMetadata: Optional(TaskGroupS3ObjectMetadata1(
@@ -468,7 +588,7 @@ import Chrt
                 )
             ]),
             orderId: "order_id",
-            orderShortId: Optional("order_short_id"),
+            orderShortId: Optional("1234-5678"),
             orgPublicData: Optional(OrgPublicData1(
                 id: "_id",
                 description: Optional("description"),

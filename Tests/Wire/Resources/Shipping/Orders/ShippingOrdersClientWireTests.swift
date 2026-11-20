@@ -419,7 +419,7 @@ import Chrt
                   "coordinator_org_id": "coordinator_org_id",
                   "off_chrt_shipper_org_data_id": "off_chrt_shipper_org_data_id",
                   "order_id": "order_id",
-                  "order_short_id": "order_short_id",
+                  "order_short_id": "1234-5678",
                   "service_line": "on_demand",
                   "shipper_org_id": "shipper_org_id"
                 }
@@ -435,7 +435,7 @@ import Chrt
             coordinatorOrgId: Optional("coordinator_org_id"),
             offChrtShipperOrgDataId: Optional("off_chrt_shipper_org_data_id"),
             orderId: "order_id",
-            orderShortId: "order_short_id",
+            orderShortId: "1234-5678",
             serviceLine: ServiceLineEnum.onDemand,
             shipperOrgId: Optional("shipper_org_id")
         )

@@ -102,13 +102,13 @@ import Chrt
                         "name": "name",
                         "org_id": "org_id",
                         "schema_version": 1,
-                        "short_id": "short_id"
+                        "short_id": "123-456"
                       },
                       "operations_task": {
                         "_id": "_id",
                         "description": "description",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "org_id": "org_id",
                         "schema_version": 1,
                         "task_type": "review_order_details",
@@ -152,13 +152,13 @@ import Chrt
                         name: "name",
                         orgId: "org_id",
                         schemaVersion: 1,
-                        shortId: "short_id"
+                        shortId: "123-456"
                     )),
                     operationsTask: OperationsTask1(
                         id: "_id",
                         description: "description",
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         orgId: "org_id",
                         schemaVersion: 1,
                         taskType: OperationsTaskTypeEnum.reviewOrderDetails,
@@ -189,7 +189,7 @@ import Chrt
             filterOrderIds: [
                 "filter_order_ids"
             ],
-            filterOrderShortId: "filter_order_short_id",
+            filterOrderShortId: "1234-5678",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentIds: [
                 "filter_department_ids"
@@ -237,7 +237,7 @@ import Chrt
                       "entry_tag": "entry_tag",
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "org_id": "org_id",
                       "schema_version": 1,
                       "source_task_list_id": "source_task_list_id",
@@ -278,7 +278,7 @@ import Chrt
                     entryTag: Optional("entry_tag"),
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     orgId: "org_id",
                     schemaVersion: 1,
                     sourceTaskListId: Optional("source_task_list_id"),
@@ -301,7 +301,7 @@ import Chrt
             filterOrderIds: [
                 "filter_order_ids"
             ],
-            filterOrderShortId: "filter_order_short_id",
+            filterOrderShortId: "1234-5678",
             filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
             filterDepartmentIds: [
                 "filter_department_ids"
@@ -513,7 +513,7 @@ import Chrt
                   "entry_tag": "entry_tag",
                   "order_id": "order_id",
                   "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                  "order_short_id": "order_short_id",
+                  "order_short_id": "1234-5678",
                   "org_id": "org_id",
                   "schema_version": 1,
                   "source_task_list_id": "source_task_list_id",
@@ -550,7 +550,7 @@ import Chrt
             entryTag: Optional("entry_tag"),
             orderId: "order_id",
             orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-            orderShortId: "order_short_id",
+            orderShortId: "1234-5678",
             orgId: "org_id",
             schemaVersion: 1,
             sourceTaskListId: Optional("source_task_list_id"),

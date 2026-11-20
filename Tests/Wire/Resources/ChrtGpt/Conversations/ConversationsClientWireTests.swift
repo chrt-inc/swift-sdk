@@ -56,7 +56,7 @@ import Chrt
                         "off_chrt_reference_ids"
                       ],
                       "order_short_ids": [
-                        "order_short_ids"
+                        "1234-5678"
                       ],
                       "org_id": "org_id",
                       "schema_version": 1,
@@ -94,7 +94,7 @@ import Chrt
                         "off_chrt_reference_ids"
                     ]),
                     orderShortIds: Optional([
-                        "order_short_ids"
+                        "1234-5678"
                     ]),
                     orgId: "org_id",
                     schemaVersion: 1,
@@ -138,7 +138,7 @@ import Chrt
                     "off_chrt_reference_ids"
                   ],
                   "order_short_ids": [
-                    "order_short_ids"
+                    "1234-5678"
                   ],
                   "org_id": "org_id",
                   "schema_version": 1,
@@ -171,7 +171,7 @@ import Chrt
                 "off_chrt_reference_ids"
             ]),
             orderShortIds: Optional([
-                "order_short_ids"
+                "1234-5678"
             ]),
             orgId: "org_id",
             schemaVersion: 1,
@@ -211,7 +211,7 @@ import Chrt
                       "off_chrt_reference_ids"
                     ],
                     "order_short_ids": [
-                      "order_short_ids"
+                      "1234-5678"
                     ],
                     "org_id": "org_id",
                     "schema_version": 1,
@@ -255,7 +255,7 @@ import Chrt
                     "off_chrt_reference_ids"
                 ]),
                 orderShortIds: Optional([
-                    "order_short_ids"
+                    "1234-5678"
                 ]),
                 orgId: "org_id",
                 schemaVersion: 1,

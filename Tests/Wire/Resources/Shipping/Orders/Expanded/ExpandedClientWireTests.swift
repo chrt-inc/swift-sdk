@@ -35,7 +35,7 @@ import Chrt
                       ],
                       "org_id": "org_id",
                       "schema_version": 1,
-                      "short_id": "short_id"
+                      "short_id": "123-456"
                     }
                   ],
                   "coordinator_org_company_name": "coordinator_org_company_name",
@@ -147,7 +147,7 @@ import Chrt
                     "schema_version": 1,
                     "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
-                    "short_id": "short_id",
+                    "short_id": "1234-5678",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "status": "draft",
                     "task_group_details": [
@@ -185,7 +185,7 @@ import Chrt
                           "name": "name",
                           "org_id": "org_id",
                           "schema_version": 1,
-                          "short_id": "short_id"
+                          "short_id": "123-456"
                         }
                       ],
                       "executor_org_company_name": "executor_org_company_name",
@@ -202,22 +202,47 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
+                        "short_id": "123-456-789",
                         "task_group_type": "chrt_ground_provider"
                       },
                       "tasks_expanded": [
                         {
+                          "cargos": [
+                            {
+                              "_id": "_id",
+                              "cargo_type": "spare_parts",
+                              "created_by_org_id": "created_by_org_id",
+                              "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                              "order_id": "order_id",
+                              "order_short_id": "1234-5678",
+                              "schema_version": 1
+                            }
+                          ],
                           "task": {
                             "_id": "_id",
                             "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "order_id": "order_id",
-                            "order_short_id": "order_short_id",
+                            "order_short_id": "1234-5678",
                             "schema_version": 1,
-                            "short_id": "short_id",
+                            "short_id": "12345-67890",
                             "task_group_id": "task_group_id"
-                          }
+                          },
+                          "task_artifacts": [
+                            {
+                              "_id": "_id",
+                              "created_by_org_id": "created_by_org_id",
+                              "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                              "order_id": "order_id",
+                              "order_short_id": "1234-5678",
+                              "schema_version": 1,
+                              "task_group_id": "task_group_id",
+                              "task_id": "task_id",
+                              "type": "image"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -242,7 +267,7 @@ import Chrt
                       "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                       "length_inches": 1.1,
                       "order_id": "order_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "quantity": 1,
                       "schema_version": 1,
                       "skipped_at_timestamp": "2024-01-15T09:30:00Z",
@@ -303,7 +328,7 @@ import Chrt
                     ]),
                     orgId: "org_id",
                     schemaVersion: 1,
-                    shortId: "short_id"
+                    shortId: "123-456"
                 )
             ]),
             coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
@@ -425,7 +450,7 @@ import Chrt
                 schemaVersion: 1,
                 serviceLine: Optional(ServiceLineEnum.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
-                shortId: "short_id",
+                shortId: "1234-5678",
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 status: Optional(OrderStatusEnum1.draft),
                 taskGroupDetails: Optional([
@@ -465,7 +490,7 @@ import Chrt
                             name: "name",
                             orgId: "org_id",
                             schemaVersion: 1,
-                            shortId: "short_id"
+                            shortId: "123-456"
                         )
                     ]),
                     executorOrgCompanyName: Optional("executor_org_company_name"),
@@ -482,22 +507,47 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
+                        shortId: "123-456-789",
                         taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
+                            cargos: Optional([
+                                Cargo1(
+                                    id: "_id",
+                                    cargoType: CargoTypeEnum1.spareParts,
+                                    createdByOrgId: "created_by_org_id",
+                                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                    orderId: "order_id",
+                                    orderShortId: "1234-5678",
+                                    schemaVersion: 1
+                                )
+                            ]),
                             task: Task1(
                                 id: "_id",
                                 createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 orderId: "order_id",
-                                orderShortId: "order_short_id",
+                                orderShortId: "1234-5678",
                                 schemaVersion: 1,
-                                shortId: "short_id",
+                                shortId: "12345-67890",
                                 taskGroupId: "task_group_id"
-                            )
+                            ),
+                            taskArtifacts: Optional([
+                                TaskArtifact1(
+                                    id: "_id",
+                                    createdByOrgId: "created_by_org_id",
+                                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                    orderId: "order_id",
+                                    orderShortId: "1234-5678",
+                                    schemaVersion: 1,
+                                    taskGroupId: "task_group_id",
+                                    taskId: "task_id",
+                                    type: TaskArtifactTypeEnum1.image
+                                )
+                            ])
                         )
                     ])
                 )
@@ -522,7 +572,7 @@ import Chrt
                     inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lengthInches: Optional(1.1),
                     orderId: "order_id",
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     quantity: Optional(1),
                     schemaVersion: 1,
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -630,7 +680,7 @@ import Chrt
                     "schema_version": 1,
                     "service_line": "on_demand",
                     "shipper_org_id": "shipper_org_id",
-                    "short_id": "short_id",
+                    "short_id": "1234-5678",
                     "staged_at_timestamp": "2024-01-15T09:30:00Z",
                     "status": "draft",
                     "task_group_details": [
@@ -665,7 +715,7 @@ import Chrt
                           "name": "name",
                           "org_id": "org_id",
                           "schema_version": 1,
-                          "short_id": "short_id"
+                          "short_id": "123-456"
                         }
                       ],
                       "executor_org_company_name": "executor_org_company_name",
@@ -682,22 +732,47 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "schema_version": 1,
+                        "short_id": "123-456-789",
                         "task_group_type": "chrt_ground_provider"
                       },
                       "tasks_expanded": [
                         {
+                          "cargos": [
+                            {
+                              "_id": "_id",
+                              "cargo_type": "spare_parts",
+                              "created_by_org_id": "created_by_org_id",
+                              "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                              "order_id": "order_id",
+                              "order_short_id": "1234-5678",
+                              "schema_version": 1
+                            }
+                          ],
                           "task": {
                             "_id": "_id",
                             "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "order_id": "order_id",
-                            "order_short_id": "order_short_id",
+                            "order_short_id": "1234-5678",
                             "schema_version": 1,
-                            "short_id": "short_id",
+                            "short_id": "12345-67890",
                             "task_group_id": "task_group_id"
-                          }
+                          },
+                          "task_artifacts": [
+                            {
+                              "_id": "_id",
+                              "created_by_org_id": "created_by_org_id",
+                              "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                              "order_id": "order_id",
+                              "order_short_id": "1234-5678",
+                              "schema_version": 1,
+                              "task_group_id": "task_group_id",
+                              "task_id": "task_id",
+                              "type": "image"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -722,7 +797,7 @@ import Chrt
                       "in_transit_at_timestamp": "2024-01-15T09:30:00Z",
                       "length_inches": 1.1,
                       "order_id": "order_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "quantity": 1,
                       "schema_version": 1,
                       "skipped_at_timestamp": "2024-01-15T09:30:00Z",
@@ -833,7 +908,7 @@ import Chrt
                 schemaVersion: 1,
                 serviceLine: Optional(ServiceLineEnum.onDemand),
                 shipperOrgId: Optional("shipper_org_id"),
-                shortId: "short_id",
+                shortId: "1234-5678",
                 stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                 status: Optional(OrderStatusEnum1.draft),
                 taskGroupDetails: Optional([
@@ -870,7 +945,7 @@ import Chrt
                             name: "name",
                             orgId: "org_id",
                             schemaVersion: 1,
-                            shortId: "short_id"
+                            shortId: "123-456"
                         )
                     ]),
                     executorOrgCompanyName: Optional("executor_org_company_name"),
@@ -887,22 +962,47 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         schemaVersion: 1,
+                        shortId: "123-456-789",
                         taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
                     ),
                     tasksExpanded: Optional([
                         TaskExpanded(
+                            cargos: Optional([
+                                Cargo1(
+                                    id: "_id",
+                                    cargoType: CargoTypeEnum1.spareParts,
+                                    createdByOrgId: "created_by_org_id",
+                                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                    orderId: "order_id",
+                                    orderShortId: "1234-5678",
+                                    schemaVersion: 1
+                                )
+                            ]),
                             task: Task1(
                                 id: "_id",
                                 createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 orderId: "order_id",
-                                orderShortId: "order_short_id",
+                                orderShortId: "1234-5678",
                                 schemaVersion: 1,
-                                shortId: "short_id",
+                                shortId: "12345-67890",
                                 taskGroupId: "task_group_id"
-                            )
+                            ),
+                            taskArtifacts: Optional([
+                                TaskArtifact1(
+                                    id: "_id",
+                                    createdByOrgId: "created_by_org_id",
+                                    draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                    orderId: "order_id",
+                                    orderShortId: "1234-5678",
+                                    schemaVersion: 1,
+                                    taskGroupId: "task_group_id",
+                                    taskId: "task_id",
+                                    type: TaskArtifactTypeEnum1.image
+                                )
+                            ])
                         )
                     ])
                 )
@@ -927,7 +1027,7 @@ import Chrt
                     inTransitAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     lengthInches: Optional(1.1),
                     orderId: "order_id",
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     quantity: Optional(1),
                     schemaVersion: 1,
                     skippedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
@@ -970,7 +1070,7 @@ import Chrt
                           "name": "name",
                           "org_id": "org_id",
                           "schema_version": 1,
-                          "short_id": "short_id"
+                          "short_id": "123-456"
                         }
                       ],
                       "coordinator_org_company_name": "coordinator_org_company_name",
@@ -1007,7 +1107,7 @@ import Chrt
                         "created_by_org_id": "created_by_org_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1,
-                        "short_id": "short_id"
+                        "short_id": "1234-5678"
                       },
                       "provider_roles": [
                         "coordinator"
@@ -1015,15 +1115,66 @@ import Chrt
                       "shipper_org_company_name": "shipper_org_company_name",
                       "task_groups_expanded": [
                         {
+                          "executor_departments": [
+                            {
+                              "_id": "_id",
+                              "created_at": "2024-01-15T09:30:00Z",
+                              "created_by_user_id": "created_by_user_id",
+                              "department_type": "aerospace",
+                              "name": "name",
+                              "org_id": "org_id",
+                              "schema_version": 1,
+                              "short_id": "123-456"
+                            }
+                          ],
                           "task_group": {
                             "_id": "_id",
                             "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "order_id": "order_id",
-                            "order_short_id": "order_short_id",
+                            "order_short_id": "1234-5678",
                             "schema_version": 1,
+                            "short_id": "123-456-789",
                             "task_group_type": "chrt_ground_provider"
-                          }
+                          },
+                          "tasks_expanded": [
+                            {
+                              "cargos": [
+                                {
+                                  "_id": "_id",
+                                  "cargo_type": "spare_parts",
+                                  "created_by_org_id": "created_by_org_id",
+                                  "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                                  "order_id": "order_id",
+                                  "order_short_id": "1234-5678",
+                                  "schema_version": 1
+                                }
+                              ],
+                              "task": {
+                                "_id": "_id",
+                                "created_by_org_id": "created_by_org_id",
+                                "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                                "order_id": "order_id",
+                                "order_short_id": "1234-5678",
+                                "schema_version": 1,
+                                "short_id": "12345-67890",
+                                "task_group_id": "task_group_id"
+                              },
+                              "task_artifacts": [
+                                {
+                                  "_id": "_id",
+                                  "created_by_org_id": "created_by_org_id",
+                                  "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                                  "order_id": "order_id",
+                                  "order_short_id": "1234-5678",
+                                  "schema_version": 1,
+                                  "task_group_id": "task_group_id",
+                                  "task_id": "task_id",
+                                  "type": "image"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ],
                       "unassigned_cargos": [
@@ -1033,7 +1184,7 @@ import Chrt
                           "created_by_org_id": "created_by_org_id",
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                           "order_id": "order_id",
-                          "order_short_id": "order_short_id",
+                          "order_short_id": "1234-5678",
                           "schema_version": 1
                         }
                       ]
@@ -1061,7 +1212,7 @@ import Chrt
                             name: "name",
                             orgId: "org_id",
                             schemaVersion: 1,
-                            shortId: "short_id"
+                            shortId: "123-456"
                         )
                     ]),
                     coordinatorOrgCompanyName: Optional("coordinator_org_company_name"),
@@ -1098,7 +1249,7 @@ import Chrt
                         createdByOrgId: "created_by_org_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1,
-                        shortId: "short_id"
+                        shortId: "1234-5678"
                     ),
                     providerRoles: [
                         OrderProviderRoleEnum.coordinator
@@ -1106,15 +1257,66 @@ import Chrt
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     taskGroupsExpanded: Optional([
                         TaskGroupExpanded(
+                            executorDepartments: Optional([
+                                Department1(
+                                    id: "_id",
+                                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                    createdByUserId: "created_by_user_id",
+                                    departmentType: DepartmentTypeEnum.aerospace,
+                                    name: "name",
+                                    orgId: "org_id",
+                                    schemaVersion: 1,
+                                    shortId: "123-456"
+                                )
+                            ]),
                             taskGroup: TaskGroup1(
                                 id: "_id",
                                 createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 orderId: "order_id",
-                                orderShortId: "order_short_id",
+                                orderShortId: "1234-5678",
                                 schemaVersion: 1,
+                                shortId: "123-456-789",
                                 taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
-                            )
+                            ),
+                            tasksExpanded: Optional([
+                                TaskExpanded(
+                                    cargos: Optional([
+                                        Cargo1(
+                                            id: "_id",
+                                            cargoType: CargoTypeEnum1.spareParts,
+                                            createdByOrgId: "created_by_org_id",
+                                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                            orderId: "order_id",
+                                            orderShortId: "1234-5678",
+                                            schemaVersion: 1
+                                        )
+                                    ]),
+                                    task: Task1(
+                                        id: "_id",
+                                        createdByOrgId: "created_by_org_id",
+                                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                        orderId: "order_id",
+                                        orderShortId: "1234-5678",
+                                        schemaVersion: 1,
+                                        shortId: "12345-67890",
+                                        taskGroupId: "task_group_id"
+                                    ),
+                                    taskArtifacts: Optional([
+                                        TaskArtifact1(
+                                            id: "_id",
+                                            createdByOrgId: "created_by_org_id",
+                                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                            orderId: "order_id",
+                                            orderShortId: "1234-5678",
+                                            schemaVersion: 1,
+                                            taskGroupId: "task_group_id",
+                                            taskId: "task_id",
+                                            type: TaskArtifactTypeEnum1.image
+                                        )
+                                    ])
+                                )
+                            ])
                         )
                     ]),
                     unassignedCargos: Optional([
@@ -1124,7 +1326,7 @@ import Chrt
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
-                            orderShortId: "order_short_id",
+                            orderShortId: "1234-5678",
                             schemaVersion: 1
                         )
                     ])
@@ -1234,20 +1436,71 @@ import Chrt
                         "created_by_user_id": "created_by_user_id",
                         "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                         "schema_version": 1,
-                        "short_id": "short_id"
+                        "short_id": "1234-5678"
                       },
                       "shipper_org_company_name": "shipper_org_company_name",
                       "task_groups_expanded": [
                         {
+                          "executor_departments": [
+                            {
+                              "_id": "_id",
+                              "created_at": "2024-01-15T09:30:00Z",
+                              "created_by_user_id": "created_by_user_id",
+                              "department_type": "aerospace",
+                              "name": "name",
+                              "org_id": "org_id",
+                              "schema_version": 1,
+                              "short_id": "123-456"
+                            }
+                          ],
                           "task_group": {
                             "_id": "_id",
                             "created_by_org_id": "created_by_org_id",
                             "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                             "order_id": "order_id",
-                            "order_short_id": "order_short_id",
+                            "order_short_id": "1234-5678",
                             "schema_version": 1,
+                            "short_id": "123-456-789",
                             "task_group_type": "chrt_ground_provider"
-                          }
+                          },
+                          "tasks_expanded": [
+                            {
+                              "cargos": [
+                                {
+                                  "_id": "_id",
+                                  "cargo_type": "spare_parts",
+                                  "created_by_org_id": "created_by_org_id",
+                                  "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                                  "order_id": "order_id",
+                                  "order_short_id": "1234-5678",
+                                  "schema_version": 1
+                                }
+                              ],
+                              "task": {
+                                "_id": "_id",
+                                "created_by_org_id": "created_by_org_id",
+                                "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                                "order_id": "order_id",
+                                "order_short_id": "1234-5678",
+                                "schema_version": 1,
+                                "short_id": "12345-67890",
+                                "task_group_id": "task_group_id"
+                              },
+                              "task_artifacts": [
+                                {
+                                  "_id": "_id",
+                                  "created_by_org_id": "created_by_org_id",
+                                  "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
+                                  "order_id": "order_id",
+                                  "order_short_id": "1234-5678",
+                                  "schema_version": 1,
+                                  "task_group_id": "task_group_id",
+                                  "task_id": "task_id",
+                                  "type": "image"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ],
                       "unassigned_cargos": [
@@ -1257,7 +1510,7 @@ import Chrt
                           "created_by_org_id": "created_by_org_id",
                           "draft_started_at_timestamp": "2024-01-15T09:30:00Z",
                           "order_id": "order_id",
-                          "order_short_id": "order_short_id",
+                          "order_short_id": "1234-5678",
                           "schema_version": 1
                         }
                       ]
@@ -1304,20 +1557,71 @@ import Chrt
                         createdByUserId: "created_by_user_id",
                         draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         schemaVersion: 1,
-                        shortId: "short_id"
+                        shortId: "1234-5678"
                     ),
                     shipperOrgCompanyName: Optional("shipper_org_company_name"),
                     taskGroupsExpanded: Optional([
                         TaskGroupExpanded(
+                            executorDepartments: Optional([
+                                Department1(
+                                    id: "_id",
+                                    createdAt: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                    createdByUserId: "created_by_user_id",
+                                    departmentType: DepartmentTypeEnum.aerospace,
+                                    name: "name",
+                                    orgId: "org_id",
+                                    schemaVersion: 1,
+                                    shortId: "123-456"
+                                )
+                            ]),
                             taskGroup: TaskGroup1(
                                 id: "_id",
                                 createdByOrgId: "created_by_org_id",
                                 draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                                 orderId: "order_id",
-                                orderShortId: "order_short_id",
+                                orderShortId: "1234-5678",
                                 schemaVersion: 1,
+                                shortId: "123-456-789",
                                 taskGroupType: TaskGroupTypeEnum1.chrtGroundProvider
-                            )
+                            ),
+                            tasksExpanded: Optional([
+                                TaskExpanded(
+                                    cargos: Optional([
+                                        Cargo1(
+                                            id: "_id",
+                                            cargoType: CargoTypeEnum1.spareParts,
+                                            createdByOrgId: "created_by_org_id",
+                                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                            orderId: "order_id",
+                                            orderShortId: "1234-5678",
+                                            schemaVersion: 1
+                                        )
+                                    ]),
+                                    task: Task1(
+                                        id: "_id",
+                                        createdByOrgId: "created_by_org_id",
+                                        draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                        orderId: "order_id",
+                                        orderShortId: "1234-5678",
+                                        schemaVersion: 1,
+                                        shortId: "12345-67890",
+                                        taskGroupId: "task_group_id"
+                                    ),
+                                    taskArtifacts: Optional([
+                                        TaskArtifact1(
+                                            id: "_id",
+                                            createdByOrgId: "created_by_org_id",
+                                            draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                            orderId: "order_id",
+                                            orderShortId: "1234-5678",
+                                            schemaVersion: 1,
+                                            taskGroupId: "task_group_id",
+                                            taskId: "task_id",
+                                            type: TaskArtifactTypeEnum1.image
+                                        )
+                                    ])
+                                )
+                            ])
                         )
                     ]),
                     unassignedCargos: Optional([
@@ -1327,7 +1631,7 @@ import Chrt
                             createdByOrgId: "created_by_org_id",
                             draftStartedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                             orderId: "order_id",
-                            orderShortId: "order_short_id",
+                            orderShortId: "1234-5678",
                             schemaVersion: 1
                         )
                     ])

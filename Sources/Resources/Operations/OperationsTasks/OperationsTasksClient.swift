@@ -116,7 +116,7 @@ public final class OperationsTasksClient: Sendable {
     ///         filterOrderIds: [
     ///             "filter_order_ids"
     ///         ],
-    ///         filterOrderShortId: "filter_order_short_id",
+    ///         filterOrderShortId: "1234-5678",
     ///         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
     ///         filterDepartmentIds: [
     ///             "filter_department_ids"
@@ -203,7 +203,7 @@ public final class OperationsTasksClient: Sendable {
     ///         filterOrderIds: [
     ///             "filter_order_ids"
     ///         ],
-    ///         filterOrderShortId: "filter_order_short_id",
+    ///         filterOrderShortId: "1234-5678",
     ///         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
     ///         filterDepartmentIds: [
     ///             "filter_department_ids"

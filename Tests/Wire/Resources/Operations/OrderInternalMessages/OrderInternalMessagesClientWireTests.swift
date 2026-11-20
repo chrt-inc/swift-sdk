@@ -211,7 +211,7 @@ import Chrt
                       "message_count": 1,
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "order_status": "draft",
                       "unread_count": 1
                     }
@@ -239,7 +239,7 @@ import Chrt
                     messageCount: 1,
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     orderStatus: OrderStatusEnum1.draft,
                     unreadCount: 1
                 )

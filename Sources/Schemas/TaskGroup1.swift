@@ -30,6 +30,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
     public let schemaVersion: Int
     /// Must be a string starting with `org_`
     public let shipperOrgId: String?
+    public let shortId: String
     public let skippedAtTimestamp: Date?
     public let stagedAtTimestamp: Date?
     public let status: TaskGroupStatusEnum1?
@@ -65,6 +66,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         orderShortId: String,
         schemaVersion: Int,
         shipperOrgId: String? = nil,
+        shortId: String,
         skippedAtTimestamp: Date? = nil,
         stagedAtTimestamp: Date? = nil,
         status: TaskGroupStatusEnum1? = nil,
@@ -98,6 +100,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderShortId = orderShortId
         self.schemaVersion = schemaVersion
         self.shipperOrgId = shipperOrgId
+        self.shortId = shortId
         self.skippedAtTimestamp = skippedAtTimestamp
         self.stagedAtTimestamp = stagedAtTimestamp
         self.status = status
@@ -134,6 +137,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         self.orderShortId = try container.decode(String.self, forKey: .orderShortId)
         self.schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
         self.shipperOrgId = try container.decodeIfPresent(String.self, forKey: .shipperOrgId)
+        self.shortId = try container.decode(String.self, forKey: .shortId)
         self.skippedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .skippedAtTimestamp)
         self.stagedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .stagedAtTimestamp)
         self.status = try container.decodeIfPresent(TaskGroupStatusEnum1.self, forKey: .status)
@@ -171,6 +175,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         try container.encode(self.orderShortId, forKey: .orderShortId)
         try container.encode(self.schemaVersion, forKey: .schemaVersion)
         try container.encodeIfPresent(self.shipperOrgId, forKey: .shipperOrgId)
+        try container.encode(self.shortId, forKey: .shortId)
         try container.encodeIfPresent(self.skippedAtTimestamp, forKey: .skippedAtTimestamp)
         try container.encodeIfPresent(self.stagedAtTimestamp, forKey: .stagedAtTimestamp)
         try container.encodeIfPresent(self.status, forKey: .status)
@@ -206,6 +211,7 @@ public struct TaskGroup1: Codable, Hashable, Sendable {
         case orderShortId = "order_short_id"
         case schemaVersion = "schema_version"
         case shipperOrgId = "shipper_org_id"
+        case shortId = "short_id"
         case skippedAtTimestamp = "skipped_at_timestamp"
         case stagedAtTimestamp = "staged_at_timestamp"
         case status

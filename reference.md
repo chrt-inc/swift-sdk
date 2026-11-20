@@ -20434,7 +20434,7 @@ private func main() async throws {
         filterOrderIds: [
             "filter_order_ids"
         ],
-        filterOrderShortId: "filter_order_short_id",
+        filterOrderShortId: "1234-5678",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentIds: [
             "filter_department_ids"
@@ -20661,7 +20661,7 @@ private func main() async throws {
         filterOrderIds: [
             "filter_order_ids"
         ],
-        filterOrderShortId: "filter_order_short_id",
+        filterOrderShortId: "1234-5678",
         filterOrderOffChrtReferenceId: "filter_order_off_chrt_reference_id",
         filterDepartmentIds: [
             "filter_department_ids"
@@ -34802,7 +34802,7 @@ try await main()
 <dl>
 <dd>
 
-Returns distinct order_short_id and order_off_chrt_reference_id values matching the query via case-insensitive regex. Searches non-draft task groups where the caller's provider org is the executor. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (list[TaskGroupTypeaheadResult])
+Returns matching task group short IDs, order short IDs, and off-CHRT order references. Searches non-draft task groups where the caller's provider org is the executor. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (list[TaskGroupTypeaheadResult])
 </dd>
 </dl>
 </dd>
@@ -42831,7 +42831,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text search query (searches order_short_id, order_off_chrt_reference_id)
+**search:** `String?` — Full-text search query (searches task group short ID, order short ID, and off-CHRT reference)
     
 </dd>
 </dl>
@@ -43145,7 +43145,7 @@ try await main()
 <dl>
 <dd>
 
-**search:** `String?` — Full-text search query (searches order_short_id, order_off_chrt_reference_id)
+**search:** `String?` — Full-text search query (searches task group short ID, order short ID, and off-CHRT reference)
     
 </dd>
 </dl>

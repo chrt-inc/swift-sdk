@@ -77,7 +77,7 @@ import Chrt
                       "task_ids"
                     ],
                     "task_short_ids": [
-                      "task_short_ids"
+                      "12345-67890"
                     ],
                     "tax_percentage": 1.1,
                     "total_amount": 1.1,
@@ -162,7 +162,7 @@ import Chrt
                     "task_ids"
                 ]),
                 taskShortIds: Optional([
-                    "task_short_ids"
+                    "12345-67890"
                 ]),
                 taxPercentage: Optional(1.1),
                 totalAmount: Optional(1.1),
@@ -377,6 +377,9 @@ import Chrt
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
                         "schema_version": 1,
+                        "task_short_ids": [
+                          "12345-67890"
+                        ],
                         "total_amount": 1.1,
                         "unit_price": 1.1
                       }
@@ -423,7 +426,7 @@ import Chrt
                       "task_ids"
                     ],
                     "task_short_ids": [
-                      "task_short_ids"
+                      "12345-67890"
                     ],
                     "tax_percentage": 1.1,
                     "total_amount": 1.1,
@@ -529,6 +532,9 @@ import Chrt
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
+                        taskShortIds: Optional([
+                            "12345-67890"
+                        ]),
                         totalAmount: 1.1,
                         unitPrice: 1.1
                     )
@@ -575,7 +581,7 @@ import Chrt
                     "task_ids"
                 ]),
                 taskShortIds: Optional([
-                    "task_short_ids"
+                    "12345-67890"
                 ]),
                 taxPercentage: Optional(1.1),
                 totalAmount: Optional(1.1),
@@ -625,7 +631,26 @@ import Chrt
                         "owned_by_org_id": "owned_by_org_id",
                         "period_end_at_timestamp": "2024-01-15T09:30:00Z",
                         "period_start_at_timestamp": "2024-01-15T09:30:00Z",
-                        "schema_version": 1
+                        "schema_version": 1,
+                        "voided_invoice_line_items": [
+                          {
+                            "created_at_timestamp": "2024-01-15T09:30:00Z",
+                            "currency_code": "USD",
+                            "description": "description",
+                            "invoice_line_item_id": "invoice_line_item_id",
+                            "invoice_type": "accounts_receivable",
+                            "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
+                            "line_item_type": "base_rate",
+                            "owned_by_org_id": "owned_by_org_id",
+                            "quantity": 1.1,
+                            "schema_version": 1,
+                            "task_short_ids": [
+                              "12345-67890"
+                            ],
+                            "total_amount": 1.1,
+                            "unit_price": 1.1
+                          }
+                        ]
                       },
                       "invoice_line_item": {
                         "_id": "_id",
@@ -638,6 +663,9 @@ import Chrt
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
                         "schema_version": 1,
+                        "task_short_ids": [
+                          "12345-67890"
+                        ],
                         "unit_price": 1.1
                       }
                     }
@@ -682,7 +710,26 @@ import Chrt
                         ownedByOrgId: "owned_by_org_id",
                         periodEndAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         periodStartAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
-                        schemaVersion: 1
+                        schemaVersion: 1,
+                        voidedInvoiceLineItems: Optional([
+                            InvoiceVoidedLineItem1(
+                                createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                currencyCode: BillingCurrencyCodeEnum1.usd,
+                                description: "description",
+                                invoiceLineItemId: "invoice_line_item_id",
+                                invoiceType: InvoiceTypeEnum1.accountsReceivable,
+                                lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                                lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                                ownedByOrgId: "owned_by_org_id",
+                                quantity: 1.1,
+                                schemaVersion: 1,
+                                taskShortIds: Optional([
+                                    "12345-67890"
+                                ]),
+                                totalAmount: 1.1,
+                                unitPrice: 1.1
+                            )
+                        ])
                     )),
                     invoiceLineItem: Optional(InvoiceLineItem1(
                         id: "_id",
@@ -695,6 +742,9 @@ import Chrt
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
+                        taskShortIds: Optional([
+                            "12345-67890"
+                        ]),
                         unitPrice: 1.1
                     ))
                 )

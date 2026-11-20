@@ -20,7 +20,7 @@ import Chrt
                       "awb_number": "awb_number",
                       "completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "order_id": "order_id",
-                      "order_short_id": "order_short_id"
+                      "order_short_id": "1234-5678"
                     }
                   ],
                   "total_count": 1
@@ -45,7 +45,7 @@ import Chrt
                     awbNumber: "awb_number",
                     completedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orderId: "order_id",
-                    orderShortId: "order_short_id"
+                    orderShortId: "1234-5678"
                 )
             ]),
             totalCount: 1
@@ -185,7 +185,7 @@ import Chrt
                       ],
                       "last_delivery_task_completed_at_timestamp": "2024-01-15T09:30:00Z",
                       "order_id": "order_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "order_status": "draft",
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "totals_by_currency": [
@@ -259,7 +259,7 @@ import Chrt
                     ]),
                     lastDeliveryTaskCompletedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orderId: "order_id",
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     orderStatus: OrderStatusEnum1.draft,
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     totalsByCurrency: Optional([
@@ -374,7 +374,7 @@ import Chrt
                         "task_ids"
                       ],
                       "task_short_ids": [
-                        "task_short_ids"
+                        "12345-67890"
                       ],
                       "tax_percentage": 1.1,
                       "total_amount": 1.1,
@@ -491,7 +491,7 @@ import Chrt
                         "task_ids"
                     ]),
                     taskShortIds: Optional([
-                        "task_short_ids"
+                        "12345-67890"
                     ]),
                     taxPercentage: Optional(1.1),
                     totalAmount: Optional(1.1),
@@ -616,7 +616,7 @@ import Chrt
                         "task_ids"
                       ],
                       "task_short_ids": [
-                        "task_short_ids"
+                        "12345-67890"
                       ],
                       "tax_percentage": 1.1,
                       "total_amount": 1.1,
@@ -733,7 +733,7 @@ import Chrt
                         "task_ids"
                     ]),
                     taskShortIds: Optional([
-                        "task_short_ids"
+                        "12345-67890"
                     ]),
                     taxPercentage: Optional(1.1),
                     totalAmount: Optional(1.1),
@@ -859,7 +859,7 @@ import Chrt
                         "task_ids"
                       ],
                       "task_short_ids": [
-                        "task_short_ids"
+                        "12345-67890"
                       ],
                       "tax_percentage": 1.1,
                       "total_amount": 1.1,
@@ -976,7 +976,7 @@ import Chrt
                         "task_ids"
                     ]),
                     taskShortIds: Optional([
-                        "task_short_ids"
+                        "12345-67890"
                     ]),
                     taxPercentage: Optional(1.1),
                     totalAmount: Optional(1.1),
@@ -1097,7 +1097,7 @@ import Chrt
                         "task_ids"
                       ],
                       "task_short_ids": [
-                        "task_short_ids"
+                        "12345-67890"
                       ],
                       "tax_percentage": 1.1,
                       "total_amount": 1.1,
@@ -1214,7 +1214,7 @@ import Chrt
                         "task_ids"
                     ]),
                     taskShortIds: Optional([
-                        "task_short_ids"
+                        "12345-67890"
                     ]),
                     taxPercentage: Optional(1.1),
                     totalAmount: Optional(1.1),
@@ -1338,7 +1338,7 @@ import Chrt
                         "task_ids"
                       ],
                       "task_short_ids": [
-                        "task_short_ids"
+                        "12345-67890"
                       ],
                       "tax_percentage": 1.1,
                       "total_amount": 1.1,
@@ -1455,7 +1455,7 @@ import Chrt
                         "task_ids"
                     ]),
                     taskShortIds: Optional([
-                        "task_short_ids"
+                        "12345-67890"
                     ]),
                     taxPercentage: Optional(1.1),
                     totalAmount: Optional(1.1),
@@ -1572,6 +1572,9 @@ import Chrt
                         "owned_by_org_id": "owned_by_org_id",
                         "quantity": 1.1,
                         "schema_version": 1,
+                        "task_short_ids": [
+                          "12345-67890"
+                        ],
                         "unit_price": 1.1
                       }
                     ],
@@ -1646,6 +1649,9 @@ import Chrt
                         ownedByOrgId: "owned_by_org_id",
                         quantity: 1.1,
                         schemaVersion: 1,
+                        taskShortIds: Optional([
+                            "12345-67890"
+                        ]),
                         unitPrice: 1.1
                     )
                 ]),

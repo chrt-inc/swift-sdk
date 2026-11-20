@@ -304,7 +304,7 @@ import Chrt
                           "name": "name",
                           "org_id": "org_id",
                           "schema_version": 1,
-                          "short_id": "short_id"
+                          "short_id": "123-456"
                         }
                       ],
                       "coordinator_labels": [
@@ -430,7 +430,7 @@ import Chrt
                             name: "name",
                             orgId: "org_id",
                             schemaVersion: 1,
-                            shortId: "short_id"
+                            shortId: "123-456"
                         )
                     ]),
                     coordinatorLabels: Optional([

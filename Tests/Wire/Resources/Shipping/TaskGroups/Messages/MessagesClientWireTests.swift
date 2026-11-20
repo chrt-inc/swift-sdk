@@ -23,7 +23,7 @@ import Chrt
                         "timestamp": "2024-01-15T09:30:00Z",
                         "user_id": "user_id"
                       },
-                      "last_message_order_short_id": "last_message_order_short_id",
+                      "last_message_order_short_id": "1234-5678",
                       "last_message_task_group_id": "last_message_task_group_id",
                       "thread_count": 1,
                       "unread_count": 1
@@ -54,7 +54,7 @@ import Chrt
                         timestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         userId: "user_id"
                     )),
-                    lastMessageOrderShortId: Optional("last_message_order_short_id"),
+                    lastMessageOrderShortId: Optional("1234-5678"),
                     lastMessageTaskGroupId: Optional("last_message_task_group_id"),
                     threadCount: Optional(1),
                     unreadCount: Optional(1)
@@ -197,7 +197,7 @@ import Chrt
                       "message_count": 1,
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "status": "draft",
                       "task_group_id": "task_group_id",
@@ -241,7 +241,7 @@ import Chrt
                     messageCount: 1,
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     status: TaskGroupStatusEnum1.draft,
                     taskGroupId: "task_group_id",
@@ -295,7 +295,7 @@ import Chrt
                       "message_count": 1,
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "staged_at_timestamp": "2024-01-15T09:30:00Z",
                       "status": "draft",
                       "task_group_id": "task_group_id",
@@ -339,7 +339,7 @@ import Chrt
                     messageCount: 1,
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     stagedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     status: TaskGroupStatusEnum1.draft,
                     taskGroupId: "task_group_id",

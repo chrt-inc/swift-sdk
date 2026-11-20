@@ -58,7 +58,7 @@ import Chrt
                       ],
                       "org_id": "org_id",
                       "schema_version": 1,
-                      "short_id": "short_id"
+                      "short_id": "123-456"
                     }
                   ],
                   "total_count": 1
@@ -108,7 +108,7 @@ import Chrt
                     ]),
                     orgId: "org_id",
                     schemaVersion: 1,
-                    shortId: "short_id"
+                    shortId: "123-456"
                 )
             ],
             totalCount: 1
@@ -268,7 +268,7 @@ import Chrt
                   ],
                   "org_id": "org_id",
                   "schema_version": 1,
-                  "short_id": "short_id"
+                  "short_id": "123-456"
                 }
                 """#.utf8
             )
@@ -329,7 +329,7 @@ import Chrt
             ]),
             orgId: "org_id",
             schemaVersion: 1,
-            shortId: "short_id"
+            shortId: "123-456"
         )
         let response = try await client.operations.departments.getV1(
             departmentId: "department_id",

@@ -148,7 +148,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// ```
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id)
+    /// - Parameter search: Full-text search query (searches task group short ID, order short ID, and off-CHRT reference)
     /// - Parameter filterTaskGroupIds: Filter by selected task group ids
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
     public func listForDriverV1(sortBy: TaskGroupSortByEnum? = nil, sortOrder: SortOrderEnum? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, filterTaskGroupIds: [String]? = nil, filterStatus: [TaskGroupStatusEnum1]? = nil, filterDraftStartedAtTimestampLte: Date? = nil, filterDraftStartedAtTimestampGte: Date? = nil, filterStagedAtTimestampLte: Date? = nil, filterStagedAtTimestampGte: Date? = nil, filterInProgressAtTimestampLte: Date? = nil, filterInProgressAtTimestampGte: Date? = nil, filterCompletedAtTimestampLte: Date? = nil, filterCompletedAtTimestampGte: Date? = nil, filterSkippedAtTimestampLte: Date? = nil, filterSkippedAtTimestampGte: Date? = nil, filterCancelledAtTimestampLte: Date? = nil, filterCancelledAtTimestampGte: Date? = nil, filterExceptionAtTimestampLte: Date? = nil, filterExceptionAtTimestampGte: Date? = nil, filterCoordinatorOrgId: String? = nil, filterShipperOrgId: String? = nil, filterOffChrtShipperOrgDataId: String? = nil, request: OrderAndTaskGroupExpandedReq, requestOptions: RequestOptions? = nil) async throws -> TaskGroupExpandedListRes {
@@ -246,7 +246,7 @@ public final class TaskGroupsExpandedClient: Sendable {
     /// ```
     ///
     /// - Parameter sortOrder: Sort order (asc or desc)
-    /// - Parameter search: Full-text search query (searches order_short_id, order_off_chrt_reference_id)
+    /// - Parameter search: Full-text search query (searches task group short ID, order short ID, and off-CHRT reference)
     /// - Parameter filterTaskGroupIds: Filter by selected task group ids
     /// - Parameter filterOrderIds: Filter by selected order ids
     /// - Parameter filterTaskGroupType: Filter by task group type

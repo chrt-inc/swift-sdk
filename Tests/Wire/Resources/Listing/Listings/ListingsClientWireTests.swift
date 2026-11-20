@@ -71,7 +71,7 @@ import Chrt
                     "listing_description": "listing_description",
                     "order_id": "order_id",
                     "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                    "order_short_id": "order_short_id",
+                    "order_short_id": "1234-5678",
                     "org_bidding_group_ids": [
                       "org_bidding_group_ids"
                     ],
@@ -132,7 +132,7 @@ import Chrt
                 listingDescription: "listing_description",
                 orderId: "order_id",
                 orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                orderShortId: "order_short_id",
+                orderShortId: "1234-5678",
                 orgBiddingGroupIds: Optional([
                     "org_bidding_group_ids"
                 ]),
@@ -197,7 +197,7 @@ import Chrt
                   "listing_description": "listing_description",
                   "order_id": "order_id",
                   "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                  "order_short_id": "order_short_id",
+                  "order_short_id": "1234-5678",
                   "org_bidding_group_ids": [
                     "org_bidding_group_ids"
                   ],
@@ -255,7 +255,7 @@ import Chrt
             listingDescription: "listing_description",
             orderId: "order_id",
             orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-            orderShortId: "order_short_id",
+            orderShortId: "1234-5678",
             orgBiddingGroupIds: Optional([
                 "org_bidding_group_ids"
             ]),
@@ -318,7 +318,7 @@ import Chrt
                     "listing_description": "listing_description",
                     "order_id": "order_id",
                     "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                    "order_short_id": "order_short_id",
+                    "order_short_id": "1234-5678",
                     "org_bidding_group_ids": [
                       "org_bidding_group_ids"
                     ],
@@ -372,7 +372,7 @@ import Chrt
                 listingDescription: "listing_description",
                 orderId: "order_id",
                 orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                orderShortId: "order_short_id",
+                orderShortId: "1234-5678",
                 orgBiddingGroupIds: Optional([
                     "org_bidding_group_ids"
                 ]),
@@ -480,7 +480,7 @@ import Chrt
                       "listing_description": "listing_description",
                       "order_id": "order_id",
                       "order_off_chrt_reference_id": "order_off_chrt_reference_id",
-                      "order_short_id": "order_short_id",
+                      "order_short_id": "1234-5678",
                       "org_bidding_group_ids": [
                         "org_bidding_group_ids"
                       ],
@@ -537,7 +537,7 @@ import Chrt
                     listingDescription: "listing_description",
                     orderId: "order_id",
                     orderOffChrtReferenceId: Optional("order_off_chrt_reference_id"),
-                    orderShortId: "order_short_id",
+                    orderShortId: "1234-5678",
                     orgBiddingGroupIds: Optional([
                         "org_bidding_group_ids"
                     ]),
@@ -609,7 +609,7 @@ import Chrt
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                         "listing_description": "listing_description",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "status": "open",
                         "task_group_id": "task_group_id",
                         "task_group_summary_for_bidders": "task_group_summary_for_bidders"
@@ -639,7 +639,7 @@ import Chrt
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         listingDescription: "listing_description",
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         status: ListingStatusEnum.open,
                         taskGroupId: "task_group_id",
                         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
@@ -692,7 +692,7 @@ import Chrt
                         "last_edited_at_timestamp": "2024-01-15T09:30:00Z",
                         "listing_description": "listing_description",
                         "order_id": "order_id",
-                        "order_short_id": "order_short_id",
+                        "order_short_id": "1234-5678",
                         "status": "open",
                         "task_group_id": "task_group_id",
                         "task_group_summary_for_bidders": "task_group_summary_for_bidders"
@@ -722,7 +722,7 @@ import Chrt
                         lastEditedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
                         listingDescription: "listing_description",
                         orderId: "order_id",
-                        orderShortId: "order_short_id",
+                        orderShortId: "1234-5678",
                         status: ListingStatusEnum.open,
                         taskGroupId: "task_group_id",
                         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
