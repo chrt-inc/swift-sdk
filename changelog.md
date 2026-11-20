@@ -1,3 +1,10 @@
+## 4.0.0 - 2026-11-20
+### Breaking Changes
+* **`TaskGroup1`** — new required `shortId: String` field added to the struct; all existing call sites that construct `TaskGroup1` must add the `shortId:` argument to their initializer call.
+* **`TaskGroupTypeaheadFieldEnum`** — new `.shortId` case added to the enum; exhaustive `switch` statements without a `default` branch will fail to compile and must add a `.shortId` case.
+### Added
+* **`TaskExpanded`** — gains two new optional fields: `cargos: [Cargo1]?` and `taskArtifacts: [TaskArtifact1]?`, exposing cargo and artifact data directly on expanded task responses.
+
 ## 3.0.0 - 2026-11-19
 ### Breaking Changes
 * **`AuthzUserPermissionsRes`** — two new required fields `missingCustomRoleIds` and `missingGroupIds` were added to the struct initializer; update all call sites to supply both arguments.
