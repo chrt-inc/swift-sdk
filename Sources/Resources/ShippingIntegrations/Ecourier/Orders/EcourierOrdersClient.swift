@@ -130,7 +130,7 @@ public final class EcourierOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one e-Courier order by the provider's own order number, updating the unified order list alongside it. | authz: min_org_role=operator | (EcourierOrderSyncOneReq) -> (EcourierOrder1)
+    /// Fetches and mirrors one e-Courier order by the provider's own order number, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (EcourierOrderSyncOneReq) -> (EcourierOrder1)
     ///
     /// ```swift
     /// import Foundation

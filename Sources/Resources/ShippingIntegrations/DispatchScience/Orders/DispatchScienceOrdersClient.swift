@@ -138,7 +138,7 @@ public final class DispatchScienceOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one DispatchScience order by the provider's own order ID. | authz: min_org_role=operator | (DispatchScienceOrderSyncOneReq) -> (DispatchScienceOrder1)
+    /// Fetches and mirrors one DispatchScience order by the provider's own order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (DispatchScienceOrderSyncOneReq) -> (DispatchScienceOrder1)
     ///
     /// ```swift
     /// import Foundation

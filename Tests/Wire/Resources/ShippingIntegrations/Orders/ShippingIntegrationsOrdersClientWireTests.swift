@@ -40,6 +40,15 @@ import Chrt
                   "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                   "integration_order_id": "integration_order_id",
                   "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                  "milestone_events": [
+                    {
+                      "milestone_event_type": "arrived_pickup",
+                      "notification_sent": true,
+                      "occurred_at_timestamp": "2024-01-15T09:30:00Z",
+                      "signed_by_name": "signed_by_name",
+                      "stop_type": "pickup"
+                    }
+                  ],
                   "ordered_at_timestamp": "2024-01-15T09:30:00Z",
                   "org_id": "org_id",
                   "origin": {
@@ -188,6 +197,15 @@ import Chrt
             inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             integrationOrderId: "integration_order_id",
             lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            milestoneEvents: Optional([
+                ShippingIntegrationOrderMilestoneEvent1(
+                    milestoneEventType: ShippingIntegrationOrderMilestoneEventTypeEnum1.arrivedPickup,
+                    notificationSent: true,
+                    occurredAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
+                    signedByName: Optional("signed_by_name"),
+                    stopType: Optional(ShippingIntegrationOrderStopTypeEnum1.pickup)
+                )
+            ]),
             orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
             orgId: "org_id",
             origin: Optional(ShippingIntegrationOrderPlace1(
@@ -346,6 +364,12 @@ import Chrt
                       "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "integration_order_id": "integration_order_id",
                       "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "milestone_events": [
+                        {
+                          "milestone_event_type": "arrived_pickup",
+                          "notification_sent": true
+                        }
+                      ],
                       "ordered_at_timestamp": "2024-01-15T09:30:00Z",
                       "org_id": "org_id",
                       "origin": {
@@ -401,6 +425,12 @@ import Chrt
                     inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     integrationOrderId: "integration_order_id",
                     lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    milestoneEvents: Optional([
+                        ShippingIntegrationOrderMilestoneEvent1(
+                            milestoneEventType: ShippingIntegrationOrderMilestoneEventTypeEnum1.arrivedPickup,
+                            notificationSent: true
+                        )
+                    ]),
                     orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orgId: "org_id",
                     origin: Optional(ShippingIntegrationOrderPlace1(
@@ -461,6 +491,12 @@ import Chrt
                       "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "integration_order_id": "integration_order_id",
                       "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "milestone_events": [
+                        {
+                          "milestone_event_type": "arrived_pickup",
+                          "notification_sent": true
+                        }
+                      ],
                       "ordered_at_timestamp": "2024-01-15T09:30:00Z",
                       "org_id": "org_id",
                       "origin": {
@@ -516,6 +552,12 @@ import Chrt
                     inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     integrationOrderId: "integration_order_id",
                     lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    milestoneEvents: Optional([
+                        ShippingIntegrationOrderMilestoneEvent1(
+                            milestoneEventType: ShippingIntegrationOrderMilestoneEventTypeEnum1.arrivedPickup,
+                            notificationSent: true
+                        )
+                    ]),
                     orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orgId: "org_id",
                     origin: Optional(ShippingIntegrationOrderPlace1(
@@ -596,6 +638,12 @@ import Chrt
                       "in_progress_at_timestamp": "2024-01-15T09:30:00Z",
                       "integration_order_id": "integration_order_id",
                       "last_mirrored_at_timestamp": "2024-01-15T09:30:00Z",
+                      "milestone_events": [
+                        {
+                          "milestone_event_type": "arrived_pickup",
+                          "notification_sent": true
+                        }
+                      ],
                       "ordered_at_timestamp": "2024-01-15T09:30:00Z",
                       "org_id": "org_id",
                       "origin": {
@@ -651,6 +699,12 @@ import Chrt
                     inProgressAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     integrationOrderId: "integration_order_id",
                     lastMirroredAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    milestoneEvents: Optional([
+                        ShippingIntegrationOrderMilestoneEvent1(
+                            milestoneEventType: ShippingIntegrationOrderMilestoneEventTypeEnum1.arrivedPickup,
+                            notificationSent: true
+                        )
+                    ]),
                     orderedAtTimestamp: Optional(try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)),
                     orgId: "org_id",
                     origin: Optional(ShippingIntegrationOrderPlace1(

@@ -138,7 +138,7 @@ public final class XceleratorOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one Xcelerator order by the provider's own order ID. | authz: min_org_role=operator | (XceleratorOrderSyncOneReq) -> (XceleratorOrder1)
+    /// Fetches and mirrors one Xcelerator order by the provider's own order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (XceleratorOrderSyncOneReq) -> (XceleratorOrder1)
     ///
     /// ```swift
     /// import Foundation

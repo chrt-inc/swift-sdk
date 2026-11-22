@@ -137,7 +137,7 @@ public final class AtlasOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one Atlas order by the provider's own order ID. | authz: min_org_role=operator | (AtlasOrderSyncOneReq) -> (AtlasOrder1)
+    /// Fetches and mirrors one Atlas order by the provider's own order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (AtlasOrderSyncOneReq) -> (AtlasOrder1)
     ///
     /// ```swift
     /// import Foundation

@@ -130,7 +130,7 @@ public final class AlvysOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one Alvys load by the provider's own load ID, updating the unified order list alongside it. | authz: min_org_role=operator | (AlvysOrderSyncOneReq) -> (AlvysOrder1)
+    /// Fetches and mirrors one Alvys load by the provider's own load ID, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (AlvysOrderSyncOneReq) -> (AlvysOrder1)
     ///
     /// ```swift
     /// import Foundation

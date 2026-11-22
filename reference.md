@@ -46171,7 +46171,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one Alvys load by the provider's own load ID, updating the unified order list alongside it. | authz: min_org_role=operator | (AlvysOrderSyncOneReq) -> (AlvysOrder1)
+Fetches and mirrors one Alvys load by the provider's own load ID, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (AlvysOrderSyncOneReq) -> (AlvysOrder1)
 </dd>
 </dl>
 </dd>
@@ -47037,7 +47037,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one Atlas order by the provider's own order ID. | authz: min_org_role=operator | (AtlasOrderSyncOneReq) -> (AtlasOrder1)
+Fetches and mirrors one Atlas order by the provider's own order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (AtlasOrderSyncOneReq) -> (AtlasOrder1)
 </dd>
 </dl>
 </dd>
@@ -47984,7 +47984,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one Courie order by the provider's own order ID, updating the unified order list alongside it. | authz: min_org_role=operator | (CourieOrderSyncOneReq) -> (CourieOrder1)
+Fetches and mirrors one Courie order by the provider's own order ID, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (CourieOrderSyncOneReq) -> (CourieOrder1)
 </dd>
 </dl>
 </dd>
@@ -48853,7 +48853,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one CXT order by the provider's own decimal order ID. | authz: min_org_role=operator | (CxtOrderSyncOneReq) -> (CxtOrder1)
+Fetches and mirrors one CXT order by the provider's own decimal order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (CxtOrderSyncOneReq) -> (CxtOrder1)
 </dd>
 </dl>
 </dd>
@@ -49812,7 +49812,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one DispatchScience order by the provider's own order ID. | authz: min_org_role=operator | (DispatchScienceOrderSyncOneReq) -> (DispatchScienceOrder1)
+Fetches and mirrors one DispatchScience order by the provider's own order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (DispatchScienceOrderSyncOneReq) -> (DispatchScienceOrder1)
 </dd>
 </dl>
 </dd>
@@ -50754,7 +50754,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one e-Courier order by the provider's own order number, updating the unified order list alongside it. | authz: min_org_role=operator | (EcourierOrderSyncOneReq) -> (EcourierOrder1)
+Fetches and mirrors one e-Courier order by the provider's own order number, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (EcourierOrderSyncOneReq) -> (EcourierOrder1)
 </dd>
 </dl>
 </dd>
@@ -51631,7 +51631,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one OnTime360 order by the provider's own order GUID, updating the unified order list alongside it. | authz: min_org_role=operator | (OnTime360OrderSyncOneReq) -> (OnTime360Order1)
+Fetches and mirrors one OnTime360 order by the provider's own order GUID, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (OnTime360OrderSyncOneReq) -> (OnTime360Order1)
 </dd>
 </dl>
 </dd>
@@ -52590,7 +52590,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches and mirrors one Xcelerator order by the provider's own order ID. | authz: min_org_role=operator | (XceleratorOrderSyncOneReq) -> (XceleratorOrder1)
+Fetches and mirrors one Xcelerator order by the provider's own order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (XceleratorOrderSyncOneReq) -> (XceleratorOrder1)
 </dd>
 </dl>
 </dd>

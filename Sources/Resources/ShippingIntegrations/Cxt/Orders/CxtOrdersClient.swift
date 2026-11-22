@@ -137,7 +137,7 @@ public final class CxtOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one CXT order by the provider's own decimal order ID. | authz: min_org_role=operator | (CxtOrderSyncOneReq) -> (CxtOrder1)
+    /// Fetches and mirrors one CXT order by the provider's own decimal order ID. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (CxtOrderSyncOneReq) -> (CxtOrder1)
     ///
     /// ```swift
     /// import Foundation

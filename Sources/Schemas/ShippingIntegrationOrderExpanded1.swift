@@ -10,6 +10,7 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
     public let inProgressAtTimestamp: Date?
     public let integrationOrderId: String
     public let lastMirroredAtTimestamp: Date
+    public let milestoneEvents: [ShippingIntegrationOrderMilestoneEvent1]?
     public let orderedAtTimestamp: Date?
     /// Must be a string starting with `org_`
     public let orgId: String
@@ -38,6 +39,7 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         inProgressAtTimestamp: Date? = nil,
         integrationOrderId: String,
         lastMirroredAtTimestamp: Date,
+        milestoneEvents: [ShippingIntegrationOrderMilestoneEvent1]? = nil,
         orderedAtTimestamp: Date? = nil,
         orgId: String,
         origin: ShippingIntegrationOrderPlace1? = nil,
@@ -62,6 +64,7 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         self.inProgressAtTimestamp = inProgressAtTimestamp
         self.integrationOrderId = integrationOrderId
         self.lastMirroredAtTimestamp = lastMirroredAtTimestamp
+        self.milestoneEvents = milestoneEvents
         self.orderedAtTimestamp = orderedAtTimestamp
         self.orgId = orgId
         self.origin = origin
@@ -89,6 +92,7 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         self.inProgressAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .inProgressAtTimestamp)
         self.integrationOrderId = try container.decode(String.self, forKey: .integrationOrderId)
         self.lastMirroredAtTimestamp = try container.decode(Date.self, forKey: .lastMirroredAtTimestamp)
+        self.milestoneEvents = try container.decodeIfPresent([ShippingIntegrationOrderMilestoneEvent1].self, forKey: .milestoneEvents)
         self.orderedAtTimestamp = try container.decodeIfPresent(Date.self, forKey: .orderedAtTimestamp)
         self.orgId = try container.decode(String.self, forKey: .orgId)
         self.origin = try container.decodeIfPresent(ShippingIntegrationOrderPlace1.self, forKey: .origin)
@@ -117,6 +121,7 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         try container.encodeIfPresent(self.inProgressAtTimestamp, forKey: .inProgressAtTimestamp)
         try container.encode(self.integrationOrderId, forKey: .integrationOrderId)
         try container.encode(self.lastMirroredAtTimestamp, forKey: .lastMirroredAtTimestamp)
+        try container.encodeIfPresent(self.milestoneEvents, forKey: .milestoneEvents)
         try container.encodeIfPresent(self.orderedAtTimestamp, forKey: .orderedAtTimestamp)
         try container.encode(self.orgId, forKey: .orgId)
         try container.encodeIfPresent(self.origin, forKey: .origin)
@@ -143,6 +148,7 @@ public struct ShippingIntegrationOrderExpanded1: Codable, Hashable, Sendable {
         case inProgressAtTimestamp = "in_progress_at_timestamp"
         case integrationOrderId = "integration_order_id"
         case lastMirroredAtTimestamp = "last_mirrored_at_timestamp"
+        case milestoneEvents = "milestone_events"
         case orderedAtTimestamp = "ordered_at_timestamp"
         case orgId = "org_id"
         case origin

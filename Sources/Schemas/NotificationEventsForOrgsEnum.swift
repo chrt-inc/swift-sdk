@@ -37,4 +37,11 @@ public enum NotificationEventsForOrgsEnum: String, Codable, Hashable, CaseIterab
     case shippingIntegrationOrderCompleted = "shipping_integration.order.completed"
     case shippingIntegrationOrderException = "shipping_integration.order.exception"
     case shippingIntegrationOrderCancelled = "shipping_integration.order.cancelled"
+    case shippingIntegrationOrderArrivedPickup = "shipping_integration.order.arrived_pickup"
+    case shippingIntegrationOrderPickedUp = "shipping_integration.order.picked_up"
+    case shippingIntegrationOrderDepartedPickup = "shipping_integration.order.departed_pickup"
+    case shippingIntegrationOrderArrivedDelivery = "shipping_integration.order.arrived_delivery"
+    case shippingIntegrationOrderPodCaptured = "shipping_integration.order.pod_captured"
+    case shippingIntegrationOrderFailedAttempt = "shipping_integration.order.failed_attempt"
+    case shippingIntegrationOrderOnHold = "shipping_integration.order.on_hold"
 }

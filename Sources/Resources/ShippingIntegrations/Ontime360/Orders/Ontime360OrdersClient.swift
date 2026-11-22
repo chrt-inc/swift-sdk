@@ -138,7 +138,7 @@ public final class Ontime360OrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one OnTime360 order by the provider's own order GUID, updating the unified order list alongside it. | authz: min_org_role=operator | (OnTime360OrderSyncOneReq) -> (OnTime360Order1)
+    /// Fetches and mirrors one OnTime360 order by the provider's own order GUID, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (OnTime360OrderSyncOneReq) -> (OnTime360Order1)
     ///
     /// ```swift
     /// import Foundation

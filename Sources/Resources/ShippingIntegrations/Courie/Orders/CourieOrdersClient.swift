@@ -133,7 +133,7 @@ public final class CourieOrdersClient: Sendable {
         )
     }
 
-    /// Fetches and mirrors one Courie order by the provider's own order ID, updating the unified order list alongside it. | authz: min_org_role=operator | (CourieOrderSyncOneReq) -> (CourieOrder1)
+    /// Fetches and mirrors one Courie order by the provider's own order ID, updating the unified order list alongside it. Sends the order's status-change notifications and any of its unsent milestone emails to subscribers. | authz: min_org_role=operator | (CourieOrderSyncOneReq) -> (CourieOrder1)
     ///
     /// ```swift
     /// import Foundation
