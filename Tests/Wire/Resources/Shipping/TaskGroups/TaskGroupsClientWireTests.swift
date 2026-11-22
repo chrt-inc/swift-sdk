@@ -58,6 +58,9 @@ import Chrt
                     "type": "order_short_id",
                     "values": [
                       {
+                        "order_ids": [
+                          "order_ids"
+                        ],
                         "task_group_ids": [
                           "task_group_ids"
                         ],
@@ -79,6 +82,9 @@ import Chrt
                 type: TaskGroupTypeaheadFieldEnum.orderShortId,
                 values: [
                     TaskGroupTypeaheadValue(
+                        orderIds: [
+                            "order_ids"
+                        ],
                         taskGroupIds: [
                             "task_group_ids"
                         ],

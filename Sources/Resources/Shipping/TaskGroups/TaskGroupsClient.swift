@@ -67,7 +67,7 @@ public final class TaskGroupsClient: Sendable {
         )
     }
 
-    /// Returns matching task group short IDs, order short IDs, and off-CHRT order references. Searches non-draft task groups where the caller's provider org is the executor. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (list[TaskGroupTypeaheadResult])
+    /// Returns matching task group short IDs, order short IDs, and off-CHRT order references. Searches non-draft task groups where the caller's provider org is the executor, or, for operators and above, the coordinator. | authz: allowed_org_types=[provider], min_org_role=member | () -> (list[TaskGroupTypeaheadResult])
     ///
     /// ```swift
     /// import Foundation
