@@ -1,3 +1,9 @@
+## 5.0.0 - 2026-11-22
+### Breaking Changes
+* **`TaskGroupTypeaheadValue`** — new required `orderIds: [String]` field added to the struct; all existing call sites that construct `TaskGroupTypeaheadValue` must add the `orderIds:` argument to their initializer call.
+### Changed
+* **`TaskGroupsClient` typeahead** — the typeahead endpoint now also searches task groups where the caller's provider org is the coordinator (for operators and above), and the minimum required org role has been lowered from `driver` to `member`.
+
 ## 4.0.0 - 2026-11-20
 ### Breaking Changes
 * **`TaskGroup1`** — new required `shortId: String` field added to the struct; all existing call sites that construct `TaskGroup1` must add the `shortId:` argument to their initializer call.
