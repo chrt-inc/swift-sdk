@@ -1,3 +1,12 @@
+## 6.0.0 - 2026-11-22
+### Breaking Changes
+* **`NotificationEventsForOrgsEnum`** — seven new cases added (`.shippingIntegrationOrderArrivedPickup`, `.shippingIntegrationOrderPickedUp`, `.shippingIntegrationOrderDepartedPickup`, `.shippingIntegrationOrderArrivedDelivery`, `.shippingIntegrationOrderPodCaptured`, `.shippingIntegrationOrderFailedAttempt`, `.shippingIntegrationOrderOnHold`); exhaustive `switch` statements without a `default` branch will fail to compile and must add the new cases.
+* **`NotificationEventsForUsersEnum`** — same seven new milestone cases added; exhaustive `switch` statements without a `default` branch will fail to compile and must add the new cases.
+### Added
+* **`ShippingIntegrationOrderMilestoneEvent1`** — new schema type representing a single courier milestone at a stop, with fields for event type, notification status, timestamp, signature name, and stop type.
+* **`ShippingIntegrationOrderMilestoneEventTypeEnum1`** and **`ShippingIntegrationOrderStopTypeEnum1`** — new enums supporting milestone event classification and stop categorization.
+* **`ShippingIntegrationOrderExpanded1.milestoneEvents`** — new optional `[ShippingIntegrationOrderMilestoneEvent1]?` field exposing milestone events directly on expanded shipping integration order responses.
+
 ## 5.0.0 - 2026-11-22
 ### Breaking Changes
 * **`TaskGroupTypeaheadValue`** — new required `orderIds: [String]` field added to the struct; all existing call sites that construct `TaskGroupTypeaheadValue` must add the `orderIds:` argument to their initializer call.
