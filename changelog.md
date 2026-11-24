@@ -1,3 +1,14 @@
+## 7.0.0 - 2026-11-24
+### Breaking Changes
+* **`Requests.ListingClientCreate1`** — struct removed from the `Requests` namespace; update all references to use the top-level `ListingClientCreate1` type directly.
+* **`ListingsClient.createV1`** — renamed to `createForDriversV1` and `createForProvidersV1`; the old `createV1` is deprecated — migrate call sites to the appropriate new method.
+* **`ChrtManagedRoleEnum1`** — five new cases added (`.operator`, `.operationsManager`, `.sales`, `.billingContributor`, `.billingManager`); exhaustive `switch` statements without a `default` branch will fail to compile — add the new cases or a `default` branch.
+* **`PermissionEnum1`** — 21 new cases added across the `chrtGpt`, `notifications`, `orgs`, `listing`, `operations`, `tracking`, `shippingIntegrations`, and `billing` permission families; exhaustive `switch` statements without a `default` branch will fail to compile — add the new cases or a `default` branch.
+### Added
+* **`ListingClientCreate1`** — new top-level public struct representing the request body for listing creation, with required fields `audience`, `listingDescription`, `taskGroupId`, and `taskGroupSummaryForBidders`, plus numerous optional fields.
+* **`ListingsClient.createForDriversV1`** and **`ListingsClient.createForProvidersV1`** — new endpoints for creating listings targeted at driver and provider audiences respectively.
+* **`BidThreadsClient.listForDriverBidderV1`** and **`BidThreadsClient.listForProviderBidderV1`** — new paginated endpoints for retrieving bid threads scoped to driver and provider bidders, with full filtering, sorting, and pagination support.
+
 ## 6.0.0 - 2026-11-22
 ### Breaking Changes
 * **`NotificationEventsForOrgsEnum`** — seven new cases added (`.shippingIntegrationOrderArrivedPickup`, `.shippingIntegrationOrderPickedUp`, `.shippingIntegrationOrderDepartedPickup`, `.shippingIntegrationOrderArrivedDelivery`, `.shippingIntegrationOrderPodCaptured`, `.shippingIntegrationOrderFailedAttempt`, `.shippingIntegrationOrderOnHold`); exhaustive `switch` statements without a `default` branch will fail to compile and must add the new cases.
