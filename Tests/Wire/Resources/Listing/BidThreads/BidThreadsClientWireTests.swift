@@ -334,6 +334,105 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func listForDriverBidderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "items": [
+                    {
+                      "_id": "_id",
+                      "accepted_pro_forma_line_items": [
+                        {
+                          "currency_code": "USD",
+                          "description": "description",
+                          "line_item_type": "base_rate",
+                          "provenance": "rate_sheet",
+                          "quantity": 1.1,
+                          "unit_price": 1.1
+                        }
+                      ],
+                      "bidder_driver_id": "bidder_driver_id",
+                      "bidder_provider_org_id": "bidder_provider_org_id",
+                      "bids": [
+                        {
+                          "acted_by_user_id": "acted_by_user_id",
+                          "action": "submit",
+                          "created_at_timestamp": "2024-01-15T09:30:00Z",
+                          "from_lister": true
+                        }
+                      ],
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "listing_id": "listing_id",
+                      "schema_version": 1,
+                      "status": "open",
+                      "status_changed_at_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = BidThreadListRes(
+            items: [
+                BidThread1(
+                    id: "_id",
+                    acceptedProFormaLineItems: Optional([
+                        ProFormaLineItem1(
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
+                            description: "description",
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
+                            quantity: 1.1,
+                            unitPrice: 1.1
+                        )
+                    ]),
+                    bidderDriverId: Optional("bidder_driver_id"),
+                    bidderProviderOrgId: Optional("bidder_provider_org_id"),
+                    bids: [
+                        Bid(
+                            actedByUserId: "acted_by_user_id",
+                            action: BidActionEnum.submit,
+                            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            fromLister: true
+                        )
+                    ],
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    listingId: "listing_id",
+                    schemaVersion: Optional(1),
+                    status: BidThreadStatusEnum.open,
+                    statusChangedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.listing.bidThreads.listForDriverBidderV1(
+            sortBy: .createdAtTimestamp,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            filterStatus: [
+                .open
+            ],
+            filterListingId: "filter_listing_id",
+            filterBidderProviderOrgId: "filter_bidder_provider_org_id",
+            filterBidderDriverId: "filter_bidder_driver_id",
+            filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterStatusChangedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterStatusChangedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func listForListingV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -441,6 +540,105 @@ import Chrt
         )
         let response = try await client.listing.bidThreads.listForListingV1(
             listingId: "listing_id",
+            sortBy: .createdAtTimestamp,
+            sortOrder: .asc,
+            page: 1,
+            pageSize: 1,
+            filterStatus: [
+                .open
+            ],
+            filterListingId: "filter_listing_id",
+            filterBidderProviderOrgId: "filter_bidder_provider_org_id",
+            filterBidderDriverId: "filter_bidder_driver_id",
+            filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterStatusChangedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            filterStatusChangedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func listForProviderBidderV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                {
+                  "items": [
+                    {
+                      "_id": "_id",
+                      "accepted_pro_forma_line_items": [
+                        {
+                          "currency_code": "USD",
+                          "description": "description",
+                          "line_item_type": "base_rate",
+                          "provenance": "rate_sheet",
+                          "quantity": 1.1,
+                          "unit_price": 1.1
+                        }
+                      ],
+                      "bidder_driver_id": "bidder_driver_id",
+                      "bidder_provider_org_id": "bidder_provider_org_id",
+                      "bids": [
+                        {
+                          "acted_by_user_id": "acted_by_user_id",
+                          "action": "submit",
+                          "created_at_timestamp": "2024-01-15T09:30:00Z",
+                          "from_lister": true
+                        }
+                      ],
+                      "created_at_timestamp": "2024-01-15T09:30:00Z",
+                      "listing_id": "listing_id",
+                      "schema_version": 1,
+                      "status": "open",
+                      "status_changed_at_timestamp": "2024-01-15T09:30:00Z"
+                    }
+                  ],
+                  "total_count": 1
+                }
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = BidThreadListRes(
+            items: [
+                BidThread1(
+                    id: "_id",
+                    acceptedProFormaLineItems: Optional([
+                        ProFormaLineItem1(
+                            currencyCode: BillingCurrencyCodeEnum1.usd,
+                            description: "description",
+                            lineItemType: InvoiceLineItemTypeEnum1.baseRate,
+                            provenance: ProFormaLineItemProvenanceEnum1.rateSheet,
+                            quantity: 1.1,
+                            unitPrice: 1.1
+                        )
+                    ]),
+                    bidderDriverId: Optional("bidder_driver_id"),
+                    bidderProviderOrgId: Optional("bidder_provider_org_id"),
+                    bids: [
+                        Bid(
+                            actedByUserId: "acted_by_user_id",
+                            action: BidActionEnum.submit,
+                            createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                            fromLister: true
+                        )
+                    ],
+                    createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+                    listingId: "listing_id",
+                    schemaVersion: Optional(1),
+                    status: BidThreadStatusEnum.open,
+                    statusChangedAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+                )
+            ],
+            totalCount: 1
+        )
+        let response = try await client.listing.bidThreads.listForProviderBidderV1(
             sortBy: .createdAtTimestamp,
             sortOrder: .asc,
             page: 1,

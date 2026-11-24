@@ -7,7 +7,7 @@ public final class ShippingClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Retrieves order counts bucketed by time period. | (AnalyticsTimePeriodReq) -> (AnalyticsTimeBucketRes)
+    /// Retrieves order counts bucketed by time period. | authz: min_org_role=operator | (AnalyticsTimePeriodReq) -> (AnalyticsTimeBucketRes)
     ///
     /// ```swift
     /// import Foundation

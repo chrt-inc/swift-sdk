@@ -11,7 +11,7 @@ import Chrt
                 {
                   "_id": "_id",
                   "chrt_managed_roles": [
-                    "superUser"
+                    "viewer"
                   ],
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_user_id": "created_by_user_id",
@@ -35,7 +35,7 @@ import Chrt
         let expectedResponse = Group1(
             id: "_id",
             chrtManagedRoles: Optional([
-                ChrtManagedRoleEnum1.superUser
+                ChrtManagedRoleEnum1.viewer
             ]),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
@@ -88,7 +88,7 @@ import Chrt
                 {
                   "_id": "_id",
                   "chrt_managed_roles": [
-                    "superUser"
+                    "viewer"
                   ],
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_user_id": "created_by_user_id",
@@ -112,7 +112,7 @@ import Chrt
         let expectedResponse = Group1(
             id: "_id",
             chrtManagedRoles: Optional([
-                ChrtManagedRoleEnum1.superUser
+                ChrtManagedRoleEnum1.viewer
             ]),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",
@@ -180,7 +180,7 @@ import Chrt
             totalCount: 1
         )
         let response = try await client.authz.groups.listV1(
-            filterChrtManagedRole: .superUser,
+            filterChrtManagedRole: .viewer,
             filterCustomRoleId: "filter_custom_role_id",
             page: 1,
             pageSize: 1,
@@ -199,7 +199,7 @@ import Chrt
                 {
                   "_id": "_id",
                   "chrt_managed_roles": [
-                    "superUser"
+                    "viewer"
                   ],
                   "created_at_timestamp": "2024-01-15T09:30:00Z",
                   "created_by_user_id": "created_by_user_id",
@@ -223,7 +223,7 @@ import Chrt
         let expectedResponse = Group1(
             id: "_id",
             chrtManagedRoles: Optional([
-                ChrtManagedRoleEnum1.superUser
+                ChrtManagedRoleEnum1.viewer
             ]),
             createdAtTimestamp: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
             createdByUserId: "created_by_user_id",

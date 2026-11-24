@@ -865,7 +865,7 @@ try await main()
 <dl>
 <dd>
 
-Retrieves order counts bucketed by time period. | (AnalyticsTimePeriodReq) -> (AnalyticsTimeBucketRes)
+Retrieves order counts bucketed by time period. | authz: min_org_role=operator | (AnalyticsTimePeriodReq) -> (AnalyticsTimeBucketRes)
 </dd>
 </dl>
 </dd>
@@ -1641,7 +1641,7 @@ private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
     _ = try await client.authz.groups.listV1(
-        filterChrtManagedRole: .superUser,
+        filterChrtManagedRole: .viewer,
         filterCustomRoleId: "filter_custom_role_id",
         page: 1,
         pageSize: 1,
@@ -1915,7 +1915,7 @@ private func main() async throws {
 
     _ = try await client.authz.users.addChrtManagedRoleV1(
         userId: "user_id",
-        chrtManagedRole: "superUser"
+        chrtManagedRole: "viewer"
     )
 }
 
@@ -1997,7 +1997,7 @@ private func main() async throws {
 
     _ = try await client.authz.users.removeChrtManagedRoleV1(
         userId: "user_id",
-        chrtManagedRole: "superUser"
+        chrtManagedRole: "viewer"
     )
 }
 
@@ -2548,7 +2548,7 @@ private func main() async throws {
             "filter_user_ids"
         ],
         filterGroupId: "filter_group_id",
-        filterChrtManagedRole: .superUser,
+        filterChrtManagedRole: .viewer,
         filterCustomRoleId: "filter_custom_role_id"
     )
 }
@@ -3030,7 +3030,7 @@ try await main()
 <dl>
 <dd>
 
-Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (StripeConnectAccountOnboardingLinkRes)
+Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (StripeConnectAccountOnboardingLinkRes)
 </dd>
 </dl>
 </dd>
@@ -3093,7 +3093,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateStripeConnectAccountRes)
+Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (CreateStripeConnectAccountRes)
 </dd>
 </dl>
 </dd>
@@ -12756,7 +12756,7 @@ try await main()
 <dl>
 <dd>
 
-Fetches a bid thread by id. Visible to the lister, the bidder org (provider), and the bidder driver. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (BidThread1)
+Fetches a bid thread by id. Visible to the lister, the bidder org (provider), and the bidder driver. | authz: allowed_org_types=[provider], min_org_role=member | () -> (BidThread1)
 </dd>
 </dl>
 </dd>
@@ -13140,7 +13140,7 @@ try await main()
 <dl>
 <dd>
 
-Lists bid threads where the caller is the bidder — either as the bidder org (operator+) or as the bidder driver (driver). Filtering, sorting, and pagination supported. | authz: allowed_org_types=[provider], min_org_role=driver | () -> (BidThreadListRes)
+(DEPRECATED) Lists bid threads for the caller as an org or driver bidder. Use the separate provider bidder and driver bidder routes. | authz: allowed_org_types=[provider], min_org_role=member | () -> (BidThreadListRes)
 </dd>
 </dl>
 </dd>
@@ -13234,7 +13234,181 @@ try await main()
 <dl>
 <dd>
 
-**filterListingId:** `String?` — Filter to threads on this listing. Lister route ignores this field (path param wins); bidder route uses it to slice within the caller's bidder universe.
+**filterListingId:** `String?` — Filter to threads on this listing. Lister route ignores this field. Bidder routes apply it within the caller's own threads.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterBidderProviderOrgId:** `String?` — Filter to threads where the bidder is this provider org. Useful on lister views to slice by bidder.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterBidderDriverId:** `String?` — Filter to threads where the bidder is this driver. Useful on lister views to slice by driver bidder.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatusChangedAtTimestampGte:** `Date?` — Filter status_changed_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatusChangedAtTimestampLte:** `Date?` — Filter status_changed_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.listing.bidThreads.<a href="/Sources/Resources/Listing/BidThreads/BidThreadsClient.swift">listForDriverBidderV1</a>(sortBy: BidThreadSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: [BidThreadStatusEnum]?, filterListingId: String?, filterBidderProviderOrgId: String?, filterBidderDriverId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterStatusChangedAtTimestampGte: Date?, filterStatusChangedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> BidThreadListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists bid threads for the caller's driver record with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=member | () -> (BidThreadListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.listing.bidThreads.listForDriverBidderV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterListingId: "filter_listing_id",
+        filterBidderProviderOrgId: "filter_bidder_provider_org_id",
+        filterBidderDriverId: "filter_bidder_driver_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStatusChangedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStatusChangedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `BidThreadSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `[BidThreadStatusEnum]?` — Filter by thread status(es). Multi-select.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterListingId:** `String?` — Filter to threads on this listing. Lister route ignores this field. Bidder routes apply it within the caller's own threads.
     
 </dd>
 </dl>
@@ -13417,7 +13591,181 @@ try await main()
 <dl>
 <dd>
 
-**filterListingId:** `String?` — Filter to threads on this listing. Lister route ignores this field (path param wins); bidder route uses it to slice within the caller's bidder universe.
+**filterListingId:** `String?` — Filter to threads on this listing. Lister route ignores this field. Bidder routes apply it within the caller's own threads.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterBidderProviderOrgId:** `String?` — Filter to threads where the bidder is this provider org. Useful on lister views to slice by bidder.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterBidderDriverId:** `String?` — Filter to threads where the bidder is this driver. Useful on lister views to slice by driver bidder.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampGte:** `Date?` — Filter created_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterCreatedAtTimestampLte:** `Date?` — Filter created_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatusChangedAtTimestampGte:** `Date?` — Filter status_changed_at_timestamp >= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatusChangedAtTimestampLte:** `Date?` — Filter status_changed_at_timestamp <= value (inclusive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.listing.bidThreads.<a href="/Sources/Resources/Listing/BidThreads/BidThreadsClient.swift">listForProviderBidderV1</a>(sortBy: BidThreadSortByEnum?, sortOrder: SortOrderEnum?, page: Int?, pageSize: Int?, filterStatus: [BidThreadStatusEnum]?, filterListingId: String?, filterBidderProviderOrgId: String?, filterBidderDriverId: String?, filterCreatedAtTimestampGte: Date?, filterCreatedAtTimestampLte: Date?, filterStatusChangedAtTimestampGte: Date?, filterStatusChangedAtTimestampLte: Date?, requestOptions: RequestOptions?) -> BidThreadListRes</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists bid threads for the caller's provider organization with filtering, sorting, and pagination. | authz: allowed_org_types=[provider], min_org_role=member | () -> (BidThreadListRes)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.listing.bidThreads.listForProviderBidderV1(
+        sortBy: .createdAtTimestamp,
+        sortOrder: .asc,
+        page: 1,
+        pageSize: 1,
+        filterStatus: [
+            .open
+        ],
+        filterListingId: "filter_listing_id",
+        filterBidderProviderOrgId: "filter_bidder_provider_org_id",
+        filterBidderDriverId: "filter_bidder_driver_id",
+        filterCreatedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterCreatedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStatusChangedAtTimestampGte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601),
+        filterStatusChangedAtTimestampLte: try! Date("2024-01-15T09:30:00Z", strategy: .iso8601)
+    )
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**sortBy:** `BidThreadSortByEnum?` — Field to sort by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sortOrder:** `SortOrderEnum?` — Sort order (asc or desc).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pageSize:** `Int?` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterStatus:** `[BidThreadStatusEnum]?` — Filter by thread status(es). Multi-select.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filterListingId:** `String?` — Filter to threads on this listing. Lister route ignores this field. Bidder routes apply it within the caller's own threads.
     
 </dd>
 </dl>
@@ -14635,7 +14983,7 @@ try await main()
 </dl>
 </details>
 
-<details><summary><code>client.listing.listings.<a href="/Sources/Resources/Listing/Listings/ListingsClient.swift">createV1</a>(request: Requests.ListingClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<details><summary><code>client.listing.listings.<a href="/Sources/Resources/Listing/Listings/ListingsClient.swift">createForDriversV1</a>(request: ListingClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
 <dl>
 <dd>
 
@@ -14647,7 +14995,7 @@ try await main()
 <dl>
 <dd>
 
-Creates a Listing for a TaskGroup that the caller's org coordinates. Snapshots participants by unioning ad-hoc picks with expanded bidding groups. When `auto_open_priced_bid_threads` is True, also auto-opens one BidThread per resolved participant with a lister-side seed Bid carrying default-rate-sheet-derived pricing (falling back to the listing's `pro_forma_line_items` when no rate sheet is configured for a participant) — listing insert and thread inserts are atomic. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
+Creates a driver listing for a task group that the caller's org executes. The request audience must be drivers. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
 </dd>
 </dl>
 </dd>
@@ -14668,7 +15016,7 @@ import Chrt
 private func main() async throws {
     let client = ChrtClient(token: "<token>")
 
-    _ = try await client.listing.listings.createV1(request: .init(
+    _ = try await client.listing.listings.createForDriversV1(request: ListingClientCreate1(
         audience: .providers,
         listingDescription: "listing_description",
         taskGroupId: "task_group_id",
@@ -14691,7 +15039,159 @@ try await main()
 <dl>
 <dd>
 
-**request:** `Requests.ListingClientCreate1` 
+**request:** `ListingClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.listing.listings.<a href="/Sources/Resources/Listing/Listings/ListingsClient.swift">createForProvidersV1</a>(request: ListingClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a provider listing for a task group on an order that the caller's org coordinates. The request audience must be providers. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.listing.listings.createForProvidersV1(request: ListingClientCreate1(
+        audience: .providers,
+        listingDescription: "listing_description",
+        taskGroupId: "task_group_id",
+        taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListingClientCreate1` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RequestOptions?` — Additional options for configuring the request, such as custom headers or timeout settings.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.listing.listings.<a href="/Sources/Resources/Listing/Listings/ListingsClient.swift">createV1</a>(request: ListingClientCreate1, requestOptions: RequestOptions?) -> String</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+(DEPRECATED) Use the provider or driver listing create route. Creates a listing for a task group that the caller's org coordinates or executes. Snapshots participants by unioning ad-hoc picks with expanded bidding groups. When `auto_open_priced_bid_threads` is True, also auto-opens one BidThread per resolved participant with a lister-side seed Bid carrying default-rate-sheet-derived pricing (falling back to the listing's `pro_forma_line_items` when no rate sheet is configured for a participant) — listing insert and thread inserts are atomic. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```swift
+import Foundation
+import Chrt
+
+private func main() async throws {
+    let client = ChrtClient(token: "<token>")
+
+    _ = try await client.listing.listings.createV1(request: ListingClientCreate1(
+        audience: .providers,
+        listingDescription: "listing_description",
+        taskGroupId: "task_group_id",
+        taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+    ))
+}
+
+try await main()
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListingClientCreate1` 
     
 </dd>
 </dl>

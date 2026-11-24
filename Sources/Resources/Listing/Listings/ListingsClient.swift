@@ -165,7 +165,7 @@ public final class ListingsClient: Sendable {
         )
     }
 
-    /// Creates a Listing for a TaskGroup that the caller's org coordinates. Snapshots participants by unioning ad-hoc picks with expanded bidding groups. When `auto_open_priced_bid_threads` is True, also auto-opens one BidThread per resolved participant with a lister-side seed Bid carrying default-rate-sheet-derived pricing (falling back to the listing's `pro_forma_line_items` when no rate sheet is configured for a participant) — listing insert and thread inserts are atomic. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
+    /// Creates a driver listing for a task group that the caller's org executes. The request audience must be drivers. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
     ///
     /// ```swift
     /// import Foundation
@@ -174,7 +174,7 @@ public final class ListingsClient: Sendable {
     /// private func main() async throws {
     ///     let client = ChrtClient(token: "<token>")
     ///
-    ///     _ = try await client.listing.listings.createV1(request: .init(
+    ///     _ = try await client.listing.listings.createForDriversV1(request: ListingClientCreate1(
     ///         audience: .providers,
     ///         listingDescription: "listing_description",
     ///         taskGroupId: "task_group_id",
@@ -186,7 +186,69 @@ public final class ListingsClient: Sendable {
     /// ```
     ///
     /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
-    public func createV1(request: Requests.ListingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+    public func createForDriversV1(request: ListingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/listing/listings/create/for_drivers/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// Creates a provider listing for a task group on an order that the caller's org coordinates. The request audience must be providers. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.createForProvidersV1(request: ListingClientCreate1(
+    ///         audience: .providers,
+    ///         listingDescription: "listing_description",
+    ///         taskGroupId: "task_group_id",
+    ///         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createForProvidersV1(request: ListingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
+        return try await httpClient.performRequest(
+            method: .post,
+            path: "/listing/listings/create/for_providers/v1",
+            body: request,
+            requestOptions: requestOptions,
+            responseType: String.self
+        )
+    }
+
+    /// (DEPRECATED) Use the provider or driver listing create route. Creates a listing for a task group that the caller's org coordinates or executes. Snapshots participants by unioning ad-hoc picks with expanded bidding groups. When `auto_open_priced_bid_threads` is True, also auto-opens one BidThread per resolved participant with a lister-side seed Bid carrying default-rate-sheet-derived pricing (falling back to the listing's `pro_forma_line_items` when no rate sheet is configured for a participant) — listing insert and thread inserts are atomic. | authz: allowed_org_types=[provider], min_org_role=operator | (ListingClientCreate1) -> (PydanticObjectId)
+    ///
+    /// ```swift
+    /// import Foundation
+    /// import Chrt
+    ///
+    /// private func main() async throws {
+    ///     let client = ChrtClient(token: "<token>")
+    ///
+    ///     _ = try await client.listing.listings.createV1(request: ListingClientCreate1(
+    ///         audience: .providers,
+    ///         listingDescription: "listing_description",
+    ///         taskGroupId: "task_group_id",
+    ///         taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+    ///     ))
+    /// }
+    ///
+    /// try await main()
+    /// ```
+    ///
+    /// - Parameter requestOptions: Additional options for configuring the request, such as custom headers or timeout settings.
+    public func createV1(request: ListingClientCreate1, requestOptions: RequestOptions? = nil) async throws -> String {
         return try await httpClient.performRequest(
             method: .post,
             path: "/listing/listings/create/v1",

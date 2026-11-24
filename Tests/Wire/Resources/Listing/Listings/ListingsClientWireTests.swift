@@ -429,6 +429,60 @@ import Chrt
         try #require(response == expectedResponse)
     }
 
+    @Test func createForDriversV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                string
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.listing.listings.createForDriversV1(
+            request: ListingClientCreate1(
+                audience: .providers,
+                listingDescription: "listing_description",
+                taskGroupId: "task_group_id",
+                taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
+    @Test func createForProvidersV11() async throws -> Void {
+        let stub = HTTPStub()
+        stub.setResponse(
+            body: Foundation.Data(
+                #"""
+                string
+                """#.utf8
+            )
+        )
+        let client = ChrtClient(
+            baseURL: "https://api.fern.com",
+            token: "<token>",
+            urlSession: stub.urlSession
+        )
+        let expectedResponse = "string"
+        let response = try await client.listing.listings.createForProvidersV1(
+            request: ListingClientCreate1(
+                audience: .providers,
+                listingDescription: "listing_description",
+                taskGroupId: "task_group_id",
+                taskGroupSummaryForBidders: "task_group_summary_for_bidders"
+            ),
+            requestOptions: RequestOptions(additionalHeaders: stub.headers)
+        )
+        try #require(response == expectedResponse)
+    }
+
     @Test func createV11() async throws -> Void {
         let stub = HTTPStub()
         stub.setResponse(
@@ -445,7 +499,7 @@ import Chrt
         )
         let expectedResponse = "string"
         let response = try await client.listing.listings.createV1(
-            request: .init(
+            request: ListingClientCreate1(
                 audience: .providers,
                 listingDescription: "listing_description",
                 taskGroupId: "task_group_id",

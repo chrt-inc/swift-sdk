@@ -7,7 +7,7 @@ public final class StripeConnectClient: Sendable {
         self.httpClient = HTTPClient(config: config)
     }
 
-    /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | () -> (StripeConnectAccountOnboardingLinkRes)
+    /// Creates an onboarding link for a Stripe Connect account. Used to complete or update account setup. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (StripeConnectAccountOnboardingLinkRes)
     ///
     /// ```swift
     /// import Foundation
@@ -32,7 +32,7 @@ public final class StripeConnectClient: Sendable {
         )
     }
 
-    /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | () -> (CreateStripeConnectAccountRes)
+    /// Creates a Stripe Connect account for the organization to receive payments. Idempotent - returns existing account if already created. | authz: allowed_org_types=[provider], min_org_role=administrator | () -> (CreateStripeConnectAccountRes)
     ///
     /// ```swift
     /// import Foundation

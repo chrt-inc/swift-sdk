@@ -18,7 +18,7 @@ public final class UsersClient: Sendable {
     ///
     ///     _ = try await client.authz.users.addChrtManagedRoleV1(
     ///         userId: "user_id",
-    ///         chrtManagedRole: "superUser"
+    ///         chrtManagedRole: "viewer"
     ///     )
     /// }
     ///
@@ -47,7 +47,7 @@ public final class UsersClient: Sendable {
     ///
     ///     _ = try await client.authz.users.removeChrtManagedRoleV1(
     ///         userId: "user_id",
-    ///         chrtManagedRole: "superUser"
+    ///         chrtManagedRole: "viewer"
     ///     )
     /// }
     ///
@@ -250,7 +250,7 @@ public final class UsersClient: Sendable {
     ///             "filter_user_ids"
     ///         ],
     ///         filterGroupId: "filter_group_id",
-    ///         filterChrtManagedRole: .superUser,
+    ///         filterChrtManagedRole: .viewer,
     ///         filterCustomRoleId: "filter_custom_role_id"
     ///     )
     /// }

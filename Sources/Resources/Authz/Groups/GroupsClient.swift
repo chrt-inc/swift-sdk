@@ -96,7 +96,7 @@ public final class GroupsClient: Sendable {
     ///     let client = ChrtClient(token: "<token>")
     ///
     ///     _ = try await client.authz.groups.listV1(
-    ///         filterChrtManagedRole: .superUser,
+    ///         filterChrtManagedRole: .viewer,
     ///         filterCustomRoleId: "filter_custom_role_id",
     ///         page: 1,
     ///         pageSize: 1,

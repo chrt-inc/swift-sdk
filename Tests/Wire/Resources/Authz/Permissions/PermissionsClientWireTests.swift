@@ -21,7 +21,7 @@ import Chrt
                       "permission": "authz.readAccess",
                       "sources": [
                         {
-                          "chrt_managed_role": "superUser",
+                          "chrt_managed_role": "viewer",
                           "kind": "chrt_managed_role"
                         }
                       ]
@@ -50,7 +50,7 @@ import Chrt
                     sources: [
                         SourcesItem.chrtManagedRole(
                             .init(
-                                chrtManagedRole: ChrtManagedRoleEnum1.superUser,
+                                chrtManagedRole: ChrtManagedRoleEnum1.viewer,
                                 additionalProperties: [
                                     "kind": JSONValue.string("chrt_managed_role")
                                 ]

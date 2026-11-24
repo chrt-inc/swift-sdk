@@ -17,7 +17,7 @@ import Chrt
                       "permissions": [
                         "authz.readAccess"
                       ],
-                      "role": "superUser"
+                      "role": "viewer"
                     }
                   ]
                 }
@@ -38,7 +38,7 @@ import Chrt
                     permissions: [
                         PermissionEnum1.authzReadAccess
                     ],
-                    role: ChrtManagedRoleEnum1.superUser
+                    role: ChrtManagedRoleEnum1.viewer
                 )
             ]
         )
